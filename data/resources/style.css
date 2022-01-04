@@ -1,0 +1,8 @@
+/* TODO Does not work. */
+shutterbutton:hover {
+  color: alpha(currentColor, .15);
+}
+
+gallery {
+  background-color: black;
+}

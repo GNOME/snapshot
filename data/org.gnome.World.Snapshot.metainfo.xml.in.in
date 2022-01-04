@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Maximiliano Sandoval 2023 <msandova@gnome.org> -->
+<component type="desktop-application">
+  <id>@app-id@</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Snapshot</name>
+  <summary>Take pictures and videos</summary>
+  <description>
+    <p>
+      Take pictures and videos on your computer, tablet, or phone.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://gitlab.gnome.org/msandova/snapshot/raw/master/data/screenshots/screenshot1.png</image>
+      <caption>Camera's main interface</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://gitlab.gnome.org/msandova/snapshot</url>
+  <url type="bugtracker">https://gitlab.gnome.org/msandova/snapshot/issues</url>
+  <content_rating type="oars-1.0" />
+  <releases>
+    <release version="0.0.1" date="2019-07-11" />
+  </releases>
+  <kudos>
+     <!--
+       GNOME Software kudos:
+       https://gitlab.gnome.org/GNOME/gnome-software/blob/master/doc/kudos.md
+     -->
+     <kudo>ModernToolkit</kudo>
+     <kudo>HiDpiIcon</kudo>
+  </kudos>
+  <developer_name>Maximiliano Sandoval</developer_name>
+  <update_contact>msandova@gnome.org</update_contact>
+  <translation type="gettext">@gettext-package@</translation>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+</component>

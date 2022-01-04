@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <enum id="org.gnome.World.Snapshot.CaptureMode">
+    <value nick="picture" value="0" />
+    <value nick="video" value="1" />
+  </enum>
+  <enum id="org.gnome.World.Snapshot.PictureFormat">
+    <value nick="png" value="0" />
+    <value nick="jpeg" value="1" />
+  </enum>
+  <enum id="org.gnome.World.Snapshot.VideoFormat">
+    <value nick="h264mp4" value="0" />
+    <value nick="h265mp4" value="1" />
+    <value nick="vp8webm" value="2" />
+    <value nick="theoraogg" value="3" />
+  </enum>
+  <schema path="/org/gnome/World/Snapshot/" id="@app-id@" gettext-domain="@gettext-package@">
+    <key name="window-width" type="i">
+      <default>600</default>
+      <summary>Default window width</summary>
+      <description>Default window width</description>
+    </key>
+    <key name="window-height" type="i">
+      <default>400</default>
+      <summary>Default window height</summary>
+      <description>Default window height</description>
+    </key>
+    <key name="is-maximized" type="b">
+      <default>false</default>
+      <summary>Default window maximized behaviour</summary>
+      <description></description>
+    </key>
+    <key name="countdown" type="i">
+      <default>0</default>
+      <summary>Countdown timer</summary>
+      <description>The duration of the countdown for taking photos, in seconds</description>
+    </key>
+    <key name="capture-mode" enum="org.gnome.World.Snapshot.CaptureMode">
+      <default>"picture"</default>
+      <summary>Capture mode</summary>
+      <description>Whether to take pictures or videos</description>
+    </key>
+    <key name="picture-format" enum="org.gnome.World.Snapshot.PictureFormat">
+      <default>"png"</default>
+      <summary>Picture format</summary>
+      <description>Whether to save pictures as png or jpeg</description>
+    </key>
+    <key name="video-format" enum="org.gnome.World.Snapshot.VideoFormat">
+      <default>"theoraogg"</default>
+      <summary>Video format</summary>
+      <description>Whether to save videos as mp4 or webm</description>
+    </key>
+  </schema>
+</schemalist>
