@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::os::unix::prelude::RawFd;
 
-use ashpd::desktop::camera;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
@@ -159,13 +158,6 @@ impl Camera {
 
     async fn try_start_stream(&self) -> anyhow::Result<()> {
         let imp = self.imp();
-        // let stream_fd = match stream().await {
-        //     Ok(stream_fd) => Some(stream_fd),
-        //     Err(err) => {
-        //         log::debug!("Failed to communicate with the Camera portal: {err}");
-        //         None
-        //     }
-        // };
 
         // TODO We pass None since the portal does not return microphones and
         // creating additional DeviceProviders does not work.
@@ -233,11 +225,4 @@ impl Camera {
             }));
         imp.gallery_button.set_gallery(gallery);
     }
-}
-
-async fn stream() -> ashpd::Result<RawFd> {
-    let proxy = camera::Camera::new().await?;
-    proxy.request_access().await?;
-
-    proxy.open_pipe_wire_remote().await
 }
