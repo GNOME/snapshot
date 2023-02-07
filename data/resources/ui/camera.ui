@@ -121,7 +121,7 @@
                     <property name="halign">center</property>
                     <property name="margin-top">24</property>
                     <property name="margin-bottom">24</property>
-                    <property name="spacing">12</property>
+                    <property name="spacing">36</property>
                     <child>
                       <object class="GalleryButton" id="gallery_button">
                         <property name="width-request">44</property>
@@ -133,18 +133,21 @@
                     <child>
                       <object class="ShutterButton" id="shutter_button">
                         <property name="action-name">win.take-picture</property>
-                        <property name="width-request">55</property>
-                        <property name="height-request">55</property>
-                        <property name="halign">center</property>
+                        <property name="width-request">60</property>
+                        <property name="height-request">60</property>
                         <property name="valign">center</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkMenuButton" id="camera_menu_button">
+                        <property name="width-request">44</property>
+                        <property name="height-request">44</property>
                         <property name="valign">center</property>
                         <property name="icon-name">video-camera-symbolic</property>
-                        <property name="always-show-arrow">True</property>
                         <property name="tooltip-text" translatable="yes">Select Camera</property>
+                        <style>
+                          <class name="circular"/>
+                        </style>
                       </object>
                     </child>
                   </object>
