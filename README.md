@@ -15,7 +15,7 @@
 
 <!-- If you have any questions regarding the use or development of Snashot, please join us on our [#snapshot:gnome.org](https://matrix.to/#/#snapshot:gnome.org) channel. -->
 
-## Hack on Emblem
+## Hack on Snapshot
 
 To build the development version of Snapshot and hack on the code
 see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
