@@ -50,7 +50,7 @@ mod imp {
 
             let width = widget.allocated_width() as f64;
             let height = widget.allocated_height() as f64;
-            let size = f64::min(width, height) - BORDER_WIDTH as f64;
+            let size = f64::min(width, height);
 
             let foreground_radius = widget.animation().value() * size;
 
