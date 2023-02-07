@@ -116,20 +116,6 @@
             ]
         },
         {
-            "name" : "pipewire",
-            "buildsystem": "meson",
-            "config-opts" : [
-                "-Dalsa=disabled",
-                "-Dpipewire-alsa=disabled"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.freedesktop.org/pipewire/pipewire"
-                }
-            ]
-        },
-        {
             "name": "snapshot",
             "buildsystem": "meson",
             "run-tests": true,
