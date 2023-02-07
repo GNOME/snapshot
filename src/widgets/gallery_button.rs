@@ -48,11 +48,12 @@ mod imp {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let widget = self.obj();
 
-            let width = widget.allocated_width() as f64;
-            let height = widget.allocated_height() as f64;
-            let size = f64::min(width, height) - BORDER_WIDTH as f64;
+            let width = widget.allocated_width() as f32;
+            let height = widget.allocated_height() as f32;
+            let size = width.min(height);
 
-            let foreground_radius = widget.animation().value() * size;
+            let value = widget.animation().value() as f32;
+            let foreground_radius = value * size;
 
             let images = self.gallery.borrow().images();
             let Some(foreground) = images.first().and_then(|x| x.paintable()) else { return; };
@@ -89,30 +90,30 @@ impl GalleryButton {
         &self,
         snapshot: &gtk::Snapshot,
         paintable: &gdk::Paintable,
-        width: f64,
-        height: f64,
-        size: f64,
+        width: f32,
+        height: f32,
+        size: f32,
     ) {
-        let x = ((width - size) / 2.0) as f32;
-        let y = ((height - size) / 2.0) as f32;
+        let x = (width - size) / 2.0;
+        let y = (height - size) / 2.0;
 
-        let rect = graphene::Rect::new(0.0, 0.0, size as f32, size as f32);
-        let s = graphene::Size::new(size as f32 / 2.0, size as f32 / 2.0);
+        let rect = graphene::Rect::new(0.0, 0.0, size, size);
+        let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
         snapshot.translate(&graphene::Point::new(x, y));
         snapshot.push_rounded_clip(&rounded);
-        paintable.snapshot(snapshot, size, size);
+        paintable.snapshot(snapshot, size as f64, size as f64);
         snapshot.pop();
         snapshot.translate(&graphene::Point::new(-x, -y));
     }
 
-    fn draw_border(&self, snapshot: &gtk::Snapshot, width: f64, height: f64, size: f64) {
-        let x = ((width - size) / 2.0) as f32;
-        let y = ((height - size) / 2.0) as f32;
+    fn draw_border(&self, snapshot: &gtk::Snapshot, width: f32, height: f32, size: f32) {
+        let x = (width - size) / 2.0;
+        let y = (height - size) / 2.0;
 
-        let rect = graphene::Rect::new(0.0, 0.0, size as f32, size as f32);
-        let s = graphene::Size::new(size as f32 / 2.0, size as f32 / 2.0);
+        let rect = graphene::Rect::new(0.0, 0.0, size, size);
+        let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
         let white = gdk::RGBA::WHITE;

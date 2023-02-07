@@ -38,34 +38,29 @@
             <property name="child">
               <object class="GtkOverlay">
                 <child type="overlay">
-                  <object class="GtkMenuButton" id="countdown_button">
-                    <property name="valign">start</property>
-                    <property name="halign">start</property>
-                    <property name="margin-top">24</property>
-                    <property name="margin-bottom">24</property>
-                    <property name="margin-start">12</property>
-                    <property name="margin-end">12</property>
-                    <property name="menu-model">countdown_menu</property>
-                    <property name="icon-name">stopwatch-symbolic</property>
-                    <style>
-                      <class name="circular"/>
-                    </style>
-                  </object>
-                </child>
-                <child type="overlay">
                   <object class="GtkBox">
                     <property name="valign">start</property>
                     <property name="halign">fill</property>
+                    <property name="spacing">24</property>
                     <property name="margin-top">24</property>
                     <property name="margin-bottom">24</property>
                     <property name="margin-start">12</property>
                     <property name="margin-end">12</property>
-                    <property name="spacing">24</property>
+                    <child>
+                      <object class="GtkMenuButton" id="countdown_button">
+                        <property name="menu-model">countdown_menu</property>
+                        <property name="icon-name">stopwatch-symbolic</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="circular"/>
+                        </style>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkBox">
-                        <property name="valign">center</property>
                         <property name="halign">center</property>
                         <property name="hexpand">True</property>
+                        <property name="valign">center</property>
                         <style>
                           <class name="linked"/>
                         </style>
@@ -85,43 +80,37 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child type="overlay">
-                  <object class="GtkBox">
-                    <property name="valign">start</property>
-                    <property name="halign">end</property>
-                    <!-- <property name="hexpand">True</property> -->
-                    <property name="margin-start">12</property>
-                    <property name="margin-end">12</property>
-                    <property name="margin-bottom">24</property>
-                    <property name="margin-top">24</property>
-                    <property name="spacing">12</property>
                     <child>
-                      <object class="GtkMenuButton" id="appmenu_button">
-                        <property name="icon-name">open-menu-symbolic</property>
-                        <property name="menu-model">primary_menu</property>
-                        <property name="valign">center</property>
-                        <style>
-                          <class name="circular"/>
-                        </style>
+                      <object class="GtkBox">
+                        <property name="halign">end</property>
+                        <property name="spacing">12</property>
                         <child>
-                          <object class="GtkShortcutController">
-                            <property name="scope">managed</property>
+                          <object class="GtkMenuButton" id="appmenu_button">
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="menu-model">primary_menu</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="circular"/>
+                            </style>
                             <child>
-                              <object class="GtkShortcut">
-                                <property name="trigger">F10</property>
-                                <property name="action">activate</property>
+                              <object class="GtkShortcutController">
+                                <property name="scope">managed</property>
+                                <child>
+                                  <object class="GtkShortcut">
+                                    <property name="trigger">F10</property>
+                                    <property name="action">activate</property>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkWindowControls">
-                        <property name="decoration-layout">close</property>
-                        <property name="margin-bottom">5</property>
+                        <child>
+                          <object class="GtkWindowControls">
+                            <property name="decoration-layout">close</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -132,7 +121,7 @@
                     <property name="halign">center</property>
                     <property name="margin-top">24</property>
                     <property name="margin-bottom">24</property>
-                    <property name="spacing">12</property>
+                    <property name="spacing">36</property>
                     <child>
                       <object class="GalleryButton" id="gallery_button">
                         <property name="width-request">44</property>
@@ -144,18 +133,21 @@
                     <child>
                       <object class="ShutterButton" id="shutter_button">
                         <property name="action-name">win.take-picture</property>
-                        <property name="width-request">55</property>
-                        <property name="height-request">55</property>
-                        <property name="halign">center</property>
+                        <property name="width-request">60</property>
+                        <property name="height-request">60</property>
                         <property name="valign">center</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkMenuButton" id="camera_menu_button">
+                        <property name="width-request">44</property>
+                        <property name="height-request">44</property>
                         <property name="valign">center</property>
                         <property name="icon-name">video-camera-symbolic</property>
-                        <property name="always-show-arrow">True</property>
                         <property name="tooltip-text" translatable="yes">Select Camera</property>
+                        <style>
+                          <class name="circular"/>
+                        </style>
                       </object>
                     </child>
                   </object>
