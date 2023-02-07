@@ -57,7 +57,7 @@ mod imp {
 
             let obj = self.obj();
 
-            self.picture.set_paintable(Some(&self.paintable));
+            self.paintable.set_picture(&*self.picture);
 
             let popover = gtk::Popover::new();
             popover.add_css_class("menu");

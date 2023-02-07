@@ -11,9 +11,9 @@
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
+use adw::prelude::*;
 use glib::clone;
 use gst::prelude::*;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
@@ -37,6 +37,8 @@ mod imp {
         pub sink: OnceCell<gst::Element>,
         pub recording_bin: RefCell<Option<gst::Bin>>,
         pub code_hash: Cell<Option<u64>>,
+
+        pub flash_ani: OnceCell<adw::TimedAnimation>,
     }
 
     #[glib::object_subclass]
@@ -104,6 +106,18 @@ mod imp {
         fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
             if let Some(image) = self.sink_paintable.get() {
                 image.snapshot(snapshot, width, height);
+
+                if let Some(animation) = self.flash_ani.get() {
+                    if !matches!(animation.state(), adw::AnimationState::Playing) {
+                        return;
+                    }
+                    let alpha = easing(animation.value());
+
+                    let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
+                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha as f32);
+
+                    snapshot.append_color(&black, &rect);
+                }
             } else {
                 snapshot.append_color(
                     &gdk::RGBA::BLACK,
@@ -363,6 +377,8 @@ impl CameraPaintable {
             },
         );
 
+        imp.flash_ani.get().unwrap().play();
+
         Ok(())
     }
 
@@ -539,6 +555,19 @@ impl CameraPaintable {
             }),
         );
     }
+
+    pub fn set_picture<W: glib::IsA<gtk::Picture>>(&self, picture: &W) {
+        picture.as_ref().set_paintable(Some(self));
+
+        let target =
+            adw::CallbackAnimationTarget::new(glib::clone!(@weak self as obj => move |_value| {
+                obj.invalidate_contents();
+            }));
+        let ani = adw::TimedAnimation::new(picture.upcast_ref(), 0.0, 1.0, 250, &target);
+        ani.set_easing(adw::Easing::Linear);
+
+        self.imp().flash_ani.set(ani).unwrap();
+    }
 }
 
 fn create_application_message(text: &str) -> gst::Message {
@@ -555,4 +584,11 @@ fn create_application_warning_message(text: &str) -> gst::Message {
             .field("text", text)
             .build(),
     )
+}
+
+#[inline]
+fn easing(value: f64) -> f64 {
+    let value = 1.0 - (1.0 - value).powi(3);
+
+    value * (1.0 - value) * 4.0
 }
