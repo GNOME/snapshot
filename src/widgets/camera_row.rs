@@ -29,7 +29,7 @@ mod imp {
 
             obj.set_spacing(6);
             self.checkmark.set_icon_name(Some("object-select-symbolic"));
-            self.checkmark.hide();
+            self.checkmark.set_visible(false);
 
             obj.append(&self.label);
             obj.append(&self.checkmark);
