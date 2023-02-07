@@ -137,6 +137,7 @@
                       <object class="GalleryButton" id="gallery_button">
                         <property name="width-request">44</property>
                         <property name="height-request">44</property>
+                        <property name="valign">center</property>
                         <property name="action-name">win.toggle-gallery</property>
                       </object>
                     </child>
