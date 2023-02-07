@@ -3,7 +3,7 @@ use std::f64::consts::PI;
 
 use adw::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{cairo, gdk, glib, graphene, gsk};
+use gtk::{cairo, glib, graphene};
 
 use crate::ShutterMode;
 
@@ -168,13 +168,22 @@ mod imp {
 
             let line = (size / 8.0).min(8.0);
 
-            draw_border(snapshot, size as f32, line as f32, widget.color());
-
             let color = if widget.is_sensitive() { 1.0 } else { 0.5 };
             let mode_color = self.mode_val.get() * color;
 
             let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
             let ctx = snapshot.append_cairo(&rect);
+
+            ctx.set_line_width(line);
+            ctx.set_source_rgb(color, color, color);
+            ctx.arc_negative(
+                width / 2.0,
+                height / 2.0,
+                (size - line) / 2.0,
+                1.5 * PI,
+                (2.0 * self.countdown_val.get() - 1.5) * -PI,
+            );
+            ctx.stroke().unwrap();
 
             ctx.set_source_rgb(color, mode_color, mode_color);
 
@@ -317,13 +326,4 @@ fn rounded_square(ctx: &cairo::Context, size: f64, radius: f64, x: f64, y: f64) 
     ctx.arc(x + radius, y + radius, radius, PI, -0.5 * PI);
     // back to top right
     ctx.line_to(x + size - radius, y);
-}
-
-fn draw_border(snapshot: &gtk::Snapshot, size: f32, border_width: f32, color: gdk::RGBA) {
-    let rect = graphene::Rect::new(0.0, 0.0, size, size);
-
-    let s = graphene::Size::new(size / 2.0, size / 2.0);
-    let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
-
-    snapshot.append_border(&rounded, &[border_width; 4], &[color; 4]);
 }
