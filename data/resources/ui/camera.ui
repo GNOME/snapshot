@@ -121,7 +121,7 @@
                     <child>
                       <object class="GtkWindowControls">
                         <property name="decoration-layout">close</property>
-                        <property name="margin-bottom">5</property>
+                        <property name="valign">center</property>
                       </object>
                     </child>
                   </object>
