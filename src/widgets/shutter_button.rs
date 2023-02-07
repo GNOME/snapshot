@@ -188,7 +188,11 @@ mod imp {
             ctx.set_source_rgb(color, mode_color, mode_color);
 
             let record = self.record_val.get();
-            let gap = self.press_val.get();
+            let gap = if matches!(self.shutter_mode.get(), crate::ShutterMode::Picture) {
+                self.press_val.get()
+            } else {
+                3.0
+            };
 
             if record == 0.0 {
                 ctx.arc(
