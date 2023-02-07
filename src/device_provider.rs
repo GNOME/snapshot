@@ -64,7 +64,7 @@ impl DeviceProvider {
             .into_iter()
             .map(From::from)
             .collect::<Vec<Device>>();
-        while devices.len() == 0 {
+        while devices.is_empty() {
             log::debug!("Found 0 devices");
             devices = provider
                 .devices()

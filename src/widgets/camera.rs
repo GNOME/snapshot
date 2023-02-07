@@ -57,7 +57,7 @@ mod imp {
 
             let obj = self.obj();
 
-            self.picture.set_paintable(Some(&self.paintable));
+            self.paintable.set_picture(&*self.picture);
 
             let popover = gtk::Popover::new();
             popover.add_css_class("menu");
@@ -229,7 +229,7 @@ impl Camera {
 
         imp.paintable
             .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, texture| {
-                gallery.add_image(&texture);
+                gallery.add_image(texture);
             }));
         imp.gallery_button.set_gallery(gallery);
     }

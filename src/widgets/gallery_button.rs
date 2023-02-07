@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use std::f64::consts::PI;
-
-use gtk::prelude::*;
+use adw::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene};
+use gtk::{gdk, glib, graphene, gsk};
+
+const BORDER_WIDTH: f32 = 2.0;
 
 mod imp {
     use super::*;
 
+    use once_cell::sync::OnceCell;
     use std::cell::RefCell;
 
     #[derive(Debug, Default)]
     pub struct GalleryButton {
         pub gallery: RefCell<crate::Gallery>,
 
-        front_surf: RefCell<Option<gdk::Paintable>>,
-        back_surf: RefCell<Option<gdk::Paintable>>,
+        pub size_ani: OnceCell<adw::TimedAnimation>,
     }
 
     #[glib::object_subclass]
@@ -29,50 +29,45 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for GalleryButton {}
+    impl ObjectImpl for GalleryButton {
+        fn constructed(&self) {
+            self.parent_constructed();
+
+            let widget = self.obj();
+
+            let target =
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+                    widget.queue_draw();
+                }));
+            let ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, &target);
+            self.size_ani.set(ani).unwrap();
+        }
+    }
+
     impl WidgetImpl for GalleryButton {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let widget = self.obj();
 
             let width = widget.allocated_width() as f64;
             let height = widget.allocated_height() as f64;
-            let size = f64::min(width, height) - 2.0;
+            let size = f64::min(width, height) - BORDER_WIDTH as f64;
 
-            // TODO Use animation here for the tween
-            let radius = 1.0 * size / 2.0;
-            let mut outer_radius = radius;
+            let foreground_radius = widget.animation().value() * size;
 
             let images = self.gallery.borrow().images();
-            let Some(first) = images.first() else { return; };
+            let Some(foreground) = images.first().and_then(|x| x.paintable()) else { return; };
 
-            if let Some(next) = images.get(1) {
-                // TODO Use abs.
-                if size != 1.0 {
-                    outer_radius = size / 2.0;
-                    self.back_surf.replace(next.paintable());
-                    widget.draw_paintable(
-                        snapshot,
-                        &first.paintable().unwrap(),
-                        width,
-                        height,
-                        size / 2.0,
-                    );
-                } else {
-                    self.back_surf.take();
-                }
-            }
+            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.paintable())
+            {
+                widget.draw_paintable(snapshot, &background, width, height, size);
+                size
+            } else {
+                foreground_radius
+            };
 
-            self.front_surf.replace(first.paintable());
+            widget.draw_paintable(snapshot, &foreground, width, height, foreground_radius);
 
-            widget.draw_paintable(snapshot, &first.paintable().unwrap(), width, height, radius);
-
-            let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
-
-            let ctx = snapshot.append_cairo(&rect);
-            ctx.arc(width / 2.0, height / 2.0, outer_radius, 0.0, 2.0 * PI);
-            ctx.set_line_width(1.5);
-            ctx.set_source_rgb(1.0, 1.0, 1.0);
-            ctx.stroke().unwrap();
+            widget.draw_border(snapshot, width, height, border_radius);
         }
     }
     impl ButtonImpl for GalleryButton {}
@@ -96,16 +91,45 @@ impl GalleryButton {
         paintable: &gdk::Paintable,
         width: f64,
         height: f64,
-        _size: f64,
+        size: f64,
     ) {
-        // TODO Clip the snapshot.
-        paintable.snapshot(snapshot, width, height);
+        let x = ((width - size) / 2.0) as f32;
+        let y = ((height - size) / 2.0) as f32;
+
+        let rect = graphene::Rect::new(0.0, 0.0, size as f32, size as f32);
+        let s = graphene::Size::new(size as f32 / 2.0, size as f32 / 2.0);
+        let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
+
+        snapshot.translate(&graphene::Point::new(x, y));
+        snapshot.push_rounded_clip(&rounded);
+        paintable.snapshot(snapshot, size, size);
+        snapshot.pop();
+        snapshot.translate(&graphene::Point::new(-x, -y));
+    }
+
+    fn draw_border(&self, snapshot: &gtk::Snapshot, width: f64, height: f64, size: f64) {
+        let x = ((width - size) / 2.0) as f32;
+        let y = ((height - size) / 2.0) as f32;
+
+        let rect = graphene::Rect::new(0.0, 0.0, size as f32, size as f32);
+        let s = graphene::Size::new(size as f32 / 2.0, size as f32 / 2.0);
+        let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
+
+        let white = gdk::RGBA::WHITE;
+
+        snapshot.translate(&graphene::Point::new(x, y));
+        snapshot.append_border(&rounded, &[BORDER_WIDTH; 4], &[white; 4]);
+        snapshot.translate(&graphene::Point::new(-x, -y));
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
         gallery.connect_item_added(glib::clone!(@weak self as widget => move |_, _| {
-            widget.queue_draw();
+            widget.animation().play();
         }));
         *self.imp().gallery.borrow_mut() = gallery;
+    }
+
+    fn animation(&self) -> &adw::TimedAnimation {
+        self.imp().size_ani.get().unwrap()
     }
 }
