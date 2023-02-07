@@ -69,37 +69,6 @@
             ]
         },
         {
-            "name": "x265",
-            "subdir": "source",
-            "buildsystem" : "cmake-ninja",
-            "config-opts" : [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DENABLE_CLI=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://deb.debian.org/debian/pool/main/x/x265/x265_3.5.orig.tar.gz",
-                    "sha256":  "e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8"
-                }
-            ]
-        },
-        {
-            "name": "x264",
-            "config-opts": [
-                "--enable-shared",
-                "--enable-pic",
-                "--disable-cli"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://code.videolan.org/videolan/x264.git",
-                    "commit": "baee400fa9ced6f5481a728138fed6e867b0ff7f"
-                }
-            ]
-        },
-        {
             "name": "gstreamer",
             "buildsystem": "meson",
             "config-opts": [
@@ -115,10 +84,9 @@
                 "-Dgst-examples=disabled",
                 "-Dgst-plugins-bad:openh264=disabled",
                 "-Dgst-plugins-bad:vulkan=disabled",
-                "-Dgst-plugins-bad:x265=enabled",
+                "-Dgst-plugins-bad:zbar=enabled",
                 "-Dgst-plugins-good:jpeg=enabled",
                 "-Dgst-plugins-good:png=enabled",
-                "-Dgst-plugins-ugly:x264=enabled",
                 "-Dgtk_doc=disabled",
                 "-Dintrospection=disabled",
                 "-Dlibav=enabled",
@@ -129,7 +97,7 @@
                 "-Drtsp_server=disabled",
                 "-Dsharp=disabled",
                 "-Dtests=disabled",
-                "-Dugly=enabled",
+                "-Dugly=disabled",
                 "-Dvaapi=disabled"
             ],
             "build-options": {
@@ -144,20 +112,6 @@
                     "disable-submodules": true,
                     "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
                     "tag": "1.22.0"
-                }
-            ]
-        },
-        {
-            "name" : "pipewire",
-            "buildsystem": "meson",
-            "config-opts" : [
-                "-Dalsa=disabled",
-                "-Dpipewire-alsa=disabled"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.freedesktop.org/pipewire/pipewire"
                 }
             ]
         },
