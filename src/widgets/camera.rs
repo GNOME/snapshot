@@ -229,7 +229,7 @@ impl Camera {
 
         imp.paintable
             .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, texture| {
-                gallery.add_image(&texture);
+                gallery.add_image(texture);
             }));
         imp.gallery_button.set_gallery(gallery);
     }

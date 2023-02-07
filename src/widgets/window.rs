@@ -100,7 +100,7 @@ mod imp {
 
             obj.set_capture_mode(obj.capture_mode());
 
-            self.camera.set_gallery(self.gallery.get().clone());
+            self.camera.set_gallery(self.gallery.get());
 
             self.camera.start();
         }
