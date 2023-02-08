@@ -101,7 +101,11 @@ mod imp {
             obj.load_window_size();
             obj.setup_gactions();
 
+            // TODO Ensure the initial values are set. This should be done more
+            // cleanly.
             obj.set_capture_mode(obj.capture_mode());
+            let duration = obj.countdown();
+            self.camera.set_countdown(duration as u32);
 
             self.camera.set_gallery(self.gallery.get());
 
@@ -142,9 +146,11 @@ impl Window {
     fn setup_gactions(&self) {
         let countdown_action = self.imp().settings.create_action("countdown");
         self.imp().settings.connect_changed(
-            Some("coutdown"),
+            Some("countdown"),
             glib::clone!(@weak self as window => move |_, _| {
                 window.countdown_cancel();
+                let duration = window.countdown();
+                window.imp().camera.set_countdown(duration as u32);
             }),
         );
         self.add_action(&countdown_action);
