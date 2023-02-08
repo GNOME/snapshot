@@ -51,6 +51,7 @@
                         <property name="menu-model">countdown_menu</property>
                         <property name="icon-name">stopwatch-symbolic</property>
                         <property name="valign">center</property>
+                        <property name="tooltip-text" translatable="yes">Countdown</property>
                         <style>
                           <class name="circular"/>
                         </style>
@@ -69,6 +70,7 @@
                             <property name="icon-name">camera-photo-symbolic</property>
                             <property name="action-name">win.capture-mode</property>
                             <property name="action-target">'picture'</property>
+                            <property name="tooltip-text" translatable="yes">Picture Mode</property>
                           </object>
                         </child>
                         <child>
@@ -76,6 +78,7 @@
                             <property name="icon-name">camera-web-symbolic</property>
                             <property name="action-name">win.capture-mode</property>
                             <property name="action-target">'video'</property>
+                            <property name="tooltip-text" translatable="yes">Recording Mode</property>
                           </object>
                         </child>
                       </object>
@@ -89,6 +92,7 @@
                             <property name="icon-name">open-menu-symbolic</property>
                             <property name="menu-model">primary_menu</property>
                             <property name="valign">center</property>
+                            <property name="tooltip-text" translatable="yes">Main Menu</property>
                             <style>
                               <class name="circular"/>
                             </style>
@@ -128,13 +132,14 @@
                         <property name="height-request">44</property>
                         <property name="valign">center</property>
                         <property name="action-name">win.toggle-gallery</property>
+                        <property name="tooltip-text" translatable="yes">Open Gallery</property>
                       </object>
                     </child>
                     <child>
                       <object class="ShutterButton" id="shutter_button">
                         <property name="action-name">win.take-picture</property>
-                        <property name="width-request">60</property>
-                        <property name="height-request">60</property>
+                        <property name="width-request">64</property>
+                        <property name="height-request">64</property>
                         <property name="valign">center</property>
                       </object>
                     </child>

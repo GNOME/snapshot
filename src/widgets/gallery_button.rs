@@ -48,8 +48,8 @@ mod imp {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let widget = self.obj();
 
-            let width = widget.allocated_width() as f32;
-            let height = widget.allocated_height() as f32;
+            let width = widget.width() as f32;
+            let height = widget.height() as f32;
             let size = width.min(height);
 
             let value = widget.animation().value() as f32;

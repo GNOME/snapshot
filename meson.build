@@ -12,7 +12,7 @@ gnome = import('gnome')
 base_id = 'org.gnome.World.Snapshot'
 
 dependency('glib-2.0', version: '>= 2.66')
-dependency('gtk4', version: '>= 4.8.0')
+dependency('gtk4', version: '>= 4.9.0')
 dependency('libadwaita-1', version: '>= 1.2.0')
 
 glib_compile_resources = find_program('glib-compile-resources', required: true)
