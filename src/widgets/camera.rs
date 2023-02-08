@@ -1,6 +1,4 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use std::os::unix::prelude::RawFd;
-
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
