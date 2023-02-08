@@ -162,8 +162,8 @@ mod imp {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let widget = self.obj();
 
-            let width = widget.allocated_width() as f64;
-            let height = widget.allocated_height() as f64;
+            let width = widget.width() as f64;
+            let height = widget.height() as f64;
             let size = width.min(height);
 
             let line = (size / 8.0).min(8.0);
