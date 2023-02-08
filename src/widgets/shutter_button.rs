@@ -50,7 +50,7 @@ mod imp {
 
                 countdown_val: Cell::new(1.0),
                 record_val: Cell::new(0.0),
-                press_val: Cell::new(3.0),
+                press_val: Cell::new(4.0),
                 mode_val: Cell::new(1.0),
 
                 countdown_ani: Default::default(),
@@ -119,7 +119,7 @@ mod imp {
                     widget.imp().press_val.set(value);
                     widget.queue_draw();
                 }));
-            let press_ani = adw::TimedAnimation::new(&*widget, 3.0, 6.0, 125, &press_target);
+            let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, &press_target);
             self.press_ani.set(press_ani).unwrap();
 
             let mode_target =
@@ -155,13 +155,13 @@ mod imp {
                         && !old_flags.contains(gtk::StateFlags::ACTIVE)
                     {
                         let press_ani = obj.imp().press_ani.get().unwrap();
-                        press_ani.set_value_to(6.0);
+                        press_ani.set_value_to(8.0);
                         press_ani.play();
                     } else if !obj.state_flags().contains(gtk::StateFlags::ACTIVE)
                         && old_flags.contains(gtk::StateFlags::ACTIVE)
                     {
                         let press_ani = obj.imp().press_ani.get().unwrap();
-                        press_ani.set_value_to(3.0);
+                        press_ani.set_value_to(4.0);
                         press_ani.play();
                     }
                 });
@@ -331,7 +331,7 @@ impl ShutterButton {
         {
             imp.press_val.get() as f32
         } else {
-            3.0
+            4.0
         };
         let record = imp.record_val.get() as f32;
 
