@@ -2,6 +2,7 @@
 use std::f64::consts::PI;
 
 use adw::prelude::*;
+use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{cairo, glib, graphene};
 
@@ -95,6 +96,7 @@ mod imp {
             let widget = self.obj();
 
             widget.add_css_class("shutterbutton");
+            widget.set_tooltip_text(Some(&gettext("Shutter Button")));
 
             if matches!(widget.shutter_mode(), ShutterMode::Video) {
                 self.mode_val.set(0.0);
