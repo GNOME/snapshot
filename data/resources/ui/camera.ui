@@ -138,8 +138,8 @@
                     <child>
                       <object class="ShutterButton" id="shutter_button">
                         <property name="action-name">win.take-picture</property>
-                        <property name="width-request">60</property>
-                        <property name="height-request">60</property>
+                        <property name="width-request">64</property>
+                        <property name="height-request">64</property>
                         <property name="valign">center</property>
                       </object>
                     </child>
