@@ -76,6 +76,9 @@ mod imp {
                     window.imp().gallery.close();
                 }
             });
+            klass.install_action("win.preferences", None, move |window, _, _| {
+                window.show_preferences_window();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -317,5 +320,10 @@ impl Window {
 
     fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
         self.imp().camera.set_shutter_mode(shutter_mode);
+    }
+
+    fn show_preferences_window(&self) {
+        let preferences = crate::PreferencesWindow::new(self);
+        preferences.present();
     }
 }

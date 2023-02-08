@@ -3,6 +3,7 @@ data/org.gnome.World.Snapshot.gschema.xml.in
 data/org.gnome.World.Snapshot.metainfo.xml.in.in
 data/resources/ui/camera.ui
 data/resources/ui/controls.ui
+data/resources/ui/preferences_window.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
 src/main.rs

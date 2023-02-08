@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use gtk::glib;
+use gtk::prelude::*;
 
 /// Enum representing the org.gnome.World.Snapshot.PictureFormat enum defined in
 /// the gschema.
-#[derive(Default, Debug, Copy, Clone, PartialEq)]
+#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
 #[repr(u32)]
+#[enum_type(name = "PictureMode")]
 pub enum PictureFormat {
     #[default]
     Png,
@@ -16,6 +18,13 @@ impl PictureFormat {
         match self {
             Self::Png => "png",
             Self::Jpeg => "jpeg",
+        }
+    }
+
+    pub fn to_translatable_string(&self) -> &'static str {
+        match self {
+            Self::Png => "Png",
+            Self::Jpeg => "Jpeg",
         }
     }
 }
@@ -93,4 +102,8 @@ pub enum ShutterMode {
     Picture,
     Video,
     Recording,
+}
+
+pub fn init() {
+    PictureFormat::static_type();
 }

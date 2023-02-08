@@ -37,6 +37,7 @@ fn main() {
     gio::resources_register(&res);
 
     widgets::init();
+    enums::init();
 
     let app = crate::Application::new();
     app.run();
