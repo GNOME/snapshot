@@ -6,6 +6,7 @@
     <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcuts.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
     <file compressed="true">style.css</file>
+    <file>sounds/camera-shutter.oga</file>
   </gresource>
   <gresource prefix="/org/gnome/World/Snapshot/icons/16x16/actions/">
     <file alias="video-camera-symbolic.svg">icons/video-camera-symbolic.svg</file>

@@ -30,6 +30,11 @@
       <summary>Default window maximized behaviour</summary>
       <description></description>
     </key>
+    <key name="play-shutter-sound" type="b">
+      <default>true</default>
+      <summary>Play shutter sound</summary>
+      <description>Whether to play a shutter sound when taking pictures</description>
+    </key>
     <key name="countdown" type="i">
       <default>0</default>
       <summary>Countdown timer</summary>

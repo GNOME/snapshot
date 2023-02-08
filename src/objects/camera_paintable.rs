@@ -17,6 +17,8 @@ use gst::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
+use crate::config;
+
 /// Time to wait before trying to emit code-detected.
 const CODE_TIMEOUT: u64 = 3;
 
@@ -379,6 +381,11 @@ impl CameraPaintable {
 
         imp.flash_ani.get().unwrap().play();
 
+        let settings = gio::Settings::new(config::APP_ID);
+        if settings.boolean("play-shutter-sound") {
+            self.play_shutter_sound();
+        }
+
         Ok(())
     }
 
@@ -567,6 +574,25 @@ impl CameraPaintable {
         ani.set_easing(adw::Easing::Linear);
 
         self.imp().flash_ani.set(ani).unwrap();
+    }
+
+    fn play_shutter_sound(&self) {
+        let uri = "resource:///org/gnome/World/Snapshot/sounds/camera-shutter.oga";
+        let description = format!("playbin uri={uri}");
+        let pipeline = gst::parse_launch(&description).unwrap();
+
+        // FIXME Using the following the audio has crackling noises. But using
+        // this we can remove the pulseaudio sandbox hole.
+        //
+        // let audio_sink = gst::ElementFactory::make("pipewiresink")
+        //     .property("target-object", "44") // Find the correct path
+        //     .property("client-name", crate::config::APP_ID)
+        //     .build()
+        //     .unwrap();
+        //
+        // pipeline.set_property("audio-sink", &audio_sink);
+
+        pipeline.set_state(gst::State::Playing).unwrap();
     }
 }
 

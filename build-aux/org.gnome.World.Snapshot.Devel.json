@@ -18,6 +18,7 @@
         "--filesystem=xdg-videos",
         "--share=ipc",
         "--socket=fallback-x11",
+        "--socket=pulseaudio",
         "--socket=wayland"
     ],
     "build-options": {
