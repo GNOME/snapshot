@@ -55,10 +55,6 @@ mod imp {
         const NAME: &'static str = "ShutterButton";
         type Type = super::ShutterButton;
         type ParentType = gtk::Button;
-
-        fn class_init(klass: &mut Self::Class) {
-            klass.set_css_name("shutterbutton");
-        }
     }
 
     impl ObjectImpl for ShutterButton {
@@ -97,6 +93,8 @@ mod imp {
             self.parent_constructed();
 
             let widget = self.obj();
+
+            widget.add_css_class("shutterbutton");
 
             if matches!(widget.shutter_mode(), ShutterMode::Video) {
                 self.mode_val.set(0.0);
@@ -170,12 +168,13 @@ mod imp {
 
             let color = if widget.is_sensitive() { 1.0 } else { 0.5 };
             let mode_color = self.mode_val.get() * color;
+            let alpha = widget.color().alpha() as f64;
 
             let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
             let ctx = snapshot.append_cairo(&rect);
 
             ctx.set_line_width(line);
-            ctx.set_source_rgb(color, color, color);
+            ctx.set_source_rgba(color, color, color, alpha);
             ctx.arc_negative(
                 width / 2.0,
                 height / 2.0,
@@ -185,7 +184,7 @@ mod imp {
             );
             ctx.stroke().unwrap();
 
-            ctx.set_source_rgb(color, mode_color, mode_color);
+            ctx.set_source_rgba(color, mode_color, mode_color, alpha);
 
             let record = self.record_val.get();
             let gap = if matches!(self.shutter_mode.get(), crate::ShutterMode::Picture) {
