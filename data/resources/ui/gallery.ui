@@ -49,6 +49,7 @@
             <property name="action-name">win.toggle-gallery</property>
             <property name="tooltip-text" translatable="yes">Go Back</property>
             <style>
+              <class name="osd"/>
               <class name="circular"/>
             </style>
           </object>
