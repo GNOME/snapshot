@@ -5,7 +5,7 @@
       <object class="GtkOverlay" id="overlay">
         <child type="overlay">
           <object class="GtkButton">
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="valign">end</property>
             <property name="icon-name">loupe-symbolic</property>
             <property name="action-name">gallery.open</property>
@@ -23,7 +23,7 @@
         <child type="overlay">
           <object class="GtkBox" id="controls_box_start">
             <property name="valign">end</property>
-            <property name="halign">start</property>
+            <property name="halign">end</property>
             <property name="margin-start">18</property>
             <property name="margin-end">18</property>
             <property name="margin-top">18</property>
