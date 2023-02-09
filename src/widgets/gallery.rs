@@ -33,6 +33,15 @@ mod imp {
             klass.bind_template();
             klass.set_layout_manager_type::<gtk::BinLayout>();
             klass.set_css_name("gallery");
+
+            // Shows an older picture (scrolls to the right)
+            klass.install_action("gallery.next", None, move |widget, _, _| {
+                widget.next();
+            });
+            // Shows a newer picture (scrolls to the left)
+            klass.install_action("gallery.previous", None, move |widget, _, _| {
+                widget.previous();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -51,8 +60,18 @@ mod imp {
             let obj = self.obj();
 
             self.carousel
-                .connect_position_notify(glib::clone!(@weak obj => move |_|{
-                    obj.notify("progress")
+                .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
+                    let progress = carousel.progress();
+
+                    // Suppose we have 2 pages. We add an epsilon to make sure
+                    // that a rounding error 0.99999... = 1 still can scroll to
+                    // the right. 0.0000...1, should also allow going to the
+                    // right. We sanitize the values of the scroll, so
+                    // scroll_to(-1) or scroll_to(n_items) are a none issue.
+                    obj.action_set_enabled("gallery.previous", progress + f64::EPSILON >= 1.0);
+                    obj.action_set_enabled("gallery.next", progress + 2.0 <= carousel.n_pages() as f64 + f64::EPSILON);
+
+                    obj.notify("progress");
                 }));
         }
 
@@ -98,7 +117,7 @@ impl Gallery {
         let imp = self.imp();
 
         let picture = gtk::Picture::for_paintable(texture);
-        imp.carousel.insert(&picture, 0);
+        imp.carousel.prepend(&picture);
         imp.images.borrow_mut().insert(0, picture.clone());
 
         self.emit_item_added(&picture);
@@ -138,5 +157,27 @@ impl Gallery {
                 None
             }),
         );
+    }
+
+    fn scroll_to(&self, index: i32) {
+        let imp = self.imp();
+
+        // Sanitize index so it is always between 0 and (n_items - 1).
+        let last_pos = (imp.carousel.n_pages() as i32 - 1).max(0);
+        let picture = imp.carousel.nth_page(index.clamp(0, last_pos) as u32);
+
+        imp.carousel.scroll_to(&picture, true);
+    }
+
+    fn next(&self) {
+        let imp = self.imp();
+        let index = imp.carousel.position() as i32;
+        self.scroll_to(index + 1)
+    }
+
+    fn previous(&self) {
+        let imp = self.imp();
+        let index = imp.carousel.position() as i32;
+        self.scroll_to(index - 1)
     }
 }
