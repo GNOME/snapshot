@@ -56,11 +56,10 @@ mod imp {
             let foreground_radius = value * size;
 
             let images = self.gallery.borrow().images();
-            let Some(foreground) = images.first().and_then(|x| x.paintable()) else { return; };
+            let Some(foreground) = images.first().and_then(|x| x.texture()) else { return; };
 
-            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.paintable())
-            {
-                widget.draw_paintable(snapshot, &background, width, height, size);
+            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.texture()) {
+                widget.draw_paintable(snapshot, background, width, height, size);
                 size
             } else {
                 foreground_radius
@@ -89,7 +88,7 @@ impl GalleryButton {
     fn draw_paintable(
         &self,
         snapshot: &gtk::Snapshot,
-        paintable: &gdk::Paintable,
+        paintable: &gdk::Texture,
         width: f32,
         height: f32,
         size: f32,

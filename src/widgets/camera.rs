@@ -226,9 +226,9 @@ impl Camera {
         let imp = self.imp();
 
         imp.paintable
-            .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, texture| {
-                if let Some(texture) = texture {
-                    gallery.add_image(texture);
+            .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, file| {
+                if let Some(file) = file {
+                    gallery.add_image(file);
                 }
             }));
         imp.gallery_button.set_gallery(gallery);

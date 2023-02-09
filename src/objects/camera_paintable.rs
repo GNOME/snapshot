@@ -74,7 +74,7 @@ mod imp {
                     // This is emited whenever the saving process finishes,
                     // successful or not.
                     glib::subclass::Signal::builder("picture-stored")
-                        .param_types([Option::<gdk::Texture>::static_type()])
+                        .param_types([Option::<gio::File>::static_type()])
                         .build(),
                 ]
             });
@@ -273,8 +273,7 @@ impl CameraPaintable {
                             if success {
                                 let path = s.get::<&str>("text").unwrap();
                                 let file = gio::File::for_path(path);
-                                let texture = gdk::Texture::from_file(&file).unwrap();
-                                paintable.emit_picture_stored(Some(&texture));
+                                paintable.emit_picture_stored(Some(&file));
                             } else {
                                 paintable.emit_picture_stored(None);
                             }
@@ -566,17 +565,17 @@ impl CameraPaintable {
         );
     }
 
-    fn emit_picture_stored(&self, texture: Option<&gdk::Texture>) {
-        self.emit_by_name::<()>("picture-stored", &[&texture]);
+    fn emit_picture_stored(&self, file: Option<&gio::File>) {
+        self.emit_by_name::<()>("picture-stored", &[&file]);
     }
 
-    pub fn connect_picture_stored<F: Fn(&Self, Option<&gdk::Texture>) + 'static>(&self, f: F) {
+    pub fn connect_picture_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
         self.connect_local(
             "picture-stored",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let texture = args.get(1).unwrap().get::<Option<gdk::Texture>>().unwrap();
-                f(&obj, texture.as_ref());
+                let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();
+                f(&obj, file.as_ref());
 
                 None
             }),

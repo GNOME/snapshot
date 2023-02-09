@@ -1272,6 +1272,7 @@ name = "snapshot"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "futures-channel",
  "gettext-rs",
  "gst-plugin-gtk4",
  "gstreamer",

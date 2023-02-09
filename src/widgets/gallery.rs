@@ -2,7 +2,7 @@
 use adw::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
-use gtk::{gdk, glib};
+use gtk::{gdk, gio, glib};
 
 mod imp {
     use super::*;
@@ -20,7 +20,7 @@ mod imp {
         pub carousel: TemplateChild<adw::Carousel>,
 
         pub progress: Cell<f64>,
-        pub images: RefCell<Vec<gtk::Picture>>,
+        pub images: RefCell<Vec<crate::GalleryPicture>>,
     }
 
     #[glib::object_subclass]
@@ -41,6 +41,11 @@ mod imp {
             // Shows a newer picture (scrolls to the left)
             klass.install_action("gallery.previous", None, move |widget, _, _| {
                 widget.previous();
+            });
+            klass.install_action_async("gallery.open", None, |widget, _, _| async move {
+                if let Err(err) = widget.open_with_system().await {
+                    log::error!("Could not open with system handler: {err}");
+                }
             });
         }
 
@@ -78,7 +83,7 @@ mod imp {
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![glib::subclass::Signal::builder("item-added")
-                    .param_types([gtk::Picture::static_type()])
+                    .param_types([crate::GalleryPicture::static_type()])
                     .build()]
             });
             SIGNALS.as_ref()
@@ -113,10 +118,10 @@ impl Default for Gallery {
 }
 
 impl Gallery {
-    pub fn add_image(&self, texture: &gdk::Texture) {
+    pub fn add_image(&self, file: &gio::File) {
         let imp = self.imp();
 
-        let picture = gtk::Picture::for_paintable(texture);
+        let picture = crate::GalleryPicture::new(file);
         imp.carousel.prepend(&picture);
         imp.images.borrow_mut().insert(0, picture.clone());
 
@@ -134,7 +139,7 @@ impl Gallery {
         // TODO
     }
 
-    pub fn images(&self) -> Vec<gtk::Picture> {
+    pub fn images(&self) -> Vec<crate::GalleryPicture> {
         self.imp().images.borrow().clone()
     }
 
@@ -142,16 +147,16 @@ impl Gallery {
         self.imp().carousel.progress()
     }
 
-    fn emit_item_added(&self, picture: &gtk::Picture) {
+    fn emit_item_added(&self, picture: &crate::GalleryPicture) {
         self.emit_by_name::<()>("item-added", &[&picture]);
     }
 
-    pub fn connect_item_added<F: Fn(&Self, &gtk::Picture) + 'static>(&self, f: F) {
+    pub fn connect_item_added<F: Fn(&Self, &crate::GalleryPicture) + 'static>(&self, f: F) {
         self.connect_local(
             "item-added",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let picture = args.get(1).unwrap().get::<gtk::Picture>().unwrap();
+                let picture = args.get(1).unwrap().get::<crate::GalleryPicture>().unwrap();
                 f(&obj, &picture);
 
                 None
@@ -179,5 +184,23 @@ impl Gallery {
         let imp = self.imp();
         let index = imp.carousel.position() as i32;
         self.scroll_to(index - 1)
+    }
+
+    async fn open_with_system(&self) -> anyhow::Result<()> {
+        let imp = self.imp();
+
+        let index = imp.carousel.position() as u32;
+        let picture = imp
+            .carousel
+            .nth_page(index)
+            .downcast::<crate::GalleryPicture>()
+            .unwrap();
+        let file = picture.file();
+        let launcher = gtk::FileLauncher::new(Some(file));
+        let root = self.root();
+        let window = root.and_downcast_ref::<gtk::Window>();
+        launcher.launch_future(window).await?;
+
+        Ok(())
     }
 }
