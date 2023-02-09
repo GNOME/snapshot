@@ -577,7 +577,7 @@ impl CameraPaintable {
     }
 
     fn play_shutter_sound(&self) {
-        let uri = "resource:///org/gnome/World/Snapshot/sounds/camera-shutter.oga";
+        let uri = "resource:///org/gnome/World/Snapshot/sounds/camera-shutter.wav";
         let description = format!("playbin uri={uri}");
         let pipeline = gst::parse_launch(&description).unwrap();
 
