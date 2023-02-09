@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::path::PathBuf;
+
 use gtk::glib;
 
 pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
@@ -33,4 +35,32 @@ pub fn video_file_name(video_format: crate::VideoFormat) -> String {
         let rand = glib::random_int_range(0, 999999);
         format!("RECORDING_{rand}.{format}")
     }
+}
+
+// TODO These should return a result so we stop the file saving process
+// if we fail.
+pub fn videos_dir() -> PathBuf {
+    let path = glib::user_special_dir(glib::UserDirectory::Videos)
+        .unwrap()
+        // TODO Should this be translated? It is not expected that if the
+        // user switches locales, videos now go to another folder.
+        .join("Snapshot");
+
+    std::fs::create_dir_all(&path)
+        .unwrap_or_else(|err| log::debug!("Could not create videos directory: {err}"));
+
+    path
+}
+
+pub fn pictures_dir() -> PathBuf {
+    let path = glib::user_special_dir(glib::UserDirectory::Pictures)
+        .unwrap()
+        // TODO Should this be translated? It is not expected that if the
+        // user switches locales, videos now go to another folder.
+        .join("Snapshot");
+
+    std::fs::create_dir_all(&path)
+        .unwrap_or_else(|err| log::debug!("Could not create pictures directory: {err}"));
+
+    path
 }
