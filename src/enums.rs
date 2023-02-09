@@ -23,8 +23,8 @@ impl PictureFormat {
 
     pub fn to_translatable_string(&self) -> &'static str {
         match self {
-            Self::Png => "Png",
-            Self::Jpeg => "Jpeg",
+            Self::Png => "PNG",
+            Self::Jpeg => "JPEG",
         }
     }
 }
