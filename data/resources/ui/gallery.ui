@@ -98,7 +98,9 @@
             <property name="spacing">24</property>
             <property name="valign">center</property>
             <child>
-              <object class="AdwCarousel" id="carousel"/>
+              <object class="AdwCarousel" id="carousel">
+                <property name="halign">center</property>
+              </object>
             </child>
             <child>
               <object class="AdwCarouselIndicatorDots">
