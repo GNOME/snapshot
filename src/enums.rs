@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use gettextrs::gettext;
 use gtk::glib;
 use gtk::prelude::*;
 
@@ -21,10 +22,14 @@ impl PictureFormat {
         }
     }
 
-    pub fn to_translatable_string(&self) -> &'static str {
+    pub fn to_translatable_string(&self) -> String {
         match self {
-            Self::Png => "PNG",
-            Self::Jpeg => "JPEG",
+            // TRANSLATORS This is the image format presented in the preferences
+            // window.
+            Self::Png => gettext("PNG"),
+            // TRANSLATORS This is the image format presented in the preferences
+            // window.
+            Self::Jpeg => gettext("JPEG"),
         }
     }
 }

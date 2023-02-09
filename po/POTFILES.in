@@ -7,6 +7,7 @@ data/resources/ui/gallery.ui
 data/resources/ui/preferences_window.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
+src/enum.rs
 src/main.rs
 src/widgets/shutter_button.rs
 src/widgets/window.rs
