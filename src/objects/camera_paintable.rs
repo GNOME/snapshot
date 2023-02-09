@@ -17,7 +17,7 @@ use gst::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
-use crate::config;
+use crate::{config, utils};
 
 /// Time to wait before trying to emit code-detected.
 const CODE_TIMEOUT: u64 = 3;
@@ -71,8 +71,10 @@ mod imp {
                     glib::subclass::Signal::builder("code-detected")
                         .param_types([String::static_type()])
                         .build(),
+                    // This is emited whenever the saving process finishes,
+                    // successful or not.
                     glib::subclass::Signal::builder("picture-stored")
-                        .param_types([gdk::Texture::static_type()])
+                        .param_types([Option::<gdk::Texture>::static_type()])
                         .build(),
                 ]
             });
@@ -266,11 +268,16 @@ impl CameraPaintable {
                         }
                         Some(s) if s.name() == "picture-saved" => {
                             // TODO Is it possible to sent a Path directly here?
-                            let path = s.get::<&str>("text").unwrap();
+                            let success = s.get::<bool>("success").unwrap();
 
-                            let file = gio::File::for_path(path);
-                            let texture = gdk::Texture::from_file(&file).unwrap();
-                            paintable.emit_picture_stored(&texture);
+                            if success {
+                                let path = s.get::<&str>("text").unwrap();
+                                let file = gio::File::for_path(path);
+                                let texture = gdk::Texture::from_file(&file).unwrap();
+                                paintable.emit_picture_stored(Some(&texture));
+                            } else {
+                                paintable.emit_picture_stored(None);
+                            }
                         }
                         _ => (),
                     },
@@ -353,6 +360,12 @@ impl CameraPaintable {
                         let _ = bus.post(create_application_warning_message(&format!(
                             "Failed to convert sample: {err}"
                         )));
+
+                        // We need to say that the picture saving process
+                        // finished in all branches of the closure.
+                        let msg = create_application_message("", false);
+                        let _ = bus.post(msg);
+
                         return;
                     }
                     Ok(sample) => sample,
@@ -363,13 +376,26 @@ impl CameraPaintable {
                     .map_readable()
                     .expect("Failed to map buffer readable");
 
+                let Ok(mut file) = File::create(&path) else {
+                    log::debug!("Failed to create file {filename}");
+                    let _ = bus.post(create_application_warning_message(&format!(
+                        "Failed to create file {filename}"
+                    )));
+                    let msg = create_application_message("", false);
+                    let _ = bus.post(msg);
+
+                    return;
+                };
+
                 if let Err(err) = file.write_all(&map) {
                     log::debug!("Failed to write snapshot file {filename}: {err:?}");
                     let _ = bus.post(create_application_warning_message(&format!(
                         "Failed to write snapshot file {filename}: {err:?}"
                     )));
+                    let msg = create_application_message("", false);
+                    let _ = bus.post(msg);
                 } else {
-                    let msg = create_application_message(&format!("{}", path.display()));
+                    let msg = create_application_message(&format!("{}", path.display()), true);
                     let _ = bus.post(msg);
                 }
             },
@@ -540,17 +566,17 @@ impl CameraPaintable {
         );
     }
 
-    fn emit_picture_stored(&self, texture: &gdk::Texture) {
+    fn emit_picture_stored(&self, texture: Option<&gdk::Texture>) {
         self.emit_by_name::<()>("picture-stored", &[&texture]);
     }
 
-    pub fn connect_picture_stored<F: Fn(&Self, &gdk::Texture) + 'static>(&self, f: F) {
+    pub fn connect_picture_stored<F: Fn(&Self, Option<&gdk::Texture>) + 'static>(&self, f: F) {
         self.connect_local(
             "picture-stored",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let texture = args.get(1).unwrap().get::<gdk::Texture>().unwrap();
-                f(&obj, &texture);
+                let texture = args.get(1).unwrap().get::<Option<gdk::Texture>>().unwrap();
+                f(&obj, texture.as_ref());
 
                 None
             }),
@@ -590,10 +616,11 @@ impl CameraPaintable {
     }
 }
 
-fn create_application_message(text: &str) -> gst::Message {
+fn create_application_message(text: &str, success: bool) -> gst::Message {
     gst::message::Application::new(
         gst::Structure::builder("picture-saved")
             .field("text", text)
+            .field("success", success)
             .build(),
     )
 }
