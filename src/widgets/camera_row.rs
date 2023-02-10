@@ -60,6 +60,6 @@ impl CameraRow {
     }
 
     pub fn set_item(&self, item: &Device) {
-        self.set_label(&item.nick);
+        self.set_label(&item.display_name());
     }
 }
