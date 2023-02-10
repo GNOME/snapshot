@@ -54,6 +54,7 @@ mod imp {
             self.parent_constructed();
 
             let pipeline = self.obj();
+            pipeline.set_message_forward(true);
 
             let tee = gst::ElementFactory::make("tee").build().unwrap();
             let queue = gst::ElementFactory::make("queue").build().unwrap();
@@ -126,7 +127,6 @@ mod imp {
             let bus = pipeline.bus().unwrap();
             bus.add_watch_local(
                 clone!(@weak pipeline => @default-return glib::Continue(false), move |_, msg| {
-                    log::debug!("msg {:?}", msg.view());
                     match msg.view() {
                         gst::MessageView::Error(err) => {
                             log::error!(
@@ -173,6 +173,7 @@ mod imp {
                                         .expect("Failed to get forwarded message");
 
                                     if let gst::MessageView::Eos(..) = msg.view() {
+                                        log::debug!("Got EOS");
                                         let Some(bin) = msg
                                             .src()
                                             .and_then(|src| src.clone().downcast::<gst::Element>().ok()) else { return glib::Continue(true); };
@@ -329,25 +330,11 @@ impl Pipeline {
             crate::VideoFormat::Vp8Webm => "queue ! videoconvert ! vp8enc deadline=1 ! webmmux ! queue ! filesink name=sink",
             // TODO For audio, the following works on the cli:
             // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
-            crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
+            // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
+            crate::VideoFormat::TheoraOgg => "videoconvert ! theoraenc ! queue ! oggmux ! filesink name=sink",
         };
 
-        let bin = gst::parse_bin_from_description(bin_description, false)?;
-
-        let audiotestsrc = gst::ElementFactory::make("audiotestsrc").build().unwrap();
-
-        let audio_entry = bin.by_name("audio_entry").unwrap();
-
-        bin.add(&audiotestsrc).unwrap();
-        audiotestsrc.link(&audio_entry).unwrap();
-
-        let video_entry = bin.by_name("video_entry").unwrap();
-        let video_entry_pad = video_entry.static_pad("sink").unwrap();
-
-        let video_ghost_pad = gst::GhostPad::new(Some("video"), gst::PadDirection::Sink);
-        video_ghost_pad.set_target(Some(&video_entry_pad)).unwrap();
-
-        bin.add_pad(&video_ghost_pad).unwrap();
+        let bin = gst::parse_bin_from_description(bin_description, true)?;
 
         // Get our file sink element by its name and set the location where to write the recording
         let sink = bin
@@ -375,7 +362,7 @@ impl Pipeline {
             .request_pad_simple("src_%u")
             .expect("Failed to request new pad from tee");
         let sinkpad = bin
-            .static_pad("video")
+            .static_pad("sink")
             .expect("Failed to get sink pad from recording bin");
 
         // If linking fails, we just undo what we did above
@@ -410,7 +397,7 @@ impl Pipeline {
 
         // Get the source pad of the tee that is connected to the recording bin
         let sinkpad = bin
-            .static_pad("video")
+            .static_pad("sink")
             .expect("Failed to get sink pad from recording bin");
         let Some(srcpad) = sinkpad.peer() else {
             return;
