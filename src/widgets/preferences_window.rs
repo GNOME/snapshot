@@ -92,6 +92,8 @@ glib::wrapper! {
 
 impl PreferencesWindow {
     pub fn new(window: &crate::Window) -> Self {
-        glib::Object::new::<Self>(&[("transient-for", window)])
+        glib::Object::builder()
+            .property("transient-for", window)
+            .build()
     }
 }

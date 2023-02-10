@@ -5,11 +5,15 @@ use gtk::{gdk, gio, glib};
 mod imp {
     use super::*;
 
-    use once_cell::sync::{Lazy, OnceCell};
+    use glib::Properties;
+    use once_cell::sync::OnceCell;
 
-    #[derive(Debug, Default)]
+    #[derive(Debug, Default, Properties)]
+    #[properties(wrapper_type = super::GalleryPicture)]
     pub struct GalleryPicture {
+        #[property(get, set, construct_only)]
         pub file: OnceCell<gio::File>,
+
         pub picture: gtk::Picture,
         pub texture: OnceCell<gdk::Texture>,
     }
@@ -27,28 +31,17 @@ mod imp {
 
     impl ObjectImpl for GalleryPicture {
         fn properties() -> &'static [glib::ParamSpec] {
-            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-                vec![glib::ParamSpecObject::builder::<gio::File>("file")
-                    .construct_only()
-                    .readwrite()
-                    .build()]
-            });
-            PROPERTIES.as_ref()
+            Self::derived_properties()
         }
 
-        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            match pspec.name() {
-                "file" => self.obj().file().to_value(),
-                _ => unimplemented!(),
-            }
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            Self::derived_property(self, id, pspec)
         }
 
-        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            match pspec.name() {
-                "file" => self.file.set(value.get().unwrap()).unwrap(),
-                _ => unimplemented!(),
-            };
+        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+            Self::derived_set_property(self, id, value, pspec)
         }
+
         fn constructed(&self) {
             self.parent_constructed();
 
@@ -80,11 +73,7 @@ glib::wrapper! {
 
 impl GalleryPicture {
     pub fn new(file: &gio::File) -> Self {
-        glib::Object::new(&[("file", file)])
-    }
-
-    pub fn file(&self) -> &gio::File {
-        self.imp().file.get().unwrap()
+        glib::Object::builder().property("file", file).build()
     }
 
     pub fn texture(&self) -> Option<&gdk::Texture> {

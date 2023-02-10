@@ -46,7 +46,7 @@ glib::wrapper! {
 
 impl Default for CameraRow {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 

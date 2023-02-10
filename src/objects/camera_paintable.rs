@@ -138,7 +138,7 @@ glib::wrapper! {
 
 impl Default for CameraPaintable {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 
@@ -332,8 +332,8 @@ impl CameraPaintable {
 
         // Create the GStreamer caps for the output format
         let caps = match picture_format {
-            crate::PictureFormat::Jpeg => gst::Caps::new_simple("image/jpeg", &[]),
-            crate::PictureFormat::Png => gst::Caps::new_simple("image/png", &[]),
+            crate::PictureFormat::Jpeg => gst::Caps::builder("image/jpeg").build(),
+            crate::PictureFormat::Png => gst::Caps::builder("image/png").build(),
         };
 
         let Some(last_sample) = sink.property::<Option<gst::Sample>>("last-sample") else {
@@ -589,7 +589,7 @@ impl CameraPaintable {
             adw::CallbackAnimationTarget::new(glib::clone!(@weak self as obj => move |_value| {
                 obj.invalidate_contents();
             }));
-        let ani = adw::TimedAnimation::new(picture.upcast_ref(), 0.0, 1.0, 250, &target);
+        let ani = adw::TimedAnimation::new(picture.upcast_ref(), 0.0, 1.0, 250, target);
         ani.set_easing(adw::Easing::Linear);
 
         self.imp().flash_ani.set(ani).unwrap();

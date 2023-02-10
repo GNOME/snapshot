@@ -38,7 +38,7 @@ mod imp {
                 adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
                 }));
-            let ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, &target);
+            let ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, target);
             self.size_ani.set(ani).unwrap();
         }
     }
@@ -81,7 +81,7 @@ glib::wrapper! {
 
 impl Default for GalleryButton {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 

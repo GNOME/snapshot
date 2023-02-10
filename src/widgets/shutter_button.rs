@@ -19,13 +19,16 @@ const LAMBDA: f32 = 0.20710677;
 mod imp {
     use super::*;
 
-    use once_cell::sync::{Lazy, OnceCell};
+    use glib::Properties;
+    use once_cell::sync::OnceCell;
     use std::cell::Cell;
 
-    #[derive(Debug)]
+    #[derive(Debug, Properties)]
+    #[properties(wrapper_type = super::ShutterButton)]
     pub struct ShutterButton {
+        #[property(get, set = Self::set_shutter_mode, explicit_notify, builder(ShutterMode::default()))]
         pub shutter_mode: Cell<ShutterMode>,
-
+        #[property(get, set = Self::set_countdown, explicit_notify)]
         pub countdown: Cell<u32>,
 
         // TODO Remove this, we can query the value directly from the
@@ -45,7 +48,6 @@ mod imp {
         fn default() -> Self {
             Self {
                 shutter_mode: Default::default(),
-
                 countdown: Cell::new(0),
 
                 countdown_val: Cell::new(1.0),
@@ -61,6 +63,53 @@ mod imp {
         }
     }
 
+    impl ShutterButton {
+        pub fn set_countdown(&self, countdown: u32) {
+            if countdown != self.countdown.replace(countdown) {
+                self.obj().notify("countdown")
+            }
+        }
+
+        pub fn set_shutter_mode(&self, shutter_mode: ShutterMode) {
+            let widget = self.obj();
+            if shutter_mode != self.shutter_mode.replace(shutter_mode) {
+                let from = self.mode_val.get();
+                let record_from = self.record_val.get();
+                match shutter_mode {
+                    ShutterMode::Picture => {
+                        widget.mode_ani().set_value_to(1.0);
+                        widget.mode_ani().set_value_from(from);
+                        widget.mode_ani().play();
+
+                        widget.record_ani().set_value_from(record_from);
+                        widget.record_ani().set_value_to(0.0);
+                        widget.record_ani().play();
+                    }
+                    ShutterMode::Video => {
+                        widget.mode_ani().set_value_to(0.0);
+                        widget.mode_ani().set_value_from(from);
+                        widget.mode_ani().play();
+
+                        widget.record_ani().set_value_from(record_from);
+                        widget.record_ani().set_value_to(0.0);
+                        widget.record_ani().play();
+                    }
+                    ShutterMode::Recording => {
+                        widget.mode_ani().set_value_to(0.0);
+                        widget.mode_ani().set_value_from(from);
+                        widget.mode_ani().play();
+
+                        widget.record_ani().set_value_from(record_from);
+                        widget.record_ani().set_value_to(0.7);
+                        widget.record_ani().play();
+                    }
+                }
+
+                widget.notify("shutter-mode");
+            }
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for ShutterButton {
         const NAME: &'static str = "ShutterButton";
@@ -70,34 +119,15 @@ mod imp {
 
     impl ObjectImpl for ShutterButton {
         fn properties() -> &'static [glib::ParamSpec] {
-            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-                vec![
-                    glib::ParamSpecEnum::builder::<ShutterMode>(
-                        "shutter-mode",
-                        ShutterMode::default(),
-                    )
-                    .readwrite()
-                    .build(),
-                    glib::ParamSpecInt::builder("countdown").readwrite().build(),
-                ]
-            });
-            PROPERTIES.as_ref()
+            Self::derived_properties()
         }
 
-        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            match pspec.name() {
-                "shutter-mode" => self.shutter_mode.get().to_value(),
-                "countdown" => self.obj().countdown().to_value(),
-                _ => unimplemented!(),
-            }
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            Self::derived_property(self, id, pspec)
         }
 
-        fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            match pspec.name() {
-                "shutter-mode" => self.shutter_mode.set(value.get().unwrap()),
-                "countdown" => self.obj().set_countdown(value.get().unwrap()),
-                _ => unimplemented!(),
-            };
+        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+            Self::derived_set_property(self, id, value, pspec)
         }
 
         fn constructed(&self) {
@@ -120,7 +150,7 @@ mod imp {
                     widget.imp().press_val.set(value);
                     widget.queue_draw();
                 }));
-            let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, &press_target);
+            let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, press_target);
             self.press_ani.set(press_ani).unwrap();
 
             let mode_target =
@@ -128,7 +158,7 @@ mod imp {
                     widget.imp().mode_val.set(value);
                     widget.queue_draw();
                 }));
-            let mode_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, &mode_target);
+            let mode_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, mode_target);
             self.mode_ani.set(mode_ani).unwrap();
 
             let countdown_target =
@@ -136,8 +166,7 @@ mod imp {
                     widget.imp().countdown_val.set(value);
                     widget.queue_draw();
                 }));
-            let countdown_ani =
-                adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, &countdown_target);
+            let countdown_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, countdown_target);
             // TODO Figure out what easing to use.
             countdown_ani.set_easing(adw::Easing::Linear);
             self.countdown_ani.set(countdown_ani).unwrap();
@@ -147,7 +176,7 @@ mod imp {
                     widget.imp().record_val.set(value);
                     widget.queue_draw();
                 }));
-            let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, &record_target);
+            let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, record_target);
             self.record_ani.set(record_ani).unwrap();
 
             self.obj()
@@ -194,7 +223,7 @@ glib::wrapper! {
 
 impl Default for ShutterButton {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 
@@ -221,59 +250,6 @@ impl ShutterButton {
 
     fn countdown_ani(&self) -> &adw::TimedAnimation {
         self.imp().countdown_ani.get().unwrap()
-    }
-
-    pub fn countdown(&self) -> u32 {
-        self.imp().countdown.get()
-    }
-
-    pub fn set_countdown(&self, countdown: u32) {
-        if countdown != self.imp().countdown.replace(countdown) {
-            self.notify("countdown")
-        }
-    }
-
-    pub fn set_shutter_mode(&self, shutter_mode: ShutterMode) {
-        let imp = self.imp();
-        if shutter_mode != self.imp().shutter_mode.replace(shutter_mode) {
-            let from = imp.mode_val.get();
-            let record_from = imp.record_val.get();
-            match shutter_mode {
-                ShutterMode::Picture => {
-                    self.mode_ani().set_value_to(1.0);
-                    self.mode_ani().set_value_from(from);
-                    self.mode_ani().play();
-
-                    self.record_ani().set_value_from(record_from);
-                    self.record_ani().set_value_to(0.0);
-                    self.record_ani().play();
-                }
-                ShutterMode::Video => {
-                    self.mode_ani().set_value_to(0.0);
-                    self.mode_ani().set_value_from(from);
-                    self.mode_ani().play();
-
-                    self.record_ani().set_value_from(record_from);
-                    self.record_ani().set_value_to(0.0);
-                    self.record_ani().play();
-                }
-                ShutterMode::Recording => {
-                    self.mode_ani().set_value_to(0.0);
-                    self.mode_ani().set_value_from(from);
-                    self.mode_ani().play();
-
-                    self.record_ani().set_value_from(record_from);
-                    self.record_ani().set_value_to(0.7);
-                    self.record_ani().play();
-                }
-            }
-
-            self.notify("shutter-mode");
-        }
-    }
-
-    pub fn shutter_mode(&self) -> ShutterMode {
-        self.imp().shutter_mode.get()
     }
 
     fn draw_border(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {

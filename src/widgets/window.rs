@@ -146,7 +146,7 @@ glib::wrapper! {
 
 impl Window {
     pub fn new(app: &Application) -> Self {
-        glib::Object::new(&[("application", app)])
+        glib::Object::builder().property("application", app).build()
     }
 
     fn setup_gactions(&self) {
@@ -211,8 +211,8 @@ impl Window {
             .version(VERSION)
             .translator_credits(&gettext("translator-credits"))
             .developer_name("Maximiliano Sandoval")
-            .developers(vec!["Maximiliano Sandoval".into()])
-            .designers(vec!["Tobias Bernard".into()])
+            .developers(vec!["Maximiliano Sandoval"])
+            .designers(vec!["Tobias Bernard"])
             .transient_for(self)
             .modal(true)
             .build();
