@@ -97,6 +97,12 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
+            obj.action_set_enabled("win.toggle-gallery", false);
+            self.gallery
+                .connect_item_added(glib::clone!(@weak obj => move |_, _| {
+                    obj.action_set_enabled("win.toggle-gallery", true);
+                }));
+
             // Load latest window state
             obj.load_window_size();
             obj.setup_gactions();
