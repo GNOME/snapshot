@@ -72,6 +72,14 @@ mod imp {
                 let imp = window.imp();
 
                 if imp.leaflet.visible_child().as_ref() == Some(imp.camera.upcast_ref()) {
+                    imp.camera.stop_recording();
+                    imp.recording_active.set(false);
+                    match window.capture_mode() {
+                        CaptureMode::Video => window.set_shutter_mode(crate::ShutterMode::Video),
+                        CaptureMode::Picture => {
+                            window.set_shutter_mode(crate::ShutterMode::Picture)
+                        }
+                    }
                     imp.leaflet.set_visible_child(&*imp.gallery);
                     window.imp().gallery.open();
                 } else {
@@ -276,9 +284,14 @@ impl Window {
         if matches!(self.capture_mode(), CaptureMode::Video) {
             if imp.recording_active.get() {
                 // disable the button while the video is ending
+                //
+                // TODO Revisit as it conflicts with sensitive on the button.
+                //
+                // TODO This is prone to errors, create start/stop_decoding functions
+                // that do the correct thing.
                 self.action_set_enabled("win.take-picture", false);
                 imp.recording_active.set(false);
-                imp.camera.stop_recording().await?;
+                imp.camera.stop_recording();
                 self.action_set_enabled("win.take-picture", true);
                 self.set_shutter_mode(crate::ShutterMode::Video);
             } else {

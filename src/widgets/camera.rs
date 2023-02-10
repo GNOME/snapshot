@@ -131,6 +131,7 @@ mod imp {
         }
 
         fn dispose(&self) {
+            self.paintable.stop_recording();
             self.dispose_template();
         }
     }
@@ -198,9 +199,8 @@ impl Camera {
         Ok(())
     }
 
-    pub async fn stop_recording(&self) -> anyhow::Result<()> {
+    pub fn stop_recording(&self) {
         self.imp().paintable.stop_recording();
-        Ok(())
     }
 
     pub async fn take_picture(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
@@ -227,7 +227,12 @@ impl Camera {
     }
 
     pub fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
-        self.imp().shutter_button.set_shutter_mode(shutter_mode);
+        let imp = self.imp();
+
+        if matches!(shutter_mode, crate::ShutterMode::Picture) {
+            imp.paintable.stop_recording();
+        }
+        imp.shutter_button.set_shutter_mode(shutter_mode);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
