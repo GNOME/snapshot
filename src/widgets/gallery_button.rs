@@ -23,10 +23,6 @@ mod imp {
         const NAME: &'static str = "GalleryButton";
         type Type = super::GalleryButton;
         type ParentType = gtk::Button;
-
-        fn class_init(klass: &mut Self::Class) {
-            klass.set_css_name("gallerybutton");
-        }
     }
 
     impl ObjectImpl for GalleryButton {
@@ -34,6 +30,9 @@ mod imp {
             self.parent_constructed();
 
             let widget = self.obj();
+
+            widget.add_css_class("gallerybutton");
+            widget.add_css_class("flat");
 
             let target =
                 adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
