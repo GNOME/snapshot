@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #[rustfmt::skip]
 mod config;
-mod device_provider;
 mod enums;
 mod objects;
 mod utils;
@@ -10,8 +9,6 @@ mod widgets;
 use enums::*;
 use objects::*;
 use widgets::*;
-
-use device_provider::{Device, DeviceProvider};
 
 use gettextrs::{gettext, LocaleCategory};
 use gtk::{gio, glib};

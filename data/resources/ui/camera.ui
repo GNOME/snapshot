@@ -10,12 +10,28 @@
           <object class="GtkStackPage">
             <property name="name">loading</property>
             <property name="child">
-              <object class="GtkSpinner" id="spinner">
-                <property name="halign">center</property>
-                <property name="vexpand">True</property>
-                <property name="valign">center</property>
-                <property name="width-request">48</property>
-                <property name="height-request">48</property>
+              <object class="GtkWindowHandle">
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkHeaderBar">
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSpinner" id="spinner">
+                        <property name="halign">center</property>
+                        <property name="vexpand">True</property>
+                        <property name="valign">center</property>
+                        <property name="width-request">48</property>
+                        <property name="height-request">48</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </property>
           </object>
@@ -24,10 +40,38 @@
           <object class="GtkStackPage">
             <property name="name">not-found</property>
             <property name="child">
-              <object class="AdwStatusPage">
-                <property name="icon-name">camera-hardware-disabled-symbolic</property>
-                <property name="title" translatable="yes">No Camera Found</property>
-                <property name="description" translatable="yes"></property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkHeaderBar">
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">primary_menu</property>
+                        <property name="tooltip_text" translatable="yes">Main Menu</property>
+                        <child>
+                          <object class="GtkShortcutController">
+                            <property name="scope">managed</property>
+                            <child>
+                              <object class="GtkShortcut">
+                                <property name="trigger">F10</property>
+                                <property name="action">activate</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwStatusPage">
+                    <property name="vexpand">True</property>
+                    <property name="icon-name">camera-disabled-symbolic</property>
+                    <property name="title" translatable="yes">No Camera Found</property>
+                    <property name="description" translatable="yes">Connect a camera device</property>
+                  </object>
+                </child>
               </object>
             </property>
           </object>
@@ -36,132 +80,148 @@
           <object class="GtkStackPage">
             <property name="name">camera</property>
             <property name="child">
-              <object class="GtkOverlay">
-                <child type="overlay">
-                  <object class="GtkBox">
-                    <property name="valign">start</property>
-                    <property name="halign">fill</property>
-                    <property name="spacing">24</property>
-                    <property name="margin-top">24</property>
-                    <property name="margin-bottom">24</property>
-                    <property name="margin-start">12</property>
-                    <property name="margin-end">12</property>
-                    <child>
-                      <object class="GtkMenuButton" id="countdown_button">
-                        <property name="menu-model">countdown_menu</property>
-                        <property name="icon-name">stopwatch-symbolic</property>
-                        <property name="valign">center</property>
-                        <property name="tooltip-text" translatable="yes">Countdown</property>
-                        <style>
-                          <class name="circular"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
+              <object class="GtkWindowHandle">
+                <child>
+                  <object class="GtkOverlay">
+                    <child type="overlay">
                       <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="hexpand">True</property>
-                        <property name="valign">center</property>
-                        <style>
-                          <class name="linked"/>
-                        </style>
+                        <property name="valign">start</property>
+                        <property name="halign">fill</property>
+                        <property name="spacing">24</property>
+                        <property name="margin-top">24</property>
+                        <property name="margin-bottom">24</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
                         <child>
-                          <object class="GtkToggleButton">
-                            <property name="icon-name">camera-photo-symbolic</property>
-                            <property name="action-name">win.capture-mode</property>
-                            <property name="action-target">'picture'</property>
-                            <property name="tooltip-text" translatable="yes">Picture Mode</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkToggleButton">
-                            <property name="icon-name">camera-web-symbolic</property>
-                            <property name="action-name">win.capture-mode</property>
-                            <property name="action-target">'video'</property>
-                            <property name="tooltip-text" translatable="yes">Recording Mode</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">end</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkMenuButton" id="appmenu_button">
-                            <property name="icon-name">open-menu-symbolic</property>
-                            <property name="menu-model">primary_menu</property>
+                          <object class="GtkMenuButton" id="countdown_button">
+                            <property name="menu-model">countdown_menu</property>
+                            <property name="icon-name">stopwatch-symbolic</property>
                             <property name="valign">center</property>
-                            <property name="tooltip-text" translatable="yes">Main Menu</property>
+                            <property name="tooltip-text" translatable="yes">Countdown</property>
                             <style>
                               <class name="circular"/>
                             </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="halign">center</property>
+                            <property name="hexpand">True</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="linked"/>
+                            </style>
                             <child>
-                              <object class="GtkShortcutController">
-                                <property name="scope">managed</property>
-                                <child>
-                                  <object class="GtkShortcut">
-                                    <property name="trigger">F10</property>
-                                    <property name="action">activate</property>
-                                  </object>
-                                </child>
+                              <object class="GtkToggleButton">
+                                <property name="icon-name">camera-photo-symbolic</property>
+                                <property name="action-name">win.capture-mode</property>
+                                <property name="action-target">'picture'</property>
+                                <property name="tooltip-text" translatable="yes">Picture Mode</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton">
+                                <property name="icon-name">camera-web-symbolic</property>
+                                <property name="action-name">win.capture-mode</property>
+                                <property name="action-target">'video'</property>
+                                <property name="tooltip-text" translatable="yes">Recording Mode</property>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkWindowControls">
-                            <property name="decoration-layout">close</property>
-                            <property name="valign">center</property>
+                          <object class="GtkBox">
+                            <property name="halign">end</property>
+                            <property name="spacing">12</property>
+                            <child>
+                              <object class="GtkMenuButton" id="appmenu_button">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">primary_menu</property>
+                                <property name="valign">center</property>
+                                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                                <style>
+                                  <class name="circular"/>
+                                </style>
+                                <child>
+                                  <object class="GtkShortcutController">
+                                    <property name="scope">managed</property>
+                                    <child>
+                                      <object class="GtkShortcut">
+                                        <property name="trigger">F10</property>
+                                        <property name="action">activate</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="decoration-layout">close</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child type="overlay">
-                  <object class="GtkBox">
-                    <property name="valign">end</property>
-                    <property name="halign">center</property>
-                    <property name="margin-top">24</property>
-                    <property name="margin-bottom">24</property>
-                    <property name="spacing">36</property>
-                    <child>
-                      <object class="GalleryButton" id="gallery_button">
-                        <property name="width-request">44</property>
-                        <property name="height-request">44</property>
-                        <property name="valign">center</property>
-                        <property name="action-name">win.toggle-gallery</property>
-                        <property name="tooltip-text" translatable="yes">Open Gallery</property>
+                    <child type="overlay">
+                      <object class="GtkBox">
+                        <property name="valign">end</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">24</property>
+                        <property name="margin-bottom">24</property>
+                        <property name="spacing">36</property>
+                        <child>
+                          <object class="GalleryButton" id="gallery_button">
+                            <property name="width-request">44</property>
+                            <property name="height-request">44</property>
+                            <property name="valign">center</property>
+                            <property name="action-name">win.toggle-gallery</property>
+                            <property name="tooltip-text" translatable="yes">Open Gallery</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ShutterButton" id="shutter_button">
+                            <property name="action-name">win.take-picture</property>
+                            <property name="width-request">64</property>
+                            <property name="height-request">64</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkStack" id="camera_menu_button_stack">
+                            <child>
+                              <object class="GtkMenuButton" id="camera_menu_button">
+                                <property name="width-request">44</property>
+                                <property name="height-request">44</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">video-camera-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Select Camera</property>
+                                <style>
+                                  <class name="circular"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">fake-widget</property>
+                                <property name="child">
+                                  <object class="AdwBin"/>
+                                </property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="ShutterButton" id="shutter_button">
-                        <property name="action-name">win.take-picture</property>
-                        <property name="width-request">64</property>
-                        <property name="height-request">64</property>
-                        <property name="valign">center</property>
+                      <object class="GtkPicture" id="picture">
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="keep-aspect-ratio">False</property>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkMenuButton" id="camera_menu_button">
-                        <property name="width-request">44</property>
-                        <property name="height-request">44</property>
-                        <property name="valign">center</property>
-                        <property name="icon-name">video-camera-symbolic</property>
-                        <property name="tooltip-text" translatable="yes">Select Camera</property>
-                        <style>
-                          <class name="circular"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkPicture" id="picture">
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="keep-aspect-ratio">False</property>
                   </object>
                 </child>
               </object>

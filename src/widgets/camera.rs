@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::os::unix::io::RawFd;
+
+use ashpd::desktop::camera;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
@@ -8,6 +11,7 @@ use crate::{CameraRow, Device};
 mod imp {
     use super::*;
 
+    use once_cell::unsync::OnceCell;
     use std::cell::RefCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
@@ -16,12 +20,14 @@ mod imp {
         pub paintable: crate::CameraPaintable,
         pub stream_list: RefCell<gio::ListStore>,
         pub selection: gtk::SingleSelection,
-        pub provider: RefCell<Option<crate::DeviceProvider>>,
+        pub provider: OnceCell<crate::DeviceProvider>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
         #[template_child]
         pub camera_menu_button: TemplateChild<gtk::MenuButton>,
+        #[template_child]
+        pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub picture: TemplateChild<gtk::Picture>,
         #[template_child]
@@ -59,9 +65,13 @@ mod imp {
             let popover = gtk::Popover::new();
             popover.add_css_class("menu");
 
-            let stream_list = gio::ListStore::new(glib::BoxedAnyObject::static_type());
-            self.stream_list.replace(stream_list.clone());
-            self.selection.set_model(Some(&stream_list));
+            let provider = crate::DeviceProvider::new();
+            provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
+                obj.update_cameras(&provider);
+            }));
+            obj.update_cameras(&provider);
+
+            self.selection.set_model(Some(&provider));
             let factory = gtk::SignalListItemFactory::new();
             factory.connect_setup(|_, item| {
                 let item = item.downcast_ref::<gtk::ListItem>().unwrap();
@@ -75,9 +85,8 @@ mod imp {
                 let child = item.child().unwrap();
                 let row = child.downcast_ref::<CameraRow>().unwrap();
 
-                let item = item.item().unwrap().downcast::<glib::BoxedAnyObject>().unwrap();
-                let camera_item = item.borrow::<Device>();
-                row.set_item(&camera_item);
+                let item = item.item().unwrap().downcast::<Device>().unwrap();
+                row.set_item(&item);
 
                 selection.connect_selected_item_notify(glib::clone!(@weak row, @weak item => move |selection| {
                     if let Some(selected_item) = selection.selected_item() {
@@ -91,13 +100,15 @@ mod imp {
 
             popover.set_child(Some(&list_view));
 
-            self.selection.connect_selected_item_notify(glib::clone!(@weak obj, @weak popover => move |selection| {
-                if let Some(selected_item) = selection.selected_item() {
-                    let device = selected_item.downcast_ref::<glib::BoxedAnyObject>().unwrap().borrow::<Device>();
-                    obj.imp().paintable.set_pipewire_element(device.element.clone());
-                }
-                popover.popdown();
-            }));
+            self.selection.connect_selected_item_notify(
+                glib::clone!(@weak obj, @weak popover => move |selection| {
+                    if let Some(selected_item) = selection.selected_item() {
+                        let device = selected_item.downcast_ref::<Device>().unwrap();
+                        obj.imp().paintable.set_pipewire_element(device.element());
+                    }
+                    popover.popdown();
+                }),
+            );
 
             self.camera_menu_button.set_popover(Some(&popover));
 
@@ -110,6 +121,13 @@ mod imp {
                 .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
                     obj.imp().shutter_button.set_sensitive(true);
                 }));
+
+            self.provider.set(provider).unwrap();
+
+            // This spinner stops running when the device provider finds any
+            // camera device.
+            self.spinner.start();
+            self.stack.set_visible_child_name("loading");
         }
 
         fn dispose(&self) {
@@ -139,50 +157,40 @@ impl Camera {
         self.imp().paintable.close_pipeline();
     }
 
-    pub fn start(&self) {
-        let imp = self.imp();
-        imp.spinner.start();
-        imp.stack.set_visible_child_name("loading");
+    pub async fn start(&self) {
+        let provider = self.imp().provider.get().unwrap();
 
         let ctx = glib::MainContext::default();
-        ctx.spawn_local(glib::clone!(@weak self as camera => async move {
-            let imp = camera.imp();
-
-            match camera.try_start_stream().await {
-                Ok(()) => imp.stack.set_visible_child_name("camera"),
-                Err(err) => {
-                    imp.stack.set_visible_child_name("not-found");
-                    log::debug!("Could not find camera: {}", err);
+        ctx.spawn_local(
+            glib::clone!(@weak self as obj, @strong provider => async move {
+                if let Ok(fd) = stream().await {
+                    if let Err(err) = provider.set_fd(fd) {
+                        log::error!("Could not use the camera portal: {err}");
+                    };
+                } else {
+                    // FIXME Show a page explaining how to setup the permission.
+                    log::warn!("Could not use the camera portal");
                 }
-            };
-            imp.spinner.stop();
-        }));
-    }
 
-    async fn try_start_stream(&self) -> anyhow::Result<()> {
-        let imp = self.imp();
+                if let Err(err) = provider.start() {
+                    obj.imp().stack.set_visible_child_name("not-found");
+                    log::error!("Could not start device provider: {err}");
+                }
+            }),
+        );
 
-        // TODO We pass None since the portal does not return microphones and
-        // creating additional DeviceProviders does not work.
-        let provider = crate::DeviceProvider::new(None)?;
-
-        // TODO Improve this, we just try with the first mic we find. One could try
-        // matching pairs of AudioSrc and AudioSink.
-        if let Some(mic) = provider.mics().first() {
-            // FIXME This crashes/freezes the app
-            self.imp().paintable.set_pipewire_mic(mic.element.clone());
-        }
-
-        for item in provider.cameras() {
-            imp.stream_list
-                .borrow()
-                .append(&glib::BoxedAnyObject::new(item));
-        }
-        imp.selection.set_selected(0);
-
-        imp.provider.replace(Some(provider));
-
-        Ok(())
+        // FIXME This is super arbitrary
+        let duration = std::time::Duration::from_secs(1);
+        glib::timeout_add_local_once(
+            duration,
+            glib::clone!(@weak self as obj => move || {
+                let imp = obj.imp();
+                if imp.stack.visible_child_name().as_deref() == Some("loading") {
+                    imp.spinner.stop();
+                    imp.stack.set_visible_child_name("not-found");
+                }
+            }),
+        );
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
@@ -233,4 +241,33 @@ impl Camera {
             }));
         imp.gallery_button.set_gallery(gallery);
     }
+
+    fn update_cameras(&self, provider: &crate::DeviceProvider) {
+        let imp = self.imp();
+        imp.spinner.stop();
+
+        let n_cameras = provider.n_items();
+        if n_cameras == 0 {
+            imp.stack.set_visible_child_name("not-found");
+        } else {
+            imp.stack.set_visible_child_name("camera");
+        }
+
+        // NOTE We have a stack with an empty bin so that hiding the button does
+        // not ruin the layout.
+        if n_cameras > 1 {
+            imp.camera_menu_button_stack
+                .set_visible_child(&imp.camera_menu_button.get());
+        } else {
+            imp.camera_menu_button_stack
+                .set_visible_child_name("fake-widget");
+        }
+    }
+}
+
+async fn stream() -> ashpd::Result<RawFd> {
+    let proxy = camera::Camera::new().await?;
+    proxy.request_access().await?;
+
+    proxy.open_pipe_wire_remote().await
 }

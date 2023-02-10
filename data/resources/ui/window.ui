@@ -2,8 +2,7 @@
 <interface>
   <template class="Window" parent="AdwApplicationWindow">
     <child>
-      <!-- TODO Move to the camera and gallery -->
-      <object class="GtkWindowHandle">
+      <object class="AdwToastOverlay" id="toast_overlay">
         <child>
           <object class="AdwLeaflet" id="leaflet">
             <property name="vexpand">True</property>
