@@ -95,10 +95,12 @@ impl GalleryButton {
         height: f32,
         size: f32,
     ) {
-        // Rect where we clip the image to.
+        // Rect where we clip the image to. We clip sligthly smaller so we don't
+        // have artifacts on the borders of the border.
         let x = (width - size) / 2.0;
         let y = (height - size) / 2.0;
-        let rect = graphene::Rect::new(x, y, size, size);
+        let e = BORDER_WIDTH * size / width / 2.0;
+        let rect = graphene::Rect::new(x + e, y + e, size - 2.0 * e, size - 2.0 * e);
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
