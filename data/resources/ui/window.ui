@@ -2,21 +2,16 @@
 <interface>
   <template class="Window" parent="AdwApplicationWindow">
     <child>
-      <!-- TODO Move to the camera and gallery -->
-      <object class="GtkWindowHandle">
+      <object class="AdwLeaflet" id="leaflet">
+        <property name="vexpand">True</property>
+        <property name="can-unfold">False</property>
+        <property name="can-navigate-back">True</property>
         <child>
-          <object class="AdwLeaflet" id="leaflet">
-            <property name="vexpand">True</property>
-            <property name="can-unfold">False</property>
-            <property name="can-navigate-back">True</property>
-            <child>
-              <object class="Camera" id="camera">
-              </object>
-            </child>
-            <child>
-              <object class="Gallery" id="gallery">
-              </object>
-            </child>
+          <object class="Camera" id="camera">
+          </object>
+        </child>
+        <child>
+          <object class="Gallery" id="gallery">
           </object>
         </child>
       </object>

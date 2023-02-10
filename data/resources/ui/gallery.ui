@@ -2,127 +2,131 @@
 <interface>
   <template class="Gallery">
     <child>
-      <object class="GtkOverlay" id="overlay">
-        <child type="overlay">
-          <object class="GtkButton">
-            <property name="halign">start</property>
-            <property name="valign">end</property>
-            <property name="icon-name">loupe-symbolic</property>
-            <property name="action-name">gallery.open</property>
-            <property name="margin-start">18</property>
-            <property name="margin-end">18</property>
-            <property name="margin-top">18</property>
-            <property name="margin-bottom">18</property>
-            <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
-            <style>
-              <class name="osd"/>
-              <class name="circular"/>
-            </style>
-          </object>
-        </child>
-        <child type="overlay">
-          <object class="GtkBox" id="controls_box_start">
-            <property name="valign">end</property>
-            <property name="halign">end</property>
-            <property name="margin-start">18</property>
-            <property name="margin-end">18</property>
-            <property name="margin-top">18</property>
-            <property name="margin-bottom">18</property>
-            <property name="spacing">12</property>
-            <child>
-              <object class="GtkButton" id="prev_button">
+      <object class="GtkWindowHandle" id="child">
+        <child>
+          <object class="GtkOverlay">
+            <child type="overlay">
+              <object class="GtkButton">
                 <property name="halign">start</property>
-                <property name="icon-name">go-previous-symbolic</property>
-                <property name="action-name">gallery.previous</property>
-                <property name="tooltip-text" translatable="yes">Previous Image</property>
+                <property name="valign">end</property>
+                <property name="icon-name">loupe-symbolic</property>
+                <property name="action-name">gallery.open</property>
+                <property name="margin-start">18</property>
+                <property name="margin-end">18</property>
+                <property name="margin-top">18</property>
+                <property name="margin-bottom">18</property>
+                <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
                 <style>
                   <class name="osd"/>
                   <class name="circular"/>
                 </style>
               </object>
             </child>
-            <child>
-              <object class="GtkButton" id="next_button">
-                <property name="icon-name">go-next-symbolic</property>
-                <property name="action-name">gallery.next</property>
-                <property name="tooltip-text" translatable="yes">Next Image</property>
-                <style>
-                  <class name="osd"/>
-                  <class name="circular"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="overlay">
-          <object class="GtkButton">
-            <property name="valign">start</property>
-            <property name="halign">start</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
-            <property name="margin-bottom">24</property>
-            <property name="margin-top">24</property>
-            <property name="icon-name">go-previous-symbolic</property>
-            <property name="action-name">win.toggle-gallery</property>
-            <property name="tooltip-text" translatable="yes">Go Back</property>
-            <style>
-              <class name="osd"/>
-              <class name="circular"/>
-            </style>
-          </object>
-        </child>
-        <child type="overlay">
-          <object class="GtkBox">
-            <property name="valign">start</property>
-            <property name="halign">end</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
-            <property name="margin-bottom">24</property>
-            <property name="margin-top">24</property>
-            <property name="spacing">12</property>
-            <child>
-              <object class="GtkMenuButton">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu</property>
-                <property name="valign">center</property>
-                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                <style>
-                  <class name="circular"/>
-                </style>
+            <child type="overlay">
+              <object class="GtkBox" id="controls_box_start">
+                <property name="valign">end</property>
+                <property name="halign">end</property>
+                <property name="margin-start">18</property>
+                <property name="margin-end">18</property>
+                <property name="margin-top">18</property>
+                <property name="margin-bottom">18</property>
+                <property name="spacing">12</property>
                 <child>
-                  <object class="GtkShortcutController">
-                    <property name="scope">managed</property>
+                  <object class="GtkButton" id="prev_button">
+                    <property name="halign">start</property>
+                    <property name="icon-name">go-previous-symbolic</property>
+                    <property name="action-name">gallery.previous</property>
+                    <property name="tooltip-text" translatable="yes">Previous Image</property>
+                    <style>
+                      <class name="osd"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="next_button">
+                    <property name="icon-name">go-next-symbolic</property>
+                    <property name="action-name">gallery.next</property>
+                    <property name="tooltip-text" translatable="yes">Next Image</property>
+                    <style>
+                      <class name="osd"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkButton">
+                <property name="valign">start</property>
+                <property name="halign">start</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-bottom">24</property>
+                <property name="margin-top">24</property>
+                <property name="icon-name">go-previous-symbolic</property>
+                <property name="action-name">win.toggle-gallery</property>
+                <property name="tooltip-text" translatable="yes">Go Back</property>
+                <style>
+                  <class name="osd"/>
+                  <class name="circular"/>
+                </style>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkBox">
+                <property name="valign">start</property>
+                <property name="halign">end</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-bottom">24</property>
+                <property name="margin-top">24</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu</property>
+                    <property name="valign">center</property>
+                    <property name="tooltip-text" translatable="yes">Main Menu</property>
+                    <style>
+                      <class name="circular"/>
+                    </style>
                     <child>
-                      <object class="GtkShortcut">
-                        <property name="trigger">F10</property>
-                        <property name="action">activate</property>
+                      <object class="GtkShortcutController">
+                        <property name="scope">managed</property>
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">F10</property>
+                            <property name="action">activate</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkWindowControls">
+                    <property name="decoration-layout">close</property>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkWindowControls">
-                <property name="decoration-layout">close</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">24</property>
                 <property name="valign">center</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="spacing">24</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="AdwCarousel" id="carousel">
-                <property name="halign">center</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwCarouselIndicatorDots">
-                <property name="carousel">carousel</property>
+                <child>
+                  <object class="AdwCarousel" id="carousel">
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwCarouselIndicatorDots">
+                    <property name="carousel">carousel</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

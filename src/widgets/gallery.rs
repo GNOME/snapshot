@@ -16,7 +16,7 @@ mod imp {
     #[properties(wrapper_type = super::Gallery)]
     pub struct Gallery {
         #[template_child]
-        pub overlay: TemplateChild<gtk::Widget>,
+        pub child: TemplateChild<gtk::Widget>,
         #[template_child]
         pub carousel: TemplateChild<adw::Carousel>,
 
