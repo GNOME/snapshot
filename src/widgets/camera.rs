@@ -209,6 +209,7 @@ impl Camera {
 
         let cameras = provider.cameras();
 
+        let n_cameras = cameras.len();
         let n_removals = imp.stream_list.borrow().n_items();
         let items = cameras
             .into_iter()
@@ -216,6 +217,16 @@ impl Camera {
             .collect::<Vec<glib::BoxedAnyObject>>();
         imp.stream_list.borrow().splice(0, n_removals, &items);
         imp.selection.set_selected(0);
+
+        // NOTE We have a stack with an empty bin so that hiding the button does
+        // not ruin the layout.
+        if n_cameras > 1 {
+            imp.camera_menu_button_stack
+                .set_visible_child(&imp.camera_menu_button_stack.get());
+        } else {
+            imp.camera_menu_button_stack
+                .set_visible_child_name("fake-widget");
+        }
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
