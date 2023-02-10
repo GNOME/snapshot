@@ -195,7 +195,7 @@ impl Gallery {
             .downcast::<crate::GalleryPicture>()
             .unwrap();
         let file = picture.file();
-        let launcher = gtk::FileLauncher::new(Some(file));
+        let launcher = gtk::FileLauncher::new(Some(&file));
         let root = self.root();
         let window = root.and_downcast_ref::<gtk::Window>();
         launcher.launch_future(window).await?;
