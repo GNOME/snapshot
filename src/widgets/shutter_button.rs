@@ -106,6 +106,7 @@ mod imp {
             let widget = self.obj();
 
             widget.add_css_class("shutterbutton");
+            widget.add_css_class("flat");
             widget.set_tooltip_text(Some(&gettext("Shutter Button")));
 
             if matches!(widget.shutter_mode(), ShutterMode::Video) {

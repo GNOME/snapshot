@@ -8,6 +8,7 @@ license = "GPL-3.0-or-later"
 [dependencies]
 adw = { package = "libadwaita", version = "0.2", features = ["v1_2"] }
 anyhow = "1.0"
+futures-channel = "0.3.26"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 gst = { package = "gstreamer", version = "0.19"}
 gst-plugin-gtk4 = { version = "0.9.5", features = ["wayland", "x11egl", "x11glx"] }

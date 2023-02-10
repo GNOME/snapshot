@@ -176,22 +176,22 @@
       <attribute name="label" translatable="yes">Countdown</attribute>
       <item>
         <attribute name="action">win.countdown</attribute>
-        <attribute name="label" translatable="yes">None</attribute>
+        <attribute name="label" translatable="yes" comments="TRANSLATORS this indicates the countdown is disabled">None</attribute>
         <attribute name="target" type="i">0</attribute>
       </item>
       <item>
         <attribute name="action">win.countdown</attribute>
-        <attribute name="label" translatable="yes">3s</attribute>
+        <attribute name="label" translatable="yes" comments="TRANSLATORS this is time for a countdown in seconds">3s</attribute>
         <attribute name="target" type="i">3</attribute>
       </item>
       <item>
         <attribute name="action">win.countdown</attribute>
-        <attribute name="label" translatable="yes">5s</attribute>
+        <attribute name="label" translatable="yes" comments="TRANSLATORS this is time for a countdown in seconds">5s</attribute>
         <attribute name="target" type="i">5</attribute>
       </item>
       <item>
         <attribute name="action">win.countdown</attribute>
-        <attribute name="label" translatable="yes">10s</attribute>
+        <attribute name="label" translatable="yes" comments="TRANSLATORS this is time for a countdown in seconds">10s</attribute>
         <attribute name="target" type="i">10</attribute>
       </item>
     </section>

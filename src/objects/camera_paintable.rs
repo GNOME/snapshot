@@ -17,7 +17,7 @@ use gst::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
-use crate::config;
+use crate::{config, utils};
 
 /// Time to wait before trying to emit code-detected.
 const CODE_TIMEOUT: u64 = 3;
@@ -71,8 +71,10 @@ mod imp {
                     glib::subclass::Signal::builder("code-detected")
                         .param_types([String::static_type()])
                         .build(),
+                    // This is emited whenever the saving process finishes,
+                    // successful or not.
                     glib::subclass::Signal::builder("picture-stored")
-                        .param_types([gdk::Texture::static_type()])
+                        .param_types([Option::<gio::File>::static_type()])
                         .build(),
                 ]
             });
@@ -266,11 +268,15 @@ impl CameraPaintable {
                         }
                         Some(s) if s.name() == "picture-saved" => {
                             // TODO Is it possible to sent a Path directly here?
-                            let path = s.get::<&str>("text").unwrap();
+                            let success = s.get::<bool>("success").unwrap();
 
-                            let file = gio::File::for_path(path);
-                            let texture = gdk::Texture::from_file(&file).unwrap();
-                            paintable.emit_picture_stored(&texture);
+                            if success {
+                                let path = s.get::<&str>("text").unwrap();
+                                let file = gio::File::for_path(path);
+                                paintable.emit_picture_stored(Some(&file));
+                            } else {
+                                paintable.emit_picture_stored(None);
+                            }
                         }
                         _ => (),
                     },
@@ -336,12 +342,8 @@ impl CameraPaintable {
         };
 
         // Create the filename and open the file writable
-        let filename = crate::utils::picture_file_name(picture_format);
-        let path = glib::user_special_dir(glib::UserDirectory::Pictures)
-            .unwrap()
-            .join(&filename);
-
-        let mut file = File::create(&path)?;
+        let filename = utils::picture_file_name(picture_format);
+        let path = utils::pictures_dir().join(&filename);
 
         // Then convert it from whatever format we got to PNG or JPEG as requested and write it out
         log::debug!("Writing snapshot to {}", path.display());
@@ -357,6 +359,12 @@ impl CameraPaintable {
                         let _ = bus.post(create_application_warning_message(&format!(
                             "Failed to convert sample: {err}"
                         )));
+
+                        // We need to say that the picture saving process
+                        // finished in all branches of the closure.
+                        let msg = create_application_message("", false);
+                        let _ = bus.post(msg);
+
                         return;
                     }
                     Ok(sample) => sample,
@@ -367,13 +375,26 @@ impl CameraPaintable {
                     .map_readable()
                     .expect("Failed to map buffer readable");
 
+                let Ok(mut file) = File::create(&path) else {
+                    log::debug!("Failed to create file {filename}");
+                    let _ = bus.post(create_application_warning_message(&format!(
+                        "Failed to create file {filename}"
+                    )));
+                    let msg = create_application_message("", false);
+                    let _ = bus.post(msg);
+
+                    return;
+                };
+
                 if let Err(err) = file.write_all(&map) {
                     log::debug!("Failed to write snapshot file {filename}: {err:?}");
                     let _ = bus.post(create_application_warning_message(&format!(
                         "Failed to write snapshot file {filename}: {err:?}"
                     )));
+                    let msg = create_application_message("", false);
+                    let _ = bus.post(msg);
                 } else {
-                    let msg = create_application_message(&format!("{}", path.display()));
+                    let msg = create_application_message(&format!("{}", path.display()), true);
                     let _ = bus.post(msg);
                 }
             },
@@ -431,10 +452,8 @@ impl CameraPaintable {
             .by_name("sink")
             .expect("Recording bin has no sink element");
 
-        let filename = crate::utils::video_file_name(format);
-        let path = glib::user_special_dir(glib::UserDirectory::Videos)
-            .unwrap()
-            .join(filename);
+        let filename = utils::video_file_name(format);
+        let path = utils::videos_dir().join(filename);
 
         // All strings in GStreamer are UTF8, we need to convert the path to UTF8 which in theory
         // can fail
@@ -546,17 +565,17 @@ impl CameraPaintable {
         );
     }
 
-    fn emit_picture_stored(&self, texture: &gdk::Texture) {
-        self.emit_by_name::<()>("picture-stored", &[&texture]);
+    fn emit_picture_stored(&self, file: Option<&gio::File>) {
+        self.emit_by_name::<()>("picture-stored", &[&file]);
     }
 
-    pub fn connect_picture_stored<F: Fn(&Self, &gdk::Texture) + 'static>(&self, f: F) {
+    pub fn connect_picture_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
         self.connect_local(
             "picture-stored",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let texture = args.get(1).unwrap().get::<gdk::Texture>().unwrap();
-                f(&obj, &texture);
+                let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();
+                f(&obj, file.as_ref());
 
                 None
             }),
@@ -596,10 +615,11 @@ impl CameraPaintable {
     }
 }
 
-fn create_application_message(text: &str) -> gst::Message {
+fn create_application_message(text: &str, success: bool) -> gst::Message {
     gst::message::Application::new(
         gst::Structure::builder("picture-saved")
             .field("text", text)
+            .field("success", success)
             .build(),
     )
 }

@@ -104,7 +104,12 @@ mod imp {
             self.paintable.connect_code_detected(|_, code| {
                 // TODO Do a proper dialog here.
                 log::debug!("Found QR code with contents: {code}");
-            })
+            });
+
+            self.paintable
+                .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
+                    obj.imp().shutter_button.set_sensitive(true);
+                }));
         }
 
         fn dispose(&self) {
@@ -191,7 +196,10 @@ impl Camera {
     }
 
     pub async fn take_picture(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
-        self.imp().paintable.take_snapshot(format)
+        let imp = self.imp();
+        // We set sensitive = True whenever picture-stored is emited.
+        imp.shutter_button.set_sensitive(false);
+        imp.paintable.take_snapshot(format)
     }
 
     pub fn set_countdown(&self, countdown: u32) {
@@ -218,8 +226,10 @@ impl Camera {
         let imp = self.imp();
 
         imp.paintable
-            .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, texture| {
-                gallery.add_image(texture);
+            .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, file| {
+                if let Some(file) = file {
+                    gallery.add_image(file);
+                }
             }));
         imp.gallery_button.set_gallery(gallery);
     }

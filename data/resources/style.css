@@ -1,16 +1,16 @@
-.shutterbutton {
+.shutterbutton, .gallerybutton {
   color: white;
-  background: none;
+  background-color: transparent;
   border-radius: 999px;
   padding: 0;
-  transition-property: color;
+  transition-property: color, outline-color, outline-width, outline-offset;
 }
 
-.shutterbutton:hover {
+.shutterbutton:hover, .gallerybutton:hover {
   color: alpha(currentColor, .85);
 }
 
-.shutterbutton:active {
+.shutterbutton:active, .gallerybutton:active {
   color: alpha(currentColor, .97);
 }
 
