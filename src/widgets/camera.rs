@@ -155,26 +155,27 @@ impl Camera {
 
             match camera.try_start_stream().await {
                 Ok(()) => imp.stack.set_visible_child_name("camera"),
-                Err(err) => {
-                    if let Some(crate::Error::NoCamera) = err.downcast_ref::<crate::Error>() {
-                        imp.stack.set_visible_child_name("not-found");
-                        log::debug!("Could not start stream: {err}");
-                    } else {
-                        imp.stack.set_visible_child_name("not-found");
-                        log::debug!("Could not find camera: {}", err);
-                    }
-                }
+                Err(crate::Error::NoCamera) => {
+                    imp.stack.set_visible_child_name("not-found");
+                    log::warn!("Could not find any camera");
+                },
+                Err(crate::Error::DeviceProvider) => {
+                    imp.stack.set_visible_child_name("not-found");
+                    log::error!("Could not start device provider");
+                },
             };
             imp.spinner.stop();
         }));
     }
 
-    async fn try_start_stream(&self) -> anyhow::Result<()> {
+    async fn try_start_stream(&self) -> Result<(), crate::Error> {
         let imp = self.imp();
 
         // TODO We pass None since the portal does not return microphones and
         // creating additional DeviceProviders does not work.
-        let provider = crate::DeviceProvider::new(None)?;
+        let Ok(provider) = crate::DeviceProvider::new(None) else {
+            return Err(crate::Error::DeviceProvider);
+        };
 
         // TODO Improve this, we just try with the first mic we find. One could try
         // matching pairs of AudioSrc and AudioSink.
@@ -188,7 +189,7 @@ impl Camera {
         imp.provider.replace(Some(provider));
 
         if n_cameras == 0 {
-            Err(crate::Error::NoCamera)?;
+            return Err(crate::Error::NoCamera);
         }
 
         log::debug!("Found {n_cameras} cameras");
@@ -259,6 +260,8 @@ impl Camera {
                 let window = self.root().and_downcast::<crate::Window>().unwrap();
                 window.send_toast(&gettext("Could not find any camera"));
             }
+        } else {
+            self.start();
         }
     }
 }
