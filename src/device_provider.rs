@@ -59,26 +59,28 @@ impl DeviceProvider {
         }
         provider.start()?;
 
-        let mut devices = provider
+        let provider = Self {
+            provider,
+            fd,
+            devices: RefCell::default(),
+        };
+
+        provider.init_devices();
+
+        Ok(provider)
+    }
+
+    pub fn init_devices(&self) {
+        let devices = self
+            .provider
             .devices()
             .into_iter()
             .map(From::from)
             .collect::<Vec<Device>>();
-        while devices.is_empty() {
-            log::debug!("Found 0 devices");
-            devices = provider
-                .devices()
-                .into_iter()
-                .map(From::from)
-                .collect::<Vec<Device>>();
-        }
+
         log::debug!("Found {} devices", devices.len());
 
-        Ok(Self {
-            provider,
-            fd,
-            devices: RefCell::new(devices),
-        })
+        self.devices.replace(devices);
     }
 
     pub fn cameras(&self) -> Vec<Device> {

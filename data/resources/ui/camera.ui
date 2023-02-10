@@ -54,6 +54,17 @@
                     <property name="icon-name">camera-hardware-disabled-symbolic</property>
                     <property name="title" translatable="yes">No Camera Found</property>
                     <property name="description" translatable="yes"></property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">Try Again</property>
+                        <property name="halign">center</property>
+                        <property name="action-name">camera.refresh-cameras</property>
+                        <style>
+                          <class name="pill"/>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

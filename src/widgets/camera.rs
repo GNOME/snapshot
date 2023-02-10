@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
@@ -41,6 +42,10 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.set_layout_manager_type::<gtk::BinLayout>();
+
+            klass.install_action("camera.refresh-cameras", None, move |widget, _, _| {
+                widget.refresh_cameras();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -180,6 +185,7 @@ impl Camera {
 
         let cameras = provider.cameras();
         let n_cameras = cameras.len();
+        imp.provider.replace(Some(provider));
 
         if n_cameras == 0 {
             Err(crate::Error::NoCamera)?;
@@ -193,8 +199,6 @@ impl Camera {
                 .append(&glib::BoxedAnyObject::new(item));
         }
         imp.selection.set_selected(0);
-
-        imp.provider.replace(Some(provider));
 
         Ok(())
     }
@@ -246,5 +250,15 @@ impl Camera {
                 }
             }));
         imp.gallery_button.set_gallery(gallery);
+    }
+
+    fn refresh_cameras(&self) {
+        if let Some(provider) = self.imp().provider.borrow().as_ref() {
+            provider.init_devices();
+            if provider.cameras().is_empty() {
+                let window = self.root().and_downcast::<crate::Window>().unwrap();
+                window.send_toast(&gettext("Could not find any camera"));
+            }
+        }
     }
 }

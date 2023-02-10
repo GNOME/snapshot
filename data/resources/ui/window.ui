@@ -2,16 +2,20 @@
 <interface>
   <template class="Window" parent="AdwApplicationWindow">
     <child>
-      <object class="AdwLeaflet" id="leaflet">
-        <property name="vexpand">True</property>
-        <property name="can-unfold">False</property>
-        <property name="can-navigate-back">True</property>
+      <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="Camera" id="camera">
-          </object>
-        </child>
-        <child>
-          <object class="Gallery" id="gallery">
+          <object class="AdwLeaflet" id="leaflet">
+            <property name="vexpand">True</property>
+            <property name="can-unfold">False</property>
+            <property name="can-navigate-back">True</property>
+            <child>
+              <object class="Camera" id="camera">
+              </object>
+            </child>
+            <child>
+              <object class="Gallery" id="gallery">
+              </object>
+            </child>
           </object>
         </child>
       </object>

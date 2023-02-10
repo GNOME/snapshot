@@ -26,6 +26,8 @@ mod imp {
         pub gallery: TemplateChild<crate::Gallery>,
         #[template_child]
         pub leaflet: TemplateChild<adw::Leaflet>,
+        #[template_child]
+        pub toast_overlay: TemplateChild<adw::ToastOverlay>,
 
         pub settings: gio::Settings,
         pub countdown_timer_id: RefCell<Option<glib::SourceId>>,
@@ -39,6 +41,7 @@ mod imp {
                 camera: TemplateChild::default(),
                 gallery: TemplateChild::default(),
                 leaflet: TemplateChild::default(),
+                toast_overlay: TemplateChild::default(),
 
                 settings: gio::Settings::new(APP_ID),
                 countdown_timer_id: Default::default(),
@@ -141,7 +144,7 @@ mod imp {
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @implements gio::ActionMap, gio::ActionGroup, gtk::Root;
 }
 
 impl Window {
@@ -337,5 +340,10 @@ impl Window {
     fn show_preferences_window(&self) {
         let preferences = crate::PreferencesWindow::new(self);
         preferences.present();
+    }
+
+    pub fn send_toast(&self, text: &str) {
+        let toast = adw::Toast::new(text);
+        self.imp().toast_overlay.add_toast(toast);
     }
 }
