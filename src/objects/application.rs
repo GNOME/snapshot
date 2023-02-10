@@ -70,11 +70,10 @@ glib::wrapper! {
 
 impl Default for Application {
     fn default() -> Self {
-        glib::Object::new(&[
-            ("application-id", &Some(APP_ID)),
-            ("flags", &gio::ApplicationFlags::empty()),
-            ("resource-base-path", &Some("/org/gnome/World/Snapshot/")),
-        ])
+        glib::Object::builder()
+            .property("application-id", APP_ID)
+            .property("resource-base-path", "/org/gnome/World/Snapshot/")
+            .build()
     }
 }
 

@@ -56,7 +56,7 @@ mod imp {
 
     impl ObjectImpl for Gallery {
         fn dispose(&self) {
-            self.obj().dispose_template(Self::Type::static_type());
+            self.dispose_template();
         }
 
         fn constructed(&self) {
@@ -113,7 +113,7 @@ glib::wrapper! {
 
 impl Default for Gallery {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 

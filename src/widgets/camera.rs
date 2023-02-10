@@ -87,7 +87,7 @@ mod imp {
                     }
                 }));
             }));
-            let list_view = gtk::ListView::new(Some(&self.selection), Some(&factory));
+            let list_view = gtk::ListView::new(Some(self.selection.clone()), Some(factory));
 
             popover.set_child(Some(&list_view));
 
@@ -113,7 +113,7 @@ mod imp {
         }
 
         fn dispose(&self) {
-            self.obj().dispose_template(Self::Type::static_type());
+            self.dispose_template();
         }
     }
     impl WidgetImpl for Camera {}
@@ -126,7 +126,7 @@ glib::wrapper! {
 
 impl Default for Camera {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 

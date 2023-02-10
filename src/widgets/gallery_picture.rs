@@ -80,7 +80,7 @@ glib::wrapper! {
 
 impl GalleryPicture {
     pub fn new(file: &gio::File) -> Self {
-        glib::Object::new(&[("file", file)])
+        glib::Object::builder().property("file", file).build()
     }
 
     pub fn file(&self) -> &gio::File {

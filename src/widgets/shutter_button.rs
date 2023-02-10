@@ -72,12 +72,9 @@ mod imp {
         fn properties() -> &'static [glib::ParamSpec] {
             static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
                 vec![
-                    glib::ParamSpecEnum::builder::<ShutterMode>(
-                        "shutter-mode",
-                        ShutterMode::default(),
-                    )
-                    .readwrite()
-                    .build(),
+                    glib::ParamSpecEnum::builder::<ShutterMode>("shutter-mode")
+                        .readwrite()
+                        .build(),
                     glib::ParamSpecInt::builder("countdown").readwrite().build(),
                 ]
             });
@@ -120,7 +117,7 @@ mod imp {
                     widget.imp().press_val.set(value);
                     widget.queue_draw();
                 }));
-            let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, &press_target);
+            let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, press_target);
             self.press_ani.set(press_ani).unwrap();
 
             let mode_target =
@@ -128,7 +125,7 @@ mod imp {
                     widget.imp().mode_val.set(value);
                     widget.queue_draw();
                 }));
-            let mode_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, &mode_target);
+            let mode_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, mode_target);
             self.mode_ani.set(mode_ani).unwrap();
 
             let countdown_target =
@@ -136,8 +133,7 @@ mod imp {
                     widget.imp().countdown_val.set(value);
                     widget.queue_draw();
                 }));
-            let countdown_ani =
-                adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, &countdown_target);
+            let countdown_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, countdown_target);
             // TODO Figure out what easing to use.
             countdown_ani.set_easing(adw::Easing::Linear);
             self.countdown_ani.set(countdown_ani).unwrap();
@@ -147,7 +143,7 @@ mod imp {
                     widget.imp().record_val.set(value);
                     widget.queue_draw();
                 }));
-            let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, &record_target);
+            let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, record_target);
             self.record_ani.set(record_ani).unwrap();
 
             self.obj()
@@ -194,7 +190,7 @@ glib::wrapper! {
 
 impl Default for ShutterButton {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new()
     }
 }
 
