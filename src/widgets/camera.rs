@@ -24,6 +24,8 @@ mod imp {
         #[template_child]
         pub camera_menu_button: TemplateChild<gtk::MenuButton>,
         #[template_child]
+        pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
+        #[template_child]
         pub picture: TemplateChild<gtk::Picture>,
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
@@ -192,16 +194,28 @@ impl Camera {
             return Err(crate::Error::NoCamera);
         }
 
+        self.init_cameras();
+
         log::debug!("Found {n_cameras} cameras");
 
-        for item in cameras {
-            imp.stream_list
-                .borrow()
-                .append(&glib::BoxedAnyObject::new(item));
-        }
-        imp.selection.set_selected(0);
-
         Ok(())
+    }
+
+    fn init_cameras(&self) {
+        let imp = self.imp();
+
+        let provider = imp.provider.borrow();
+        let provider = provider.as_ref().unwrap();
+
+        let cameras = provider.cameras();
+
+        let n_removals = imp.stream_list.borrow().n_items();
+        let items = cameras
+            .into_iter()
+            .map(glib::BoxedAnyObject::new)
+            .collect::<Vec<glib::BoxedAnyObject>>();
+        imp.stream_list.borrow().splice(0, n_removals, &items);
+        imp.selection.set_selected(0);
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
@@ -254,11 +268,17 @@ impl Camera {
     }
 
     fn refresh_cameras(&self) {
-        if let Some(provider) = self.imp().provider.borrow().as_ref() {
+        let imp = self.imp();
+
+        if let Some(provider) = imp.provider.borrow().as_ref() {
             provider.init_devices();
-            if provider.cameras().is_empty() {
+            let cameras = provider.cameras();
+            if cameras.is_empty() {
                 let window = self.root().and_downcast::<crate::Window>().unwrap();
                 window.send_toast(&gettext("Could not find any camera"));
+            } else {
+                imp.stack.set_visible_child_name("camera");
+                self.init_cameras();
             }
         } else {
             self.start();

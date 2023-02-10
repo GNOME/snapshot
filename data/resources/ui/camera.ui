@@ -185,15 +185,27 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkMenuButton" id="camera_menu_button">
-                            <property name="width-request">44</property>
-                            <property name="height-request">44</property>
-                            <property name="valign">center</property>
-                            <property name="icon-name">video-camera-symbolic</property>
-                            <property name="tooltip-text" translatable="yes">Select Camera</property>
-                            <style>
-                              <class name="circular"/>
-                            </style>
+                          <object class="GtkStack" id="camera_menu_button_stack">
+                            <child>
+                              <object class="GtkMenuButton" id="camera_menu_button">
+                                <property name="width-request">44</property>
+                                <property name="height-request">44</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">video-camera-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Select Camera</property>
+                                <style>
+                                  <class name="circular"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">fake-widget</property>
+                                <property name="child">
+                                  <object class="AdwBin"/>
+                                </property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
