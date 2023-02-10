@@ -58,14 +58,16 @@ mod imp {
             let images = self.gallery.borrow().images();
             let Some(foreground) = images.first().and_then(|x| x.texture()) else { return; };
 
+            // We draw the border at full size if we already had a previous
+            // image otherwise at the size of the current image.
             let border_radius = if let Some(background) = images.get(1).and_then(|x| x.texture()) {
-                widget.draw_paintable(snapshot, background, width, height, size);
+                widget.draw_texture(snapshot, background, width, height, size);
                 size
             } else {
                 foreground_radius
             };
 
-            widget.draw_paintable(snapshot, &foreground, width, height, foreground_radius);
+            widget.draw_texture(snapshot, &foreground, width, height, foreground_radius);
 
             widget.draw_border(snapshot, width, height, border_radius);
         }
@@ -85,41 +87,50 @@ impl Default for GalleryButton {
 }
 
 impl GalleryButton {
-    fn draw_paintable(
+    fn draw_texture(
         &self,
         snapshot: &gtk::Snapshot,
-        paintable: &gdk::Texture,
+        texture: &gdk::Texture,
         width: f32,
         height: f32,
         size: f32,
     ) {
+        // Rect where we clip the image to.
         let x = (width - size) / 2.0;
         let y = (height - size) / 2.0;
-
-        let rect = graphene::Rect::new(0.0, 0.0, size, size);
+        let rect = graphene::Rect::new(x, y, size, size);
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
-        snapshot.translate(&graphene::Point::new(x, y));
+        // We draw the texture to a bigger size to preserve the aspect ration and take the square that fits into its center.
+        let t_width = texture.width() as f32;
+        let t_height = texture.height() as f32;
+        let t_ratio = t_width / t_height;
+        let (t_width, t_height) = if t_ratio >= 1.0 {
+            (t_ratio * size, size)
+        } else {
+            (size, t_ratio * size)
+        };
+        let t_x = -(t_width - width) / 2.0;
+        let t_y = -(t_height - height) / 2.0;
+        let t_rect = graphene::Rect::new(t_x, t_y, t_width, t_height);
+
         snapshot.push_rounded_clip(&rounded);
-        paintable.snapshot(snapshot, size as f64, size as f64);
+        snapshot.append_texture(texture, &t_rect);
         snapshot.pop();
-        snapshot.translate(&graphene::Point::new(-x, -y));
     }
 
     fn draw_border(&self, snapshot: &gtk::Snapshot, width: f32, height: f32, size: f32) {
         let x = (width - size) / 2.0;
         let y = (height - size) / 2.0;
 
-        let rect = graphene::Rect::new(0.0, 0.0, size, size);
+        let rect = graphene::Rect::new(x, y, size, size);
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
         let white = gdk::RGBA::WHITE;
 
-        snapshot.translate(&graphene::Point::new(x, y));
         snapshot.append_border(&rounded, &[BORDER_WIDTH; 4], &[white; 4]);
-        snapshot.translate(&graphene::Point::new(-x, -y));
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
