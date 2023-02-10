@@ -10,29 +10,14 @@ use gtk::{gio, glib};
 mod imp {
     use super::*;
 
-    use glib::Properties;
     use once_cell::unsync::OnceCell;
 
-    use std::cell::Cell;
-
-    #[derive(Debug, Properties)]
-    #[properties(wrapper_type = super::DeviceProvider)]
+    #[derive(Debug, Default)]
     pub struct DeviceProvider {
-        pub provider: OnceCell<gst::DeviceProvider>,
+        pub inner: OnceCell<gst::DeviceProvider>,
         pub cameras: RefCell<Vec<crate::Device>>,
 
-        #[property(get, set, construct_only, default_value = -1)]
-        fd: Cell<RawFd>,
-    }
-
-    impl Default for DeviceProvider {
-        fn default() -> Self {
-            Self {
-                provider: Default::default(),
-                cameras: Default::default(),
-                fd: Cell::new(-1),
-            }
-        }
+        pub fd: RefCell<Option<RawFd>>,
     }
 
     impl DeviceProvider {
@@ -78,42 +63,21 @@ mod imp {
     }
 
     impl ObjectImpl for DeviceProvider {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 
-            let obj = self.obj();
             let provider = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider").unwrap();
-            let fd = obj.fd();
-            if fd > -1 {
-                log::debug!("Starting device provider with file descriptor: {fd}");
-                if provider.has_property("fd", Some(RawFd::static_type())) {
-                    provider.set_property("fd", &fd);
-                }
-            }
-            self.provider.set(provider).unwrap();
+            self.inner.set(provider).unwrap();
         }
 
         fn dispose(&self) {
-            let inner = self.provider.get().unwrap();
+            let inner = self.inner.get().unwrap();
             if inner.is_started() {
                 inner.stop();
             }
             let bus = inner.bus();
             let _ = bus.remove_watch();
-            let raw_fd = self.fd.replace(-1);
-            if raw_fd > -1 {
+            if let Some(raw_fd) = self.fd.take() {
                 unsafe {
                     // FIXME Replace with a OwnedFd once
                     // https://github.com/bilelmoussaoui/ashpd/pull/104 is merged.
@@ -129,18 +93,20 @@ glib::wrapper! {
         @implements gio::ListModel;
 }
 
+impl Default for DeviceProvider {
+    fn default() -> Self {
+        glib::Object::new()
+    }
+}
+
 impl DeviceProvider {
-    /// Creates a device provider, if a file descriptor coming for the Camera
-    /// portal is passed, this will only list camera devices.
-    pub fn new(fd: Option<RawFd>) -> Self {
-        glib::Object::builder()
-            .property("fd", fd.unwrap_or(-1))
-            .build()
+    pub fn new() -> Self {
+        Self::default()
     }
 
     pub fn start(&self) -> anyhow::Result<()> {
-        let provider = self.imp().provider.get().unwrap();
-        self.imp().provider.get().unwrap().start()?;
+        let provider = self.imp().inner.get().unwrap();
+        provider.start()?;
 
         let bus = provider.bus();
         bus.add_watch_local(
@@ -198,5 +164,20 @@ impl DeviceProvider {
 
     pub fn camera(&self, position: u32) -> Option<crate::Device> {
         self.item(position).and_downcast()
+    }
+
+    /// A file descriptor coming for the Camera portal. Such a provider can only
+    /// provide cameras.
+    pub fn set_fd(&self, fd: RawFd) -> anyhow::Result<()> {
+        let provider = self.imp().inner.get().unwrap();
+        log::debug!("Starting device provider with file descriptor: {fd}");
+        if provider.has_property("fd", Some(RawFd::static_type())) {
+            provider.set_property("fd", &fd);
+            self.imp().fd.replace(Some(fd));
+        } else {
+            anyhow::bail!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");
+        }
+
+        Ok(())
     }
 }

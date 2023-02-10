@@ -118,7 +118,10 @@ mod imp {
 
             self.camera.set_gallery(self.gallery.get());
 
-            self.camera.start();
+            let ctx = glib::MainContext::default();
+            ctx.spawn_local(glib::clone!(@weak obj => async move {
+                obj.imp().camera.start().await;
+            }));
         }
     }
 

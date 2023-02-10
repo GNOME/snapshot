@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::os::unix::io::RawFd;
+
+use ashpd::desktop::camera;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
@@ -62,7 +65,7 @@ mod imp {
             let popover = gtk::Popover::new();
             popover.add_css_class("menu");
 
-            let provider = crate::DeviceProvider::new(None);
+            let provider = crate::DeviceProvider::new();
             provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
                 obj.update_cameras(&provider);
             }));
@@ -120,6 +123,11 @@ mod imp {
                 }));
 
             self.provider.set(provider).unwrap();
+
+            // This spinner stops running when the device provider finds any
+            // camera device.
+            self.spinner.start();
+            self.stack.set_visible_child_name("loading");
         }
 
         fn dispose(&self) {
@@ -149,19 +157,27 @@ impl Camera {
         self.imp().paintable.close_pipeline();
     }
 
-    pub fn start(&self) {
-        let imp = self.imp();
-        // This spinner stops running when the device provider finds any camera
-        // device.
-        imp.spinner.start();
-        imp.stack.set_visible_child_name("loading");
-
+    pub async fn start(&self) {
         let provider = self.imp().provider.get().unwrap();
 
-        if let Err(err) = provider.start() {
-            imp.stack.set_visible_child_name("not-found");
-            log::error!("Could not start device provider: {err}");
-        }
+        let ctx = glib::MainContext::default();
+        ctx.spawn_local(
+            glib::clone!(@weak self as obj, @strong provider => async move {
+                if let Ok(fd) = stream().await {
+                    if let Err(err) = provider.set_fd(fd) {
+                        log::error!("Could not use the camera portal: {err}");
+                    };
+                } else {
+                    // FIXME Show a page explaining how to setup the permission.
+                    log::warn!("Could not use the camera portal");
+                }
+
+                if let Err(err) = provider.start() {
+                    obj.imp().stack.set_visible_child_name("not-found");
+                    log::error!("Could not start device provider: {err}");
+                }
+            }),
+        );
 
         // FIXME This is super arbitrary
         let duration = std::time::Duration::from_secs(1);
@@ -247,4 +263,11 @@ impl Camera {
                 .set_visible_child_name("fake-widget");
         }
     }
+}
+
+async fn stream() -> ashpd::Result<RawFd> {
+    let proxy = camera::Camera::new().await?;
+    proxy.request_access().await?;
+
+    proxy.open_pipe_wire_remote().await
 }
