@@ -2,25 +2,34 @@
 use adw::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
-use gtk::{gdk, gio, glib};
+use gtk::{gio, glib};
 
 mod imp {
     use super::*;
 
+    use glib::Properties;
+    use once_cell::sync::Lazy;
     use std::cell::{Cell, RefCell};
 
-    use once_cell::sync::Lazy;
-
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate, Properties)]
     #[template(resource = "/org/gnome/World/Snapshot/ui/gallery.ui")]
+    #[properties(wrapper_type = super::Gallery)]
     pub struct Gallery {
         #[template_child]
         pub overlay: TemplateChild<gtk::Widget>,
         #[template_child]
         pub carousel: TemplateChild<adw::Carousel>,
 
+        #[property(get = Self::progress, explicit_notify)]
         pub progress: Cell<f64>,
+
         pub images: RefCell<Vec<crate::GalleryPicture>>,
+    }
+
+    impl Gallery {
+        fn progress(&self) -> f64 {
+            self.carousel.progress()
+        }
     }
 
     #[glib::object_subclass]
@@ -90,17 +99,11 @@ mod imp {
         }
 
         fn properties() -> &'static [glib::ParamSpec] {
-            static PROPERTIES: Lazy<Vec<glib::ParamSpec>> =
-                Lazy::new(|| vec![glib::ParamSpecInt::builder("progress").read_only().build()]);
-            PROPERTIES.as_ref()
+            Self::derived_properties()
         }
 
-        fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            let obj = self.obj();
-            match pspec.name() {
-                "progress" => obj.progress().to_value(),
-                _ => unimplemented!(),
-            }
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            Self::derived_property(self, id, pspec)
         }
     }
     impl WidgetImpl for Gallery {}
@@ -141,10 +144,6 @@ impl Gallery {
 
     pub fn images(&self) -> Vec<crate::GalleryPicture> {
         self.imp().images.borrow().clone()
-    }
-
-    pub fn progress(&self) -> f64 {
-        self.imp().carousel.progress()
     }
 
     fn emit_item_added(&self, picture: &crate::GalleryPicture) {
