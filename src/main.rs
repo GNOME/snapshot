@@ -3,6 +3,7 @@
 mod config;
 mod device_provider;
 mod enums;
+mod error;
 mod objects;
 mod utils;
 mod widgets;
@@ -12,6 +13,7 @@ use objects::*;
 use widgets::*;
 
 use device_provider::{Device, DeviceProvider};
+use error::Error;
 
 use gettextrs::{gettext, LocaleCategory};
 use gtk::{gio, glib};

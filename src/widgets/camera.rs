@@ -151,8 +151,13 @@ impl Camera {
             match camera.try_start_stream().await {
                 Ok(()) => imp.stack.set_visible_child_name("camera"),
                 Err(err) => {
-                    imp.stack.set_visible_child_name("not-found");
-                    log::debug!("Could not find camera: {}", err);
+                    if let Some(crate::Error::NoCamera) = err.downcast_ref::<crate::Error>() {
+                        imp.stack.set_visible_child_name("not-found");
+                        log::debug!("Could not start stream: {err}");
+                    } else {
+                        imp.stack.set_visible_child_name("not-found");
+                        log::debug!("Could not find camera: {}", err);
+                    }
                 }
             };
             imp.spinner.stop();
@@ -173,7 +178,16 @@ impl Camera {
             self.imp().paintable.set_pipewire_mic(mic.element.clone());
         }
 
-        for item in provider.cameras() {
+        let cameras = provider.cameras();
+        let n_cameras = cameras.len();
+
+        if n_cameras == 0 {
+            Err(crate::Error::NoCamera)?;
+        }
+
+        log::debug!("Found {n_cameras} cameras");
+
+        for item in cameras {
             imp.stream_list
                 .borrow()
                 .append(&glib::BoxedAnyObject::new(item));
