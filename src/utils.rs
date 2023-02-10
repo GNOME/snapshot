@@ -14,7 +14,8 @@ pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
         let hour = date_time.hour();
         let minute = date_time.minute();
         let second = date_time.second();
-        format!("IMG_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}.{format}")
+        let microsecond = date_time.microsecond();
+        format!("IMG_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}{microsecond:0>2}.{format}")
     } else {
         let rand = glib::random_int_range(0, 999999);
         format!("IMG_{rand}.{format}")
@@ -30,7 +31,8 @@ pub fn video_file_name(video_format: crate::VideoFormat) -> String {
         let hour = date_time.hour();
         let minute = date_time.minute();
         let second = date_time.second();
-        format!("RECORDING_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}.{format}")
+        let microsecond = date_time.microsecond();
+        format!("RECORDING_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}{microsecond:0>2}.{format}")
     } else {
         let rand = glib::random_int_range(0, 999999);
         format!("RECORDING_{rand}.{format}")
