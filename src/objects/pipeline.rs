@@ -57,11 +57,24 @@ mod imp {
             pipeline.set_message_forward(true);
 
             let tee = gst::ElementFactory::make("tee").build().unwrap();
+
             let queue = gst::ElementFactory::make("queue").build().unwrap();
             let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
-
             let zbar = gst::ElementFactory::make("zbar").build().unwrap();
             let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
+
+            let zbarbin = gst::Bin::default();
+            zbarbin
+                .add_many(&[&queue, &videoconvert, &zbar, &fakesink])
+                .unwrap();
+            gst::Element::link_many(&[&queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            zbarbin
+                .add_pad(
+                    &gst::GhostPad::with_target(Some("sink"), &queue.static_pad("sink").unwrap())
+                        .unwrap(),
+                )
+                .unwrap();
+
             let queue2 = gst::ElementFactory::make("queue").build().unwrap();
 
             let queue3 = gst::ElementFactory::make("queue").build().unwrap();
@@ -103,10 +116,7 @@ mod imp {
             pipeline
                 .add_many(&[
                     &tee,
-                    &queue,
-                    &videoconvert,
-                    &zbar,
-                    &fakesink,
+                    zbarbin.upcast_ref(),
                     &queue2,
                     &sink,
                     &queue3,
@@ -114,7 +124,7 @@ mod imp {
                 ])
                 .unwrap();
 
-            gst::Element::link_many(&[&tee, &queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            tee.link_pads(None, &zbarbin, None).unwrap();
 
             tee.link_pads(None, &queue2, None).unwrap();
 
@@ -136,6 +146,14 @@ mod imp {
                                 err.debug()
                             );
                         },
+                        gst::MessageView::Warning(err) => {
+                            log::warn!(
+                                "Warning from {:?}: {} ({:?})",
+                                err.src().map(|s| s.path_string()),
+                                err.error(),
+                                err.debug()
+                            );
+                        }
                         gst::MessageView::Application(msg) => match msg.structure() {
                             // Here we can send ourselves messages from any thread and show them to the user in
                             // the UI in case something goes wrong
@@ -387,11 +405,7 @@ impl Pipeline {
         // Get our recording bin, if it does not exist then nothing has to be stopped actually.
         // This shouldn't really happen
         //
-        // FIXME
-        let bin = imp.recording_bin.lock().unwrap().as_ref().cloned();
-        *imp.recording_bin.lock().unwrap() = None;
-
-        let Some(bin) = bin else {
+        let Some(bin) = imp.recording_bin.lock().unwrap().take() else {
             return;
         };
 
@@ -432,10 +446,9 @@ impl Pipeline {
 
             // Asynchronously send the end-of-stream event to the sinkpad as this might block for a
             // while and our closure here might've been called from the main UI thread
-            let sinkpad = sinkpad.clone();
-            bin.call_async(move |_bin| {
+            bin.call_async(glib::clone!(@weak sinkpad => move |_bin| {
                 sinkpad.send_event(gst::event::Eos::new());
-            });
+            }));
 
             // Don't block the pad but remove the probe to let everything
             // continue as normal
@@ -449,17 +462,15 @@ impl Pipeline {
 
         let tee = imp.tee.get().unwrap();
 
-        self.set_state(gst::State::Null).unwrap();
-
         let mut guard = imp.pipewire_src.lock().unwrap();
-        let old_element = guard.as_ref().cloned();
-        if let Some(old_element) = old_element {
-            gst::Element::unlink_many(&[&old_element, tee]);
+        if let Some(old_element) = guard.take() {
+            self.set_state(gst::State::Null).unwrap();
+            old_element.unlink(tee);
             self.remove(&old_element).unwrap();
         }
         self.add(&element).unwrap();
 
-        gst::Element::link_many(&[&element, tee]).unwrap();
+        element.link(tee).unwrap();
         self.set_state(gst::State::Playing).unwrap();
 
         *guard = Some(element);
