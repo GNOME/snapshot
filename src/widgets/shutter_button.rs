@@ -23,7 +23,7 @@ mod imp {
     use once_cell::sync::OnceCell;
     use std::cell::Cell;
 
-    #[derive(Debug, Properties)]
+    #[derive(Debug, Properties, Default)]
     #[properties(wrapper_type = super::ShutterButton)]
     pub struct ShutterButton {
         #[property(get, set = Self::set_shutter_mode, explicit_notify, builder(ShutterMode::default()))]
@@ -39,20 +39,6 @@ mod imp {
         pub mode_ani: OnceCell<adw::TimedAnimation>,
     }
 
-    impl Default for ShutterButton {
-        fn default() -> Self {
-            Self {
-                shutter_mode: Default::default(),
-                countdown: Cell::new(0),
-
-                countdown_ani: Default::default(),
-                record_ani: Default::default(),
-                press_ani: Default::default(),
-                mode_ani: Default::default(),
-            }
-        }
-    }
-
     impl ShutterButton {
         pub fn set_countdown(&self, countdown: u32) {
             if countdown != self.countdown.replace(countdown) {
@@ -63,35 +49,37 @@ mod imp {
         pub fn set_shutter_mode(&self, shutter_mode: ShutterMode) {
             let widget = self.obj();
             if shutter_mode != self.shutter_mode.replace(shutter_mode) {
-                let from = widget.mode_ani().value();
+                let mode_ani = widget.mode_ani();
+                let record_ani = widget.record_ani();
+                let mode_from = widget.mode_ani().value();
                 let record_from = widget.record_ani().value();
                 match shutter_mode {
                     ShutterMode::Picture => {
-                        widget.mode_ani().set_value_to(0.0);
-                        widget.mode_ani().set_value_from(from);
-                        widget.mode_ani().play();
+                        mode_ani.set_value_to(0.0);
+                        mode_ani.set_value_from(mode_from);
+                        mode_ani.play();
 
-                        widget.record_ani().set_value_from(record_from);
-                        widget.record_ani().set_value_to(0.0);
-                        widget.record_ani().play();
+                        record_ani.set_value_from(record_from);
+                        record_ani.set_value_to(0.0);
+                        record_ani.play();
                     }
                     ShutterMode::Video => {
-                        widget.mode_ani().set_value_to(1.0);
-                        widget.mode_ani().set_value_from(from);
-                        widget.mode_ani().play();
+                        mode_ani.set_value_to(1.0);
+                        mode_ani.set_value_from(mode_from);
+                        mode_ani.play();
 
-                        widget.record_ani().set_value_from(record_from);
-                        widget.record_ani().set_value_to(0.0);
-                        widget.record_ani().play();
+                        record_ani.set_value_from(record_from);
+                        record_ani.set_value_to(0.0);
+                        record_ani.play();
                     }
                     ShutterMode::Recording => {
-                        widget.mode_ani().set_value_to(1.0);
-                        widget.mode_ani().set_value_from(from);
-                        widget.mode_ani().play();
+                        mode_ani.set_value_to(1.0);
+                        mode_ani.set_value_from(mode_from);
+                        mode_ani.play();
 
-                        widget.record_ani().set_value_from(record_from);
-                        widget.record_ani().set_value_to(1.0);
-                        widget.record_ani().play();
+                        record_ani.set_value_from(record_from);
+                        record_ani.set_value_to(1.0);
+                        record_ani.play();
                     }
                 }
 
@@ -128,10 +116,6 @@ mod imp {
             widget.add_css_class("shutterbutton");
             widget.add_css_class("flat");
             widget.set_tooltip_text(Some(&gettext("Shutter Button")));
-
-            if matches!(widget.shutter_mode(), ShutterMode::Video) {
-                widget.queue_draw();
-            }
 
             // Initialize animations.
             let press_target =
@@ -214,15 +198,17 @@ impl Default for ShutterButton {
 
 impl ShutterButton {
     pub fn start_countdown(&self) {
-        self.countdown_ani().set_value_to(0.0);
-        self.countdown_ani().set_duration(self.countdown() * 1000);
-        self.countdown_ani().play();
+        let animation = self.countdown_ani();
+        animation.set_value_to(0.0);
+        animation.set_duration(self.countdown() * 1000);
+        animation.play();
     }
 
     pub fn stop_countdown(&self) {
-        self.countdown_ani().set_value_to(1.0);
-        self.countdown_ani().set_duration(0);
-        self.countdown_ani().play();
+        let animation = self.countdown_ani();
+        animation.set_value_to(1.0);
+        animation.set_duration(0);
+        animation.play();
     }
 
     fn record_ani(&self) -> &adw::TimedAnimation {
@@ -289,9 +275,9 @@ impl ShutterButton {
         let imp = self.imp();
 
         // When we want to transform the button to a square, we don't use the
-        // gap animation, otherwise it looks janky as its size gets smaller due
-        // to the record animation and its size at first is momentarily reduced
-        // due to the press animation, but later it gets bigger.
+        // press animation, otherwise it looks janky as its size gets smaller
+        // due to the record animation but later it gets bigger due to the press
+        // animation playing in reverse.
         let gap = if matches!(imp.shutter_mode.get(), crate::ShutterMode::Picture)
             || self.countdown() > 0
         {
