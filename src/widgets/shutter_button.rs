@@ -323,13 +323,29 @@ impl ShutterButton {
         let s = graphene::Size::new(border_radius, border_radius);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
-        let color = self.color().red();
-        let alpha = self.color().alpha();
-        let mode_color = imp.mode_val.get() as f32 * color;
-        let mode_color = gdk::RGBA::new(color, mode_color, mode_color, alpha);
+        let from_color = self.color();
+        // This is Red 3 from the palette.
+        let to_color = gdk::RGBA::new(0.8784314, 0.14117648, 0.105882354, 1.0);
+        let t = imp.mode_val.get() as f32;
+        let color = color_lerp(t, from_color, to_color);
         snapshot.push_rounded_clip(&rounded);
         // We color on a bigger rect than what we clipped.
-        snapshot.append_color(&mode_color, &big_rect);
+        snapshot.append_color(&color, &big_rect);
         snapshot.pop();
     }
+}
+
+#[inline]
+fn lerp(t: f32, from: f32, to: f32) -> f32 {
+    to * t + (1.0 - t) * from
+}
+
+/// Does interpolation between two colors, preserves the alpha of the original.
+fn color_lerp(t: f32, from: gdk::RGBA, to: gdk::RGBA) -> gdk::RGBA {
+    gdk::RGBA::new(
+        lerp(t, from.red(), to.red()),
+        lerp(t, from.green(), to.blue()),
+        lerp(t, from.blue(), to.blue()),
+        from.alpha(),
+    )
 }
