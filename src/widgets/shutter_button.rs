@@ -100,7 +100,7 @@ mod imp {
                         widget.mode_ani().play();
 
                         widget.record_ani().set_value_from(record_from);
-                        widget.record_ani().set_value_to(0.7);
+                        widget.record_ani().set_value_to(1.0);
                         widget.record_ani().play();
                     }
                 }
@@ -319,7 +319,7 @@ impl ShutterButton {
         let rect = graphene::Rect::new(x, y, rect_size, rect_size);
         let big_rect = graphene::Rect::new(0.0, 0.0, size, size);
 
-        let border_radius = (1.0 - record) * rect_size / 2.0;
+        let border_radius = (1.0 - record * 0.7) * rect_size / 2.0;
         let s = graphene::Size::new(border_radius, border_radius);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
