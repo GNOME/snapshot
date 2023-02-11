@@ -365,11 +365,17 @@ impl Pipeline {
             crate::VideoFormat::Vp8Webm => "queue ! videoconvert ! vp8enc deadline=1 ! webmmux ! queue ! filesink name=sink",
             // TODO For audio, the following works on the cli:
             // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
-            // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
-            crate::VideoFormat::TheoraOgg => " queue ! videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
+            crate::VideoFormat::TheoraOgg => "oggmux name=mux ! filesink name=sink  queue name=video_entry ! videoconvert ! queue ! theoraenc ! queue ! mux.video_%u  pipewiresrc target-object=45 ! audioconvert ! audioresample ! vorbisenc ! queue ! mux.audio_%u",
         };
 
-        let bin = gst::parse_bin_from_description(bin_description, true)?;
+        let bin = gst::parse_bin_from_description(bin_description, false)?;
+
+        let video_entry = bin.by_name("video_entry").unwrap();
+        let video_entry_pad = video_entry.static_pad("sink").unwrap();
+
+        let sinkpad = gst::GhostPad::with_target(Some("sink"), &video_entry_pad).unwrap();
+
+        bin.add_pad(&sinkpad).unwrap();
 
         // Get our file sink element by its name and set the location where to write the recording
         let sink = bin
@@ -396,9 +402,6 @@ impl Pipeline {
         let srcpad = tee
             .request_pad_simple("src_%u")
             .expect("Failed to request new pad from tee");
-        let sinkpad = bin
-            .static_pad("sink")
-            .expect("Failed to get sink pad from recording bin");
 
         // If linking fails, we just undo what we did above
         if let Err(err) = srcpad.link(&sinkpad) {
