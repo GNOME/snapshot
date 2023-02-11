@@ -314,12 +314,17 @@ impl ShutterButton {
         };
         let record = imp.record_val.get() as f32;
 
+        let center = size / 2.0;
+        snapshot.save();
+        snapshot.translate(&graphene::Point::new(center, center));
+        snapshot.rotate(-90.0 * record);
+
         let initial_r_size = size - 2.0 * gap - 2.0 * border_width;
         let x = gap + border_width + initial_r_size * LAMBDA * record;
         let y = x;
         let rect_size = size - 2.0 * x;
-        let rect = graphene::Rect::new(x, y, rect_size, rect_size);
-        let big_rect = graphene::Rect::new(0.0, 0.0, size, size);
+        let rect = graphene::Rect::new(x - center, y - center, rect_size, rect_size);
+        let big_rect = graphene::Rect::new(-center, -center, size, size);
 
         let border_radius = (1.0 - record * 0.7) * rect_size / 2.0;
         let s = graphene::Size::new(border_radius, border_radius);
@@ -334,6 +339,10 @@ impl ShutterButton {
         // We color on a bigger rect than what we clipped.
         snapshot.append_color(&color, &big_rect);
         snapshot.pop();
+
+        // We have to undo the transformations, otherwise the focus ring goes
+        // out of place.
+        snapshot.restore();
     }
 }
 
