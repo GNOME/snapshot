@@ -1230,6 +1230,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "gstreamer-play"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be3d7caab307db38bc1359f01239d58b8b4a00ddafeba1400239935e262ca8d3"
+dependencies = [
+ "bitflags",
+ "glib",
+ "gstreamer",
+ "gstreamer-play-sys",
+ "gstreamer-video",
+ "libc",
+ "once_cell",
+]
+
+[[package]]
+name = "gstreamer-play-sys"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4b69030bd53c3e5988a1e13bdb55ae8d922f8e9c2b522bfa2442bc13906829fb"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "gstreamer-sys",
+ "gstreamer-video-sys",
+ "libc",
+ "system-deps",
+]
+
+[[package]]
 name = "gstreamer-sys"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2166,6 +2195,7 @@ dependencies = [
  "gettext-rs",
  "gst-plugin-gtk4",
  "gstreamer",
+ "gstreamer-play",
  "gstreamer-video",
  "gtk4",
  "libadwaita",

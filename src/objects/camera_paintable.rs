@@ -10,7 +10,6 @@
 //                            queue3 -- fakesink2
 use adw::prelude::*;
 use glib::clone;
-use gst::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
@@ -259,22 +258,10 @@ impl CameraPaintable {
     }
 
     fn play_shutter_sound(&self) {
-        let uri = "resource:///org/gnome/World/Snapshot/sounds/camera-shutter.wav";
-        let description = format!("playbin uri={uri}");
-        let pipeline = gst::parse_launch(&description).unwrap();
-
-        // FIXME Using the following the audio has crackling noises. But using
-        // this we can remove the pulseaudio sandbox hole.
-        //
-        // let audio_sink = gst::ElementFactory::make("pipewiresink")
-        //     .property("target-object", "44") // Find the correct path
-        //     .property("client-name", crate::config::APP_ID)
-        //     .build()
-        //     .unwrap();
-        //
-        // pipeline.set_property("audio-sink", &audio_sink);
-
-        pipeline.set_state(gst::State::Playing).unwrap();
+        let player = gst_play::Play::new(None::<gst_play::PlayVideoRenderer>);
+        player.set_uri(Some("resource:///org/gnome/World/Snapshot/sounds/camera-shutter.wav"));
+        player.set_volume(1.0);
+        player.play();
     }
 }
 
