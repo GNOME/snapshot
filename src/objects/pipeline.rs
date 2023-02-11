@@ -192,12 +192,13 @@ mod imp {
 
                                     if let gst::MessageView::Eos(..) = msg.view() {
                                         log::debug!("Got EOS");
-                                        let Some(bin) = msg
-                                            .src()
-                                            .and_then(|src| src.clone().downcast::<gst::Element>().ok()) else { return glib::Continue(true); };
+                                        let Some(src) = msg.src().take() else {
+                                            return glib::Continue(true);
+                                        };
+                                        let bin = src.downcast_ref::<gst::Element>().unwrap();
 
                                         // And then asynchronously remove it and set its state to Null
-                                        pipeline.call_async(move |pipeline| {
+                                        pipeline.call_async(glib::clone!(@weak bin => move |pipeline| {
                                             // Ignore if the bin was not in the pipeline anymore for whatever
                                             // reason. It's not a problem
                                             let _ = pipeline.remove(&bin);
@@ -205,7 +206,7 @@ mod imp {
                                             if let Err(err) = bin.set_state(gst::State::Null) {
                                                 log::error!("Failed to stop recording: {err}");
                                             }
-                                        });
+                                        }));
                                     }
                                 },
                                 _ => (),
