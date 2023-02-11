@@ -9,6 +9,14 @@
 //                         \
 //                            queue3 -- fakesink2
 //
+// Recording bin:
+//
+//                              (tee --) queue -- videoconvert -- queue2 -- theoraenc -- queue3
+//                                                                                              \
+//                                                                                                 oggmux -- filesink
+//                                                                                              /
+//  autoaudiosrc -- decodebin -- audioconvert -- audioresample -- queue4 -- vorbisenc -- queue5
+//
 use std::path::PathBuf;
 
 use glib::clone;
@@ -337,34 +345,71 @@ impl Pipeline {
         let imp = self.imp();
         let tee = imp.tee.get().unwrap();
 
-        let bin_description = match format {
-            // FIXME Does not work. passing
-            // `gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! x264enc tune=zerolatency ! video/x-h264,profile=baseline ! mp4mux ! filesink location=test.mp4`
-            // does work.
-            crate::VideoFormat::H264Mp4 => "queue ! videoconvert ! x264enc tune=zerolatency ! video/x-h264,profile=baseline ! mp4mux ! queue! filesink name=sink",
-            // FIXME H265 is not working. mp4mux does not support it.
-            crate::VideoFormat::H265Mp4 => "queue ! videoconvert ! x265enc tune=zerolatency ! video/x-h265,profile=baseline ! mp4mux ! queue ! filesink name=sink",
-            // FIXME Quality using webm is super low. Does not work with Totem.
-            crate::VideoFormat::Vp8Webm => "queue ! videoconvert ! vp8enc deadline=1 ! webmmux ! queue ! filesink name=sink",
-            // TODO For audio, the following works on the cli:
-            // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
-            // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
-            crate::VideoFormat::TheoraOgg => "videoconvert ! theoraenc ! queue ! oggmux ! filesink name=sink",
-        };
-
-        let bin = gst::parse_bin_from_description(bin_description, true)?;
-
-        // Get our file sink element by its name and set the location where to write the recording
-        let sink = bin
-            .by_name("sink")
-            .expect("Recording bin has no sink element");
-
         let filename = utils::video_file_name(format);
         let path = utils::videos_dir().join(filename);
 
-        // All strings in GStreamer are UTF8, we need to convert the path to UTF8 which in theory
-        // can fail
-        sink.set_property("location", &(path.to_str().unwrap()));
+        let bin = gst::Bin::default();
+
+        let queue = gst::ElementFactory::make("queue").build().unwrap();
+        let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
+        let queue2 = gst::ElementFactory::make("queue").build().unwrap();
+        let theoraenc = gst::ElementFactory::make("theoraenc").build().unwrap();
+        let queue3 = gst::ElementFactory::make("queue").build().unwrap();
+
+        let autoaudiosrc = gst::ElementFactory::make("autoaudiosrc").build().unwrap();
+        // let decodebin = gst::ElementFactory::make("decodebin").build().unwrap();
+        let audioconvert = gst::ElementFactory::make("audioconvert").build().unwrap();
+        let audioresample = gst::ElementFactory::make("audioresample").build().unwrap();
+        let queue4 = gst::ElementFactory::make("queue").build().unwrap();
+        let vorbisenc = gst::ElementFactory::make("vorbisenc").build().unwrap();
+        let queue5 = gst::ElementFactory::make("queue").build().unwrap();
+
+        let oggmux = gst::ElementFactory::make("oggmux").build().unwrap();
+        let filesink = gst::ElementFactory::make("filesink")
+            .property("location", &path.to_str().unwrap())
+            .build()
+            .unwrap();
+
+        bin.add_many(&[
+            &queue,
+            &videoconvert,
+            &queue2,
+            &theoraenc,
+            &queue3,
+            &autoaudiosrc,
+            &audioconvert,
+            &audioresample,
+            &queue4,
+            &vorbisenc,
+            &queue5,
+            &oggmux,
+            &filesink,
+        ])
+        .unwrap();
+
+        gst::Element::link_many(&[&queue, &videoconvert, &queue2, &theoraenc, &queue3]).unwrap();
+
+        gst::Element::link_many(&[
+            &autoaudiosrc,
+            &audioconvert,
+            &audioresample,
+            &queue4,
+            &vorbisenc,
+            &queue5,
+        ])
+        .unwrap();
+
+        let videopad = oggmux.request_pad_simple("video_%u").unwrap();
+        let audiopad = oggmux.request_pad_simple("audio_%u").unwrap();
+
+        queue3.static_pad("src").unwrap().link(&videopad).unwrap();
+        queue5.static_pad("src").unwrap().link(&audiopad).unwrap();
+
+        oggmux.link(&filesink).unwrap();
+
+        let sinkpad =
+            gst::GhostPad::with_target(Some("sink"), &queue.static_pad("sink").unwrap()).unwrap();
+        bin.add_pad(&sinkpad).unwrap();
 
         // First try setting the recording bin to playing: if this fails we know this before it
         // potentially interferred with the other part of the pipeline
@@ -379,9 +424,6 @@ impl Pipeline {
         let srcpad = tee
             .request_pad_simple("src_%u")
             .expect("Failed to request new pad from tee");
-        let sinkpad = bin
-            .static_pad("sink")
-            .expect("Failed to get sink pad from recording bin");
 
         // If linking fails, we just undo what we did above
         if let Err(err) = srcpad.link(&sinkpad) {
