@@ -430,9 +430,8 @@ impl Pipeline {
         //
         // The closure below might be called directly from the main UI thread here or at a later
         // time from a GStreamer streaming thread
-        srcpad.add_probe(gst::PadProbeType::IDLE, move |srcpad, _| {
+        srcpad.add_probe(gst::PadProbeType::IDLE, glib::clone!(@weak sinkpad, @weak bin => @default-return gst::PadProbeReturn::Remove, move |srcpad, _| {
             // Get the parent of the tee source pad, i.e. the tee itself
-
             let tee = srcpad
                 .parent()
                 .and_then(|parent| parent.downcast::<gst::Element>().ok())
@@ -454,7 +453,7 @@ impl Pipeline {
             // Don't block the pad but remove the probe to let everything
             // continue as normal
             gst::PadProbeReturn::Remove
-        });
+        }));
     }
 
     // FIXME This is probably wrong.
