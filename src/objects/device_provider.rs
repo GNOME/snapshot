@@ -110,54 +110,54 @@ impl DeviceProvider {
 
         let bus = provider.bus();
         bus.add_watch_local(
-                glib::clone!(@weak self as obj => @default-return glib::Continue(false),
-                move |_, msg| {
-                    match msg.view() {
-                        gst::MessageView::Error(err) => {
-                            log::error!(
-                                "Error from {:?}: {} ({:?})",
-                                err.src().map(|s| s.path_string()),
-                                err.error(),
-                                err.debug()
-                            );
-                        }
-                        gst::MessageView::DeviceAdded(e) => {
-                            if let Some(s) = e.structure() {
-                                if let Ok(device) = s.get::<gst::Device>("device") {
-                                    if "Video/Source" == device.device_class().as_str() {
-                                        log::debug!("Camera added: {}, target-object {}", device.display_name(), device.property::<u64>("serial"));
-                                        let device = crate::Device::new(&device);
-                                        obj.imp().append(device);
-                                    };
-                                }
-                            }
-                        }
-                        gst::MessageView::DeviceRemoved(e) => {
-                            if let Some(s) = e.structure() {
-                                if let Ok(device) = s.get::<gst::Device>("device") {
-                                    if "Video/Source" == device.device_class().as_str() {
-                                        log::debug!("Camera removed: {}", device.display_name());
-                                        let device = crate::Device::new(&device);
-                                        obj.imp().remove(device);
-                                    };
-                                }
-                            }
-                        }
-                        gst::MessageView::DeviceChanged(e) => {
-                            if let Some(s) = e.structure() {
-                                if let Ok(device) = s.get::<gst::Device>("device") {
-                                    if "Video/Source" == device.device_class().as_str() {
-                                        // TODO Implement
-                                        log::debug!("Camera changed: {}, target-object {}", device.display_name(), device.property::<u64>("serial"));
-                                    };
-                                }
-                            }
-                        },
-                        _ => (),
+            glib::clone!(@weak self as obj => @default-return glib::Continue(false),
+            move |_, msg| {
+                match msg.view() {
+                    gst::MessageView::Error(err) => {
+                        log::error!(
+                            "Error from {:?}: {} ({:?})",
+                            err.src().map(|s| s.path_string()),
+                            err.error(),
+                            err.debug()
+                        );
                     }
-                    glib::Continue(true)
-                }))
-               .expect("Failed to add bus watch");
+                    gst::MessageView::DeviceAdded(e) => {
+                        if let Some(s) = e.structure() {
+                            if let Ok(device) = s.get::<gst::Device>("device") {
+                                if "Video/Source" == device.device_class().as_str() {
+                                    log::debug!("Camera added: {}, target-object {}", device.display_name(), device.property::<u64>("serial"));
+                                    let device = crate::Device::new(&device);
+                                    obj.imp().append(device);
+                                };
+                            }
+                        }
+                    }
+                    gst::MessageView::DeviceRemoved(e) => {
+                        if let Some(s) = e.structure() {
+                            if let Ok(device) = s.get::<gst::Device>("device") {
+                                if "Video/Source" == device.device_class().as_str() {
+                                    log::debug!("Camera removed: {}", device.display_name());
+                                    let device = crate::Device::new(&device);
+                                    obj.imp().remove(device);
+                                };
+                            }
+                        }
+                    }
+                    gst::MessageView::DeviceChanged(e) => {
+                        if let Some(s) = e.structure() {
+                            if let Ok(device) = s.get::<gst::Device>("device") {
+                                if "Video/Source" == device.device_class().as_str() {
+                                    // TODO Implement
+                                    log::debug!("Camera changed: {}, target-object {}", device.display_name(), device.property::<u64>("serial"));
+                                };
+                            }
+                        }
+                    },
+                    _ => (),
+                }
+                glib::Continue(true)
+            }))
+            .expect("Failed to add bus watch");
 
         Ok(())
     }
