@@ -41,6 +41,8 @@ mod imp {
         pub countdown_ani: OnceCell<adw::TimedAnimation>,
         pub record_ani: OnceCell<adw::TimedAnimation>,
         pub press_ani: OnceCell<adw::TimedAnimation>,
+        /// Animation to play when we switch from picture to recording mode. At
+        /// 1.0 we draw the button red.
         pub mode_ani: OnceCell<adw::TimedAnimation>,
     }
 
@@ -53,7 +55,7 @@ mod imp {
                 countdown_val: Cell::new(1.0),
                 record_val: Cell::new(0.0),
                 press_val: Cell::new(4.0),
-                mode_val: Cell::new(1.0),
+                mode_val: Cell::new(0.0),
 
                 countdown_ani: Default::default(),
                 record_ani: Default::default(),
@@ -77,7 +79,7 @@ mod imp {
                 let record_from = self.record_val.get();
                 match shutter_mode {
                     ShutterMode::Picture => {
-                        widget.mode_ani().set_value_to(1.0);
+                        widget.mode_ani().set_value_to(0.0);
                         widget.mode_ani().set_value_from(from);
                         widget.mode_ani().play();
 
@@ -86,7 +88,7 @@ mod imp {
                         widget.record_ani().play();
                     }
                     ShutterMode::Video => {
-                        widget.mode_ani().set_value_to(0.0);
+                        widget.mode_ani().set_value_to(1.0);
                         widget.mode_ani().set_value_from(from);
                         widget.mode_ani().play();
 
@@ -95,7 +97,7 @@ mod imp {
                         widget.record_ani().play();
                     }
                     ShutterMode::Recording => {
-                        widget.mode_ani().set_value_to(0.0);
+                        widget.mode_ani().set_value_to(1.0);
                         widget.mode_ani().set_value_from(from);
                         widget.mode_ani().play();
 
@@ -158,7 +160,7 @@ mod imp {
                     widget.imp().mode_val.set(value);
                     widget.queue_draw();
                 }));
-            let mode_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, mode_target);
+            let mode_ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, mode_target);
             self.mode_ani.set(mode_ani).unwrap();
 
             let countdown_target =
