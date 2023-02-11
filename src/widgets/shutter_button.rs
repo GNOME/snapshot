@@ -208,7 +208,7 @@ mod imp {
             let height = widget.height();
 
             let size = width.min(height) as f32;
-            let border_width = (size / 8.0).min(8.0);
+            let border_width = (size / 8.0).min(4.0);
 
             widget.draw_border(snapshot, size, border_width);
             widget.draw_play(snapshot, size, border_width);
