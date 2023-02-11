@@ -146,6 +146,14 @@ mod imp {
                                 err.debug()
                             );
                         },
+                        gst::MessageView::Warning(err) => {
+                            log::warn!(
+                                "Warning from {:?}: {} ({:?})",
+                                err.src().map(|s| s.path_string()),
+                                err.error(),
+                                err.debug()
+                            );
+                        }
                         gst::MessageView::Application(msg) => match msg.structure() {
                             // Here we can send ourselves messages from any thread and show them to the user in
                             // the UI in case something goes wrong
