@@ -397,11 +397,7 @@ impl Pipeline {
         // Get our recording bin, if it does not exist then nothing has to be stopped actually.
         // This shouldn't really happen
         //
-        // FIXME
-        let bin = imp.recording_bin.lock().unwrap().as_ref().cloned();
-        *imp.recording_bin.lock().unwrap() = None;
-
-        let Some(bin) = bin else {
+        let Some(bin) = imp.recording_bin.lock().unwrap().take() else {
             return;
         };
 
@@ -462,8 +458,7 @@ impl Pipeline {
         self.set_state(gst::State::Null).unwrap();
 
         let mut guard = imp.pipewire_src.lock().unwrap();
-        let old_element = guard.as_ref().cloned();
-        if let Some(old_element) = old_element {
+        if let Some(old_element) = guard.take() {
             gst::Element::unlink_many(&[&old_element, tee]);
             self.remove(&old_element).unwrap();
         }
