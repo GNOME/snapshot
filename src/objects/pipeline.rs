@@ -438,10 +438,9 @@ impl Pipeline {
 
             // Asynchronously send the end-of-stream event to the sinkpad as this might block for a
             // while and our closure here might've been called from the main UI thread
-            let sinkpad = sinkpad.clone();
-            bin.call_async(move |_bin| {
+            bin.call_async(glib::clone!(@weak sinkpad => move |_bin| {
                 sinkpad.send_event(gst::event::Eos::new());
-            });
+            }));
 
             // Don't block the pad but remove the probe to let everything
             // continue as normal
