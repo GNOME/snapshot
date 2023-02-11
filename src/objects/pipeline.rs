@@ -462,16 +462,15 @@ impl Pipeline {
 
         let tee = imp.tee.get().unwrap();
 
-        self.set_state(gst::State::Null).unwrap();
-
         let mut guard = imp.pipewire_src.lock().unwrap();
         if let Some(old_element) = guard.take() {
-            gst::Element::unlink_many(&[&old_element, tee]);
+            self.set_state(gst::State::Null).unwrap();
+            old_element.unlink(tee);
             self.remove(&old_element).unwrap();
         }
         self.add(&element).unwrap();
 
-        gst::Element::link_many(&[&element, tee]).unwrap();
+        element.link(tee).unwrap();
         self.set_state(gst::State::Playing).unwrap();
 
         *guard = Some(element);
