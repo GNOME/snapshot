@@ -57,11 +57,24 @@ mod imp {
             pipeline.set_message_forward(true);
 
             let tee = gst::ElementFactory::make("tee").build().unwrap();
+
             let queue = gst::ElementFactory::make("queue").build().unwrap();
             let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
-
             let zbar = gst::ElementFactory::make("zbar").build().unwrap();
             let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
+
+            let zbarbin = gst::Bin::default();
+            zbarbin
+                .add_many(&[&queue, &videoconvert, &zbar, &fakesink])
+                .unwrap();
+            gst::Element::link_many(&[&queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            zbarbin
+                .add_pad(
+                    &gst::GhostPad::with_target(Some("sink"), &queue.static_pad("sink").unwrap())
+                        .unwrap(),
+                )
+                .unwrap();
+
             let queue2 = gst::ElementFactory::make("queue").build().unwrap();
 
             let queue3 = gst::ElementFactory::make("queue").build().unwrap();
@@ -103,10 +116,7 @@ mod imp {
             pipeline
                 .add_many(&[
                     &tee,
-                    &queue,
-                    &videoconvert,
-                    &zbar,
-                    &fakesink,
+                    zbarbin.upcast_ref(),
                     &queue2,
                     &sink,
                     &queue3,
@@ -114,7 +124,7 @@ mod imp {
                 ])
                 .unwrap();
 
-            gst::Element::link_many(&[&tee, &queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            tee.link_pads(None, &zbarbin, None).unwrap();
 
             tee.link_pads(None, &queue2, None).unwrap();
 
