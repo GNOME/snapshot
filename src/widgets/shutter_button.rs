@@ -31,13 +31,6 @@ mod imp {
         #[property(get, set = Self::set_countdown, explicit_notify)]
         pub countdown: Cell<u32>,
 
-        // TODO Remove this, we can query the value directly from the
-        // animations.
-        pub countdown_val: Cell<f64>,
-        pub record_val: Cell<f64>,
-        pub press_val: Cell<f64>,
-        pub mode_val: Cell<f64>,
-
         pub countdown_ani: OnceCell<adw::TimedAnimation>,
         pub record_ani: OnceCell<adw::TimedAnimation>,
         pub press_ani: OnceCell<adw::TimedAnimation>,
@@ -51,11 +44,6 @@ mod imp {
             Self {
                 shutter_mode: Default::default(),
                 countdown: Cell::new(0),
-
-                countdown_val: Cell::new(1.0),
-                record_val: Cell::new(0.0),
-                press_val: Cell::new(4.0),
-                mode_val: Cell::new(0.0),
 
                 countdown_ani: Default::default(),
                 record_ani: Default::default(),
@@ -75,8 +63,8 @@ mod imp {
         pub fn set_shutter_mode(&self, shutter_mode: ShutterMode) {
             let widget = self.obj();
             if shutter_mode != self.shutter_mode.replace(shutter_mode) {
-                let from = self.mode_val.get();
-                let record_from = self.record_val.get();
+                let from = widget.mode_ani().value();
+                let record_from = widget.record_ani().value();
                 match shutter_mode {
                     ShutterMode::Picture => {
                         widget.mode_ani().set_value_to(0.0);
@@ -142,30 +130,26 @@ mod imp {
             widget.set_tooltip_text(Some(&gettext("Shutter Button")));
 
             if matches!(widget.shutter_mode(), ShutterMode::Video) {
-                self.mode_val.set(0.0);
                 widget.queue_draw();
             }
 
             // Initialize animations.
             let press_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |value| {
-                    widget.imp().press_val.set(value);
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
                 }));
             let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, press_target);
             self.press_ani.set(press_ani).unwrap();
 
             let mode_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |value| {
-                    widget.imp().mode_val.set(value);
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
                 }));
             let mode_ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, mode_target);
             self.mode_ani.set(mode_ani).unwrap();
 
             let countdown_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |value| {
-                    widget.imp().countdown_val.set(value);
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
                 }));
             let countdown_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, countdown_target);
@@ -174,8 +158,7 @@ mod imp {
             self.countdown_ani.set(countdown_ani).unwrap();
 
             let record_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |value| {
-                    widget.imp().record_val.set(value);
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
                 }));
             let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, record_target);
@@ -186,13 +169,13 @@ mod imp {
                     if obj.state_flags().contains(gtk::StateFlags::ACTIVE)
                         && !old_flags.contains(gtk::StateFlags::ACTIVE)
                     {
-                        let press_ani = obj.imp().press_ani.get().unwrap();
+                        let press_ani = obj.press_ani();
                         press_ani.set_value_to(8.0);
                         press_ani.play();
                     } else if !obj.state_flags().contains(gtk::StateFlags::ACTIVE)
                         && old_flags.contains(gtk::StateFlags::ACTIVE)
                     {
-                        let press_ani = obj.imp().press_ani.get().unwrap();
+                        let press_ani = obj.press_ani();
                         press_ani.set_value_to(4.0);
                         press_ani.play();
                     }
@@ -254,6 +237,10 @@ impl ShutterButton {
         self.imp().countdown_ani.get().unwrap()
     }
 
+    fn press_ani(&self) -> &adw::TimedAnimation {
+        self.imp().press_ani.get().unwrap()
+    }
+
     fn draw_border(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {
         // Magic matrix that turns the inner blue circle transparent.
         #[rustfmt::skip]
@@ -266,7 +253,7 @@ impl ShutterButton {
         let color_offset = graphene::Vec4::from_float([0.0; 4]);
         snapshot.push_color_matrix(&color_matrix, &color_offset);
 
-        let countdown = self.imp().countdown_val.get() as f32;
+        let countdown = self.countdown_ani().value() as f32;
 
         let rect = graphene::Rect::new(0.0, 0.0, size, size);
         let center = graphene::Point::new(size / 2.0, size / 2.0);
@@ -308,11 +295,11 @@ impl ShutterButton {
         let gap = if matches!(imp.shutter_mode.get(), crate::ShutterMode::Picture)
             || self.countdown() > 0
         {
-            imp.press_val.get() as f32
+            self.press_ani().value() as f32
         } else {
             4.0
         };
-        let record = imp.record_val.get() as f32;
+        let record = self.record_ani().value() as f32;
 
         let center = size / 2.0;
         snapshot.save();
@@ -333,7 +320,7 @@ impl ShutterButton {
         let from_color = self.color();
         // This is Red 3 from the palette.
         let to_color = gdk::RGBA::new(0.8784314, 0.14117648, 0.105882354, 1.0);
-        let t = imp.mode_val.get() as f32;
+        let t = self.mode_ani().value() as f32;
         let color = color_lerp(t, from_color, to_color);
         snapshot.push_rounded_clip(&rounded);
         // We color on a bigger rect than what we clipped.
