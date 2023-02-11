@@ -31,8 +31,6 @@ mod imp {
 
         pub settings: gio::Settings,
         pub countdown_timer_id: RefCell<Option<glib::SourceId>>,
-
-        pub recording_active: Cell<bool>,
     }
 
     impl Default for Window {
@@ -45,8 +43,6 @@ mod imp {
 
                 settings: gio::Settings::new(APP_ID),
                 countdown_timer_id: Default::default(),
-
-                recording_active: Default::default(),
             }
         }
     }
@@ -72,8 +68,9 @@ mod imp {
                 let imp = window.imp();
 
                 if imp.leaflet.visible_child().as_ref() == Some(imp.camera.upcast_ref()) {
-                    imp.camera.stop_recording();
-                    imp.recording_active.set(false);
+                    if window.is_recording() {
+                        imp.camera.stop_recording();
+                    }
                     match window.capture_mode() {
                         CaptureMode::Video => window.set_shutter_mode(crate::ShutterMode::Video),
                         CaptureMode::Picture => {
@@ -282,23 +279,10 @@ impl Window {
         let imp = self.imp();
 
         if matches!(self.capture_mode(), CaptureMode::Video) {
-            if imp.recording_active.get() {
-                // disable the button while the video is ending
-                //
-                // TODO Revisit as it conflicts with sensitive on the button.
-                //
-                // TODO This is prone to errors, create start/stop_decoding functions
-                // that do the correct thing.
-                self.action_set_enabled("win.take-picture", false);
-                imp.recording_active.set(false);
-                imp.camera.stop_recording();
-                self.action_set_enabled("win.take-picture", true);
-                self.set_shutter_mode(crate::ShutterMode::Video);
+            if self.is_recording() {
+                self.stop_recording();
             } else {
-                imp.recording_active.set(true);
-                let format = imp.settings.enum_("video-format").into();
-                imp.camera.start_recording(format).await?;
-                self.set_shutter_mode(crate::ShutterMode::Recording);
+                self.start_recording(format);
             }
         } else {
             let format = imp.settings.enum_("picture-format").into();
@@ -361,5 +345,22 @@ impl Window {
     pub fn send_toast(&self, text: &str) {
         let toast = adw::Toast::new(text);
         self.imp().toast_overlay.add_toast(toast);
+    }
+
+    fn start_recording(&self) {
+        let imp = self.imp();
+        let format = imp.settings.enum_("video-format").into();
+        self.set_shutter_mode(crate::ShutterMode::Recording);
+        imp.camera.start_recording(format).await?;
+    }
+
+    fn stop_recording(&self) {
+        let imp = self.imp();
+        self.set_shutter_mode(crate::ShutterMode::Video);
+        imp.camera.stop_recording();
+    }
+
+    fn is_recording(&self) -> bool {
+        matches!(self.imp().shutter_mode.get(), crate::ShutterMode::Recording)
     }
 }
