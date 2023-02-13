@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use log::{debug, info};
 
-use glib::clone;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
@@ -86,13 +85,11 @@ impl Application {
     }
 
     fn setup_gactions(&self) {
-        let actions = [
-            gio::ActionEntryBuilder::new("quit")
-                .activate(|app: &Self, _, _| app.quit())
-                .build(),
-        ];
+        let actions = [gio::ActionEntryBuilder::new("quit")
+            .activate(|app: &Self, _, _| app.quit())
+            .build()];
 
-        self.add_action_entries(actions).unwrap();
+        self.add_action_entries(actions);
     }
 
     // Sets up keyboard shortcuts
