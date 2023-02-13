@@ -192,12 +192,13 @@ mod imp {
 
                                     if let gst::MessageView::Eos(..) = msg.view() {
                                         log::debug!("Got EOS");
-                                        let Some(bin) = msg
-                                            .src()
-                                            .and_then(|src| src.clone().downcast::<gst::Element>().ok()) else { return glib::Continue(true); };
+                                        let Some(src) = msg.src().take() else {
+                                            return glib::Continue(true);
+                                        };
+                                        let bin = src.downcast_ref::<gst::Element>().unwrap();
 
                                         // And then asynchronously remove it and set its state to Null
-                                        pipeline.call_async(move |pipeline| {
+                                        pipeline.call_async(glib::clone!(@weak bin => move |pipeline| {
                                             // Ignore if the bin was not in the pipeline anymore for whatever
                                             // reason. It's not a problem
                                             let _ = pipeline.remove(&bin);
@@ -205,7 +206,7 @@ mod imp {
                                             if let Err(err) = bin.set_state(gst::State::Null) {
                                                 log::error!("Failed to stop recording: {err}");
                                             }
-                                        });
+                                        }));
                                     }
                                 },
                                 _ => (),
@@ -349,7 +350,7 @@ impl Pipeline {
             // TODO For audio, the following works on the cli:
             // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
             // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
-            crate::VideoFormat::TheoraOgg => "videoconvert ! theoraenc ! queue ! oggmux ! filesink name=sink",
+            crate::VideoFormat::TheoraOgg => "videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
         };
 
         let bin = gst::parse_bin_from_description(bin_description, true)?;
@@ -429,9 +430,8 @@ impl Pipeline {
         //
         // The closure below might be called directly from the main UI thread here or at a later
         // time from a GStreamer streaming thread
-        srcpad.add_probe(gst::PadProbeType::IDLE, move |srcpad, _| {
+        srcpad.add_probe(gst::PadProbeType::IDLE, glib::clone!(@weak sinkpad, @weak bin => @default-return gst::PadProbeReturn::Remove, move |srcpad, _| {
             // Get the parent of the tee source pad, i.e. the tee itself
-
             let tee = srcpad
                 .parent()
                 .and_then(|parent| parent.downcast::<gst::Element>().ok())
@@ -453,7 +453,7 @@ impl Pipeline {
             // Don't block the pad but remove the probe to let everything
             // continue as normal
             gst::PadProbeReturn::Remove
-        });
+        }));
     }
 
     // FIXME This is probably wrong.

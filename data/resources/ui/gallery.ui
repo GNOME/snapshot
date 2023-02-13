@@ -120,6 +120,7 @@
                 <child>
                   <object class="AdwCarousel" id="carousel">
                     <property name="halign">center</property>
+                    <property name="spacing">12</property>
                   </object>
                 </child>
                 <child>

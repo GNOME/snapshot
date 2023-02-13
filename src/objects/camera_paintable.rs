@@ -33,6 +33,7 @@ mod imp {
         pub code: RefCell<Option<String>>,
 
         pub flash_ani: OnceCell<adw::TimedAnimation>,
+        pub players: RefCell<Option<gtk::MediaFile>>,
     }
 
     #[glib::object_subclass]
@@ -258,10 +259,13 @@ impl CameraPaintable {
     }
 
     fn play_shutter_sound(&self) {
-        let player = gst_play::Play::new(None::<gst_play::PlayVideoRenderer>);
-        player.set_uri(Some("resource:///org/gnome/World/Snapshot/sounds/camera-shutter.wav"));
-        player.set_volume(1.0);
+        // If we don't hold a reference to it there is a condition race which
+        // will cause the sound to play only sometimes.
+        let resource = "/org/gnome/World/Snapshot/sounds/camera-shutter.wav";
+        let player = gtk::MediaFile::for_resource(resource);
         player.play();
+
+        self.imp().players.replace(Some(player));
     }
 }
 
