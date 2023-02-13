@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use log::{debug, info};
 
-use glib::clone;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
@@ -42,6 +41,9 @@ mod imp {
         }
 
         fn startup(&self) {
+            info!("Snapshot ({})", APP_ID);
+            info!("Version: {} ({})", VERSION, PROFILE);
+            info!("Datadir: {}", PKGDATADIR);
             debug!("Application::startup");
             self.parent_startup();
 
@@ -83,29 +85,17 @@ impl Application {
     }
 
     fn setup_gactions(&self) {
-        // Quit
-        let action_quit = gio::SimpleAction::new("quit", None);
-        action_quit.connect_activate(clone!(@weak self as app => move |_, _| {
-            // This is needed to trigger the delete event and saving the window state
-            for window in app.windows().iter() {
-                window.close();
-            }
-            app.quit();
-        }));
-        self.add_action(&action_quit);
+        let actions = [gio::ActionEntryBuilder::new("quit")
+            .activate(|app: &Self, _, _| app.quit())
+            .build()];
+
+        self.add_action_entries(actions);
     }
 
     // Sets up keyboard shortcuts
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<Control>q"]);
         self.set_accels_for_action("win.preferences", &["<Control>comma"]);
-    }
-
-    pub fn run(&self) {
-        info!("Snapshot ({})", APP_ID);
-        info!("Version: {} ({})", VERSION, PROFILE);
-        info!("Datadir: {}", PKGDATADIR);
-
-        ApplicationExtManual::run(self);
+        self.set_accels_for_action("window.close", &["<Ctrl>w"]);
     }
 }

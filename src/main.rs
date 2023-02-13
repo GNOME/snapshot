@@ -11,11 +11,12 @@ use objects::*;
 use widgets::*;
 
 use gettextrs::{gettext, LocaleCategory};
+use gtk::prelude::*;
 use gtk::{gio, glib};
 
 use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Initialize logger
     tracing_subscriber::fmt::init();
 
@@ -37,5 +38,6 @@ fn main() {
     enums::init();
 
     let app = crate::Application::new();
-    app.run();
+
+    app.run()
 }
