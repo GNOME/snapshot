@@ -76,17 +76,55 @@ mod imp {
             self.carousel
                 .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
                     let progress = carousel.progress();
+                    let n_pages = carousel.n_pages();
 
                     // Suppose we have 2 pages. We add an epsilon to make sure
                     // that a rounding error 0.99999... = 1 still can scroll to
                     // the right. 0.0000...1, should also allow going to the
                     // right. We sanitize the values of the scroll, so
-                    // scroll_to(-1) or scroll_to(n_items) are a none issue.
+                    // scroll_to(-1) or scroll_to(n_items) are a non-issue.
                     obj.action_set_enabled("gallery.previous", progress + f64::EPSILON >= 1.0);
-                    obj.action_set_enabled("gallery.next", progress + 2.0 <= carousel.n_pages() as f64 + f64::EPSILON);
+                    obj.action_set_enabled("gallery.next", progress + 2.0 <= n_pages as f64 + f64::EPSILON);
 
                     obj.notify("progress");
+
+                    let index = progress as i32;
+                    let last_pos = n_pages as i32 - 1;
+
+                    if n_pages > 0 {
+                        let current = carousel
+                            .nth_page(index.clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !current.started_loading() {
+                            current.start_loading();
+                        }
+                    }
+
+                    if n_pages > 1 {
+                        let next = carousel
+                            .nth_page((index + 1).clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !next.started_loading() {
+                            next.start_loading();
+                        }
+                    }
+
+                    if index > 0 {
+                        let previous = carousel
+                            .nth_page((index - 1).clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !previous.started_loading() {
+                            previous.start_loading();
+                        }
+                    }
                 }));
+
+            let ctx = glib::MainContext::default();
+            ctx.spawn_local(glib::clone!(@weak obj => async move {
+                if let Err(err) = obj.load_pictures().await {
+                    log::debug!("Could not load latest pictures: {err}");
+                }
+            }));
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
@@ -122,20 +160,34 @@ impl Default for Gallery {
 
 impl Gallery {
     pub fn add_image(&self, file: &gio::File) {
-        let imp = self.imp();
-
-        let picture = crate::GalleryPicture::new(file);
-        imp.carousel.prepend(&picture);
-        imp.images.borrow_mut().insert(0, picture.clone());
-
+        let picture = self.add_image_inner(file, true);
         self.emit_item_added(&picture);
     }
 
-    pub fn open(&self) {
+    // We have this inner method so we can add images without emiting signals.
+    // Used for `load_pictures`.
+    fn add_image_inner(&self, file: &gio::File, load: bool) -> crate::GalleryPicture {
         let imp = self.imp();
-        if let Some(first) = imp.images.borrow().first() {
-            imp.carousel.scroll_to(first, false);
-        }
+
+        let picture = crate::GalleryPicture::new(file, load);
+        imp.carousel.prepend(&picture);
+        imp.images.borrow_mut().insert(0, picture.clone());
+
+        picture
+    }
+
+    pub fn open(&self) {
+        // HACK The first time we call scroll_to(0) it down't do anything unless
+        // we wait till the widget is drawn. At 10ms we might still have issues.
+        // See https://gitlab.gnome.org/GNOME/libadwaita/-/issues/597.
+        let duration = std::time::Duration::from_millis(50);
+        glib::timeout_add_local_once(
+            duration,
+            glib::clone!(@weak self as obj => move || {
+                obj.scroll_to(0, false);
+            }),
+        );
+        self.scroll_to(0, false);
     }
 
     pub fn close(&self) {
@@ -163,26 +215,30 @@ impl Gallery {
         );
     }
 
-    fn scroll_to(&self, index: i32) {
+    fn scroll_to(&self, index: i32, animate: bool) {
         let imp = self.imp();
 
         // Sanitize index so it is always between 0 and (n_items - 1).
         let last_pos = (imp.carousel.n_pages() as i32 - 1).max(0);
-        let picture = imp.carousel.nth_page(index.clamp(0, last_pos) as u32);
+        let picture = imp
+            .carousel
+            .nth_page(index.clamp(0, last_pos) as u32)
+            .downcast::<crate::GalleryPicture>()
+            .unwrap();
 
-        imp.carousel.scroll_to(&picture, true);
+        imp.carousel.scroll_to(&picture, animate);
     }
 
     fn next(&self) {
         let imp = self.imp();
         let index = imp.carousel.position() as i32;
-        self.scroll_to(index + 1)
+        self.scroll_to(index + 1, true)
     }
 
     fn previous(&self) {
         let imp = self.imp();
         let index = imp.carousel.position() as i32;
-        self.scroll_to(index - 1)
+        self.scroll_to(index - 1, true)
     }
 
     async fn open_with_system(&self) -> anyhow::Result<()> {
@@ -199,6 +255,43 @@ impl Gallery {
         let root = self.root();
         let window = root.and_downcast_ref::<gtk::Window>();
         launcher.launch_future(window).await?;
+
+        Ok(())
+    }
+
+    async fn load_pictures(&self) -> anyhow::Result<()> {
+        let dir = crate::utils::pictures_dir();
+        let gdir = gio::File::for_path(&dir);
+        let enumerator = gdir
+            .enumerate_children_future(
+                gio::FILE_ATTRIBUTE_STANDARD_NAME,
+                gio::FileQueryInfoFlags::NOFOLLOW_SYMLINKS,
+                glib::Priority::default(),
+            )
+            .await?;
+
+        let mut picture = None;
+        let mut n_images = 0;
+        while let Ok(info) = enumerator
+            .next_files_future(1, glib::Priority::default())
+            .await
+        {
+            let Some(file_info) = info.first() else { break; };
+
+            let name = file_info.name();
+            let file = gio::File::for_path(&dir.join(&name));
+
+            picture = Some(self.add_image_inner(&file, false));
+            n_images += 1;
+        }
+
+        // We only emit the signal once for the last picture taken.
+        if let Some(picture) = picture {
+            picture.load_texture().await?;
+            self.emit_item_added(&picture);
+        }
+
+        log::debug!("Done loading {n_images} pictures");
 
         Ok(())
     }
