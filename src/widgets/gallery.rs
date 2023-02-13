@@ -177,10 +177,17 @@ impl Gallery {
     }
 
     pub fn open(&self) {
-        let imp = self.imp();
-        if let Some(first) = imp.images.borrow().first() {
-            imp.carousel.scroll_to(first, false);
-        }
+        // HACK The first time we call scroll_to(0) it down't do anything unless
+        // we wait till the widget is drawn. At 10ms we might still have issues.
+        // See https://gitlab.gnome.org/GNOME/libadwaita/-/issues/597.
+        let duration = std::time::Duration::from_millis(50);
+        glib::timeout_add_local_once(
+            duration,
+            glib::clone!(@weak self as obj => move || {
+                obj.scroll_to(0, false);
+            }),
+        );
+        self.scroll_to(0, false);
     }
 
     pub fn close(&self) {
