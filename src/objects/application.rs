@@ -42,6 +42,9 @@ mod imp {
         }
 
         fn startup(&self) {
+            info!("Snapshot ({})", APP_ID);
+            info!("Version: {} ({})", VERSION, PROFILE);
+            info!("Datadir: {}", PKGDATADIR);
             debug!("Application::startup");
             self.parent_startup();
 
@@ -99,13 +102,5 @@ impl Application {
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<Control>q"]);
         self.set_accels_for_action("win.preferences", &["<Control>comma"]);
-    }
-
-    pub fn run(&self) {
-        info!("Snapshot ({})", APP_ID);
-        info!("Version: {} ({})", VERSION, PROFILE);
-        info!("Datadir: {}", PKGDATADIR);
-
-        ApplicationExtManual::run(self);
     }
 }
