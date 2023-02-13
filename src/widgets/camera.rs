@@ -244,6 +244,20 @@ impl Camera {
                     gallery.add_image(file);
                 }
             }));
+        imp.paintable
+            .connect_video_stored(glib::clone!(@weak gallery,  => move |_, file| {
+                if let Some(file) = file {
+                    // HACK This is terrible, we should be able to emit this at
+                    // the correct time.
+                    let duration = std::time::Duration::from_millis(1500);
+                    glib::timeout_add_local_once(
+                        duration,
+                        glib::clone!(@weak gallery, @strong file => move || {
+                            gallery.add_video(&file);
+                        }),
+                    );
+                }
+            }));
         imp.gallery_button.set_gallery(gallery);
     }
 

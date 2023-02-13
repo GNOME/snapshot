@@ -1,75 +1,40 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use crate::widgets::gallery_item::GalleryItemImpl;
+use adw::prelude::*;
+use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 mod imp {
     use super::*;
 
-    use std::cell::Cell;
-
-    use glib::Properties;
-    use once_cell::sync::OnceCell;
-
-    #[derive(Debug, Default, Properties)]
-    #[properties(wrapper_type = super::GalleryPicture)]
+    #[derive(Debug, Default)]
     pub struct GalleryPicture {
-        #[property(get, set, construct_only)]
-        pub file: OnceCell<gio::File>,
-        #[property(get, set, construct_only)]
-        pub load: Cell<bool>,
-
-        pub started_loading: Cell<bool>,
-
         pub picture: gtk::Picture,
-        pub texture: OnceCell<gdk::Texture>,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for GalleryPicture {
         const NAME: &'static str = "GalleryPicture";
         type Type = super::GalleryPicture;
-        type ParentType = gtk::Widget;
-
-        fn class_init(klass: &mut Self::Class) {
-            klass.set_layout_manager_type::<gtk::BinLayout>();
-        }
+        type ParentType = crate::GalleryItem;
     }
 
     impl ObjectImpl for GalleryPicture {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 
             let widget = self.obj();
 
-            self.picture.set_parent(&*widget);
-
-            if widget.load() {
-                widget.start_loading();
-            }
-        }
-
-        fn dispose(&self) {
-            self.picture.unparent();
+            widget.set_child(Some(&self.picture));
         }
     }
     impl WidgetImpl for GalleryPicture {}
+    impl BinImpl for GalleryPicture {}
+    impl GalleryItemImpl for GalleryPicture {}
 }
 
 glib::wrapper! {
     pub struct GalleryPicture(ObjectSubclass<imp::GalleryPicture>)
-        @extends gtk::Widget;
+        @extends gtk::Widget, adw::Bin, crate::GalleryItem;
 }
 
 impl GalleryPicture {
@@ -80,21 +45,14 @@ impl GalleryPicture {
         glib::Object::builder()
             .property("load", load)
             .property("file", file)
+            .property("is-picture", true)
             .build()
-    }
-
-    pub fn texture(&self) -> Option<&gdk::Texture> {
-        self.imp().texture.get()
-    }
-
-    pub fn picture(&self) -> &gtk::Picture {
-        &self.imp().picture
     }
 
     pub async fn load_texture(&self) -> anyhow::Result<()> {
         let imp = self.imp();
 
-        imp.started_loading.set(true);
+        self.set_started_loading(true);
 
         let file = self.file();
         let (sender, receiver) = futures_channel::oneshot::channel();
@@ -109,22 +67,26 @@ impl GalleryPicture {
         let texture = receiver.await.unwrap()?;
 
         imp.picture.set_paintable(Some(&texture));
-        imp.texture.set(texture).unwrap();
+        self.set_thumbnail(&texture);
 
         Ok(())
     }
 
-    pub fn start_loading(&self) {
-        self.imp().started_loading.set(true);
-        let ctx = glib::MainContext::default();
-        ctx.spawn_local(glib::clone!(@weak self as widget => async move {
-            if let Err(err) = widget.load_texture().await {
-                log::error!("Could not set picture {err}");
-            }
-        }));
+    // Ugh
+    fn file(&self) -> gio::File {
+        self.upcast_ref::<crate::GalleryItem>().file()
     }
 
     pub fn started_loading(&self) -> bool {
-        self.imp().started_loading.get()
+        self.upcast_ref::<crate::GalleryItem>().started_loading()
+    }
+
+    fn set_started_loading(&self, value: bool) {
+        self.upcast_ref::<crate::GalleryItem>()
+            .set_started_loading(value);
+    }
+
+    fn set_thumbnail(&self, value: &gdk::Texture) {
+        self.upcast_ref::<crate::GalleryItem>().set_thumbnail(value);
     }
 }

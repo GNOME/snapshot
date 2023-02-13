@@ -22,6 +22,7 @@ use crate::utils;
 pub enum Action {
     CodeDetected(String),
     PictureSaved(Option<PathBuf>),
+    VideoSaved(Option<PathBuf>),
 }
 
 mod imp {
@@ -179,6 +180,17 @@ mod imp {
                                     let _ = sender.send(Action::PictureSaved(Some(path.into())));
                                 } else {
                                     let _ = sender.send(Action::PictureSaved(None));
+                                }
+                            }
+                            Some(s) if s.name() == "video-stored" => {
+                                let success = s.get::<bool>("success").unwrap();
+
+                                let sender = pipeline.imp().sender.get().unwrap();
+                                if success {
+                                    let path = s.get::<&str>("path").unwrap();
+                                    let _ = sender.send(Action::VideoSaved(Some(path.into())));
+                                } else {
+                                    let _ = sender.send(Action::VideoSaved(None));
                                 }
                             }
                             _ => (),
@@ -439,7 +451,7 @@ impl Pipeline {
         //
         // The closure below might be called directly from the main UI thread here or at a later
         // time from a GStreamer streaming thread
-        srcpad.add_probe(gst::PadProbeType::IDLE, glib::clone!(@weak sinkpad, @weak bin => @default-return gst::PadProbeReturn::Remove, move |srcpad, _| {
+        srcpad.add_probe(gst::PadProbeType::IDLE, glib::clone!(@weak sinkpad, @weak bin, @weak self as pipeline => @default-return gst::PadProbeReturn::Remove, move |srcpad, _| {
             // Get the parent of the tee source pad, i.e. the tee itself
             let tee = srcpad
                 .parent()
@@ -455,8 +467,17 @@ impl Pipeline {
 
             // Asynchronously send the end-of-stream event to the sinkpad as this might block for a
             // while and our closure here might've been called from the main UI thread
-            bin.call_async(glib::clone!(@weak sinkpad => move |_bin| {
+            bin.call_async(glib::clone!(@weak sinkpad, @weak pipeline => move |bin| {
                 sinkpad.send_event(gst::event::Eos::new());
+
+                let sink = bin
+                    .by_name("sink")
+                    .expect("Recording bin has no sink element");
+                let location = sink.property::<String>("location");
+
+                let bus = pipeline.bus().unwrap();
+                let msg = create_video_stored_message(&location, true);
+                let _ = bus.post(msg);
             }));
 
             // Don't block the pad but remove the probe to let everything
@@ -490,6 +511,15 @@ fn create_application_message(text: &str, success: bool) -> gst::Message {
     gst::message::Application::new(
         gst::Structure::builder("picture-saved")
             .field("text", text)
+            .field("success", success)
+            .build(),
+    )
+}
+
+fn create_video_stored_message(path: &str, success: bool) -> gst::Message {
+    gst::message::Application::new(
+        gst::Structure::builder("video-stored")
+            .field("path", path)
             .field("success", success)
             .build(),
     )
