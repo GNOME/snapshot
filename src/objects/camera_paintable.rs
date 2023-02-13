@@ -66,12 +66,12 @@ mod imp {
                             }
                         },
                         Action::PictureSaved(path) => {
-                            if let Some(path) = path {
-                                let file = gio::File::for_path(path);
-                                obj.emit_picture_stored(Some(&file));
-                            } else {
-                                obj.emit_picture_stored(None);
-                            }
+                            let file = path.map(|path| gio::File::for_path(path));
+                            obj.emit_picture_stored(file.as_ref());
+                        },
+                        Action::VideoSaved(path) => {
+                            let file = path.map(|path| gio::File::for_path(path));
+                            obj.emit_video_stored(file.as_ref());
                         },
                     }
                     return glib::Continue(true);
@@ -99,9 +99,12 @@ mod imp {
                     glib::subclass::Signal::builder("code-detected")
                         .param_types([String::static_type()])
                         .build(),
-                    // This is emited whenever the saving process finishes,
+                    // These are emited whenever the saving process finishes,
                     // successful or not.
                     glib::subclass::Signal::builder("picture-stored")
+                        .param_types([Option::<gio::File>::static_type()])
+                        .build(),
+                    glib::subclass::Signal::builder("video-stored")
                         .param_types([Option::<gio::File>::static_type()])
                         .build(),
                 ]
@@ -227,9 +230,26 @@ impl CameraPaintable {
         self.emit_by_name::<()>("picture-stored", &[&file]);
     }
 
+    fn emit_video_stored(&self, file: Option<&gio::File>) {
+        self.emit_by_name::<()>("video-stored", &[&file]);
+    }
+
     pub fn connect_picture_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
         self.connect_local(
             "picture-stored",
+            false,
+            glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
+                let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();
+                f(&obj, file.as_ref());
+
+                None
+            }),
+        );
+    }
+
+    pub fn connect_video_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
+        self.connect_local(
+            "video-stored",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
                 let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();

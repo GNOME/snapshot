@@ -55,12 +55,13 @@ mod imp {
             let foreground_radius = value * size;
 
             let images = self.gallery.borrow().images();
-            let Some(foreground) = images.first().and_then(|x| x.texture()) else { return; };
+            let Some(foreground) = images.first().and_then(|x| x.thumbnail()) else { return; };
 
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.
-            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.texture()) {
-                widget.draw_texture(snapshot, background, width, height, size);
+            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.thumbnail())
+            {
+                widget.draw_texture(snapshot, &background, width, height, size);
                 size
             } else {
                 foreground_radius

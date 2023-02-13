@@ -4,6 +4,17 @@ use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
 
+use once_cell::sync::Lazy;
+
+static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
+    format!(
+        "{},{},{}",
+        gio::FILE_ATTRIBUTE_STANDARD_NAME,
+        gio::FILE_ATTRIBUTE_TIME_CREATED,
+        gio::FILE_ATTRIBUTE_TIME_CREATED_USEC
+    )
+});
+
 mod imp {
     use super::*;
 
@@ -23,7 +34,7 @@ mod imp {
         #[property(get = Self::progress, explicit_notify)]
         pub progress: Cell<f64>,
 
-        pub images: RefCell<Vec<crate::GalleryPicture>>,
+        pub images: RefCell<Vec<crate::GalleryItem>>,
     }
 
     impl Gallery {
@@ -94,7 +105,7 @@ mod imp {
                     if n_pages > 0 {
                         let current = carousel
                             .nth_page(index.clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryPicture>().unwrap();
+                            .downcast::<crate::GalleryItem>().unwrap();
                         if !current.started_loading() {
                             current.start_loading();
                         }
@@ -103,7 +114,7 @@ mod imp {
                     if n_pages > 1 {
                         let next = carousel
                             .nth_page((index + 1).clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryPicture>().unwrap();
+                            .downcast::<crate::GalleryItem>().unwrap();
                         if !next.started_loading() {
                             next.start_loading();
                         }
@@ -112,7 +123,7 @@ mod imp {
                     if index > 0 {
                         let previous = carousel
                             .nth_page((index - 1).clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryPicture>().unwrap();
+                            .downcast::<crate::GalleryItem>().unwrap();
                         if !previous.started_loading() {
                             previous.start_loading();
                         }
@@ -121,8 +132,8 @@ mod imp {
 
             let ctx = glib::MainContext::default();
             ctx.spawn_local(glib::clone!(@weak obj => async move {
-                if let Err(err) = obj.load_pictures().await {
-                    log::debug!("Could not load latest pictures: {err}");
+                if let Err(err) = obj.load_items().await {
+                    log::debug!("Could not load latest items: {err}");
                 }
             }));
         }
@@ -130,7 +141,7 @@ mod imp {
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![glib::subclass::Signal::builder("item-added")
-                    .param_types([crate::GalleryPicture::static_type()])
+                    .param_types([crate::GalleryItem::static_type()])
                     .build()]
             });
             SIGNALS.as_ref()
@@ -160,20 +171,30 @@ impl Default for Gallery {
 
 impl Gallery {
     pub fn add_image(&self, file: &gio::File) {
-        let picture = self.add_image_inner(file, true);
+        let picture = self.add_item_inner(file, true, true);
         self.emit_item_added(&picture);
+    }
+
+    pub fn add_video(&self, file: &gio::File) {
+        let video = self.add_item_inner(file, true, false);
+        self.emit_item_added(&video);
     }
 
     // We have this inner method so we can add images without emiting signals.
     // Used for `load_pictures`.
-    fn add_image_inner(&self, file: &gio::File, load: bool) -> crate::GalleryPicture {
+    fn add_item_inner(&self, file: &gio::File, load: bool, is_picture: bool) -> crate::GalleryItem {
         let imp = self.imp();
 
-        let picture = crate::GalleryPicture::new(file, load);
-        imp.carousel.prepend(&picture);
-        imp.images.borrow_mut().insert(0, picture.clone());
+        let item: crate::GalleryItem = if is_picture {
+            crate::GalleryPicture::new(file, load).upcast()
+        } else {
+            crate::GalleryVideo::new(file, load).upcast()
+        };
 
-        picture
+        imp.carousel.prepend(&item);
+        imp.images.borrow_mut().insert(0, item.clone());
+
+        item
     }
 
     pub fn open(&self) {
@@ -194,20 +215,20 @@ impl Gallery {
         // TODO
     }
 
-    pub fn images(&self) -> Vec<crate::GalleryPicture> {
+    pub fn images(&self) -> Vec<crate::GalleryItem> {
         self.imp().images.borrow().clone()
     }
 
-    fn emit_item_added(&self, picture: &crate::GalleryPicture) {
+    fn emit_item_added(&self, picture: &crate::GalleryItem) {
         self.emit_by_name::<()>("item-added", &[&picture]);
     }
 
-    pub fn connect_item_added<F: Fn(&Self, &crate::GalleryPicture) + 'static>(&self, f: F) {
+    pub fn connect_item_added<F: Fn(&Self, &crate::GalleryItem) + 'static>(&self, f: F) {
         self.connect_local(
             "item-added",
             false,
             glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let picture = args.get(1).unwrap().get::<crate::GalleryPicture>().unwrap();
+                let picture = args.get(1).unwrap().get::<crate::GalleryItem>().unwrap();
                 f(&obj, &picture);
 
                 None
@@ -223,7 +244,7 @@ impl Gallery {
         let picture = imp
             .carousel
             .nth_page(index.clamp(0, last_pos) as u32)
-            .downcast::<crate::GalleryPicture>()
+            .downcast::<crate::GalleryItem>()
             .unwrap();
 
         imp.carousel.scroll_to(&picture, animate);
@@ -248,7 +269,7 @@ impl Gallery {
         let picture = imp
             .carousel
             .nth_page(index)
-            .downcast::<crate::GalleryPicture>()
+            .downcast::<crate::GalleryItem>()
             .unwrap();
         let file = picture.file();
         let launcher = gtk::FileLauncher::new(Some(&file));
@@ -259,19 +280,21 @@ impl Gallery {
         Ok(())
     }
 
-    async fn load_pictures(&self) -> anyhow::Result<()> {
-        let dir = crate::utils::pictures_dir();
-        let gdir = gio::File::for_path(&dir);
+    async fn load_items_in(
+        &self,
+        dir: &std::path::Path,
+        is_picture: bool,
+    ) -> anyhow::Result<Vec<(gio::File, u64, bool)>> {
+        let gdir = gio::File::for_path(dir);
         let enumerator = gdir
             .enumerate_children_future(
-                gio::FILE_ATTRIBUTE_STANDARD_NAME,
+                &ATTRIBUTES,
                 gio::FileQueryInfoFlags::NOFOLLOW_SYMLINKS,
                 glib::Priority::default(),
             )
             .await?;
 
-        let mut picture = None;
-        let mut n_images = 0;
+        let mut items = vec![];
         while let Ok(info) = enumerator
             .next_files_future(1, glib::Priority::default())
             .await
@@ -281,17 +304,41 @@ impl Gallery {
             let name = file_info.name();
             let file = gio::File::for_path(&dir.join(&name));
 
-            picture = Some(self.add_image_inner(&file, false));
-            n_images += 1;
+            // TODO Do not add items with wrong mime type.
+
+            // TODO Try without unwrap();
+            let date_time = file_info.creation_date_time().unwrap();
+            let microsecond = date_time.microsecond() as u64;
+            let unix = date_time.to_unix() as u64;
+            let stamp = unix * 1_000_000 + microsecond;
+
+            items.push((file, stamp, is_picture))
         }
 
-        // We only emit the signal once for the last picture taken.
-        if let Some(picture) = picture {
-            picture.load_texture().await?;
-            self.emit_item_added(&picture);
-        }
+        Ok(items)
+    }
 
-        log::debug!("Done loading {n_images} pictures");
+    async fn load_items(&self) -> anyhow::Result<()> {
+        let pictures_dir = crate::utils::pictures_dir();
+        let videos_dir = crate::utils::videos_dir();
+
+        let mut pictures = self.load_items_in(&pictures_dir, true).await?;
+        log::debug!("Done loading {} pictures", pictures.len());
+
+        let mut videos = self.load_items_in(&videos_dir, false).await?;
+        log::debug!("Done loading {} videos", videos.len());
+
+        pictures.append(&mut videos);
+        pictures.sort_by(|(_, stamp1, _), (_, stamp2, _)| stamp1.cmp(stamp2));
+
+        if let Some(((last, _stamp, is_picture), items)) = pictures.split_last() {
+            items.iter().for_each(|(file, _stamp, is_picture)| {
+                self.add_item_inner(file, false, *is_picture);
+            });
+
+            let item = self.add_item_inner(&last, true, *is_picture);
+            self.emit_item_added(&item);
+        }
 
         Ok(())
     }
