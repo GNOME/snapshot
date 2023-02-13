@@ -87,6 +87,13 @@ mod imp {
 
                     obj.notify("progress");
                 }));
+
+            let ctx = glib::MainContext::default();
+            ctx.spawn_local(glib::clone!(@weak obj => async move {
+                if let Err(err) = obj.load_pictures().await {
+                    log::debug!("Could not load latest pictures: {err}");
+                }
+            }));
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
@@ -122,13 +129,20 @@ impl Default for Gallery {
 
 impl Gallery {
     pub fn add_image(&self, file: &gio::File) {
+        let picture = self.add_image_inner(file);
+        self.emit_item_added(&picture);
+    }
+
+    // We have this inner method so we can add images without emiting signals.
+    // Used for `load_pictures`.
+    fn add_image_inner(&self, file: &gio::File) -> crate::GalleryPicture {
         let imp = self.imp();
 
         let picture = crate::GalleryPicture::new(file);
         imp.carousel.prepend(&picture);
         imp.images.borrow_mut().insert(0, picture.clone());
 
-        self.emit_item_added(&picture);
+        picture
     }
 
     pub fn open(&self) {
@@ -199,6 +213,42 @@ impl Gallery {
         let root = self.root();
         let window = root.and_downcast_ref::<gtk::Window>();
         launcher.launch_future(window).await?;
+
+        Ok(())
+    }
+
+    async fn load_pictures(&self) -> anyhow::Result<()> {
+        let dir = crate::utils::pictures_dir();
+        let gdir = gio::File::for_path(&dir);
+        let enumerator = gdir
+            .enumerate_children_future(
+                gio::FILE_ATTRIBUTE_STANDARD_NAME,
+                gio::FileQueryInfoFlags::NOFOLLOW_SYMLINKS,
+                glib::Priority::default(),
+            )
+            .await?;
+
+        let mut picture = None;
+        let mut n_images = 0;
+        while let Ok(info) = enumerator
+            .next_files_future(1, glib::Priority::default())
+            .await
+        {
+            let Some(file_info) = info.first() else { break; };
+
+            let name = file_info.name();
+            let file = gio::File::for_path(&dir.join(&name));
+
+            picture = Some(self.add_image_inner(&file));
+            n_images += 1;
+        }
+
+        // We only emit the signal once for the last picture taken.
+        if let Some(picture) = picture {
+            self.emit_item_added(&picture);
+        }
+
+        log::debug!("Done loading {n_images} pictures");
 
         Ok(())
     }

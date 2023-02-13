@@ -113,21 +113,9 @@
               </object>
             </child>
             <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">24</property>
-                <property name="valign">center</property>
-                <child>
-                  <object class="AdwCarousel" id="carousel">
-                    <property name="halign">center</property>
-                    <property name="spacing">12</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwCarouselIndicatorDots">
-                    <property name="carousel">carousel</property>
-                  </object>
-                </child>
+              <object class="AdwCarousel" id="carousel">
+                <property name="halign">center</property>
+                <property name="spacing">12</property>
               </object>
             </child>
           </object>
