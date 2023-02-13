@@ -5,6 +5,8 @@ use gtk::{gdk, gio, glib};
 mod imp {
     use super::*;
 
+    use std::cell::Cell;
+
     use glib::Properties;
     use once_cell::sync::OnceCell;
 
@@ -13,6 +15,10 @@ mod imp {
     pub struct GalleryPicture {
         #[property(get, set, construct_only)]
         pub file: OnceCell<gio::File>,
+        #[property(get, set, construct_only)]
+        pub load: Cell<bool>,
+
+        pub started_loading: Cell<bool>,
 
         pub picture: gtk::Picture,
         pub texture: OnceCell<gdk::Texture>,
@@ -49,14 +55,9 @@ mod imp {
 
             self.picture.set_parent(&*widget);
 
-            let file = widget.file();
-
-            let ctx = glib::MainContext::default();
-            ctx.spawn_local(glib::clone!(@weak file, @weak widget => async move {
-                if let Err(err) = widget.load_texture(file).await {
-                    log::error!("Could not set picture {err}");
-                }
-            }));
+            if widget.load() {
+                widget.start_loading();
+            }
         }
 
         fn dispose(&self) {
@@ -72,8 +73,14 @@ glib::wrapper! {
 }
 
 impl GalleryPicture {
-    pub fn new(file: &gio::File) -> Self {
-        glib::Object::builder().property("file", file).build()
+    /// Creates a new picture for the gallery. The texture will be load at
+    /// construct only if `load` is set to `true`, otherwise it will be load
+    /// when we want to snapshot it.
+    pub fn new(file: &gio::File, load: bool) -> Self {
+        glib::Object::builder()
+            .property("load", load)
+            .property("file", file)
+            .build()
     }
 
     pub fn texture(&self) -> Option<&gdk::Texture> {
@@ -84,8 +91,12 @@ impl GalleryPicture {
         &self.imp().picture
     }
 
-    async fn load_texture(&self, file: gio::File) -> anyhow::Result<()> {
+    pub async fn load_texture(&self) -> anyhow::Result<()> {
         let imp = self.imp();
+
+        imp.started_loading.set(true);
+
+        let file = self.file();
         let (sender, receiver) = futures_channel::oneshot::channel();
 
         let _ = std::thread::Builder::new()
@@ -101,5 +112,19 @@ impl GalleryPicture {
         imp.texture.set(texture).unwrap();
 
         Ok(())
+    }
+
+    pub fn start_loading(&self) {
+        self.imp().started_loading.set(true);
+        let ctx = glib::MainContext::default();
+        ctx.spawn_local(glib::clone!(@weak self as widget => async move {
+            if let Err(err) = widget.load_texture().await {
+                log::error!("Could not set picture {err}");
+            }
+        }));
+    }
+
+    pub fn started_loading(&self) -> bool {
+        self.imp().started_loading.get()
     }
 }

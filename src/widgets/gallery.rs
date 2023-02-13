@@ -76,6 +76,7 @@ mod imp {
             self.carousel
                 .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
                     let progress = carousel.progress();
+                    let n_pages = carousel.n_pages();
 
                     // Suppose we have 2 pages. We add an epsilon to make sure
                     // that a rounding error 0.99999... = 1 still can scroll to
@@ -83,9 +84,39 @@ mod imp {
                     // right. We sanitize the values of the scroll, so
                     // scroll_to(-1) or scroll_to(n_items) are a non-issue.
                     obj.action_set_enabled("gallery.previous", progress + f64::EPSILON >= 1.0);
-                    obj.action_set_enabled("gallery.next", progress + 2.0 <= carousel.n_pages() as f64 + f64::EPSILON);
+                    obj.action_set_enabled("gallery.next", progress + 2.0 <= n_pages as f64 + f64::EPSILON);
 
                     obj.notify("progress");
+
+                    let index = progress as i32;
+                    let last_pos = n_pages as i32 - 1;
+
+                    if n_pages > 0 {
+                        let current = carousel
+                            .nth_page(index.clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !current.started_loading() {
+                            current.start_loading();
+                        }
+                    }
+
+                    if n_pages > 1 {
+                        let next = carousel
+                            .nth_page((index + 1).clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !next.started_loading() {
+                            next.start_loading();
+                        }
+                    }
+
+                    if index > 0 {
+                        let previous = carousel
+                            .nth_page((index - 1).clamp(0, last_pos) as u32)
+                            .downcast::<crate::GalleryPicture>().unwrap();
+                        if !previous.started_loading() {
+                            previous.start_loading();
+                        }
+                    }
                 }));
 
             let ctx = glib::MainContext::default();
@@ -129,16 +160,16 @@ impl Default for Gallery {
 
 impl Gallery {
     pub fn add_image(&self, file: &gio::File) {
-        let picture = self.add_image_inner(file);
+        let picture = self.add_image_inner(file, true);
         self.emit_item_added(&picture);
     }
 
     // We have this inner method so we can add images without emiting signals.
     // Used for `load_pictures`.
-    fn add_image_inner(&self, file: &gio::File) -> crate::GalleryPicture {
+    fn add_image_inner(&self, file: &gio::File, load: bool) -> crate::GalleryPicture {
         let imp = self.imp();
 
-        let picture = crate::GalleryPicture::new(file);
+        let picture = crate::GalleryPicture::new(file, load);
         imp.carousel.prepend(&picture);
         imp.images.borrow_mut().insert(0, picture.clone());
 
@@ -177,26 +208,30 @@ impl Gallery {
         );
     }
 
-    fn scroll_to(&self, index: i32) {
+    fn scroll_to(&self, index: i32, animate: bool) {
         let imp = self.imp();
 
         // Sanitize index so it is always between 0 and (n_items - 1).
         let last_pos = (imp.carousel.n_pages() as i32 - 1).max(0);
-        let picture = imp.carousel.nth_page(index.clamp(0, last_pos) as u32);
+        let picture = imp
+            .carousel
+            .nth_page(index.clamp(0, last_pos) as u32)
+            .downcast::<crate::GalleryPicture>()
+            .unwrap();
 
-        imp.carousel.scroll_to(&picture, true);
+        imp.carousel.scroll_to(&picture, animate);
     }
 
     fn next(&self) {
         let imp = self.imp();
         let index = imp.carousel.position() as i32;
-        self.scroll_to(index + 1)
+        self.scroll_to(index + 1, true)
     }
 
     fn previous(&self) {
         let imp = self.imp();
         let index = imp.carousel.position() as i32;
-        self.scroll_to(index - 1)
+        self.scroll_to(index - 1, true)
     }
 
     async fn open_with_system(&self) -> anyhow::Result<()> {
@@ -239,12 +274,13 @@ impl Gallery {
             let name = file_info.name();
             let file = gio::File::for_path(&dir.join(&name));
 
-            picture = Some(self.add_image_inner(&file));
+            picture = Some(self.add_image_inner(&file, false));
             n_images += 1;
         }
 
         // We only emit the signal once for the last picture taken.
         if let Some(picture) = picture {
+            picture.load_texture().await?;
             self.emit_item_added(&picture);
         }
 
