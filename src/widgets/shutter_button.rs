@@ -236,17 +236,6 @@ impl ShutterButton {
     }
 
     fn draw_border(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {
-        // Magic matrix that turns the inner blue circle transparent.
-        #[rustfmt::skip]
-        let color_matrix = graphene::Matrix::from_float([
-            1.0, -1.0, -1.0,  0.0,
-            1.0,  1.0,  1.0,  1.0,
-            1.0,  1.0,  1.0, -1.0,
-            0.0,  0.0,  0.0,  1.0,
-        ]);
-        let color_offset = graphene::Vec4::from_float([0.0; 4]);
-        snapshot.push_color_matrix(&color_matrix, &color_offset);
-
         let countdown = self.countdown_ani().value() as f32;
 
         let rect = graphene::Rect::new(0.0, 0.0, size, size);
@@ -255,28 +244,20 @@ impl ShutterButton {
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
+        snapshot.push_mask(gsk::MaskMode::Alpha);
+
+        snapshot.append_border(&rounded, &[border_width; 4], &[gdk::RGBA::BLACK; 4]);
+
+        snapshot.pop();
+
         let color = self.color();
 
         let stop0 = gsk::ColorStop::new(countdown, color);
         let stop1 = gsk::ColorStop::new(countdown, gdk::RGBA::new(0.0, 0.0, 0.0, 0.0));
 
-        snapshot.push_rounded_clip(&rounded);
         snapshot.append_conic_gradient(&rect, &center, 0.0, &[stop0, stop1]);
-        snapshot.pop();
 
-        // We draw a blue circle, later the color matrix will turn blue into
-        // transparent goodness.
-        let inner_size = size - 2.0 * border_width;
-        let inner_rect = graphene::Rect::new(border_width, border_width, inner_size, inner_size);
-        let inner_s = graphene::Size::new(inner_size / 2.0, inner_size / 2.0);
-        let inner_rounded = gsk::RoundedRect::new(inner_rect, inner_s, inner_s, inner_s, inner_s);
-
-        snapshot.push_rounded_clip(&inner_rounded);
-        // We color on a bigger rect than what we clipped.
-        snapshot.append_color(&gdk::RGBA::BLUE, &rect);
-        snapshot.pop();
-
-        snapshot.pop(); // Pop the color matrix.
+        snapshot.pop(); // Pop the mask.
     }
 
     fn draw_play(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {
