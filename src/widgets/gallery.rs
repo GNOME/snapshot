@@ -81,7 +81,7 @@ mod imp {
                     // that a rounding error 0.99999... = 1 still can scroll to
                     // the right. 0.0000...1, should also allow going to the
                     // right. We sanitize the values of the scroll, so
-                    // scroll_to(-1) or scroll_to(n_items) are a none issue.
+                    // scroll_to(-1) or scroll_to(n_items) are a non-issue.
                     obj.action_set_enabled("gallery.previous", progress + f64::EPSILON >= 1.0);
                     obj.action_set_enabled("gallery.next", progress + 2.0 <= carousel.n_pages() as f64 + f64::EPSILON);
 
