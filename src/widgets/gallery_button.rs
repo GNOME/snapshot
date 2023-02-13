@@ -116,16 +116,8 @@ impl GalleryButton {
         let t_y = -(t_height - height) / 2.0;
         let t_rect = graphene::Rect::new(t_x, t_y, t_width, t_height);
 
-        let alpha = self.color().alpha();
-        #[rustfmt::skip]
-        let color_matrix = graphene::Matrix::from_float([
-            1.0, 0.0, 0.0, 0.0,
-            0.0, 1.0, 0.0, 0.0,
-            0.0, 0.0, 1.0, 0.0,
-            0.0, 0.0, 0.0, alpha,
-        ]);
-        let color_offset = graphene::Vec4::from_float([0.0; 4]);
-        snapshot.push_color_matrix(&color_matrix, &color_offset);
+        let alpha = self.color().alpha() as f64;
+        snapshot.push_opacity(alpha);
 
         snapshot.push_rounded_clip(&rounded);
         snapshot.append_texture(texture, &t_rect);
