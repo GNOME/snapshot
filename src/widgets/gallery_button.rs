@@ -120,6 +120,7 @@ impl GalleryButton {
         snapshot.push_opacity(alpha);
 
         snapshot.push_rounded_clip(&rounded);
+        // FIXME Use append scaled texture.
         snapshot.append_texture(texture, &t_rect);
         snapshot.pop();
 
