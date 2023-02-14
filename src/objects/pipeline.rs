@@ -3,11 +3,11 @@
 // Fancy Camera with QR code detection using ZBar
 //
 // Pipeline:
-//                            queue -- videoconvert -- zbar -- fakesink
-//                         /
-//     pipewiresrc -- tee  -- queue2 -- gtkpaintablesink
-//                         \
-//                            queue3 -- fakesink2
+//                                 queue -- videoconvert -- zbar -- fakesink
+//                              /
+//     pipewiresrc -- videoflip -- tee  -- queue2 -- gtkpaintablesink
+//                              \
+//                                 queue3 -- fakesink2
 //
 use std::path::PathBuf;
 
@@ -35,6 +35,7 @@ mod imp {
     pub struct Pipeline {
         pub tee: OnceCell<gst::Element>,
         pub paintablesink: OnceCell<gst::Element>,
+        pub start: OnceCell<gst::Element>,
         pub pipewire_src: Arc<Mutex<Option<gst::Element>>>,
         pub sink: OnceCell<gst::Element>,
         pub recording_bin: Arc<Mutex<Option<gst::Bin>>>,
@@ -56,6 +57,10 @@ mod imp {
             let pipeline = self.obj();
             pipeline.set_message_forward(true);
 
+            let videoflip = gst::ElementFactory::make("videoflip")
+                .property_from_str("video-direction", "auto")
+                .build()
+                .unwrap();
             let tee = gst::ElementFactory::make("tee").build().unwrap();
 
             let queue = gst::ElementFactory::make("queue").build().unwrap();
@@ -115,6 +120,7 @@ mod imp {
 
             pipeline
                 .add_many(&[
+                    &videoflip,
                     &tee,
                     zbarbin.upcast_ref(),
                     &queue2,
@@ -123,6 +129,8 @@ mod imp {
                     &fakesink2,
                 ])
                 .unwrap();
+
+            videoflip.link(&tee).unwrap();
 
             tee.link_pads(None, &zbarbin, None).unwrap();
 
@@ -218,6 +226,7 @@ mod imp {
                 }))
                .expect("Failed to add bus watch");
 
+            self.start.set(videoflip).unwrap();
             self.paintablesink.set(paintablesink).unwrap();
             self.sink.set(fakesink2).unwrap();
             self.tee.set(tee).unwrap();
@@ -460,17 +469,17 @@ impl Pipeline {
     pub fn set_pipewire_element(&self, element: gst::Element) {
         let imp = self.imp();
 
-        let tee = imp.tee.get().unwrap();
+        let start = imp.start.get().unwrap();
 
         let mut guard = imp.pipewire_src.lock().unwrap();
         if let Some(old_element) = guard.take() {
             self.set_state(gst::State::Null).unwrap();
-            old_element.unlink(tee);
+            old_element.unlink(start);
             self.remove(&old_element).unwrap();
         }
         self.add(&element).unwrap();
 
-        element.link(tee).unwrap();
+        element.link(start).unwrap();
         self.set_state(gst::State::Playing).unwrap();
 
         *guard = Some(element);
