@@ -4,6 +4,7 @@ mod camera_paintable;
 mod device;
 mod device_provider;
 mod pipeline;
+mod wayland_listener;
 
 pub use application::Application;
 pub use camera_paintable::CameraPaintable;
@@ -11,3 +12,4 @@ pub use device::Device;
 pub use device_provider::DeviceProvider;
 use pipeline::Action;
 pub use pipeline::Pipeline;
+pub use wayland_listener::WaylandListener;

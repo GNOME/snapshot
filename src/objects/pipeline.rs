@@ -3,11 +3,11 @@
 // Fancy Camera with QR code detection using ZBar
 //
 // Pipeline:
-//                                 queue -- videoconvert -- zbar -- fakesink
-//                              /
-//     pipewiresrc -- videoflip -- tee  -- queue2 -- gtkpaintablesink
-//                              \
-//                                 queue3 -- fakesink2
+//                                     queue -- videoconvert -- zbar -- fakesink
+//                                  /
+//     pipewiresrc -- videoflip x2  -- tee  -- queue2 -- gtkpaintablesink
+//                                  \
+//                                     queue3 -- fakesink2
 //
 use std::path::PathBuf;
 
@@ -35,6 +35,7 @@ mod imp {
     #[derive(Debug, Default)]
     pub struct Pipeline {
         pub tee: OnceCell<gst::Element>,
+        pub videoflip: OnceCell<gst::Element>,
         pub paintablesink: OnceCell<gst::Element>,
         pub start: OnceCell<gst::Element>,
         pub pipewire_src: Arc<Mutex<Option<gst::Element>>>,
@@ -62,6 +63,7 @@ mod imp {
                 .property_from_str("video-direction", "auto")
                 .build()
                 .unwrap();
+            let videoflip2 = gst::ElementFactory::make("videoflip").build().unwrap();
             let tee = gst::ElementFactory::make("tee").build().unwrap();
 
             let queue = gst::ElementFactory::make("queue").build().unwrap();
@@ -122,6 +124,7 @@ mod imp {
             pipeline
                 .add_many(&[
                     &videoflip,
+                    &videoflip2,
                     &tee,
                     zbarbin.upcast_ref(),
                     &queue2,
@@ -131,7 +134,7 @@ mod imp {
                 ])
                 .unwrap();
 
-            videoflip.link(&tee).unwrap();
+            gst::Element::link_many(&[&videoflip, &videoflip2, &tee]).unwrap();
 
             tee.link_pads(None, &zbarbin, None).unwrap();
 
@@ -238,6 +241,7 @@ mod imp {
                 }))
                .expect("Failed to add bus watch");
 
+            self.videoflip.set(videoflip2).unwrap();
             self.start.set(videoflip).unwrap();
             self.paintablesink.set(paintablesink).unwrap();
             self.sink.set(fakesink2).unwrap();
@@ -504,6 +508,11 @@ impl Pipeline {
         self.set_state(gst::State::Playing).unwrap();
 
         *guard = Some(element);
+    }
+
+    pub fn set_transform(&self, transform: crate::Transform) {
+        let videoflip = self.imp().videoflip.get().unwrap();
+        videoflip.set_property_from_str("video-direction", transform.inverse().as_gst_str());
     }
 }
 
