@@ -87,11 +87,14 @@
                       <object class="GtkBox">
                         <property name="valign">start</property>
                         <property name="halign">fill</property>
-                        <property name="spacing">24</property>
-                        <property name="margin-top">24</property>
-                        <property name="margin-bottom">24</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
                         <property name="margin-start">12</property>
                         <property name="margin-end">12</property>
+                        <style>
+                          <class name="osd"/>
+                          <class name="toolbar"/>
+                        </style>
                         <child>
                           <object class="GtkMenuButton" id="countdown_button">
                             <property name="menu-model">countdown_menu</property>
@@ -130,37 +133,31 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkBox">
-                            <property name="halign">end</property>
-                            <property name="spacing">12</property>
+                          <object class="GtkMenuButton" id="appmenu_button">
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="menu-model">primary_menu</property>
+                            <property name="valign">center</property>
+                            <property name="tooltip-text" translatable="yes">Main Menu</property>
+                            <style>
+                              <class name="circular"/>
+                            </style>
                             <child>
-                              <object class="GtkMenuButton" id="appmenu_button">
-                                <property name="icon-name">open-menu-symbolic</property>
-                                <property name="menu-model">primary_menu</property>
-                                <property name="valign">center</property>
-                                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                                <style>
-                                  <class name="circular"/>
-                                </style>
+                              <object class="GtkShortcutController">
+                                <property name="scope">managed</property>
                                 <child>
-                                  <object class="GtkShortcutController">
-                                    <property name="scope">managed</property>
-                                    <child>
-                                      <object class="GtkShortcut">
-                                        <property name="trigger">F10</property>
-                                        <property name="action">activate</property>
-                                      </object>
-                                    </child>
+                                  <object class="GtkShortcut">
+                                    <property name="trigger">F10</property>
+                                    <property name="action">activate</property>
                                   </object>
                                 </child>
                               </object>
                             </child>
-                            <child>
-                              <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
-                                <property name="valign">center</property>
-                              </object>
-                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkWindowControls">
+                            <property name="decoration-layout">close</property>
+                            <property name="valign">center</property>
                           </object>
                         </child>
                       </object>
@@ -169,13 +166,17 @@
                       <object class="GtkBox">
                         <property name="valign">end</property>
                         <property name="halign">center</property>
-                        <property name="margin-top">24</property>
-                        <property name="margin-bottom">24</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
                         <property name="spacing">36</property>
+                        <style>
+                          <class name="osd"/>
+                          <class name="toolbar"/>
+                        </style>
                         <child>
                           <object class="GalleryButton" id="gallery_button">
-                            <property name="width-request">44</property>
-                            <property name="height-request">44</property>
                             <property name="valign">center</property>
                             <property name="action-name">win.toggle-gallery</property>
                             <property name="tooltip-text" translatable="yes">Open Gallery</property>
@@ -184,17 +185,15 @@
                         <child>
                           <object class="ShutterButton" id="shutter_button">
                             <property name="action-name">win.take-picture</property>
-                            <property name="width-request">64</property>
-                            <property name="height-request">64</property>
-                            <property name="valign">center</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkStack" id="camera_menu_button_stack">
                             <child>
                               <object class="GtkMenuButton" id="camera_menu_button">
-                                <property name="width-request">44</property>
-                                <property name="height-request">44</property>
+                                <style>
+                                  <class name="camerabutton"/>
+                                </style>
                                 <property name="valign">center</property>
                                 <property name="icon-name">video-camera-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Select Camera</property>
