@@ -68,7 +68,10 @@ mod imp {
 
             let queue = gst::ElementFactory::make("queue").build().unwrap();
             let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
-            let zbar = gst::ElementFactory::make("zbar").build().unwrap();
+            let zbar = gst::ElementFactory::make("zbar")
+                .property("attach-frame", false)
+                .build()
+                .unwrap();
             let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
 
             let zbarbin = gst::Bin::default();
