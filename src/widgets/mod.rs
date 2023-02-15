@@ -5,18 +5,24 @@ mod camera;
 mod camera_row;
 mod gallery;
 mod gallery_button;
+mod gallery_item;
 mod gallery_picture;
+mod gallery_video;
 mod preferences_window;
 mod shutter_button;
+mod video_player;
 mod window;
 
 pub use camera::Camera;
 pub use camera_row::CameraRow;
 pub use gallery::Gallery;
 pub use gallery_button::GalleryButton;
+pub use gallery_item::GalleryItem;
 pub use gallery_picture::GalleryPicture;
+pub use gallery_video::GalleryVideo;
 pub use preferences_window::PreferencesWindow;
 pub use shutter_button::ShutterButton;
+pub use video_player::VideoPlayer;
 pub use window::Window;
 
 pub fn init() {
@@ -25,4 +31,5 @@ pub fn init() {
     GalleryButton::static_type();
     GalleryPicture::static_type();
     ShutterButton::static_type();
+    GalleryItem::static_type();
 }
