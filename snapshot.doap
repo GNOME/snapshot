@@ -25,6 +25,17 @@
         </foaf:OnlineAccount>
       </foaf:account>
     </foaf:Person>
+    <foaf:Person>
+      <foaf:name>Jamie Murphy</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jmurphy@gnome.org" />
+      <gnome:userid>ItsJamie9494</gnome:userid>
+      <foaf:account>
+        <foaf:OnlineAccount>
+          <foaf:accountServiceHomepage rdf:resource="https://gitlab.gnome.org" />
+          <foaf:accountName>ItsJamie9494</foaf:accountName>
+        </foaf:OnlineAccount>
+      </foaf:account>
+    </foaf:Person>
   </maintainer>
 
 </Project>
