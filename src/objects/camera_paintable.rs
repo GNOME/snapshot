@@ -20,13 +20,15 @@ use crate::objects::Action;
 const CODE_TIMEOUT: u64 = 3;
 
 mod imp {
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
+    use glib::Properties;
     use once_cell::sync::{Lazy, OnceCell};
 
     use super::*;
 
-    #[derive(Debug, Default)]
+    #[derive(Debug, Default, Properties)]
+    #[properties(wrapper_type = super::CameraPaintable)]
     pub struct CameraPaintable {
         pub pipeline: OnceCell<crate::Pipeline>,
         pub sink_paintable: OnceCell<gdk::Paintable>,
@@ -34,6 +36,18 @@ mod imp {
 
         pub flash_ani: OnceCell<adw::TimedAnimation>,
         pub players: RefCell<Option<gtk::MediaFile>>,
+
+        #[property(get, set = Self::set_transform, explicit_notify, builder(Default::default()))]
+        transform: Cell<crate::Transform>,
+    }
+
+    impl CameraPaintable {
+        fn set_transform(&self, transform: crate::Transform) {
+            if transform != self.transform.replace(transform) {
+                self.pipeline.get().unwrap().set_transform(transform);
+                self.obj().notify("transform");
+            }
+        }
     }
 
     #[glib::object_subclass]
@@ -93,6 +107,18 @@ mod imp {
             self.sink_paintable.set(paintable).unwrap();
         }
 
+        fn properties() -> &'static [glib::ParamSpec] {
+            Self::derived_properties()
+        }
+
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            Self::derived_property(self, id, pspec)
+        }
+
+        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+            Self::derived_set_property(self, id, value, pspec)
+        }
+
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![
@@ -139,25 +165,29 @@ mod imp {
         }
 
         fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
+            let w = width as f32;
+            let h = height as f32;
+
             if let Some(image) = self.sink_paintable.get() {
+                // FIXME  Support flips in the monitor.
+
+                // The parameters are subject to the rotation, so we have to
+                // drawn accordingly.
                 image.snapshot(snapshot, width, height);
 
                 if let Some(animation) = self.flash_ani.get() {
                     if !matches!(animation.state(), adw::AnimationState::Playing) {
                         return;
                     }
-                    let alpha = easing(animation.value());
+                    let alpha = easing(animation.value()) as f32;
 
-                    let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
-                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha as f32);
+                    let rect = graphene::Rect::new(0.0, 0.0, w, h);
+                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha);
 
                     snapshot.append_color(&black, &rect);
                 }
             } else {
-                snapshot.append_color(
-                    &gdk::RGBA::BLACK,
-                    &graphene::Rect::new(0f32, 0f32, width as f32, height as f32),
-                );
+                snapshot.append_color(&gdk::RGBA::BLACK, &graphene::Rect::new(0.0, 0.0, w, h));
             }
         }
     }

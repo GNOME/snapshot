@@ -21,6 +21,7 @@ mod imp {
         pub stream_list: RefCell<gio::ListStore>,
         pub selection: gtk::SingleSelection,
         pub provider: OnceCell<crate::DeviceProvider>,
+        pub listener: OnceCell<crate::WaylandListener>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
@@ -135,7 +136,23 @@ mod imp {
             self.dispose_template();
         }
     }
-    impl WidgetImpl for Camera {}
+    impl WidgetImpl for Camera {
+        fn realize(&self) {
+            self.parent_realize();
+
+            let widget = self.obj();
+
+            // Its better to ask for displays on realized widgets.
+            let display = widget.display();
+            let listener = crate::WaylandListener::new(display);
+            listener
+                .bind_property("transform", &widget.imp().paintable, "transform")
+                .sync_create()
+                .build();
+
+            self.listener.set(listener).unwrap();
+        }
+    }
 }
 
 glib::wrapper! {
