@@ -218,17 +218,15 @@ impl wayland_client::Dispatch<wl_output::WlOutput, ()> for State {
         _qhandle: &QueueHandle<Self>,
     ) {
         if let wl_output::Event::Geometry {
-            transform,
+            transform: WEnum::Value(transform),
             make,
             model,
             ..
         } = event
         {
-            if let WEnum::Value(transform) = transform {
-                let transform: crate::Transform = transform.into();
-                log::debug!("FOUND {transform:?} for {model}, {make}");
-                state.transform = Some(transform);
-            }
+            let transform: crate::Transform = transform.into();
+            log::debug!("FOUND {transform:?} for {model}, {make}");
+            state.transform = Some(transform);
         }
     }
 }

@@ -51,3 +51,32 @@ cargo_build = custom_target(
     'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
   ]
 )
+
+test (
+  'Cargo clippy',
+  cargo,
+  args: [
+    'clippy',
+    '--no-deps',
+    cargo_options,
+  ],
+  env: [
+    cargo_env,
+    'PATH=/app/bin:/usr/bin:/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm14/bin',
+  ],
+  timeout: 300, # cargo might take a bit of time sometimes
+)
+
+test (
+  'Cargo tests',
+  cargo,
+  args: [
+    'test',
+    cargo_options,
+  ],
+  timeout: 300, # cargo might take a bit of time sometimes
+  env: [
+    cargo_env,
+    'PATH=/app/bin:/usr/bin:/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm14/bin',
+  ],
+)

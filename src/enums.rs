@@ -23,7 +23,7 @@ impl PictureFormat {
         }
     }
 
-    pub fn to_translatable_string(&self) -> String {
+    pub fn translatable_string(&self) -> String {
         match self {
             // TRANSLATORS This is the image format presented in the preferences
             // window.
