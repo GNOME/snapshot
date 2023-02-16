@@ -11,9 +11,9 @@
 
 ![screenshot](data/screenshots/screenshot1.png)
 
-<!-- ## Getting in touch -->
+## Getting in touch
 
-<!-- If you have any questions regarding the use or development of Snashot, please join us on our [#snapshot:gnome.org](https://matrix.to/#/#snapshot:gnome.org) channel. -->
+If you have any questions regarding the use or development of Snapshot, please join us on our [#snapshot:gnome.org](https://matrix.to/#/#snapshot:gnome.org) channel.
 
 ## Hack on Snapshot
 
