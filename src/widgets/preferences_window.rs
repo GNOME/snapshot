@@ -42,7 +42,7 @@ mod imp {
         #[template_callback]
         fn picture_format_to_translatable(item: &adw::EnumListItem) -> String {
             let format = crate::PictureFormat::from(item.value());
-            format.to_translatable_string()
+            format.translatable_string()
         }
 
         #[template_callback]
