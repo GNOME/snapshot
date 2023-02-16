@@ -62,6 +62,8 @@ mod imp {
                         record_ani.set_value_from(record_from);
                         record_ani.set_value_to(0.0);
                         record_ani.play();
+
+                        widget.set_tooltip_text(Some(&gettext("Take Picture")));
                     }
                     ShutterMode::Video => {
                         mode_ani.set_value_to(1.0);
@@ -71,6 +73,8 @@ mod imp {
                         record_ani.set_value_from(record_from);
                         record_ani.set_value_to(0.0);
                         record_ani.play();
+
+                        widget.set_tooltip_text(Some(&gettext("Start Recording")));
                     }
                     ShutterMode::Recording => {
                         mode_ani.set_value_to(1.0);
@@ -80,6 +84,8 @@ mod imp {
                         record_ani.set_value_from(record_from);
                         record_ani.set_value_to(1.0);
                         record_ani.play();
+
+                        widget.set_tooltip_text(Some(&gettext("Stop Recording")));
                     }
                 }
 
@@ -115,7 +121,9 @@ mod imp {
 
             widget.add_css_class("shutterbutton");
             widget.add_css_class("flat");
-            widget.set_tooltip_text(Some(&gettext("Shutter Button")));
+
+            // Set a fallback tooltip
+            widget.set_tooltip_text(Some(&gettext("Take Picture")));
 
             // Initialize animations.
             let press_target =
