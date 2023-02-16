@@ -66,15 +66,15 @@ mod imp {
                             }
                         },
                         Action::PictureSaved(path) => {
-                            let file = path.map(|path| gio::File::for_path(path));
+                            let file = path.map(gio::File::for_path);
                             obj.emit_picture_stored(file.as_ref());
                         },
                         Action::VideoSaved(path) => {
-                            let file = path.map(|path| gio::File::for_path(path));
+                            let file = path.map(gio::File::for_path);
                             obj.emit_video_stored(file.as_ref());
                         },
                     }
-                    return glib::Continue(true);
+                    glib::Continue(true)
                 }),
             );
 

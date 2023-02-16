@@ -67,7 +67,7 @@ mod imp {
 
             let provider = crate::DeviceProvider::new();
             provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
-                obj.update_cameras(&provider);
+                obj.update_cameras(provider);
             }));
             obj.update_cameras(&provider);
 

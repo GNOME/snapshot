@@ -336,7 +336,7 @@ impl Gallery {
                 self.add_item_inner(file, false, *is_picture);
             });
 
-            let item = self.add_item_inner(&last, true, *is_picture);
+            let item = self.add_item_inner(last, true, *is_picture);
             self.emit_item_added(&item);
         }
 

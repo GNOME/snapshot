@@ -218,12 +218,12 @@ impl Window {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutWindow::builder()
-            .application_name(&gettext("Snapshot"))
+            .application_name(gettext("Snapshot"))
             .application_icon(APP_ID)
             .license_type(gtk::License::Gpl30)
             .issue_url("https://gitlab.gnome.org/msandova/snapshot/-/issues/new")
             .version(VERSION)
-            .translator_credits(&gettext("translator-credits"))
+            .translator_credits(gettext("translator-credits"))
             .developer_name("Maximiliano Sandoval")
             .developers(vec!["Maximiliano Sandoval"])
             .designers(vec!["Tobias Bernard"])
