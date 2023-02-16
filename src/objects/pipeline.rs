@@ -3,11 +3,11 @@
 // Fancy Camera with QR code detection using ZBar
 //
 // Pipeline:
-//                                     queue -- videoconvert -- zbar -- fakesink
-//                                  /
-//     pipewiresrc -- videoflip x2  -- tee  -- queue2 -- gtkpaintablesink
-//                                  \
-//                                     queue3 -- fakesink2
+//                                                                       queue -- gldownload -- videoconvert -- zbar -- fakesink
+//                                                                    /
+//  pipewiresrc -- gl{upload,colorconvert} -- glvideoflip x2  -- tee  -- queue2 -- gtkpaintablesink
+//                                                                    \
+//                                                                       queue3 -- gldownload2 -- fakesink2
 //
 use std::path::PathBuf;
 
@@ -59,23 +59,88 @@ mod imp {
             let pipeline = self.obj();
             pipeline.set_message_forward(true);
 
-            let videoflip = gst::ElementFactory::make("videoflip")
-                .property_from_str("video-direction", "auto")
+            let paintablesink = gst::ElementFactory::make("gtk4paintablesink")
                 .build()
                 .unwrap();
-            let videoflip2 = gst::ElementFactory::make("videoflip").build().unwrap();
+            let paintable = paintablesink.property::<gdk::Paintable>("paintable");
+            let supports_gl = paintable
+                .property::<Option<gdk::GLContext>>("gl-context")
+                .is_some();
+
+            // Contains eirther:
+            //
+            // glupload -- colorconvert -- glvideoflip -- glvideoflip
+            // videoflip -- videoflip
+            //
+            // depending on gl support
+            let entrybin = gst::Bin::default();
+            let (start, videoflip2) = if supports_gl {
+                let glupload = gst::ElementFactory::make("glupload").build().unwrap();
+                let glcolorconvert = gst::ElementFactory::make("glcolorconvert").build().unwrap();
+                let videoflip = gst::ElementFactory::make("glvideoflip")
+                    .property_from_str("video-direction", "auto")
+                    .build()
+                    .unwrap();
+                let videoflip2 = gst::ElementFactory::make("glvideoflip").build().unwrap();
+                entrybin
+                    .add_many(&[&glupload, &glcolorconvert, &videoflip, &videoflip2])
+                    .unwrap();
+                gst::Element::link_many(&[&glupload, &glcolorconvert, &videoflip, &videoflip2])
+                    .unwrap();
+
+                (glupload, videoflip2)
+            } else {
+                let videoflip = gst::ElementFactory::make("videoflip")
+                    .property_from_str("video-direction", "auto")
+                    .build()
+                    .unwrap();
+                let videoflip2 = gst::ElementFactory::make("videoflip").build().unwrap();
+                entrybin.add_many(&[&videoflip, &videoflip2]).unwrap();
+                gst::Element::link_many(&[&videoflip, &videoflip2]).unwrap();
+
+                (videoflip, videoflip2)
+            };
+
+            entrybin
+                .add_pad(
+                    &gst::GhostPad::with_target(Some("sink"), &start.static_pad("sink").unwrap())
+                        .unwrap(),
+                )
+                .unwrap();
+            entrybin
+                .add_pad(
+                    &gst::GhostPad::with_target(
+                        Some("src"),
+                        &videoflip2.static_pad("src").unwrap(),
+                    )
+                    .unwrap(),
+                )
+                .unwrap();
+
             let tee = gst::ElementFactory::make("tee").build().unwrap();
 
             let queue = gst::ElementFactory::make("queue").build().unwrap();
             let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
-            let zbar = gst::ElementFactory::make("zbar").build().unwrap();
+            let zbar = gst::ElementFactory::make("zbar")
+                .property("attach-frame", false)
+                .build()
+                .unwrap();
             let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
 
             let zbarbin = gst::Bin::default();
-            zbarbin
-                .add_many(&[&queue, &videoconvert, &zbar, &fakesink])
-                .unwrap();
-            gst::Element::link_many(&[&queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            if supports_gl {
+                let gldownload = gst::ElementFactory::make("gldownload").build().unwrap();
+                zbarbin
+                    .add_many(&[&queue, &gldownload, &videoconvert, &zbar, &fakesink])
+                    .unwrap();
+                gst::Element::link_many(&[&queue, &gldownload, &videoconvert, &zbar, &fakesink])
+                    .unwrap();
+            } else {
+                zbarbin
+                    .add_many(&[&queue, &videoconvert, &zbar, &fakesink])
+                    .unwrap();
+                gst::Element::link_many(&[&queue, &videoconvert, &zbar, &fakesink]).unwrap();
+            }
             zbarbin
                 .add_pad(
                     &gst::GhostPad::with_target(Some("sink"), &queue.static_pad("sink").unwrap())
@@ -88,18 +153,10 @@ mod imp {
             let queue3 = gst::ElementFactory::make("queue").build().unwrap();
             let fakesink2 = gst::ElementFactory::make("fakesink").build().unwrap();
 
-            let paintablesink = gst::ElementFactory::make("gtk4paintablesink")
-                .build()
-                .unwrap();
-            let paintable = paintablesink.property::<gdk::Paintable>("paintable");
-
             // create the appropriate sink depending on the environment we are running
             // Check if the paintablesink initialized a gl-context, and if so put it
             // behind a glsinkbin so we keep the buffers on the gpu.
-            let sink = if paintable
-                .property::<Option<gdk::GLContext>>("gl-context")
-                .is_some()
-            {
+            let sink = if supports_gl {
                 gst::ElementFactory::make("glsinkbin")
                     .property("sink", &paintablesink)
                     .build()
@@ -123,8 +180,7 @@ mod imp {
 
             pipeline
                 .add_many(&[
-                    &videoflip,
-                    &videoflip2,
+                    entrybin.upcast_ref(),
                     &tee,
                     zbarbin.upcast_ref(),
                     &queue2,
@@ -134,7 +190,7 @@ mod imp {
                 ])
                 .unwrap();
 
-            gst::Element::link_many(&[&videoflip, &videoflip2, &tee]).unwrap();
+            gst::Element::link_many(&[entrybin.upcast_ref(), &tee]).unwrap();
 
             tee.link_pads(None, &zbarbin, None).unwrap();
 
@@ -144,7 +200,13 @@ mod imp {
 
             tee.link_pads(None, &queue3, None).unwrap();
 
-            gst::Element::link_many(&[&queue3, &fakesink2]).unwrap();
+            if supports_gl {
+                let gldownload2 = gst::ElementFactory::make("gldownload").build().unwrap();
+                pipeline.add(&gldownload2).unwrap();
+                gst::Element::link_many(&[&queue3, &gldownload2, &fakesink2]).unwrap();
+            } else {
+                gst::Element::link_many(&[&queue3, &fakesink2]).unwrap();
+            }
 
             let bus = pipeline.bus().unwrap();
             bus.add_watch_local(
@@ -242,7 +304,7 @@ mod imp {
                .expect("Failed to add bus watch");
 
             self.videoflip.set(videoflip2).unwrap();
-            self.start.set(videoflip).unwrap();
+            self.start.set(entrybin.upcast()).unwrap();
             self.paintablesink.set(paintablesink).unwrap();
             self.sink.set(fakesink2).unwrap();
             self.tee.set(tee).unwrap();
