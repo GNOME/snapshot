@@ -165,6 +165,9 @@ mod imp {
         }
 
         fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
+            let w = width as f32;
+            let h = height as f32;
+
             if let Some(image) = self.sink_paintable.get() {
                 // FIXME  Support flips in the monitor.
 
@@ -176,18 +179,15 @@ mod imp {
                     if !matches!(animation.state(), adw::AnimationState::Playing) {
                         return;
                     }
-                    let alpha = easing(animation.value());
+                    let alpha = easing(animation.value()) as f32;
 
-                    let rect = graphene::Rect::new(0.0, 0.0, width as f32, height as f32);
-                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha as f32);
+                    let rect = graphene::Rect::new(0.0, 0.0, w, h);
+                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha);
 
                     snapshot.append_color(&black, &rect);
                 }
             } else {
-                snapshot.append_color(
-                    &gdk::RGBA::BLACK,
-                    &graphene::Rect::new(0f32, 0f32, width as f32, height as f32),
-                );
+                snapshot.append_color(&gdk::RGBA::BLACK, &graphene::Rect::new(0.0, 0.0, w, h));
             }
         }
     }
