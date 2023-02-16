@@ -5,6 +5,8 @@ use gtk::{gdk, gio, glib};
 mod imp {
     use super::*;
 
+    use std::cell::{Cell, RefCell};
+
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default)]
@@ -13,6 +15,9 @@ mod imp {
         pub picture: gtk::Picture,
         pub controls: gtk::MediaControls,
         pub thumbnail: OnceCell<gdk::Texture>,
+        pub has_thumbnail: Cell<bool>,
+
+        pub signal_handler: RefCell<Option<glib::SignalHandlerId>>,
     }
 
     #[glib::object_subclass]
@@ -41,6 +46,16 @@ mod imp {
             widget.set_valign(gtk::Align::Center);
 
             widget.set_child(Some(&overlay));
+
+            let id = self.media_file.connect_invalidate_contents(
+                glib::clone!(@weak widget => move |media_file| {
+                    widget.imp().has_thumbnail.set(true);
+                    if let Some(id) = widget.imp().signal_handler.take() {
+                        media_file.disconnect(id);
+                    }
+                }),
+            );
+            self.signal_handler.replace(Some(id));
         }
     }
     impl WidgetImpl for VideoPlayer {}
@@ -65,14 +80,14 @@ impl VideoPlayer {
         if imp.thumbnail.get().is_none() {
             // We have to wait till the stream is prepared before trying to
             // snapshot it.
-            let texture = if self.stream().is_prepared() {
+            let texture = if self.imp().has_thumbnail.get() {
                 self.snapshot_thumbnail()?
             } else {
                 let (sender, receiver) =
                     futures_channel::oneshot::channel::<Option<gdk::Texture>>();
                 let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
 
-                let id = self.stream().connect_prepared_notify(
+                let id = self.stream().connect_invalidate_contents(
                     glib::clone!(@weak self as obj, @strong sender => move |_| {
                         let opt_texture = obj.snapshot_thumbnail();
 
@@ -83,10 +98,10 @@ impl VideoPlayer {
                     }),
                 );
 
-                let texture = receiver.await.unwrap()?;
+                let texture = receiver.await.unwrap();
                 self.stream().disconnect(id);
 
-                texture
+                texture?
             };
 
             self.imp().thumbnail.set(texture).unwrap();
