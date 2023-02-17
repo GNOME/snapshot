@@ -3,12 +3,12 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
-    "sdk-extensions" : [
+    "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.rust-stable",
         "org.freedesktop.Sdk.Extension.llvm14"
     ],
     "command": "snapshot",
-    "finish-args" : [
+    "finish-args": [
         "--device=dri",
         "--env=GST_PLUGIN_PATH=/app/lib/codecs/lib/gstreamer-1.0",
         "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0",
@@ -72,7 +72,8 @@
                 "--without-xshm",
                 "--without-xv"
             ],
-            "sources": [{
+            "sources": [
+                {
                     "type": "archive",
                     "url": "https://linuxtv.org/downloads/zbar/zbar-0.23.1.tar.gz",
                     "sha256": "c72b19eb63f48781ae5ff1830236f4e753f4bd6418cd781aea1cd85d625b119e"
@@ -95,21 +96,18 @@
                 "-Dgstreamer:glib-asserts=disabled",
                 "-Dgstreamer:glib-checks=disabled",
                 "-Dgstreamer:gobject-cast-checks=disabled",
-
                 "-Dgst-plugins-base:glib-asserts=disabled",
                 "-Dgst-plugins-base:glib-checks=disabled",
                 "-Dgst-plugins-base:gobject-cast-checks=disabled",
                 "-Dgst-plugins-base:ogg=enabled",
                 "-Dgst-plugins-base:theora=enabled",
                 "-Dgst-plugins-base:vorbis=enabled",
-
                 "-Dgst-plugins-good:glib-asserts=disabled",
                 "-Dgst-plugins-good:glib-checks=disabled",
                 "-Dgst-plugins-good:gobject-cast-checks=disabled",
                 "-Dgst-plugins-good:gtk3=disabled",
                 "-Dgst-plugins-good:jpeg=enabled",
                 "-Dgst-plugins-good:png=enabled",
-
                 "-Dgst-plugins-bad:assrender=disabled",
                 "-Dgst-plugins-bad:extra-checks=disabled",
                 "-Dgst-plugins-bad:glib-asserts=disabled",
@@ -127,7 +125,6 @@
                 "-Dgst-plugins-bad:winks=disabled",
                 "-Dgst-plugins-bad:winscreencap=disabled",
                 "-Dgst-plugins-bad:zbar=enabled",
-
                 "-Dbad=enabled",
                 "-Dbase=enabled",
                 "-Ddevtools=disabled",
@@ -172,13 +169,13 @@
                 {
                     "type": "file",
                     "path": "move-gst-plugins.sh"
-                 }
+                }
             ]
         },
         {
-            "name" : "pipewire",
+            "name": "pipewire",
             "buildsystem": "meson",
-            "config-opts" : [
+            "config-opts": [
                 "-Dalsa=disabled",
                 "-Dexamples=disabled",
                 "-Dgstreamer-device-provider=enabled",
@@ -195,10 +192,10 @@
             "cleanup": [
                 "/bin/*"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://gitlab.freedesktop.org/pipewire/pipewire"
+                    "type": "git",
+                    "url": "https://gitlab.freedesktop.org/pipewire/pipewire"
                 }
             ]
         },
