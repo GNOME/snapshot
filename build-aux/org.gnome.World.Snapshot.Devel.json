@@ -37,23 +37,38 @@
             "--share=network"
         ]
     },
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
     "modules": [
         {
             "name": "zbar",
             "config-opts": [
+                "--disable-doc",
+                "--disable-video",
+                "--enable-codes=qrcode",
+                "--without-dbus",
+                "--without-directshow",
+                "--without-gir",
+                "--without-graphicsmagick",
+                "--without-gtk",
+                "--without-imagemagick",
+                "--without-jpeg",
+                "--without-java",
+                "--without-npapi",
+                "--without-python",
                 "--without-qt",
                 "--without-qt5",
-                "--without-gtk",
-                "--without-xv",
-                "--without-imagemagick",
-                "--without-dbus",
-                "--disable-video",
-                "--without-java",
-                "--without-python",
-                "--with-doc=no",
-                "--disable-doc",
-                "--with-introspection=no",
-                "--enable-codes=qrcode"
+                "--without-xshm",
+                "--without-xv"
             ],
             "sources": [{
                     "type": "archive",
@@ -73,24 +88,53 @@
             "name": "gstreamer",
             "buildsystem": "meson",
             "config-opts": [
+                "-Dgstreamer:benchmarks=disabled",
+                "-Dgstreamer:extra-checks=disabled",
+                "-Dgstreamer:glib-asserts=disabled",
+                "-Dgstreamer:glib-checks=disabled",
+                "-Dgstreamer:gobject-cast-checks=disabled",
+
+                "-Dgst-plugins-base:glib-asserts=disabled",
+                "-Dgst-plugins-base:glib-checks=disabled",
+                "-Dgst-plugins-base:gobject-cast-checks=disabled",
+                "-Dgst-plugins-base:ogg=enabled",
+                "-Dgst-plugins-base:theora=enabled",
+                "-Dgst-plugins-base:vorbis=enabled",
+
+                "-Dgst-plugins-good:glib-asserts=disabled",
+                "-Dgst-plugins-good:glib-checks=disabled",
+                "-Dgst-plugins-good:gobject-cast-checks=disabled",
+                "-Dgst-plugins-good:gtk3=disabled",
+                "-Dgst-plugins-good:jpeg=enabled",
+                "-Dgst-plugins-good:png=enabled",
+
+                "-Dgst-plugins-bad:assrender=disabled",
+                "-Dgst-plugins-bad:extra-checks=disabled",
+                "-Dgst-plugins-bad:glib-asserts=disabled",
+                "-Dgst-plugins-bad:glib-checks=disabled",
+                "-Dgst-plugins-bad:gobject-cast-checks=disabled",
+                "-Dgst-plugins-bad:nvcodec=disabled",
+                "-Dgst-plugins-bad:openh264=disabled",
+                "-Dgst-plugins-bad:v4l2codecs=enabled",
+                "-Dgst-plugins-bad:va=disabled",
+                "-Dgst-plugins-bad:vulkan=disabled",
+                "-Dgst-plugins-bad:vulkan=disabled",
+                "-Dgst-plugins-bad:wasapi2=disabled",
+                "-Dgst-plugins-bad:wasapi=disabled",
+                "-Dgst-plugins-bad:webrtc=disabled",
+                "-Dgst-plugins-bad:winks=disabled",
+                "-Dgst-plugins-bad:winscreencap=disabled",
+                "-Dgst-plugins-bad:zbar=enabled",
+
                 "-Dbad=enabled",
                 "-Dbase=enabled",
                 "-Ddevtools=disabled",
                 "-Ddoc=disabled",
                 "-Dexamples=disabled",
                 "-Dges=disabled",
-                "-Dgood=disabled",
                 "-Dgood=enabled",
                 "-Dgpl=enabled",
                 "-Dgst-examples=disabled",
-                "-Dgst-plugins-base:ogg=enabled",
-                "-Dgst-plugins-base:theora=enabled",
-                "-Dgst-plugins-base:vorbis=enabled",
-                "-Dgst-plugins-bad:openh264=disabled",
-                "-Dgst-plugins-bad:vulkan=disabled",
-                "-Dgst-plugins-bad:zbar=enabled",
-                "-Dgst-plugins-good:jpeg=enabled",
-                "-Dgst-plugins-good:png=enabled",
                 "-Dgtk_doc=disabled",
                 "-Dintrospection=disabled",
                 "-Dlibav=enabled",
@@ -109,7 +153,10 @@
                     "PKG_CONFIG_PATH": "/app/lib/codecs/lib/pkgconfig/:/app/lib/pkgconfig"
                 }
             },
-            "cleanup": [ "/bin/*webrtc*", "/bin/crossfade", "/bin/tsparser", "/bin/playout", "/lib/gstreamer-1.0/include/" ],
+            "cleanup": [
+                "/bin/*",
+                "/lib/gstreamer-1.0/include/"
+            ],
             "sources": [
                 {
                     "type": "git",
@@ -130,10 +177,14 @@
                 "-Dman=disabled",
                 "-Dpipewire-alsa=disabled",
                 "-Dpw-cat=disabled",
+                "-Dsession-managers=[]",
                 "-Dsystemd-user-service=disabled",
                 "-Dsystemd=disabled",
                 "-Dtests=disabled",
                 "-Dudev=disabled"
+            ],
+            "cleanup": [
+                "/bin/*"
             ],
             "sources" : [
                 {

@@ -64,7 +64,7 @@ test (
     cargo_env,
     'PATH=/app/bin:/usr/bin:/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm14/bin',
   ],
-  timeout: 300, # cargo might take a bit of time sometimes
+  timeout: 400, # cargo might take a bit of time sometimes
 )
 
 test (
@@ -74,7 +74,7 @@ test (
     'test',
     cargo_options,
   ],
-  timeout: 300, # cargo might take a bit of time sometimes
+  timeout: 400, # cargo might take a bit of time sometimes
   env: [
     cargo_env,
     'PATH=/app/bin:/usr/bin:/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm14/bin',
