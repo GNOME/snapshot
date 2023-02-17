@@ -10,6 +10,8 @@
     "command": "snapshot",
     "finish-args" : [
         "--device=dri",
+        "--env=GST_PLUGIN_PATH=/app/lib/codecs/lib/gstreamer-1.0",
+        "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0",
         "--env=G_MESSAGES_DEBUG=none",
         "--env=RUST_BACKTRACE=1",
         "--env=RUST_LOG=snapshot=debug",
@@ -157,13 +159,20 @@
                 "/bin/*",
                 "/lib/gstreamer-1.0/include/"
             ],
+            "post-install": [
+                "sh ${FLATPAK_BUILDER_BUILDDIR}/move-gst-plugins.sh"
+            ],
             "sources": [
                 {
                     "type": "git",
                     "disable-submodules": true,
                     "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
                     "tag": "1.22.0"
-                }
+                },
+                {
+                    "type": "file",
+                    "path": "move-gst-plugins.sh"
+                 }
             ]
         },
         {
