@@ -225,7 +225,10 @@ impl Window {
             .version(VERSION)
             .translator_credits(gettext("translator-credits"))
             .developer_name("Maximiliano Sandoval")
-            .developers(vec!["Maximiliano Sandoval"])
+            .developers(vec![
+                "Maximiliano Sandoval",
+                "Jamie Murphy <jmurphy@gnome.org>",
+            ])
             .designers(vec!["Tobias Bernard"])
             .transient_for(self)
             .modal(true)
