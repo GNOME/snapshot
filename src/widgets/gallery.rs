@@ -319,8 +319,8 @@ impl Gallery {
     }
 
     async fn load_items(&self) -> anyhow::Result<()> {
-        let pictures_dir = crate::utils::pictures_dir();
-        let videos_dir = crate::utils::videos_dir();
+        let pictures_dir = crate::utils::pictures_dir()?;
+        let videos_dir = crate::utils::videos_dir()?;
 
         let mut pictures = self.load_items_in(&pictures_dir, true).await?;
         log::debug!("Done loading {} pictures", pictures.len());

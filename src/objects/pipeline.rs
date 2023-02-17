@@ -369,7 +369,7 @@ impl Pipeline {
 
         // Create the filename and open the file writable
         let filename = utils::picture_file_name(picture_format);
-        let path = utils::pictures_dir().join(&filename);
+        let path = utils::pictures_dir()?.join(&filename);
 
         // Then convert it from whatever format we got to PNG or JPEG as requested and write it out
         log::debug!("Writing snapshot to {}", path.display());
@@ -448,7 +448,7 @@ impl Pipeline {
             .expect("Recording bin has no sink element");
 
         let filename = utils::video_file_name(format);
-        let path = utils::videos_dir().join(filename);
+        let path = utils::videos_dir()?.join(filename);
 
         // All strings in GStreamer are UTF8, we need to convert the path to UTF8 which in theory
         // can fail

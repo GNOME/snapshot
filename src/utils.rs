@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::path::PathBuf;
 
+use anyhow::Context;
 use gtk::glib;
 
 pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
@@ -41,28 +42,26 @@ pub fn video_file_name(video_format: crate::VideoFormat) -> String {
 
 // TODO These should return a result so we stop the file saving process
 // if we fail.
-pub fn videos_dir() -> PathBuf {
+pub fn videos_dir() -> anyhow::Result<PathBuf> {
     let path = glib::user_special_dir(glib::UserDirectory::Videos)
-        .unwrap()
+        .context("Could not find XDG_VIDEOS_DIR")?
         // TODO Should this be translated? It is not expected that if the
         // user switches locales, videos now go to another folder.
         .join("Snapshot");
 
-    std::fs::create_dir_all(&path)
-        .unwrap_or_else(|err| log::debug!("Could not create videos directory: {err}"));
+    std::fs::create_dir_all(&path)?;
 
-    path
+    Ok(path)
 }
 
-pub fn pictures_dir() -> PathBuf {
+pub fn pictures_dir() -> anyhow::Result<PathBuf> {
     let path = glib::user_special_dir(glib::UserDirectory::Pictures)
-        .unwrap()
+        .context("Could not find XDG_PICTURES_DIR")?
         // TODO Should this be translated? It is not expected that if the
         // user switches locales, videos now go to another folder.
         .join("Snapshot");
 
-    std::fs::create_dir_all(&path)
-        .unwrap_or_else(|err| log::debug!("Could not create pictures directory: {err}"));
+    std::fs::create_dir_all(&path)?;
 
-    path
+    Ok(path)
 }
