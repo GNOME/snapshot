@@ -437,7 +437,7 @@ impl Pipeline {
             // TODO For audio, the following works on the cli:
             // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
             // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
-            crate::VideoFormat::TheoraOgg => "videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
+            crate::VideoFormat::TheoraOgg => " queue ! gldownload ! videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
         };
 
         let bin = gst::parse_bin_from_description(bin_description, true)?;
