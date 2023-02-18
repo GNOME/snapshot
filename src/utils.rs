@@ -47,7 +47,7 @@ pub fn videos_dir() -> anyhow::Result<PathBuf> {
         .context("Could not find XDG_VIDEOS_DIR")?
         // TODO Should this be translated? It is not expected that if the
         // user switches locales, videos now go to another folder.
-        .join("Snapshot");
+        .join("Camera");
 
     std::fs::create_dir_all(&path)?;
 
@@ -59,7 +59,7 @@ pub fn pictures_dir() -> anyhow::Result<PathBuf> {
         .context("Could not find XDG_PICTURES_DIR")?
         // TODO Should this be translated? It is not expected that if the
         // user switches locales, videos now go to another folder.
-        .join("Snapshot");
+        .join("Camera");
 
     std::fs::create_dir_all(&path)?;
 
