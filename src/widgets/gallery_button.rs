@@ -8,12 +8,14 @@ const BORDER_WIDTH: f32 = 2.0;
 mod imp {
     use super::*;
 
+    use glib::WeakRef;
     use once_cell::sync::OnceCell;
+
     use std::cell::RefCell;
 
     #[derive(Debug, Default)]
     pub struct GalleryButton {
-        pub gallery: RefCell<crate::Gallery>,
+        pub gallery: RefCell<Option<WeakRef<crate::Gallery>>>,
 
         pub size_ani: OnceCell<adw::TimedAnimation>,
     }
@@ -54,7 +56,9 @@ mod imp {
             let value = widget.animation().value() as f32;
             let foreground_radius = value * size;
 
-            let images = self.gallery.borrow().images();
+            let binding = self.gallery.borrow();
+            let Some(gallery) = binding.as_ref().and_then(WeakRef::upgrade) else { return; };
+            let images = gallery.images();
             let Some(foreground) = images.first().and_then(|x| x.thumbnail()) else { return; };
 
             // We draw the border at full size if we already had a previous
@@ -141,11 +145,11 @@ impl GalleryButton {
         snapshot.append_border(&rounded, &[BORDER_WIDTH; 4], &[color; 4]);
     }
 
-    pub fn set_gallery(&self, gallery: crate::Gallery) {
+    pub fn set_gallery(&self, gallery: &crate::Gallery) {
         gallery.connect_item_added(glib::clone!(@weak self as widget => move |_, _| {
             widget.animation().play();
         }));
-        *self.imp().gallery.borrow_mut() = gallery;
+        self.imp().gallery.replace(Some(gallery.downgrade()));
     }
 
     fn animation(&self) -> &adw::TimedAnimation {

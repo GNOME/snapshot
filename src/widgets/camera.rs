@@ -275,7 +275,7 @@ impl Camera {
                     );
                 }
             }));
-        imp.gallery_button.set_gallery(gallery);
+        imp.gallery_button.set_gallery(&gallery);
     }
 
     fn update_cameras(&self, provider: &crate::DeviceProvider) {
