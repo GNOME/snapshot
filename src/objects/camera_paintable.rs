@@ -1,13 +1,4 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-//
-// Fancy Camera with QR code detection using ZBar
-//
-// Pipeline:
-//                            queue -- videoconvert -- zbar -- fakesink
-//                         /
-//     pipewiresrc -- tee  -- queue2 -- gtkpaintablesink
-//                         \
-//                            queue3 -- fakesink2
 use adw::prelude::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
