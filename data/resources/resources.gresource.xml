@@ -12,6 +12,6 @@
   <gresource prefix="/org/gnome/World/Snapshot/icons/16x16/actions/">
     <file alias="video-camera-symbolic.svg">icons/video-camera-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="stopwatch-symbolic.svg">icons/stopwatch-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" alias="loupe-symbolic.svg">icons/loupe-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias ="external-link-symbolic.svg">icons/external-link-symbolic.svg</file>
   </gresource>
 </gresources>
