@@ -36,6 +36,56 @@
         <child>
           <object class="GtkOverlay">
             <child type="overlay">
+              <object class="GtkBox">
+                <property name="halign">fill</property>
+                <property name="valign">start</property>
+                <property name="spacing">6</property>
+                <style>
+                  <class name="gallerycontrols"/>
+                </style>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">go-previous-symbolic</property>
+                    <property name="action-name">win.toggle-gallery</property>
+                    <property name="tooltip-text" translatable="yes">Go Back</property>
+                    <property name="halign">start</property>
+                    <property name="hexpand">True</property>
+                    <style>
+                      <class name="flat"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu</property>
+                    <property name="tooltip-text" translatable="yes">Main Menu</property>
+                    <style>
+                      <class name="flat"/>
+                      <class name="circular"/>
+                    </style>
+                    <child>
+                      <object class="GtkShortcutController">
+                        <property name="scope">managed</property>
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">F10</property>
+                            <property name="action">activate</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkWindowControls">
+                    <property name="decoration-layout">close</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="overlay">
               <object class="GtkButton">
                 <property name="halign">start</property>
                 <property name="valign">end</property>
@@ -82,66 +132,6 @@
                       <class name="osd"/>
                       <class name="circular"/>
                     </style>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkButton">
-                <property name="valign">start</property>
-                <property name="halign">start</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <property name="margin-bottom">24</property>
-                <property name="margin-top">24</property>
-                <property name="icon-name">go-previous-symbolic</property>
-                <property name="action-name">win.toggle-gallery</property>
-                <property name="tooltip-text" translatable="yes">Go Back</property>
-                <style>
-                  <class name="osd"/>
-                  <class name="circular"/>
-                </style>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkBox">
-                <property name="valign">start</property>
-                <property name="halign">end</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <property name="margin-bottom">12</property>
-                <property name="margin-top">12</property>
-                <property name="spacing">12</property>
-                <style>
-                  <class name="osd"/>
-                  <class name="toolbar"/>
-                </style>
-                <child>
-                  <object class="GtkMenuButton">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="menu-model">primary_menu</property>
-                    <property name="valign">center</property>
-                    <property name="tooltip-text" translatable="yes">Main Menu</property>
-                    <style>
-                      <class name="circular"/>
-                    </style>
-                    <child>
-                      <object class="GtkShortcutController">
-                        <property name="scope">managed</property>
-                        <child>
-                          <object class="GtkShortcut">
-                            <property name="trigger">F10</property>
-                            <property name="action">activate</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkWindowControls">
-                    <property name="decoration-layout">close</property>
-                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>

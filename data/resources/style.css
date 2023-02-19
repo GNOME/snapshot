@@ -18,7 +18,8 @@
   min-width: 44px;
 }
 
-.shutterbutton:hover, .gallerybutton:hover {
+.shutterbutton:hover,
+.gallerybutton:hover {
   color: alpha(currentColor, .85);
 }
 
@@ -35,7 +36,8 @@ gallery {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.cameracontrols {
+.cameracontrols,
+.gallerycontrols {
   background: rgba(0, 0, 0, 0.45);
   padding: 12px;
 }
