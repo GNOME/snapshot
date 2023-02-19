@@ -8,6 +8,8 @@ use gtk::{prelude::*, CompositeTemplate};
 
 use crate::{CameraRow, Device};
 
+const PROVIDER_TIMEOUT: u64 = 2;
+
 mod imp {
     use super::*;
 
@@ -198,7 +200,7 @@ impl Camera {
         );
 
         // FIXME This is super arbitrary
-        let duration = std::time::Duration::from_secs(1);
+        let duration = std::time::Duration::from_secs(PROVIDER_TIMEOUT);
         glib::timeout_add_local_once(
             duration,
             glib::clone!(@weak self as obj => move || {
