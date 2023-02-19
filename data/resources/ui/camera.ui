@@ -71,18 +71,119 @@
                 <child>
                   <object class="GtkOverlay">
                     <child type="overlay">
-                      <object class="GtkCenterBox">
-                        <property name="valign">start</property>
-                        <property name="halign">fill</property>
+                      <object class="GtkCenterBox" id="sidebar_vertical_start">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">start</property>
+                        <property name="visible">False</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
                         <child type="start">
-                          <object class="GtkMenuButton" id="countdown_button">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="hexpand">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="decoration-layout">close</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">primary_menu</property>
+                                <property name="valign">center</property>
+                                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                                <property name="primary">True</property>
+                                <style>
+                                  <class name="circular" />
+                                  <class name="flat" />
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="center">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="linked" />
+                              <class name="picturevideotoggle" />
+                            </style>
+                            <child>
+                              <object class="GtkToggleButton">
+                                <property name="icon-name">camera-photo-symbolic</property>
+                                <property name="action-name">win.capture-mode</property>
+                                <property name="action-target">'picture'</property>
+                                <property name="tooltip-text" translatable="yes">Picture Mode</property>
+                                <child>
+                                  <object class="GtkShortcutController">
+                                    <child>
+                                      <object class="GtkShortcut">
+                                        <property name="trigger">p</property>
+                                        <property name="action">activate</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton">
+                                <property name="icon-name">camera-web-symbolic</property>
+                                <property name="action-name">win.capture-mode</property>
+                                <property name="action-target">'video'</property>
+                                <property name="tooltip-text" translatable="yes">Recording Mode</property>
+                                <child>
+                                  <object class="GtkShortcutController">
+                                    <child>
+                                      <object class="GtkShortcut">
+                                        <property name="trigger">r</property>
+                                        <property name="action">activate</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkMenuButton">
                             <property name="menu-model">countdown_menu</property>
                             <property name="icon-name">camera-timer-symbolic</property>
                             <property name="valign">center</property>
+                            <property name="halign">center</property>
+                            <property name="tooltip-text" translatable="yes">Countdown</property>
+                            <style>
+                              <class name="circular"/>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="overlay">
+                      <object class="GtkCenterBox" id="sidebar_horizontal_start">
+                        <property name="orientation">horizontal</property>
+                        <property name="valign">start</property>
+                        <property name="visible">False</property>
+                        <style>
+                          <class name="cameracontrols"/>
+                          <class name="controlsframe"/>
+                        </style>
+                        <child type="start">
+                          <object class="GtkMenuButton">
+                            <property name="menu-model">countdown_menu</property>
+                            <property name="icon-name">camera-timer-symbolic</property>
+                            <property name="valign">center</property>
+                            <property name="halign">center</property>
                             <property name="tooltip-text" translatable="yes">Countdown</property>
                             <style>
                               <class name="circular"/>
@@ -92,8 +193,8 @@
                         </child>
                         <child type="center">
                           <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
                             <property name="halign">center</property>
-                            <property name="hexpand">True</property>
                             <property name="valign">center</property>
                             <style>
                               <class name="linked"/>
@@ -139,12 +240,13 @@
                         </child>
                         <child type="end">
                           <object class="GtkBox">
-                            <property name="halign">center</property>
+                            <property name="orientation">horizontal</property>
                             <property name="hexpand">True</property>
+                            <property name="halign">end</property>
                             <property name="valign">center</property>
                             <property name="spacing">6</property>
                             <child>
-                              <object class="GtkMenuButton" id="appmenu_button">
+                              <object class="GtkMenuButton">
                                 <property name="icon-name">open-menu-symbolic</property>
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
@@ -167,17 +269,179 @@
                       </object>
                     </child>
                     <child type="overlay">
-                      <object class="AdwBin">
+                      <object class="GtkCenterBox" id="sidebar_horizontal_end">
+                        <property name="orientation">horizontal</property>
                         <property name="valign">end</property>
-                        <property name="halign">fill</property>
+                        <property name="visible">False</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
-                        <child>
+                        <child type="end">
                           <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
+                            <property name="hexpand">True</property>
+                            <property name="halign">end</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <style>
+                                  <class name="linked" />
+                                  <class name="picturevideotoggle" />
+                                </style>
+                                <child>
+                                  <object class="GtkToggleButton">
+                                    <property name="icon-name">camera-photo-symbolic</property>
+                                    <property name="action-name">win.capture-mode</property>
+                                    <property name="action-target">'picture'</property>
+                                    <property name="tooltip-text" translatable="yes">Picture Mode</property>
+                                    <child>
+                                      <object class="GtkShortcutController">
+                                        <child>
+                                          <object class="GtkShortcut">
+                                            <property name="trigger">p</property>
+                                            <property name="action">activate</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton">
+                                    <property name="icon-name">camera-web-symbolic</property>
+                                    <property name="action-name">win.capture-mode</property>
+                                    <property name="action-target">'video'</property>
+                                    <property name="tooltip-text" translatable="yes">Recording Mode</property>
+                                    <child>
+                                      <object class="GtkShortcutController">
+                                        <child>
+                                          <object class="GtkShortcut">
+                                            <property name="trigger">r</property>
+                                            <property name="action">activate</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">primary_menu</property>
+                                <property name="valign">center</property>
+                                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                                <property name="primary">true</property>
+                                <style>
+                                  <class name="circular" />
+                                  <class name="flat" />
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="decoration-layout">close</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="overlay">
+                      <object class="GtkCenterBox" id="sidebar_vertical_end">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">end</property>
+                        <style>
+                          <class name="cameracontrols"/>
+                          <class name="controlsframe"/>
+                        </style>
+                        <child type="start">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
                             <property name="halign">center</property>
-                            <property name="spacing">36</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="decoration-layout">close</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">primary_menu</property>
+                                <property name="valign">center</property>
+                                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                                <property name="primary">True</property>
+                                <style>
+                                  <class name="circular" />
+                                  <class name="flat" />
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <style>
+                                  <class name="linked" />
+                                  <class name="picturevideotoggle" />
+                                </style>
+                                <child>
+                                  <object class="GtkToggleButton">
+                                    <property name="icon-name">camera-photo-symbolic</property>
+                                    <property name="action-name">win.capture-mode</property>
+                                    <property name="action-target">'picture'</property>
+                                    <property name="tooltip-text" translatable="yes">Picture Mode</property>
+                                    <child>
+                                      <object class="GtkShortcutController">
+                                        <child>
+                                          <object class="GtkShortcut">
+                                            <property name="trigger">p</property>
+                                            <property name="action">activate</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton">
+                                    <property name="icon-name">camera-web-symbolic</property>
+                                    <property name="action-name">win.capture-mode</property>
+                                    <property name="action-target">'video'</property>
+                                    <property name="tooltip-text" translatable="yes">Recording Mode</property>
+                                    <child>
+                                      <object class="GtkShortcutController">
+                                        <child>
+                                          <object class="GtkShortcut">
+                                            <property name="trigger">r</property>
+                                            <property name="action">activate</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="center">
+                          <object class="GtkBox" id="camera_controls">
+                            <property name="orientation">vertical</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">24</property>
                             <child>
                               <object class="GalleryButton" id="gallery_button">
                                 <property name="valign">center</property>
@@ -198,6 +462,7 @@
                                     <style>
                                       <class name="camerabutton"/>
                                     </style>
+                                    <property name="halign">center</property>
                                     <property name="valign">center</property>
                                     <property name="icon-name">pick-camera-alt2-symbolic</property>
                                     <property name="tooltip-text" translatable="yes">Select Camera</property>
@@ -212,6 +477,7 @@
                                       <class name="camerabutton"/>
                                     </style>
                                     <property name="valign">center</property>
+                                    <property name="halign">center</property>
                                     <property name="icon-name">cameras-symbolic</property>
                                     <!-- FIXME Use Switch Camera after string freeze -->
                                     <property name="tooltip-text" translatable="yes">Select Camera</property>
@@ -231,6 +497,19 @@
                                 </child>
                               </object>
                             </child>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkMenuButton" id="countdown_button">
+                            <property name="menu-model">countdown_menu</property>
+                            <property name="icon-name">camera-timer-symbolic</property>
+                            <property name="valign">center</property>
+                            <property name="halign">center</property>
+                            <property name="tooltip-text" translatable="yes">Countdown</property>
+                            <style>
+                              <class name="circular" />
+                              <class name="flat" />
+                            </style>
                           </object>
                         </child>
                       </object>

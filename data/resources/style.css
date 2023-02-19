@@ -61,7 +61,16 @@ button.gallerycontrols:backdrop {
   transition: 200ms ease-out;
 }
 
-.picturevideotoggle > button > image {
+.horizontal.picturevideotoggle {
+  padding-left: 24px;
+}
+
+.horizontal.picturevideotoggle > button > image {
   padding-left: 18px;
   padding-right: 18px;
+}
+
+.vertical.picturevideotoggle > button > image {
+  padding-top: 9px;
+  padding-bottom: 9px;
 }

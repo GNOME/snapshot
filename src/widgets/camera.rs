@@ -13,10 +13,12 @@ const PROVIDER_TIMEOUT: u64 = 2;
 mod imp {
     use super::*;
 
+    use gtk::glib::Properties;
     use once_cell::unsync::OnceCell;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::Camera)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
     pub struct Camera {
         pub stream_list: RefCell<gio::ListStore>,
@@ -24,6 +26,9 @@ mod imp {
         pub provider: OnceCell<aperture::DeviceProvider>,
         pub players: RefCell<Option<gtk::MediaFile>>,
         settings: OnceCell<gio::Settings>,
+
+        #[property(get, set = Self::set_breakpoint, explicit_notify, builder(crate::Breakpoint::default()))]
+        pub breakpoint: Cell<crate::Breakpoint>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
@@ -43,6 +48,20 @@ mod imp {
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
         pub shutter_button: TemplateChild<crate::ShutterButton>,
+
+        #[template_child]
+        pub camera_controls: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub countdown_button: TemplateChild<gtk::MenuButton>,
+
+        #[template_child]
+        pub sidebar_horizontal_start: TemplateChild<gtk::CenterBox>,
+        #[template_child]
+        pub sidebar_horizontal_end: TemplateChild<gtk::CenterBox>,
+        #[template_child]
+        pub sidebar_vertical_start: TemplateChild<gtk::CenterBox>,
+        #[template_child]
+        pub sidebar_vertical_end: TemplateChild<gtk::CenterBox>,
     }
 
     #[glib::object_subclass]
@@ -67,6 +86,85 @@ mod imp {
         pub fn settings(&self) -> &gio::Settings {
             self.settings
                 .get_or_init(|| gio::Settings::new(config::APP_ID))
+        }
+
+        fn set_breakpoint(&self, value: crate::Breakpoint) {
+            if value == self.breakpoint.replace(value) {
+                return;
+            }
+
+            self.sidebar_horizontal_start.set_visible(false);
+            self.sidebar_vertical_start.set_visible(false);
+
+            self.sidebar_horizontal_end.set_visible(false);
+            self.sidebar_horizontal_end
+                .set_start_widget(gtk::Widget::NONE);
+            self.sidebar_horizontal_end
+                .set_center_widget(gtk::Widget::NONE);
+
+            self.sidebar_vertical_end.set_visible(false);
+            self.sidebar_vertical_end
+                .set_center_widget(gtk::Widget::NONE);
+            self.sidebar_vertical_end.set_end_widget(gtk::Widget::NONE);
+
+            match value {
+                crate::Breakpoint::SingleVertical => {
+                    self.camera_controls
+                        .set_orientation(gtk::Orientation::Vertical);
+
+                    self.sidebar_vertical_end.set_visible(true);
+                    self.sidebar_vertical_end
+                        .start_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(true));
+                    self.sidebar_vertical_end
+                        .set_center_widget(Some(&self.camera_controls.get()));
+                    self.sidebar_vertical_end
+                        .set_end_widget(Some(&self.countdown_button.get()));
+                }
+                crate::Breakpoint::DualVertical => {
+                    self.camera_controls
+                        .set_orientation(gtk::Orientation::Vertical);
+
+                    self.sidebar_vertical_start.set_visible(true);
+                    self.sidebar_vertical_end.set_visible(true);
+                    self.sidebar_vertical_end
+                        .start_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(false));
+                    self.sidebar_vertical_end
+                        .set_center_widget(Some(&self.camera_controls.get()));
+                }
+                crate::Breakpoint::SingleHorizontal => {
+                    self.camera_controls
+                        .set_orientation(gtk::Orientation::Horizontal);
+
+                    self.sidebar_horizontal_end.set_visible(true);
+                    self.sidebar_horizontal_end
+                        .set_start_widget(Some(&self.countdown_button.get()));
+                    self.sidebar_horizontal_end
+                        .set_center_widget(Some(&self.camera_controls.get()));
+                    self.sidebar_horizontal_end
+                        .end_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(true));
+                }
+                crate::Breakpoint::DualHorizontal => {
+                    self.camera_controls
+                        .set_orientation(gtk::Orientation::Horizontal);
+
+                    self.sidebar_horizontal_start.set_visible(true);
+                    self.sidebar_horizontal_end.set_visible(true);
+                    self.sidebar_horizontal_end
+                        .set_center_widget(Some(&self.camera_controls.get()));
+                    self.sidebar_horizontal_end
+                        .end_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(false));
+                }
+            }
+
+            self.obj().notify_breakpoint();
         }
 
         #[template_callback]
@@ -153,6 +251,18 @@ mod imp {
 
         fn dispose(&self) {
             self.dispose_template();
+        }
+
+        fn properties() -> &'static [glib::ParamSpec] {
+            Self::derived_properties()
+        }
+
+        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+            Self::derived_property(self, id, pspec)
+        }
+
+        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+            Self::derived_set_property(self, id, value, pspec)
         }
     }
 
