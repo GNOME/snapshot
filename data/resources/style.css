@@ -1,4 +1,5 @@
-.shutterbutton, .gallerybutton {
+.shutterbutton,
+.gallerybutton {
   color: white;
   background-color: transparent;
   border-radius: 999px;
@@ -11,7 +12,8 @@
   min-width: 64px;
 }
 
-.gallerybutton, .camerabutton {
+.gallerybutton,
+.camerabutton {
   min-height: 44px;
   min-width: 44px;
 }
@@ -26,11 +28,13 @@
   margin-right: 11px;
 }
 
-.shutterbutton:hover, .gallerybutton:hover {
+.shutterbutton:hover,
+.gallerybutton:hover {
   color: alpha(currentColor, .85);
 }
 
-.shutterbutton:active, .gallerybutton:active {
+.shutterbutton:active,
+.gallerybutton:active {
   color: alpha(currentColor, .97);
 }
 
@@ -39,5 +43,5 @@ gallery {
 }
 
 .videoplayercontrols {
-  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
 }
