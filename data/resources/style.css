@@ -18,18 +18,7 @@
   min-width: 44px;
 }
 
-/* This is (64px - 44px) / 2, to have the samme margins on all sides */
-.gallerybutton {
-  margin-left: 11px;
-}
-
-/* This is (64px - 44px) / 2, to have the samme margins on all sides */
-.camerabutton {
-  margin-right: 11px;
-}
-
-.shutterbutton:hover,
-.gallerybutton:hover {
+.shutterbutton:hover, .gallerybutton:hover {
   color: alpha(currentColor, .85);
 }
 
