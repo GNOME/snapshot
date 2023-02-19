@@ -61,6 +61,9 @@ mod imp {
             let images = gallery.images();
             let Some(foreground) = images.first().and_then(|x| x.thumbnail()) else { return; };
 
+            let alpha = widget.color().alpha() as f64;
+            snapshot.push_opacity(alpha);
+
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.
             let border_radius = if let Some(background) = images.get(1).and_then(|x| x.thumbnail())
@@ -72,6 +75,8 @@ mod imp {
             };
 
             widget.draw_texture(snapshot, &foreground, width, height, foreground_radius);
+
+            snapshot.pop();
 
             widget.draw_border(snapshot, width, height, border_radius);
         }
@@ -121,13 +126,9 @@ impl GalleryButton {
         let t_y = -(t_height - height) / 2.0;
         let t_rect = graphene::Rect::new(t_x, t_y, t_width, t_height);
 
-        let alpha = self.color().alpha() as f64;
-        snapshot.push_opacity(alpha);
-
         snapshot.push_rounded_clip(&rounded);
         // FIXME Use append scaled texture.
         snapshot.append_texture(texture, &t_rect);
-        snapshot.pop();
 
         snapshot.pop();
     }
