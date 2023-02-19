@@ -53,7 +53,7 @@
               </object>
             </child>
             <child type="overlay">
-              <object class="GtkBox" id="controls_box_start">
+              <object class="GtkBox">
                 <property name="valign">end</property>
                 <property name="halign">end</property>
                 <property name="margin-start">18</property>
