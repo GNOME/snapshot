@@ -177,17 +177,30 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Dalsa=disabled",
+                "-Daudiotestsrc=disabled",
+                "-Dbluez5-codec-aptx=disabled",
+                "-Dbluez5-codec-lc3plus=disabled",
+                "-Dbluez5-codec-ldac=disabled",
+                "-Ddocs=disabled",
                 "-Dexamples=disabled",
                 "-Dgstreamer-device-provider=enabled",
                 "-Dgstreamer=enabled",
+                "-Djack=disabled",
+                "-Dlibcanberra=disabled",
+                "-Dlv2=disabled",
                 "-Dman=disabled",
                 "-Dpipewire-alsa=disabled",
                 "-Dpw-cat=disabled",
+                "-Droc=disabled",
                 "-Dsession-managers=[]",
                 "-Dsystemd-user-service=disabled",
                 "-Dsystemd=disabled",
                 "-Dtests=disabled",
-                "-Dudev=disabled"
+                "-Dudev=disabled",
+                "-Dudevrulesdir=$(pkg-config --variable=udevdir udev)/rules.d",
+                "-Dvideotestsrc=disabled",
+                "-Dvolume=disabled",
+                "-Dvulkan=disabled"
             ],
             "cleanup": [
                 "/bin/*"
