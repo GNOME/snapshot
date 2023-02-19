@@ -87,13 +87,8 @@
                       <object class="GtkCenterBox">
                         <property name="valign">start</property>
                         <property name="halign">fill</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
                         <style>
-                          <class name="osd"/>
-                          <class name="toolbar"/>
+                          <class name="cameracontrols"/>
                         </style>
                         <child type="start">
                           <object class="GtkMenuButton" id="countdown_button">
@@ -103,6 +98,7 @@
                             <property name="tooltip-text" translatable="yes">Countdown</property>
                             <style>
                               <class name="circular"/>
+                              <class name="flat"/>
                             </style>
                           </object>
                         </child>
@@ -145,6 +141,7 @@
                                 <property name="tooltip-text" translatable="yes">Main Menu</property>
                                 <style>
                                   <class name="circular"/>
+                                  <class name="flat"/>
                                 </style>
                                 <child>
                                   <object class="GtkShortcutController">
@@ -170,51 +167,51 @@
                       </object>
                     </child>
                     <child type="overlay">
-                      <object class="GtkBox">
+                      <object class="AdwBin">
                         <property name="valign">end</property>
-                        <property name="halign">center</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="spacing">36</property>
+                        <property name="halign">fill</property>
                         <style>
-                          <class name="osd"/>
-                          <class name="toolbar"/>
+                          <class name="cameracontrols"/>
                         </style>
                         <child>
-                          <object class="GalleryButton" id="gallery_button">
-                            <property name="valign">center</property>
-                            <property name="action-name">win.toggle-gallery</property>
-                            <property name="tooltip-text" translatable="yes">Open Gallery</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="ShutterButton" id="shutter_button">
-                            <property name="action-name">win.take-picture</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkStack" id="camera_menu_button_stack">
+                          <object class="GtkBox">
+                            <property name="halign">center</property>
+                            <property name="spacing">36</property>
                             <child>
-                              <object class="GtkMenuButton" id="camera_menu_button">
-                                <style>
-                                  <class name="camerabutton"/>
-                                </style>
+                              <object class="GalleryButton" id="gallery_button">
                                 <property name="valign">center</property>
-                                <property name="icon-name">video-camera-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Select Camera</property>
-                                <style>
-                                  <class name="circular"/>
-                                </style>
+                                <property name="action-name">win.toggle-gallery</property>
+                                <property name="tooltip-text" translatable="yes">Open Gallery</property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkStackPage">
-                                <property name="name">fake-widget</property>
-                                <property name="child">
-                                  <object class="AdwBin"/>
-                                </property>
+                              <object class="ShutterButton" id="shutter_button">
+                                <property name="action-name">win.take-picture</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkStack" id="camera_menu_button_stack">
+                                <child>
+                                  <object class="GtkMenuButton" id="camera_menu_button">
+                                    <style>
+                                      <class name="camerabutton"/>
+                                    </style>
+                                    <property name="valign">center</property>
+                                    <property name="icon-name">video-camera-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Select Camera</property>
+                                    <style>
+                                      <class name="circular"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkStackPage">
+                                    <property name="name">fake-widget</property>
+                                    <property name="child">
+                                      <object class="AdwBin"/>
+                                    </property>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>

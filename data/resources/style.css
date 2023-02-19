@@ -45,3 +45,8 @@ gallery {
 .videoplayercontrols {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
 }
+
+.cameracontrols {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 12px;
+}
