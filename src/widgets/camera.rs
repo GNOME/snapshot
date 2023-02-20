@@ -115,11 +115,6 @@ mod imp {
 
             self.camera_menu_button.set_popover(Some(&popover));
 
-            self.paintable.connect_code_detected(|_, code| {
-                // TODO Do a proper dialog here.
-                log::debug!("Found QR code with contents: {code}");
-            });
-
             self.paintable
                 .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
                     obj.imp().shutter_button.set_sensitive(true);

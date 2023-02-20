@@ -7,9 +7,6 @@ use gtk::{gdk, gio, glib, graphene};
 use crate::config;
 use crate::objects::Action;
 
-/// Time to wait before trying to emit code-detected.
-const CODE_TIMEOUT: u64 = 3;
-
 mod imp {
     use std::cell::{Cell, RefCell};
 
@@ -23,7 +20,6 @@ mod imp {
     pub struct CameraPaintable {
         pub pipeline: OnceCell<crate::Pipeline>,
         pub sink_paintable: OnceCell<gdk::Paintable>,
-        pub code: RefCell<Option<String>>,
 
         pub flash_ani: OnceCell<adw::TimedAnimation>,
         pub players: RefCell<Option<gtk::MediaFile>>,
@@ -59,17 +55,6 @@ mod imp {
                 None,
                 clone!(@weak obj => @default-return glib::Continue(false), move |action| {
                     match action {
-                        Action::CodeDetected(hash) => {
-                            // FIXME This is a bad clone
-                            if Some(&hash) != obj.imp().code.replace(Some(hash.clone())).as_ref() {
-                                obj.emit_code_detected(&hash);
-
-                                let duration = std::time::Duration::from_secs(CODE_TIMEOUT);
-                                glib::timeout_add_local_once(duration, glib::clone!(@weak obj => move || {
-                                    obj.imp().code.take();
-                                }));
-                            }
-                        },
                         Action::PictureSaved(path) => {
                             let file = path.map(gio::File::for_path);
                             obj.emit_picture_stored(file.as_ref());
@@ -113,9 +98,6 @@ mod imp {
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![
-                    glib::subclass::Signal::builder("code-detected")
-                        .param_types([String::static_type()])
-                        .build(),
                     // These are emited whenever the saving process finishes,
                     // successful or not.
                     glib::subclass::Signal::builder("picture-stored")
@@ -228,23 +210,6 @@ impl CameraPaintable {
     // Stop recording if any recording was currently ongoing
     pub fn stop_recording(&self) {
         self.imp().pipeline.get().unwrap().stop_recording();
-    }
-
-    fn emit_code_detected(&self, code: &str) {
-        self.emit_by_name::<()>("code-detected", &[&code]);
-    }
-
-    pub fn connect_code_detected<F: Fn(&Self, &str) + 'static>(&self, f: F) {
-        self.connect_local(
-            "code-detected",
-            false,
-            glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let code = args.get(1).unwrap().get::<&str>().unwrap();
-                f(&obj, code);
-
-                None
-            }),
-        );
     }
 
     fn emit_picture_stored(&self, file: Option<&gio::File>) {

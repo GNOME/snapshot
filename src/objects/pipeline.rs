@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// Fancy Camera with QR code detection using ZBar
-//
 // Pipeline:
-//                                                                       queue -- gldownload -- videoconvert -- zbar -- fakesink
+//                                                                       queue -- gtkpaintablesink
 //                                                                    /
-//  pipewiresrc -- gl{upload,colorconvert} -- glvideoflip x2  -- tee  -- queue2 -- gtkpaintablesink
+//  pipewiresrc -- gl{upload,colorconvert} -- glvideoflip x2  -- tee -
 //                                                                    \
 //                                                                       queue3 -- gldownload2 -- fakesink2
 //
@@ -20,7 +18,6 @@ use crate::utils;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Action {
-    CodeDetected(String),
     PictureSaved(Option<PathBuf>),
     VideoSaved(Option<PathBuf>),
 }
@@ -120,38 +117,9 @@ mod imp {
             let tee = gst::ElementFactory::make("tee").build().unwrap();
 
             let queue = gst::ElementFactory::make("queue").build().unwrap();
-            let videoconvert = gst::ElementFactory::make("videoconvert").build().unwrap();
-            let zbar = gst::ElementFactory::make("zbar")
-                .property("attach-frame", false)
-                .build()
-                .unwrap();
-            let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
-
-            let zbarbin = gst::Bin::default();
-            if supports_gl {
-                let gldownload = gst::ElementFactory::make("gldownload").build().unwrap();
-                zbarbin
-                    .add_many(&[&queue, &gldownload, &videoconvert, &zbar, &fakesink])
-                    .unwrap();
-                gst::Element::link_many(&[&queue, &gldownload, &videoconvert, &zbar, &fakesink])
-                    .unwrap();
-            } else {
-                zbarbin
-                    .add_many(&[&queue, &videoconvert, &zbar, &fakesink])
-                    .unwrap();
-                gst::Element::link_many(&[&queue, &videoconvert, &zbar, &fakesink]).unwrap();
-            }
-            zbarbin
-                .add_pad(
-                    &gst::GhostPad::with_target(Some("sink"), &queue.static_pad("sink").unwrap())
-                        .unwrap(),
-                )
-                .unwrap();
 
             let queue2 = gst::ElementFactory::make("queue").build().unwrap();
-
-            let queue3 = gst::ElementFactory::make("queue").build().unwrap();
-            let fakesink2 = gst::ElementFactory::make("fakesink").build().unwrap();
+            let fakesink = gst::ElementFactory::make("fakesink").build().unwrap();
 
             // create the appropriate sink depending on the environment we are running
             // Check if the paintablesink initialized a gl-context, and if so put it
@@ -182,30 +150,27 @@ mod imp {
                 .add_many(&[
                     entrybin.upcast_ref(),
                     &tee,
-                    zbarbin.upcast_ref(),
-                    &queue2,
+                    &queue,
                     &sink,
-                    &queue3,
-                    &fakesink2,
+                    &queue2,
+                    &fakesink,
                 ])
                 .unwrap();
 
             gst::Element::link_many(&[entrybin.upcast_ref(), &tee]).unwrap();
 
-            tee.link_pads(None, &zbarbin, None).unwrap();
+            tee.link_pads(None, &queue, None).unwrap();
+
+            gst::Element::link_many(&[&queue, &sink]).unwrap();
 
             tee.link_pads(None, &queue2, None).unwrap();
 
-            gst::Element::link_many(&[&queue2, &sink]).unwrap();
-
-            tee.link_pads(None, &queue3, None).unwrap();
-
             if supports_gl {
-                let gldownload2 = gst::ElementFactory::make("gldownload").build().unwrap();
-                pipeline.add(&gldownload2).unwrap();
-                gst::Element::link_many(&[&queue3, &gldownload2, &fakesink2]).unwrap();
+                let gldownload = gst::ElementFactory::make("gldownload").build().unwrap();
+                pipeline.add(&gldownload).unwrap();
+                gst::Element::link_many(&[&queue2, &gldownload, &fakesink]).unwrap();
             } else {
-                gst::Element::link_many(&[&queue3, &fakesink2]).unwrap();
+                gst::Element::link_many(&[&queue2, &fakesink]).unwrap();
             }
 
             let bus = pipeline.bus().unwrap();
@@ -262,14 +227,6 @@ mod imp {
                         },
                         gst::MessageView::Element(e) => {
                             match e.structure() {
-                                Some(s) if s.name() == "barcode" => {
-                                    if let Ok(symbol) = s.get::<String>("symbol") {
-                                        // TODO Should this be created only once?
-
-                                        let sender = pipeline.imp().sender.get().unwrap();
-                                        let _ = sender.send(Action::CodeDetected(symbol));
-                                    }
-                                }
                                 Some(s) if s.name() == "GstBinForwarded" => {
                                     let msg = s
                                         .get::<gst::Message>("message")
@@ -306,7 +263,7 @@ mod imp {
             self.videoflip.set(videoflip2).unwrap();
             self.start.set(entrybin.upcast()).unwrap();
             self.paintablesink.set(paintablesink).unwrap();
-            self.sink.set(fakesink2).unwrap();
+            self.sink.set(fakesink).unwrap();
             self.tee.set(tee).unwrap();
         }
 

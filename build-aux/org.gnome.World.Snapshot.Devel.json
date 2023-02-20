@@ -52,42 +52,6 @@
     ],
     "modules": [
         {
-            "name": "zbar",
-            "config-opts": [
-                "--disable-doc",
-                "--disable-video",
-                "--enable-codes=qrcode",
-                "--without-dbus",
-                "--without-directshow",
-                "--without-gir",
-                "--without-graphicsmagick",
-                "--without-gtk",
-                "--without-imagemagick",
-                "--without-jpeg",
-                "--without-java",
-                "--without-npapi",
-                "--without-python",
-                "--without-qt",
-                "--without-qt5",
-                "--without-xshm",
-                "--without-xv"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://linuxtv.org/downloads/zbar/zbar-0.23.1.tar.gz",
-                    "sha256": "c72b19eb63f48781ae5ff1830236f4e753f4bd6418cd781aea1cd85d625b119e"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "autogen.sh",
-                    "commands": [
-                        "autoreconf -vfi -W none"
-                    ]
-                }
-            ]
-        },
-        {
             "name": "gstreamer",
             "buildsystem": "meson",
             "config-opts": [
@@ -108,24 +72,6 @@
                 "-Dgst-plugins-good:gtk3=disabled",
                 "-Dgst-plugins-good:jpeg=enabled",
                 "-Dgst-plugins-good:png=enabled",
-                "-Dgst-plugins-bad:assrender=disabled",
-                "-Dgst-plugins-bad:extra-checks=disabled",
-                "-Dgst-plugins-bad:glib-asserts=disabled",
-                "-Dgst-plugins-bad:glib-checks=disabled",
-                "-Dgst-plugins-bad:gobject-cast-checks=disabled",
-                "-Dgst-plugins-bad:nvcodec=disabled",
-                "-Dgst-plugins-bad:openh264=disabled",
-                "-Dgst-plugins-bad:v4l2codecs=enabled",
-                "-Dgst-plugins-bad:va=disabled",
-                "-Dgst-plugins-bad:vulkan=disabled",
-                "-Dgst-plugins-bad:vulkan=disabled",
-                "-Dgst-plugins-bad:wasapi2=disabled",
-                "-Dgst-plugins-bad:wasapi=disabled",
-                "-Dgst-plugins-bad:webrtc=disabled",
-                "-Dgst-plugins-bad:winks=disabled",
-                "-Dgst-plugins-bad:winscreencap=disabled",
-                "-Dgst-plugins-bad:zbar=enabled",
-                "-Dbad=enabled",
                 "-Dbase=enabled",
                 "-Ddevtools=disabled",
                 "-Ddoc=disabled",
