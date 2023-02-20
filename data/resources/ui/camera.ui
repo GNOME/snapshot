@@ -49,17 +49,7 @@
                         <property name="icon-name">open-menu-symbolic</property>
                         <property name="menu-model">primary_menu</property>
                         <property name="tooltip_text" translatable="yes">Main Menu</property>
-                        <child>
-                          <object class="GtkShortcutController">
-                            <property name="scope">managed</property>
-                            <child>
-                              <object class="GtkShortcut">
-                                <property name="trigger">F10</property>
-                                <property name="action">activate</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
+                        <property name="primary">True</property>
                       </object>
                     </child>
                   </object>
@@ -140,21 +130,11 @@
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
                                 <property name="tooltip-text" translatable="yes">Main Menu</property>
+                                <property name="primary">True</property>
                                 <style>
                                   <class name="circular"/>
                                   <class name="flat"/>
                                 </style>
-                                <child>
-                                  <object class="GtkShortcutController">
-                                    <property name="scope">managed</property>
-                                    <child>
-                                      <object class="GtkShortcut">
-                                        <property name="trigger">F10</property>
-                                        <property name="action">activate</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
                               </object>
                             </child>
                             <child>
