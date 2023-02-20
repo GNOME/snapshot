@@ -21,6 +21,7 @@ mod imp {
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::CameraPaintable)]
     pub struct CameraPaintable {
+        pub settings: OnceCell<gio::Settings>,
         pub pipeline: OnceCell<crate::Pipeline>,
         pub sink_paintable: OnceCell<gdk::Paintable>,
         pub code: RefCell<Option<String>>,
@@ -96,6 +97,9 @@ mod imp {
 
             self.pipeline.set(pipeline).unwrap();
             self.sink_paintable.set(paintable).unwrap();
+
+            let settings = gio::Settings::new(config::APP_ID);
+            self.settings.set(settings).unwrap();
         }
 
         fn properties() -> &'static [glib::ParamSpec] {
@@ -158,13 +162,27 @@ mod imp {
         fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
             let w = width as f32;
             let h = height as f32;
+            let settings = self.settings.get().unwrap();
 
             if let Some(image) = self.sink_paintable.get() {
-                // FIXME  Support flips in the monitor.
-
-                // The parameters are subject to the rotation, so we have to
-                // drawn accordingly.
-                image.snapshot(snapshot, width, height);
+                // This is the composition of translate (-w / 2.0, 0.0), map x
+                // to -x, and translate (w / 2.0 , 0.0). Note that gsk matrices
+                // are transposed.
+                if settings.boolean("mirror-camera") {
+                    #[rustfmt::skip]
+                    let flip_matrix = graphene::Matrix::from_float([
+                       -1.0,  0.0,  0.0,  0.0,
+                        0.0,  1.0,  0.0,  0.0,
+                        0.0,  0.0,  1.0,  0.0,
+                          w,  0.0,  0.0,  1.0,
+                    ]);
+                    snapshot.save();
+                    snapshot.transform_matrix(&flip_matrix);
+                    image.snapshot(snapshot, width, height);
+                    snapshot.restore();
+                } else {
+                    image.snapshot(snapshot, width, height);
+                }
 
                 if let Some(animation) = self.flash_ani.get() {
                     if !matches!(animation.state(), adw::AnimationState::Playing) {
@@ -212,8 +230,7 @@ impl CameraPaintable {
         imp.pipeline.get().unwrap().take_snapshot(format)?;
         imp.flash_ani.get().unwrap().play();
 
-        let settings = gio::Settings::new(config::APP_ID);
-        if settings.boolean("play-shutter-sound") {
+        if imp.settings.get().unwrap().boolean("play-shutter-sound") {
             self.play_shutter_sound();
         }
 

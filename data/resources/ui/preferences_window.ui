@@ -38,6 +38,17 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Mirror Camera</property>
+                <property name="activatable-widget">mirror_camera_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="mirror_camera_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
       </object>

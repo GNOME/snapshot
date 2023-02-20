@@ -14,6 +14,8 @@ mod imp {
     #[template(resource = "/org/gnome/World/Snapshot/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         #[template_child]
+        mirror_camera_switch: TemplateChild<gtk::Switch>,
+        #[template_child]
         play_shutter_switch: TemplateChild<gtk::Switch>,
         #[template_child]
         picture_format_combo: TemplateChild<adw::ComboRow>,
@@ -66,6 +68,9 @@ mod imp {
             let play_shutter_sound = settings.create_action("play-shutter-sound");
             action_group.add_action(&play_shutter_sound);
 
+            let mirror_camera = settings.create_action("mirror-camera");
+            action_group.add_action(&mirror_camera);
+
             self.obj()
                 .insert_action_group("preferences-window", Some(&action_group));
 
@@ -73,6 +78,9 @@ mod imp {
 
             self.play_shutter_switch
                 .set_action_name(Some("preferences-window.play-shutter-sound"));
+
+            self.mirror_camera_switch
+                .set_action_name(Some("preferences-window.mirror-camera"));
 
             let format = self.settings.get().unwrap().enum_("picture-format");
             self.picture_format_combo.set_selected(format as u32);

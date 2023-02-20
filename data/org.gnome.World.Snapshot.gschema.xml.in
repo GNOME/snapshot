@@ -55,5 +55,11 @@
       <summary>Video format</summary>
       <description>Whether to save videos as mp4 or webm</description>
     </key>
+    <key name="mirror-camera" type="b">
+      <default>false</default>
+      <summary>Mirror Camera</summary>
+      <description>Whether to apply an horizontal flip to the
+      camera</description>
+    </key>
   </schema>
 </schemalist>
