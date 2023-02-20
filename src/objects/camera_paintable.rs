@@ -256,27 +256,21 @@ impl CameraPaintable {
     }
 
     pub fn connect_picture_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
-        self.connect_local(
+        self.connect_closure(
             "picture-stored",
             false,
-            glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();
-                f(&obj, file.as_ref());
-
-                None
+            glib::closure_local!(|obj, file| {
+                f(obj, file);
             }),
         );
     }
 
     pub fn connect_video_stored<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
-        self.connect_local(
+        self.connect_closure(
             "video-stored",
             false,
-            glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let file = args.get(1).unwrap().get::<Option<gio::File>>().unwrap();
-                f(&obj, file.as_ref());
-
-                None
+            glib::closure_local!(|obj, file| {
+                f(obj, file);
             }),
         );
     }

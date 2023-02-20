@@ -224,14 +224,11 @@ impl Gallery {
     }
 
     pub fn connect_item_added<F: Fn(&Self, &crate::GalleryItem) + 'static>(&self, f: F) {
-        self.connect_local(
+        self.connect_closure(
             "item-added",
             false,
-            glib::clone!(@weak self as obj => @default-return None, move |args: &[glib::Value]| {
-                let picture = args.get(1).unwrap().get::<crate::GalleryItem>().unwrap();
-                f(&obj, &picture);
-
-                None
+            glib::closure_local!(|obj, picture| {
+                f(obj, picture);
             }),
         );
     }
