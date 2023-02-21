@@ -119,7 +119,7 @@ impl GalleryButton {
         let (t_width, t_height) = if t_ratio >= 1.0 {
             (t_ratio * size, size)
         } else {
-            (size, t_ratio * size)
+            (size, size / t_ratio)
         };
         let t_x = -(t_width - width) / 2.0;
         let t_y = -(t_height - height) / 2.0;
