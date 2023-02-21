@@ -126,8 +126,7 @@ impl GalleryButton {
         let t_rect = graphene::Rect::new(t_x, t_y, t_width, t_height);
 
         snapshot.push_rounded_clip(&rounded);
-        // FIXME Use append scaled texture.
-        snapshot.append_texture(texture, &t_rect);
+        snapshot.append_scaled_texture(texture, gsk::ScalingFilter::Linear, &t_rect);
 
         snapshot.pop();
     }
