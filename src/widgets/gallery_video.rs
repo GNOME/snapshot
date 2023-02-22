@@ -31,7 +31,14 @@ mod imp {
             widget.set_child(Some(&self.video_player));
         }
     }
-    impl WidgetImpl for GalleryVideo {}
+
+    impl WidgetImpl for GalleryVideo {
+        fn unmap(&self) {
+            self.obj().pause();
+            self.parent_unmap();
+        }
+    }
+
     impl BinImpl for GalleryVideo {}
     impl GalleryItemImpl for GalleryVideo {}
 }
@@ -58,6 +65,10 @@ impl GalleryVideo {
         }
 
         Ok(())
+    }
+
+    pub fn pause(&self) {
+        self.imp().video_player.pause();
     }
 
     // Ugh

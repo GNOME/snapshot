@@ -110,6 +110,10 @@ impl VideoPlayer {
         self.imp().thumbnail.get()
     }
 
+    pub fn pause(&self) {
+        self.imp().media_file.pause();
+    }
+
     fn snapshot_thumbnail(&self) -> Option<gdk::Texture> {
         let imp = self.imp();
 
