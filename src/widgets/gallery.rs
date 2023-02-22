@@ -18,29 +18,18 @@ static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
 mod imp {
     use super::*;
 
-    use glib::Properties;
     use once_cell::sync::Lazy;
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
-    #[derive(Debug, Default, CompositeTemplate, Properties)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/World/Snapshot/ui/gallery.ui")]
-    #[properties(wrapper_type = super::Gallery)]
     pub struct Gallery {
         #[template_child]
         pub child: TemplateChild<gtk::Widget>,
         #[template_child]
         pub carousel: TemplateChild<adw::Carousel>,
 
-        #[property(get = Self::progress, explicit_notify)]
-        pub progress: Cell<f64>,
-
         pub images: RefCell<Vec<crate::GalleryItem>>,
-    }
-
-    impl Gallery {
-        fn progress(&self) -> f64 {
-            self.carousel.progress()
-        }
     }
 
     #[glib::object_subclass]
@@ -97,8 +86,6 @@ mod imp {
                     obj.action_set_enabled("gallery.previous", position + f64::EPSILON >= 1.0);
                     obj.action_set_enabled("gallery.next", position + 2.0 <= n_pages as f64 + f64::EPSILON);
 
-                    obj.notify("progress");
-
                     let index = position as i32;
                     let last_pos = n_pages as i32 - 1;
 
@@ -145,14 +132,6 @@ mod imp {
                     .build()]
             });
             SIGNALS.as_ref()
-        }
-
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
         }
     }
     impl WidgetImpl for Gallery {}
