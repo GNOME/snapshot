@@ -19,7 +19,7 @@ mod imp {
     use super::*;
 
     use once_cell::sync::Lazy;
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/World/Snapshot/ui/gallery.ui")]
@@ -30,6 +30,7 @@ mod imp {
         pub carousel: TemplateChild<adw::Carousel>,
 
         pub images: RefCell<Vec<crate::GalleryItem>>,
+        last_position: Cell<u32>,
     }
 
     #[glib::object_subclass]
@@ -72,6 +73,17 @@ mod imp {
             self.parent_constructed();
 
             let obj = self.obj();
+
+            self.carousel
+                .connect_page_changed(glib::clone!(@weak obj => move |carousel, index| {
+                    let last_index = obj.imp().last_position.replace(index);
+
+                    if let Some(last_video) = carousel
+                        .nth_page(last_index)
+                        .downcast_ref::<crate::GalleryVideo>() {
+                        last_video.pause();
+                    }
+                }));
 
             self.carousel
                 .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
