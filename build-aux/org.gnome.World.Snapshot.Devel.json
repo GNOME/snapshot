@@ -72,6 +72,7 @@
                 "-Dgst-plugins-good:gtk3=disabled",
                 "-Dgst-plugins-good:jpeg=enabled",
                 "-Dgst-plugins-good:png=enabled",
+                "-Dbad=disabled",
                 "-Dbase=enabled",
                 "-Ddevtools=disabled",
                 "-Ddoc=disabled",
