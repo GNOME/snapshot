@@ -86,7 +86,7 @@ mod imp {
 
             self.carousel
                 .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
-                    let progress = carousel.progress();
+                    let position = carousel.position();
                     let n_pages = carousel.n_pages();
 
                     // Suppose we have 2 pages. We add an epsilon to make sure
@@ -94,12 +94,12 @@ mod imp {
                     // the right. 0.0000...1, should also allow going to the
                     // right. We sanitize the values of the scroll, so
                     // scroll_to(-1) or scroll_to(n_items) are a non-issue.
-                    obj.action_set_enabled("gallery.previous", progress + f64::EPSILON >= 1.0);
-                    obj.action_set_enabled("gallery.next", progress + 2.0 <= n_pages as f64 + f64::EPSILON);
+                    obj.action_set_enabled("gallery.previous", position + f64::EPSILON >= 1.0);
+                    obj.action_set_enabled("gallery.next", position + 2.0 <= n_pages as f64 + f64::EPSILON);
 
                     obj.notify("progress");
 
-                    let index = progress as i32;
+                    let index = position as i32;
                     let last_pos = n_pages as i32 - 1;
 
                     if n_pages > 0 {
