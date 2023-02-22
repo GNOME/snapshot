@@ -29,7 +29,7 @@ mod imp {
         #[template_child]
         pub carousel: TemplateChild<adw::Carousel>,
 
-        pub images: RefCell<Vec<crate::GalleryItem>>,
+        pub items: RefCell<Vec<crate::GalleryItem>>,
         last_position: Cell<u32>,
     }
 
@@ -171,7 +171,7 @@ impl Gallery {
         self.emit_item_added(&video);
     }
 
-    // We have this inner method so we can add images without emiting signals.
+    // We have this inner method so we can add items without emiting signals.
     // Used for `load_pictures`.
     fn add_item_inner(&self, file: &gio::File, load: bool, is_picture: bool) -> crate::GalleryItem {
         let imp = self.imp();
@@ -183,7 +183,7 @@ impl Gallery {
         };
 
         imp.carousel.prepend(&item);
-        imp.images.borrow_mut().insert(0, item.clone());
+        imp.items.borrow_mut().insert(0, item.clone());
 
         item
     }
@@ -206,8 +206,8 @@ impl Gallery {
         // TODO
     }
 
-    pub fn images(&self) -> Vec<crate::GalleryItem> {
-        self.imp().images.borrow().clone()
+    pub fn items(&self) -> Vec<crate::GalleryItem> {
+        self.imp().items.borrow().clone()
     }
 
     fn emit_item_added(&self, picture: &crate::GalleryItem) {
@@ -229,13 +229,13 @@ impl Gallery {
 
         // Sanitize index so it is always between 0 and (n_items - 1).
         let last_pos = (imp.carousel.n_pages() as i32 - 1).max(0);
-        let picture = imp
+        let item = imp
             .carousel
             .nth_page(index.clamp(0, last_pos) as u32)
             .downcast::<crate::GalleryItem>()
             .unwrap();
 
-        imp.carousel.scroll_to(&picture, animate);
+        imp.carousel.scroll_to(&item, animate);
     }
 
     fn next(&self) {
@@ -254,12 +254,12 @@ impl Gallery {
         let imp = self.imp();
 
         let index = imp.carousel.position() as u32;
-        let picture = imp
+        let item = imp
             .carousel
             .nth_page(index)
             .downcast::<crate::GalleryItem>()
             .unwrap();
-        let file = picture.file();
+        let file = item.file();
         let launcher = gtk::FileLauncher::new(Some(&file));
         let root = self.root();
         let window = root.and_downcast_ref::<gtk::Window>();

@@ -58,16 +58,15 @@ mod imp {
 
             let binding = self.gallery.borrow();
             let Some(gallery) = binding.as_ref().and_then(WeakRef::upgrade) else { return; };
-            let images = gallery.images();
-            let Some(foreground) = images.first().and_then(|x| x.thumbnail()) else { return; };
+            let items = gallery.items();
+            let Some(foreground) = items.first().and_then(|x| x.thumbnail()) else { return; };
 
             let alpha = widget.color().alpha() as f64;
             snapshot.push_opacity(alpha);
 
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.
-            let border_radius = if let Some(background) = images.get(1).and_then(|x| x.thumbnail())
-            {
+            let border_radius = if let Some(background) = items.get(1).and_then(|x| x.thumbnail()) {
                 widget.draw_texture(snapshot, &background, width, height, size);
                 size
             } else {
