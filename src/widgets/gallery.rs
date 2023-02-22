@@ -77,11 +77,40 @@ mod imp {
             self.carousel
                 .connect_page_changed(glib::clone!(@weak obj => move |carousel, index| {
                     let last_index = obj.imp().last_position.replace(index);
+                    let n_pages = carousel.n_pages() as i32;
+                    let last_pos = (n_pages - 1).max(0) as u32;
 
                     if let Some(last_video) = carousel
                         .nth_page(last_index)
                         .downcast_ref::<crate::GalleryVideo>() {
                         last_video.pause();
+                    }
+
+                    if n_pages > 0 {
+                        let current = carousel
+                            .nth_page(index)
+                            .downcast::<crate::GalleryItem>().unwrap();
+                        if !current.started_loading() {
+                            current.start_loading();
+                        }
+                    }
+
+                    if index < last_pos {
+                        let next = carousel
+                            .nth_page(index + 1)
+                            .downcast::<crate::GalleryItem>().unwrap();
+                        if !next.started_loading() {
+                            next.start_loading();
+                        }
+                    }
+
+                    if index > 0 {
+                        let previous = carousel
+                            .nth_page(index - 1)
+                            .downcast::<crate::GalleryItem>().unwrap();
+                        if !previous.started_loading() {
+                            previous.start_loading();
+                        }
                     }
                 }));
 
@@ -97,36 +126,6 @@ mod imp {
                     // scroll_to(-1) or scroll_to(n_items) are a non-issue.
                     obj.action_set_enabled("gallery.previous", position + f64::EPSILON >= 1.0);
                     obj.action_set_enabled("gallery.next", position + 2.0 <= n_pages as f64 + f64::EPSILON);
-
-                    let index = position as i32;
-                    let last_pos = n_pages as i32 - 1;
-
-                    if n_pages > 0 {
-                        let current = carousel
-                            .nth_page(index.clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !current.started_loading() {
-                            current.start_loading();
-                        }
-                    }
-
-                    if n_pages > 1 {
-                        let next = carousel
-                            .nth_page((index + 1).clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !next.started_loading() {
-                            next.start_loading();
-                        }
-                    }
-
-                    if index > 0 {
-                        let previous = carousel
-                            .nth_page((index - 1).clamp(0, last_pos) as u32)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !previous.started_loading() {
-                            previous.start_loading();
-                        }
-                    }
                 }));
 
             let ctx = glib::MainContext::default();
