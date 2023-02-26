@@ -11,8 +11,6 @@
     "finish-args": [
         "--device=dri",
         "--env=GST_DEBUG=WARN",
-        "--env=GST_PLUGIN_PATH=/app/lib/codecs/lib/gstreamer-1.0",
-        "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0",
         "--env=G_MESSAGES_DEBUG=none",
         "--env=RUST_BACKTRACE=1",
         "--env=RUST_LOG=snapshot=debug",
@@ -53,70 +51,24 @@
     ],
     "modules": [
         {
-            "name": "gstreamer",
+            "name": "gst-plugins-base",
             "buildsystem": "meson",
+            "subdir": "subprojects/gst-plugins-base",
             "config-opts": [
-                "-Dgstreamer:benchmarks=disabled",
-                "-Dgstreamer:extra-checks=disabled",
-                "-Dgstreamer:glib-asserts=disabled",
-                "-Dgstreamer:glib-checks=disabled",
-                "-Dgstreamer:gobject-cast-checks=disabled",
-                "-Dgst-plugins-base:glib-asserts=disabled",
-                "-Dgst-plugins-base:glib-checks=disabled",
-                "-Dgst-plugins-base:gobject-cast-checks=disabled",
-                "-Dgst-plugins-base:ogg=enabled",
-                "-Dgst-plugins-base:theora=enabled",
-                "-Dgst-plugins-base:vorbis=enabled",
-                "-Dgst-plugins-good:glib-asserts=disabled",
-                "-Dgst-plugins-good:glib-checks=disabled",
-                "-Dgst-plugins-good:gobject-cast-checks=disabled",
-                "-Dgst-plugins-good:gtk3=disabled",
-                "-Dgst-plugins-good:jpeg=enabled",
-                "-Dgst-plugins-good:png=enabled",
-                "-Dbad=disabled",
-                "-Dbase=enabled",
-                "-Ddevtools=disabled",
-                "-Ddoc=disabled",
-                "-Dexamples=disabled",
-                "-Dges=disabled",
-                "-Dgood=enabled",
-                "-Dgpl=enabled",
-                "-Dgst-examples=disabled",
-                "-Dgtk_doc=disabled",
-                "-Dintrospection=disabled",
-                "-Dlibav=enabled",
-                "-Domx=disabled",
-                "-Dpython=disabled",
-                "-Dqt5=disabled",
-                "-Drs=disabled",
-                "-Drtsp_server=disabled",
-                "-Dsharp=disabled",
-                "-Dtests=disabled",
-                "-Dugly=disabled",
-                "-Dvaapi=disabled"
-            ],
-            "build-options": {
-                "env": {
-                    "PKG_CONFIG_PATH": "/app/lib/codecs/lib/pkgconfig/:/app/lib/pkgconfig"
-                }
-            },
-            "cleanup": [
-                "/bin/*",
-                "/lib/gstreamer-1.0/include/"
-            ],
-            "post-install": [
-                "sh ${FLATPAK_BUILDER_BUILDDIR}/move-gst-plugins.sh"
+                "-Dgl-graphene=enabled",
+                "-Dglib-asserts=disabled",
+                "-Dglib-checks=disabled",
+                "-Dgobject-cast-checks=disabled",
+                "-Dogg=enabled",
+                "-Dtheora=enabled",
+                "-Dvorbis=enabled"
             ],
             "sources": [
                 {
                     "type": "git",
                     "disable-submodules": true,
                     "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
-                    "tag": "1.22.0"
-                },
-                {
-                    "type": "file",
-                    "path": "move-gst-plugins.sh"
+                    "tag": "1.20.6"
                 }
             ]
         },
