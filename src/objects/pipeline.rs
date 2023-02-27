@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // Pipeline:
-//                                                                       queue -- gtkpaintablesink
-//                                                                    /
-//  pipewiresrc -- gl{upload,colorconvert} -- glvideoflip x2  -- tee -
-//                                                                    \
-//                                                                       queue3 -- gldownload2 -- fakesink2
+//                                         queue -- gtkpaintablesink
+//                                       /
+// pipewiresrc -- videoflip x2  -- tee -
+//                                       \
+//                                         queue3 -- fakesink2
 //
 use std::path::PathBuf;
 
@@ -64,44 +64,22 @@ mod imp {
                 .property::<Option<gdk::GLContext>>("gl-context")
                 .is_some();
 
-            // Contains eirther:
-            //
-            // glupload -- colorconvert -- glvideoflip -- glvideoflip
-            // videoflip -- videoflip
-            //
-            // depending on gl support
             let entrybin = gst::Bin::default();
-            let (start, videoflip2) = if supports_gl {
-                let glupload = gst::ElementFactory::make("glupload").build().unwrap();
-                let glcolorconvert = gst::ElementFactory::make("glcolorconvert").build().unwrap();
-                let videoflip = gst::ElementFactory::make("glvideoflip")
-                    .property_from_str("video-direction", "auto")
-                    .build()
-                    .unwrap();
-                let videoflip2 = gst::ElementFactory::make("glvideoflip").build().unwrap();
-                entrybin
-                    .add_many(&[&glupload, &glcolorconvert, &videoflip, &videoflip2])
-                    .unwrap();
-                gst::Element::link_many(&[&glupload, &glcolorconvert, &videoflip, &videoflip2])
-                    .unwrap();
-
-                (glupload, videoflip2)
-            } else {
-                let videoflip = gst::ElementFactory::make("videoflip")
-                    .property_from_str("video-direction", "auto")
-                    .build()
-                    .unwrap();
-                let videoflip2 = gst::ElementFactory::make("videoflip").build().unwrap();
-                entrybin.add_many(&[&videoflip, &videoflip2]).unwrap();
-                gst::Element::link_many(&[&videoflip, &videoflip2]).unwrap();
-
-                (videoflip, videoflip2)
-            };
+            let videoflip = gst::ElementFactory::make("videoflip")
+                .property_from_str("video-direction", "auto")
+                .build()
+                .unwrap();
+            let videoflip2 = gst::ElementFactory::make("videoflip").build().unwrap();
+            entrybin.add_many(&[&videoflip, &videoflip2]).unwrap();
+            gst::Element::link_many(&[&videoflip, &videoflip2]).unwrap();
 
             entrybin
                 .add_pad(
-                    &gst::GhostPad::with_target(Some("sink"), &start.static_pad("sink").unwrap())
-                        .unwrap(),
+                    &gst::GhostPad::with_target(
+                        Some("sink"),
+                        &videoflip.static_pad("sink").unwrap(),
+                    )
+                    .unwrap(),
                 )
                 .unwrap();
             entrybin
@@ -165,13 +143,7 @@ mod imp {
 
             tee.link_pads(None, &queue2, None).unwrap();
 
-            if supports_gl {
-                let gldownload = gst::ElementFactory::make("gldownload").build().unwrap();
-                pipeline.add(&gldownload).unwrap();
-                gst::Element::link_many(&[&queue2, &gldownload, &fakesink]).unwrap();
-            } else {
-                gst::Element::link_many(&[&queue2, &fakesink]).unwrap();
-            }
+            gst::Element::link_many(&[&queue2, &fakesink]).unwrap();
 
             let bus = pipeline.bus().unwrap();
             bus.add_watch_local(
@@ -394,7 +366,7 @@ impl Pipeline {
             // TODO For audio, the following works on the cli:
             // gst-launch-1.0 -e pipewiresrc path=42 ! videoconvert ! theoraenc ! oggmux name=mux ! queue ! filesink location=test.ogg    pipewiresrc path=45 ! audioconvert ! vorbisenc ! mux.
             // crate::VideoFormat::TheoraOgg => "oggmux name=mux ! queue ! filesink name=sink    queue name=video_entry ! videoconvert ! theoraenc ! queue ! mux.video_%u    audioconvert name=audio_entry ! vorbisenc ! queue ! mux.audio_%u",
-            crate::VideoFormat::TheoraOgg => " queue ! gldownload ! videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
+            crate::VideoFormat::TheoraOgg => " queue ! videoconvert ! queue ! theoraenc ! queue ! oggmux ! filesink name=sink",
         };
 
         let bin = gst::parse_bin_from_description(bin_description, true)?;
