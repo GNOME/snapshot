@@ -81,9 +81,11 @@ mod imp {
                         }
                     }
                     imp.leaflet.set_visible_child(&*imp.gallery);
+                    window.action_set_enabled("win.take-picture", false);
                     window.imp().gallery.open();
                 } else {
                     imp.leaflet.set_visible_child(&*imp.camera);
+                    window.action_set_enabled("win.take-picture", true);
                     window.imp().gallery.close();
                 }
             });
