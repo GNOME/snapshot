@@ -51,28 +51,6 @@
     ],
     "modules": [
         {
-            "name": "gst-plugins-base",
-            "buildsystem": "meson",
-            "subdir": "subprojects/gst-plugins-base",
-            "config-opts": [
-                "-Dgl-graphene=enabled",
-                "-Dglib-asserts=disabled",
-                "-Dglib-checks=disabled",
-                "-Dgobject-cast-checks=disabled",
-                "-Dogg=enabled",
-                "-Dtheora=enabled",
-                "-Dvorbis=enabled"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "disable-submodules": true,
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
-                    "tag": "1.20.6"
-                }
-            ]
-        },
-        {
             "name": "pipewire",
             "buildsystem": "meson",
             "config-opts": [
