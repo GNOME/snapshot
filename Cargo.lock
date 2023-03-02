@@ -995,9 +995,9 @@ dependencies = [
 
 [[package]]
 name = "gst-plugin-gtk4"
-version = "0.10.0"
+version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2f38df9956c32e9aa41df32cc624adc33397f73e8572d41016d9f31b2b875ccb"
+checksum = "06fc66e6bde2064b08efc79c6affcb2227a24da5677b1d643027c7d2d00afb23"
 dependencies = [
  "gdk4-wayland",
  "gdk4-x11",
