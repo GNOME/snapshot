@@ -51,6 +51,12 @@
             <property name="title" translatable="yes" context="shortcut window">Gallery</property>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Open/Close Gallery</property>
+                <property name="action-name">win.toggle-gallery</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Next</property>
                 <property name="accelerator">Right</property>
               </object>
