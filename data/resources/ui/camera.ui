@@ -106,6 +106,16 @@
                                 <property name="action-name">win.capture-mode</property>
                                 <property name="action-target">'picture'</property>
                                 <property name="tooltip-text" translatable="yes">Picture Mode</property>
+                                <child>
+                                  <object class="GtkShortcutController">
+                                    <child>
+                                      <object class="GtkShortcut">
+                                        <property name="trigger">p</property>
+                                        <property name="action">activate</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <child>
@@ -114,6 +124,16 @@
                                 <property name="action-name">win.capture-mode</property>
                                 <property name="action-target">'video'</property>
                                 <property name="tooltip-text" translatable="yes">Recording Mode</property>
+                                <child>
+                                  <object class="GtkShortcutController">
+                                    <child>
+                                      <object class="GtkShortcut">
+                                        <property name="trigger">r</property>
+                                        <property name="action">activate</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>

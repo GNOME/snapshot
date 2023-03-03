@@ -40,6 +40,18 @@
             <property name="title" translatable="yes" context="shortcut window">Camera</property>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Picture Mode</property>
+                <property name="accelerator">P</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Recording Mode</property>
+                <property name="accelerator">R</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Take Picture or Start Recording</property>
                 <property name="action-name">win.take-picture</property>
               </object>
