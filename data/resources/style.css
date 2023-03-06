@@ -4,8 +4,11 @@
   background-color: transparent;
   border-radius: 999px;
   padding: 0;
-  transition-property: color, outline-color, outline-width, outline-offset;
   outline-offset: 5px;
+}
+
+.shutterbutton {
+  transition-property: color, outline-color, outline-width, outline-offset;
 }
 
 .shutterbutton:focus:focus-visible,
@@ -24,8 +27,7 @@
   min-width: 44px;
 }
 
-.shutterbutton:hover,
-.gallerybutton:hover {
+.shutterbutton:hover {
   opacity: .85;
 }
 

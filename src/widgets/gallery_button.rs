@@ -4,6 +4,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gdk, glib, graphene, gsk};
 
 const BORDER_WIDTH: f32 = 2.0;
+const HOVER_SCALE: f64 = 1.05;
 
 mod imp {
     use super::*;
@@ -18,6 +19,7 @@ mod imp {
         pub gallery: RefCell<Option<WeakRef<crate::Gallery>>>,
 
         pub size_ani: OnceCell<adw::TimedAnimation>,
+        pub hover_ani: OnceCell<adw::TimedAnimation>,
     }
 
     #[glib::object_subclass]
@@ -42,6 +44,13 @@ mod imp {
                 }));
             let ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, target);
             self.size_ani.set(ani).unwrap();
+
+            let hover_target =
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+                    widget.queue_draw();
+                }));
+            let hover_ani = adw::TimedAnimation::new(&*widget, 1.0, HOVER_SCALE, 125, hover_target);
+            self.hover_ani.set(hover_ani).unwrap();
         }
     }
 
@@ -61,8 +70,13 @@ mod imp {
             let items = gallery.items();
             let Some(foreground) = items.first().and_then(|x| x.thumbnail()) else { return; };
 
-            let alpha = widget.color().alpha() as f64;
-            snapshot.push_opacity(alpha);
+            let scale = widget.hover_ani().value() as f32;
+            let translation = (scale - 1.0) * size / 2.0;
+            let transform = gsk::Transform::new()
+                .translate(&graphene::Point::new(-translation, -translation))
+                .scale(scale, scale);
+
+            snapshot.transform(Some(&transform));
 
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.
@@ -76,14 +90,38 @@ mod imp {
             };
 
             widget.draw_texture(snapshot, &foreground, width, height, foreground_radius);
-
-            snapshot.pop();
-
             widget.draw_border(snapshot, width, height, border_radius);
 
             self.parent_snapshot(snapshot);
         }
+
+        fn state_flags_changed(&self, old_flags: &gtk::StateFlags) {
+            self.parent_state_flags_changed(old_flags);
+
+            let obj = self.obj();
+
+            if obj.state_flags().contains(gtk::StateFlags::PRELIGHT)
+                && !old_flags.contains(gtk::StateFlags::PRELIGHT)
+            {
+                let hover_ani = obj.hover_ani();
+                let current = hover_ani.value();
+                hover_ani.pause();
+                hover_ani.set_value_from(current);
+                hover_ani.set_value_to(HOVER_SCALE);
+                hover_ani.play();
+            } else if !obj.state_flags().contains(gtk::StateFlags::PRELIGHT)
+                && old_flags.contains(gtk::StateFlags::PRELIGHT)
+            {
+                let hover_ani = obj.hover_ani();
+                let current = hover_ani.value();
+                hover_ani.pause();
+                hover_ani.set_value_from(current);
+                hover_ani.set_value_to(1.0);
+                hover_ani.play();
+            }
+        }
     }
+
     impl ButtonImpl for GalleryButton {}
 }
 
@@ -157,5 +195,9 @@ impl GalleryButton {
 
     fn animation(&self) -> &adw::TimedAnimation {
         self.imp().size_ani.get().unwrap()
+    }
+
+    fn hover_ani(&self) -> &adw::TimedAnimation {
+        self.imp().hover_ani.get().unwrap()
     }
 }
