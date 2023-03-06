@@ -67,7 +67,9 @@ mod imp {
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.
             let border_radius = if let Some(background) = items.get(1).and_then(|x| x.thumbnail()) {
-                widget.draw_texture(snapshot, &background, width, height, size);
+                if matches!(widget.animation().state(), adw::AnimationState::Playing) {
+                    widget.draw_texture(snapshot, &background, width, height, size);
+                }
                 size
             } else {
                 foreground_radius
