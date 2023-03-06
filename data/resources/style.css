@@ -7,10 +7,6 @@
   outline-offset: 5px;
 }
 
-.shutterbutton {
-  transition-property: color, outline-color, outline-width, outline-offset;
-}
-
 .shutterbutton:focus:focus-visible,
 .gallerybutton:focus:focus-visible {
   outline-offset: 1px;
@@ -25,10 +21,6 @@
 .camerabutton {
   min-height: 44px;
   min-width: 44px;
-}
-
-.shutterbutton:hover {
-  opacity: .85;
 }
 
 .shutterbutton:active,

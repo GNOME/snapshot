@@ -16,6 +16,9 @@ use crate::ShutterMode;
 /// ```
 const LAMBDA: f32 = 0.20710677;
 
+const HOVER_SCALE: f64 = 1.05;
+const HOVER_DURATION: u32 = 125;
+
 mod imp {
     use super::*;
 
@@ -33,6 +36,7 @@ mod imp {
 
         pub countdown_ani: OnceCell<adw::TimedAnimation>,
         pub record_ani: OnceCell<adw::TimedAnimation>,
+        pub hover_ani: OnceCell<adw::TimedAnimation>,
         pub press_ani: OnceCell<adw::TimedAnimation>,
         /// Animation to play when we switch from picture to recording mode. At
         /// 1.0 we draw the button red.
@@ -133,6 +137,14 @@ mod imp {
             let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, press_target);
             self.press_ani.set(press_ani).unwrap();
 
+            let hover_target =
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+                    widget.queue_draw();
+                }));
+            let hover_ani =
+                adw::TimedAnimation::new(&*widget, 1.0, HOVER_SCALE, HOVER_DURATION, hover_target);
+            self.hover_ani.set(hover_ani).unwrap();
+
             let mode_target =
                 adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
                     widget.queue_draw();
@@ -168,6 +180,14 @@ mod imp {
             let size = width.min(height) as f32;
             let border_width = (size / 8.0).min(4.0);
 
+            let scale = widget.hover_ani().value() as f32;
+            let translation = (scale - 1.0) * size / 2.0;
+            let transform = gsk::Transform::new()
+                .translate(&graphene::Point::new(-translation, -translation))
+                .scale(scale, scale);
+
+            snapshot.transform(Some(&transform));
+
             widget.draw_border(snapshot, size, border_width);
             widget.draw_play(snapshot, size, border_width);
 
@@ -191,6 +211,26 @@ mod imp {
                 let press_ani = obj.press_ani();
                 press_ani.set_value_to(4.0);
                 press_ani.play();
+            }
+
+            if obj.state_flags().contains(gtk::StateFlags::PRELIGHT)
+                && !old_flags.contains(gtk::StateFlags::PRELIGHT)
+            {
+                let hover_ani = obj.hover_ani();
+                let current = hover_ani.value();
+                hover_ani.pause();
+                hover_ani.set_value_from(current);
+                hover_ani.set_value_to(HOVER_SCALE);
+                hover_ani.play();
+            } else if !obj.state_flags().contains(gtk::StateFlags::PRELIGHT)
+                && old_flags.contains(gtk::StateFlags::PRELIGHT)
+            {
+                let hover_ani = obj.hover_ani();
+                let current = hover_ani.value();
+                hover_ani.pause();
+                hover_ani.set_value_from(current);
+                hover_ani.set_value_to(1.0);
+                hover_ani.play();
             }
         }
     }
@@ -240,7 +280,13 @@ impl ShutterButton {
         self.imp().press_ani.get().unwrap()
     }
 
+    fn hover_ani(&self) -> &adw::TimedAnimation {
+        self.imp().hover_ani.get().unwrap()
+    }
+
     fn draw_border(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {
+        let snap = gtk::Snapshot::new();
+
         let countdown = self.countdown_ani().value() as f32;
 
         let rect = graphene::Rect::new(0.0, 0.0, size, size);
@@ -249,20 +295,31 @@ impl ShutterButton {
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
-        snapshot.push_mask(gsk::MaskMode::Alpha);
+        snap.push_mask(gsk::MaskMode::Alpha);
 
-        snapshot.append_border(&rounded, &[border_width; 4], &[gdk::RGBA::BLACK; 4]);
+        snap.append_border(&rounded, &[border_width; 4], &[gdk::RGBA::BLACK; 4]);
 
-        snapshot.pop();
+        snap.pop();
 
         let color = self.color();
 
         let stop0 = gsk::ColorStop::new(countdown, color);
         let stop1 = gsk::ColorStop::new(countdown, gdk::RGBA::TRANSPARENT);
 
-        snapshot.append_conic_gradient(&rect, &center, 0.0, &[stop0, stop1]);
+        snap.append_conic_gradient(&rect, &center, 0.0, &[stop0, stop1]);
 
-        snapshot.pop(); // Pop the mask.
+        snap.pop(); // Pop the mask.
+
+        // FIXME We draw the border to a texture and then we attach it to the
+        // snapshot to avoid the issue discussed at
+        // https://gitlab.gnome.org/GNOME/gtk/-/issues/5755
+        if let Some(node) = snap.to_node() {
+            let native = self.root().and_upcast::<gtk::Native>().unwrap();
+            let renderer = native.renderer();
+            let texture = renderer.render_texture(node, Some(&rect));
+
+            snapshot.append_texture(&texture, &rect);
+        }
     }
 
     fn draw_play(&self, snapshot: &gtk::Snapshot, size: f32, border_width: f32) {
