@@ -76,7 +76,7 @@
               </object>
             </child>
             <child type="overlay">
-              <object class="GtkButton">
+              <object class="GtkButton" id="open_external">
                 <property name="halign">start</property>
                 <property name="valign">end</property>
                 <property name="icon-name">external-link-symbolic</property>

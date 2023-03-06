@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use adw::prelude::*;
+use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
@@ -28,6 +29,8 @@ mod imp {
         pub child: TemplateChild<gtk::Widget>,
         #[template_child]
         pub carousel: TemplateChild<adw::Carousel>,
+        #[template_child]
+        pub open_external: TemplateChild<gtk::Button>,
 
         pub items: RefCell<Vec<crate::GalleryItem>>,
         last_position: Cell<u32>,
@@ -76,7 +79,9 @@ mod imp {
 
             self.carousel
                 .connect_page_changed(glib::clone!(@weak obj => move |carousel, index| {
-                    let last_index = obj.imp().last_position.replace(index);
+                    let imp = obj.imp();
+
+                    let last_index = imp.last_position.replace(index);
                     let n_pages = carousel.n_pages() as i32;
                     let last_pos = (n_pages - 1).max(0) as u32;
 
@@ -85,6 +90,15 @@ mod imp {
                         .downcast_ref::<crate::GalleryVideo>() {
                         last_video.pause();
                     }
+
+                    let item = carousel.nth_page(index);
+                    // The tooltip is also set in gallery.ui with a default value.
+                    let tooltip_text = if item.downcast_ref::<crate::GalleryPicture>().is_some() {
+                        gettext("Open in Image Viewer")
+                    } else {
+                        gettext("Open in Video Player")
+                    };
+                    imp.open_external.set_tooltip_text(Some(&tooltip_text));
 
                     if n_pages > 0 {
                         let current = carousel
