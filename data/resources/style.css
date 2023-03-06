@@ -47,8 +47,14 @@ gallery {
  border-radius: 999px;
 }
 
-.cameracontrols,
-.gallerycontrols {
+.controlsframe {
   background: rgba(0, 0, 0, 0.45);
   padding: 12px;
+}
+
+.cameracontrols:backdrop > *,
+.gallerycontrols:backdrop > *,
+button.gallerycontrols:backdrop {
+  filter: opacity(.5);
+  transition: 200ms ease-out;
 }

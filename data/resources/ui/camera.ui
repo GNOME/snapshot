@@ -79,6 +79,7 @@
                         <property name="halign">fill</property>
                         <style>
                           <class name="cameracontrols"/>
+                          <class name="controlsframe"/>
                         </style>
                         <child type="start">
                           <object class="GtkMenuButton" id="countdown_button">
@@ -173,6 +174,7 @@
                         <property name="halign">fill</property>
                         <style>
                           <class name="cameracontrols"/>
+                          <class name="controlsframe"/>
                         </style>
                         <child>
                           <object class="GtkBox">

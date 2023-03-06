@@ -42,6 +42,7 @@
                 <property name="spacing">6</property>
                 <style>
                   <class name="gallerycontrols"/>
+                  <class name="controlsframe"/>
                 </style>
                 <child>
                   <object class="GtkButton">
@@ -88,6 +89,7 @@
                 <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
                 <style>
                   <class name="osd"/>
+                  <class name="gallerycontrols"/>
                   <class name="circular"/>
                 </style>
               </object>
@@ -110,6 +112,7 @@
                     <style>
                       <class name="osd"/>
                       <class name="circular"/>
+                      <class name="gallerycontrols"/>
                     </style>
                   </object>
                 </child>
@@ -121,6 +124,7 @@
                     <style>
                       <class name="osd"/>
                       <class name="circular"/>
+                      <class name="gallerycontrols"/>
                     </style>
                   </object>
                 </child>
