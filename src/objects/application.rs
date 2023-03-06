@@ -52,8 +52,7 @@ mod imp {
             // Set icons for shell
             gtk::Window::set_default_icon_name(APP_ID);
 
-            // TODO Revisit this.
-            adw::StyleManager::default().set_color_scheme(adw::ColorScheme::PreferDark);
+            adw::StyleManager::default().set_color_scheme(adw::ColorScheme::ForceDark);
 
             app.setup_gactions();
             app.setup_accels();
