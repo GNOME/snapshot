@@ -26,12 +26,12 @@
 
 .shutterbutton:hover,
 .gallerybutton:hover {
-  color: alpha(currentColor, .85);
+  opacity: .85;
 }
 
 .shutterbutton:active,
 .gallerybutton:active {
-  color: alpha(currentColor, .97);
+  opacity: .97;
 }
 
 gallery {
