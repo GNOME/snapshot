@@ -28,7 +28,7 @@
     <foaf:Person>
       <foaf:name>Jamie Murphy</foaf:name>
       <foaf:mbox rdf:resource="mailto:jmurphy@gnome.org" />
-      <gnome:userid>ItsJamie9494</gnome:userid>
+      <gnome:userid>jmurphy</gnome:userid>
       <foaf:account>
         <foaf:OnlineAccount>
           <foaf:accountServiceHomepage rdf:resource="https://gitlab.gnome.org" />
