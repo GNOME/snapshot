@@ -58,3 +58,8 @@ button.gallerycontrols:backdrop {
   filter: opacity(.5);
   transition: 200ms ease-out;
 }
+
+.picturevideotoggle > button > image {
+  padding-left: 18px;
+  padding-right: 18px;
+}

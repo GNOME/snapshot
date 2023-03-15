@@ -100,6 +100,7 @@
                             <property name="valign">center</property>
                             <style>
                               <class name="linked"/>
+                              <class name="picturevideotoggle"/>
                             </style>
                             <child>
                               <object class="GtkToggleButton">
