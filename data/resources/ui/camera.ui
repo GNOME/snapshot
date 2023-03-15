@@ -239,7 +239,6 @@
   </template>
   <menu id="countdown_menu">
     <section>
-      <attribute name="label" translatable="yes">Countdown</attribute>
       <item>
         <attribute name="action">win.countdown</attribute>
         <attribute name="label" translatable="yes" comments="TRANSLATORS this indicates the countdown is disabled">None</attribute>
