@@ -11,7 +11,7 @@ gnome = import('gnome')
 
 base_id = 'org.gnome.World.Snapshot'
 
-dependency('glib-2.0', version: '>= 2.66')
+dependency('glib-2.0', version: '>= 2.75')
 dependency('gtk4', version: '>= 4.9.0')
 dependency('libadwaita-1', version: '>= 1.2.0')
 dependency('gstreamer-1.0', version: '>= 1.20')
