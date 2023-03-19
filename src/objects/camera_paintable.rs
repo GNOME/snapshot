@@ -32,7 +32,7 @@ mod imp {
         fn set_transform(&self, transform: crate::Transform) {
             if transform != self.transform.replace(transform) {
                 self.pipeline.get().unwrap().set_transform(transform);
-                self.obj().notify("transform");
+                self.obj().notify_transform();
             }
         }
     }

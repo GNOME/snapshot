@@ -42,7 +42,7 @@ mod imp {
     impl ShutterButton {
         pub fn set_countdown(&self, countdown: u32) {
             if countdown != self.countdown.replace(countdown) {
-                self.obj().notify("countdown")
+                self.obj().notify_countdown();
             }
         }
 
@@ -89,7 +89,7 @@ mod imp {
                     }
                 }
 
-                widget.notify("shutter-mode");
+                widget.notify_shutter_mode();
             }
         }
     }

@@ -44,7 +44,7 @@ mod imp {
     impl WaylandListener {
         fn set_transform(&self, transform: crate::Transform) {
             if transform != self.transform.replace(transform) {
-                self.obj().notify("transform");
+                self.obj().notify_transform();
             }
         }
     }
