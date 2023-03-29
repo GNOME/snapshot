@@ -80,6 +80,8 @@ mod imp {
             snapshot.pop();
 
             widget.draw_border(snapshot, width, height, border_radius);
+
+            self.parent_snapshot(snapshot);
         }
     }
     impl ButtonImpl for GalleryButton {}

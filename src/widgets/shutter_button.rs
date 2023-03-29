@@ -187,6 +187,8 @@ mod imp {
 
             widget.draw_border(snapshot, size, border_width);
             widget.draw_play(snapshot, size, border_width);
+
+            self.parent_snapshot(snapshot);
         }
     }
 
