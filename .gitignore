@@ -10,3 +10,4 @@ src/config.rs
 .flatpak/
 vendor
 .fenv
+.flatpak-builder
