@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use gettextrs::gettext;
 use std::path::PathBuf;
 
 use anyhow::Context;
@@ -9,34 +10,32 @@ pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
     // https://gitlab.gnome.org/sdroege/las-workshop-2019/-/blob/master/src/pipeline.rs.
     let format = picture_format.as_str();
     if let Ok(date_time) = glib::DateTime::now_local() {
-        let year = date_time.year();
-        let month = date_time.month();
-        let day = date_time.day_of_month();
-        let hour = date_time.hour();
-        let minute = date_time.minute();
-        let second = date_time.second();
-        let microsecond = date_time.microsecond();
-        format!("IMG_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}{microsecond:0>2}.{format}")
+        format!(
+            "{} {}.{format}",
+            // TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
+            gettext("Photo from"),
+            date_time.format("%Y-%m-%d %H-%M-%S.%f").unwrap()
+        )
     } else {
         let rand = glib::random_int_range(0, 999999);
-        format!("IMG_{rand}.{format}")
+        // TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
+        format!("{} {rand}.{format}", gettext("Photo"))
     }
 }
 
 pub fn video_file_name(video_format: crate::VideoFormat) -> String {
     let format = video_format.as_str();
     if let Ok(date_time) = glib::DateTime::now_local() {
-        let year = date_time.year();
-        let month = date_time.month();
-        let day = date_time.day_of_month();
-        let hour = date_time.hour();
-        let minute = date_time.minute();
-        let second = date_time.second();
-        let microsecond = date_time.microsecond();
-        format!("RECORDING_{year}{month:0>2}{day:0>2}_{hour:0>2}{minute:0>2}{second:0>2}{microsecond:0>2}.{format}")
+        format!(
+            "{} {}.{format}",
+            // TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
+            gettext("Recording from"),
+            date_time.format("%Y-%m-%d %H-%M-%S.%f").unwrap()
+        )
     } else {
         let rand = glib::random_int_range(0, 999999);
-        format!("RECORDING_{rand}.{format}")
+        // TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
+        format!("{} {rand}.{format}", gettext("Recording"))
     }
 }
 
