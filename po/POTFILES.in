@@ -1,3 +1,5 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
 data/org.gnome.Snapshot.desktop.in.in
 data/org.gnome.Snapshot.gschema.xml.in
 data/org.gnome.Snapshot.metainfo.xml.in.in
