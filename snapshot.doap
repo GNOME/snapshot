@@ -9,7 +9,7 @@
   <shortdesc xml:lang="en">
       Take pictures and videos
   </shortdesc>
-  <bug-database rdf:resource="https://gitlab.gnome.org/msandova/snapshot" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/Incubator/snapshot" />
 
   <programming-language>Rust</programming-language>
 

@@ -4,7 +4,7 @@
 
 # Snapshot
 
-<img src="https://gitlab.gnome.org/msandova/snapshot/raw/main/data/icons/org.gnome.Snapshot.svg" width="128px" height="128px" />
+<img src="https://gitlab.gnome.org/Incubator/snapshot/raw/main/data/icons/org.gnome.Snapshot.svg" width="128px" height="128px" />
 <p>Take pictures and videos</p>
 
 ## Screenshots

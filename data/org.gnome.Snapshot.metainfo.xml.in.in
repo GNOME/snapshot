@@ -13,12 +13,12 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/msandova/snapshot/raw/main/data/screenshots/screenshot1.png</image>
+      <image>https://gitlab.gnome.org/Incubator/snapshot/raw/main/data/screenshots/screenshot1.png</image>
       <caption>Camera's main interface</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://gitlab.gnome.org/msandova/snapshot</url>
-  <url type="bugtracker">https://gitlab.gnome.org/msandova/snapshot/issues</url>
+  <url type="homepage">https://gitlab.gnome.org/Incubator/snapshot</url>
+  <url type="bugtracker">https://gitlab.gnome.org/Incubator/snapshot/issues</url>
   <!-- <url type="translate">https://l10n.gnome.org/module/snapshot/</url> -->
   <content_rating type="oars-1.0" />
   <releases>

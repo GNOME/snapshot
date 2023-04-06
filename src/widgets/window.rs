@@ -227,7 +227,7 @@ impl Window {
             .application_name(gettext("Snapshot"))
             .application_icon(APP_ID)
             .license_type(gtk::License::Gpl30)
-            .issue_url("https://gitlab.gnome.org/msandova/snapshot/-/issues/new")
+            .issue_url("https://gitlab.gnome.org/Incubator/snapshot/-/issues/new")
             .version(VERSION)
             .translator_credits(gettext("translator-credits"))
             .developer_name("Maximiliano Sandoval")
