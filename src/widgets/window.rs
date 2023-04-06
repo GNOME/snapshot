@@ -129,7 +129,7 @@ mod imp {
             self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
                 let camera = &*obj.imp().camera;
                 let enabled = leaflet.visible_child().map(|child| &child == camera) == Some(true);
-                obj.action_set_enabled("win.take-picture", enabled);
+                obj.set_shutter_enabled(enabled);
             }));
 
             let ctx = glib::MainContext::default();
@@ -294,14 +294,12 @@ impl Window {
             if imp.recording_active.get() {
                 // disable the button while the video is ending
                 //
-                // TODO Revisit as it conflicts with sensitive on the button.
-                //
                 // TODO This is prone to errors, create start/stop_decoding functions
                 // that do the correct thing.
-                self.action_set_enabled("win.take-picture", false);
+                self.set_shutter_enabled(false);
                 imp.recording_active.set(false);
                 imp.camera.stop_recording();
-                self.action_set_enabled("win.take-picture", true);
+                self.set_shutter_enabled(true);
                 self.set_shutter_mode(crate::ShutterMode::Video);
             } else {
                 imp.recording_active.set(true);
@@ -370,5 +368,9 @@ impl Window {
     pub fn send_toast(&self, text: &str) {
         let toast = adw::Toast::new(text);
         self.imp().toast_overlay.add_toast(toast);
+    }
+
+    pub fn set_shutter_enabled(&self, enabled: bool) {
+        self.action_set_enabled("win.take-picture", enabled);
     }
 }

@@ -117,7 +117,8 @@ mod imp {
 
             self.paintable
                 .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
-                    obj.imp().shutter_button.set_sensitive(true);
+                    let window = obj.root().and_downcast::<crate::Window>().unwrap();
+                    window.set_shutter_enabled(true);
                 }));
 
             self.provider.set(provider).unwrap();
@@ -219,8 +220,11 @@ impl Camera {
 
     pub async fn take_picture(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
         let imp = self.imp();
-        // We set sensitive = True whenever picture-stored is emited.
-        imp.shutter_button.set_sensitive(false);
+        let window = self.root().and_downcast::<crate::Window>().unwrap();
+
+        // We enable the shutter whenever picture-stored is emited.
+        window.set_shutter_enabled(false);
+
         imp.paintable.take_snapshot(format)
     }
 
