@@ -81,11 +81,9 @@ mod imp {
                         }
                     }
                     imp.leaflet.set_visible_child(&*imp.gallery);
-                    window.action_set_enabled("win.take-picture", false);
                     window.imp().gallery.open();
                 } else {
                     imp.leaflet.set_visible_child(&*imp.camera);
-                    window.action_set_enabled("win.take-picture", true);
                     window.imp().gallery.close();
                 }
             });
@@ -127,6 +125,12 @@ mod imp {
             self.camera.set_countdown(duration as u32);
 
             self.camera.set_gallery(self.gallery.get());
+
+            self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
+                let camera = &*obj.imp().camera;
+                let enabled = leaflet.visible_child().map(|child| &child == camera) == Some(true);
+                obj.action_set_enabled("win.take-picture", enabled);
+            }));
 
             let ctx = glib::MainContext::default();
             ctx.spawn_local(glib::clone!(@weak obj => async move {
