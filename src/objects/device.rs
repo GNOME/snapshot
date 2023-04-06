@@ -71,6 +71,9 @@ impl Device {
 
                 let element = inner.create_element(None).unwrap();
                 element.set_property("client-name", config::APP_ID);
+                element.set_property("do-timestamp", true);
+                element.set_property("keepalive-time", 1000);
+                element.set_property("resend-last", true);
 
                 element
             }))
