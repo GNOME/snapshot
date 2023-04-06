@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gnome/World/Snapshot/">
+  <gresource prefix="/org/gnome/Snapshot/">
     <file compressed="true" preprocess="xml-stripblanks">ui/camera.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/gallery.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/preferences_window.ui</file>
@@ -9,7 +9,7 @@
     <file compressed="true">style.css</file>
     <file>sounds/camera-shutter.wav</file>
   </gresource>
-  <gresource prefix="/org/gnome/World/Snapshot/icons/16x16/actions/">
+  <gresource prefix="/org/gnome/Snapshot/icons/16x16/actions/">
     <file alias="video-camera-symbolic.svg">icons/video-camera-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="stopwatch-symbolic.svg">icons/stopwatch-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias ="external-link-symbolic.svg">icons/external-link-symbolic.svg</file>

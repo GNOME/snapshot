@@ -17,7 +17,7 @@ mod imp {
     use std::cell::RefCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/org/gnome/World/Snapshot/ui/camera.ui")]
+    #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
     pub struct Camera {
         pub paintable: crate::CameraPaintable,
         pub stream_list: RefCell<gio::ListStore>,

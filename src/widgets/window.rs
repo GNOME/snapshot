@@ -18,7 +18,7 @@ mod imp {
     use gtk::CompositeTemplate;
 
     #[derive(Debug, CompositeTemplate)]
-    #[template(resource = "/org/gnome/World/Snapshot/ui/window.ui")]
+    #[template(resource = "/org/gnome/Snapshot/ui/window.ui")]
     pub struct Window {
         #[template_child]
         pub camera: TemplateChild<crate::Camera>,

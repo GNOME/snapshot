@@ -1,10 +1,10 @@
-<!-- <a href="https://flathub.org/apps/details/org.gnome.World.Snapshot"> -->
+<!-- <a href="https://flathub.org/apps/details/org.gnome.Snapshot"> -->
 <!-- <img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" /> -->
 <!-- </a> -->
 
 # Snapshot
 
-<img src="https://gitlab.gnome.org/msandova/snapshot/raw/main/data/icons/org.gnome.World.Snapshot.svg" width="128px" height="128px" />
+<img src="https://gitlab.gnome.org/msandova/snapshot/raw/main/data/icons/org.gnome.Snapshot.svg" width="128px" height="128px" />
 <p>Take pictures and videos</p>
 
 ## Screenshots

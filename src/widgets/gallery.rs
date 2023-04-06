@@ -23,7 +23,7 @@ mod imp {
     use std::cell::{Cell, RefCell};
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/org/gnome/World/Snapshot/ui/gallery.ui")]
+    #[template(resource = "/org/gnome/Snapshot/ui/gallery.ui")]
     pub struct Gallery {
         #[template_child]
         pub child: TemplateChild<gtk::Widget>,

@@ -1,6 +1,6 @@
-data/org.gnome.World.Snapshot.desktop.in.in
-data/org.gnome.World.Snapshot.gschema.xml.in
-data/org.gnome.World.Snapshot.metainfo.xml.in.in
+data/org.gnome.Snapshot.desktop.in.in
+data/org.gnome.Snapshot.gschema.xml.in
+data/org.gnome.Snapshot.metainfo.xml.in.in
 data/resources/ui/camera.ui
 data/resources/ui/controls.ui
 data/resources/ui/gallery.ui

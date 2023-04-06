@@ -4,7 +4,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use wayland_client::protocol::wl_output;
 
-/// Enum representing the org.gnome.World.Snapshot.PictureFormat enum defined in
+/// Enum representing the org.gnome.Snapshot.PictureFormat enum defined in
 /// the gschema.
 #[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
 #[repr(u32)]
@@ -45,7 +45,7 @@ impl From<i32> for PictureFormat {
     }
 }
 
-/// Enum representing the org.gnome.World.Snapshot.VideoFormat enum defined in
+/// Enum representing the org.gnome.Snapshot.VideoFormat enum defined in
 /// the gschema.
 #[derive(Default, Debug, Copy, Clone, PartialEq)]
 #[repr(u32)]
@@ -80,7 +80,7 @@ impl From<i32> for VideoFormat {
     }
 }
 
-/// Enum representing the org.gnome.World.Snapshot.CaptureMode enum defined in
+/// Enum representing the org.gnome.Snapshot.CaptureMode enum defined in
 /// the gschema.
 #[derive(Default, Debug, Copy, Clone, PartialEq)]
 #[repr(u32)]

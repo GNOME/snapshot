@@ -11,7 +11,7 @@ mod imp {
     use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/org/gnome/World/Snapshot/ui/preferences_window.ui")]
+    #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         #[template_child]
         play_shutter_switch: TemplateChild<gtk::Switch>,

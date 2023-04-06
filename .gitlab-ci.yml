@@ -6,10 +6,10 @@ stages:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
   stage: test
   variables:
-    BUNDLE: "org.gnome.World.Snapshot.Devel.flatpak"
-    MANIFEST_PATH: "build-aux/org.gnome.World.Snapshot.Devel.json"
+    BUNDLE: "org.gnome.Snapshot.Devel.flatpak"
+    MANIFEST_PATH: "build-aux/org.gnome.Snapshot.Devel.json"
     FLATPAK_MODULE: "snapshot"
-    APP_ID: "org.gnome.World.Snapshot.Devel"
+    APP_ID: "org.gnome.Snapshot.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
     - >

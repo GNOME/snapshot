@@ -73,7 +73,7 @@ impl Default for Application {
     fn default() -> Self {
         glib::Object::builder()
             .property("application-id", APP_ID)
-            .property("resource-base-path", "/org/gnome/World/Snapshot/")
+            .property("resource-base-path", "/org/gnome/Snapshot/")
             .build()
     }
 }

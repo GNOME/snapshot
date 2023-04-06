@@ -1,5 +1,5 @@
 {
-    "id": "org.gnome.World.Snapshot.Devel",
+    "id": "org.gnome.Snapshot.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",

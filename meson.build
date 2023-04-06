@@ -9,7 +9,7 @@ project(
 i18n = import('i18n')
 gnome = import('gnome')
 
-base_id = 'org.gnome.World.Snapshot'
+base_id = 'org.gnome.Snapshot'
 
 dependency('glib-2.0', version: '>= 2.75')
 dependency('gtk4', version: '>= 4.9.0')
