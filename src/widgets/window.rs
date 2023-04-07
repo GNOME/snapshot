@@ -230,7 +230,7 @@ impl Window {
             .issue_url("https://gitlab.gnome.org/Incubator/snapshot/-/issues/new")
             .version(VERSION)
             .translator_credits(gettext("translator-credits"))
-            .developer_name("Maximiliano Sandoval")
+            .developer_name(gettext("The GNOME Project"))
             .developers(vec![
                 "Maximiliano Sandoval",
                 "Jamie Murphy <jmurphy@gnome.org>",
