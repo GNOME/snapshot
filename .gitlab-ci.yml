@@ -1,16 +1,18 @@
 stages:
   - check
   - test
+  - deploy
+
+variables:
+  BUNDLE: "org.gnome.Snapshot.Devel.flatpak"
+  MANIFEST_PATH: "build-aux/org.gnome.Snapshot.Devel.json"
+  FLATPAK_MODULE: "snapshot"
+  APP_ID: "org.gnome.Snapshot.Devel"
+  RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
 
 .flatpak:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
   stage: test
-  variables:
-    BUNDLE: "org.gnome.Snapshot.Devel.flatpak"
-    MANIFEST_PATH: "build-aux/org.gnome.Snapshot.Devel.json"
-    FLATPAK_MODULE: "snapshot"
-    APP_ID: "org.gnome.Snapshot.Devel"
-    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
     - >
       xvfb-run -a -s "-screen 0 1024x768x24"
@@ -45,3 +47,15 @@ rustfmt:
     - rustc -Vv && cargo -Vv
     - cargo fmt --version
     - cargo fmt --all -- --color=always --check
+
+include:
+  - project: "GNOME/citemplates"
+    file: "flatpak/flatpak_ci_initiative.yml"
+
+nightly@x86_64:
+  extends: ".publish_nightly"
+  needs: ["flatpak@x86_64"]
+
+nightly@aarch64:
+  extends: ".publish_nightly"
+  needs: ["flatpak@aarch64"]
