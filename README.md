@@ -21,10 +21,10 @@ To build the development version of Snapshot and hack on the code
 see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
 for building GNOME apps with Flatpak and GNOME Builder.
 
-<!-- ## Translations -->
+## Translations
 
-<!-- Helping to translate Snapshot or add support to a new language is very welcome. -->
-<!-- You can find everything you need at: [l10n.gnome.org/module/snapshot/](https://l10n.gnome.org/module/snapshot/) -->
+Helping to translate Snapshot or add support to a new language is very welcome.
+You can find everything you need at: [l10n.gnome.org/module/snapshot/](https://l10n.gnome.org/module/snapshot/)
 
 ## Code Of Conduct
 
