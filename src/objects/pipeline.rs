@@ -55,12 +55,6 @@ mod imp {
 
             let pipeline = self.obj();
             pipeline.set_message_forward(true);
-            // I don't know why this is needed, but the manual clock setup
-            // makes the recordings work perfectly.
-            // Do not touch this unless you know what you're doing
-            pipeline.set_start_time(gst::ClockTime::NONE);
-            pipeline.set_base_time(gst::ClockTime::ZERO);
-            pipeline.use_clock(Some(&gst::SystemClock::obtain()));
 
             let paintablesink = gst::ElementFactory::make("gtk4paintablesink")
                 .build()
