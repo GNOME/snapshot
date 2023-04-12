@@ -191,6 +191,7 @@
                             <child>
                               <object class="ShutterButton" id="shutter_button">
                                 <property name="action-name">win.take-picture</property>
+                                <property name="tooltip-text" translatable="yes">Take Picture</property>
                               </object>
                             </child>
                             <child>
