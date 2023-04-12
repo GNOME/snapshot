@@ -1,0 +1,303 @@
+# Dutch translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+# Nathan Follens <nfollens@gnome.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-04-12 19:06+0000\n"
+"PO-Revision-Date: 2023-04-12 22:48+0200\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
+#: src/widgets/window.rs:227
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Maak foto’s en video’s"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "picture;photos;camera;foto's;foto’s; afbeeldingen;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:20
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+msgid "Default window width"
+msgstr "Standaard vensterbreedte"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:25
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window height"
+msgstr "Standaard vensterhoogte"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Default window maximized behaviour"
+msgstr "Standaardgedrag van gemaximaliseerd venster"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Play shutter sound"
+msgstr "Sluitergeluid afspelen"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Bepaalt of er een sluitergeluid afgespeeld wordt wanneer er een foto gemaakt wordt"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Countdown timer"
+msgstr "Afteltimer"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Hoe lang het aftellen duurt voordat de foto wordt gemaakt, in seconden"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Capture mode"
+msgstr "Opnamemodus"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Whether to take pictures or videos"
+msgstr "Bepaalt of er foto’s of video’s gemaakt worden"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "Picture format"
+msgstr "Fotoformaat"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Bepaalt of foto’s als PNG of als JPEG opgeslagen worden"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Video format"
+msgstr "Videoformaat"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Bepaalt of video’s als MP4 of als WebM opgeslagen worden"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Maak foto’s en video’s op uw computer, tablet of telefoon."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Hoofdinterface van de camera"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
+msgid "Maximiliano Sandoval"
+msgstr "Maximiliano Sandoval"
+
+#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
+#: data/resources/ui/gallery.ui:64
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: data/resources/ui/camera.ui:61
+msgid "No Camera Found"
+msgstr "Geen camera gevonden"
+
+#: data/resources/ui/camera.ui:62
+msgid "Connect a camera device"
+msgstr "Sluit een camera-apparaat aan"
+
+#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
+msgid "Countdown"
+msgstr "Aftellen"
+
+#: data/resources/ui/camera.ui:110
+msgid "Picture Mode"
+msgstr "Fotomodus"
+
+#: data/resources/ui/camera.ui:128
+msgid "Recording Mode"
+msgstr "Opnamemodus"
+
+#: data/resources/ui/camera.ui:188
+msgid "Open Gallery"
+msgstr "Galerij openen"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: src/widgets/shutter_button.rs:126
+msgid "Take Picture"
+msgstr "Foto maken"
+
+#: data/resources/ui/camera.ui:206
+msgid "Select Camera"
+msgstr "Selecteer camera"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:247
+msgid "None"
+msgstr "Geen"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:252
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:257
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:262
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+msgid "_Keyboard Shortcuts"
+msgstr "Snel_toetsen"
+
+#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+msgid "_About Snapshot"
+msgstr "_Over Snapshot"
+
+#: data/resources/ui/gallery.ui:51
+msgid "Back"
+msgstr "Terug"
+
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+msgid "Open in Image Viewer"
+msgstr "Openen met afbeeldingsweergave"
+
+#: data/resources/ui/gallery.ui:111
+msgid "Previous Image"
+msgstr "Vorige afbeelding"
+
+#: data/resources/ui/gallery.ui:123
+msgid "Next Image"
+msgstr "Volgende afbeelding"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Algemeen"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Camera"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Picture Format"
+msgstr "Fotoformaat"
+
+#: data/resources/ui/preferences_window.ui:32
+msgid "Play Shutter Sound"
+msgstr "Sluitergeluid afspelen"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Sneltoetsen tonen"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Voorkeuren openen"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Camera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Fotomodus"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Opnamemodus"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Foto maken of opname beginnen"
+
+#: data/resources/ui/shortcuts.ui:63
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galerij"
+
+#: data/resources/ui/shortcuts.ui:66
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Galerij openen/sluiten"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Volgende"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Vorige"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:30
+msgid "PNG"
+msgstr "PNG"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:33
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/widgets/gallery.rs:99
+msgid "Open in Video Player"
+msgstr "Openen met videospeler"
+
+#: src/widgets/shutter_button.rs:77
+msgid "Start Recording"
+msgstr "Opname beginnen"
+
+#: src/widgets/shutter_button.rs:88
+msgid "Stop Recording"
+msgstr "Opname beëindigen"
+
+#: src/widgets/window.rs:232
+msgid "translator-credits"
+msgstr ""
+"Nathan Follens <nfollens@gnome.org>\n"
+"Meer info over GNOME-NL https://nl.gnome.org"
+
+#: src/widgets/window.rs:233
+msgid "The GNOME Project"
+msgstr "Het GNOME-project"
