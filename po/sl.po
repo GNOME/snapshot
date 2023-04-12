@@ -1,0 +1,303 @@
+# Slovenian translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+#
+# Martin Srebotnjak <miles@filmsi.net>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-04-12 15:50+0000\n"
+"PO-Revision-Date: 2023-04-12 21:03+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
+"Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-SourceCharset: ISO-8859-1\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
+#: src/widgets/window.rs:227
+msgid "Snapshot"
+msgstr "Posnetek"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Fotografirajte in snemajte videoposnetke"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "slika;fotografije;kamera;snemanje;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:20
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+msgid "Default window width"
+msgstr "Privzeta širina okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:25
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window height"
+msgstr "Privzeta višina okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Default window maximized behaviour"
+msgstr "Vedenje privzeto razpetega okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Play shutter sound"
+msgstr "Predvajaj zvok zaklopa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Ali želite ob slikanju predvajati zvok zaklopa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Countdown timer"
+msgstr "Časovnik odštevanja"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Trajanje odštevanja ob fotografiranju, v sekundah"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Capture mode"
+msgstr "Način zajemanja"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Whether to take pictures or videos"
+msgstr "Ali želite fotografirati ali snemati video"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "Picture format"
+msgstr "Oblika slike"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Shranjevanje slik kot png ali jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Video format"
+msgstr "Oblika videoposnetka"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Shranjevanje videoposnetkov kot mp4 ali webm"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Slikajte in snemajte video na svojem računalniku, tabličnem računalniku ali telefonu."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Glavni vmesnik kamere"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
+msgid "Maximiliano Sandoval"
+msgstr "Maximiliano Sandoval"
+
+#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
+#: data/resources/ui/gallery.ui:64
+msgid "Main Menu"
+msgstr "Glavni meni"
+
+#: data/resources/ui/camera.ui:61
+msgid "No Camera Found"
+msgstr "Ni zaznane kamere"
+
+#: data/resources/ui/camera.ui:62
+msgid "Connect a camera device"
+msgstr "Povežite kamero"
+
+#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
+msgid "Countdown"
+msgstr "Odštevalnik"
+
+#: data/resources/ui/camera.ui:110
+msgid "Picture Mode"
+msgstr "Način slikanja"
+
+#: data/resources/ui/camera.ui:128
+msgid "Recording Mode"
+msgstr "Način snemanja"
+
+#: data/resources/ui/camera.ui:188
+msgid "Open Gallery"
+msgstr "Odpri galerijo"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: src/widgets/shutter_button.rs:126
+msgid "Take Picture"
+msgstr "Naredi sliko"
+
+#: data/resources/ui/camera.ui:206
+msgid "Select Camera"
+msgstr "Izberite kamero"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:247
+msgid "None"
+msgstr "Prazno"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:252
+msgid "3s"
+msgstr "3 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:257
+msgid "5s"
+msgstr "5 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:262
+msgid "10s"
+msgstr "10 s"
+
+#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+msgid "_Preferences"
+msgstr "_Možnosti"
+
+#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovne bližnjice‫"
+
+#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+msgid "_About Snapshot"
+msgstr "_O programu Posnetek"
+
+#: data/resources/ui/gallery.ui:51
+msgid "Back"
+msgstr "Nazaj"
+
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+msgid "Open in Image Viewer"
+msgstr "Odpri v pregledovalniku slik"
+
+#: data/resources/ui/gallery.ui:111
+msgid "Previous Image"
+msgstr "Predhodnja slika"
+
+#: data/resources/ui/gallery.ui:123
+msgid "Next Image"
+msgstr "Naslednja slika"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Splošno"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Picture Format"
+msgstr "Oblika slike"
+
+#: data/resources/ui/preferences_window.ui:32
+msgid "Play Shutter Sound"
+msgstr "Predvajaj zvok zaklopa"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Splošno"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Pokaže tipkovne bližnjice‫"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Glavni meni"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Odpre nastavitve"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Izhod"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Način slikanja"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Način snemanja"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Slika ali začne snemati"
+
+#: data/resources/ui/shortcuts.ui:63
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galerija"
+
+#: data/resources/ui/shortcuts.ui:66
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Odpre/zapre galerijo"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Naprej"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Nazaj"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:30
+msgid "PNG"
+msgstr "PNG"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:33
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/widgets/gallery.rs:99
+msgid "Open in Video Player"
+msgstr "Odpri v videopredvajalniku"
+
+#: src/widgets/shutter_button.rs:77
+msgid "Start Recording"
+msgstr "Začni snemati"
+
+#: src/widgets/shutter_button.rs:88
+msgid "Stop Recording"
+msgstr "Ustavi snemanje"
+
+#: src/widgets/window.rs:232
+msgid "translator-credits"
+msgstr "Martin Srebotnjak <miles@filmsi.net>"
+
+#: src/widgets/window.rs:233
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
