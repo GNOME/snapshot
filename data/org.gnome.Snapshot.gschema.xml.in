@@ -46,7 +46,7 @@
       <description>Whether to take pictures or videos</description>
     </key>
     <key name="picture-format" enum="org.gnome.Snapshot.PictureFormat">
-      <default>"png"</default>
+      <default>"jpeg"</default>
       <summary>Picture format</summary>
       <description>Whether to save pictures as png or jpeg</description>
     </key>
