@@ -15,7 +15,8 @@
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkHeaderBar">
+                      <object class="AdwHeaderBar">
+                        <property name="show-title">False</property>
                         <style>
                           <class name="flat"/>
                         </style>
@@ -43,7 +44,8 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkHeaderBar">
+                  <object class="AdwHeaderBar">
+                    <property name="show-title">False</property>
                     <child type="end">
                       <object class="GtkMenuButton">
                         <property name="icon-name">open-menu-symbolic</property>
@@ -52,6 +54,9 @@
                         <property name="primary">True</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="flat" />
+                    </style>
                   </object>
                 </child>
                 <child>
