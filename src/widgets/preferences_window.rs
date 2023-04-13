@@ -14,8 +14,6 @@ mod imp {
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         #[template_child]
-        play_shutter_switch: TemplateChild<gtk::Switch>,
-        #[template_child]
         picture_format_combo: TemplateChild<adw::ComboRow>,
 
         settings: OnceCell<gio::Settings>,
@@ -70,9 +68,6 @@ mod imp {
                 .insert_action_group("preferences-window", Some(&action_group));
 
             self.settings.set(settings).unwrap();
-
-            self.play_shutter_switch
-                .set_action_name(Some("preferences-window.play-shutter-sound"));
 
             let format = self.settings.get().unwrap().enum_("picture-format");
             self.picture_format_combo.set_selected(format as u32);

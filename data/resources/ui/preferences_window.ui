@@ -28,14 +28,9 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwSwitchRow">
                 <property name="title" translatable="yes">Play Shutter Sound</property>
-                <property name="activatable-widget">play_shutter_switch</property>
-                <child>
-                  <object class="GtkSwitch" id="play_shutter_switch">
-                    <property name="valign">center</property>
-                  </object>
-                </child>
+                <property name="action-name">preferences-window.play-shutter-sound</property>
               </object>
             </child>
           </object>
