@@ -4,8 +4,7 @@ use glib::clone;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
-use crate::config;
-use crate::objects::Action;
+use crate::{config, utils};
 
 mod imp {
     use std::cell::{Cell, RefCell};
@@ -18,8 +17,7 @@ mod imp {
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::CameraPaintable)]
     pub struct CameraPaintable {
-        pub pipeline: OnceCell<crate::Pipeline>,
-        pub sink_paintable: OnceCell<gdk::Paintable>,
+        pub viewfinder: OnceCell<aperture::Viewfinder>,
 
         pub flash_ani: OnceCell<adw::TimedAnimation>,
         pub players: RefCell<Option<gtk::MediaFile>>,
@@ -31,7 +29,8 @@ mod imp {
     impl CameraPaintable {
         fn set_transform(&self, transform: crate::Transform) {
             if transform != self.transform.replace(transform) {
-                self.pipeline.get().unwrap().set_transform(transform);
+                // TODO
+                // self.pipeline.get().unwrap().set_transform(transform);
                 self.obj().notify_transform();
             }
         }
@@ -41,7 +40,11 @@ mod imp {
     impl ObjectSubclass for CameraPaintable {
         const NAME: &'static str = "CameraPaintable";
         type Type = super::CameraPaintable;
-        type Interfaces = (gdk::Paintable,);
+        type ParentType = gtk::Widget;
+
+        fn class_init(klass: &mut Self::Class) {
+            klass.set_layout_manager_type::<gtk::BinLayout>();
+        }
     }
 
     impl ObjectImpl for CameraPaintable {
@@ -50,37 +53,32 @@ mod imp {
 
             let obj = self.obj();
 
-            let (sender, receiver) = glib::MainContext::channel::<Action>(glib::PRIORITY_DEFAULT);
-            receiver.attach(
-                None,
-                clone!(@weak obj => @default-return glib::Continue(false), move |action| {
-                    match action {
-                        Action::PictureSaved(path) => {
-                            let file = path.map(gio::File::for_path);
-                            obj.emit_picture_stored(file.as_ref());
-                        },
-                        Action::VideoSaved(path) => {
-                            let file = path.map(gio::File::for_path);
-                            obj.emit_video_stored(file.as_ref());
-                        },
-                    }
-                    glib::Continue(true)
-                }),
-            );
+            let viewfinder = aperture::Viewfinder::new();
 
-            let pipeline = crate::Pipeline::new(sender);
-            let paintable = pipeline.paintable();
-
-            paintable.connect_invalidate_contents(clone!(@weak obj => move |_| {
-                obj.invalidate_contents();
+            viewfinder.connect_picture_done(clone!(@weak obj => move |_, file| {
+                obj.emit_picture_stored(Some(file));
             }));
 
-            paintable.connect_invalidate_size(clone!(@weak obj => move |_| {
-                obj.invalidate_size();
+            viewfinder.connect_recording_done(clone!(@weak obj => move |_, file| {
+                obj.emit_video_stored(Some(file));
             }));
 
-            self.pipeline.set(pipeline).unwrap();
-            self.sink_paintable.set(paintable).unwrap();
+            viewfinder.set_parent(&*obj);
+
+            self.viewfinder.set(viewfinder).unwrap();
+
+            let target =
+                adw::CallbackAnimationTarget::new(glib::clone!(@weak obj => move |_value| {
+                    obj.queue_draw();
+                }));
+            let ani = adw::TimedAnimation::new(&*obj, 0.0, 1.0, 250, target);
+            ani.set_easing(adw::Easing::Linear);
+
+            self.flash_ani.set(ani).unwrap();
+        }
+
+        fn dispose(&self) {
+            self.viewfinder.get().unwrap().unparent();
         }
 
         fn properties() -> &'static [glib::ParamSpec] {
@@ -112,62 +110,34 @@ mod imp {
         }
     }
 
-    impl PaintableImpl for CameraPaintable {
-        fn intrinsic_height(&self) -> i32 {
-            if let Some(paintable) = self.sink_paintable.get() {
-                paintable.intrinsic_height()
-            } else {
-                0
-            }
-        }
+    impl WidgetImpl for CameraPaintable {
+        fn snapshot(&self, snapshot: &gtk::Snapshot) {
+            let w = self.obj().width() as f32;
+            let h = self.obj().height() as f32;
 
-        fn intrinsic_width(&self) -> i32 {
-            if let Some(paintable) = self.sink_paintable.get() {
-                paintable.intrinsic_width()
-            } else {
-                0
-            }
-        }
+            self.parent_snapshot(&snapshot);
 
-        fn intrinsic_aspect_ratio(&self) -> f64 {
-            if let Some(paintable) = self.sink_paintable.get() {
-                paintable.intrinsic_aspect_ratio()
-            } else {
-                1.0
-            }
-        }
+            // FIXME Support flips in the monitor.
 
-        fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
-            let w = width as f32;
-            let h = height as f32;
-
-            if let Some(image) = self.sink_paintable.get() {
-                // FIXME  Support flips in the monitor.
-
-                // The parameters are subject to the rotation, so we have to
-                // drawn accordingly.
-                image.snapshot(snapshot, width, height);
-
-                if let Some(animation) = self.flash_ani.get() {
-                    if !matches!(animation.state(), adw::AnimationState::Playing) {
-                        return;
-                    }
-                    let alpha = easing(animation.value()) as f32;
-
-                    let rect = graphene::Rect::new(0.0, 0.0, w, h);
-                    let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha);
-
-                    snapshot.append_color(&black, &rect);
+            // The parameters are subject to the rotation, so we have to drawn
+            // accordingly.
+            if let Some(animation) = self.flash_ani.get() {
+                if !matches!(animation.state(), adw::AnimationState::Playing) {
+                    return;
                 }
-            } else {
-                snapshot.append_color(&gdk::RGBA::BLACK, &graphene::Rect::new(0.0, 0.0, w, h));
+                let alpha = easing(animation.value()) as f32;
+
+                let rect = graphene::Rect::new(0.0, 0.0, w, h);
+                let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha);
+
+                snapshot.append_color(&black, &rect);
             }
         }
     }
 }
 
 glib::wrapper! {
-    pub struct CameraPaintable(ObjectSubclass<imp::CameraPaintable>) @implements gdk::Paintable;
+    pub struct CameraPaintable(ObjectSubclass<imp::CameraPaintable>) @extends gtk::Widget;
 }
 
 impl Default for CameraPaintable {
@@ -177,21 +147,21 @@ impl Default for CameraPaintable {
 }
 
 impl CameraPaintable {
-    pub fn set_pipewire_element(&self, element: gst::Element) {
+    pub fn set_camera(&self, camera: aperture::Camera) {
         let imp = self.imp();
 
-        let pipeline = imp.pipeline.get().unwrap();
-        pipeline.set_pipewire_element(element);
-    }
-
-    pub fn close_pipeline(&self) {
-        self.imp().pipeline.get().unwrap().close();
+        let viewfinder = imp.viewfinder.get().unwrap();
+        // TODO unwrap
+        viewfinder.set_camera(Some(camera)).unwrap();
     }
 
     pub fn take_snapshot(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
         let imp = self.imp();
 
-        imp.pipeline.get().unwrap().take_snapshot(format)?;
+        let filename = utils::picture_file_name(format);
+        let path = utils::pictures_dir()?.join(&filename);
+
+        imp.viewfinder.get().unwrap().take_picture(path)?;
         imp.flash_ani.get().unwrap().play();
 
         let settings = gio::Settings::new(config::APP_ID);
@@ -204,12 +174,21 @@ impl CameraPaintable {
 
     // Start recording to the configured location
     pub fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
-        self.imp().pipeline.get().unwrap().start_recording(format)
+        let filename = utils::video_file_name(format);
+        let path = utils::videos_dir()?.join(filename);
+
+        self.imp().viewfinder.get().unwrap().start_recording(path)?;
+
+        Ok(())
     }
 
     // Stop recording if any recording was currently ongoing
     pub fn stop_recording(&self) {
-        self.imp().pipeline.get().unwrap().stop_recording();
+        let viewfinder = self.imp().viewfinder.get().unwrap();
+        if viewfinder.is_recording() {
+            // TODO unwrap()
+            viewfinder.stop_recording().unwrap();
+        }
     }
 
     fn emit_picture_stored(&self, file: Option<&gio::File>) {
@@ -240,24 +219,6 @@ impl CameraPaintable {
         );
     }
 
-    // HACK This is Uggly. This is called as
-    // ```
-    // picture.set_paintable(&paintable);
-    // paintable.set_picture(&picture);
-    // ```
-    pub fn set_picture<W: glib::IsA<gtk::Picture>>(&self, picture: &W) {
-        picture.as_ref().set_paintable(Some(self));
-
-        let target =
-            adw::CallbackAnimationTarget::new(glib::clone!(@weak self as obj => move |_value| {
-                obj.invalidate_contents();
-            }));
-        let ani = adw::TimedAnimation::new(picture.upcast_ref(), 0.0, 1.0, 250, target);
-        ani.set_easing(adw::Easing::Linear);
-
-        self.imp().flash_ani.set(ani).unwrap();
-    }
-
     fn play_shutter_sound(&self) {
         // If we don't hold a reference to it there is a condition race which
         // will cause the sound to play only sometimes.
@@ -266,6 +227,11 @@ impl CameraPaintable {
         player.play();
 
         self.imp().players.replace(Some(player));
+    }
+
+    pub fn is_ready(&self) -> bool {
+        let viewfinder = self.imp().viewfinder.get().unwrap();
+        matches!(viewfinder.state(), aperture::ViewfinderState::Ready)
     }
 }
 

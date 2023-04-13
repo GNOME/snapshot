@@ -6,7 +6,7 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
 
-use crate::{CameraRow, Device};
+use crate::CameraRow;
 
 const PROVIDER_TIMEOUT: u64 = 2;
 
@@ -19,10 +19,9 @@ mod imp {
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
     pub struct Camera {
-        pub paintable: crate::CameraPaintable,
         pub stream_list: RefCell<gio::ListStore>,
         pub selection: gtk::SingleSelection,
-        pub provider: OnceCell<crate::DeviceProvider>,
+        pub provider: OnceCell<aperture::DeviceProvider>,
         pub listener: OnceCell<crate::WaylandListener>,
 
         #[template_child]
@@ -31,8 +30,9 @@ mod imp {
         pub camera_menu_button: TemplateChild<gtk::MenuButton>,
         #[template_child]
         pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
+        // TODO Rename
         #[template_child]
-        pub picture: TemplateChild<gtk::Picture>,
+        pub picture: TemplateChild<crate::CameraPaintable>,
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -63,18 +63,17 @@ mod imp {
 
             let obj = self.obj();
 
-            self.paintable.set_picture(&*self.picture);
-
             let popover = gtk::Popover::new();
             popover.add_css_class("menu");
 
-            let provider = crate::DeviceProvider::new();
+            let provider = aperture::DeviceProvider::instance();
+            self.provider.set(provider.clone()).unwrap();
             provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
                 obj.update_cameras(provider);
             }));
             obj.update_cameras(&provider);
 
-            self.selection.set_model(Some(&provider));
+            self.selection.set_model(Some(provider));
             let factory = gtk::SignalListItemFactory::new();
             factory.connect_setup(|_, item| {
                 let item = item.downcast_ref::<gtk::ListItem>().unwrap();
@@ -88,7 +87,7 @@ mod imp {
                 let child = item.child().unwrap();
                 let row = child.downcast_ref::<CameraRow>().unwrap();
 
-                let item = item.item().unwrap().downcast::<Device>().unwrap();
+                let item = item.item().and_downcast::<aperture::Camera>().unwrap();
                 row.set_item(&item);
 
                 selection.connect_selected_item_notify(glib::clone!(@weak row, @weak item => move |selection| {
@@ -106,8 +105,11 @@ mod imp {
             self.selection.connect_selected_item_notify(
                 glib::clone!(@weak obj, @weak popover => move |selection| {
                     if let Some(selected_item) = selection.selected_item() {
-                        let device = selected_item.downcast_ref::<Device>().unwrap();
-                        obj.imp().paintable.set_pipewire_element(device.element());
+                        let camera = selected_item.downcast::<aperture::Camera>().unwrap();
+
+                        if obj.imp().picture.is_ready() {
+                            obj.imp().picture.set_camera(camera);
+                        }
                     }
                     popover.popdown();
                 }),
@@ -115,13 +117,11 @@ mod imp {
 
             self.camera_menu_button.set_popover(Some(&popover));
 
-            self.paintable
+            self.picture
                 .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
                     let window = obj.root().and_downcast::<crate::Window>().unwrap();
                     window.set_shutter_enabled(true);
                 }));
-
-            self.provider.set(provider).unwrap();
 
             // This spinner stops running when the device provider finds any
             // camera device.
@@ -130,7 +130,7 @@ mod imp {
         }
 
         fn dispose(&self) {
-            self.paintable.stop_recording();
+            self.picture.stop_recording();
             self.dispose_template();
         }
     }
@@ -144,7 +144,7 @@ mod imp {
             let display = widget.display();
             let listener = crate::WaylandListener::new(display);
             listener
-                .bind_property("transform", &widget.imp().paintable, "transform")
+                .bind_property("transform", &*widget.imp().picture, "transform")
                 .sync_create()
                 .build();
 
@@ -170,7 +170,7 @@ impl Camera {
     }
 
     pub fn stop(&self) {
-        self.imp().paintable.close_pipeline();
+        // TODO
     }
 
     pub async fn start(&self) {
@@ -187,13 +187,10 @@ impl Camera {
                     // FIXME Show a page explaining how to setup the permission.
                     log::warn!("Could not use the camera portal");
                 }
-
-                if let Err(err) = provider.start() {
-                    obj.imp().stack.set_visible_child_name("not-found");
-                    log::error!("Could not start device provider: {err}");
-                }
             }),
         );
+
+        // FIXME Set to not-found on ViewfinderState::Error;
 
         // FIXME This is super arbitrary
         let duration = std::time::Duration::from_secs(PROVIDER_TIMEOUT);
@@ -210,12 +207,12 @@ impl Camera {
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
-        self.imp().paintable.start_recording(format)?;
+        self.imp().picture.start_recording(format)?;
         Ok(())
     }
 
     pub fn stop_recording(&self) {
-        self.imp().paintable.stop_recording();
+        self.imp().picture.stop_recording();
     }
 
     pub async fn take_picture(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
@@ -225,7 +222,7 @@ impl Camera {
         // We enable the shutter whenever picture-stored is emited.
         window.set_shutter_enabled(false);
 
-        imp.paintable.take_snapshot(format)
+        imp.picture.take_snapshot(format)
     }
 
     pub fn set_countdown(&self, countdown: u32) {
@@ -248,7 +245,7 @@ impl Camera {
         let imp = self.imp();
 
         if matches!(shutter_mode, crate::ShutterMode::Picture) {
-            imp.paintable.stop_recording();
+            imp.picture.stop_recording();
         }
         imp.shutter_button.set_shutter_mode(shutter_mode);
     }
@@ -256,13 +253,13 @@ impl Camera {
     pub fn set_gallery(&self, gallery: crate::Gallery) {
         let imp = self.imp();
 
-        imp.paintable
+        imp.picture
             .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, file| {
                 if let Some(file) = file {
                     gallery.add_image(file);
                 }
             }));
-        imp.paintable
+        imp.picture
             .connect_video_stored(glib::clone!(@weak gallery,  => move |_, file| {
                 if let Some(file) = file {
                     // HACK This is terrible, we should be able to emit this at
@@ -279,7 +276,7 @@ impl Camera {
         imp.gallery_button.set_gallery(&gallery);
     }
 
-    fn update_cameras(&self, provider: &crate::DeviceProvider) {
+    fn update_cameras(&self, provider: &aperture::DeviceProvider) {
         let imp = self.imp();
         imp.spinner.stop();
 

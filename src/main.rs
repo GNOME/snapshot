@@ -14,7 +14,7 @@ use gettextrs::{gettext, LocaleCategory};
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
-use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 
 fn main() -> glib::ExitCode {
     // Initialize logger
@@ -27,12 +27,10 @@ fn main() -> glib::ExitCode {
 
     glib::set_application_name(&gettext("Snapshot"));
 
-    gtk::init().expect("Unable to start GTK");
-    gst::init().expect("Failed to initalize gst");
-    gstgtk4::plugin_register_static().expect("Failed to initalize gstgtk4");
-
     let res = gio::Resource::load(RESOURCES_FILE).expect("Could not load gresource file");
     gio::resources_register(&res);
+
+    aperture::init(APP_ID);
 
     widgets::init();
     enums::init();

@@ -3,8 +3,6 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
-use crate::Device;
-
 mod imp {
     use super::*;
 
@@ -59,7 +57,11 @@ impl CameraRow {
         self.imp().checkmark.set_visible(selected);
     }
 
-    pub fn set_item(&self, item: &Device) {
-        self.set_label(&item.display_name());
+    pub fn set_item(&self, item: &aperture::Camera) {
+        if let Some(nick) = item.nick() {
+            self.set_label(&nick);
+        } else {
+            self.set_label(&item.display_name());
+        }
     }
 }

@@ -53,7 +53,6 @@ mod imp {
     impl ObjectSubclass for WaylandListener {
         const NAME: &'static str = "WaylandListener";
         type Type = super::WaylandListener;
-        type ParentType = glib::Object;
     }
 
     impl ObjectImpl for WaylandListener {

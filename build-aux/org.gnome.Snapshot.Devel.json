@@ -12,7 +12,7 @@
         "--device=dri",
         "--env=G_MESSAGES_DEBUG=none",
         "--env=RUST_BACKTRACE=1",
-        "--env=RUST_LOG=snapshot=debug",
+        "--env=RUST_LOG=snapshot=debug,aperture=debug",
         "--filesystem=xdg-pictures/Camera:create",
         "--filesystem=xdg-run/pipewire-0",
         "--filesystem=xdg-videos/Camera:create",

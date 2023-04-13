@@ -221,11 +221,8 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkPicture" id="picture">
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="keep-aspect-ratio">False</property>
-                      </object>
+                      <!-- TODO Rename -->
+                      <object class="CameraPaintable" id="picture"/>
                     </child>
                   </object>
                 </child>

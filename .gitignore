@@ -11,3 +11,4 @@ src/config.rs
 vendor
 .fenv
 .flatpak-builder
+aperture/Cargo.lock
