@@ -10,7 +10,6 @@
     "command": "snapshot",
     "finish-args": [
         "--device=dri",
-        "--env=GST_DEBUG=WARN",
         "--env=G_MESSAGES_DEBUG=none",
         "--env=RUST_BACKTRACE=1",
         "--env=RUST_LOG=snapshot=debug",
