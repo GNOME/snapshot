@@ -1,0 +1,300 @@
+# Galician translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+# Fran Dieguez <frandieguez@gnome.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-04-13 15:19+0000\n"
+"PO-Revision-Date: 2023-04-13 19:15+0200\n"
+"Last-Translator: \n"
+"Language-Team: Galician <gnome-gl-list@gnome.org>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
+#: src/widgets/window.rs:227
+msgid "Snapshot"
+msgstr "Instantánea"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Tome capturas e vídeos"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "captura;imaxe;fotos;cámara;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:20
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+msgid "Default window width"
+msgstr "Anchura predeterminada da xanela"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:25
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window height"
+msgstr "Altura predeterminada da xanela"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Default window maximized behaviour"
+msgstr "Comportamento predeterminado da xanela maximizada"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Play shutter sound"
+msgstr "Reproducir son de obturador"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Indica se reproducir un son de obturador ao sacar as fotos"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Countdown timer"
+msgstr "Temporizador de conta atrás"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "A duración da conta atrás ao sacar as fotos, en segundos"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Capture mode"
+msgstr "Modo de captura"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Whether to take pictures or videos"
+msgstr "Indica se sacar fotos ou vídeos"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "Picture format"
+msgstr "Formato da imaxe"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Indica se gardar as imaxes como png ou jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Video format"
+msgstr "Formato do vídeo"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Indica se gardar os vídeos como mp4 ou webm"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Saque fotos e grave vídeos no seu computador, tableta ou teléfono."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Interface principal da Cámara"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
+msgid "Maximiliano Sandoval"
+msgstr "Maximiliano Sandoval"
+
+#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
+#: data/resources/ui/gallery.ui:64
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: data/resources/ui/camera.ui:61
+msgid "No Camera Found"
+msgstr "Non se atopou unha cámara"
+
+#: data/resources/ui/camera.ui:62
+msgid "Connect a camera device"
+msgstr "Conecte un dispositivo de cámara"
+
+#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
+msgid "Countdown"
+msgstr "Conta atrás"
+
+#: data/resources/ui/camera.ui:110
+msgid "Picture Mode"
+msgstr "Modo de imaxe"
+
+#: data/resources/ui/camera.ui:128
+msgid "Recording Mode"
+msgstr "Modo de gravación"
+
+#: data/resources/ui/camera.ui:188
+msgid "Open Gallery"
+msgstr "Abrir galería"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: src/widgets/shutter_button.rs:126
+msgid "Take Picture"
+msgstr "Sacar foto"
+
+#: data/resources/ui/camera.ui:206
+msgid "Select Camera"
+msgstr "Seleccionar cámara"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:247
+msgid "None"
+msgstr "Ningunha"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:252
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:257
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:262
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+msgid "_Keyboard Shortcuts"
+msgstr "Atallos de _teclado"
+
+#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+msgid "_About Snapshot"
+msgstr "_Sobre Instantánea"
+
+#: data/resources/ui/gallery.ui:51
+msgid "Back"
+msgstr "Atrás"
+
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+msgid "Open in Image Viewer"
+msgstr "Abrir o Visor de imaxe"
+
+#: data/resources/ui/gallery.ui:111
+msgid "Previous Image"
+msgstr "Anterior imaxe"
+
+#: data/resources/ui/gallery.ui:123
+msgid "Next Image"
+msgstr "Seguinte imaxe"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Xeral"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Cámara"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Picture Format"
+msgstr "Formato da imaxe"
+
+#: data/resources/ui/preferences_window.ui:32
+msgid "Play Shutter Sound"
+msgstr "Reproducir son de obturador"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Xeral"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar atallos"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Abrir as Preferencias"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Saír"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Cámara"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Modo de imaxe"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Modo de gravación"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Sacar unha foto ou Comezar gravación"
+
+#: data/resources/ui/shortcuts.ui:63
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galería"
+
+#: data/resources/ui/shortcuts.ui:66
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Abrir/Pechar galería"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Seguinte"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Anterior"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:30
+msgid "PNG"
+msgstr "PNG"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:33
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/widgets/gallery.rs:99
+msgid "Open in Video Player"
+msgstr "Abrir no Reprodutor de vídeo"
+
+#: src/widgets/shutter_button.rs:77
+msgid "Start Recording"
+msgstr "Comezar gravación"
+
+#: src/widgets/shutter_button.rs:88
+msgid "Stop Recording"
+msgstr "Deter gravación"
+
+#: src/widgets/window.rs:232
+msgid "translator-credits"
+msgstr "Fran Diéguez <frandieguez@gnome.org>, 2009-2023"
+
+#: src/widgets/window.rs:233
+msgid "The GNOME Project"
+msgstr "O Proxecto GNOME"
