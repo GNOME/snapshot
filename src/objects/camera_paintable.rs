@@ -233,6 +233,10 @@ impl CameraPaintable {
         let viewfinder = self.imp().viewfinder.get().unwrap();
         matches!(viewfinder.state(), aperture::ViewfinderState::Ready)
     }
+
+    pub fn current_camera(&self) -> Option<aperture::Camera> {
+        self.imp().viewfinder.get().unwrap().camera()
+    }
 }
 
 #[inline]

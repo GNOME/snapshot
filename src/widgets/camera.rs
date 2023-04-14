@@ -29,6 +29,8 @@ mod imp {
         #[template_child]
         pub camera_menu_button: TemplateChild<gtk::MenuButton>,
         #[template_child]
+        pub camera_switch_button: TemplateChild<gtk::Button>,
+        #[template_child]
         pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
         // TODO Rename
         #[template_child]
@@ -49,11 +51,30 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
             klass.set_layout_manager_type::<gtk::BinLayout>();
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
             obj.init_template();
+        }
+    }
+
+    #[gtk::template_callbacks]
+    impl Camera {
+        #[template_callback]
+        fn on_camera_switch_button_clicked(&self) {
+            let provider = self.provider.get().unwrap();
+
+            let current = self.picture.current_camera();
+
+            let mut pos = 0;
+            if current == provider.camera(0) {
+                pos += 1;
+            };
+            if let Some(camera) = provider.camera(pos) {
+                self.picture.set_camera(camera);
+            };
         }
     }
 
@@ -281,12 +302,16 @@ impl Camera {
 
         // NOTE We have a stack with an empty bin so that hiding the button does
         // not ruin the layout.
-        if n_cameras > 1 {
-            imp.camera_menu_button_stack
-                .set_visible_child(&imp.camera_menu_button.get());
-        } else {
-            imp.camera_menu_button_stack
-                .set_visible_child_name("fake-widget");
+        match n_cameras {
+            0 | 1 => imp
+                .camera_menu_button_stack
+                .set_visible_child_name("fake-widget"),
+            2 => imp
+                .camera_menu_button_stack
+                .set_visible_child(&imp.camera_switch_button.get()),
+            _ => imp
+                .camera_menu_button_stack
+                .set_visible_child(&imp.camera_menu_button.get()),
         }
     }
 }
