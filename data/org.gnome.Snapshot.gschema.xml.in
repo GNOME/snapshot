@@ -9,10 +9,7 @@
     <value nick="jpeg" value="1" />
   </enum>
   <enum id="org.gnome.Snapshot.VideoFormat">
-    <value nick="h264mp4" value="0" />
-    <value nick="h265mp4" value="1" />
-    <value nick="vp8webm" value="2" />
-    <value nick="theoraogg" value="3" />
+    <value nick="vp8webm" value="0" />
   </enum>
   <schema path="/org/gnome/Snapshot/" id="@app-id@" gettext-domain="@gettext-package@">
     <key name="window-width" type="i">
@@ -51,7 +48,7 @@
       <description>Whether to save pictures as png or jpeg</description>
     </key>
     <key name="video-format" enum="org.gnome.Snapshot.VideoFormat">
-      <default>"theoraogg"</default>
+      <default>"vp8webm"</default>
       <summary>Video format</summary>
       <description>Whether to save videos as mp4 or webm</description>
     </key>

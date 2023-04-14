@@ -50,20 +50,14 @@ impl From<i32> for PictureFormat {
 #[derive(Default, Debug, Copy, Clone, PartialEq)]
 #[repr(u32)]
 pub enum VideoFormat {
-    H264Mp4,
-    H265Mp4,
-    Vp8Webm,
     #[default]
-    TheoraOgg,
+    Vp8Webm,
 }
 
 impl VideoFormat {
     pub fn as_str(&self) -> &str {
         match self {
-            Self::H264Mp4 => "mp4",
-            Self::H265Mp4 => "mp4",
             Self::Vp8Webm => "webm",
-            Self::TheoraOgg => "ogg",
         }
     }
 }
@@ -71,10 +65,7 @@ impl VideoFormat {
 impl From<i32> for VideoFormat {
     fn from(value: i32) -> Self {
         match value {
-            0 => Self::H264Mp4,
-            1 => Self::H265Mp4,
-            2 => Self::Vp8Webm,
-            3 => Self::TheoraOgg,
+            0 => Self::Vp8Webm,
             _ => Self::default(),
         }
     }
