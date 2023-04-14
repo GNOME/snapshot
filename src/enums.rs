@@ -11,23 +11,18 @@ use wayland_client::protocol::wl_output;
 #[enum_type(name = "PictureMode")]
 pub enum PictureFormat {
     #[default]
-    Png,
     Jpeg,
 }
 
 impl PictureFormat {
     pub fn as_str(&self) -> &str {
         match self {
-            Self::Png => "png",
             Self::Jpeg => "jpeg",
         }
     }
 
     pub fn translatable_string(&self) -> String {
         match self {
-            // TRANSLATORS This is the image format presented in the preferences
-            // window.
-            Self::Png => gettext("PNG"),
             // TRANSLATORS This is the image format presented in the preferences
             // window.
             Self::Jpeg => gettext("JPEG"),
@@ -38,7 +33,6 @@ impl PictureFormat {
 impl From<i32> for PictureFormat {
     fn from(value: i32) -> Self {
         match value {
-            0 => Self::Png,
             1 => Self::Jpeg,
             _ => Self::default(),
         }

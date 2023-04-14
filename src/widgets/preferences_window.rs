@@ -13,9 +13,6 @@ mod imp {
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
-        #[template_child]
-        picture_format_combo: TemplateChild<adw::ComboRow>,
-
         settings: OnceCell<gio::Settings>,
     }
 
@@ -37,12 +34,6 @@ mod imp {
 
     #[gtk::template_callbacks]
     impl PreferencesWindow {
-        #[template_callback]
-        fn picture_format_to_translatable(item: &adw::EnumListItem) -> String {
-            let format = crate::PictureFormat::from(item.value());
-            format.translatable_string()
-        }
-
         #[template_callback]
         fn on_combo_selected_notify(&self, _pspec: glib::ParamSpec, combo_row: &adw::ComboRow) {
             self.settings
@@ -68,9 +59,6 @@ mod imp {
                 .insert_action_group("preferences-window", Some(&action_group));
 
             self.settings.set(settings).unwrap();
-
-            let format = self.settings.get().unwrap().enum_("picture-format");
-            self.picture_format_combo.set_selected(format as u32);
         }
     }
 

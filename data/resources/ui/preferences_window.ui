@@ -13,21 +13,6 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Camera</property>
             <child>
-              <object class="AdwComboRow" id="picture_format_combo">
-                <property name="title" translatable="yes">Picture Format</property>
-                <property name="model">
-                  <object class="AdwEnumListModel">
-                    <property name="enum-type">PictureMode</property>
-                  </object>
-                </property>
-                <property name="expression">
-                  <lookup type="AdwEnumListItem" name="nick"/>
-                  <closure type="gchararray" function="picture_format_to_translatable"/>
-                </property>
-                <signal name="notify::selected" handler="on_combo_selected_notify" swapped="yes"/>
-              </object>
-            </child>
-            <child>
               <object class="AdwSwitchRow">
                 <property name="title" translatable="yes">Play Shutter Sound</property>
                 <property name="action-name">preferences-window.play-shutter-sound</property>
