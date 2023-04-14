@@ -12,17 +12,13 @@
             <property name="child">
               <object class="GtkWindowHandle">
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
+                  <object class="AdwToolbarView">
+                    <child type="top">
                       <object class="AdwHeaderBar">
                         <property name="show-title">False</property>
-                        <style>
-                          <class name="flat"/>
-                        </style>
                       </object>
                     </child>
-                    <child>
+                    <property name="content">
                       <object class="GtkSpinner" id="spinner">
                         <property name="halign">center</property>
                         <property name="vexpand">True</property>
@@ -30,7 +26,7 @@
                         <property name="width-request">48</property>
                         <property name="height-request">48</property>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -41,9 +37,8 @@
           <object class="GtkStackPage">
             <property name="name">not-found</property>
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
+              <object class="AdwToolbarView">
+                <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="show-title">False</property>
                     <child type="end">
@@ -54,19 +49,16 @@
                         <property name="primary">True</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="flat" />
-                    </style>
                   </object>
                 </child>
-                <child>
+                <property name="content">
                   <object class="AdwStatusPage">
                     <property name="vexpand">True</property>
                     <property name="icon-name">camera-disabled-symbolic</property>
                     <property name="title" translatable="yes">No Camera Found</property>
                     <property name="description" translatable="yes">Connect a camera device</property>
                   </object>
-                </child>
+                </property>
               </object>
             </property>
           </object>
