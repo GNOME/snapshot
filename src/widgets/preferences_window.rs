@@ -60,6 +60,10 @@ mod imp {
 
             self.settings.set(settings).unwrap();
         }
+
+        fn dispose(&self) {
+            self.dispose_template();
+        }
     }
 
     impl WidgetImpl for PreferencesWindow {}
