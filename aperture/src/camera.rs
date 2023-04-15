@@ -76,6 +76,22 @@ impl Camera {
         self.device().caps()
     }
 
+    /// Gets the camera location
+    ///
+    /// Requires libcamera to work.
+    pub fn location(&self) -> crate::CameraLocation {
+        self.device()
+            .properties()
+            .and_then(|properties| {
+                properties
+                    .value("api.libcamera.location")
+                    .ok()
+                    .and_then(|value| value.get::<&str>().ok())
+                    .map(|loc| loc.into())
+            })
+            .unwrap_or_default()
+    }
+
     /// Gets the `serial` of the device
     ///
     /// For newer pipewire versions this corresponds to the `target-object` of

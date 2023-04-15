@@ -2,7 +2,7 @@
 use gst::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gdk, gio, glib};
+use gtk::{gdk, gio, glib, graphene};
 
 use once_cell::sync::Lazy;
 use std::path::Path;
@@ -249,6 +249,36 @@ mod imp {
             self.camerabin().set_state(gst::State::Null).unwrap();
 
             self.parent_unrealize();
+        }
+
+        fn snapshot(&self, snapshot: &gtk::Snapshot) {
+            let w = self.obj().width() as f32;
+
+            // TODO Use is_some_and when stabilized.
+            let should_mirror = self
+                .obj()
+                .camera()
+                .map(|camera| matches!(camera.location(), crate::CameraLocation::Front))
+                == Some(true);
+
+            // This is the composition of translate (-w / 2.0, 0.0), map x to
+            // -x, and translate (w / 2.0 , 0.0). Note that gsk matrices are
+            // transposed (they act on row vectors).
+            if should_mirror {
+                #[rustfmt::skip]
+                let flip_matrix = graphene::Matrix::from_float([
+                    -1.0,  0.0,  0.0,  0.0,
+                     0.0,  1.0,  0.0,  0.0,
+                     0.0,  0.0,  1.0,  0.0,
+                       w,  0.0,  0.0,  1.0,
+                ]);
+                snapshot.save();
+                snapshot.transform_matrix(&flip_matrix);
+                self.parent_snapshot(snapshot);
+                snapshot.restore();
+            } else {
+                self.parent_snapshot(snapshot);
+            }
         }
     }
 }

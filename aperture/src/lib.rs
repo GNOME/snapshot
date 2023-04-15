@@ -12,7 +12,7 @@ mod viewfinder;
 
 pub use camera::Camera;
 pub use device_provider::DeviceProvider;
-pub use enums::{CodeType, ViewfinderState};
+pub use enums::{CameraLocation, CodeType, ViewfinderState};
 pub use error::CaptureError;
 pub use viewfinder::Viewfinder;
 
@@ -40,6 +40,7 @@ pub fn init(app_id: &'static str) {
 
         CodeType::static_type();
         ViewfinderState::static_type();
+        CameraLocation::static_type();
     });
 }
 

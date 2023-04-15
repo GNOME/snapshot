@@ -61,3 +61,26 @@ impl From<&str> for CodeType {
         }
     }
 }
+
+#[derive(Default, Debug, Copy, Clone, glib::Enum, PartialEq)]
+#[repr(u32)]
+#[enum_type(name = "ApertureCameraLocation")]
+pub enum CameraLocation {
+    Front,
+    Back,
+    External,
+    #[default]
+    Unknown,
+}
+
+// This only covers libcamera
+impl<S: AsRef<str>> From<S> for CameraLocation {
+    fn from(value: S) -> Self {
+        match value.as_ref() {
+            "Front" | "front" | "0" => crate::CameraLocation::Front,
+            "Back" | "back" | "1" => crate::CameraLocation::Back,
+            "External" | "external" | "2" => crate::CameraLocation::External,
+            _ => crate::CameraLocation::Unknown,
+        }
+    }
+}
