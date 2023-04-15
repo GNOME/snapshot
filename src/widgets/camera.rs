@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use std::os::unix::io::RawFd;
-
 use ashpd::desktop::camera;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
+use once_cell::unsync::Lazy;
+use std::os::unix::io::RawFd;
 
 use crate::CameraRow;
+use crate::{config, utils};
 
 const PROVIDER_TIMEOUT: u64 = 2;
 
@@ -23,6 +24,7 @@ mod imp {
         pub selection: gtk::SingleSelection,
         pub provider: OnceCell<aperture::DeviceProvider>,
         pub listener: OnceCell<crate::WaylandListener>,
+        pub players: RefCell<Option<gtk::MediaFile>>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
@@ -32,9 +34,10 @@ mod imp {
         pub camera_switch_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
-        // TODO Rename
         #[template_child]
-        pub picture: TemplateChild<crate::CameraPaintable>,
+        pub viewfinder: TemplateChild<aperture::Viewfinder>,
+        #[template_child]
+        pub flash_bin: TemplateChild<crate::FlashBin>,
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -66,14 +69,16 @@ mod imp {
         fn on_camera_switch_button_clicked(&self) {
             let provider = self.provider.get().unwrap();
 
-            let current = self.picture.current_camera();
+            let current = self.viewfinder.camera();
 
             let mut pos = 0;
             if current == provider.camera(0) {
                 pos += 1;
             };
             if let Some(camera) = provider.camera(pos) {
-                self.picture.set_camera(camera);
+                if let Err(err) = self.viewfinder.set_camera(Some(camera)) {
+                    log::error!("Could not set camera: {err}");
+                };
             };
         }
     }
@@ -92,7 +97,7 @@ mod imp {
             provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
                 obj.update_cameras(provider);
             }));
-            obj.update_cameras(&provider);
+            obj.update_cameras(provider);
 
             self.selection.set_model(Some(provider));
             let factory = gtk::SignalListItemFactory::new();
@@ -126,10 +131,12 @@ mod imp {
             self.selection.connect_selected_item_notify(
                 glib::clone!(@weak obj, @weak popover => move |selection| {
                     if let Some(selected_item) = selection.selected_item() {
-                        let camera = selected_item.downcast::<aperture::Camera>().unwrap();
+                        let camera = selected_item.downcast::<aperture::Camera>().ok();
 
-                        if obj.imp().picture.is_ready() {
-                            obj.imp().picture.set_camera(camera);
+                        if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready) {
+                            if let Err(err) = obj.imp().viewfinder.set_camera(camera) {
+                                log::error!("Could not set camera: {err}");
+                            }
                         }
                     }
                     popover.popdown();
@@ -138,12 +145,6 @@ mod imp {
 
             self.camera_menu_button.set_popover(Some(&popover));
 
-            self.picture
-                .connect_picture_stored(glib::clone!(@weak obj => move |_, _| {
-                    let window = obj.root().and_downcast::<crate::Window>().unwrap();
-                    window.set_shutter_enabled(true);
-                }));
-
             // This spinner stops running when the device provider finds any
             // camera device.
             self.spinner.start();
@@ -151,26 +152,25 @@ mod imp {
         }
 
         fn dispose(&self) {
-            self.picture.stop_recording();
             self.dispose_template();
         }
     }
     impl WidgetImpl for Camera {
-        fn realize(&self) {
-            self.parent_realize();
+        // fn realize(&self) {
+        //     self.parent_realize();
 
-            let widget = self.obj();
+        //     let widget = self.obj();
 
-            // Its better to ask for displays on realized widgets.
-            let display = widget.display();
-            let listener = crate::WaylandListener::new(display);
-            listener
-                .bind_property("transform", &*widget.imp().picture, "transform")
-                .sync_create()
-                .build();
+        //     // Its better to ask for displays on realized widgets.
+        //     let display = widget.display();
+        //     let listener = crate::WaylandListener::new(display);
+        //     listener
+        //         .bind_property("transform", &*widget.imp().picture, "transform")
+        //         .sync_create()
+        //         .build();
 
-            self.listener.set(listener).unwrap();
-        }
+        //     self.listener.set(listener).unwrap();
+        // }
     }
 }
 
@@ -228,12 +228,23 @@ impl Camera {
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
-        self.imp().picture.start_recording(format)?;
+        let filename = utils::video_file_name(format);
+        let path = utils::videos_dir()?.join(filename);
+
+        self.imp().viewfinder.start_recording(path)?;
+
         Ok(())
     }
 
     pub fn stop_recording(&self) {
-        self.imp().picture.stop_recording();
+        let imp = self.imp();
+        if matches!(imp.viewfinder.state(), aperture::ViewfinderState::Ready)
+            && imp.viewfinder.is_recording()
+        {
+            if let Err(err) = imp.viewfinder.stop_recording() {
+                log::error!("Could not stop camera: {err}");
+            };
+        }
     }
 
     pub async fn take_picture(&self, format: crate::PictureFormat) -> anyhow::Result<()> {
@@ -243,7 +254,28 @@ impl Camera {
         // We enable the shutter whenever picture-stored is emited.
         window.set_shutter_enabled(false);
 
-        imp.picture.take_snapshot(format)
+        let filename = utils::picture_file_name(format);
+        let path = utils::pictures_dir()?.join(filename);
+
+        imp.viewfinder.take_picture(path)?;
+        imp.flash_bin.flash();
+
+        let settings: Lazy<gio::Settings> = Lazy::new(|| gio::Settings::new(config::APP_ID));
+        if settings.boolean("play-shutter-sound") {
+            self.play_shutter_sound();
+        }
+
+        Ok(())
+    }
+
+    fn play_shutter_sound(&self) {
+        // If we don't hold a reference to it there is a condition race which
+        // will cause the sound to play only sometimes.
+        let resource = "/org/gnome/Snapshot/sounds/camera-shutter.wav";
+        let player = gtk::MediaFile::for_resource(resource);
+        player.play();
+
+        self.imp().players.replace(Some(player));
     }
 
     pub fn set_countdown(&self, countdown: u32) {
@@ -263,28 +295,25 @@ impl Camera {
     }
 
     pub fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
-        let imp = self.imp();
-
         if matches!(shutter_mode, crate::ShutterMode::Picture) {
-            imp.picture.stop_recording();
+            self.stop_recording();
         }
-        imp.shutter_button.set_shutter_mode(shutter_mode);
+        self.imp().shutter_button.set_shutter_mode(shutter_mode);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
         let imp = self.imp();
 
-        imp.picture
-            .connect_picture_stored(glib::clone!(@weak gallery,  => move |_, file| {
-                if let Some(file) = file {
-                    gallery.add_image(file);
-                }
-            }));
-        imp.picture
-            .connect_video_stored(glib::clone!(@weak gallery,  => move |_, file| {
-                if let Some(file) = file {
-                    gallery.add_video(&file);
-                }
+        imp.viewfinder.connect_picture_done(
+            glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
+                let window = obj.root().and_downcast::<crate::Window>().unwrap();
+                window.set_shutter_enabled(true);
+                gallery.add_image(file);
+            }),
+        );
+        imp.viewfinder
+            .connect_recording_done(glib::clone!(@weak gallery => move |_, file| {
+                gallery.add_video(file);
             }));
         imp.gallery_button.set_gallery(&gallery);
     }
