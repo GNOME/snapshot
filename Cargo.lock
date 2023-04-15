@@ -2030,8 +2030,6 @@ dependencies = [
  "log",
  "once_cell",
  "tracing-subscriber",
- "wayland-client",
- "wayland-protocols",
 ]
 
 [[package]]
@@ -2435,18 +2433,6 @@ dependencies = [
  "bitflags",
  "nix",
  "wayland-backend",
- "wayland-scanner",
-]
-
-[[package]]
-name = "wayland-protocols"
-version = "0.30.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7fefbeb8a360abe67ab7c2efe1d297a1a50ee011f5460791bc18870c26bb84e2"
-dependencies = [
- "bitflags",
- "wayland-backend",
- "wayland-client",
  "wayland-scanner",
 ]
 
