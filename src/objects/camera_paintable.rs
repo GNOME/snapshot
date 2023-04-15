@@ -2,7 +2,7 @@
 use adw::prelude::*;
 use glib::clone;
 use gtk::subclass::prelude::*;
-use gtk::{gdk, gio, glib, graphene};
+use gtk::{gio, glib};
 
 use crate::{config, utils};
 
@@ -18,8 +18,7 @@ mod imp {
     #[properties(wrapper_type = super::CameraPaintable)]
     pub struct CameraPaintable {
         pub viewfinder: OnceCell<aperture::Viewfinder>,
-
-        pub flash_ani: OnceCell<adw::TimedAnimation>,
+        pub flash_bin: OnceCell<crate::FlashBin>,
         pub players: RefCell<Option<gtk::MediaFile>>,
 
         #[property(get, set = Self::set_transform, explicit_notify, builder(Default::default()))]
@@ -63,22 +62,17 @@ mod imp {
                 obj.emit_video_stored(Some(file));
             }));
 
-            viewfinder.set_parent(&*obj);
+            let flash_bin = crate::FlashBin::default();
+            flash_bin.set_parent(&*obj);
+
+            flash_bin.set_child(Some(&viewfinder));
+            self.flash_bin.set(flash_bin).unwrap();
 
             self.viewfinder.set(viewfinder).unwrap();
-
-            let target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak obj => move |_value| {
-                    obj.queue_draw();
-                }));
-            let ani = adw::TimedAnimation::new(&*obj, 0.0, 1.0, 250, target);
-            ani.set_easing(adw::Easing::Linear);
-
-            self.flash_ani.set(ani).unwrap();
         }
 
         fn dispose(&self) {
-            self.viewfinder.get().unwrap().unparent();
+            self.flash_bin.get().unwrap().unparent();
         }
 
         fn properties() -> &'static [glib::ParamSpec] {
@@ -110,30 +104,7 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for CameraPaintable {
-        fn snapshot(&self, snapshot: &gtk::Snapshot) {
-            let w = self.obj().width() as f32;
-            let h = self.obj().height() as f32;
-
-            self.parent_snapshot(&snapshot);
-
-            // FIXME Support flips in the monitor.
-
-            // The parameters are subject to the rotation, so we have to drawn
-            // accordingly.
-            if let Some(animation) = self.flash_ani.get() {
-                if !matches!(animation.state(), adw::AnimationState::Playing) {
-                    return;
-                }
-                let alpha = easing(animation.value()) as f32;
-
-                let rect = graphene::Rect::new(0.0, 0.0, w, h);
-                let black = gdk::RGBA::new(0.0, 0.0, 0.0, alpha);
-
-                snapshot.append_color(&black, &rect);
-            }
-        }
-    }
+    impl WidgetImpl for CameraPaintable {}
 }
 
 glib::wrapper! {
@@ -162,7 +133,7 @@ impl CameraPaintable {
         let path = utils::pictures_dir()?.join(&filename);
 
         imp.viewfinder.get().unwrap().take_picture(path)?;
-        imp.flash_ani.get().unwrap().play();
+        imp.flash_bin.get().unwrap().flash();
 
         let settings = gio::Settings::new(config::APP_ID);
         if settings.boolean("play-shutter-sound") {
@@ -237,11 +208,4 @@ impl CameraPaintable {
     pub fn current_camera(&self) -> Option<aperture::Camera> {
         self.imp().viewfinder.get().unwrap().camera()
     }
-}
-
-#[inline]
-fn easing(value: f64) -> f64 {
-    let value = 1.0 - (1.0 - value).powi(3);
-
-    value * (1.0 - value) * 4.0
 }

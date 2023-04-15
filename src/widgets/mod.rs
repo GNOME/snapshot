@@ -3,6 +3,7 @@ use gtk::prelude::*;
 
 mod camera;
 mod camera_row;
+mod flash_bin;
 mod gallery;
 mod gallery_button;
 mod gallery_item;
@@ -15,6 +16,7 @@ mod window;
 
 pub use camera::Camera;
 pub use camera_row::CameraRow;
+pub use flash_bin::FlashBin;
 pub use gallery::Gallery;
 pub use gallery_button::GalleryButton;
 pub use gallery_item::GalleryItem;
@@ -32,4 +34,5 @@ pub fn init() {
     GalleryPicture::static_type();
     ShutterButton::static_type();
     GalleryItem::static_type();
+    FlashBin::static_type();
 }
