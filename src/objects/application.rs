@@ -47,6 +47,11 @@ mod imp {
             debug!("Application::startup");
             self.parent_startup();
 
+            aperture::init(APP_ID);
+
+            crate::widgets::init();
+            crate::enums::init();
+
             let app = self.obj();
 
             // Set icons for shell

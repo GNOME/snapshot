@@ -14,7 +14,7 @@ use gettextrs::{gettext, LocaleCategory};
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
-use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 
 fn main() -> glib::ExitCode {
     // Initialize logger
@@ -29,11 +29,6 @@ fn main() -> glib::ExitCode {
 
     let res = gio::Resource::load(RESOURCES_FILE).expect("Could not load gresource file");
     gio::resources_register(&res);
-
-    aperture::init(APP_ID);
-
-    widgets::init();
-    enums::init();
 
     let app = crate::Application::new();
 
