@@ -287,17 +287,24 @@ impl Camera {
             glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
                 let window = obj.root().and_downcast::<crate::Window>().unwrap();
                 window.set_shutter_enabled(true);
+                // TODO Maybe report error via toast on None
                 if let Some(file) = file {
                     gallery.add_image(file);
                 }
             }),
         );
-        imp.viewfinder
-            .connect_recording_done(glib::clone!(@weak gallery => move |_, file| {
+        imp.viewfinder.connect_recording_done(
+            glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
+                let imp = obj.imp();
+                // TODO Maybe report error via toast on None
                 if let Some(file) = file {
                     gallery.add_video(file);
                 }
-            }));
+                if matches!(imp.shutter_button.shutter_mode(), crate::ShutterMode::Recording) {
+                    imp.shutter_button.set_shutter_mode(crate::ShutterMode::Video);
+                }
+            }),
+        );
         imp.gallery_button.set_gallery(&gallery);
     }
 
