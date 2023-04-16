@@ -31,6 +31,7 @@ impl std::fmt::Display for CaptureError {
 #[error_domain(name = "AperturePipewireError")]
 pub enum PipewireError {
     OldVersion,
+    FdAfterStart,
 }
 
 impl std::error::Error for PipewireError {}
@@ -39,6 +40,9 @@ impl std::fmt::Display for PipewireError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::OldVersion => f.write_str("Current pipewire version is too old"),
+            Self::FdAfterStart => f.write_str(
+                "Cannot set the file descriptor once the device provider has been start",
+            ),
         }
     }
 }

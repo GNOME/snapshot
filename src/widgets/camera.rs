@@ -184,6 +184,9 @@ impl Camera {
                     // FIXME Show a page explaining how to setup the permission.
                     log::warn!("Could not use the camera portal");
                 }
+                if let Err(err) = provider.start() {
+                    log::error!("Could not start the device provider: {err}");
+                };
             }),
         );
 

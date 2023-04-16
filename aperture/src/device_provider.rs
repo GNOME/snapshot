@@ -8,6 +8,8 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
+static STARTED: Once = Once::new();
+
 mod imp {
     use super::*;
 
@@ -141,11 +143,7 @@ impl DeviceProvider {
     /// Starts the device provider.
     ///
     /// This function is idempotent when there are no errors.
-    ///
-    /// [`crate::Viewfinder`] automatically calls this function.
     pub fn start(&self) -> Result<(), glib::BoolError> {
-        static STARTED: Once = Once::new();
-
         if STARTED.is_completed() {
             return Ok(());
         }
@@ -175,6 +173,9 @@ impl DeviceProvider {
     /// A file descriptor coming for the Camera portal. Such a provider can only
     /// provide cameras.
     pub fn set_fd(&self, fd: RawFd) -> Result<(), crate::PipewireError> {
+        if STARTED.is_completed() {
+            return Err(crate::PipewireError::OldVersion);
+        }
         let provider = self.imp().inner.get().unwrap();
         log::debug!("Starting device provider with file descriptor: {fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {

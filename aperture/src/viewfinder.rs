@@ -219,10 +219,6 @@ mod imp {
             self.tee.set(tee).unwrap();
 
             let devices = crate::DeviceProvider::instance();
-            if let Err(err) = devices.start() {
-                log::error!("Could not start device provider: {err}");
-                obj.set_state(ViewfinderState::Error);
-            };
 
             devices.connect_camera_added(glib::clone!(@weak obj => move |_, camera| {
                 if matches!(obj.state(), ViewfinderState::NoCameras) {
