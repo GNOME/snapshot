@@ -125,7 +125,7 @@ mod imp {
                 }
             }
 
-            if obj.is_realized() {
+            if obj.is_realized() && matches!(self.obj().state(), ViewfinderState::Ready) {
                 self.camerabin().set_state(gst::State::Playing).unwrap();
             }
 
@@ -290,7 +290,9 @@ mod imp {
         fn realize(&self) {
             self.parent_realize();
 
-            self.camerabin().set_state(gst::State::Playing).unwrap();
+            if matches!(self.obj().state(), ViewfinderState::Ready) {
+                self.camerabin().set_state(gst::State::Playing).unwrap();
+            }
         }
 
         fn unrealize(&self) {
