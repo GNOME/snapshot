@@ -2,14 +2,13 @@
 use gtk::glib;
 
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
-#[error_domain(name = "CaptureError")]
+#[error_domain(name = "ApertureCaptureError")]
 pub enum CaptureError {
     RecordingInProgress,
     StopRecordingInProgress,
     SnapshotInProgress,
     NoRecordingToStop,
     CameraDisconnected,
-    Interrupted,
     NotReady,
 }
 
@@ -23,7 +22,23 @@ impl std::fmt::Display for CaptureError {
             Self::SnapshotInProgress => f.write_str("Operation in progress: Take Picture"),
             Self::NoRecordingToStop => f.write_str("There is no recording to stop"),
             Self::StopRecordingInProgress => f.write_str("Operation in progress: Stop recording"),
-            _ => f.write_str(&format!("{self:?}")),
+            Self::CameraDisconnected => f.write_str("The current camera was disconnected"),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
+#[error_domain(name = "AperturePipewireError")]
+pub enum PipewireError {
+    OldVersion,
+}
+
+impl std::error::Error for PipewireError {}
+
+impl std::fmt::Display for PipewireError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::OldVersion => f.write_str("Current pipewire version is too old"),
         }
     }
 }

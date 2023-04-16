@@ -9,10 +9,7 @@ name = "aperture"
 repository = "https://gitlab.gnome.org/Incubator/snapshot"
 version = "0.1.0"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-anyhow = "1.0.70"
 gst = { package = "gstreamer", version = "0.20", features = ["v1_20"] }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.20" }
 gst-plugin-gtk4 = { version = "0.10.5", features = ["wayland", "x11egl", "x11glx"] }

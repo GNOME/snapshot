@@ -143,7 +143,7 @@ impl DeviceProvider {
     /// This function is idempotent when there are no errors.
     ///
     /// [`crate::Viewfinder`] automatically calls this function.
-    pub fn start(&self) -> anyhow::Result<()> {
+    pub fn start(&self) -> Result<(), glib::BoolError> {
         static STARTED: Once = Once::new();
 
         if STARTED.is_completed() {
@@ -174,17 +174,17 @@ impl DeviceProvider {
 
     /// A file descriptor coming for the Camera portal. Such a provider can only
     /// provide cameras.
-    pub fn set_fd(&self, fd: RawFd) -> anyhow::Result<()> {
+    pub fn set_fd(&self, fd: RawFd) -> Result<(), crate::PipewireError> {
         let provider = self.imp().inner.get().unwrap();
         log::debug!("Starting device provider with file descriptor: {fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {
             provider.set_property("fd", &fd);
             self.imp().fd.replace(Some(fd));
+            Ok(())
         } else {
-            anyhow::bail!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");
+            log::warn!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");
+            Err(crate::PipewireError::OldVersion)
         }
-
-        Ok(())
     }
 
     pub fn connect_camera_added<F: Fn(&Self, &crate::Camera) + 'static>(&self, f: F) {

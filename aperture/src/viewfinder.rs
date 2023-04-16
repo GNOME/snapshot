@@ -355,19 +355,19 @@ impl Viewfinder {
     /// to happen when you click the photo button in a camera app.
     ///
     /// The `image-done` signal will be emited with this operation ends.
-    pub fn take_picture<P: AsRef<Path>>(&self, location: P) -> anyhow::Result<()> {
+    pub fn take_picture<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
         if !matches!(self.state(), ViewfinderState::Ready) {
-            Err(crate::CaptureError::NotReady)?;
+            return Err(crate::CaptureError::NotReady);
         }
 
         if imp.is_taking_picture.get() {
-            Err(crate::CaptureError::SnapshotInProgress)?;
+            return Err(crate::CaptureError::SnapshotInProgress);
         }
 
         if imp.is_recording_video.borrow().is_some() {
-            Err(crate::CaptureError::RecordingInProgress)?;
+            return Err(crate::CaptureError::RecordingInProgress);
         }
 
         // Set after we cannot fail anymore.
@@ -390,19 +390,19 @@ impl Viewfinder {
     /// the camera is not [`crate::ViewfinderState::Ready`].
     ///
     /// The `video-done` signal will be emited with this operation ends.
-    pub fn start_recording<P: AsRef<Path>>(&self, location: P) -> anyhow::Result<()> {
+    pub fn start_recording<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
         if !matches!(self.state(), ViewfinderState::Ready) {
-            Err(crate::CaptureError::NotReady)?;
+            return Err(crate::CaptureError::NotReady);
         }
 
         if imp.is_taking_picture.get() {
-            Err(crate::CaptureError::SnapshotInProgress)?;
+            return Err(crate::CaptureError::SnapshotInProgress);
         }
 
         if imp.is_recording_video.borrow().is_some() {
-            Err(crate::CaptureError::RecordingInProgress)?;
+            return Err(crate::CaptureError::RecordingInProgress);
         }
 
         // Set after we cannot fail anymore.
@@ -424,15 +424,15 @@ impl Viewfinder {
     ///
     /// Will error out if [`Self::start_recording()`] hasn't been called or if
     /// there is another [`Self::stop_recording()`] call in progress.
-    pub fn stop_recording(&self) -> anyhow::Result<()> {
+    pub fn stop_recording(&self) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
         if !imp.is_recording_video.borrow().is_some() {
-            Err(crate::CaptureError::NoRecordingToStop)?;
+            return Err(crate::CaptureError::NoRecordingToStop);
         }
 
         if imp.is_stopping_recording.get() {
-            Err(crate::CaptureError::StopRecordingInProgress)?;
+            return Err(crate::CaptureError::StopRecordingInProgress);
         }
 
         imp.is_stopping_recording.set(true);
@@ -625,7 +625,7 @@ impl Viewfinder {
     }
 }
 
-fn create_zbar_bin() -> anyhow::Result<gst::Element> {
+fn create_zbar_bin() -> Result<gst::Element, glib::BoolError> {
     let bin = gst::Bin::new(None);
 
     let videoconvert = gst::ElementFactory::make("videoconvert").build()?;

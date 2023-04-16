@@ -13,7 +13,7 @@ mod viewfinder;
 pub use camera::Camera;
 pub use device_provider::DeviceProvider;
 pub use enums::{CameraLocation, CodeType, ViewfinderState};
-pub use error::CaptureError;
+pub use error::{CaptureError, PipewireError};
 pub use viewfinder::Viewfinder;
 
 pub(crate) use pipeline_tee::PipelineTee;
