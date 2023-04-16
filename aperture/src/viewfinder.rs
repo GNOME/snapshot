@@ -276,10 +276,10 @@ mod imp {
                     // These are emited whenever the saving process finishes,
                     // successful or not.
                     glib::subclass::Signal::builder("picture-done")
-                        .param_types([gio::File::static_type()])
+                        .param_types([Option::<gio::File>::static_type()])
                         .build(),
                     glib::subclass::Signal::builder("recording-done")
-                        .param_types([gio::File::static_type()])
+                        .param_types([Option::<gio::File>::static_type()])
                         .build(),
                     glib::subclass::Signal::builder("code-detected")
                         .param_types([crate::CodeType::static_type(), String::static_type()])
@@ -446,7 +446,7 @@ impl Viewfinder {
         self.imp().is_recording_video.borrow().is_some()
     }
 
-    pub fn connect_picture_done<F: Fn(&Self, &gio::File) + 'static>(&self, f: F) {
+    pub fn connect_picture_done<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
         self.connect_closure(
             "picture-done",
             false,
@@ -456,7 +456,7 @@ impl Viewfinder {
         );
     }
 
-    pub fn connect_recording_done<F: Fn(&Self, &gio::File) + 'static>(&self, f: F) {
+    pub fn connect_recording_done<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
         self.connect_closure(
             "recording-done",
             false,
@@ -505,7 +505,7 @@ impl Viewfinder {
     fn on_image_done(&self, file: &gio::File) {
         self.imp().is_taking_picture.set(false);
 
-        self.emit_picture_done(file);
+        self.emit_picture_done(Some(file));
     }
 
     fn on_video_done(&self) {
@@ -513,7 +513,7 @@ impl Viewfinder {
 
         if let Some(path) = self.imp().is_recording_video.take() {
             let file = gio::File::for_path(path);
-            self.emit_recording_done(&file);
+            self.emit_recording_done(Some(&file));
         }
     }
 
@@ -533,7 +533,7 @@ impl Viewfinder {
 
     fn on_pipeline_error(&self, err: &gst::message::Error) {
         log::error!(
-            "Error from {:?}: {} ({:?})",
+            "Bus Error from {:?}\n{}\n{:?}",
             err.src().map(|s| s.path_string()),
             err.error(),
             err.debug()
@@ -549,16 +549,20 @@ impl Viewfinder {
     fn cancel_current_operation(&self) {
         let imp = self.imp();
 
-        imp.is_taking_picture.set(false);
-        imp.is_recording_video.replace(None);
+        if imp.is_taking_picture.replace(false) {
+            self.emit_picture_done(None);
+        }
+        if imp.is_recording_video.replace(None).is_some() {
+            self.emit_recording_done(None);
+        }
         imp.is_stopping_recording.set(false);
     }
 
-    fn emit_picture_done(&self, file: &gio::File) {
+    fn emit_picture_done(&self, file: Option<&gio::File>) {
         self.emit_by_name::<()>("picture-done", &[&file]);
     }
 
-    fn emit_recording_done(&self, file: &gio::File) {
+    fn emit_recording_done(&self, file: Option<&gio::File>) {
         self.emit_by_name::<()>("recording-done", &[&file]);
     }
 
