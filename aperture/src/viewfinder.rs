@@ -25,8 +25,9 @@ mod imp {
         state: Cell<ViewfinderState>,
         #[property(get = Self::detect_codes, set = Self::set_detect_codes, explicit_notify)]
         detect_codes: Cell<bool>,
+        #[property(get, set = Self::set_camera, nullable, explicit_notify)]
+        camera: RefCell<Option<crate::Camera>>,
 
-        pub camera: RefCell<Option<crate::Camera>>,
         pub zbar_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
         pub camera_src: RefCell<Option<gst::Element>>,
@@ -78,6 +79,53 @@ mod imp {
             }
 
             self.obj().notify_detect_codes();
+        }
+
+        /// Sets the camera that the `ApertureViewfinder` will use.
+        fn set_camera(&self, camera: Option<crate::Camera>) {
+            let obj = self.obj();
+
+            if !matches!(obj.state(), ViewfinderState::Ready) {
+                log::error!("Could not set camera, the viewfinder is not ready");
+                return;
+            }
+
+            if self.is_taking_picture.get() {
+                log::error!("Could not set camera, where are taking a picture");
+                return;
+            }
+
+            if self.is_recording_video.borrow().is_some() {
+                log::error!("Could not set camera, there is a recording in progress");
+                return;
+            }
+
+            if camera == self.camera.replace(camera.clone()) {
+                return;
+            }
+
+            if obj.is_realized() {
+                self.camerabin().set_state(gst::State::Null).unwrap();
+            }
+
+            if let Some(camera) = camera {
+                // `camera_src` might be `None`, which means the element was
+                // reconfigured and we should keep using it
+
+                // TODO This is incredibly not idiomatic.
+                let guard = self.camera_src.borrow();
+                if let Some((bin, camera_src)) = camera.source_element(guard.as_ref()) {
+                    drop(guard);
+                    self.camerabin().set_property("camera-source", &bin);
+                    self.camera_src.replace(Some(camera_src));
+                }
+            }
+
+            if obj.is_realized() {
+                self.camerabin().set_state(gst::State::Playing).unwrap();
+            }
+
+            obj.notify_camera();
         }
     }
 
@@ -179,7 +227,7 @@ mod imp {
             devices.connect_camera_added(glib::clone!(@weak obj => move |_, camera| {
                 if matches!(obj.state(), ViewfinderState::NoCameras) {
                     obj.set_state(ViewfinderState::Ready);
-                    obj.set_camera(Some(camera.clone())).unwrap();
+                    obj.set_camera(Some(camera.clone()));
                 }
             }));
 
@@ -190,7 +238,7 @@ mod imp {
 
                     let next_camera = devices.camera(0);
                     let is_none = next_camera.is_none();
-                    obj.set_camera(next_camera).unwrap();
+                    obj.set_camera(next_camera);
                     if is_none {
                         obj.set_state(ViewfinderState::NoCameras);
                     }
@@ -199,7 +247,7 @@ mod imp {
 
             if let Some(camera) = devices.camera(0) {
                 obj.set_state(ViewfinderState::Ready);
-                obj.set_camera(Some(camera)).unwrap();
+                obj.set_camera(Some(camera));
             } else {
                 obj.set_state(ViewfinderState::NoCameras);
             }
@@ -298,59 +346,6 @@ impl Viewfinder {
     /// Creates a new `ApertureViewfinder`.
     pub fn new() -> Self {
         Self::default()
-    }
-
-    /// Gets the camera thats currently in use.
-    pub fn camera(&self) -> Option<crate::Camera> {
-        self.imp().camera.borrow().as_ref().cloned()
-    }
-
-    // TODO Shouldn't be a result, and we can use the prop macro.
-    /// Sets the camera that the #ApertureViewfinder will use.
-    pub fn set_camera(&self, camera: Option<crate::Camera>) -> anyhow::Result<()> {
-        let imp = self.imp();
-
-        if !matches!(self.state(), ViewfinderState::Ready) {
-            Err(crate::CaptureError::NotReady)?;
-        }
-
-        if imp.is_taking_picture.get() {
-            Err(crate::CaptureError::SnapshotInProgress)?;
-        }
-
-        if imp.is_recording_video.borrow().is_some() {
-            Err(crate::CaptureError::RecordingInProgress)?;
-        }
-
-        if camera == imp.camera.replace(camera.clone()) {
-            return Ok(());
-        }
-
-        if self.is_realized() {
-            imp.camerabin().set_state(gst::State::Null).unwrap();
-        }
-
-        if let Some(camera) = camera {
-            // `camera_src` might be `None`, which means the element was
-            // reconfigured and we should keep using it
-
-            // TODO This is incredibly not idiomatic.
-            let guard = imp.camera_src.borrow();
-            if let Some((bin, camera_src)) = camera.source_element(guard.as_ref()) {
-                drop(guard);
-                imp.camerabin().set_property("camera-source", &bin);
-                imp.camera_src.replace(Some(camera_src));
-            }
-        }
-
-        if self.is_realized() {
-            imp.camerabin().set_state(gst::State::Playing).unwrap();
-        }
-
-        // TODO
-        // self.notify_camera();
-
-        Ok(())
     }
 
     /// Takes a picture.
@@ -577,7 +572,7 @@ impl Viewfinder {
         if let Some(datetime) = gst::DateTime::new_now_local_time() {
             tagsetter.add_tag::<gst::tags::DateTime>(&datetime, gst::TagMergeMode::Replace);
         }
-        if let Some(camera) = imp.camera.borrow().as_ref() {
+        if let Some(camera) = self.camera() {
             let device_model = camera.display_name();
             tagsetter.add_tag::<gst::tags::DeviceModel>(
                 &device_model.as_str(),

@@ -75,10 +75,8 @@ mod imp {
                 pos += 1;
             };
             if let Some(camera) = provider.camera(pos) {
-                if let Err(err) = self.viewfinder.set_camera(Some(camera)) {
-                    log::error!("Could not set camera: {err}");
-                };
-            };
+                self.viewfinder.set_camera(Some(camera));
+            }
         }
     }
 
@@ -133,9 +131,7 @@ mod imp {
                         let camera = selected_item.downcast::<aperture::Camera>().ok();
 
                         if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready) {
-                            if let Err(err) = obj.imp().viewfinder.set_camera(camera) {
-                                log::error!("Could not set camera: {err}");
-                            }
+                            obj.imp().viewfinder.set_camera(camera);
                         }
                     }
                     popover.popdown();
