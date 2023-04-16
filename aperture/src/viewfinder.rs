@@ -41,6 +41,7 @@ mod imp {
         pub is_recording_video: RefCell<Option<PathBuf>>,
         pub is_stopping_recording: Cell<bool>,
         pub is_taking_picture: Cell<bool>,
+        pub is_front_camera: Cell<bool>,
 
         pub timeout_handler: RefCell<Option<glib::SourceId>>,
 
@@ -123,6 +124,9 @@ mod imp {
                     self.camerabin().set_property("camera-source", &bin);
                     self.camera_src.replace(Some(camera_src));
                 }
+
+                let is_front_camera = matches!(camera.location(), crate::CameraLocation::Front);
+                self.is_front_camera.set(is_front_camera);
             }
 
             if obj.is_realized() && matches!(self.obj().state(), ViewfinderState::Ready) {
@@ -304,17 +308,10 @@ mod imp {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let w = self.obj().width() as f32;
 
-            // TODO Use is_some_and when stabilized.
-            let should_mirror = self
-                .obj()
-                .camera()
-                .map(|camera| matches!(camera.location(), crate::CameraLocation::Front))
-                == Some(true);
-
             // This is the composition of translate (-w / 2.0, 0.0), map x to
             // -x, and translate (w / 2.0 , 0.0). Note that gsk matrices are
             // transposed (they act on row vectors).
-            if should_mirror {
+            if self.is_front_camera.get() {
                 #[rustfmt::skip]
                 let flip_matrix = graphene::Matrix::from_float([
                     -1.0,  0.0,  0.0,  0.0,
