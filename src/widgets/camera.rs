@@ -174,10 +174,6 @@ impl Camera {
         Self::default()
     }
 
-    pub fn stop(&self) {
-        // TODO
-    }
-
     pub async fn start(&self) {
         let provider = self.imp().provider.get().unwrap();
 
