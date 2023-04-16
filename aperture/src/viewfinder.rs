@@ -10,6 +10,8 @@ use std::path::PathBuf;
 
 use crate::ViewfinderState;
 
+const BARCODE_TIMEOUT: u32 = 1;
+
 mod imp {
     use super::*;
 
@@ -39,6 +41,8 @@ mod imp {
         pub is_recording_video: RefCell<Option<PathBuf>>,
         pub is_stopping_recording: Cell<bool>,
         pub is_taking_picture: Cell<bool>,
+
+        pub timeout_handler: RefCell<Option<glib::SourceId>>,
 
         picture: gtk::Picture,
     }
@@ -515,7 +519,17 @@ impl Viewfinder {
     }
 
     fn on_barcode_detected(&self, data_type: crate::CodeType, data: &str) {
-        self.emit_code_detected(data_type, data);
+        // We don't emit the signal if we just emited it
+        if self.imp().timeout_handler.borrow().is_none() {
+            let id = glib::timeout_add_seconds_local_once(
+                BARCODE_TIMEOUT,
+                glib::clone!(@weak self as obj => move || {
+                    obj.imp().timeout_handler.take();
+                }),
+            );
+            self.imp().timeout_handler.replace(Some(id));
+            self.emit_code_detected(data_type, data);
+        }
     }
 
     fn on_pipeline_error(&self, err: &gst::message::Error) {
