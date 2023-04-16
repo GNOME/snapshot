@@ -16,6 +16,8 @@ dependency('gtk4', version: '>= 4.9.0')
 dependency('libadwaita-1', version: '>= 1.4.alpha')
 dependency('gstreamer-1.0', version: '>= 1.20')
 dependency('gstreamer-video-1.0', version: '>= 1.20')
+# Needed for camerabin
+dependency('gstreamer-plugins-bad-1.0', version: '>= 1.20')
 dependency('libpipewire-0.3', version: '>= 0.3.69')
 
 glib_compile_resources = find_program('glib-compile-resources', required: true)
