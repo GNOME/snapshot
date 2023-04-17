@@ -59,3 +59,34 @@ nightly@x86_64:
 nightly@aarch64:
   extends: ".publish_nightly"
   needs: ["flatpak@aarch64"]
+
+aperture-docs:
+  image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
+  stage: test
+  before_script:
+    - sudo dnf install -y gstreamer1-devel gstreamer1-plugins-base-devel
+    - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
+    - source $HOME/.cargo/env
+    - rustup toolchain install nightly --profile minimal --allow-downgrade -c rustfmt
+    - curl --proto '=https' --tlsv1.2 -sSf -o gir-rustdoc.py
+      https://gitlab.gnome.org/World/Rust/gir-rustdoc/-/raw/main/gir-rustdoc.py
+    - chmod +x gir-rustdoc.py
+  script:
+    # generate the docs
+    - cargo doc --no-deps
+    - mv target/doc/ docs
+  artifacts:
+    paths:
+      - docs
+
+pages:
+  stage: deploy
+  script:
+    # main docs
+    - mkdir public/git
+    - mv docs public/git/docs
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
