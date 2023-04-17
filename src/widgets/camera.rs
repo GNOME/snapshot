@@ -144,6 +144,31 @@ mod imp {
             // camera device.
             self.spinner.start();
             self.stack.set_visible_child_name("loading");
+
+            // Handle Errors
+            self.viewfinder.connect_state_notify(|vf| {
+                if vf.state() == aperture::ViewfinderState::Error {
+                    let error = vf.error().unwrap();
+                    let window = vf.root().and_downcast::<crate::Window>().unwrap();
+
+                    // Don't show long error messages
+                    match error.kind() {
+                        Some(aperture::ViewfinderError::RecordingInProgress) => {
+                            window.send_toast("Error while recording")
+                        }
+                        Some(aperture::ViewfinderError::SnapshotInProgress) => {
+                            window.send_toast("Error while taking snapshot")
+                        }
+                        Some(aperture::ViewfinderError::NotReady) => {
+                            window.send_toast("Camera not ready")
+                        }
+                        Some(aperture::ViewfinderError::BusError) => {
+                            window.send_toast("Pipewire error")
+                        }
+                        None => window.send_toast("Unknown Error"),
+                    };
+                }
+            });
         }
 
         fn dispose(&self) {
@@ -291,18 +316,21 @@ impl Camera {
             glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
                 let window = obj.root().and_downcast::<crate::Window>().unwrap();
                 window.set_shutter_enabled(true);
-                // TODO Maybe report error via toast on None
                 if let Some(file) = file {
                     gallery.add_image(file);
+                } else {
+                    window.send_toast("Error Taking Picture");
                 }
             }),
         );
         imp.viewfinder.connect_recording_done(
             glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
                 let imp = obj.imp();
-                // TODO Maybe report error via toast on None
+                let window = obj.root().and_downcast::<crate::Window>().unwrap();
                 if let Some(file) = file {
                     gallery.add_video(file);
+                } else {
+                    window.send_toast("Error Recording Video");
                 }
                 if matches!(imp.shutter_button.shutter_mode(), crate::ShutterMode::Recording) {
                     imp.shutter_button.set_shutter_mode(crate::ShutterMode::Video);
