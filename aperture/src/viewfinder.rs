@@ -129,7 +129,8 @@ mod imp {
                 self.is_front_camera.set(is_front_camera);
             }
 
-            if obj.is_realized() && matches!(self.obj().state(), ViewfinderState::Ready) {
+            if obj.is_realized() && matches!(obj.state(), ViewfinderState::Ready) {
+                log::debug!("State set to PLAYING");
                 self.camerabin().set_state(gst::State::Playing).unwrap();
             }
 
@@ -258,6 +259,7 @@ mod imp {
 
             self.devices.set(devices.clone()).unwrap();
 
+            log::debug!("Setup recording");
             obj.setup_recording();
         }
 
@@ -298,6 +300,7 @@ mod imp {
             self.parent_realize();
 
             if matches!(self.obj().state(), ViewfinderState::Ready) {
+                log::debug!("State set to PLAYING");
                 self.camerabin().set_state(gst::State::Playing).unwrap();
             }
         }

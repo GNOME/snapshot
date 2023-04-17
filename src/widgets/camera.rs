@@ -176,16 +176,20 @@ impl Camera {
         let ctx = glib::MainContext::default();
         ctx.spawn_local(
             glib::clone!(@weak self as obj, @strong provider => async move {
-                if let Ok(fd) = stream().await {
-                    if let Err(err) = provider.set_fd(fd) {
-                        log::error!("Could not use the camera portal: {err}");
-                    };
-                } else {
-                    // FIXME Show a page explaining how to setup the permission.
-                    log::warn!("Could not use the camera portal");
+                match stream().await {
+                    Ok(fd) => {
+                        if let Err(err) = provider.set_fd(fd) {
+                            log::error!("Could not use the camera portal: {err}");
+                        };
+                    }
+                    Err(err) => {
+                        log::warn!("Could not use the camera portal: {err}");
+                    }
                 }
                 if let Err(err) = provider.start() {
                     log::error!("Could not start the device provider: {err}");
+                } else {
+                    log::debug!("Device provider started");
                 };
             }),
         );

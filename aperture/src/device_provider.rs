@@ -232,11 +232,10 @@ impl DeviceProvider {
                         if "Video/Source" == device.device_class().as_str() {
                             let device = crate::Camera::new(&device);
                             log::debug!(
-                                "Camera added: {}, target-object: {:?}\nProperties:\n{:#?}\nCaps:\n{:#?}",
+                                "Camera added: {}, target-object: {:?}\nProperties {:#?}",
                                 device.display_name(),
                                 device.target_object(),
                                 device.properties(),
-                                device.caps(),
                             );
                             self.imp().append(device);
                         };
