@@ -2,6 +2,28 @@
 use gtk::glib;
 
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
+#[error_domain(name = "ApertureViewfinderError")]
+pub enum ViewfinderError {
+    RecordingInProgress,
+    SnapshotInProgress,
+    BusError,
+    NotReady,
+}
+
+impl std::error::Error for ViewfinderError {}
+
+impl std::fmt::Display for ViewfinderError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::RecordingInProgress => f.write_str("Operation in progress: Video recording"),
+            Self::SnapshotInProgress => f.write_str("Operation in progress: Take Picture"),
+            Self::BusError => f.write_str("Pipewire Bus Error"),
+            Self::NotReady => f.write_str("The viewfinder is not in the READY state"),
+        }
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
 #[error_domain(name = "ApertureCaptureError")]
 pub enum CaptureError {
     RecordingInProgress,

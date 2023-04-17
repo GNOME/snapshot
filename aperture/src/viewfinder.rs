@@ -29,6 +29,8 @@ mod imp {
         detect_codes: Cell<bool>,
         #[property(get, set = Self::set_camera, nullable, explicit_notify)]
         camera: RefCell<Option<crate::Camera>>,
+        #[property(get, set = Self::set_error, nullable, explicit_notify)]
+        error: RefCell<Option<glib::error::Error>>,
 
         pub zbar_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
@@ -56,6 +58,13 @@ mod imp {
         fn set_state(&self, state: ViewfinderState) {
             if state != self.state.replace(state) {
                 self.obj().notify_state();
+            }
+        }
+
+        fn set_error(&self, error: Option<glib::error::Error>) {
+            if error != self.error.replace(error.clone()) {
+                log::error!("{}", error.unwrap().message());
+                self.set_state(ViewfinderState::Error);
             }
         }
 
@@ -91,17 +100,26 @@ mod imp {
             let obj = self.obj();
 
             if !matches!(obj.state(), ViewfinderState::Ready) {
-                log::error!("Could not set camera, the viewfinder is not ready");
+                self.set_error(Some(glib::error::Error::new(
+                    crate::ViewfinderError::NotReady,
+                    "Could not set camera, viewfinder is not ready",
+                )));
                 return;
             }
 
             if self.is_taking_picture.get() {
-                log::error!("Could not set camera, where are taking a picture");
+                self.set_error(Some(glib::error::Error::new(
+                    crate::ViewfinderError::SnapshotInProgress,
+                    "Could not set camera, viewfinder is taking picture",
+                )));
                 return;
             }
 
             if self.is_recording_video.borrow().is_some() {
-                log::error!("Could not set camera, there is a recording in progress");
+                self.set_error(Some(glib::error::Error::new(
+                    crate::ViewfinderError::RecordingInProgress,
+                    "Could not set camera, viewfinder is taking recording",
+                )));
                 return;
             }
 
@@ -538,17 +556,20 @@ impl Viewfinder {
     }
 
     fn on_pipeline_error(&self, err: &gst::message::Error) {
-        log::error!(
-            "Bus Error from {:?}\n{}\n{:?}",
-            err.src().map(|s| s.path_string()),
-            err.error(),
-            err.debug()
-        );
-
         self.cancel_current_operation();
 
         if self.imp().camerabin().current_state() != gst::State::Playing {
             self.set_state(ViewfinderState::Error);
+
+            self.set_error(Some(glib::error::Error::new(
+                crate::ViewfinderError::BusError,
+                &format!(
+                    "Bus Error from {:?}\n{}\n{:?}",
+                    err.src().map(|s| s.path_string()),
+                    err.error(),
+                    err.debug()
+                ),
+            )));
         }
     }
 
