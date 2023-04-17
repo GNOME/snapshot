@@ -262,6 +262,9 @@ mod imp {
         }
 
         fn dispose(&self) {
+            if let Some(bus) = self.camerabin().bus() {
+                let _ = bus.remove_watch();
+            };
             if self.is_recording_video.borrow().is_some() {
                 if let Err(err) = self.obj().stop_recording() {
                     log::error!("Could not stop recording: {err}");
