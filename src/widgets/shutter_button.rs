@@ -155,23 +155,6 @@ mod imp {
                 }));
             let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, record_target);
             self.record_ani.set(record_ani).unwrap();
-
-            self.obj()
-                .connect_state_flags_changed(move |obj, old_flags| {
-                    if obj.state_flags().contains(gtk::StateFlags::ACTIVE)
-                        && !old_flags.contains(gtk::StateFlags::ACTIVE)
-                    {
-                        let press_ani = obj.press_ani();
-                        press_ani.set_value_to(8.0);
-                        press_ani.play();
-                    } else if !obj.state_flags().contains(gtk::StateFlags::ACTIVE)
-                        && old_flags.contains(gtk::StateFlags::ACTIVE)
-                    {
-                        let press_ani = obj.press_ani();
-                        press_ani.set_value_to(4.0);
-                        press_ani.play();
-                    }
-                });
         }
     }
 
@@ -189,6 +172,26 @@ mod imp {
             widget.draw_play(snapshot, size, border_width);
 
             self.parent_snapshot(snapshot);
+        }
+
+        fn state_flags_changed(&self, old_flags: &gtk::StateFlags) {
+            self.parent_state_flags_changed(old_flags);
+
+            let obj = self.obj();
+
+            if obj.state_flags().contains(gtk::StateFlags::ACTIVE)
+                && !old_flags.contains(gtk::StateFlags::ACTIVE)
+            {
+                let press_ani = obj.press_ani();
+                press_ani.set_value_to(8.0);
+                press_ani.play();
+            } else if !obj.state_flags().contains(gtk::StateFlags::ACTIVE)
+                && old_flags.contains(gtk::StateFlags::ACTIVE)
+            {
+                let press_ani = obj.press_ani();
+                press_ani.set_value_to(4.0);
+                press_ani.play();
+            }
         }
     }
 
