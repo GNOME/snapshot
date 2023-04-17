@@ -165,7 +165,7 @@ impl DeviceProvider {
         Ok(())
     }
 
-    /// Gets a [`Camera`] object for the given camera index.
+    /// Gets a [`crate::Camera`] object for the given camera index.
     pub fn camera(&self, position: u32) -> Option<crate::Camera> {
         self.item(position).and_downcast()
     }
