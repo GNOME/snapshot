@@ -67,7 +67,7 @@ pub fn init(app_id: &'static str) {
 /// # Panics
 ///
 /// if Aperture is not initialized
-pub fn ensure_init() {
+pub(crate) fn ensure_init() {
     if !IS_INIT.is_completed() {
         panic!("Aperture is not initialized! Please call `init()` before using the rest of the library to avoid errors and crashes.");
     }
