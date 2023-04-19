@@ -81,7 +81,7 @@
                         <child type="start">
                           <object class="GtkMenuButton" id="countdown_button">
                             <property name="menu-model">countdown_menu</property>
-                            <property name="icon-name">stopwatch-symbolic</property>
+                            <property name="icon-name">camera-timer-symbolic</property>
                             <property name="valign">center</property>
                             <property name="tooltip-text" translatable="yes">Countdown</property>
                             <style>

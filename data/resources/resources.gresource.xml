@@ -12,7 +12,7 @@
   <gresource prefix="/org/gnome/Snapshot/icons/16x16/actions/">
     <file alias="video-camera-symbolic.svg">icons/video-camera-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="cameras-symbolic.svg">icons/cameras-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" alias="stopwatch-symbolic.svg">icons/stopwatch-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="camera-timer-symbolic.svg">icons/camera-timer-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias ="external-link-symbolic.svg">icons/external-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias ="pick-camera-alt2-symbolic.svg">icons/pick-camera-alt2-symbolic.svg</file>
   </gresource>
