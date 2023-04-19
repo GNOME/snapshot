@@ -1,4 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+
+//! # libaperture
+//!
+//! GTK Widget for cameras using GStreamer and Pipewire
+//!
+//! See also
+//!
+//! - [Snapshot](https://gitlab.gnome.org/Incubator/snapshot)
+//!
+//! # Usage
+//!
+//! Aperture needs to initialized before use.
+//! This can be done by calling [`fn@init`] on [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
+
 use gst::prelude::StaticType;
 use once_cell::sync::OnceCell;
 use std::sync::Once;
@@ -24,8 +38,11 @@ static IS_INIT: Once = Once::new();
 
 /// Initializes the library
 ///
-/// Has to be called on the `startup` of the GApplication. This function is
-/// idempotent.
+/// This function can be used instead of [`fn@gtk::init`] and [`fn@gst::init`]
+/// as it initializes GTK and GStreamer implicitly.
+///
+/// This function must be called on the [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup)
+/// of the [`GApplication`][`gtk::gio::Application`]. This function is idempotent.
 pub fn init(app_id: &'static str) {
     IS_INIT.call_once(|| {
         APP_ID.set(app_id).unwrap();
@@ -44,7 +61,13 @@ pub fn init(app_id: &'static str) {
     });
 }
 
-pub(crate) fn ensure_init() {
+/// Use this function to check if Aperture has been initialized with
+/// [`init()`][crate::init()].
+///
+/// # Panics
+///
+/// if Aperture is not initialized
+pub fn ensure_init() {
     if !IS_INIT.is_completed() {
         panic!("Aperture is not initialized! Please call `init()` before using the rest of the library to avoid errors and crashes.");
     }

@@ -278,7 +278,7 @@ mod imp {
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![
-                    // These are emited whenever the saving process finishes,
+                    // These are emitted whenever the saving process finishes,
                     // successful or not.
                     glib::subclass::Signal::builder("picture-done")
                         .param_types([Option::<gio::File>::static_type()])
@@ -337,6 +337,65 @@ mod imp {
 }
 
 glib::wrapper! {
+    /// A GTK widget for displaying a camera feed and taking pictures and videos from it.
+    ///
+    /// The viewfinder is the main widget in Aperture, and is responsible for displaying a camera
+    /// feed in your UI; along with using that camera feed to do useful tasks, like take pictures,
+    /// record video, and detect barcodes.
+    ///
+    /// The viewfinder does not contain any camera controls, these must be implemented yourself.
+    ///
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `state`
+    ///  The current viewfinder state.
+    /// The state indicates what the viewfinder is currently doing, or sometimes that an error has
+    /// occurred. Many operations, such as taking a picture, require that the viewfinder be in the
+    /// [`ViewfinderState::Ready`][crate::ViewfinderState::Ready] state.
+    ///
+    ///  Readable
+    ///
+    ///
+    /// #### `detect-codes`
+    ///  Whether the viewfinder should detect codes.
+    /// When a code is detected, the [`code-detected`](#code-detected) signal will be emitted.
+    ///
+    ///  Readable | Writable
+    ///
+    ///
+    /// #### `camera`
+    ///  The camera that is currently being used.
+    /// The [`DeviceProvider`][crate::DeviceProvider] handles obtaining new cameras,
+    /// do not create cameras yourself.
+    ///
+    /// To safely switch cameras, the current [`fn@Viewfinder::state`] must be in [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
+    /// This is because switching camera sources would interrupt most active operations, if any are present.
+    ///
+    ///  Readable | Nullable
+    ///
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `picture-done`
+    ///  This signal is emitted after a picture has been taken and saved.
+    /// Note that this signal is emitted even if saving the picture failed, and should not be used
+    /// to detect if the picture was successfully saved.
+    ///
+    ///
+    /// #### `recording-done`
+    ///  This signal is emitted after a recording has finished and been saved.
+    /// Note that this signal is emitted even if saving the recording failed, and should not be used
+    /// to detect if the recoding was successfully saved.
+    ///
+    ///
+    /// #### `code-detected`
+    ///  This signal is emitted when a barcode is detected in the camera feed.
+    /// This will only be emitted if [`detect-codes`](#detect-codes) is `true`.
+    ///
+    /// Barcodes are only detected when they appear on the feed, not on every frame when they are visible.
     pub struct Viewfinder(ObjectSubclass<imp::Viewfinder>)
         @extends gtk::Widget;
 }
@@ -348,18 +407,26 @@ impl Default for Viewfinder {
 }
 
 impl Viewfinder {
-    /// Creates a new `ApertureViewfinder`.
+    /// Creates a new [`Viewfinder`][crate::Viewfinder]
+    ///
+    /// # Returns
+    ///
+    /// a new Viewfinder
     pub fn new() -> Self {
         Self::default()
     }
 
     /// Takes a picture.
     ///
-    /// This may take a while. The resolution might be changed temporarily,
+    /// The recording will be saved to `location`. This method throws an error if:
+    ///  - we are already recording or taking a picture
+    ///  - the [`fn@Viewfinder::state`] of the camera is not [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
+    ///
+    /// This operation may take a while. The resolution might be changed temporarily,
     /// autofocusing might take place, etc. Basically everything you'd expect
     /// to happen when you click the photo button in a camera app.
     ///
-    /// The `image-done` signal will be emited with this operation ends.
+    /// The [`picture-done`](#picture-done) signal will be emitted when this operation ends.
     pub fn take_picture<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
@@ -390,11 +457,9 @@ impl Viewfinder {
 
     /// Starts recording a video.
     ///
-    /// The video will be saved to `location`. This method throws an error if:
-    /// we are already recording, taking a picture, or the [`Self::state()`] of
-    /// the camera is not [`crate::ViewfinderState::Ready`].
-    ///
-    /// The `video-done` signal will be emited with this operation ends.
+    /// The recording will be saved to `location`. This method throws an error if:
+    ///  - we are already recording or taking a picture
+    ///  - the [`fn@Viewfinder::state`] of the camera is not [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
     pub fn start_recording<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
@@ -427,8 +492,11 @@ impl Viewfinder {
 
     /// Stop recording video.
     ///
-    /// Will error out if [`Self::start_recording()`] hasn't been called or if
-    /// there is another [`Self::stop_recording()`] call in progress.
+    /// This method throws an error if:
+    /// - [`fn@Viewfinder::start_recording`] hasn't been called
+    /// - There is another [`fn@Viewfinder::stop_recording`] operation in progress.
+    ///
+    /// The [`recording-done`](#recording-done) signal will be emitted when this operation ends.
     pub fn stop_recording(&self) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
@@ -447,7 +515,11 @@ impl Viewfinder {
         Ok(())
     }
 
-    /// Whether a recording is in progress.
+    /// Gets whether a recording is in progress.
+    ///
+    /// # Returns
+    ///
+    /// if a recording is in progress.
     pub fn is_recording(&self) -> bool {
         self.imp().is_recording_video.borrow().is_some()
     }

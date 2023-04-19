@@ -1,14 +1,22 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use gtk::glib;
 
+/// Describes the possible error codes of a [`Viewfinder`][crate::Viewfinder]
+/// while getting a capture.
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
 #[error_domain(name = "ApertureCaptureError")]
 pub enum CaptureError {
+    /// A recording is already in progress and should be stopped before starting a new recording.
     RecordingInProgress,
+    /// A recoding is being stopped and should finish before starting a new recording.
     StopRecordingInProgress,
+    /// A picture is being taken and should be stopped before taking more pictures.
     SnapshotInProgress,
+    /// No recording was found to stop.
     NoRecordingToStop,
+    /// The current active camera was disconnected during capture.
     CameraDisconnected,
+    /// The [`Viewfinder`][crate::Viewfinder] is not in the [`Ready`][crate::ViewfinderState::Ready] state.
     NotReady,
 }
 
@@ -27,11 +35,13 @@ impl std::fmt::Display for CaptureError {
     }
 }
 
+/// Describes the possible error codes of a [`Viewfinder`][crate::Viewfinder]
+/// from Pipewire.
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
 #[error_domain(name = "AperturePipewireError")]
 pub enum PipewireError {
+    /// The current Pipewire version is too old to use and must be upgraded.
     OldVersion,
-    FdAfterStart,
 }
 
 impl std::error::Error for PipewireError {}
@@ -40,9 +50,6 @@ impl std::fmt::Display for PipewireError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::OldVersion => f.write_str("Current pipewire version is too old"),
-            Self::FdAfterStart => f.write_str(
-                "Cannot set the file descriptor once the device provider has been start",
-            ),
         }
     }
 }

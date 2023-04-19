@@ -100,8 +100,6 @@ mod imp {
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
                 vec![
-                    // These are emited whenever the saving process finishes,
-                    // successful or not.
                     glib::subclass::Signal::builder("camera-added")
                         .param_types([crate::Camera::static_type()])
                         .build(),
@@ -116,12 +114,26 @@ mod imp {
 }
 
 glib::wrapper! {
+    /// A provider for available camera devices.
+    ///
+    /// It is used to find and monitor cameras that can be used in Aperture. It also handles the
+    /// creation of [`Camera`][crate::Camera] objects.
+    ///
+    /// ## Signals
+    ///
+    ///
+    /// #### `camera-added`
+    ///  This signal is emitted after a camera has been added to the device provider.
+    ///
+    ///
+    /// #### `camera-removed`
+    ///  This signal is emitted after a camera has been removed from the device provider.
     pub struct DeviceProvider(ObjectSubclass<imp::DeviceProvider>)
         @implements gio::ListModel;
 }
 
 impl DeviceProvider {
-    /// Gets the default `DeviceProvider`.
+    /// Gets the default [`DeviceProvider`][crate::DeviceProvider].
     pub fn instance() -> &'static Self {
         use glib::thread_guard::ThreadGuard;
         use once_cell::sync::Lazy;
@@ -140,7 +152,7 @@ impl DeviceProvider {
         SINGLETON.0.get_ref()
     }
 
-    /// Starts the device provider.
+    /// Starts the device provider represented by `self`.
     ///
     /// This function is idempotent when there are no errors.
     pub fn start(&self) -> Result<(), glib::BoolError> {
@@ -165,13 +177,24 @@ impl DeviceProvider {
         Ok(())
     }
 
-    /// Gets a [`crate::Camera`] object for the given camera index.
+    /// Gets a [`Camera`] object for the given camera index.
+    ///
+    /// # Returns
+    ///
+    /// a [`Camera`] at `position`.
+    ///
+    /// [`Camera`]: crate::Camera
     pub fn camera(&self, position: u32) -> Option<crate::Camera> {
         self.item(position).and_downcast()
     }
 
-    /// A file descriptor coming for the Camera portal. Such a provider can only
-    /// provide cameras.
+    /// Set a valid file description to load and monitor cameras from.
+    ///
+    /// This file descriptor should point to a valid Pipewire remote where camera nodes are available.
+    /// This provider should only provide camera nodes.
+    ///
+    /// One way to get a valid descriptor is with the [`org.freedesktop.portal.Camera`](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Camera)
+    /// XDG portal, using the `OpenPipeWireRemote()` method.
     pub fn set_fd(&self, fd: RawFd) -> Result<(), crate::PipewireError> {
         if STARTED.is_completed() {
             return Err(crate::PipewireError::OldVersion);

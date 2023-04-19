@@ -40,16 +40,36 @@ mod imp {
 }
 
 glib::wrapper! {
+    /// A representation of a camera plugged into a device.
+    ///
+    /// It is used to query information about a camera or change its parameters. Camera objects
+    /// should not be created by a user, and should only be created via a [`DeviceProvider`][crate::DeviceProvider].
+    ///
+    /// ## Properties
+    ///
+    ///
+    /// #### `device`
+    ///  The [`gst::Device`][gst::Device] to which this camera represents.
+    ///
+    /// Readable | Writeable
     pub struct Camera(ObjectSubclass<imp::Camera>);
 }
 
 impl Camera {
-    /// Gets the display name of the camera
+    /// Gets the display name of the camera represented by `self`.
+    ///
+    /// # Returns
+    ///
+    /// the display name.
     pub fn display_name(&self) -> glib::GString {
         self.device().display_name()
     }
 
-    /// Gets the display name of the camera
+    /// Gets the user-set nickname of the camera represented by `self`.
+    ///
+    /// # Returns
+    ///
+    /// the display name if set.
     pub fn nick(&self) -> Option<String> {
         self.device().properties().and_then(|properties| {
             properties
@@ -59,7 +79,12 @@ impl Camera {
         })
     }
 
-    /// Gets the properties of the device
+    /// Gets all the available properties for the camera represented by `self`.
+    ///
+    /// # Returns
+    ///
+    /// a [`HashMap`][std::collections::HashMap], with the property name as the key
+    /// and a [`GValue`][gtk::glib::Value] as the value.
     pub fn properties(&self) -> HashMap<&'static str, glib::SendValue> {
         self.device()
             .properties()
@@ -71,14 +96,22 @@ impl Camera {
             .unwrap_or_default()
     }
 
-    /// Gets the supported caps of the device
+    /// Gets the supported [`caps`](https://gstreamer.freedesktop.org/documentation/additional/design/caps.html)
+    /// of the camera represented by `self`.
+    ///
+    /// # Returns
+    ///
+    /// the available caps if available.
     pub fn caps(&self) -> Option<gst::Caps> {
         self.device().caps()
     }
 
-    /// Gets the camera location
+    /// Gets the location of the camera represented by `self`.
+    /// This function requires `libcamera` to be available.
     ///
-    /// Requires libcamera to work.
+    /// # Returns
+    ///
+    /// the [`CameraLocation`][crate::CameraLocation].
     pub fn location(&self) -> crate::CameraLocation {
         self.device()
             .properties()
