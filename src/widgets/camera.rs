@@ -3,7 +3,6 @@ use ashpd::desktop::camera;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
-use once_cell::unsync::Lazy;
 use std::os::unix::io::RawFd;
 
 use crate::CameraRow;
@@ -24,6 +23,7 @@ mod imp {
         pub selection: gtk::SingleSelection,
         pub provider: OnceCell<aperture::DeviceProvider>,
         pub players: RefCell<Option<gtk::MediaFile>>,
+        settings: OnceCell<gio::Settings>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
@@ -64,6 +64,11 @@ mod imp {
 
     #[gtk::template_callbacks]
     impl Camera {
+        pub fn settings(&self) -> &gio::Settings {
+            self.settings
+                .get_or_init(|| gio::Settings::new(config::APP_ID))
+        }
+
         #[template_callback]
         fn on_camera_switch_button_clicked(&self) {
             let provider = self.provider.get().unwrap();
@@ -243,7 +248,7 @@ impl Camera {
         imp.viewfinder.take_picture(path)?;
         imp.flash_bin.flash();
 
-        let settings: Lazy<gio::Settings> = Lazy::new(|| gio::Settings::new(config::APP_ID));
+        let settings = imp.settings();
         if settings.boolean("play-shutter-sound") {
             self.play_shutter_sound();
         }
