@@ -56,6 +56,12 @@
                 <property name="action-name">win.take-picture</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Show/Hide Composition Guidelines</property>
+                <property name="accelerator">C</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

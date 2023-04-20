@@ -90,6 +90,11 @@ mod imp {
                     window.imp().gallery.close();
                 }
             });
+            klass.install_action("win.toggle-guidelines", None, move |window, _, _| {
+                let imp = window.imp();
+
+                imp.camera.toggle_guidelines();
+            });
             klass.install_action("win.preferences", None, move |window, _, _| {
                 window.show_preferences_window();
             });

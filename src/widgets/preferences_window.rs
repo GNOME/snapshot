@@ -41,6 +41,8 @@ mod imp {
 
             let play_shutter_sound = settings.create_action("play-shutter-sound");
             action_group.add_action(&play_shutter_sound);
+            let show_composition_guidelines = settings.create_action("show-composition-guidelines");
+            action_group.add_action(&show_composition_guidelines);
 
             self.obj()
                 .insert_action_group("preferences-window", Some(&action_group));

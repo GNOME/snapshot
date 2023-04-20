@@ -103,5 +103,6 @@ impl Application {
         self.set_accels_for_action("window.close", &["<Ctrl>w"]);
         self.set_accels_for_action("win.take-picture", &["t"]);
         self.set_accels_for_action("win.toggle-gallery", &["<Control>g"]);
+        self.set_accels_for_action("win.toggle-guidelines", &["c"]);
     }
 }

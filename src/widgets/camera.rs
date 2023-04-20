@@ -49,6 +49,8 @@ mod imp {
         pub spinner: TemplateChild<gtk::Spinner>,
         #[template_child]
         pub shutter_button: TemplateChild<crate::ShutterButton>,
+        #[template_child]
+        pub guidelines: TemplateChild<crate::GuidelinesBin>,
 
         #[template_child]
         pub camera_controls: TemplateChild<gtk::Box>,
@@ -248,6 +250,14 @@ mod imp {
             // camera device.
             self.spinner.start();
             self.stack.set_visible_child_name("loading");
+
+            self.settings()
+                .bind(
+                    "show-composition-guidelines",
+                    &*self.guidelines,
+                    "draw-guidelines",
+                )
+                .build();
         }
 
         fn dispose(&self) {
@@ -432,6 +442,13 @@ impl Camera {
             }
         });
         imp.gallery_button.set_gallery(&gallery);
+    }
+
+    pub fn toggle_guidelines(&self) {
+        let imp = self.imp();
+
+        imp.guidelines
+            .set_draw_guidelines(!imp.guidelines.draw_guidelines());
     }
 
     fn update_cameras(&self, provider: &aperture::DeviceProvider) {

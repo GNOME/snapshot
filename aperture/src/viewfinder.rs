@@ -45,7 +45,7 @@ mod imp {
 
         pub timeout_handler: RefCell<Option<glib::SourceId>>,
 
-        picture: gtk::Picture,
+        pub picture: gtk::Picture,
     }
 
     impl Viewfinder {
@@ -437,6 +437,20 @@ impl Viewfinder {
     /// a new Viewfinder
     pub fn new() -> Self {
         Self::default()
+    }
+
+    /// Gets the aspect ratio of the camera output.
+    ///
+    /// # Returns
+    ///
+    /// an aspect ratio calculated with width/height, or 0 for no valid aspect ratio.
+    pub fn aspect_ratio(&self) -> f64 {
+        let imp = self.imp();
+        if let Some(paintable) = imp.picture.paintable() {
+            return paintable.intrinsic_aspect_ratio();
+        } else {
+            return 0.0;
+        }
     }
 
     /// Takes a picture.

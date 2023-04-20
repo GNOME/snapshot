@@ -517,7 +517,11 @@
                     <child>
                       <object class="FlashBin" id="flash_bin">
                         <child>
-                          <object class="ApertureViewfinder" id="viewfinder"/>
+                          <object class="GuidelinesBin" id="guidelines">
+                            <child>
+                              <object class="ApertureViewfinder" id="viewfinder"/>
+                            </child>
+                          </object>
                         </child>
                       </object>
                     </child>
