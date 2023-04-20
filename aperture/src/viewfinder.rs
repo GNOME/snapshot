@@ -169,6 +169,8 @@ mod imp {
 
             let obj = self.obj();
 
+            obj.set_valign(gtk::Align::Center);
+
             let camerabin = gst::ElementFactory::make("camerabin").build().unwrap();
             self.camerabin.set(camerabin.clone()).unwrap();
 
@@ -219,9 +221,7 @@ mod imp {
 
             self.sink_paintable.set(paintablesink).unwrap();
 
-            self.picture.set_hexpand(true);
-            self.picture.set_vexpand(true);
-            self.picture.set_content_fit(gtk::ContentFit::Fill);
+            self.picture.set_content_fit(gtk::ContentFit::Contain);
             self.picture.set_parent(&*obj);
             self.picture.set_paintable(Some(&paintable));
 
