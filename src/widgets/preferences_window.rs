@@ -24,23 +24,10 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
-            klass.bind_template_callbacks();
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
             obj.init_template();
-        }
-    }
-
-    #[gtk::template_callbacks]
-    impl PreferencesWindow {
-        #[template_callback]
-        fn on_combo_selected_notify(&self, _pspec: glib::ParamSpec, combo_row: &adw::ComboRow) {
-            self.settings
-                .get()
-                .unwrap()
-                .set_enum("picture-format", combo_row.selected() as i32)
-                .unwrap();
         }
     }
 
