@@ -1,0 +1,297 @@
+# Greek translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+# Efstathios Iosifidis <eiosifidis@gnome.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-04-20 16:10+0000\n"
+"PO-Revision-Date: 2023-04-20 23:07+0300\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
+"Language-Team: Greek <gnome-el-list@gnome.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
+#: src/widgets/window.rs:231
+msgid "Snapshot"
+msgstr "Στιγμιότυπο"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Λήψη φωτογραφιών και βίντεο"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "εικόνα;φωτογραφίες;κάμερα;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "Προκαθορισμένο πλάτος παραθύρου"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "Προκαθορισμένο ύψος παραθύρου"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "Προεπιλεγμένη συμπεριφορά μεγιστοποιημένου παραθύρου"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "Αναπαραγωγή ήχου φωτοφράκτη"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Εάν θα αναπαράγεται ήχος φωτοφράκτη κατά την λήψη φωτογραφιών"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Countdown timer"
+msgstr "Αντίστροφη μέτρηση"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Η διάρκεια της αντίστροφης μέτρησης πριν τη λήψη της φωτογραφίας, σε δευτερόλεπτα"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Capture mode"
+msgstr "Λειτουργία σύλληψης"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Whether to take pictures or videos"
+msgstr "Εάν θα λαμβάνονται φωτογραφίες ή βίντεο"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Picture format"
+msgstr "Μορφή εικόνας"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Εάν θα αποθηκεύονται οι εικόνες ως png ή jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Video format"
+msgstr "Μορφή βίντεο"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Εάν θα αποθηκεύονται τα βίντεο ως mp4 ή webm"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Λήψη φωτογραφιών και βίντεο στον υπολογιστή σας, το tablet ή το τηλέφωνο."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Κύρια διεπαφή κάμερας"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
+msgid "Maximiliano Sandoval"
+msgstr "Maximiliano Sandoval"
+
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:151
+#: data/resources/ui/gallery.ui:64
+msgid "Main Menu"
+msgstr "Κυρίως μενού"
+
+#: data/resources/ui/camera.ui:58
+msgid "No Camera Found"
+msgstr "Δεν βρέθηκε κάμερα"
+
+#: data/resources/ui/camera.ui:59
+msgid "Connect a camera device"
+msgstr "Σύνδεση συσκευής κάμερας"
+
+#: data/resources/ui/camera.ui:86 data/resources/ui/camera.ui:256
+msgid "Countdown"
+msgstr "Αντίστροφη μέτρηση"
+
+#: data/resources/ui/camera.ui:107
+msgid "Picture Mode"
+msgstr "Λειτουργία εικόνας"
+
+#: data/resources/ui/camera.ui:125
+msgid "Recording Mode"
+msgstr "Λειτουργία εγγραφής"
+
+#: data/resources/ui/camera.ui:185
+msgid "Open Gallery"
+msgstr "Άνοιγμα συλλογής"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:191 src/widgets/shutter_button.rs:66
+#: src/widgets/shutter_button.rs:126
+msgid "Take Picture"
+msgstr "Λήψη φωτογραφίας"
+
+#. FIXME Use Switch Camera after string freeze
+#: data/resources/ui/camera.ui:203 data/resources/ui/camera.ui:217
+msgid "Select Camera"
+msgstr "Επιλογή κάμερας"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:259
+msgid "None"
+msgstr "Kανένα"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:264
+msgid "3s"
+msgstr "3δ"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:269
+msgid "5s"
+msgstr "5δ"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:274
+msgid "10s"
+msgstr "10δ"
+
+#: data/resources/ui/camera.ui:282 data/resources/ui/gallery.ui:147
+msgid "_Preferences"
+msgstr "_Προτιμήσεις"
+
+#: data/resources/ui/camera.ui:286 data/resources/ui/gallery.ui:151
+msgid "_Keyboard Shortcuts"
+msgstr "Συντομεύσεις _πληκτρολογίου"
+
+#: data/resources/ui/camera.ui:290 data/resources/ui/gallery.ui:155
+msgid "_About Snapshot"
+msgstr "_Περί Στιγμιότυπο"
+
+#: data/resources/ui/gallery.ui:51
+msgid "Back"
+msgstr "Πίσω"
+
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+msgid "Open in Image Viewer"
+msgstr "Άνοιγμα προγράμματος προβολής εικόνων"
+
+#: data/resources/ui/gallery.ui:111
+msgid "Previous Image"
+msgstr "Προηγούμενη εικόνα"
+
+#: data/resources/ui/gallery.ui:123
+msgid "Next Image"
+msgstr "Επόμενη εικόνα"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Γενικά"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Κάμερα"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Play Shutter Sound"
+msgstr "Αναπαραγωγή ήχου φωτοφράκτη"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Γενικά"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Εμφάνιση συντομεύσεων"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Κυρίως μενού"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Άνοιγμα προτιμήσεων"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Κάμερα"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Λειτουργία εικόνας"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Λειτουργία εγγραφής"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Λήψη εικόνας ή έναρξη εγγραφής"
+
+#: data/resources/ui/shortcuts.ui:63
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Συλλογή"
+
+#: data/resources/ui/shortcuts.ui:66
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Άνοιγμα/Κλείσιμο συλλογής"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Επόμενο"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/widgets/gallery.rs:99
+msgid "Open in Video Player"
+msgstr "Άνοιγμα σε πρόγραμμα αναπαραγωγής βίντεο"
+
+#: src/widgets/shutter_button.rs:77
+msgid "Start Recording"
+msgstr "Έναρξη εγγραφής"
+
+#: src/widgets/shutter_button.rs:88
+msgid "Stop Recording"
+msgstr "Διακοπή εγγραφής"
+
+#: src/widgets/window.rs:236
+msgid "translator-credits"
+msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+" Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>\n"
+"\n"
+"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
+"http://gnome.gr/"
+
+#: src/widgets/window.rs:237
+msgid "The GNOME Project"
+msgstr "Το έργο GNOME"
