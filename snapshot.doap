@@ -25,6 +25,8 @@
         </foaf:OnlineAccount>
       </foaf:account>
     </foaf:Person>
+  </maintainer>
+  <maintainer>
     <foaf:Person>
       <foaf:name>Jamie Murphy</foaf:name>
       <foaf:mbox rdf:resource="mailto:jmurphy@gnome.org" />
