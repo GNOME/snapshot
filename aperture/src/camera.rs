@@ -166,13 +166,43 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let device_src = device.create_element(None).ok()?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
 
+    let capsfilter = gst::ElementFactory::make("capsfilter")
+        .property(
+            "caps",
+            [
+                gst_video::VideoCapsBuilder::new().any_features().build(),
+                gst::Caps::builder("image/jpeg").build(),
+            ]
+            .into_iter()
+            .collect::<gst::Caps>(),
+        )
+        .build()
+        .unwrap();
+    let decodebin3 = gst::ElementFactory::make("decodebin3")
+        .property(
+            "caps",
+            gst_video::VideoCapsBuilder::new().any_features().build(),
+        )
+        .build()
+        .unwrap();
+
     let videoflip = gst::ElementFactory::make("videoflip")
         .property_from_str("video-direction", "auto")
         .build()
         .unwrap();
 
-    bin.add_many(&[&device_src, &videoflip]).unwrap();
-    device_src.link(&videoflip).unwrap();
+    bin.add_many(&[&device_src, &capsfilter, &decodebin3, &videoflip])
+        .unwrap();
+    gst::Element::link_many(&[&device_src, &capsfilter, &decodebin3]).unwrap();
+
+    decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
+        if pad.name().starts_with("video_") {
+            pad.link(&videoflip.static_pad("sink").unwrap())
+               .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
+        } else {
+            panic!("Audio coming through the webcam pad!");
+        }
+    }));
 
     let pad = videoflip.static_pad("src").unwrap();
     let ghost_pad = gst::GhostPad::with_target(Some("src"), &pad).unwrap();
