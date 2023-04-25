@@ -109,7 +109,7 @@ mod imp {
                 return;
             }
 
-            if obj.is_realized() {
+            if obj.is_realized() && self.camerabin().current_state() == gst::State::Playing {
                 obj.stop_camerabin();
             }
 
