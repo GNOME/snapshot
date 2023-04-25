@@ -110,7 +110,7 @@ mod imp {
             }
 
             if obj.is_realized() {
-                self.camerabin().set_state(gst::State::Null).unwrap();
+                obj.stop_camerabin();
             }
 
             if let Some(camera) = camera {
@@ -130,8 +130,7 @@ mod imp {
             }
 
             if obj.is_realized() && matches!(obj.state(), ViewfinderState::Ready) {
-                log::debug!("State set to PLAYING");
-                self.camerabin().set_state(gst::State::Playing).unwrap();
+                obj.start_camerabin();
             }
 
             obj.notify_camera();
@@ -300,13 +299,12 @@ mod imp {
             self.parent_realize();
 
             if matches!(self.obj().state(), ViewfinderState::Ready) {
-                log::debug!("State set to PLAYING");
-                self.camerabin().set_state(gst::State::Playing).unwrap();
+                self.obj().start_camerabin();
             }
         }
 
         fn unrealize(&self) {
-            self.camerabin().set_state(gst::State::Null).unwrap();
+            self.obj().stop_camerabin();
 
             self.parent_unrealize();
         }
@@ -552,6 +550,25 @@ impl Viewfinder {
                 f(obj, data_type, data);
             }),
         );
+    }
+
+    fn start_camerabin(&self) {
+        // TODO Present a toast, banner, or message dialog with the error.
+        if let Err(err) = self.imp().camerabin().set_state(gst::State::Playing) {
+            log::error!("Could not start camerabin: {err}");
+            self.set_state(ViewfinderState::Error);
+        } else {
+            log::debug!("Camerabin state succesfully set to PLAYING");
+        }
+    }
+
+    fn stop_camerabin(&self) {
+        if let Err(err) = self.imp().camerabin().set_state(gst::State::Null) {
+            log::error!("Could not pause camerabin: {err}");
+            self.set_state(ViewfinderState::Error);
+        } else {
+            log::debug!("Camerabin state succesfully set to NULL");
+        }
     }
 
     /// Bus message handler for the pipeline
