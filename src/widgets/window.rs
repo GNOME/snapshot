@@ -128,6 +128,7 @@ mod imp {
 
             self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
                 let camera = &*obj.imp().camera;
+                // TODO Use is_some_and once stabilized
                 let enabled = leaflet.visible_child().map(|child| &child == camera) == Some(true);
                 obj.set_shutter_enabled(enabled);
             }));
