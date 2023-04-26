@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use gettextrs::gettext;
+use gst::prelude::*;
+use gtk::prelude::*;
+use once_cell::sync::Lazy;
 use std::path::PathBuf;
 
 use anyhow::Context;
@@ -63,4 +66,49 @@ pub fn pictures_dir() -> anyhow::Result<PathBuf> {
     std::fs::create_dir_all(&path)?;
 
     Ok(path)
+}
+
+static DEBUG_STR: Lazy<String> = Lazy::new(|| {
+    let registry = gst::Registry::get();
+    let mut version_string = String::new();
+
+    version_string.push_str(&format!("Aperture {}\n", aperture::version()));
+    version_string.push_str(&format!("{}\n", gst::version_string()));
+    if let Some(pipewire_feature) = registry.lookup_feature("pipewiresrc") {
+        version_string.push_str(&format!(
+            "Pipewire {}\n",
+            pipewire_feature
+                .plugin()
+                .map(|x| String::from(x.version()))
+                .unwrap_or(String::from("UNKNOWN"))
+        ));
+    };
+    version_string.push_str(&format!(
+        "Gtk {}.{}.{}",
+        gtk::major_version(),
+        gtk::minor_version(),
+        gtk::micro_version()
+    ));
+
+    version_string
+});
+
+pub fn debug_info() -> String {
+    let device_provider = aperture::DeviceProvider::instance();
+    let mut debug_string = String::new();
+
+    debug_string.push_str(&format!("Library Details:\n{}\n\n", &*DEBUG_STR));
+
+    debug_string.push_str("Cameras:\n");
+    for pos in 0..device_provider.n_items() {
+        let camera = device_provider.camera(pos).unwrap();
+
+        debug_string.push_str(&format!(
+            "{}: {:#?}",
+            camera.display_name(),
+            camera.properties()
+        ));
+    }
+
+    debug_string
 }

@@ -1985,6 +1985,7 @@ dependencies = [
  "futures-util",
  "gdk4-wayland",
  "gettext-rs",
+ "gstreamer",
  "gtk4",
  "libadwaita",
  "log",

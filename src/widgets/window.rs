@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use gettextrs::gettext;
-
 use adw::prelude::*;
+use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
 use crate::config::{APP_ID, PROFILE, VERSION};
+use crate::utils;
 use crate::Application;
 use crate::CaptureMode;
 
@@ -252,6 +252,7 @@ impl Window {
             .developer_name(gettext("The GNOME Project"))
             .developers(["Maximiliano Sandoval", "Jamie Murphy <jmurphy@gnome.org>"])
             .designers(["Tobias Bernard"])
+            .debug_info(utils::debug_info())
             .transient_for(self)
             .modal(true)
             .build();

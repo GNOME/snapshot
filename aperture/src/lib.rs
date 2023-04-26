@@ -13,7 +13,7 @@
 //! Aperture needs to initialized before use.
 //! This can be done by calling [`fn@init`] on [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
 
-use gst::prelude::StaticType;
+use gst::prelude::*;
 use gtk::glib;
 use once_cell::sync::OnceCell;
 use std::sync::Once;
@@ -36,6 +36,7 @@ pub(crate) use pipeline_tee::PipelineTee;
 pub(crate) static APP_ID: OnceCell<&'static str> = OnceCell::new();
 
 static IS_INIT: Once = Once::new();
+static VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
 /// Initializes the library
 ///
@@ -71,6 +72,15 @@ pub fn init(app_id: &'static str) {
         ViewfinderState::static_type();
         CameraLocation::static_type();
     });
+}
+
+/// Gets the current version of Aperture
+///
+/// # Returns
+///
+/// The Aperture version
+pub fn version() -> &'static str {
+    &*VERSION
 }
 
 /// Use this function to check if Aperture has been initialized with

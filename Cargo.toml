@@ -13,6 +13,7 @@ futures-channel = "0.3.26"
 futures-util = "0.3.26"
 gdk4wayland = {package = "gdk4-wayland", version = "0.6", features = ["wayland_crate"] }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
+gst = { package = "gstreamer", version = "0.20", features = ["v1_20"] }
 gtk = { package = "gtk4", version = "0.6.2", features = ["gnome_44"] }
 log = "0.4"
 once_cell = "1.17"
