@@ -3,6 +3,10 @@ stages:
   - test
   - deploy
 
+include:
+  - project: "GNOME/citemplates"
+    file: "flatpak/flatpak_ci_initiative.yml"
+
 variables:
   BUNDLE: "org.gnome.Snapshot.Devel.flatpak"
   MANIFEST_PATH: "build-aux/org.gnome.Snapshot.Devel.json"
@@ -10,33 +14,11 @@ variables:
   APP_ID: "org.gnome.Snapshot.Devel"
   RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
 
-.flatpak:
-  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
-  stage: test
-  script:
-    - >
-      xvfb-run -a -s "-screen 0 1024x768x24"
-      flatpak-builder --keep-build-dirs --user --disable-rofiles-fuse flatpak_app --repo=repo ${BRANCH:+--default-branch=$BRANCH} ${MANIFEST_PATH}
-    - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${APP_ID} ${BRANCH}
-  artifacts:
-    name: 'Flatpak artifacts'
-    expose_as: 'Get Flatpak bundle here'
-    when: 'always'
-    paths:
-      - "${BUNDLE}"
-      - '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/meson-log.txt'
-      - '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/testlog.txt'
-    expire_in: 14 days
-
 flatpak@x86_64:
-  extends: ".flatpak"
-  tags:
-    - flatpak
+  extends: ".flatpak@x86_64"
 
 flatpak@aarch64:
-  extends: ".flatpak"
-  tags:
-    - flatpak-aarch64
+  extends: ".flatpak@aarch64"
 
 rustfmt:
   image: "rust:slim"
@@ -89,10 +71,6 @@ pages:
       - 'public'
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-include:
-  - project: "GNOME/citemplates"
-    file: "flatpak/flatpak_ci_initiative.yml"
 
 nightly@x86_64:
   extends: ".publish_nightly"
