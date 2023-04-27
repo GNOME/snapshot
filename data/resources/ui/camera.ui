@@ -480,8 +480,7 @@
                                     <property name="valign">center</property>
                                     <property name="halign">center</property>
                                     <property name="icon-name">cameras-symbolic</property>
-                                    <!-- FIXME Use Switch Camera after string freeze -->
-                                    <property name="tooltip-text" translatable="yes">Select Camera</property>
+                                    <property name="tooltip-text" translatable="yes" context="Switch between front and back camera button">Switch Camera</property>
                                     <signal name="clicked" handler="on_camera_switch_button_clicked" swapped="yes"/>
                                     <style>
                                       <class name="circular"/>
