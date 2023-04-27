@@ -14,6 +14,7 @@
 //! This can be done by calling [`fn@init`] on [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
 
 use gst::prelude::StaticType;
+use gtk::glib;
 use once_cell::sync::OnceCell;
 use std::sync::Once;
 
@@ -50,6 +51,17 @@ pub fn init(app_id: &'static str) {
         gtk::init().expect("Unable to start GTK");
         gst::init().expect("Failed to initalize gst");
         gstgtk4::plugin_register_static().expect("Failed to initalize gstgtk4");
+
+        if !gst::Registry::get().check_feature_version("pipewiresrc", 0, 3, 69) {
+            let ctx = glib::MainContext::default();
+            ctx.spawn_local(async move {
+                if ashpd::is_sandboxed().await {
+                    log::warn!("Pipewire version is too old, please run 'flatpak update'");
+                } else {
+                    log::warn!("Pipewire version is too old, please update to 0.3.69 or newer");
+                }
+            });
+        }
 
         Viewfinder::static_type();
         DeviceProvider::static_type();
