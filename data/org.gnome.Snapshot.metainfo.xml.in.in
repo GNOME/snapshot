@@ -14,7 +14,7 @@
   <screenshots>
     <screenshot type="default">
       <image>https://gitlab.gnome.org/Incubator/snapshot/raw/main/data/screenshots/screenshot1.png</image>
-      <caption>Camera's main interface</caption>
+      <caption>Snapshot's main interface</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://gitlab.gnome.org/Incubator/snapshot</url>
