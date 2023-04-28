@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-13 02:48+0000\n"
-"PO-Revision-Date: 2023-04-13 17:18+0200\n"
+"POT-Creation-Date: 2023-04-27 22:18+0000\n"
+"PO-Revision-Date: 2023-04-28 21:43+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -33,57 +33,57 @@ msgstr "Prendre de fòtos e vidèos"
 msgid "picture;photos;camera;"
 msgstr "imatge;fòto;aparelh fòto;camèra;fotografia;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Largor per defaut de la fenèstra"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Nautor per defaut de la fenèstra"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Compòrtament per defaut de la fenèstra maximizada"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Legir lo son de l'obturator"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Se cal legir un son d’obturator en prenent de fòtos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Countdown timer"
 msgstr "Minutador"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "La durada del retardador per prendre de fòtos, en segondas."
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Capture mode"
 msgstr "Mòde de captura"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Whether to take pictures or videos"
 msgstr "Se cal prendre de fòtos o vidèos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Picture format"
 msgstr "Format d’imatge"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Se cal enregistrar los imatges en png o jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Video format"
 msgstr "Format vidèo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Se cal salvar las vidèos en mp4 o webm"
 
@@ -92,81 +92,86 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Prenètz de fòtos e vidèos amb vòstre ordenador, tauleta o telefòn."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Interfàcia principala de la camèra"
+msgid "Snapshot's main interface"
+msgstr "Interfàcia principala de Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "Lo projècte GNOME"
 
-#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: data/resources/ui/camera.ui:61
+#: data/resources/ui/camera.ui:58
 msgid "No Camera Found"
 msgstr "Cap de camèra pas trobada"
 
-#: data/resources/ui/camera.ui:62
+#: data/resources/ui/camera.ui:59
 msgid "Connect a camera device"
 msgstr "Connectatz un periferic fotografic"
 
-#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
-msgid "Countdown"
-msgstr "Retardador"
-
-#: data/resources/ui/camera.ui:110
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Mòde fòto"
 
-#: data/resources/ui/camera.ui:128
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Mòde enregistrament"
 
-#: data/resources/ui/camera.ui:188
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "Retardador"
+
+#: data/resources/ui/camera.ui:449
 msgid "Open Gallery"
 msgstr "Dobrir la galariá"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:455 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Prene una fòto"
 
-#: data/resources/ui/camera.ui:206
+#. FIXME Use Switch Camera after string freeze
+#: data/resources/ui/camera.ui:468 data/resources/ui/camera.ui:483
 msgid "Select Camera"
 msgstr "Seleccionar una camèra"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:247
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "Pas cap"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:252
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:257
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:262
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Preferéncias"
 
-#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Acorchis de clavièr"
 
-#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_A prepaus de Snapshot"
 
@@ -195,10 +200,6 @@ msgid "Camera"
 msgstr "Camèra"
 
 #: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Format d’imatge"
-
-#: data/resources/ui/preferences_window.ui:32
 msgid "Play Shutter Sound"
 msgstr "Legir lo son de l'obturator"
 
@@ -269,13 +270,7 @@ msgstr "Precedent"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
-
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:33
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -291,10 +286,15 @@ msgstr "Aviar l'enregistrament"
 msgid "Stop Recording"
 msgstr "Arrestar l'enregistrament"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr "Quentin PAGÈS"
 
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "Lo projècte GNOME"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "Picture Format"
+#~ msgstr "Format d’imatge"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
