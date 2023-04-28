@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-17 08:22+0000\n"
-"PO-Revision-Date: 2023-04-12 10:51-0300\n"
-"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
+"POT-Creation-Date: 2023-04-27 22:18+0000\n"
+"PO-Revision-Date: 2023-04-28 16:09-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <https://l10n.gnome.org/teams/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:231
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "Captura de Tela"
 
@@ -94,15 +94,16 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Tire fotos e vídeos em seu computador, tablet ou telefone."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Interface principal da câmera"
+msgid "Snapshot's main interface"
+msgstr "Interface principal do Captura de Tela"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "O Projeto GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:151
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "Menu principal"
 
@@ -114,62 +115,65 @@ msgstr "Nenhuma câmera encontrada"
 msgid "Connect a camera device"
 msgstr "Conectar um dispositivo de câmera"
 
-#: data/resources/ui/camera.ui:86 data/resources/ui/camera.ui:256
-msgid "Countdown"
-msgstr "Contagem regressiva"
-
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Modo Foto"
 
-#: data/resources/ui/camera.ui:125
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Modo Gravação"
 
-#: data/resources/ui/camera.ui:185
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "Contagem regressiva"
+
+#: data/resources/ui/camera.ui:449
 msgid "Open Gallery"
 msgstr "Abrir galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:191 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:455 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Tirar foto"
 
 #. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:203 data/resources/ui/camera.ui:217
+#: data/resources/ui/camera.ui:468 data/resources/ui/camera.ui:483
 msgid "Select Camera"
 msgstr "Selecionar câmera"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:259
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "Nenhuma"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:264
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:269
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:274
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:282 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: data/resources/ui/camera.ui:286 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Atalhos de teclado"
 
-#: data/resources/ui/camera.ui:290 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_Sobre o Captura de Tela"
 
@@ -268,7 +272,7 @@ msgstr "Anterior"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:27
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -284,10 +288,9 @@ msgstr "Começar gravação"
 msgid "Stop Recording"
 msgstr "Parar gravação"
 
-#: src/widgets/window.rs:236
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr "Leônidas Araújo <leorusvellt@hotmail.com>"
 
-#: src/widgets/window.rs:237
-msgid "The GNOME Project"
-msgstr "O Projeto GNOME"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
