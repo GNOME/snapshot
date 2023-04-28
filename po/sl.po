@@ -8,21 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-12 15:50+0000\n"
-"PO-Revision-Date: 2023-04-12 21:03+0200\n"
+"POT-Creation-Date: 2023-04-27 22:18+0000\n"
+"PO-Revision-Date: 2023-04-28 22:47+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 3.3\n"
 "X-Poedit-SourceCharset: ISO-8859-1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "Posnetek"
 
@@ -36,140 +37,147 @@ msgstr "Fotografirajte in snemajte videoposnetke"
 msgid "picture;photos;camera;"
 msgstr "slika;fotografije;kamera;snemanje;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Privzeta širina okna"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Privzeta višina okna"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Vedenje privzeto razpetega okna"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Predvajaj zvok zaklopa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Ali želite ob slikanju predvajati zvok zaklopa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Countdown timer"
 msgstr "Časovnik odštevanja"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Trajanje odštevanja ob fotografiranju, v sekundah"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Capture mode"
 msgstr "Način zajemanja"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Whether to take pictures or videos"
 msgstr "Ali želite fotografirati ali snemati video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Picture format"
 msgstr "Oblika slike"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Shranjevanje slik kot png ali jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Video format"
 msgstr "Oblika videoposnetka"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Shranjevanje videoposnetkov kot mp4 ali webm"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Slikajte in snemajte video na svojem računalniku, tabličnem računalniku ali telefonu."
+msgstr ""
+"Slikajte in snemajte video na svojem računalniku, tabličnem računalniku ali "
+"telefonu."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Glavni vmesnik kamere"
+msgid "Snapshot's main interface"
+msgstr "Glavni vmesnik Posnetka"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
 
-#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: data/resources/ui/camera.ui:61
+#: data/resources/ui/camera.ui:58
 msgid "No Camera Found"
 msgstr "Ni zaznane kamere"
 
-#: data/resources/ui/camera.ui:62
+#: data/resources/ui/camera.ui:59
 msgid "Connect a camera device"
 msgstr "Povežite kamero"
 
-#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
-msgid "Countdown"
-msgstr "Odštevalnik"
-
-#: data/resources/ui/camera.ui:110
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Način slikanja"
 
-#: data/resources/ui/camera.ui:128
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Način snemanja"
 
-#: data/resources/ui/camera.ui:188
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "Odštevalnik"
+
+#: data/resources/ui/camera.ui:449
 msgid "Open Gallery"
 msgstr "Odpri galerijo"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:455 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Naredi sliko"
 
-#: data/resources/ui/camera.ui:206
+#. FIXME Use Switch Camera after string freeze
+#: data/resources/ui/camera.ui:468 data/resources/ui/camera.ui:483
 msgid "Select Camera"
 msgstr "Izberite kamero"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:247
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "Prazno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:252
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:257
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:262
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
-#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_O programu Posnetek"
 
@@ -198,10 +206,6 @@ msgid "Camera"
 msgstr "Kamera"
 
 #: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Oblika slike"
-
-#: data/resources/ui/preferences_window.ui:32
 msgid "Play Shutter Sound"
 msgstr "Predvajaj zvok zaklopa"
 
@@ -272,13 +276,7 @@ msgstr "Nazaj"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
-
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:33
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -294,10 +292,6 @@ msgstr "Začni snemati"
 msgid "Stop Recording"
 msgstr "Ustavi snemanje"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr "Martin Srebotnjak <miles@filmsi.net>"
-
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "Projekt GNOME"
