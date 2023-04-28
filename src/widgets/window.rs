@@ -132,6 +132,15 @@ mod imp {
                 .connect_item_added(glib::clone!(@weak obj => move |_, _| {
                     obj.action_set_enabled("win.toggle-gallery", true);
                 }));
+            self.gallery
+                .connect_item_removed(glib::clone!(@weak obj => move |gallery, _| {
+                    if gallery.items().is_empty() {
+                        let imp = obj.imp();
+
+                        obj.action_set_enabled("win.toggle-gallery", false);
+                        imp.leaflet.set_visible_child(&*imp.camera);
+                    }
+                }));
 
             // Load latest window state
             obj.load_window_size();

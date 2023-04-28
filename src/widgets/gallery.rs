@@ -3,7 +3,7 @@ use adw::prelude::*;
 use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
-use gtk::{gio, glib};
+use gtk::{gdk, gio, glib};
 
 use once_cell::sync::Lazy;
 
@@ -61,6 +61,16 @@ mod imp {
                     log::error!("Could not open with system handler: {err}");
                 }
             });
+            klass.install_action("gallery.copy", None, |widget, _, _| {
+                if let Err(err) = widget.copy() {
+                    log::error!("Could not copy gallery item: {err}");
+                }
+            });
+            klass.install_action_async("gallery.delete", None, |widget, _, _| async move {
+                if let Err(err) = widget.delete().await {
+                    log::error!("Could not delete gallery item: {err}");
+                }
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -93,6 +103,12 @@ mod imp {
                     }
 
                     obj.load_neighbor_pages();
+
+                    // When deleting an item we need to check again.
+                    let has_prev = sliding_view.prev_page().is_some();
+                    let has_next = sliding_view.next_page().is_some();
+                    obj.action_set_enabled("gallery.previous", has_prev);
+                    obj.action_set_enabled("gallery.next", has_next);
                 }),
             );
 
@@ -121,9 +137,14 @@ mod imp {
 
         fn signals() -> &'static [glib::subclass::Signal] {
             static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
-                vec![glib::subclass::Signal::builder("item-added")
-                    .param_types([crate::GalleryItem::static_type()])
-                    .build()]
+                vec![
+                    glib::subclass::Signal::builder("item-added")
+                        .param_types([crate::GalleryItem::static_type()])
+                        .build(),
+                    glib::subclass::Signal::builder("item-removed")
+                        .param_types([bool::static_type()])
+                        .build(),
+                ]
             });
             SIGNALS.as_ref()
         }
@@ -189,12 +210,26 @@ impl Gallery {
         self.emit_by_name::<()>("item-added", &[&picture]);
     }
 
+    fn emit_item_removed(&self, is_last: bool) {
+        self.emit_by_name::<()>("item-removed", &[&is_last]);
+    }
+
     pub fn connect_item_added<F: Fn(&Self, &crate::GalleryItem) + 'static>(&self, f: F) {
         self.connect_closure(
             "item-added",
             false,
             glib::closure_local!(|obj, picture| {
                 f(obj, picture);
+            }),
+        );
+    }
+
+    pub fn connect_item_removed<F: Fn(&Self, bool) + 'static>(&self, f: F) {
+        self.connect_closure(
+            "item-removed",
+            false,
+            glib::closure_local!(|obj, is_last| {
+                f(obj, is_last);
             }),
         );
     }
@@ -323,6 +358,56 @@ impl Gallery {
             if !previous.started_loading() {
                 previous.start_loading();
             }
+        }
+    }
+
+    fn copy(&self) -> anyhow::Result<()> {
+        let imp = self.imp();
+
+        if let Some(item) = imp.sliding_view.current_page() {
+            let file = item.file();
+            let list = gdk::FileList::from_array(&[file]);
+            let provider = gdk::ContentProvider::for_value(&list.to_value());
+
+            self.clipboard().set_content(Some(&provider))?;
+
+            let window = self.root().and_downcast::<crate::Window>().unwrap();
+            window.send_toast(&gettext("Copied to clipboard"));
+
+            Ok(())
+        } else {
+            anyhow::bail!("Sliding view does not currently have a page");
+        }
+    }
+
+    async fn delete(&self) -> anyhow::Result<()> {
+        let imp = self.imp();
+
+        if let Some(item) = imp.sliding_view.current_page() {
+            let is_last = imp
+                .sliding_view
+                .pages()
+                .first()
+                .is_some_and(|page| page == &item);
+
+            imp.sliding_view.remove(&item);
+
+            let file = item.file();
+            file.delete_future(glib::Priority::default()).await?;
+
+            let window = self.root().and_downcast::<crate::Window>().unwrap();
+            if item.is_picture() {
+                window.send_toast(&gettext("Picture deleted"));
+            } else {
+                window.send_toast(&gettext("Video deleted"));
+            }
+            self.load_neighbor_pages();
+
+            self.emit_item_removed(is_last);
+
+            Ok(())
+        } else {
+            anyhow::bail!("Sliding view does not currently have a page");
         }
     }
 }

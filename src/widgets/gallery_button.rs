@@ -205,6 +205,11 @@ impl GalleryButton {
                 widget.imp().foreground_bindings.get().unwrap().set_target(Some(item));
             }
         }));
+        gallery.connect_item_removed(glib::clone!(@weak self as widget => move |_, is_last| {
+            if is_last {
+                widget.animation().play();
+            }
+        }));
         self.imp().gallery.replace(Some(gallery.downgrade()));
     }
 

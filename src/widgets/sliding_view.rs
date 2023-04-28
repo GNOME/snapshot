@@ -303,6 +303,12 @@ impl SlidingView {
 
     /// Removes the page
     pub fn remove(&self, page: &crate::GalleryItem) {
+        if let Some(next_page) = self.next_page() {
+            self.scroll_to(&next_page);
+        } else if let Some(prev_page) = self.prev_page() {
+            self.scroll_to(&prev_page);
+        }
+
         let current_index = self.current_index();
 
         if let Some(index) = self.index_of(page) {
