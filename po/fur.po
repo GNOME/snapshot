@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-12 20:50+0000\n"
-"PO-Revision-Date: 2023-04-13 04:47+0200\n"
+"POT-Creation-Date: 2023-04-27 22:18+0000\n"
+"PO-Revision-Date: 2023-04-28 10:37+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "Istantanie"
 
@@ -33,57 +33,57 @@ msgstr "Cjape sù imagjin e videos"
 msgid "picture;photos;camera;"
 msgstr "imagjin;figure;fotos;fotocjamare;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Largjece predefinide dal barcon"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Altece predefinide dal barcon"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Compuartament predefinît dal barcon slargjât"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Riprodûs sun di oturadôr"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Indiche se riprodusi un sun di oturadôr cuant che tu cjapis sù imagjins"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Countdown timer"
 msgstr "Temporizadôr-cont par ledrôs"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "La durade dal cont par ledrôs cjapant sù fotos, in seconts"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Capture mode"
 msgstr "Modalitât acuisizion"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Whether to take pictures or videos"
 msgstr "Indiche se cjapà sù imagjins o videos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Picture format"
 msgstr "Formât di imagjin"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Indiche se salvâ lis imagjins tant che png o jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Video format"
 msgstr "Formât video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Indiche se salvâ i videos tant che mp4 o webm"
 
@@ -92,81 +92,86 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Cjape sù imagjins e videos sul to computer, tablet o telefon."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Interface principâl de fotocjamare"
+msgid "Snapshot's main interface"
+msgstr "Interface principâl di Istantanie"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "Il progjet GNOME"
 
-#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "Menù principâl"
 
-#: data/resources/ui/camera.ui:61
+#: data/resources/ui/camera.ui:58
 msgid "No Camera Found"
 msgstr "Nissune fotocjamare cjatade"
 
-#: data/resources/ui/camera.ui:62
+#: data/resources/ui/camera.ui:59
 msgid "Connect a camera device"
 msgstr "Conet une fotocjamare/videocjamare"
 
-#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
-msgid "Countdown"
-msgstr "Cont par ledrôs"
-
-#: data/resources/ui/camera.ui:110
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Modalitât imagjin"
 
-#: data/resources/ui/camera.ui:128
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Modalitât regjistrazion"
 
-#: data/resources/ui/camera.ui:188
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "Cont par ledrôs"
+
+#: data/resources/ui/camera.ui:449
 msgid "Open Gallery"
 msgstr "Vierç galarie"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:455 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Cjape sù imagjin"
 
-#: data/resources/ui/camera.ui:206
+#. FIXME Use Switch Camera after string freeze
+#: data/resources/ui/camera.ui:468 data/resources/ui/camera.ui:483
 msgid "Select Camera"
 msgstr "Selezione fotocjamare"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:247
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "Nissun"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:252
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:257
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:262
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Preferencis"
 
-#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Scurtis tastiere"
 
-#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_Informazions su Istantaniis"
 
@@ -195,10 +200,6 @@ msgid "Camera"
 msgstr "Fotocjamare"
 
 #: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Formât imagjin"
-
-#: data/resources/ui/preferences_window.ui:32
 msgid "Play Shutter Sound"
 msgstr "Riprodûs sun oturadôr"
 
@@ -269,13 +270,7 @@ msgstr "Precedent"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
-
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:33
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -291,10 +286,15 @@ msgstr "Scomence regjistrazion"
 msgid "Stop Recording"
 msgstr "Ferme regjistrazion"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>, 2023"
 
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "Il progjet GNOME"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "Picture Format"
+#~ msgstr "Formât imagjin"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
