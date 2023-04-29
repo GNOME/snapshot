@@ -43,8 +43,6 @@ cargo-doc:
     paths:
       - doc
   script:
-    # Use Nightly rust compiler
-    - rustup default nightly
     # Report the installed versions of the runtime
     - flatpak info org.gnome.Platform
     - flatpak info org.gnome.Sdk
@@ -53,6 +51,9 @@ cargo-doc:
     - date && date -u
 
     - rewrite-flatpak-manifest ${MANIFEST_PATH} ${FLATPAK_MODULE} ${CONFIG_OPTS}
+    # Use nightly compiler
+    - sed -i 's/rust-stable/rust-nightly/' ${MANIFEST_PATH}
+    
     - flatpak-builder --user --disable-rofiles-fuse --build-only flatpak_app ${MANIFEST_PATH}
     - flatpak build-finish --socket=x11 --share=network flatpak_app
     - >
