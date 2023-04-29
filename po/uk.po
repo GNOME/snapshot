@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-13 17:16+0000\n"
-"PO-Revision-Date: 2023-04-13 21:01+0300\n"
+"POT-Creation-Date: 2023-04-29 16:14+0000\n"
+"PO-Revision-Date: 2023-04-29 19:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "Знімок"
 
@@ -36,57 +36,57 @@ msgid "picture;photos;camera;"
 msgstr ""
 "picture;photos;camera;зображення;картинка;фото;фотографії;камера;фотоапарат;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Типова ширина вікна програми"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Типова висота вікна програми"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Типова поведінка щодо максимізації вікна"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Відтворити звук затвора"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Чи слід відтворювати звук затвора при створенні знімків"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Countdown timer"
 msgstr "Таймер зворотного відліку"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Тривалість відліку для створення фотографій, у секундах"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Capture mode"
 msgstr "Режим захоплення"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Whether to take pictures or videos"
 msgstr "Визначає, що слід робити: зробити знімок чи записати відео"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Picture format"
 msgstr "Формат зображення"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Формат, у якому слід зберігати зображення — png або jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Video format"
 msgstr "Формат відео"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Формат, у якому слід зберігати відео — mp4 або webm"
 
@@ -95,81 +95,87 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Створюйте знімки і відео на вашому комп'ютері, планшеті або телефоні."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Головний інтерфейс камери"
+#| msgid "Camera's main interface"
+msgid "Snapshot's main interface"
+msgstr "Головний інтерфейс Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "Проєкт GNOME"
 
-#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: data/resources/ui/camera.ui:61
+#: data/resources/ui/camera.ui:58
 msgid "No Camera Found"
 msgstr "Не знайдено камери"
 
-#: data/resources/ui/camera.ui:62
+#: data/resources/ui/camera.ui:59
 msgid "Connect a camera device"
 msgstr "З'єднати пристрій камери"
 
-#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
-msgid "Countdown"
-msgstr "Зворотний відлік"
-
-#: data/resources/ui/camera.ui:110
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Режим зображення"
 
-#: data/resources/ui/camera.ui:128
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Режим запису"
 
-#: data/resources/ui/camera.ui:188
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:509 data/resources/ui/camera.ui:536
+msgid "Countdown"
+msgstr "Зворотний відлік"
+
+#: data/resources/ui/camera.ui:450
 msgid "Open Gallery"
 msgstr "Відкрити галерею"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Зробити знімок"
 
-#: data/resources/ui/camera.ui:206
+#. FIXME Use Switch Camera after string freeze
+#: data/resources/ui/camera.ui:469 data/resources/ui/camera.ui:484
 msgid "Select Camera"
 msgstr "Вибір камери"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:247
+#: data/resources/ui/camera.ui:539
 msgid "None"
 msgstr "Немає"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:252
+#: data/resources/ui/camera.ui:544
 msgid "3s"
 msgstr "3 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:257
+#: data/resources/ui/camera.ui:549
 msgid "5s"
 msgstr "5 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:262
+#: data/resources/ui/camera.ui:554
 msgid "10s"
 msgstr "10 с"
 
-#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:562 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:566 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:570 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_Про «Знімок»"
 
@@ -198,10 +204,6 @@ msgid "Camera"
 msgstr "Камера"
 
 #: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Формат зображення"
-
-#: data/resources/ui/preferences_window.ui:32
 msgid "Play Shutter Sound"
 msgstr "Відтворити звук затвора"
 
@@ -272,15 +274,13 @@ msgstr "Назад"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
-
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:33
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/widgets/camera.rs:431
+msgid "Could not play camera stream"
+msgstr "Не вдалося відтворити потокові дані з камери"
 
 #: src/widgets/gallery.rs:99
 msgid "Open in Video Player"
@@ -294,10 +294,15 @@ msgstr "Почати запис"
 msgid "Stop Recording"
 msgstr "Припинити запис"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2023"
 
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "Проєкт GNOME"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "Picture Format"
+#~ msgstr "Формат зображення"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
