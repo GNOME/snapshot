@@ -56,5 +56,10 @@
       <summary>Video format</summary>
       <description>Whether to save videos as mp4 or webm</description>
     </key>
+    <key name="last-camera-id" type="s">
+      <default>""</default>
+      <summary>Last Camera Used ID</summary>
+      <description>An ID representing the last used camera</description>
+    </key>
   </schema>
 </schemalist>

@@ -133,7 +133,7 @@ mod imp {
                         let camera = selected_item.downcast::<aperture::Camera>().ok();
 
                         if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error) {
-                            obj.imp().viewfinder.set_camera(camera);
+                            obj.set_camera_inner(camera);
                         }
                     }
                 }),
@@ -220,7 +220,10 @@ impl Camera {
                     }
                     Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
-                if let Err(err) = provider.start() {
+                if let Err(err) = provider.start_with_default(glib::clone!(@weak obj => @default-return false, move |camera| {
+                    let stored_id = obj.imp().settings().string("last-camera-id");
+                    !stored_id.is_empty() && id_from_pw(camera) == stored_id
+                })) {
                     log::error!("Could not start the device provider: {err}");
                 } else {
                     log::debug!("Device provider started");
@@ -282,8 +285,19 @@ impl Camera {
             pos += 1;
         };
         if let Some(camera) = provider.camera(pos) {
-            self.imp().viewfinder.set_camera(Some(camera));
+            self.set_camera_inner(Some(camera));
         }
+    }
+
+    fn set_camera_inner(&self, camera: Option<aperture::Camera>) {
+        let imp = self.imp();
+
+        if let Some(ref camera) = camera {
+            let id = id_from_pw(camera);
+            imp.settings().set_string("last-camera-id", &id).unwrap();
+        }
+
+        imp.viewfinder.set_camera(camera);
     }
 
     fn play_shutter_sound(&self) {
@@ -467,4 +481,9 @@ async fn stream() -> ashpd::Result<RawFd> {
     proxy.request_access().await?;
 
     proxy.open_pipe_wire_remote().await
+}
+
+// Id used to identify the last-used camera.
+fn id_from_pw(camera: &aperture::Camera) -> glib::GString {
+    camera.display_name()
 }
