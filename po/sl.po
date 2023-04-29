@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-27 22:18+0000\n"
-"PO-Revision-Date: 2023-04-28 22:47+0200\n"
+"POT-Creation-Date: 2023-04-29 16:14+0000\n"
+"PO-Revision-Date: 2023-04-29 18:24+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -130,54 +130,54 @@ msgid "Recording Mode"
 msgstr "Način snemanja"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+#: data/resources/ui/camera.ui:509 data/resources/ui/camera.ui:536
 msgid "Countdown"
 msgstr "Odštevalnik"
 
-#: data/resources/ui/camera.ui:449
+#: data/resources/ui/camera.ui:450
 msgid "Open Gallery"
 msgstr "Odpri galerijo"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:455 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "Naredi sliko"
 
 #. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:468 data/resources/ui/camera.ui:483
+#: data/resources/ui/camera.ui:469 data/resources/ui/camera.ui:484
 msgid "Select Camera"
 msgstr "Izberite kamero"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:538
+#: data/resources/ui/camera.ui:539
 msgid "None"
 msgstr "Prazno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:543
+#: data/resources/ui/camera.ui:544
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:549
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:554
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:562 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:566 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:570 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_O programu Posnetek"
 
@@ -279,6 +279,10 @@ msgstr "Nazaj"
 #: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/widgets/camera.rs:431
+msgid "Could not play camera stream"
+msgstr "Predvajanje toka kamere ni bilo mogoče"
 
 #: src/widgets/gallery.rs:99
 msgid "Open in Video Player"
