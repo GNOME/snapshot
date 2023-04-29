@@ -9,8 +9,6 @@ use std::os::unix::io::RawFd;
 use crate::CameraRow;
 use crate::{config, utils};
 
-const PROVIDER_TIMEOUT: u64 = 2;
-
 mod imp {
     use super::*;
 
@@ -322,21 +320,6 @@ impl Camera {
                 } else {
                     log::debug!("Device provider started");
                 };
-            }),
-        );
-
-        // FIXME Set to not-found on ViewfinderState::Error;
-
-        // FIXME This is super arbitrary
-        let duration = std::time::Duration::from_secs(PROVIDER_TIMEOUT);
-        glib::timeout_add_local_once(
-            duration,
-            glib::clone!(@weak self as obj => move || {
-                let imp = obj.imp();
-                if imp.stack.visible_child_name().as_deref() == Some("loading") {
-                    imp.spinner.stop();
-                    imp.stack.set_visible_child_name("not-found");
-                }
             }),
         );
     }
