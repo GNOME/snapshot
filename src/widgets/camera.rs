@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use ashpd::desktop::camera;
+use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
@@ -424,6 +425,12 @@ impl Camera {
                 }
             }),
         );
+        imp.viewfinder.connect_state_notify(|viewfinder| {
+            if matches!(viewfinder.state(), aperture::ViewfinderState::Error) {
+                let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
+                window.send_toast(&gettext("Could not play camera stream"));
+            }
+        });
         imp.gallery_button.set_gallery(&gallery);
     }
 
