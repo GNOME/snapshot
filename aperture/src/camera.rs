@@ -170,16 +170,11 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let device_src = device.create_element(None).ok()?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
 
+    let mut caps = gst_video::VideoCapsBuilder::new().any_features().build();
+    caps.merge(gst::Caps::builder("image/jpeg").build());
+
     let capsfilter = gst::ElementFactory::make("capsfilter")
-        .property(
-            "caps",
-            [
-                gst_video::VideoCapsBuilder::new().any_features().build(),
-                gst::Caps::builder("image/jpeg").build(),
-            ]
-            .into_iter()
-            .collect::<gst::Caps>(),
-        )
+        .property("caps", caps)
         .build()
         .unwrap();
     let decodebin3 = gst::ElementFactory::make("decodebin3")
