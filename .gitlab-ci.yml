@@ -16,9 +16,11 @@ variables:
 
 flatpak@x86_64:
   extends: ".flatpak@x86_64"
+  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
 
 flatpak@aarch64:
   extends: ".flatpak@aarch64"
+  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
 
 rustfmt:
   image: "rust:slim"
@@ -32,7 +34,7 @@ rustfmt:
 
 cargo-doc:
   stage: test
-  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
+  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
   interruptible: true
   tags:
     - flatpak
