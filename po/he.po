@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-20 08:40+0000\n"
-"PO-Revision-Date: 2023-04-20 17:13+0300\n"
+"POT-Creation-Date: 2023-04-29 17:23+0000\n"
+"PO-Revision-Date: 2023-04-29 21:24+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:231
+#: src/widgets/window.rs:232
 msgid "Snapshot"
 msgstr "צילום"
 
@@ -94,15 +94,16 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "צילום תמונות וסרטים על המחשב האישי, הטלפון או מחשב הלוח שלך."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "הממשק הראשי של המצלמה"
+msgid "Snapshot's main interface"
+msgstr "הממשק הראשי של הצילום"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "מקסימיליאנו סנדובל"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "מיזם GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:151
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
 msgid "Main Menu"
 msgstr "תפריט ראשי"
 
@@ -114,62 +115,69 @@ msgstr "לא נמצאה מצלמה"
 msgid "Connect a camera device"
 msgstr "יש לחבר מצלמה"
 
-#: data/resources/ui/camera.ui:86 data/resources/ui/camera.ui:256
-msgid "Countdown"
-msgstr "ספירה לאחור"
-
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "מצב תמונה"
 
-#: data/resources/ui/camera.ui:125
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "מצב הקלטה"
 
-#: data/resources/ui/camera.ui:185
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "ספירה לאחור"
+
+#: data/resources/ui/camera.ui:450
 msgid "Open Gallery"
 msgstr "פתיחת גלריה"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:191 src/widgets/shutter_button.rs:66
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
 #: src/widgets/shutter_button.rs:126
 msgid "Take Picture"
 msgstr "צילום תמונה"
 
-#. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:203 data/resources/ui/camera.ui:217
+#: data/resources/ui/camera.ui:469
 msgid "Select Camera"
 msgstr "בחירת מצלמה"
 
+#: data/resources/ui/camera.ui:483
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "החלפת מצלמה"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:259
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "ללא"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:264
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:269
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:274
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10 שנ׳"
 
-#: data/resources/ui/camera.ui:282 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_העדפות"
 
-#: data/resources/ui/camera.ui:286 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
-#: data/resources/ui/camera.ui:290 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "על _אודות צילום"
 
@@ -268,9 +276,13 @@ msgstr "הקודם"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:27
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/widgets/camera.rs:431
+msgid "Could not play camera stream"
+msgstr "לא ניתן לקבל תזרים תמונות מהמצלמה"
 
 #: src/widgets/gallery.rs:99
 msgid "Open in Video Player"
@@ -284,12 +296,11 @@ msgstr "התחלת הקלטה"
 msgid "Stop Recording"
 msgstr "עצירת הקלטה"
 
-#: src/widgets/window.rs:236
+#: src/widgets/window.rs:237
 msgid "translator-credits"
 msgstr ""
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
 "מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
 
-#: src/widgets/window.rs:237
-msgid "The GNOME Project"
-msgstr "מיזם GNOME"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "מקסימיליאנו סנדובל"
