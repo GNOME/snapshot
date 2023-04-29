@@ -197,10 +197,20 @@ mod imp {
 
             let provider = aperture::DeviceProvider::instance();
             self.provider.set(provider.clone()).unwrap();
-            provider.connect_items_changed(glib::clone!(@weak obj => move |provider, _, _, _| {
+
+            provider.connect_camera_added(glib::clone!(@weak obj => move |provider, _| {
+                obj.update_cameras(provider);
+            }));
+            provider.connect_camera_removed(glib::clone!(@weak obj => move |provider, _| {
                 obj.update_cameras(provider);
             }));
             obj.update_cameras(provider);
+
+            self.viewfinder
+                .connect_state_notify(glib::clone!(@weak obj => move |_| {
+                    obj.update_state();
+                }));
+            obj.update_state();
 
             self.selection.set_model(Some(provider));
             let factory = gtk::SignalListItemFactory::new();
@@ -245,11 +255,6 @@ mod imp {
             );
 
             self.camera_menu_button.set_popover(Some(&popover));
-
-            // This spinner stops running when the device provider finds any
-            // camera device.
-            self.spinner.start();
-            self.stack.set_visible_child_name("loading");
 
             self.settings()
                 .bind(
@@ -435,12 +440,6 @@ impl Camera {
                 }
             }),
         );
-        imp.viewfinder.connect_state_notify(|viewfinder| {
-            if matches!(viewfinder.state(), aperture::ViewfinderState::Error) {
-                let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
-                window.send_toast(&gettext("Could not play camera stream"));
-            }
-        });
         imp.gallery_button.set_gallery(&gallery);
     }
 
@@ -453,18 +452,9 @@ impl Camera {
 
     fn update_cameras(&self, provider: &aperture::DeviceProvider) {
         let imp = self.imp();
-        imp.spinner.stop();
-
-        let n_cameras = provider.n_items();
-        if n_cameras == 0 {
-            imp.stack.set_visible_child_name("not-found");
-        } else {
-            imp.stack.set_visible_child_name("camera");
-        }
-
         // NOTE We have a stack with an empty bin so that hiding the button does
         // not ruin the layout.
-        match n_cameras {
+        match provider.n_items() {
             0 | 1 => imp
                 .camera_menu_button_stack
                 .set_visible_child_name("fake-widget"),
@@ -474,6 +464,31 @@ impl Camera {
             _ => imp
                 .camera_menu_button_stack
                 .set_visible_child(&imp.camera_menu_button.get()),
+        }
+    }
+
+    fn update_state(&self) {
+        let imp = self.imp();
+        match imp.viewfinder.state() {
+            aperture::ViewfinderState::Loading => {
+                imp.spinner.start();
+                imp.stack.set_visible_child_name("loading");
+            }
+            aperture::ViewfinderState::Ready => {
+                imp.spinner.stop();
+                imp.stack.set_visible_child_name("camera");
+            }
+            aperture::ViewfinderState::NoCameras => {
+                imp.spinner.stop();
+                imp.stack.set_visible_child_name("not-found")
+            }
+            aperture::ViewfinderState::Error => {
+                imp.spinner.stop();
+                imp.stack.set_visible_child_name("camera");
+
+                let window = self.root().and_downcast::<crate::Window>().unwrap();
+                window.send_toast(&gettext("Could not play camera stream"));
+            }
         }
     }
 }
