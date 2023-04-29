@@ -43,6 +43,8 @@ cargo-doc:
     paths:
       - doc
   script:
+    # Use Nightly rust compiler
+    - rustup default nightly
     # Report the installed versions of the runtime
     - flatpak info org.gnome.Platform
     - flatpak info org.gnome.Sdk
