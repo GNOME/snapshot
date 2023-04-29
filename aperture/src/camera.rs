@@ -183,10 +183,7 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
         .build()
         .unwrap();
     let decodebin3 = gst::ElementFactory::make("decodebin3")
-        .property(
-            "caps",
-            gst_video::VideoCapsBuilder::new().any_features().build(),
-        )
+        .property("caps", gst::Caps::builder("video/x-raw").build())
         .build()
         .unwrap();
 
