@@ -14,7 +14,7 @@ mod imp {
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Camera)]
     pub struct Camera {
-        #[property(get, set)]
+        #[property(get, set, construct_only)]
         device: OnceCell<gst::Device>,
     }
 
@@ -52,6 +52,10 @@ glib::wrapper! {
     ///  The [`gst::Device`][gst::Device] to which this camera represents.
     ///
     /// Readable | Writeable
+    ///
+    /// # Implements
+    ///
+    /// [`glib::ObjectExt`][trait@gtk::glib::ObjectExt]
     pub struct Camera(ObjectSubclass<imp::Camera>);
 }
 

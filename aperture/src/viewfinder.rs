@@ -23,7 +23,7 @@ mod imp {
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Viewfinder)]
     pub struct Viewfinder {
-        #[property(get, set = Self::set_state, explicit_notify, builder(Default::default()))]
+        #[property(get, explicit_notify, builder(Default::default()))]
         state: Cell<ViewfinderState>,
         #[property(get = Self::detect_codes, set = Self::set_detect_codes, explicit_notify)]
         detect_codes: Cell<bool>,
@@ -53,7 +53,7 @@ mod imp {
             self.camerabin.get().unwrap()
         }
 
-        fn set_state(&self, state: ViewfinderState) {
+        pub(crate) fn set_state(&self, state: ViewfinderState) {
             if state != self.state.replace(state) {
                 self.obj().notify_state();
             }
@@ -230,7 +230,7 @@ mod imp {
 
             devices.connect_camera_added(glib::clone!(@weak obj => move |_, camera| {
                 if matches!(obj.state(), ViewfinderState::NoCameras) {
-                    obj.set_state(ViewfinderState::Ready);
+                    obj.imp().set_state(ViewfinderState::Ready);
                     obj.set_camera(Some(camera.clone()));
                 }
             }));
@@ -244,16 +244,16 @@ mod imp {
                     let is_none = next_camera.is_none();
                     obj.set_camera(next_camera);
                     if is_none {
-                        obj.set_state(ViewfinderState::NoCameras);
+                        obj.imp().set_state(ViewfinderState::NoCameras);
                     }
                 }
             }));
 
             if let Some(camera) = devices.camera(0) {
-                obj.set_state(ViewfinderState::Ready);
+                obj.imp().set_state(ViewfinderState::Ready);
                 obj.set_camera(Some(camera));
             } else {
-                obj.set_state(ViewfinderState::NoCameras);
+                obj.imp().set_state(ViewfinderState::NoCameras);
             }
 
             self.devices.set(devices.clone()).unwrap();
@@ -394,6 +394,10 @@ glib::wrapper! {
     /// This will only be emitted if [`detect-codes`](#detect-codes) is `true`.
     ///
     /// Barcodes are only detected when they appear on the feed, not on every frame when they are visible.
+    ///
+    /// # Implements
+    ///
+    /// [`gtk::prelude::WidgetExt`][trait@gtk::prelude::WidgetExt], [`glib::ObjectExt`][trait@gtk::glib::ObjectExt]
     pub struct Viewfinder(ObjectSubclass<imp::Viewfinder>)
         @extends gtk::Widget;
 }
@@ -556,7 +560,7 @@ impl Viewfinder {
         // TODO Present a toast, banner, or message dialog with the error.
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Playing) {
             log::error!("Could not start camerabin: {err}");
-            self.set_state(ViewfinderState::Error);
+            self.imp().set_state(ViewfinderState::Error);
         } else {
             log::debug!("Camerabin state succesfully set to PLAYING");
         }
@@ -565,7 +569,7 @@ impl Viewfinder {
     fn stop_camerabin(&self) {
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Null) {
             log::error!("Could not pause camerabin: {err}");
-            self.set_state(ViewfinderState::Error);
+            self.imp().set_state(ViewfinderState::Error);
         } else {
             log::debug!("Camerabin state succesfully set to NULL");
         }
@@ -637,7 +641,7 @@ impl Viewfinder {
         self.cancel_current_operation();
 
         if self.imp().camerabin().current_state() != gst::State::Playing {
-            self.set_state(ViewfinderState::Error);
+            self.imp().set_state(ViewfinderState::Error);
         }
     }
 

@@ -128,6 +128,10 @@ glib::wrapper! {
     ///
     /// #### `camera-removed`
     ///  This signal is emitted after a camera has been removed from the device provider.
+    ///
+    /// # Implements
+    ///
+    /// [`gio::prelude::ListModelExt`][trait@gtk::gio::prelude::ListModelExt], [`glib::ObjectExt`][trait@gtk::glib::ObjectExt]
     pub struct DeviceProvider(ObjectSubclass<imp::DeviceProvider>)
         @implements gio::ListModel;
 }
