@@ -234,7 +234,7 @@ mod imp {
                     if let Some(selected_item) = selection.selected_item() {
                         let camera = selected_item.downcast::<aperture::Camera>().ok();
 
-                        if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready) {
+                        if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error) {
                             obj.imp().viewfinder.set_camera(camera);
                         }
                     }

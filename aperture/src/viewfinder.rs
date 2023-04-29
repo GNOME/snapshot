@@ -90,7 +90,7 @@ mod imp {
         fn set_camera(&self, camera: Option<crate::Camera>) {
             let obj = self.obj();
 
-            if !matches!(obj.state(), ViewfinderState::Ready) {
+            if !matches!(obj.state(), ViewfinderState::Ready | ViewfinderState::Error) {
                 log::error!("Could not set camera, the viewfinder is not ready");
                 return;
             }
@@ -109,7 +109,28 @@ mod imp {
                 return;
             }
 
-            if obj.is_realized() && self.camerabin().current_state() == gst::State::Playing {
+            // We reset to READY if we landed on the ERROR state on the previous
+            // camera.
+            if matches!(obj.state(), ViewfinderState::Error) {
+                if self
+                    .devices
+                    .get()
+                    .and_then(|devices| devices.camera(0))
+                    .is_some()
+                {
+                    self.set_state(ViewfinderState::Ready);
+                } else {
+                    self.set_state(ViewfinderState::NoCameras);
+                }
+            }
+
+            // The current state is PAUSED if there was an error on the previous camera.
+            if obj.is_realized()
+                && matches!(
+                    self.camerabin().current_state(),
+                    gst::State::Playing | gst::State::Paused
+                )
+            {
                 obj.stop_camerabin();
             }
 
