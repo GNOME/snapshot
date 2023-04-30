@@ -34,35 +34,28 @@ rustfmt:
 
 cargo-doc:
   stage: test
-  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
+  image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
   interruptible: true
-  tags:
-    - flatpak
   artifacts:
     name: 'Code Documentation'
     paths:
       - doc
+  variables:
+    DOC_OPTIONS: |
+      --extern-html-root-url=gtk4=https://gtk-rs.org/gtk4-rs/stable/latest/docs/
+      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs-core/stable/latest/docs/
+      --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs-core/stable/latest/docs/
+      --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs-core/stable/latest/docs/
+      --extern-html-root-url=gstreamer=https://gstreamer.pages.freedesktop.org/gstreamer-rs/stable/latest/docs/
+  before_script:
+    - sudo dnf install -y gstreamer1-devel gstreamer1-plugins-base-devel
+    - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
+    - source $HOME/.cargo/env
+    - rustup toolchain install nightly --profile minimal --allow-downgrade
   script:
-    # Report the installed versions of the runtime
-    - flatpak info org.gnome.Platform
-    - flatpak info org.gnome.Sdk
-
-    # Print the date, since appstream depends on local timezone
-    - date && date -u
-
-    - rewrite-flatpak-manifest ${MANIFEST_PATH} ${FLATPAK_MODULE} ${CONFIG_OPTS}
-    # Use nightly compiler
-    - sed -i 's/rust-stable/rust-nightly/' ${MANIFEST_PATH}
-    
-    - flatpak-builder --user --disable-rofiles-fuse --build-only flatpak_app ${MANIFEST_PATH}
-    - flatpak build-finish --socket=x11 --share=network flatpak_app
-    - >
-      xvfb-run -a -s "-screen 0 1024x768x24"
-      flatpak-builder --user --disable-rofiles-fuse --build-shell=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH} <<END
-        ninja aperture/doc
-      END
-    - cp -r .flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/aperture/doc doc
-    - chmod -R a=rwx doc
+    - cd aperture
+    - cargo +nightly rustdoc -- -Z unstable-options ${DOC_OPTIONS}
+    - mv target/doc ../
 
 pages:
   stage: deploy
