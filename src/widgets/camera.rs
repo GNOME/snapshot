@@ -197,12 +197,12 @@ mod imp {
             self.provider.set(provider.clone()).unwrap();
 
             provider.connect_camera_added(glib::clone!(@weak obj => move |provider, _| {
-                obj.update_cameras(provider);
+                obj.update_cameras_button(provider);
             }));
             provider.connect_camera_removed(glib::clone!(@weak obj => move |provider, _| {
-                obj.update_cameras(provider);
+                obj.update_cameras_button(provider);
             }));
-            obj.update_cameras(provider);
+            obj.update_cameras_button(provider);
 
             self.viewfinder
                 .connect_state_notify(glib::clone!(@weak obj => move |_| {
@@ -433,7 +433,7 @@ impl Camera {
             .set_draw_guidelines(!imp.guidelines.draw_guidelines());
     }
 
-    fn update_cameras(&self, provider: &aperture::DeviceProvider) {
+    fn update_cameras_button(&self, provider: &aperture::DeviceProvider) {
         let imp = self.imp();
         // NOTE We have a stack with an empty bin so that hiding the button does
         // not ruin the layout.
