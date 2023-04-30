@@ -311,9 +311,7 @@ impl Camera {
                             log::error!("Could not use the camera portal: {err}");
                         };
                     }
-                    Err(err) => {
-                        log::warn!("Could not use the camera portal: {err}");
-                    }
+                    Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
                 if let Err(err) = provider.start() {
                     log::error!("Could not start the device provider: {err}");
