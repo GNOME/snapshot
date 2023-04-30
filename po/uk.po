@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-29 16:14+0000\n"
-"PO-Revision-Date: 2023-04-29 19:20+0300\n"
+"POT-Creation-Date: 2023-04-29 17:23+0000\n"
+"PO-Revision-Date: 2023-04-30 19:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -95,7 +95,6 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Створюйте знімки і відео на вашому комп'ютері, планшеті або телефоні."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-#| msgid "Camera's main interface"
 msgid "Snapshot's main interface"
 msgstr "Головний інтерфейс Snapshot"
 
@@ -128,7 +127,7 @@ msgid "Recording Mode"
 msgstr "Режим запису"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:509 data/resources/ui/camera.ui:536
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
 msgid "Countdown"
 msgstr "Зворотний відлік"
 
@@ -142,40 +141,45 @@ msgstr "Відкрити галерею"
 msgid "Take Picture"
 msgstr "Зробити знімок"
 
-#. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:469 data/resources/ui/camera.ui:484
+#: data/resources/ui/camera.ui:469
 msgid "Select Camera"
 msgstr "Вибір камери"
 
+#: data/resources/ui/camera.ui:483
+#| msgid "Select Camera"
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Перемкнути фотоапарат"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:539
+#: data/resources/ui/camera.ui:538
 msgid "None"
 msgstr "Немає"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:544
+#: data/resources/ui/camera.ui:543
 msgid "3s"
 msgstr "3 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:549
+#: data/resources/ui/camera.ui:548
 msgid "5s"
 msgstr "5 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:554
+#: data/resources/ui/camera.ui:553
 msgid "10s"
 msgstr "10 с"
 
-#: data/resources/ui/camera.ui:562 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/resources/ui/camera.ui:566 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: data/resources/ui/camera.ui:570 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_Про «Знімок»"
 
