@@ -34,14 +34,13 @@
     <child>
       <object class="GtkWindowHandle" id="child">
         <child>
-          <object class="GtkOverlay">
-            <child type="overlay">
-              <object class="GtkBox">
-                <property name="halign">fill</property>
-                <property name="valign">start</property>
-                <property name="spacing">6</property>
+          <object class="AdwToolbarView">
+            <property name="extend-content-to-top-edge">True</property>
+            <property name="extend-content-to-bottom-edge">True</property>
+            <child type="top">
+              <object class="AdwHeaderBar">
+                <property name="show-title">False</property>
                 <style>
-                  <class name="gallerycontrols"/>
                   <class name="controlsframe"/>
                 </style>
                 <child>
@@ -49,84 +48,21 @@
                     <property name="icon-name">go-previous-symbolic</property>
                     <property name="action-name">win.toggle-gallery</property>
                     <property name="tooltip-text" translatable="yes">Back</property>
-                    <property name="halign">start</property>
-                    <property name="hexpand">True</property>
                     <style>
                       <class name="flat"/>
                       <class name="circular"/>
                     </style>
                   </object>
                 </child>
-                <child>
+                <child type="end">
                   <object class="GtkMenuButton">
                     <property name="icon-name">open-menu-symbolic</property>
                     <property name="menu-model">primary_menu</property>
                     <property name="tooltip-text" translatable="yes">Main Menu</property>
                     <property name="primary">True</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
                     <style>
                       <class name="flat"/>
                       <class name="circular"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkWindowControls">
-                    <property name="decoration-layout">close</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkButton" id="open_external">
-                <property name="halign">end</property>
-                <property name="valign">end</property>
-                <property name="icon-name">external-link-symbolic</property>
-                <property name="action-name">gallery.open</property>
-                <property name="margin-start">18</property>
-                <property name="margin-end">18</property>
-                <property name="margin-top">18</property>
-                <property name="margin-bottom">18</property>
-                <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
-                <style>
-                  <class name="osd"/>
-                  <class name="gallerycontrols"/>
-                  <class name="circular"/>
-                </style>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkBox">
-                <property name="valign">end</property>
-                <property name="halign">start</property>
-                <property name="margin-start">18</property>
-                <property name="margin-end">18</property>
-                <property name="margin-top">18</property>
-                <property name="margin-bottom">18</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkButton" id="prev_button">
-                    <property name="halign">start</property>
-                    <property name="icon-name">go-previous-symbolic</property>
-                    <property name="action-name">gallery.previous</property>
-                    <property name="tooltip-text" translatable="yes">Previous Image</property>
-                    <style>
-                      <class name="osd"/>
-                      <class name="circular"/>
-                      <class name="gallerycontrols"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="next_button">
-                    <property name="icon-name">go-next-symbolic</property>
-                    <property name="action-name">gallery.next</property>
-                    <property name="tooltip-text" translatable="yes">Next Image</property>
-                    <style>
-                      <class name="osd"/>
-                      <class name="circular"/>
-                      <class name="gallerycontrols"/>
                     </style>
                   </object>
                 </child>
@@ -136,6 +72,55 @@
               <object class="AdwCarousel" id="carousel">
                 <property name="halign">center</property>
                 <property name="spacing">12</property>
+              </object>
+            </child>
+            <child type="bottom">
+              <object class="GtkCenterBox">
+                <property name="margin-start">18</property>
+                <property name="margin-end">18</property>
+                <property name="margin-top">18</property>
+                <property name="margin-bottom">18</property>
+                <child type="start">
+                  <object class="GtkBox">
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkButton" id="prev_button">
+                        <property name="icon-name">go-previous-symbolic</property>
+                        <property name="action-name">gallery.previous</property>
+                        <property name="tooltip-text" translatable="yes">Previous Image</property>
+                        <style>
+                          <class name="osd"/>
+                          <class name="circular"/>
+                          <class name="gallerycontrols"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="next_button">
+                        <property name="icon-name">go-next-symbolic</property>
+                        <property name="action-name">gallery.next</property>
+                        <property name="tooltip-text" translatable="yes">Next Image</property>
+                        <style>
+                          <class name="osd"/>
+                          <class name="circular"/>
+                          <class name="gallerycontrols"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="open_external">
+                    <property name="icon-name">external-link-symbolic</property>
+                    <property name="action-name">gallery.open</property>
+                    <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
+                    <style>
+                      <class name="osd"/>
+                      <class name="gallerycontrols"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

@@ -75,6 +75,7 @@ mod imp {
             klass.bind_template();
             klass.bind_template_callbacks();
             klass.set_layout_manager_type::<gtk::BinLayout>();
+            klass.set_css_name("camera");
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {

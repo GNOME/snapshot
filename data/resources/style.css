@@ -43,17 +43,16 @@ gallery {
 
 .controlsframe {
   background: rgba(0, 0, 0, 0.45);
+}
+
+camera .controlsframe {
   padding: 12px;
 }
 
-.cameracontrols:backdrop > *,
-.gallerycontrols:backdrop > *,
-button.gallerycontrols:backdrop {
-  filter: opacity(.5);
-  transition: 200ms ease-out;
+gallery .controlsframe {
+  padding: 6px;
 }
 
-.gallerycontrols button.circular,
 button.gallerycontrols.circular {
   padding: 9px;
   min-width: 24px;
