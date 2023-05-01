@@ -61,10 +61,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwCarousel" id="carousel">
-                <property name="halign">center</property>
-                <property name="spacing">12</property>
-              </object>
+              <object class="SlidingView" id="sliding_view"/>
             </child>
             <child type="bottom">
               <object class="GtkCenterBox">

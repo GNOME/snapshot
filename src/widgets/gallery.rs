@@ -22,7 +22,7 @@ mod imp {
     use super::*;
 
     use once_cell::sync::Lazy;
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/gallery.ui")]
@@ -30,12 +30,11 @@ mod imp {
         #[template_child]
         pub child: TemplateChild<gtk::Widget>,
         #[template_child]
-        pub carousel: TemplateChild<adw::Carousel>,
+        pub sliding_view: TemplateChild<crate::SlidingView>,
         #[template_child]
         pub open_external: TemplateChild<gtk::Button>,
 
-        pub items: RefCell<Vec<crate::GalleryItem>>,
-        last_position: Cell<u32>,
+        pub current_item: RefCell<Option<crate::GalleryItem>>,
     }
 
     #[glib::object_subclass]
@@ -79,70 +78,38 @@ mod imp {
 
             let obj = self.obj();
 
-            self.carousel
-                .connect_page_changed(glib::clone!(@weak obj => move |carousel, index| {
+            self.sliding_view.connect_target_page_reached(
+                glib::clone!(@weak obj => move |sliding_view| {
                     let imp = obj.imp();
 
-                    let last_index = imp.last_position.replace(index);
-                    let n_pages = carousel.n_pages() as i32;
-                    let last_pos = (n_pages - 1).max(0) as u32;
-
-                    if let Some(last_video) = carousel
-                        .nth_page(last_index)
-                        .downcast_ref::<crate::GalleryVideo>() {
-                        last_video.pause();
+                    if let Some(current) = sliding_view.current_page() {
+                        // The tooltip is also set in gallery.ui with a default value.
+                        let tooltip_text = if current.is_picture() {
+                            gettext("Open in Image Viewer")
+                        } else {
+                            gettext("Open in Video Player")
+                        };
+                        imp.open_external.set_tooltip_text(Some(&tooltip_text));
                     }
 
-                    let item = carousel.nth_page(index);
-                    // The tooltip is also set in gallery.ui with a default value.
-                    let tooltip_text = if item.downcast_ref::<crate::GalleryPicture>().is_some() {
-                        gettext("Open in Image Viewer")
-                    } else {
-                        gettext("Open in Video Player")
-                    };
-                    imp.open_external.set_tooltip_text(Some(&tooltip_text));
+                    obj.load_neighbor_pages();
+                }),
+            );
 
-                    if n_pages > 0 {
-                        let current = carousel
-                            .nth_page(index)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !current.started_loading() {
-                            current.start_loading();
+            self.sliding_view.connect_current_page_notify(
+                glib::clone!(@weak obj => move |sliding_view| {
+                    let has_prev = sliding_view.prev_page().is_some();
+                    let has_next = sliding_view.next_page().is_some();
+                    obj.action_set_enabled("gallery.previous", has_prev);
+                    obj.action_set_enabled("gallery.next", has_next);
+
+                    if let Some(old) = obj.imp().current_item.replace(sliding_view.current_page()) {
+                        if let Some(video) = old.downcast_ref::<crate::GalleryVideo>() {
+                            video.pause();
                         }
                     }
-
-                    if index < last_pos {
-                        let next = carousel
-                            .nth_page(index + 1)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !next.started_loading() {
-                            next.start_loading();
-                        }
-                    }
-
-                    if index > 0 {
-                        let previous = carousel
-                            .nth_page(index - 1)
-                            .downcast::<crate::GalleryItem>().unwrap();
-                        if !previous.started_loading() {
-                            previous.start_loading();
-                        }
-                    }
-                }));
-
-            self.carousel
-                .connect_position_notify(glib::clone!(@weak obj => move |carousel| {
-                    let position = carousel.position();
-                    let n_pages = carousel.n_pages();
-
-                    // Suppose we have 2 pages. We add an epsilon to make sure
-                    // that a rounding error 0.99999... = 1 still can scroll to
-                    // the right. 0.0000...1, should also allow going to the
-                    // right. We sanitize the values of the scroll, so
-                    // scroll_to(-1) or scroll_to(n_items) are a non-issue.
-                    obj.action_set_enabled("gallery.previous", position + f64::EPSILON >= 1.0);
-                    obj.action_set_enabled("gallery.next", position + 2.0 <= n_pages as f64 + f64::EPSILON);
-                }));
+                }),
+            );
 
             let ctx = glib::MainContext::default();
             ctx.spawn_local(glib::clone!(@weak obj => async move {
@@ -197,24 +164,17 @@ impl Gallery {
             crate::GalleryVideo::new(file, load).upcast()
         };
 
-        imp.carousel.prepend(&item);
-        imp.items.borrow_mut().insert(0, item.clone());
+        imp.sliding_view.prepend(&item);
 
         item
     }
 
     pub fn open(&self) {
-        // HACK The first time we call scroll_to(0) it down't do anything unless
-        // we wait till the widget is drawn. At 10ms we might still have issues.
-        // See https://gitlab.gnome.org/GNOME/libadwaita/-/issues/597.
-        let duration = std::time::Duration::from_millis(50);
-        glib::timeout_add_local_once(
-            duration,
-            glib::clone!(@weak self as obj => move || {
-                obj.scroll_to(0, false);
-            }),
-        );
-        self.scroll_to(0, false);
+        let imp = self.imp();
+
+        if let Some(first) = imp.sliding_view.pages().first() {
+            imp.sliding_view.scroll_to_velocity(first, None);
+        }
     }
 
     pub fn close(&self) {
@@ -222,7 +182,7 @@ impl Gallery {
     }
 
     pub fn items(&self) -> Vec<crate::GalleryItem> {
-        self.imp().items.borrow().clone()
+        self.imp().sliding_view.pages()
     }
 
     fn emit_item_added(&self, picture: &crate::GalleryItem) {
@@ -239,41 +199,26 @@ impl Gallery {
         );
     }
 
-    fn scroll_to(&self, index: i32, animate: bool) {
-        let imp = self.imp();
-
-        // Sanitize index so it is always between 0 and (n_items - 1).
-        let last_pos = (imp.carousel.n_pages() as i32 - 1).max(0);
-        let item = imp
-            .carousel
-            .nth_page(index.clamp(0, last_pos) as u32)
-            .downcast::<crate::GalleryItem>()
-            .unwrap();
-
-        imp.carousel.scroll_to(&item, animate);
-    }
-
     fn next(&self) {
         let imp = self.imp();
-        let index = imp.carousel.position() as i32;
-        self.scroll_to(index + 1, true)
+        if let Some(page) = imp.sliding_view.next_page() {
+            imp.sliding_view.scroll_to(&page);
+        }
     }
 
     fn previous(&self) {
         let imp = self.imp();
-        let index = imp.carousel.position() as i32;
-        self.scroll_to(index - 1, true)
+        if let Some(page) = imp.sliding_view.prev_page() {
+            imp.sliding_view.scroll_to(&page);
+        }
     }
 
     async fn open_with_system(&self) -> anyhow::Result<()> {
         let imp = self.imp();
 
-        let index = imp.carousel.position() as u32;
-        let item = imp
-            .carousel
-            .nth_page(index)
-            .downcast::<crate::GalleryItem>()
-            .unwrap();
+        let Some(item) = imp.sliding_view.current_page() else {
+            anyhow::bail!("SlidingView does not have current page");
+        };
         let file = item.file();
         let launcher = gtk::FileLauncher::new(Some(&file));
         let root = self.root();
@@ -351,5 +296,33 @@ impl Gallery {
         }
 
         Ok(())
+    }
+
+    fn load_neighbor_pages(&self) {
+        let sliding_view = self.imp().sliding_view.get();
+
+        if let Some(current) = sliding_view.current_page() {
+            if !current.started_loading() {
+                current.start_loading();
+            }
+        }
+
+        if let Some(next) = sliding_view.next_page() {
+            if !next.started_loading() {
+                next.start_loading();
+            }
+        }
+
+        if let Some(next) = sliding_view.next_next_page() {
+            if !next.started_loading() {
+                next.start_loading();
+            }
+        }
+
+        if let Some(previous) = sliding_view.prev_page() {
+            if !previous.started_loading() {
+                previous.start_loading();
+            }
+        }
     }
 }

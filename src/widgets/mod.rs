@@ -12,6 +12,7 @@ mod gallery_video;
 mod guidelines_bin;
 mod preferences_window;
 mod shutter_button;
+mod sliding_view;
 mod video_player;
 mod window;
 
@@ -26,6 +27,7 @@ pub use gallery_video::GalleryVideo;
 pub use guidelines_bin::GuidelinesBin;
 pub use preferences_window::PreferencesWindow;
 pub use shutter_button::ShutterButton;
+pub use sliding_view::SlidingView;
 pub use video_player::VideoPlayer;
 pub use window::Window;
 
@@ -37,4 +39,5 @@ pub fn init() {
     ShutterButton::static_type();
     GalleryItem::static_type();
     FlashBin::static_type();
+    SlidingView::static_type();
 }
