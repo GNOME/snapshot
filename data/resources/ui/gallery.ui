@@ -80,7 +80,7 @@
             </child>
             <child type="overlay">
               <object class="GtkButton" id="open_external">
-                <property name="halign">start</property>
+                <property name="halign">end</property>
                 <property name="valign">end</property>
                 <property name="icon-name">external-link-symbolic</property>
                 <property name="action-name">gallery.open</property>
@@ -99,7 +99,7 @@
             <child type="overlay">
               <object class="GtkBox">
                 <property name="valign">end</property>
-                <property name="halign">end</property>
+                <property name="halign">start</property>
                 <property name="margin-start">18</property>
                 <property name="margin-end">18</property>
                 <property name="margin-top">18</property>
