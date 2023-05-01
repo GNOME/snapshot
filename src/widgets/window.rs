@@ -239,11 +239,8 @@ impl Window {
             .version(VERSION)
             .translator_credits(gettext("translator-credits"))
             .developer_name(gettext("The GNOME Project"))
-            .developers(vec![
-                "Maximiliano Sandoval",
-                "Jamie Murphy <jmurphy@gnome.org>",
-            ])
-            .designers(vec!["Tobias Bernard"])
+            .developers(["Maximiliano Sandoval", "Jamie Murphy <jmurphy@gnome.org>"])
+            .designers(["Tobias Bernard"])
             .transient_for(self)
             .modal(true)
             .build();
