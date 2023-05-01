@@ -63,8 +63,14 @@ mod imp {
             klass.install_action_async("win.take-picture", None, |window, _, _| async move {
                 if let Err(err) = window.on_take_picture().await {
                     match window.capture_mode() {
-                        CaptureMode::Picture => log::error!("Could not take picture: {err}"),
-                        CaptureMode::Video => log::error!("Could not record video: {err}"),
+                        CaptureMode::Picture => {
+                            log::error!("Could not take picture: {err}");
+                            window.send_toast(&gettext("Could not take picture"));
+                        }
+                        CaptureMode::Video => {
+                            log::error!("Could not record video: {err}");
+                            window.send_toast(&gettext("Could not record video"));
+                        }
                     }
                 };
             });
@@ -283,8 +289,14 @@ impl Window {
                 ctx.spawn_local(glib::clone!(@weak window => async move {
                     if let Err(err) = window.shutter_action().await {
                         match window.capture_mode() {
-                            CaptureMode::Picture => log::error!("Could not take picture: {err}"),
-                            CaptureMode::Video => log::error!("Could not record video: {err}"),
+                            CaptureMode::Picture => {
+                                log::error!("Could not take picture: {err}");
+                                window.send_toast(&gettext("Could not take picture"));
+                            }
+                            CaptureMode::Video => {
+                                log::error!("Could not record video: {err}");
+                                window.send_toast(&gettext("Could not record video"));
+                            }
                         }
                     };
                 }));
