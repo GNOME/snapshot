@@ -9,20 +9,12 @@
             <property name="action">action(gallery.next)</property>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkShortcutController">
         <child>
           <object class="GtkShortcut">
             <property name="trigger">Left</property>
             <property name="action">action(gallery.previous)</property>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkShortcutController">
         <child>
           <object class="GtkShortcut">
             <property name="trigger">Escape</property>
