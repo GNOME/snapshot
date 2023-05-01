@@ -63,6 +63,8 @@
                     <property name="menu-model">primary_menu</property>
                     <property name="tooltip-text" translatable="yes">Main Menu</property>
                     <property name="primary">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <style>
                       <class name="flat"/>
                       <class name="circular"/>

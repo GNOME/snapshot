@@ -53,6 +53,13 @@ button.gallerycontrols:backdrop {
   transition: 200ms ease-out;
 }
 
+.gallerycontrols button.circular,
+button.gallerycontrols.circular {
+  padding: 9px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
 .horizontal.picturevideotoggle {
   padding-left: 24px;
 }
