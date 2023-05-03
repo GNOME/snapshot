@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
 "POT-Creation-Date: 2023-04-29 17:23+0000\n"
-"PO-Revision-Date: 2023-04-28 21:43+0200\n"
+"PO-Revision-Date: 2023-05-03 19:17+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
@@ -143,11 +143,9 @@ msgid "Select Camera"
 msgstr "Seleccionar una camèra"
 
 #: data/resources/ui/camera.ui:483
-#, fuzzy
-#| msgid "Select Camera"
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
-msgstr "Seleccionar una camèra"
+msgstr "Cambiar de camèra"
 
 #. TRANSLATORS this indicates the countdown is disabled
 #: data/resources/ui/camera.ui:538
@@ -282,7 +280,7 @@ msgstr "JPEG"
 
 #: src/widgets/camera.rs:431
 msgid "Could not play camera stream"
-msgstr ""
+msgstr "Lectura impossibla del flux de la camèra"
 
 #: src/widgets/gallery.rs:99
 msgid "Open in Video Player"
