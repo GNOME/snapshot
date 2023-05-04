@@ -76,7 +76,7 @@ mod imp {
                 adw::CallbackAnimationTarget::new(glib::clone!(@weak obj => move |_value| {
                     obj.queue_draw();
                 }));
-            let ani = adw::TimedAnimation::new(&*obj, 0.0, 0.5, 250, target);
+            let ani = adw::TimedAnimation::new(&*obj, 0.0, 1.0, 250, target);
             ani.set_easing(adw::Easing::EaseInQuad);
 
             self.animation.set(ani).unwrap();
@@ -109,16 +109,18 @@ mod imp {
 
                     let alpha = if animation.state() != adw::AnimationState::Playing {
                         if !self.draw_guidelines.get() {
-                            0.0
+                            animation.value_from()
                         } else {
-                            0.5
+                            animation.value_to()
                         }
                     } else {
-                        animation.value() as f32
+                        animation.value()
                     };
 
                     if alpha != 0.0 {
-                        let color = gdk::RGBA::new(1.0, 1.0, 1.0, alpha);
+                        snapshot.push_opacity(alpha);
+
+                        let color = gdk::RGBA::new(1.0, 1.0, 1.0, 0.5);
 
                         let h_third = (height / 3.0).round();
                         let w_third = (width / 3.0).round();
@@ -140,6 +142,8 @@ mod imp {
                         snapshot.append_color(&color, &v2);
                         snapshot.append_color(&color, &h1);
                         snapshot.append_color(&color, &h2);
+
+                        snapshot.pop();
                     }
                 }
             }
