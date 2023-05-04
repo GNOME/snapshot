@@ -258,7 +258,7 @@ impl ShutterButton {
         let color = self.color();
 
         let stop0 = gsk::ColorStop::new(countdown, color);
-        let stop1 = gsk::ColorStop::new(countdown, gdk::RGBA::new(0.0, 0.0, 0.0, 0.0));
+        let stop1 = gsk::ColorStop::new(countdown, gdk::RGBA::TRANSPARENT);
 
         snapshot.append_conic_gradient(&rect, &center, 0.0, &[stop0, stop1]);
 
