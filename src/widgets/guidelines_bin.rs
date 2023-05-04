@@ -117,7 +117,7 @@ mod imp {
                         animation.value()
                     };
 
-                    if alpha != 0.0 {
+                    if alpha.abs() > f64::EPSILON {
                         snapshot.push_opacity(alpha);
 
                         let color = gdk::RGBA::new(1.0, 1.0, 1.0, 0.5);
