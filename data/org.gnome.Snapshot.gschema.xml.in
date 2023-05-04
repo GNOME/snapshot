@@ -32,7 +32,7 @@
       <description>Whether to play a shutter sound when taking pictures</description>
     </key>
     <key name="show-composition-guidelines" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Show composition guidelines</summary>
       <description>Whether to show composition guidelines when using the camera</description>
     </key>
