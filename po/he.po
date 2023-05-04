@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-29 17:23+0000\n"
-"PO-Revision-Date: 2023-04-29 21:24+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-05-03 20:10+0000\n"
+"PO-Revision-Date: 2023-05-04 11:39+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -16,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 42.0\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:240
 msgid "Snapshot"
 msgstr "צילום"
 
@@ -38,12 +39,12 @@ msgstr "תמונה;תמונות;תצלום;צילום;מצלמה;מצלמות;"
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
-msgstr "Default window width"
+msgstr "רוחב החלון כברירת מחדל"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
-msgstr "Default window height"
+msgstr "גובה החלון כברירת מחדל"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
@@ -51,43 +52,51 @@ msgstr "Default window maximized behaviour"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
-msgstr "Play shutter sound"
+msgstr "השמעת צליל צמצם"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Whether to play a shutter sound when taking pictures"
+msgstr "האם להשמיע צליל צמצם בעת צילום תמונות"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
-msgid "Countdown timer"
-msgstr "Countdown timer"
+msgid "Show composition guidelines"
+msgstr "הצגת הנחיות קומפוזיציה"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
-msgid "The duration of the countdown for taking photos, in seconds"
-msgstr "The duration of the countdown for taking photos, in seconds"
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "האם להציג הנחיות קומפוזיציה בעת שימוש במצלמה"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
-msgid "Capture mode"
-msgstr "Capture mode"
+msgid "Countdown timer"
+msgstr "סופר זמן לאחור"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:42
-msgid "Whether to take pictures or videos"
-msgstr "Whether to take pictures or videos"
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "משך הספירה לאחור לצילום תמונות בשניות"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:46
-msgid "Picture format"
-msgstr "Picture format"
+msgid "Capture mode"
+msgstr "מצב לכידה"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:47
-msgid "Whether to save pictures as png or jpeg"
-msgstr "Whether to save pictures as png or jpeg"
+msgid "Whether to take pictures or videos"
+msgstr "האם לצלם תמונות או סרטונים"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:51
-msgid "Video format"
-msgstr "Video format"
+msgid "Picture format"
+msgstr "תצורת תמונות"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr "האם לשמור תמונות כ־png או jped"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr "תצורת סרטונים"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
-msgstr "Whether to save videos as mp4 or webm"
+msgstr "האם לשמור סרטונים כ־mp4 או webm"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -97,7 +106,7 @@ msgstr "צילום תמונות וסרטים על המחשב האישי, הטל�
 msgid "Snapshot's main interface"
 msgstr "הממשק הראשי של הצילום"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:246
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
@@ -126,7 +135,7 @@ msgid "Recording Mode"
 msgstr "מצב הקלטה"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
 msgid "Countdown"
 msgstr "ספירה לאחור"
 
@@ -150,36 +159,36 @@ msgid "Switch Camera"
 msgstr "החלפת מצלמה"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:538
+#: data/resources/ui/camera.ui:542
 msgid "None"
 msgstr "ללא"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:543
+#: data/resources/ui/camera.ui:547
 msgid "3s"
 msgstr "3 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:552
 msgid "5s"
 msgstr "5 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:557
 msgid "10s"
 msgstr "10 שנ׳"
 
-#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_העדפות"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
-msgstr "על _אודות צילום"
+msgstr "על _צילום"
 
 #: data/resources/ui/gallery.ui:51
 msgid "Back"
@@ -208,6 +217,10 @@ msgstr "מצלמה"
 #: data/resources/ui/preferences_window.ui:17
 msgid "Play Shutter Sound"
 msgstr "הפעלת צליל צמצם"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "Show Composition Guidelines"
+msgstr "הצגת הנחיות קומפוזיציה"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -254,22 +267,27 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "צילום תמונה והתחלת הקלטה"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "הצגת/הסתרת הנחיות קומפוזיציה"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "גלריה"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "פתיחה/סגירת גלריה"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "הבא"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "הקודם"
@@ -280,7 +298,7 @@ msgstr "הקודם"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/camera.rs:431
+#: src/widgets/camera.rs:441
 msgid "Could not play camera stream"
 msgstr "לא ניתן לקבל תזרים תמונות מהמצלמה"
 
@@ -296,7 +314,7 @@ msgstr "התחלת הקלטה"
 msgid "Stop Recording"
 msgstr "עצירת הקלטה"
 
-#: src/widgets/window.rs:237
+#: src/widgets/window.rs:245
 msgid "translator-credits"
 msgstr ""
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
