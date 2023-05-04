@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use gtk::glib;
+use gtk::{gdk, glib, graphene};
 
 mod imp {
     use super::*;
@@ -118,21 +118,21 @@ mod imp {
                     };
 
                     if alpha != 0.0 {
-                        let color = gtk::gdk::RGBA::new(1.0, 1.0, 1.0, alpha);
+                        let color = gdk::RGBA::new(1.0, 1.0, 1.0, alpha);
 
                         let h_third = (height / 3.0).round();
                         let w_third = (width / 3.0).round();
 
-                        let offset = gtk::graphene::Point::new(
+                        let offset = graphene::Point::new(
                             (w_width as f32 - width) / 2.0,
                             (w_height as f32 - height) / 2.0,
                         );
 
-                        let v1 = gtk::graphene::Rect::new(w_third, 0.0, 1.0, height);
-                        let v2 = gtk::graphene::Rect::new(2.0 * w_third, 0.0, 1.0, height);
+                        let v1 = graphene::Rect::new(w_third, 0.0, 1.0, height);
+                        let v2 = graphene::Rect::new(2.0 * w_third, 0.0, 1.0, height);
 
-                        let h1 = gtk::graphene::Rect::new(0.0, h_third, width, 1.0);
-                        let h2 = gtk::graphene::Rect::new(0.0, 2.0 * h_third, width, 1.0);
+                        let h1 = graphene::Rect::new(0.0, h_third, width, 1.0);
+                        let h2 = graphene::Rect::new(0.0, 2.0 * h_third, width, 1.0);
 
                         snapshot.translate(&offset);
 
