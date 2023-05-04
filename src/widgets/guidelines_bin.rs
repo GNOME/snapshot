@@ -120,7 +120,8 @@ mod imp {
                     if alpha.abs() > f64::EPSILON {
                         snapshot.push_opacity(alpha);
 
-                        let color = gdk::RGBA::new(1.0, 1.0, 1.0, 0.5);
+                        let white = gdk::RGBA::new(1.0, 1.0, 1.0, 0.5);
+                        let black = gdk::RGBA::new(0.0, 0.0, 0.0, 0.1);
 
                         let h_third = (height / 3.0).round();
                         let w_third = (width / 3.0).round();
@@ -130,6 +131,12 @@ mod imp {
                             (w_height as f32 - height) / 2.0,
                         );
 
+                        let bv1 = graphene::Rect::new(w_third - 1.0, 0.0, 3.0, height);
+                        let bv2 = graphene::Rect::new(2.0 * w_third - 1.0, 0.0, 3.0, height);
+
+                        let bh1 = graphene::Rect::new(0.0, h_third - 1.0, width, 3.0);
+                        let bh2 = graphene::Rect::new(0.0, 2.0 * h_third - 1.0, width, 3.0);
+
                         let v1 = graphene::Rect::new(w_third, 0.0, 1.0, height);
                         let v2 = graphene::Rect::new(2.0 * w_third, 0.0, 1.0, height);
 
@@ -138,10 +145,15 @@ mod imp {
 
                         snapshot.translate(&offset);
 
-                        snapshot.append_color(&color, &v1);
-                        snapshot.append_color(&color, &v2);
-                        snapshot.append_color(&color, &h1);
-                        snapshot.append_color(&color, &h2);
+                        snapshot.append_color(&black, &bv1);
+                        snapshot.append_color(&black, &bv2);
+                        snapshot.append_color(&black, &bh1);
+                        snapshot.append_color(&black, &bh2);
+
+                        snapshot.append_color(&white, &v1);
+                        snapshot.append_color(&white, &v2);
+                        snapshot.append_color(&white, &h1);
+                        snapshot.append_color(&white, &h2);
 
                         snapshot.pop();
                     }
