@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-29 17:23+0000\n"
-"PO-Revision-Date: 2023-05-03 12:28+0330\n"
+"POT-Creation-Date: 2023-05-03 20:10+0000\n"
+"PO-Revision-Date: 2023-05-05 16:57+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:240
 msgid "Snapshot"
 msgstr "عکس فوری"
 
@@ -56,34 +56,42 @@ msgid "Whether to play a shutter sound when taking pictures"
 msgstr "این که هنگام گرفتن نگاره آوای شاتری پخش شود یا نه"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "نمایش رهنمودهای ترکیب‌بندی"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "این که هنگام استفاده از دوبین رهنمودهای ترکیب‌بندی نشان داده شوند"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "شمارشگر زمان معکوس"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "طول شمارشگر معکوس برای گرفتن نگاره به ثانیه"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "حالت گرفتن"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "این که نگاره یا ویدیو گرفته شود یا نه"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "قالب نگاره"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "این که نگاره‌ها به شکل png یا jpeg ذخیره شونند"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "قالب ویدیو"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "این که ویدیوها به شکل mp4 یا webm ذخیره شوند"
 
@@ -95,7 +103,7 @@ msgstr "گرفتن نگاره یا ویدیو روی رایانه، رایانک
 msgid "Snapshot's main interface"
 msgstr "واسط اصلی عکس فوری"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:246
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
@@ -124,7 +132,7 @@ msgid "Recording Mode"
 msgstr "حالت ضبط"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
 msgid "Countdown"
 msgstr "شمارشگر معکوس"
 
@@ -148,34 +156,34 @@ msgid "Switch Camera"
 msgstr "تعویض دوربین"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:538
+#: data/resources/ui/camera.ui:542
 msgid "None"
 msgstr "هیچ‌کدام"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:543
+#: data/resources/ui/camera.ui:547
 msgid "3s"
 msgstr "۳ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:552
 msgid "5s"
 msgstr "۵ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:557
 msgid "10s"
 msgstr "۱۰ث"
 
-#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:147
 msgid "_Preferences"
 msgstr "_ترجیحات"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:151
 msgid "_Keyboard Shortcuts"
 msgstr "میان‌برهای _صفحه‌کلید"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:155
 msgid "_About Snapshot"
 msgstr "_دربارهٔ عکس فوری"
 
@@ -206,6 +214,10 @@ msgstr "دوربین"
 #: data/resources/ui/preferences_window.ui:17
 msgid "Play Shutter Sound"
 msgstr "پخش آوای شاتر"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "Show Composition Guidelines"
+msgstr "نمایش رهنمودهای ترکیب‌بندی"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -252,22 +264,27 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "گرفتن نگاره یا آغاز ضبط"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "نمایش یا نهفتن رهنمودهای ترکیب‌بندی"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "جُنگ"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "گشودن یا بستن جُنگ"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "بعدی"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "پیشین"
@@ -278,7 +295,7 @@ msgstr "پیشین"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/camera.rs:431
+#: src/widgets/camera.rs:441
 msgid "Could not play camera stream"
 msgstr "نتوانست جریان دوربین را پخش کند"
 
@@ -294,7 +311,7 @@ msgstr "آغاز ضبط"
 msgid "Stop Recording"
 msgstr "پایان ضبط"
 
-#: src/widgets/window.rs:237
+#: src/widgets/window.rs:245
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
 
