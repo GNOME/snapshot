@@ -8,12 +8,14 @@ use gtk::{gio, glib};
 use once_cell::sync::Lazy;
 
 static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
-    format!(
-        "{},{},{}",
-        gio::FILE_ATTRIBUTE_STANDARD_NAME,
-        gio::FILE_ATTRIBUTE_TIME_CREATED,
-        gio::FILE_ATTRIBUTE_TIME_CREATED_USEC
-    )
+    [
+        gio::FILE_ATTRIBUTE_STANDARD_NAME.as_str(),
+        gio::FILE_ATTRIBUTE_TIME_CREATED.as_str(),
+        gio::FILE_ATTRIBUTE_TIME_CREATED_USEC.as_str(),
+        gio::FILE_ATTRIBUTE_TIME_MODIFIED.as_str(),
+        gio::FILE_ATTRIBUTE_TIME_MODIFIED_USEC.as_str(),
+    ]
+    .join(",")
 });
 
 mod imp {
@@ -307,11 +309,18 @@ impl Gallery {
 
             // TODO Do not add items with wrong mime type.
 
-            // TODO Try without unwrap();
-            let date_time = file_info.creation_date_time().unwrap();
-            let microsecond = date_time.microsecond() as u64;
-            let unix = date_time.to_unix() as u64;
-            let stamp = unix * 1_000_000 + microsecond;
+            // NOTE Filesystems that do not support either creation or modified
+            // dates will get files with a random ordering.
+            let stamp = file_info
+                .creation_date_time()
+                .or(file_info.modification_date_time())
+                .map(|date_time| {
+                    let microsecond = date_time.microsecond() as u64;
+                    let unix = date_time.to_unix() as u64;
+
+                    unix * 1_000_000 + microsecond
+                })
+                .unwrap_or_default();
 
             items.push((file, stamp, is_picture))
         }
