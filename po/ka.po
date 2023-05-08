@@ -1,5 +1,5 @@
 # Georgian translation for Snapshot.
-# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# Copyright (C) 2023 Snapshot's authors.
 # This file is distributed under the same license as the Snapshot package.
 # Ekaterine Papava <papava.e@gtu.ge>, 2023.
 #
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-03 20:10+0000\n"
-"PO-Revision-Date: 2023-05-04 04:56+0200\n"
+"POT-Creation-Date: 2023-05-07 22:50+0000\n"
+"PO-Revision-Date: 2023-05-08 06:04+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:240
+#: src/widgets/window.rs:246
 msgid "Snapshot"
 msgstr "სწრაფი ასლი"
 
@@ -103,7 +103,7 @@ msgstr "გადაიღეთ სურათები და ვიდეო
 msgid "Snapshot's main interface"
 msgstr "Snapshot-ის მთავარი ინტერფეისი"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:252
 msgid "The GNOME Project"
 msgstr "პროექტი \"GNOME\""
 
@@ -141,8 +141,8 @@ msgid "Open Gallery"
 msgstr "გალერეის გახსნა"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "სურათის გადაღება"
 
@@ -191,7 +191,7 @@ msgstr "Snapshot-ის _შესახებ"
 msgid "Back"
 msgstr "უკან"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:99
 msgid "Open in Image Viewer"
 msgstr "სურათების გამხსნელში გახსნა"
 
@@ -299,19 +299,27 @@ msgstr "JPEG"
 msgid "Could not play camera stream"
 msgstr "კამერის ვიდეონაკადის დაკვრის შეცდომა"
 
-#: src/widgets/gallery.rs:99
+#: src/widgets/gallery.rs:101
 msgid "Open in Video Player"
 msgstr "ვიდეოდამკვრელით გახსნა"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "ჩაწერის დაწყება"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "ჩაწერის გაჩერება"
 
-#: src/widgets/window.rs:245
+#: src/widgets/window.rs:68 src/widgets/window.rs:294
+msgid "Could not take picture"
+msgstr "სურათის გადაღება შეუძლებელია"
+
+#: src/widgets/window.rs:72 src/widgets/window.rs:298
+msgid "Could not record video"
+msgstr "ვიდეოს ჩაწერა შეუძლებელია"
+
+#: src/widgets/window.rs:251
 msgid "translator-credits"
 msgstr "თემური დოღონაძე"
 
