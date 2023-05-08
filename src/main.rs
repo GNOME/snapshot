@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #[rustfmt::skip]
 mod config;
+mod application;
 mod enums;
-mod objects;
 mod utils;
 mod widgets;
 
+use application::Application;
 use enums::*;
-use objects::*;
 use widgets::*;
 
 use gettextrs::{gettext, LocaleCategory};
