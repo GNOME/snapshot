@@ -22,6 +22,17 @@
   <url type="translate">https://l10n.gnome.org/module/snapshot/</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="44.1" date="2023-05-08">
+      <description>
+        <p>Minor release.</p>
+        <ul>
+          <li>Adaptive controls</li>
+          <li>Fixed multiple cameras, including the PinePhone Pro's</li>
+          <li>Improve error handling and reporting</li>
+          <li>Add composition guidelines</li>
+        </ul>
+      </description>
+    </release>
     <release version="44.0" date="2023-04-26">
       <description>
         <p>Preview release of Snapshot.</p>
