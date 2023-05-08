@@ -94,9 +94,7 @@ mod imp {
             {
                 let aspect = vf.aspect_ratio();
 
-                if aspect == 0.0 {
-                    return;
-                } else {
+                if aspect > f64::EPSILON {
                     let (width, height) = self.calculate_aspect_ratio(aspect as f32);
                     let (w_width, w_height) = (self.obj().width(), self.obj().height());
 
