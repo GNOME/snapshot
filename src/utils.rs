@@ -95,19 +95,21 @@ static DEBUG_STR: Lazy<String> = Lazy::new(|| {
 
 pub fn debug_info() -> String {
     let device_provider = aperture::DeviceProvider::instance();
-    let mut debug_string = String::new();
+    let camera_info = device_provider
+        .iter::<aperture::Camera>()
+        .filter_map(|camera_result| {
+            camera_result
+                .map(|camera| format!("{}: {:#?}", camera.display_name(), camera.properties()))
+                .ok()
+        })
+        .collect::<Vec<String>>()
+        .join(",\n");
 
-    debug_string.push_str(&format!("Library Details:\n{}\n\n", &*DEBUG_STR));
+    let mut debug_string = format!("Library Details:\n\n{}\n\n", &*DEBUG_STR);
 
-    debug_string.push_str("Cameras:\n");
-    for pos in 0..device_provider.n_items() {
-        let camera = device_provider.camera(pos).unwrap();
-
-        debug_string.push_str(&format!(
-            "{}: {:#?}",
-            camera.display_name(),
-            camera.properties()
-        ));
+    if device_provider.camera(0).is_some() {
+        debug_string.push_str("Cameras:\n\n");
+        debug_string.push_str(&camera_info);
     }
 
     debug_string
