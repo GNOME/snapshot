@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-03 20:10+0000\n"
-"PO-Revision-Date: 2023-05-05 09:56+0200\n"
+"POT-Creation-Date: 2023-05-07 22:50+0000\n"
+"PO-Revision-Date: 2023-05-08 10:52+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:240
+#: src/widgets/window.rs:246
 msgid "Snapshot"
 msgstr "Posnetek"
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Snapshot's main interface"
 msgstr "Glavni vmesnik Posnetka"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:252
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -147,8 +147,8 @@ msgid "Open Gallery"
 msgstr "Odpri galerijo"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Naredi sliko"
 
@@ -197,7 +197,7 @@ msgstr "_O programu Posnetek"
 msgid "Back"
 msgstr "Nazaj"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:99
 msgid "Open in Image Viewer"
 msgstr "Odpri v pregledovalniku slik"
 
@@ -305,18 +305,26 @@ msgstr "JPEG"
 msgid "Could not play camera stream"
 msgstr "Predvajanje toka kamere ni bilo mogoče"
 
-#: src/widgets/gallery.rs:99
+#: src/widgets/gallery.rs:101
 msgid "Open in Video Player"
 msgstr "Odpri v videopredvajalniku"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Začni snemati"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Ustavi snemanje"
 
-#: src/widgets/window.rs:245
+#: src/widgets/window.rs:68 src/widgets/window.rs:294
+msgid "Could not take picture"
+msgstr "Slike ni mogoče zajeti"
+
+#: src/widgets/window.rs:72 src/widgets/window.rs:298
+msgid "Could not record video"
+msgstr "Videa ni mogoče posneti"
+
+#: src/widgets/window.rs:251
 msgid "translator-credits"
 msgstr "Martin Srebotnjak <miles@filmsi.net>"
