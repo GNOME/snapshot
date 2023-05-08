@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-03 20:10+0000\n"
-"PO-Revision-Date: 2023-05-07 12:28+0100\n"
+"POT-Creation-Date: 2023-05-08 20:50+0000\n"
+"PO-Revision-Date: 2023-05-08 22:40+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:240
+#: src/widgets/window.rs:246
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -104,13 +104,13 @@ msgstr "Tirar fotografias e gravar vídeos no seu computador, tablet ou telefone
 msgid "Snapshot's main interface"
 msgstr "Interface principal do Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
 msgid "The GNOME Project"
 msgstr "O Projeto GNOME"
 
 #: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
 #: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "Menu principal"
 
@@ -142,8 +142,8 @@ msgid "Open Gallery"
 msgstr "Abrir a galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Tirar foto"
 
@@ -176,33 +176,33 @@ msgstr "5s"
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "_Teclas de atalho"
 
-#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "_Acerca do Snapshot"
 
-#: data/resources/ui/gallery.ui:51
+#: data/resources/ui/gallery.ui:42
 msgid "Back"
 msgstr "Voltar"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "Abrir no visualizador de imagens"
-
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:79
 msgid "Previous Image"
 msgstr "Imagem anterior"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:91
 msgid "Next Image"
 msgstr "Imagem seguinte"
+
+#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+msgid "Open in Image Viewer"
+msgstr "Abrir no visualizador de imagens"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -296,23 +296,51 @@ msgstr "Anterior"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/camera.rs:441
+#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:19
+msgid "Photo from"
+msgstr "Foto de"
+
+#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
+#: src/utils.rs:25
+msgid "Photo"
+msgstr "Foto"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:35
+msgid "Recording from"
+msgstr "Gravação de"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
+#: src/utils.rs:41
+msgid "Recording"
+msgstr "Gravação"
+
+#: src/widgets/camera.rs:472
 msgid "Could not play camera stream"
 msgstr "Não foi possível reproduzir o fluxo da câmara"
 
-#: src/widgets/gallery.rs:99
+#: src/widgets/gallery.rs:90
 msgid "Open in Video Player"
 msgstr "Abrir no reprodutor multimédia"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Iniciar a gravação"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Parar a gravação"
 
-#: src/widgets/window.rs:245
+#: src/widgets/window.rs:68 src/widgets/window.rs:295
+msgid "Could not take picture"
+msgstr "Não foi possível tirar foto"
+
+#: src/widgets/window.rs:72 src/widgets/window.rs:299
+msgid "Could not record video"
+msgstr "Não foi possível gravar vídeo"
+
+#: src/widgets/window.rs:251
 msgid "translator-credits"
 msgstr "Hugo Carvalho <hugokarvalho@hotmail.com>"
 
