@@ -42,7 +42,11 @@ mod imp {
 
         fn startup(&self) {
             info!("Snapshot ({})", APP_ID);
-            info!("Version: {} ({})", VERSION, PROFILE);
+            if PROFILE.is_empty() {
+                info!("Version: {}", VERSION);
+            } else {
+                info!("Version: {} ({})", VERSION, PROFILE);
+            }
             info!("Datadir: {}", PKGDATADIR);
             debug!("Application::startup");
             self.parent_startup();
