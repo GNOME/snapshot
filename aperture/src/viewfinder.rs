@@ -759,23 +759,6 @@ impl Viewfinder {
 
         let camerabin = self.imp().camerabin();
 
-        // TODO Which parts here are necessary?
-        // let preview_caps = gst::Caps::builder("video/x-raw")
-        //     .field("format", "RGB")
-        //     .build();
-
-        // let mut capture_caps = gst::Caps::builder("video/webm")
-        //     .field("framerate", gst::Fraction::new(60, 1))
-        //     .field("width", 640)
-        //     .field("height", 320)
-        //     .build();
-
-        // camerabin.set_property("viewfinder-caps", &capture_caps);
-        // camerabin.set_property("image-capture-caps", &capture_caps);
-        // capture_caps.fixate();
-        // camerabin.set_property("video-capture-caps", &capture_caps);
-        // camerabin.set_property("preview-caps", &preview_caps);
-
         camerabin.set_property("video-profile", profiles);
     }
 }
