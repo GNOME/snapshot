@@ -12,7 +12,7 @@
   <description xml:lang="en">
       Take pictures and videos on your computer, tablet, or phone.
   </description>
-  <homepage rdf:resource="https://gitlab.gnome.org/Incubator/snapshot" />
+  <homepage rdf:resource="https://apps.gnome.org/app/org.gnome.Snapshot" />
   <bug-database rdf:resource="https://gitlab.gnome.org/Incubator/snapshot/-/issues" />
   <download-page rdf:resource="http://download.gnome.org/sources/snapshot" />
 

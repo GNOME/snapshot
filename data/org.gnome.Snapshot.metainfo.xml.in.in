@@ -17,7 +17,7 @@
       <caption>Snapshot's main interface</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://gitlab.gnome.org/Incubator/snapshot</url>
+  <url type="homepage">https://apps.gnome.org/app/org.gnome.Snapshot</url>
   <url type="bugtracker">https://gitlab.gnome.org/Incubator/snapshot/issues</url>
   <url type="translate">https://l10n.gnome.org/module/snapshot/</url>
   <content_rating type="oars-1.0" />
