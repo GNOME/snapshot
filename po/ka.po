@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-07 22:50+0000\n"
-"PO-Revision-Date: 2023-05-08 06:04+0200\n"
+"POT-Creation-Date: 2023-05-08 20:50+0000\n"
+"PO-Revision-Date: 2023-05-09 09:39+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -103,13 +103,13 @@ msgstr "გადაიღეთ სურათები და ვიდეო
 msgid "Snapshot's main interface"
 msgstr "Snapshot-ის მთავარი ინტერფეისი"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:252
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
 msgid "The GNOME Project"
 msgstr "პროექტი \"GNOME\""
 
 #: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
 #: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
@@ -175,33 +175,33 @@ msgstr "5წმ"
 msgid "10s"
 msgstr "10წმ"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_გამართვა"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "_კლავიატურის მალსახმობები"
 
-#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "Snapshot-ის _შესახებ"
 
-#: data/resources/ui/gallery.ui:51
+#: data/resources/ui/gallery.ui:42
 msgid "Back"
 msgstr "უკან"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:99
-msgid "Open in Image Viewer"
-msgstr "სურათების გამხსნელში გახსნა"
-
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:79
 msgid "Previous Image"
 msgstr "წინა გამოსახულება"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:91
 msgid "Next Image"
 msgstr "შემდეგი გამოსახულება"
+
+#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+msgid "Open in Image Viewer"
+msgstr "სურათების გამხსნელში გახსნა"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -295,11 +295,31 @@ msgstr "წინა"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/camera.rs:441
+#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:19
+msgid "Photo from"
+msgstr "სურათის თარიღი"
+
+#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
+#: src/utils.rs:25
+msgid "Photo"
+msgstr "სურათი"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:35
+msgid "Recording from"
+msgstr "ჩანაწერის დრო"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
+#: src/utils.rs:41
+msgid "Recording"
+msgstr "ჩანაწერი"
+
+#: src/widgets/camera.rs:472
 msgid "Could not play camera stream"
 msgstr "კამერის ვიდეონაკადის დაკვრის შეცდომა"
 
-#: src/widgets/gallery.rs:101
+#: src/widgets/gallery.rs:90
 msgid "Open in Video Player"
 msgstr "ვიდეოდამკვრელით გახსნა"
 
@@ -311,11 +331,11 @@ msgstr "ჩაწერის დაწყება"
 msgid "Stop Recording"
 msgstr "ჩაწერის გაჩერება"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:294
+#: src/widgets/window.rs:68 src/widgets/window.rs:295
 msgid "Could not take picture"
 msgstr "სურათის გადაღება შეუძლებელია"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:298
+#: src/widgets/window.rs:72 src/widgets/window.rs:299
 msgid "Could not record video"
 msgstr "ვიდეოს ჩაწერა შეუძლებელია"
 
