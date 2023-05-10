@@ -16,6 +16,7 @@
   <bug-database rdf:resource="https://gitlab.gnome.org/Incubator/snapshot/-/issues" />
   <download-page rdf:resource="http://download.gnome.org/sources/snapshot" />
 
+  <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />
   <programming-language>Rust</programming-language>
   <platform>GTK 4</platform>
   <platform>Libadwaita</platform>
