@@ -142,8 +142,13 @@ mod imp {
                         .set_orientation(gtk::Orientation::Horizontal);
 
                     self.sidebar_horizontal_end.set_visible(true);
-                    self.sidebar_horizontal_end
-                        .set_start_widget(Some(&self.countdown_button.get()));
+
+                    let window_controls = gtk::WindowControls::new(gtk::PackType::Start);
+                    let box_ = gtk::Box::new(gtk::Orientation::Horizontal, 6);
+                    box_.append(&window_controls);
+                    box_.append(&self.countdown_button.get());
+
+                    self.sidebar_horizontal_end.set_start_widget(Some(&box_));
                     self.sidebar_horizontal_end
                         .set_center_widget(Some(&self.camera_controls.get()));
                     self.sidebar_horizontal_end
