@@ -70,6 +70,7 @@ mod imp {
                         CaptureMode::Video => {
                             log::error!("Could not record video: {err}");
                             window.send_toast(&gettext("Could not record video"));
+                            window.imp().recording_active.set(false);
                         }
                     }
                 };
@@ -297,6 +298,7 @@ impl Window {
                             CaptureMode::Video => {
                                 log::error!("Could not record video: {err}");
                                 window.send_toast(&gettext("Could not record video"));
+                                window.imp().recording_active.set(false);
                             }
                         }
                     };
