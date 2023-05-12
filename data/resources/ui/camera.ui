@@ -238,6 +238,12 @@
                             </child>
                           </object>
                         </child>
+                        <child type="start">
+                          <object class="GtkWindowControls">
+                            <property name="valign">center</property>
+                            <property name="side">start</property>
+                          </object>
+                        </child>
                         <child type="end">
                           <object class="GtkBox">
                             <property name="orientation">horizontal</property>
@@ -260,7 +266,7 @@
                             </child>
                             <child>
                               <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
+                                <property name="side">end</property>
                                 <property name="valign">center</property>
                               </object>
                             </child>
@@ -346,7 +352,7 @@
                             </child>
                             <child>
                               <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
+                                <property name="side">end</property>
                                 <property name="valign">center</property>
                               </object>
                             </child>
