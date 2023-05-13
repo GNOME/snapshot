@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-29 09:16+0000\n"
-"PO-Revision-Date: 2023-04-29 14:37+0300\n"
+"POT-Creation-Date: 2023-05-08 20:50+0000\n"
+"PO-Revision-Date: 2023-05-13 11:45+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:246
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -57,34 +57,42 @@ msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Toistetaanko suljinääni kuvia ottaessa"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Näytä asetelmaviivat"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Näytetäänkö asetelmaviivat kameraa käytettäessä"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "Ajastimen laskin"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Ajastimen viive sekunneissa kuvia ottaessa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "Kaappaustila"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "Otetaanko kuvia vai videoita"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "Kuvamuoto"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Tallennetaanko kuvat png- vai jpeg-muodossa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "Videomuoto"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Tallennetaanko videot mp4- vai webm-muodossa"
 
@@ -96,13 +104,13 @@ msgstr "Ota kuvia ja videoita tietokoneellasi, tablet-laitteella tai puhelimella
 msgid "Snapshot's main interface"
 msgstr "Snapshotin käyttöliittymä"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
 msgid "The GNOME Project"
 msgstr "Gnome-projekti"
 
 #: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
 #: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "Päävalikko"
 
@@ -125,7 +133,7 @@ msgid "Recording Mode"
 msgstr "Tallennustila"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:509 data/resources/ui/camera.ui:536
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
 msgid "Countdown"
 msgstr "Ajastin"
 
@@ -134,63 +142,67 @@ msgid "Open Gallery"
 msgstr "Avaa galleria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Ota kuva"
 
-#. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:469 data/resources/ui/camera.ui:484
+#: data/resources/ui/camera.ui:469
 msgid "Select Camera"
 msgstr "Valitse kamera"
 
+#: data/resources/ui/camera.ui:483
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Vaihda kameraa"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:539
+#: data/resources/ui/camera.ui:542
 msgid "None"
 msgstr "Ei mitään"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:544
+#: data/resources/ui/camera.ui:547
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:549
+#: data/resources/ui/camera.ui:552
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:554
+#: data/resources/ui/camera.ui:557
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:562 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: data/resources/ui/camera.ui:566 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: data/resources/ui/camera.ui:570 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "_Tietoja - Snapshot"
 
-#: data/resources/ui/gallery.ui:51
+#: data/resources/ui/gallery.ui:42
 msgid "Back"
 msgstr "Edellinen"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "Avaa kuvakatselimella"
-
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:79
 msgid "Previous Image"
 msgstr "Edellinen kuva"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:91
 msgid "Next Image"
 msgstr "Seuraava kuva"
+
+#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+msgid "Open in Image Viewer"
+msgstr "Avaa kuvakatselimella"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -203,6 +215,10 @@ msgstr "Kamera"
 #: data/resources/ui/preferences_window.ui:17
 msgid "Play Shutter Sound"
 msgstr "Toista suljinääni"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "Show Composition Guidelines"
+msgstr "Näytä asetelmaviivat"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -249,22 +265,27 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Ota kuva tai aloita tallennus"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Näytä/piilota asetelmaviivat"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galleria"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Avaa/sulje galleria"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Seuraava"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Edellinen"
@@ -275,18 +296,50 @@ msgstr "Edellinen"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/gallery.rs:99
+#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:19
+msgid "Photo from"
+msgstr "Valokuva -"
+
+#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
+#: src/utils.rs:25
+msgid "Photo"
+msgstr "Valokuva"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:35
+msgid "Recording from"
+msgstr "Tallenne -"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
+#: src/utils.rs:41
+msgid "Recording"
+msgstr "Tallenne"
+
+#: src/widgets/camera.rs:472
+msgid "Could not play camera stream"
+msgstr "Kameran suoratoistoa ei voi toistaa"
+
+#: src/widgets/gallery.rs:90
 msgid "Open in Video Player"
 msgstr "Avaa videosoittimessa"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Aloita tallennus"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Pysäytä tallennus"
 
-#: src/widgets/window.rs:237
+#: src/widgets/window.rs:68 src/widgets/window.rs:295
+msgid "Could not take picture"
+msgstr "Kuvaa ei voitu ottaa"
+
+#: src/widgets/window.rs:72 src/widgets/window.rs:299
+msgid "Could not record video"
+msgstr "Videota ei voitu tallentaa"
+
+#: src/widgets/window.rs:251
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
