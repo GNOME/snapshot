@@ -3,6 +3,7 @@
 mod config;
 mod application;
 mod enums;
+mod i18n;
 mod utils;
 mod widgets;
 

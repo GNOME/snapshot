@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use gettextrs::gettext;
 use gst::prelude::*;
 use gtk::prelude::*;
 use once_cell::sync::Lazy;
@@ -8,38 +7,45 @@ use std::path::PathBuf;
 use anyhow::Context;
 use gtk::glib;
 
+use crate::i18n::i18n_f;
+
+const DATE_FORMAT: &str = "%Y-%m-%d %H-%M-%S.%f";
+
 pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
     // Alternatively check
     // https://gitlab.gnome.org/sdroege/las-workshop-2019/-/blob/master/src/pipeline.rs.
     let format = picture_format.as_str();
-    if let Ok(date_time) = glib::DateTime::now_local() {
-        format!(
-            "{} {}.{format}",
-            // TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
-            gettext("Photo from"),
-            date_time.format("%Y-%m-%d %H-%M-%S.%f").unwrap()
-        )
+    let file_name = if let Ok(date_time) = glib::DateTime::now_local() {
+        let f_date = date_time.format(DATE_FORMAT).unwrap();
+        // TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+        // from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+        i18n_f("Photo from {date}", &[("date", &f_date)])
     } else {
-        let rand = glib::random_int_range(0, 999999);
-        // TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
-        format!("{} {rand}.{format}", gettext("Photo"))
-    }
+        let rand = glib::random_int_range(0, 999999).to_string();
+        // TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+        // "Photo 12345" and it will be used as a file name.
+        i18n_f("Photo {number}", &[("number", &rand)])
+    };
+
+    format!("{file_name}.{format}")
 }
 
 pub fn video_file_name(video_format: crate::VideoFormat) -> String {
     let format = video_format.as_str();
-    if let Ok(date_time) = glib::DateTime::now_local() {
-        format!(
-            "{} {}.{format}",
-            // TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
-            gettext("Recording from"),
-            date_time.format("%Y-%m-%d %H-%M-%S.%f").unwrap()
-        )
+    let file_name = if let Ok(date_time) = glib::DateTime::now_local() {
+        let f_date = date_time.format(DATE_FORMAT).unwrap();
+        // TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+        // "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+        // file name.
+        i18n_f("Recording from {date}", &[("date", &f_date)])
     } else {
-        let rand = glib::random_int_range(0, 999999);
-        // TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
-        format!("{} {rand}.{format}", gettext("Recording"))
-    }
+        let rand = glib::random_int_range(0, 999999).to_string();
+        // TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+        // "Recording 12345" and it will be used as a file name.
+        i18n_f("Recording {number}", &[("number", &rand)])
+    };
+
+    format!("{file_name}.{format}")
 }
 
 // TODO These should return a result so we stop the file saving process
