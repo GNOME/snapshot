@@ -88,8 +88,24 @@
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
+                                <property name="side">start</property>
                                 <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="side">end</property>
+                                <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
                               </object>
                             </child>
                             <child>
@@ -376,8 +392,24 @@
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
+                                <property name="side">start</property>
                                 <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="side">end</property>
+                                <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
                               </object>
                             </child>
                             <child>
