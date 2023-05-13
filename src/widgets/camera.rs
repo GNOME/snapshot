@@ -151,6 +151,11 @@ mod imp {
                     self.vertical_end_menu_button.set_visible(true);
                     self.vertical_end_toggles.set_visible(true);
                     self.vertical_end_countdown_button.set_visible(true);
+
+                    self.camera_controls.set_margin_start(0);
+                    self.camera_controls.set_margin_end(0);
+                    self.camera_controls.set_margin_top(12);
+                    self.camera_controls.set_margin_bottom(12);
                 }
                 crate::Breakpoint::DualVertical => {
                     self.camera_controls
@@ -175,6 +180,11 @@ mod imp {
                     self.vertical_end_menu_button.set_visible(false);
                     self.vertical_end_toggles.set_visible(false);
                     self.vertical_end_countdown_button.set_visible(false);
+
+                    self.camera_controls.set_margin_start(0);
+                    self.camera_controls.set_margin_end(0);
+                    self.camera_controls.set_margin_top(12);
+                    self.camera_controls.set_margin_bottom(12);
                 }
                 crate::Breakpoint::SingleHorizontal => {
                     self.camera_controls
@@ -198,6 +208,11 @@ mod imp {
                     self.horizontal_start_countdown_button.set_visible(false);
                     self.horizontal_start_menu_button.set_visible(false);
                     self.horizontal_end_countdown_button.set_visible(true);
+
+                    self.camera_controls.set_margin_start(12);
+                    self.camera_controls.set_margin_end(12);
+                    self.camera_controls.set_margin_top(0);
+                    self.camera_controls.set_margin_bottom(0);
                 }
                 crate::Breakpoint::DualHorizontal => {
                     self.camera_controls
@@ -221,6 +236,11 @@ mod imp {
                     self.horizontal_start_countdown_button.set_visible(true);
                     self.horizontal_start_menu_button.set_visible(true);
                     self.horizontal_end_countdown_button.set_visible(false);
+
+                    self.camera_controls.set_margin_start(12);
+                    self.camera_controls.set_margin_end(12);
+                    self.camera_controls.set_margin_top(0);
+                    self.camera_controls.set_margin_bottom(0);
                 }
             }
 
