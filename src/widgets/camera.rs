@@ -52,8 +52,6 @@ mod imp {
 
         #[template_child]
         pub camera_controls: TemplateChild<gtk::Box>,
-        #[template_child]
-        pub countdown_button: TemplateChild<gtk::MenuButton>,
 
         #[template_child]
         pub sidebar_horizontal_start: TemplateChild<gtk::CenterBox>,
@@ -65,11 +63,23 @@ mod imp {
         pub sidebar_vertical_end: TemplateChild<gtk::CenterBox>,
 
         #[template_child]
-        pub horizontal_start_countdown_button: TemplateChild<gtk::MenuButton>,
+        pub horizontal_start_countdown_button: TemplateChild<gtk::Widget>,
         #[template_child]
-        pub horizontal_start_menu_button: TemplateChild<gtk::MenuButton>,
+        pub horizontal_start_menu_button: TemplateChild<gtk::Widget>,
         #[template_child]
-        pub horizontal_end_countdown_button: TemplateChild<gtk::MenuButton>,
+        pub horizontal_end_countdown_button: TemplateChild<gtk::Widget>,
+
+        #[template_child]
+        pub vertical_start_menu_button: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub vertical_end_menu_button: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub vertical_end_toggles: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub vertical_end_countdown_button: TemplateChild<gtk::Widget>,
+
+        #[template_child]
+        pub vertical_end_window_controls: TemplateChild<gtk::WindowControls>,
     }
 
     #[glib::object_subclass]
@@ -112,22 +122,35 @@ mod imp {
             self.sidebar_vertical_end.set_visible(false);
             self.sidebar_vertical_end
                 .set_center_widget(gtk::Widget::NONE);
-            self.sidebar_vertical_end.set_end_widget(gtk::Widget::NONE);
 
             match value {
                 crate::Breakpoint::SingleVertical => {
                     self.camera_controls
                         .set_orientation(gtk::Orientation::Vertical);
 
+                    self.sidebar_vertical_start.set_visible(true);
                     self.sidebar_vertical_end.set_visible(true);
+
+                    self.sidebar_vertical_start
+                        .center_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(false));
+                    self.sidebar_vertical_start
+                        .end_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(false));
+
                     self.sidebar_vertical_end
                         .start_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(true));
                     self.sidebar_vertical_end
                         .set_center_widget(Some(&self.camera_controls.get()));
-                    self.sidebar_vertical_end
-                        .set_end_widget(Some(&self.countdown_button.get()));
+
+                    self.vertical_start_menu_button.set_visible(false);
+                    self.vertical_end_menu_button.set_visible(true);
+                    self.vertical_end_toggles.set_visible(true);
+                    self.vertical_end_countdown_button.set_visible(true);
                 }
                 crate::Breakpoint::DualVertical => {
                     self.camera_controls
@@ -135,12 +158,23 @@ mod imp {
 
                     self.sidebar_vertical_start.set_visible(true);
                     self.sidebar_vertical_end.set_visible(true);
-                    self.sidebar_vertical_end
-                        .start_widget()
+
+                    self.sidebar_vertical_start
+                        .center_widget()
                         .iter()
-                        .for_each(|widget| widget.set_visible(false));
+                        .for_each(|widget| widget.set_visible(true));
+                    self.sidebar_vertical_start
+                        .end_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(true));
+
                     self.sidebar_vertical_end
                         .set_center_widget(Some(&self.camera_controls.get()));
+
+                    self.vertical_start_menu_button.set_visible(true);
+                    self.vertical_end_menu_button.set_visible(false);
+                    self.vertical_end_toggles.set_visible(false);
+                    self.vertical_end_countdown_button.set_visible(false);
                 }
                 crate::Breakpoint::SingleHorizontal => {
                     self.camera_controls
@@ -286,6 +320,16 @@ mod imp {
                     "draw-guidelines",
                 )
                 .build();
+
+            // TODO remove if
+            // https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5960 ever
+            // lands.
+            obj.update_window_controls();
+            obj.settings().connect_gtk_decoration_layout_notify(
+                glib::clone!(@weak obj => move |_| {
+                    obj.update_window_controls();
+                }),
+            );
         }
 
         fn dispose(&self) {
@@ -496,6 +540,18 @@ impl Camera {
                 window.send_toast(&gettext("Could not play camera stream"));
             }
         }
+    }
+
+    fn update_window_controls(&self) {
+        let imp = self.imp();
+
+        let decoration_layout = self.settings().gtk_decoration_layout().and_then(|layout| {
+            layout
+                .split_once(':')
+                .map(|(_start, end)| end.split(',').rev().collect::<Vec<_>>().join(","))
+        });
+        imp.vertical_end_window_controls
+            .set_decoration_layout(decoration_layout.as_deref());
     }
 }
 

@@ -88,12 +88,16 @@
                             <property name="spacing">6</property>
                             <child>
                               <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
                                 <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkMenuButton">
+                              <object class="GtkMenuButton" id="vertical_start_menu_button">
                                 <property name="icon-name">open-menu-symbolic</property>
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
@@ -387,13 +391,17 @@
                             <property name="valign">center</property>
                             <property name="spacing">6</property>
                             <child>
-                              <object class="GtkWindowControls">
-                                <property name="decoration-layout">close</property>
+                              <object class="GtkWindowControls" id="vertical_end_window_controls">
                                 <property name="valign">center</property>
+                                <property name="layout-manager">
+                                  <object class="GtkBoxLayout">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkMenuButton">
+                              <object class="GtkMenuButton" id="vertical_end_menu_button">
                                 <property name="icon-name">open-menu-symbolic</property>
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
@@ -406,7 +414,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkBox">
+                              <object class="GtkBox" id="vertical_end_toggles">
                                 <property name="orientation">vertical</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
@@ -518,7 +526,7 @@
                           </object>
                         </child>
                         <child type="end">
-                          <object class="GtkMenuButton" id="countdown_button">
+                          <object class="GtkMenuButton" id="vertical_end_countdown_button">
                             <property name="menu-model">countdown_menu</property>
                             <property name="icon-name">camera-timer-symbolic</property>
                             <property name="valign">center</property>
