@@ -128,6 +128,7 @@
                                 <property name="tooltip-text" translatable="yes">Picture Mode</property>
                                 <child>
                                   <object class="GtkShortcutController">
+                                    <property name="scope">global</property>
                                     <child>
                                       <object class="GtkShortcut">
                                         <property name="trigger">p</property>
@@ -146,6 +147,7 @@
                                 <property name="tooltip-text" translatable="yes">Recording Mode</property>
                                 <child>
                                   <object class="GtkShortcutController">
+                                    <property name="scope">global</property>
                                     <child>
                                       <object class="GtkShortcut">
                                         <property name="trigger">r</property>
@@ -223,6 +225,7 @@
                                 <property name="tooltip-text" translatable="yes">Picture Mode</property>
                                 <child>
                                   <object class="GtkShortcutController">
+                                    <property name="scope">global</property>
                                     <child>
                                       <object class="GtkShortcut">
                                         <property name="trigger">p</property>
@@ -241,6 +244,7 @@
                                 <property name="tooltip-text" translatable="yes">Recording Mode</property>
                                 <child>
                                   <object class="GtkShortcutController">
+                                    <property name="scope">global</property>
                                     <child>
                                       <object class="GtkShortcut">
                                         <property name="trigger">r</property>
@@ -329,6 +333,7 @@
                                     <property name="tooltip-text" translatable="yes">Picture Mode</property>
                                     <child>
                                       <object class="GtkShortcutController">
+                                        <property name="scope">global</property>
                                         <child>
                                           <object class="GtkShortcut">
                                             <property name="trigger">p</property>
@@ -347,6 +352,7 @@
                                     <property name="tooltip-text" translatable="yes">Recording Mode</property>
                                     <child>
                                       <object class="GtkShortcutController">
+                                        <property name="scope">global</property>
                                         <child>
                                           <object class="GtkShortcut">
                                             <property name="trigger">r</property>
@@ -430,6 +436,7 @@
                                     <property name="tooltip-text" translatable="yes">Picture Mode</property>
                                     <child>
                                       <object class="GtkShortcutController">
+                                        <property name="scope">global</property>
                                         <child>
                                           <object class="GtkShortcut">
                                             <property name="trigger">p</property>
@@ -448,6 +455,7 @@
                                     <property name="tooltip-text" translatable="yes">Recording Mode</property>
                                     <child>
                                       <object class="GtkShortcutController">
+                                        <property name="scope">global</property>
                                         <child>
                                           <object class="GtkShortcut">
                                             <property name="trigger">r</property>
