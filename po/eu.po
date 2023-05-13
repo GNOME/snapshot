@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-14 22:49+0000\n"
-"PO-Revision-Date: 2023-04-15 14:04+0000\n"
+"POT-Creation-Date: 2023-05-08 20:50+0000\n"
+"PO-Revision-Date: 2023-05-13 14:04+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -17,9 +17,9 @@ msgstr "Project-Id-Version: Snapshot main\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
+#: src/widgets/window.rs:246
 msgid "Snapshot"
-msgstr "Pantaila-argazkia"
+msgstr "Snapshot"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -31,57 +31,65 @@ msgstr "Sortu irudiak eta bideoak"
 msgid "picture;photos;camera;"
 msgstr "irudia;argazkiak;kamera;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Leihoaren zabalera lehenetsia"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Leihoaren altuera lehenetsia"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Maximizatutako leihoaren portaera lehenetsia"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Erreproduzitu obturadorearen soinua"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Obturadorearen soinu bat entzungo den ala ez irudiak sortzean"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Erakutsi konposizio-gidalerroak"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Kamera erabiltzean konposizio-gidalerroak erabiliko diren ala ez"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "Atzera-kontaketaren tenporizadorea"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Argazkia sortu aurreko atzera-kontaketaren iraupena, segundotan"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "Kaptura modua"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "Irudiak ala bideoak sortuko diren"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "Irudiaren formatua"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Irudiak png ala jpeg gisa gordeko diren"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "Bideoaren formatua"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Bideoak mp4 ala webm gisa gordeko diren"
 
@@ -90,15 +98,16 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Sortu irudiak eta bideoak zure ordenagailuan, tabletan edo telefonoan."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Camera's main interface"
-msgstr "Kameraren interfaze nagusia"
+msgid "Snapshot's main interface"
+msgstr "Snapshot aplikazioaren interfaze nagusia"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
+msgid "The GNOME Project"
+msgstr "GNOME proiektua"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:151
-#: data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "Menu nagusia"
 
@@ -110,79 +119,87 @@ msgstr "Ez da kamerarik aurkitu"
 msgid "Connect a camera device"
 msgstr "Konektatu kamera-gailu batekin"
 
-#: data/resources/ui/camera.ui:86 data/resources/ui/camera.ui:241
-msgid "Countdown"
-msgstr "Atzera-kontaketa"
-
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
 msgid "Picture Mode"
 msgstr "Irudien modua"
 
-#: data/resources/ui/camera.ui:125
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
 msgid "Recording Mode"
 msgstr "Grabatzeko modua"
 
-#: data/resources/ui/camera.ui:185
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
+msgid "Countdown"
+msgstr "Atzera-kontaketa"
+
+#: data/resources/ui/camera.ui:450
 msgid "Open Gallery"
 msgstr "Ireki galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:191 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Sortu irudia"
 
-#: data/resources/ui/camera.ui:203
+#: data/resources/ui/camera.ui:469
 msgid "Select Camera"
 msgstr "Hautatu kamera"
 
+#: data/resources/ui/camera.ui:483
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Aldatu kamera"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:542
 msgid "None"
 msgstr "Bat ere ez"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:249
+#: data/resources/ui/camera.ui:547
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:254
+#: data/resources/ui/camera.ui:552
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:259
+#: data/resources/ui/camera.ui:557
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:267 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
-#: data/resources/ui/camera.ui:271 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "Las_ter-teklak"
 
-#: data/resources/ui/camera.ui:275 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
-msgstr "Pantaila-argazkia aplikazioari _buruz"
+msgstr "Snapshot aplikazioari _buruz"
 
-#: data/resources/ui/gallery.ui:51
+#: data/resources/ui/gallery.ui:42
 msgid "Back"
 msgstr "Atzera"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "Ireki irudi-ikustailean"
-
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:79
 msgid "Previous Image"
 msgstr "Aurreko irudia"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:91
 msgid "Next Image"
 msgstr "Hurrengo irudia"
+
+#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+msgid "Open in Image Viewer"
+msgstr "Ireki irudi-ikustailean"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -193,12 +210,12 @@ msgid "Camera"
 msgstr "Kamera"
 
 #: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Irudiaren formatua"
-
-#: data/resources/ui/preferences_window.ui:32
 msgid "Play Shutter Sound"
 msgstr "Erreproduzitu obturadorearen soinua"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "Show Composition Guidelines"
+msgstr "Erakutsi konposizio-gidalerroak"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -245,54 +262,90 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Sortu irudia edo hasi grabatzen"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Erakutsi/Ezkutatu konposizio-gidalerroak"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galeria"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Ireki/itxi galeria"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Hurrengoa"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Aurrekoa"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
-
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:33
+#: src/enums.rs:39
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/gallery.rs:99
+#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:19
+msgid "Photo from"
+msgstr "Argazkiaren jatorria:"
+
+#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
+#: src/utils.rs:25
+msgid "Photo"
+msgstr "Argazkia"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
+#: src/utils.rs:35
+msgid "Recording from"
+msgstr "Grabazioaren jatorria:"
+
+#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
+#: src/utils.rs:41
+msgid "Recording"
+msgstr "Grabazioa"
+
+#: src/widgets/camera.rs:472
+msgid "Could not play camera stream"
+msgstr "Ezin da kameraren korrontea erreproduzitu"
+
+#: src/widgets/gallery.rs:90
 msgid "Open in Video Player"
 msgstr "Ireki bideo-erreproduzigailuan"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Hasi grabazioa"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Gelditu grabazioa"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:68 src/widgets/window.rs:295
+msgid "Could not take picture"
+msgstr "Ezin da argazkia egin"
+
+#: src/widgets/window.rs:72 src/widgets/window.rs:299
+msgid "Could not record video"
+msgstr "Ezin da bideoa grabatu"
+
+#: src/widgets/window.rs:251
 msgid "translator-credits"
 msgstr "translator-credits"
 
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "GNOME proiektua"
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "Picture Format"
+#~ msgstr "Irudiaren formatua"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
