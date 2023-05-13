@@ -63,6 +63,13 @@ mod imp {
         pub sidebar_vertical_start: TemplateChild<gtk::CenterBox>,
         #[template_child]
         pub sidebar_vertical_end: TemplateChild<gtk::CenterBox>,
+
+        #[template_child]
+        pub horizontal_start_countdown_button: TemplateChild<gtk::MenuButton>,
+        #[template_child]
+        pub horizontal_start_menu_button: TemplateChild<gtk::MenuButton>,
+        #[template_child]
+        pub horizontal_end_countdown_button: TemplateChild<gtk::MenuButton>,
     }
 
     #[glib::object_subclass]
@@ -99,8 +106,6 @@ mod imp {
             self.sidebar_vertical_start.set_visible(false);
 
             self.sidebar_horizontal_end.set_visible(false);
-            self.sidebar_horizontal_end
-                .set_start_widget(gtk::Widget::NONE);
             self.sidebar_horizontal_end
                 .set_center_widget(gtk::Widget::NONE);
 
@@ -141,20 +146,24 @@ mod imp {
                     self.camera_controls
                         .set_orientation(gtk::Orientation::Horizontal);
 
+                    self.sidebar_horizontal_start.set_visible(true);
                     self.sidebar_horizontal_end.set_visible(true);
 
-                    let window_controls = gtk::WindowControls::new(gtk::PackType::Start);
-                    let box_ = gtk::Box::new(gtk::Orientation::Horizontal, 6);
-                    box_.append(&window_controls);
-                    box_.append(&self.countdown_button.get());
+                    self.sidebar_horizontal_start
+                        .center_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(false));
 
-                    self.sidebar_horizontal_end.set_start_widget(Some(&box_));
                     self.sidebar_horizontal_end
                         .set_center_widget(Some(&self.camera_controls.get()));
                     self.sidebar_horizontal_end
                         .end_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(true));
+
+                    self.horizontal_start_countdown_button.set_visible(false);
+                    self.horizontal_start_menu_button.set_visible(false);
+                    self.horizontal_end_countdown_button.set_visible(true);
                 }
                 crate::Breakpoint::DualHorizontal => {
                     self.camera_controls
@@ -162,12 +171,22 @@ mod imp {
 
                     self.sidebar_horizontal_start.set_visible(true);
                     self.sidebar_horizontal_end.set_visible(true);
+
+                    self.sidebar_horizontal_start
+                        .center_widget()
+                        .iter()
+                        .for_each(|widget| widget.set_visible(true));
+
                     self.sidebar_horizontal_end
                         .set_center_widget(Some(&self.camera_controls.get()));
                     self.sidebar_horizontal_end
                         .end_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(false));
+
+                    self.horizontal_start_countdown_button.set_visible(true);
+                    self.horizontal_start_menu_button.set_visible(true);
+                    self.horizontal_end_countdown_button.set_visible(false);
                 }
             }
 

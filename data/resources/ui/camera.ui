@@ -179,16 +179,27 @@
                           <class name="controlsframe"/>
                         </style>
                         <child type="start">
-                          <object class="GtkMenuButton">
-                            <property name="menu-model">countdown_menu</property>
-                            <property name="icon-name">camera-timer-symbolic</property>
-                            <property name="valign">center</property>
-                            <property name="halign">center</property>
-                            <property name="tooltip-text" translatable="yes">Countdown</property>
-                            <style>
-                              <class name="circular"/>
-                              <class name="flat"/>
-                            </style>
+                          <object class="GtkBox">
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkWindowControls">
+                                <property name="valign">center</property>
+                                <property name="side">start</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuButton" id="horizontal_start_countdown_button">
+                                <property name="menu-model">countdown_menu</property>
+                                <property name="icon-name">camera-timer-symbolic</property>
+                                <property name="valign">center</property>
+                                <property name="halign">center</property>
+                                <property name="tooltip-text" translatable="yes">Countdown</property>
+                                <style>
+                                  <class name="circular"/>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child type="center">
@@ -238,12 +249,6 @@
                             </child>
                           </object>
                         </child>
-                        <child type="start">
-                          <object class="GtkWindowControls">
-                            <property name="valign">center</property>
-                            <property name="side">start</property>
-                          </object>
-                        </child>
                         <child type="end">
                           <object class="GtkBox">
                             <property name="orientation">horizontal</property>
@@ -252,7 +257,7 @@
                             <property name="valign">center</property>
                             <property name="spacing">6</property>
                             <child>
-                              <object class="GtkMenuButton">
+                              <object class="GtkMenuButton" id="horizontal_start_menu_button">
                                 <property name="icon-name">open-menu-symbolic</property>
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
@@ -283,6 +288,19 @@
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
+                        <child type="start">
+                          <object class="GtkMenuButton" id="horizontal_end_countdown_button">
+                            <property name="menu-model">countdown_menu</property>
+                            <property name="icon-name">camera-timer-symbolic</property>
+                            <property name="valign">center</property>
+                            <property name="halign">center</property>
+                            <property name="tooltip-text" translatable="yes">Countdown</property>
+                            <style>
+                              <class name="circular"/>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
                         <child type="end">
                           <object class="GtkBox">
                             <property name="orientation">horizontal</property>
@@ -348,12 +366,6 @@
                                   <class name="circular" />
                                   <class name="flat" />
                                 </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkWindowControls">
-                                <property name="side">end</property>
-                                <property name="valign">center</property>
                               </object>
                             </child>
                           </object>
