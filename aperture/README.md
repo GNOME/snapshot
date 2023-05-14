@@ -4,4 +4,4 @@
 
 GTK Widget for cameras using gstreamer and pipewire
 
-Library used by [Snapshot](https://gitlab.gnome.org/Incubator/snapshot).
+Library used by [Snapshot](https://gitlab.gnome.org/GNOME/Incubator/snapshot).

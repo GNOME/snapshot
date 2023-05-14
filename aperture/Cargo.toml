@@ -6,7 +6,7 @@ edition = "2021"
 keywords = ["camera", "gtk", "gstreamer"]
 license = "GPL-3.0-or-later"
 name = "aperture"
-repository = "https://gitlab.gnome.org/Incubator/snapshot"
+repository = "https://gitlab.gnome.org/GNOME/Incubator/snapshot"
 documentation = "https://incubator.pages.gitlab.gnome.org/snapshot/doc/aperture/"
 version = "0.1.0"
 

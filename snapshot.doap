@@ -13,7 +13,7 @@
       Take pictures and videos on your computer, tablet, or phone.
   </description>
   <homepage rdf:resource="https://apps.gnome.org/app/org.gnome.Snapshot" />
-  <bug-database rdf:resource="https://gitlab.gnome.org/Incubator/snapshot/-/issues" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/issues" />
   <download-page rdf:resource="http://download.gnome.org/sources/snapshot" />
 
   <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />

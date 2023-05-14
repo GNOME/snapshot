@@ -6,7 +6,7 @@
 //!
 //! See also
 //!
-//! - [Snapshot](https://gitlab.gnome.org/Incubator/snapshot)
+//! - [Snapshot](https://gitlab.gnome.org/GNOME/Incubator/snapshot)
 //!
 //! # Usage
 //!
