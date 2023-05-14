@@ -103,7 +103,6 @@
                                 <property name="valign">center</property>
                                 <property name="tooltip-text" translatable="yes">Main Menu</property>
                                 <property name="primary">True</property>
-                                <property name="visible">False</property>
                                 <style>
                                   <class name="circular" />
                                   <class name="flat" />
@@ -117,7 +116,6 @@
                             <property name="orientation">vertical</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
-                            <property name="visible">False</property>
                             <style>
                               <class name="linked" />
                               <class name="picturevideotoggle" />
@@ -169,7 +167,6 @@
                             <property name="valign">center</property>
                             <property name="halign">center</property>
                             <property name="tooltip-text" translatable="yes">Countdown</property>
-                            <property name="visible">False</property>
                             <style>
                               <class name="circular"/>
                               <class name="flat"/>
@@ -182,7 +179,6 @@
                       <object class="GtkCenterBox" id="sidebar_horizontal_start">
                         <property name="orientation">horizontal</property>
                         <property name="valign">start</property>
-                        <property name="visible">False</property>
                         <style>
                           <class name="startcontrolsframe"/>
                           <class name="cameracontrols"/>
@@ -295,7 +291,6 @@
                       <object class="GtkCenterBox" id="sidebar_horizontal_end">
                         <property name="orientation">horizontal</property>
                         <property name="valign">end</property>
-                        <property name="visible">False</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
