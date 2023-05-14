@@ -112,25 +112,49 @@ mod imp {
                 return;
             }
 
-            self.sidebar_horizontal_start.set_visible(false);
-            self.sidebar_vertical_start.set_visible(false);
+            let is_vertical = matches!(
+                value,
+                crate::Breakpoint::SingleVertical | crate::Breakpoint::DualVertical
+            );
 
-            self.sidebar_horizontal_end.set_visible(false);
+            self.sidebar_vertical_start.set_visible(is_vertical);
+            self.sidebar_vertical_end.set_visible(is_vertical);
+
+            self.sidebar_horizontal_start.set_visible(!is_vertical);
+            self.sidebar_horizontal_end.set_visible(!is_vertical);
+
             self.sidebar_horizontal_end
                 .set_center_widget(gtk::Widget::NONE);
 
-            self.sidebar_vertical_end.set_visible(false);
             self.sidebar_vertical_end
                 .set_center_widget(gtk::Widget::NONE);
 
+            if is_vertical {
+                self.camera_controls
+                    .set_orientation(gtk::Orientation::Vertical);
+
+                self.camera_controls.set_margin_start(0);
+                self.camera_controls.set_margin_end(0);
+                self.camera_controls.set_margin_top(12);
+                self.camera_controls.set_margin_bottom(12);
+
+                self.sidebar_vertical_end
+                    .set_center_widget(Some(&self.camera_controls.get()));
+            } else {
+                self.camera_controls
+                    .set_orientation(gtk::Orientation::Horizontal);
+
+                self.camera_controls.set_margin_start(12);
+                self.camera_controls.set_margin_end(12);
+                self.camera_controls.set_margin_top(0);
+                self.camera_controls.set_margin_bottom(0);
+
+                self.sidebar_horizontal_end
+                    .set_center_widget(Some(&self.camera_controls.get()));
+            }
+
             match value {
                 crate::Breakpoint::SingleVertical => {
-                    self.camera_controls
-                        .set_orientation(gtk::Orientation::Vertical);
-
-                    self.sidebar_vertical_start.set_visible(true);
-                    self.sidebar_vertical_end.set_visible(true);
-
                     self.sidebar_vertical_start
                         .center_widget()
                         .iter()
@@ -144,26 +168,13 @@ mod imp {
                         .start_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(true));
-                    self.sidebar_vertical_end
-                        .set_center_widget(Some(&self.camera_controls.get()));
 
                     self.vertical_start_menu_button.set_visible(false);
                     self.vertical_end_menu_button.set_visible(true);
                     self.vertical_end_toggles.set_visible(true);
                     self.vertical_end_countdown_button.set_visible(true);
-
-                    self.camera_controls.set_margin_start(0);
-                    self.camera_controls.set_margin_end(0);
-                    self.camera_controls.set_margin_top(12);
-                    self.camera_controls.set_margin_bottom(12);
                 }
                 crate::Breakpoint::DualVertical => {
-                    self.camera_controls
-                        .set_orientation(gtk::Orientation::Vertical);
-
-                    self.sidebar_vertical_start.set_visible(true);
-                    self.sidebar_vertical_end.set_visible(true);
-
                     self.sidebar_vertical_start
                         .center_widget()
                         .iter()
@@ -173,33 +184,17 @@ mod imp {
                         .iter()
                         .for_each(|widget| widget.set_visible(true));
 
-                    self.sidebar_vertical_end
-                        .set_center_widget(Some(&self.camera_controls.get()));
-
                     self.vertical_start_menu_button.set_visible(true);
                     self.vertical_end_menu_button.set_visible(false);
                     self.vertical_end_toggles.set_visible(false);
                     self.vertical_end_countdown_button.set_visible(false);
-
-                    self.camera_controls.set_margin_start(0);
-                    self.camera_controls.set_margin_end(0);
-                    self.camera_controls.set_margin_top(12);
-                    self.camera_controls.set_margin_bottom(12);
                 }
                 crate::Breakpoint::SingleHorizontal => {
-                    self.camera_controls
-                        .set_orientation(gtk::Orientation::Horizontal);
-
-                    self.sidebar_horizontal_start.set_visible(true);
-                    self.sidebar_horizontal_end.set_visible(true);
-
                     self.sidebar_horizontal_start
                         .center_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(false));
 
-                    self.sidebar_horizontal_end
-                        .set_center_widget(Some(&self.camera_controls.get()));
                     self.sidebar_horizontal_end
                         .end_widget()
                         .iter()
@@ -208,26 +203,13 @@ mod imp {
                     self.horizontal_start_countdown_button.set_visible(false);
                     self.horizontal_start_menu_button.set_visible(false);
                     self.horizontal_end_countdown_button.set_visible(true);
-
-                    self.camera_controls.set_margin_start(12);
-                    self.camera_controls.set_margin_end(12);
-                    self.camera_controls.set_margin_top(0);
-                    self.camera_controls.set_margin_bottom(0);
                 }
                 crate::Breakpoint::DualHorizontal => {
-                    self.camera_controls
-                        .set_orientation(gtk::Orientation::Horizontal);
-
-                    self.sidebar_horizontal_start.set_visible(true);
-                    self.sidebar_horizontal_end.set_visible(true);
-
                     self.sidebar_horizontal_start
                         .center_widget()
                         .iter()
                         .for_each(|widget| widget.set_visible(true));
 
-                    self.sidebar_horizontal_end
-                        .set_center_widget(Some(&self.camera_controls.get()));
                     self.sidebar_horizontal_end
                         .end_widget()
                         .iter()
@@ -236,11 +218,6 @@ mod imp {
                     self.horizontal_start_countdown_button.set_visible(true);
                     self.horizontal_start_menu_button.set_visible(true);
                     self.horizontal_end_countdown_button.set_visible(false);
-
-                    self.camera_controls.set_margin_start(12);
-                    self.camera_controls.set_margin_end(12);
-                    self.camera_controls.set_margin_top(0);
-                    self.camera_controls.set_margin_bottom(0);
                 }
             }
 
