@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-08 20:50+0000\n"
-"PO-Revision-Date: 2023-05-09 09:00+0200\n"
+"POT-Creation-Date: 2023-05-13 14:48+0000\n"
+"PO-Revision-Date: 2023-05-14 02:02+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -22,8 +22,8 @@ msgstr ""
 "X-Poedit-SourceCharset: ISO-8859-1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
+#: src/widgets/window.rs:247
 msgid "Snapshot"
 msgstr "Posnetek"
 
@@ -109,13 +109,13 @@ msgstr ""
 msgid "Snapshot's main interface"
 msgstr "Glavni vmesnik Posnetka"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
 #: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:259 data/resources/ui/camera.ui:345
+#: data/resources/ui/camera.ui:388 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "Glavni meni"
 
@@ -128,68 +128,68 @@ msgid "Connect a camera device"
 msgstr "Povežite kamero"
 
 #: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
+#: data/resources/ui/camera.ui:307 data/resources/ui/camera.ui:410
 msgid "Picture Mode"
 msgstr "Način slikanja"
 
 #: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
+#: data/resources/ui/camera.ui:325 data/resources/ui/camera.ui:428
 msgid "Recording Mode"
 msgstr "Način snemanja"
 
 #: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
+#: data/resources/ui/camera.ui:514 data/resources/ui/camera.ui:545
 msgid "Countdown"
 msgstr "Odštevalnik"
 
-#: data/resources/ui/camera.ui:450
+#: data/resources/ui/camera.ui:456
 msgid "Open Gallery"
 msgstr "Odpri galerijo"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:462 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Naredi sliko"
 
-#: data/resources/ui/camera.ui:469
+#: data/resources/ui/camera.ui:475
 msgid "Select Camera"
 msgstr "Izberite kamero"
 
-#: data/resources/ui/camera.ui:483
+#: data/resources/ui/camera.ui:489
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Preklopi kamero"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:548
 msgid "None"
 msgstr "Prazno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:547
+#: data/resources/ui/camera.ui:553
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:552
+#: data/resources/ui/camera.ui:558
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:557
+#: data/resources/ui/camera.ui:563
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:571 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:575 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
-#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:579 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "_O programu Posnetek"
 
@@ -301,27 +301,34 @@ msgstr "Nazaj"
 msgid "JPEG"
 msgstr "JPEG"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:19
-msgid "Photo from"
-msgstr "Fotografija iz"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+#, fuzzy
+msgid "Photo from {date}"
+msgstr "Fotografija - {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
-#: src/utils.rs:25
-msgid "Photo"
-msgstr "Fotografija"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:27
+msgid "Photo {number}"
+msgstr "Fotografija {number}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:35
-msgid "Recording from"
-msgstr "Snemanje iz"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:40
+#, fuzzy
+msgid "Recording from {date}"
+msgstr "Posnetek z dne {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
-#: src/utils.rs:41
-msgid "Recording"
-msgstr "Snemanje"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:45
+msgid "Recording {number}"
+msgstr "Posnetek {number}"
 
-#: src/widgets/camera.rs:472
+#: src/widgets/camera.rs:477
 msgid "Could not play camera stream"
 msgstr "Predvajanje toka kamere ni bilo mogoče"
 
@@ -337,14 +344,14 @@ msgstr "Začni snemati"
 msgid "Stop Recording"
 msgstr "Ustavi snemanje"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:295
+#: src/widgets/window.rs:68 src/widgets/window.rs:296
 msgid "Could not take picture"
 msgstr "Slike ni mogoče zajeti"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:299
+#: src/widgets/window.rs:72 src/widgets/window.rs:300
 msgid "Could not record video"
 msgstr "Videa ni mogoče posneti"
 
-#: src/widgets/window.rs:251
+#: src/widgets/window.rs:252
 msgid "translator-credits"
 msgstr "Martin Srebotnjak <miles@filmsi.net>"
