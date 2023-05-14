@@ -108,10 +108,6 @@ mod imp {
         }
 
         fn set_breakpoint(&self, value: crate::Breakpoint) {
-            if value == self.breakpoint.replace(value) {
-                return;
-            }
-
             let is_vertical = matches!(
                 value,
                 crate::Breakpoint::SingleVertical | crate::Breakpoint::DualVertical
@@ -221,7 +217,9 @@ mod imp {
                 }
             }
 
-            self.obj().notify_breakpoint();
+            if value != self.breakpoint.replace(value) {
+                self.obj().notify_breakpoint();
+            }
         }
 
         #[template_callback]
@@ -327,6 +325,9 @@ mod imp {
                     obj.update_window_controls();
                 }),
             );
+
+            // This makes sure the default state is properly set.
+            obj.set_breakpoint(crate::Breakpoint::default());
         }
 
         fn dispose(&self) {
