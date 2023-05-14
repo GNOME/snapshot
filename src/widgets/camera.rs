@@ -108,9 +108,15 @@ mod imp {
         }
 
         fn set_breakpoint(&self, value: crate::Breakpoint) {
+            let obj = self.obj();
+
             let is_vertical = matches!(
                 value,
                 crate::Breakpoint::SingleVertical | crate::Breakpoint::DualVertical
+            );
+            let is_mobile = matches!(
+                value,
+                crate::Breakpoint::DualVertical | crate::Breakpoint::DualHorizontal
             );
 
             self.sidebar_vertical_start.set_visible(is_vertical);
@@ -147,6 +153,12 @@ mod imp {
 
                 self.sidebar_horizontal_end
                     .set_center_widget(Some(&self.camera_controls.get()));
+            }
+
+            if is_mobile {
+                obj.add_css_class("mobile");
+            } else {
+                obj.remove_css_class("mobile");
             }
 
             match value {
@@ -203,7 +215,7 @@ mod imp {
             }
 
             if value != self.breakpoint.replace(value) {
-                self.obj().notify_breakpoint();
+                obj.notify_breakpoint();
             }
         }
 
