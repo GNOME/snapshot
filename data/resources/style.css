@@ -49,6 +49,10 @@ camera .controlsframe {
   padding: 12px;
 }
 
+camera:not(.mobile) .startcontrolsframe {
+  background: none;
+}
+
 gallery .controlsframe {
   padding: 6px;
 }

@@ -75,6 +75,7 @@
                         <property name="orientation">vertical</property>
                         <property name="halign">start</property>
                         <style>
+                          <class name="startcontrolsframe"/>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
@@ -183,6 +184,7 @@
                         <property name="valign">start</property>
                         <property name="visible">False</property>
                         <style>
+                          <class name="startcontrolsframe"/>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
