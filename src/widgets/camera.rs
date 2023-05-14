@@ -151,19 +151,12 @@ mod imp {
 
             match value {
                 crate::Breakpoint::SingleVertical => {
-                    self.sidebar_vertical_start
-                        .center_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(false));
-                    self.sidebar_vertical_start
-                        .end_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(false));
-
-                    self.sidebar_vertical_end
-                        .start_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(true));
+                    if let Some(widget) = self.sidebar_vertical_start.center_widget() {
+                        widget.set_visible(false);
+                    }
+                    if let Some(widget) = self.sidebar_vertical_start.end_widget() {
+                        widget.set_visible(false);
+                    }
 
                     self.vertical_start_menu_button.set_visible(false);
                     self.vertical_end_menu_button.set_visible(true);
@@ -171,14 +164,12 @@ mod imp {
                     self.vertical_end_countdown_button.set_visible(true);
                 }
                 crate::Breakpoint::DualVertical => {
-                    self.sidebar_vertical_start
-                        .center_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(true));
-                    self.sidebar_vertical_start
-                        .end_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(true));
+                    if let Some(widget) = self.sidebar_vertical_start.center_widget() {
+                        widget.set_visible(true);
+                    }
+                    if let Some(widget) = self.sidebar_vertical_start.end_widget() {
+                        widget.set_visible(true);
+                    }
 
                     self.vertical_start_menu_button.set_visible(true);
                     self.vertical_end_menu_button.set_visible(false);
@@ -186,30 +177,24 @@ mod imp {
                     self.vertical_end_countdown_button.set_visible(false);
                 }
                 crate::Breakpoint::SingleHorizontal => {
-                    self.sidebar_horizontal_start
-                        .center_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(false));
-
-                    self.sidebar_horizontal_end
-                        .end_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(true));
+                    if let Some(widget) = self.sidebar_horizontal_start.center_widget() {
+                        widget.set_visible(false);
+                    }
+                    if let Some(widget) = self.sidebar_horizontal_end.end_widget() {
+                        widget.set_visible(true);
+                    }
 
                     self.horizontal_start_countdown_button.set_visible(false);
                     self.horizontal_start_menu_button.set_visible(false);
                     self.horizontal_end_countdown_button.set_visible(true);
                 }
                 crate::Breakpoint::DualHorizontal => {
-                    self.sidebar_horizontal_start
-                        .center_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(true));
-
-                    self.sidebar_horizontal_end
-                        .end_widget()
-                        .iter()
-                        .for_each(|widget| widget.set_visible(false));
+                    if let Some(widget) = self.sidebar_horizontal_start.center_widget() {
+                        widget.set_visible(true);
+                    }
+                    if let Some(widget) = self.sidebar_horizontal_end.end_widget() {
+                        widget.set_visible(false);
+                    }
 
                     self.horizontal_start_countdown_button.set_visible(true);
                     self.horizontal_start_menu_button.set_visible(true);
