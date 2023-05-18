@@ -23,6 +23,16 @@
   <url type="donation">https://www.gnome.org/donate</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="44.2" date="2023-05-22">
+      <description>
+        <p>Minor bugfix release.</p>
+        <ul>
+          <li>Improve adaptive controls</li>
+          <li>New translations</li>
+          <li>Disable composition guidelines by default</li>
+        </ul>
+      </description>
+    </release>
     <release version="44.1" date="2023-05-08">
       <description>
         <p>Minor release.</p>
