@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-08 20:50+0000\n"
-"PO-Revision-Date: 2023-05-09 08:31+0330\n"
+"POT-Creation-Date: 2023-05-14 13:03+0000\n"
+"PO-Revision-Date: 2023-05-23 01:16+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
+#: src/widgets/window.rs:247
 msgid "Snapshot"
 msgstr "عکس فوری"
 
@@ -103,13 +103,13 @@ msgstr "گرفتن نگاره یا ویدیو روی رایانه، رایانک
 msgid "Snapshot's main interface"
 msgstr "واسط اصلی عکس فوری"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:50 src/widgets/window.rs:252
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:373
+#: data/resources/ui/camera.ui:414 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "فهرست اصلی"
 
@@ -121,69 +121,70 @@ msgstr "هیچ دوربینی پیدا نشد"
 msgid "Connect a camera device"
 msgstr "افزارهٔ دوربینی وصل کنید"
 
-#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
+#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
+#: data/resources/ui/camera.ui:333 data/resources/ui/camera.ui:436
 msgid "Picture Mode"
 msgstr "حالت نگاره"
 
-#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
+#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:352 data/resources/ui/camera.ui:455
 msgid "Recording Mode"
 msgstr "حالت ضبط"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
+#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
+#: data/resources/ui/camera.ui:305 data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:573
 msgid "Countdown"
 msgstr "شمارشگر معکوس"
 
-#: data/resources/ui/camera.ui:450
+#: data/resources/ui/camera.ui:484
 msgid "Open Gallery"
 msgstr "گشودن جُنگ"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:490 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "گرفتن نگاره"
 
-#: data/resources/ui/camera.ui:469
+#: data/resources/ui/camera.ui:503
 msgid "Select Camera"
 msgstr "گزینش دوربین"
 
-#: data/resources/ui/camera.ui:483
+#: data/resources/ui/camera.ui:517
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "تعویض دوربین"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:576
 msgid "None"
 msgstr "هیچ‌کدام"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:547
+#: data/resources/ui/camera.ui:581
 msgid "3s"
 msgstr "۳ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:552
+#: data/resources/ui/camera.ui:586
 msgid "5s"
 msgstr "۵ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:557
+#: data/resources/ui/camera.ui:591
 msgid "10s"
 msgstr "۱۰ث"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:599 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_ترجیحات"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:603 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "میان‌برهای _صفحه‌کلید"
 
-#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:607 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "_دربارهٔ عکس فوری"
 
@@ -295,27 +296,32 @@ msgstr "پیشین"
 msgid "JPEG"
 msgstr "JPEG"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:19
-msgid "Photo from"
-msgstr "عکس از"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+msgid "Photo from {date}"
+msgstr "عکس از {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
-#: src/utils.rs:25
-msgid "Photo"
-msgstr "عکس"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:27
+msgid "Photo {number}"
+msgstr "عکس {number}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:35
-msgid "Recording from"
-msgstr "ضبط از"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:40
+msgid "Recording from {date}"
+msgstr "ضبط از {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
-#: src/utils.rs:41
-msgid "Recording"
-msgstr "ضبط"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:45
+msgid "Recording {number}"
+msgstr "ضبط {number}"
 
-#: src/widgets/camera.rs:472
+#: src/widgets/camera.rs:560
 msgid "Could not play camera stream"
 msgstr "نتوانست جریان دوربین را پخش کند"
 
@@ -331,17 +337,23 @@ msgstr "آغاز ضبط"
 msgid "Stop Recording"
 msgstr "پایان ضبط"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:295
+#: src/widgets/window.rs:68 src/widgets/window.rs:296
 msgid "Could not take picture"
 msgstr "نتوانست نگاره بردارد"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:299
+#: src/widgets/window.rs:72 src/widgets/window.rs:300
 msgid "Could not record video"
 msgstr "نتوانست ویدیو ضبط کند"
 
-#: src/widgets/window.rs:251
+#: src/widgets/window.rs:252
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
+
+#~ msgid "Photo"
+#~ msgstr "عکس"
+
+#~ msgid "Recording"
+#~ msgstr "ضبط"
 
 #~ msgid "Maximiliano Sandoval"
 #~ msgstr "مکسی‌میلیانو سندووال"
