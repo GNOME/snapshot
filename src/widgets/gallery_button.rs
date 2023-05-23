@@ -20,6 +20,8 @@ mod imp {
 
         pub size_ani: OnceCell<adw::TimedAnimation>,
         pub hover_ani: OnceCell<adw::TimedAnimation>,
+
+        pub foreground_bindings: OnceCell<glib::SignalGroup>,
     }
 
     #[glib::object_subclass]
@@ -34,6 +36,15 @@ mod imp {
             self.parent_constructed();
 
             let widget = self.obj();
+
+            let bindings = glib::SignalGroup::new(crate::GalleryItem::static_type());
+            bindings.connect_notify_local(
+                Some("loaded"),
+                glib::clone!(@weak widget => move |_, _| {
+                    widget.animation().play();
+                }),
+            );
+            self.foreground_bindings.set(bindings).unwrap();
 
             widget.add_css_class("gallerybutton");
             widget.add_css_class("flat");
@@ -187,8 +198,12 @@ impl GalleryButton {
     }
 
     pub fn set_gallery(&self, gallery: &crate::Gallery) {
-        gallery.connect_item_added(glib::clone!(@weak self as widget => move |_, _| {
-            widget.animation().play();
+        gallery.connect_item_added(glib::clone!(@weak self as widget => move |_, item| {
+            if item.loaded() {
+                widget.animation().play();
+            } else {
+                widget.imp().foreground_bindings.get().unwrap().set_target(Some(item));
+            }
         }));
         self.imp().gallery.replace(Some(gallery.downgrade()));
     }

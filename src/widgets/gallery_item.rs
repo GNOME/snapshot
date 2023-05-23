@@ -24,6 +24,8 @@ mod imp {
         pub thumbnail: RefCell<Option<gdk::Texture>>,
         #[property(get, set)]
         pub started_loading: Cell<bool>,
+        #[property(get, set)]
+        pub loaded: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -76,12 +78,15 @@ impl GalleryItem {
         self.set_started_loading(true);
         let ctx = glib::MainContext::default();
         ctx.spawn_local(glib::clone!(@weak self as widget => async move {
-            if let Err(err) = if widget.is_picture() {
+            let res = if widget.is_picture() {
                 widget.downcast_ref::<crate::GalleryPicture>().unwrap().load_texture().await
             } else {
                 widget.downcast_ref::<crate::GalleryVideo>().unwrap().load_texture().await
-            } {
+            };
+            if let Err(err) = res {
                 log::error!("Could not load gallery item: {err}");
+            } else {
+                widget.set_loaded(true);
             }
         }));
     }
