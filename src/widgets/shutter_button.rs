@@ -159,6 +159,7 @@ mod imp {
             let countdown_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, countdown_target);
             // TODO Figure out what easing to use.
             countdown_ani.set_easing(adw::Easing::Linear);
+            countdown_ani.set_follow_enable_animations_setting(false);
             self.countdown_ani.set(countdown_ani).unwrap();
 
             let record_target =
