@@ -153,10 +153,6 @@ mod imp {
                 obj.imp().camera.start().await;
             }));
         }
-
-        fn dispose(&self) {
-            self.dispose_template();
-        }
     }
 
     impl WidgetImpl for Window {}
