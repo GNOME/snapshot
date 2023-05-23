@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use adw::subclass::prelude::*;
 use ashpd::desktop::camera;
 use gettextrs::gettext;
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
 use std::os::unix::io::RawFd;
@@ -86,12 +86,11 @@ mod imp {
     impl ObjectSubclass for Camera {
         const NAME: &'static str = "Camera";
         type Type = super::Camera;
-        type ParentType = gtk::Widget;
+        type ParentType = adw::BreakpointBin;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.bind_template_callbacks();
-            klass.set_layout_manager_type::<gtk::BinLayout>();
             klass.set_css_name("camera");
         }
 
@@ -345,11 +344,12 @@ mod imp {
     }
 
     impl WidgetImpl for Camera {}
+    impl BreakpointBinImpl for Camera {}
 }
 
 glib::wrapper! {
     pub struct Camera(ObjectSubclass<imp::Camera>)
-        @extends gtk::Widget;
+        @extends gtk::Widget, adw::BreakpointBin;
 }
 
 impl Default for Camera {

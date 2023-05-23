@@ -4,24 +4,6 @@
     <property name="width-request">360</property>
     <property name="height-request">294</property>
     <child>
-      <object class="AdwBreakpoint">
-        <condition>max-aspect-ratio: 4/3 or max-height: 600px</condition>
-        <setter object="camera" property="breakpoint">SingleHorizontal</setter>
-      </object>
-    </child>
-    <child>
-      <object class="AdwBreakpoint">
-        <condition>max-height: 400px</condition>
-        <setter object="camera" property="breakpoint">DualVertical</setter>
-      </object>
-    </child>
-    <child>
-      <object class="AdwBreakpoint">
-        <condition>max-aspect-ratio: 4/3 and max-width: 500px</condition>
-        <setter object="camera" property="breakpoint">DualHorizontal</setter>
-      </object>
-    </child>
-    <child>
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
           <object class="AdwNavigationView" id="navigation_view">
