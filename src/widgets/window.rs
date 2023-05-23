@@ -25,7 +25,7 @@ mod imp {
         #[template_child]
         pub gallery: TemplateChild<crate::Gallery>,
         #[template_child]
-        pub leaflet: TemplateChild<adw::Leaflet>,
+        pub navigation_view: TemplateChild<adw::NavigationView>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
 
@@ -40,7 +40,7 @@ mod imp {
             Self {
                 camera: TemplateChild::default(),
                 gallery: TemplateChild::default(),
-                leaflet: TemplateChild::default(),
+                navigation_view: TemplateChild::default(),
                 toast_overlay: TemplateChild::default(),
 
                 settings: gio::Settings::new(APP_ID),
@@ -81,7 +81,7 @@ mod imp {
             klass.install_action("win.toggle-gallery", None, move |window, _, _| {
                 let imp = window.imp();
 
-                if imp.leaflet.visible_child().as_ref() == Some(imp.camera.upcast_ref()) {
+                if imp.navigation_view.visible_child().as_ref() == Some(imp.camera.upcast_ref()) {
                     imp.camera.stop_recording();
                     imp.recording_active.set(false);
                     match window.capture_mode() {
@@ -90,10 +90,10 @@ mod imp {
                             window.set_shutter_mode(crate::ShutterMode::Picture)
                         }
                     }
-                    imp.leaflet.set_visible_child(&*imp.gallery);
+                    imp.navigation_view.push(&*imp.gallery);
                     window.imp().gallery.open();
                 } else {
-                    imp.leaflet.set_visible_child(&*imp.camera);
+                    imp.navigation_view.pop();
                     window.imp().gallery.close();
                 }
             });
@@ -141,10 +141,10 @@ mod imp {
 
             self.camera.set_gallery(self.gallery.get());
 
-            self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
+            self.navigation_view.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
                 let camera = &*obj.imp().camera;
                 // TODO Use is_some_and once stabilized
-                let enabled = leaflet.visible_child().map(|child| &child == camera) == Some(true);
+                let enabled = navigation_view.visible_child().map(|child| &child == camera) == Some(true);
                 obj.set_shutter_enabled(enabled);
             }));
 
