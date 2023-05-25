@@ -6,21 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-09 07:42+0000\n"
-"PO-Revision-Date: 2023-05-09 17:08+0200\n"
-"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-05-14 13:03+0000\n"
+"PO-Revision-Date: 2023-05-25 11:29+0900\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:246
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
+#: src/widgets/window.rs:247
 msgid "Snapshot"
 msgstr "Cliché"
 
@@ -109,13 +110,13 @@ msgstr ""
 msgid "Snapshot's main interface"
 msgstr "Interface principale de Cliché"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:252
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
 msgid "The GNOME Project"
 msgstr "Le projet GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:373
+#: data/resources/ui/camera.ui:414 data/resources/ui/gallery.ui:53
 msgid "Main Menu"
 msgstr "Menu principal"
 
@@ -127,69 +128,70 @@ msgstr "Aucun appareil photo trouvée"
 msgid "Connect a camera device"
 msgstr "Connecter un appareil photo"
 
-#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
+#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
+#: data/resources/ui/camera.ui:333 data/resources/ui/camera.ui:436
 msgid "Picture Mode"
 msgstr "Mode photo"
 
-#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
+#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:352 data/resources/ui/camera.ui:455
 msgid "Recording Mode"
 msgstr "Mode enregistrement"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:539
+#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
+#: data/resources/ui/camera.ui:305 data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:573
 msgid "Countdown"
 msgstr "Retardateur"
 
-#: data/resources/ui/camera.ui:450
+#: data/resources/ui/camera.ui:484
 msgid "Open Gallery"
 msgstr "Ouvrir la galerie"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:490 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Prendre une photo"
 
-#: data/resources/ui/camera.ui:469
+#: data/resources/ui/camera.ui:503
 msgid "Select Camera"
 msgstr "Sélectionner la caméra"
 
-#: data/resources/ui/camera.ui:483
+#: data/resources/ui/camera.ui:517
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Changer de caméra"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:576
 msgid "None"
 msgstr "Aucun"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:547
+#: data/resources/ui/camera.ui:581
 msgid "3s"
-msgstr "3s"
+msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:552
+#: data/resources/ui/camera.ui:586
 msgid "5s"
-msgstr "5s"
+msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:557
+#: data/resources/ui/camera.ui:591
 msgid "10s"
-msgstr "10s"
+msgstr "10 s"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:599 data/resources/ui/gallery.ui:123
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:603 data/resources/ui/gallery.ui:127
 msgid "_Keyboard Shortcuts"
 msgstr "_Raccourcis clavier"
 
-#: data/resources/ui/camera.ui:573 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:607 data/resources/ui/gallery.ui:131
 msgid "_About Snapshot"
 msgstr "À _propos de Cliché"
 
@@ -301,27 +303,32 @@ msgstr "Précédent"
 msgid "JPEG"
 msgstr "JPEG"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:19
-msgid "Photo from"
-msgstr "Photo du"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+msgid "Photo from {date}"
+msgstr "Photo du {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Photo 12345.png"
-#: src/utils.rs:25
-msgid "Photo"
-msgstr "Photo"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:27
+msgid "Photo {number}"
+msgstr "Photo {number}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording from 2023-05-21 11-05-59.12345.png"
-#: src/utils.rs:35
-msgid "Recording from"
-msgstr "Enregistrement du"
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:40
+msgid "Recording from {date}"
+msgstr "Enregistrement du {date}"
 
-#. TRANSLATORS  This will appear as, e.g. "Recording 12345.png"
-#: src/utils.rs:41
-msgid "Recording"
-msgstr "Enregistrement"
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:45
+msgid "Recording {number}"
+msgstr "Enregistrement {number}"
 
-#: src/widgets/camera.rs:472
+#: src/widgets/camera.rs:560
 msgid "Could not play camera stream"
 msgstr "Impossible de diffuser le flux de la caméra"
 
@@ -337,17 +344,23 @@ msgstr "Démarrer l’enregistrement"
 msgid "Stop Recording"
 msgstr "Arrêter l’enregistrement"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:295
+#: src/widgets/window.rs:68 src/widgets/window.rs:296
 msgid "Could not take picture"
 msgstr "Impossible de prendre une photo"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:299
+#: src/widgets/window.rs:72 src/widgets/window.rs:300
 msgid "Could not record video"
 msgstr "Impossible d’enregistrer une vidéo"
 
-#: src/widgets/window.rs:251
+#: src/widgets/window.rs:252
 msgid "translator-credits"
 msgstr "Guillaume Bernard <associations@guillaume-bernard.fr>"
+
+#~ msgid "Photo"
+#~ msgstr "Photo"
+
+#~ msgid "Recording"
+#~ msgstr "Enregistrement"
 
 #~ msgid "Picture Format"
 #~ msgstr "Format d’image"
