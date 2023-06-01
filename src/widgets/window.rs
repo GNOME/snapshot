@@ -145,11 +145,12 @@ mod imp {
 
             self.camera.set_gallery(self.gallery.get());
 
-            self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
-                let camera = &*obj.imp().camera;
-                let enabled = leaflet.visible_child().is_some_and(|child| &child == camera);
-                obj.set_shutter_enabled(enabled);
-            }));
+            self.leaflet
+                .connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
+                    let camera = &*obj.imp().camera;
+                    let enabled = leaflet.visible_child().is_some_and(|child| &child == camera);
+                    obj.set_shutter_enabled(enabled);
+                }));
 
             let ctx = glib::MainContext::default();
             ctx.spawn_local(glib::clone!(@weak obj => async move {
