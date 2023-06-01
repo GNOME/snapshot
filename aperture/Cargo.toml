@@ -9,6 +9,7 @@ name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/Incubator/snapshot"
 documentation = "https://gnome.pages.gitlab.gnome.org/Incubator/snapshot/doc/aperture"
 version = "0.2.0"
+rust-version = "1.70"
 
 [dependencies]
 ashpd =  {version = "0.4.0", features = ["gtk4", "tracing"] }

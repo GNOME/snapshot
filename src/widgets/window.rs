@@ -81,7 +81,11 @@ mod imp {
             klass.install_action("win.toggle-gallery", None, move |window, _, _| {
                 let imp = window.imp();
 
-                if imp.leaflet.visible_child().as_ref() == Some(imp.camera.upcast_ref()) {
+                if imp
+                    .leaflet
+                    .visible_child()
+                    .is_some_and(|child| &child == &*imp.camera)
+                {
                     imp.camera.stop_recording();
                     imp.recording_active.set(false);
                     match window.capture_mode() {
@@ -143,8 +147,7 @@ mod imp {
 
             self.leaflet.connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
                 let camera = &*obj.imp().camera;
-                // TODO Use is_some_and once stabilized
-                let enabled = leaflet.visible_child().map(|child| &child == camera) == Some(true);
+                let enabled = leaflet.visible_child().is_some_and(|child| &child == camera);
                 obj.set_shutter_enabled(enabled);
             }));
 

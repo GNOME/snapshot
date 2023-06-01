@@ -197,8 +197,7 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     gst::Element::link_many(&[&device_src, &capsfilter, &decodebin3]).unwrap();
 
     decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
-        // TODO Use is_some_and once stabilized
-        if pad.stream().map(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)).unwrap_or_default() {
+        if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
             pad.link(&videoflip.static_pad("sink").unwrap())
                .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
         }
