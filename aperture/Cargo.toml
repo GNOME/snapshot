@@ -1,6 +1,6 @@
 [package]
 authors = ["The GNOME Project"]
-categories = ["camera", "os::linux-apis"]
+categories = ["multimedia", "os::linux-apis", "gui"]
 description = "GTK Widget for cameras using gstreamer and pipewire"
 edition = "2021"
 keywords = ["camera", "gtk", "gstreamer"]
