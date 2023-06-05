@@ -16,6 +16,10 @@
       <image>https://gitlab.gnome.org/GNOME/Incubator/snapshot/raw/main/data/screenshots/screenshot1.png</image>
       <caption>Snapshot's main interface</caption>
     </screenshot>
+    <screenshot>
+      <image>https://gitlab.gnome.org/GNOME/Incubator/snapshot/raw/main/data/screenshots/gallery.png</image>
+      <caption>Snapshot's gallery viewer</caption>
+    </screenshot>
   </screenshots>
   <url type="homepage">https://apps.gnome.org/app/org.gnome.Snapshot</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/Incubator/snapshot/issues</url>
