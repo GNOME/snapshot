@@ -72,4 +72,7 @@
   </requires>
   <platform>GTK 4</platform>
   <platform>Libadwaita</platform>
+  <provides>
+    <binary>@bin-name@</binary>
+  </provides>
 </component>

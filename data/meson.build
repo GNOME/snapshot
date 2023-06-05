@@ -31,6 +31,7 @@ endif
 appdata_conf = configuration_data()
 appdata_conf.set('app-id', application_id)
 appdata_conf.set('gettext-package', gettext_package)
+appdata_conf.set('bin-name', meson.project_name())
 appdata_file = i18n.merge_file(
   input: configure_file(
     input: '@0@.metainfo.xml.in.in'.format(base_id),
