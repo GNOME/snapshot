@@ -10,3 +10,5 @@ Keywords=picture;photos;camera;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 StartupNotify=true
+# Translators: Do NOT translate or transliterate these categories
+X-Purism-FormFactor=Workstation;Mobile;
