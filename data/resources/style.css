@@ -57,6 +57,10 @@ gallery .controlsframe {
   padding: 6px;
 }
 
+gallery button.back {
+  border-radius: 500px;
+}
+
 button.gallerycontrols.circular {
   padding: 9px;
   min-width: 24px;

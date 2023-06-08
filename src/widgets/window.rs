@@ -25,7 +25,11 @@ mod imp {
         #[template_child]
         pub gallery: TemplateChild<crate::Gallery>,
         #[template_child]
-        pub leaflet: TemplateChild<adw::Leaflet>,
+        pub navigation_view: TemplateChild<adw::NavigationView>,
+        #[template_child]
+        pub camera_page: TemplateChild<adw::NavigationPage>,
+        #[template_child]
+        pub gallery_page: TemplateChild<adw::NavigationPage>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
 
@@ -40,7 +44,9 @@ mod imp {
             Self {
                 camera: TemplateChild::default(),
                 gallery: TemplateChild::default(),
-                leaflet: TemplateChild::default(),
+                navigation_view: TemplateChild::default(),
+                camera_page: TemplateChild::default(),
+                gallery_page: TemplateChild::default(),
                 toast_overlay: TemplateChild::default(),
 
                 settings: gio::Settings::new(APP_ID),
@@ -82,9 +88,9 @@ mod imp {
                 let imp = window.imp();
 
                 if imp
-                    .leaflet
-                    .visible_child()
-                    .is_some_and(|child| &child == &*imp.camera)
+                    .navigation_view
+                    .visible_page()
+                    .is_some_and(|page| &page == &*imp.camera_page)
                 {
                     imp.camera.stop_recording();
                     imp.recording_active.set(false);
@@ -94,10 +100,10 @@ mod imp {
                             window.set_shutter_mode(crate::ShutterMode::Picture)
                         }
                     }
-                    imp.leaflet.set_visible_child(&*imp.gallery);
+                    imp.navigation_view.push(&*imp.gallery_page);
                     window.imp().gallery.open();
                 } else {
-                    imp.leaflet.set_visible_child(&*imp.camera);
+                    imp.navigation_view.pop();
                     window.imp().gallery.close();
                 }
             });
@@ -138,7 +144,7 @@ mod imp {
                         let imp = obj.imp();
 
                         obj.action_set_enabled("win.toggle-gallery", false);
-                        imp.leaflet.set_visible_child(&*imp.camera);
+                        imp.navigation_view.pop();
                     }
                 }));
 
@@ -154,10 +160,10 @@ mod imp {
 
             self.camera.set_gallery(self.gallery.get());
 
-            self.leaflet
-                .connect_visible_child_notify(glib::clone!(@weak obj => move |leaflet| {
-                    let camera = &*obj.imp().camera;
-                    let enabled = leaflet.visible_child().is_some_and(|child| &child == camera);
+            self.navigation_view
+                .connect_visible_page_notify(glib::clone!(@weak obj => move |navigation_view| {
+                    let imp = obj.imp();
+                    let enabled = navigation_view.visible_page().is_some_and(|page| &page == &*imp.camera_page);
                     obj.set_shutter_enabled(enabled);
                 }));
 

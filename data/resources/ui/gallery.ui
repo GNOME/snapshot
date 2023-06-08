@@ -35,17 +35,6 @@
                 <style>
                   <class name="controlsframe"/>
                 </style>
-                <child>
-                  <object class="GtkButton">
-                    <property name="icon-name">go-previous-symbolic</property>
-                    <property name="action-name">win.toggle-gallery</property>
-                    <property name="tooltip-text" translatable="yes">Back</property>
-                    <style>
-                      <class name="flat"/>
-                      <class name="circular"/>
-                    </style>
-                  </object>
-                </child>
                 <child type="end">
                   <object class="GtkMenuButton">
                     <property name="icon-name">view-more-symbolic</property>
