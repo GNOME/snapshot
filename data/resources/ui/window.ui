@@ -27,6 +27,7 @@
           <object class="AdwNavigationView" id="navigation_view">
             <child>
               <object class="AdwNavigationPage" id="camera_page">
+                <property name="title" translatable="yes">Camera</property>
                 <child>
                   <object class="Camera" id="camera"/>
                 </child>
@@ -34,6 +35,7 @@
             </child>
             <child>
               <object class="AdwNavigationPage" id="gallery_page">
+                <property name="title" translatable="yes">Gallery</property>
                 <child>
                   <object class="Gallery" id="gallery"/>
                 </child>
