@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-13 14:48+0000\n"
-"PO-Revision-Date: 2023-05-14 14:16+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/iss"
+"ues\n"
+"POT-Creation-Date: 2023-06-11 12:07+0000\n"
+"PO-Revision-Date: 2023-06-11 18:04+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:247
+#: src/widgets/window.rs:262
 msgid "Snapshot"
 msgstr "Знімок"
 
@@ -107,13 +108,18 @@ msgstr "Створюйте знімки і відео на вашому комп
 msgid "Snapshot's main interface"
 msgstr "Головний інтерфейс Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#| msgid "Snapshot's main interface"
+msgid "Snapshot's gallery viewer"
+msgstr "Засіб перегляду галереї Snapshot"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
 msgid "The GNOME Project"
 msgstr "Проєкт GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:259 data/resources/ui/camera.ui:345
-#: data/resources/ui/camera.ui:388 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
+#: data/resources/ui/camera.ui:413
 msgid "Main Menu"
 msgstr "Головне меню"
 
@@ -125,87 +131,98 @@ msgstr "Не знайдено камери"
 msgid "Connect a camera device"
 msgstr "З'єднати пристрій камери"
 
-#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:307 data/resources/ui/camera.ui:410
+#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
+#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
 msgid "Picture Mode"
 msgstr "Режим зображення"
 
-#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:325 data/resources/ui/camera.ui:428
+#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
 msgid "Recording Mode"
 msgstr "Режим запису"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:514 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
+#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:572
 msgid "Countdown"
 msgstr "Зворотний відлік"
 
-#: data/resources/ui/camera.ui:456
+#: data/resources/ui/camera.ui:483
 msgid "Open Gallery"
 msgstr "Відкрити галерею"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:462 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Зробити знімок"
 
-#: data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:502
 msgid "Select Camera"
 msgstr "Вибір камери"
 
-#: data/resources/ui/camera.ui:489
+#: data/resources/ui/camera.ui:516
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Перемкнути фотоапарат"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:575
 msgid "None"
 msgstr "Немає"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:580
 msgid "3s"
 msgstr "3 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:558
+#: data/resources/ui/camera.ui:585
 msgid "5s"
 msgstr "5 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:563
+#: data/resources/ui/camera.ui:590
 msgid "10s"
 msgstr "10 с"
 
-#: data/resources/ui/camera.ui:571 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:598
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/resources/ui/camera.ui:575 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:602
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: data/resources/ui/camera.ui:579 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:606
 msgid "_About Snapshot"
 msgstr "_Про «Знімок»"
 
 #: data/resources/ui/gallery.ui:42
-msgid "Back"
-msgstr "Назад"
+#| msgctxt "shortcut window"
+#| msgid "Gallery"
+msgid "Gallery Menu"
+msgstr "Меню галереї"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Попереднє зображення"
 
-#: data/resources/ui/gallery.ui:91
+#: data/resources/ui/gallery.ui:79
 msgid "Next Image"
 msgstr "Наступне зображення"
 
-#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
 msgid "Open in Image Viewer"
 msgstr "Відкрити у переглядачі зображень"
+
+#: data/resources/ui/gallery.ui:111
+msgid "_Copy"
+msgstr "_Копіювати"
+
+#: data/resources/ui/gallery.ui:115
+msgid "_Delete"
+msgstr "В_илучити"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -302,7 +319,6 @@ msgstr "JPEG"
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
 #: src/utils.rs:22
-#| msgid "Photo from"
 msgid "Photo from {date}"
 msgstr "Фото від {date}"
 
@@ -316,24 +332,35 @@ msgstr "Фото {number}"
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
 #: src/utils.rs:40
-#| msgid "Recording from"
 msgid "Recording from {date}"
 msgstr "Запис від {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
 #: src/utils.rs:45
-#| msgid "Recording Mode"
 msgid "Recording {number}"
 msgstr "Запис {number}"
 
-#: src/widgets/camera.rs:477
+#: src/widgets/camera.rs:535
 msgid "Could not play camera stream"
 msgstr "Не вдалося відтворити потокові дані з камери"
 
-#: src/widgets/gallery.rs:90
+#: src/widgets/gallery.rs:100
 msgid "Open in Video Player"
 msgstr "Відкрити у програвачі відео"
+
+#: src/widgets/gallery.rs:375
+msgid "Copied to clipboard"
+msgstr "Скопійовано до буфера обміну"
+
+#: src/widgets/gallery.rs:400
+#| msgid "Picture Mode"
+msgid "Picture deleted"
+msgstr "Зображення вилучено"
+
+#: src/widgets/gallery.rs:402
+msgid "Video deleted"
+msgstr "Відео вилучено"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
@@ -343,17 +370,20 @@ msgstr "Почати запис"
 msgid "Stop Recording"
 msgstr "Припинити запис"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:296
+#: src/widgets/window.rs:74 src/widgets/window.rs:311
 msgid "Could not take picture"
 msgstr "Не вдалося створити знімок"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:300
+#: src/widgets/window.rs:78 src/widgets/window.rs:315
 msgid "Could not record video"
 msgstr "Не вдалося записати відео"
 
-#: src/widgets/window.rs:252
+#: src/widgets/window.rs:267
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2023"
+
+#~ msgid "Back"
+#~ msgstr "Назад"
 
 #~ msgid "Photo"
 #~ msgstr "Фото"
