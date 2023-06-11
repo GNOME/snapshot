@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::cell::RefCell;
+use std::os::fd::{FromRawFd, OwnedFd};
 use std::os::unix::io::RawFd;
 use std::sync::Once;
 
@@ -21,7 +22,7 @@ mod imp {
         pub inner: OnceCell<gst::DeviceProvider>,
         pub cameras: RefCell<Vec<crate::Camera>>,
 
-        pub fd: RefCell<Option<RawFd>>,
+        pub fd: RefCell<Option<OwnedFd>>,
     }
 
     impl DeviceProvider {
@@ -87,15 +88,9 @@ mod imp {
             if inner.is_started() {
                 inner.stop();
             }
+            inner.set_property("fd", -1);
             let bus = inner.bus();
             let _ = bus.remove_watch();
-            if let Some(raw_fd) = self.fd.take() {
-                unsafe {
-                    // FIXME Replace with a OwnedFd once
-                    // https://github.com/bilelmoussaoui/ashpd/pull/104 is merged.
-                    libc::close(raw_fd);
-                }
-            }
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
@@ -208,7 +203,8 @@ impl DeviceProvider {
         log::debug!("Starting device provider with file descriptor: {fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {
             provider.set_property("fd", &fd);
-            self.imp().fd.replace(Some(fd));
+            let owned_fd = unsafe { OwnedFd::from_raw_fd(fd) };
+            self.imp().fd.replace(Some(owned_fd));
             Ok(())
         } else {
             log::warn!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");

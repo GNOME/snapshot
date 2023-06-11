@@ -42,7 +42,6 @@ dependencies = [
  "gstreamer-pbutils",
  "gstreamer-video",
  "gtk4",
- "libc",
  "log",
  "once_cell",
 ]
