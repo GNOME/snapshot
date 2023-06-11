@@ -198,10 +198,6 @@ impl Gallery {
         }
     }
 
-    pub fn close(&self) {
-        // TODO
-    }
-
     pub fn items(&self) -> Vec<crate::GalleryItem> {
         self.imp().sliding_view.pages()
     }

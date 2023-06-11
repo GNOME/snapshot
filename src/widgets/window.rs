@@ -104,7 +104,6 @@ mod imp {
                     window.imp().gallery.open();
                 } else {
                     imp.navigation_view.pop();
-                    window.imp().gallery.close();
                 }
             });
             klass.install_action("win.toggle-guidelines", None, move |window, _, _| {
