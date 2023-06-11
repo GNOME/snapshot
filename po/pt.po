@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-13 14:48+0000\n"
-"PO-Revision-Date: 2023-05-13 21:52+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-06-11 12:07+0000\n"
+"PO-Revision-Date: 2023-06-11 23:37+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -16,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:247
+#: src/widgets/window.rs:262
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -98,19 +99,24 @@ msgstr "Se deve guardar vídeos como mp4 ou webm"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Tirar fotografias e gravar vídeos no seu computador, tablet ou telefone."
+msgstr ""
+"Tirar fotografias e gravar vídeos no seu computador, tablet ou telefone."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Snapshot's main interface"
 msgstr "Interface principal do Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Snapshot's gallery viewer"
+msgstr "Visualizador de galerias do Snapshot"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
 msgid "The GNOME Project"
 msgstr "O Projeto GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:259 data/resources/ui/camera.ui:345
-#: data/resources/ui/camera.ui:388 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
+#: data/resources/ui/camera.ui:413
 msgid "Main Menu"
 msgstr "Menu principal"
 
@@ -122,87 +128,96 @@ msgstr "Nenhuma câmara encontrada"
 msgid "Connect a camera device"
 msgstr "Ligar um dispositivo de câmara"
 
-#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:307 data/resources/ui/camera.ui:410
+#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
+#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
 msgid "Picture Mode"
 msgstr "Modo de imagem"
 
-#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:325 data/resources/ui/camera.ui:428
+#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
 msgid "Recording Mode"
 msgstr "Modo de gravação"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:514 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
+#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:572
 msgid "Countdown"
 msgstr "Contagem decrescente"
 
-#: data/resources/ui/camera.ui:456
+#: data/resources/ui/camera.ui:483
 msgid "Open Gallery"
 msgstr "Abrir a galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:462 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Tirar foto"
 
-#: data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:502
 msgid "Select Camera"
 msgstr "Selecionar a câmara"
 
-#: data/resources/ui/camera.ui:489
+#: data/resources/ui/camera.ui:516
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Trocar de câmara"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:575
 msgid "None"
 msgstr "Nenhuma"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:580
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:558
+#: data/resources/ui/camera.ui:585
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:563
+#: data/resources/ui/camera.ui:590
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:571 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:598
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: data/resources/ui/camera.ui:575 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:602
 msgid "_Keyboard Shortcuts"
 msgstr "_Teclas de atalho"
 
-#: data/resources/ui/camera.ui:579 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:606
 msgid "_About Snapshot"
 msgstr "_Acerca do Snapshot"
 
 #: data/resources/ui/gallery.ui:42
-msgid "Back"
-msgstr "Voltar"
+msgid "Gallery Menu"
+msgstr "Menu da galeria"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Imagem anterior"
 
-#: data/resources/ui/gallery.ui:91
+#: data/resources/ui/gallery.ui:79
 msgid "Next Image"
 msgstr "Imagem seguinte"
 
-#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
 msgid "Open in Image Viewer"
 msgstr "Abrir no visualizador de imagens"
+
+#: data/resources/ui/gallery.ui:111
+msgid "_Copy"
+msgstr "_Copiar"
+
+#: data/resources/ui/gallery.ui:115
+msgid "_Delete"
+msgstr "_Eliminar"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
@@ -321,13 +336,25 @@ msgstr "Gravação de {date}"
 msgid "Recording {number}"
 msgstr "Gravação {number}"
 
-#: src/widgets/camera.rs:477
+#: src/widgets/camera.rs:535
 msgid "Could not play camera stream"
 msgstr "Não foi possível reproduzir o fluxo da câmara"
 
-#: src/widgets/gallery.rs:90
+#: src/widgets/gallery.rs:100
 msgid "Open in Video Player"
 msgstr "Abrir no reprodutor multimédia"
+
+#: src/widgets/gallery.rs:375
+msgid "Copied to clipboard"
+msgstr "Copiado para a área de transferência"
+
+#: src/widgets/gallery.rs:400
+msgid "Picture deleted"
+msgstr "Imagem eliminada"
+
+#: src/widgets/gallery.rs:402
+msgid "Video deleted"
+msgstr "Vídeo eliminado"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
@@ -337,17 +364,20 @@ msgstr "Iniciar a gravação"
 msgid "Stop Recording"
 msgstr "Parar a gravação"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:296
+#: src/widgets/window.rs:74 src/widgets/window.rs:311
 msgid "Could not take picture"
 msgstr "Não foi possível tirar foto"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:300
+#: src/widgets/window.rs:78 src/widgets/window.rs:315
 msgid "Could not record video"
 msgstr "Não foi possível gravar vídeo"
 
-#: src/widgets/window.rs:252
+#: src/widgets/window.rs:267
 msgid "translator-credits"
 msgstr "Hugo Carvalho <hugokarvalho@hotmail.com>"
+
+#~ msgid "Back"
+#~ msgstr "Voltar"
 
 #~ msgid "Photo"
 #~ msgstr "Foto"
