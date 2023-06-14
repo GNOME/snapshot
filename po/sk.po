@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
-"POT-Creation-Date: 2023-06-11 12:07+0000\n"
-"PO-Revision-Date: 2023-06-14 12:19-0400\n"
+"POT-Creation-Date: 2023-06-14 16:22+0000\n"
+"PO-Revision-Date: 2023-06-14 12:23-0400\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:262
+#: src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "Snímka"
 
@@ -63,8 +63,7 @@ msgstr "Zobraziť vodiace čiary kompozície"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr ""
-"Či sa majú zobraziť vodiace čiary kompozície pri používaní fotoaparátu"
+msgstr "Či sa majú zobraziť vodiace čiary kompozície pri používaní fotoaparátu"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -111,7 +110,7 @@ msgstr "Hlavné rozhranie aplikácie Snímka"
 msgid "Snapshot's gallery viewer"
 msgstr "Prehliadač galérie aplikácie Snímka"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -228,7 +227,7 @@ msgstr "O_dstrániť"
 msgid "General"
 msgstr "Všeobecné"
 
-#: data/resources/ui/preferences_window.ui:14
+#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:30
 msgid "Camera"
 msgstr "Fotoaparát"
 
@@ -310,6 +309,10 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Predchádzajúci"
 
+#: data/resources/ui/window.ui:38
+msgid "Gallery"
+msgstr "Galéria"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:39
@@ -349,15 +352,15 @@ msgstr "Nepodarilo sa prehrať prúd fotoaparátu"
 msgid "Open in Video Player"
 msgstr "Otvorí v prehrávači videí"
 
-#: src/widgets/gallery.rs:375
+#: src/widgets/gallery.rs:371
 msgid "Copied to clipboard"
 msgstr "Skopírované do schránky"
 
-#: src/widgets/gallery.rs:400
+#: src/widgets/gallery.rs:396
 msgid "Picture deleted"
 msgstr "Obrázok bol odstránený"
 
-#: src/widgets/gallery.rs:402
+#: src/widgets/gallery.rs:398
 msgid "Video deleted"
 msgstr "Video bolo odstránené"
 
@@ -371,14 +374,14 @@ msgstr "Spustí zaznamenávanie"
 msgid "Stop Recording"
 msgstr "Zastaví zaznamenávanie"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:311
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "Nepodarilo sa zachytiť obrázok"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:315
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "Nepodarilo sa zaznamenať video"
 
-#: src/widgets/window.rs:267
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
