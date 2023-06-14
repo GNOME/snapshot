@@ -1,0 +1,384 @@
+# Slovak translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+# Dušan Kazik <prescott66@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-06-11 12:07+0000\n"
+"PO-Revision-Date: 2023-06-14 12:19-0400\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
+#: src/widgets/window.rs:262
+msgid "Snapshot"
+msgstr "Snímka"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Zachytáva obrázky a videá"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "obrázok;fotografie;kamera;fotoaparát;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "Predvolená šírka okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "Predvolená výška okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "Predvolené správanie maximalizovaného okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "Prehrať zvuk uzávierky"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Či sa má prehrať zvuk uzávierky pri zachytávaní obrázkov"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Zobraziť vodiace čiary kompozície"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr ""
+"Či sa majú zobraziť vodiace čiary kompozície pri používaní fotoaparátu"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Countdown timer"
+msgstr "Časovač odpočítavania"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Trvanie odpočítavania pred zachytením fotografií, v sekundách"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Capture mode"
+msgstr "Režim zachytávania"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to take pictures or videos"
+msgstr "Či sa majú zachytávať obrázky alebo videá"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Picture format"
+msgstr "Formát obrázku"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Či sa majú obrázky ukladať vo formáte png alebo jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr "Formát videa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Či sa majú videá ukladať vo formáte mp4 alebo webm"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr ""
+"Zachytávajte obrázky a videá do vášho počítača, tabletu alebo telefónu."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Snapshot's main interface"
+msgstr "Hlavné rozhranie aplikácie Snímka"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Snapshot's gallery viewer"
+msgstr "Prehliadač galérie aplikácie Snímka"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
+
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
+#: data/resources/ui/camera.ui:413
+msgid "Main Menu"
+msgstr "Hlavná ponuka"
+
+#: data/resources/ui/camera.ui:58
+msgid "No Camera Found"
+msgstr "Nenašiel sa žiadny fotoaparát"
+
+#: data/resources/ui/camera.ui:59
+msgid "Connect a camera device"
+msgstr "Pripojte zariadenie s fotoaparátom"
+
+#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
+#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
+msgid "Picture Mode"
+msgstr "Režim obrázku"
+
+#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
+msgid "Recording Mode"
+msgstr "Režim záznamu"
+
+#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
+#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:572
+msgid "Countdown"
+msgstr "Odpočítavanie"
+
+# tooltip
+#: data/resources/ui/camera.ui:483
+msgid "Open Gallery"
+msgstr "Otvorí galériu"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
+msgid "Take Picture"
+msgstr "Zachytí obrázok"
+
+# tooltip
+#: data/resources/ui/camera.ui:502
+msgid "Select Camera"
+msgstr "Vyberie fotoaparát"
+
+# tooltip
+#: data/resources/ui/camera.ui:516
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Prepne fotoaparát"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:575
+msgid "None"
+msgstr "Žiadne"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:590
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:598
+msgid "_Preferences"
+msgstr "_Predvoľby"
+
+#: data/resources/ui/camera.ui:602
+msgid "_Keyboard Shortcuts"
+msgstr "_Klávesové skratky"
+
+#: data/resources/ui/camera.ui:606
+msgid "_About Snapshot"
+msgstr "_O aplikácii Snímka"
+
+#: data/resources/ui/gallery.ui:42
+msgid "Gallery Menu"
+msgstr "Ponuka galérie"
+
+#: data/resources/ui/gallery.ui:67
+msgid "Previous Image"
+msgstr "Predchádzajúci obrázok"
+
+#: data/resources/ui/gallery.ui:79
+msgid "Next Image"
+msgstr "Nasledujúci obrázok"
+
+# tooltip
+#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
+msgid "Open in Image Viewer"
+msgstr "Otvorí v prehliadači obrázkov"
+
+#: data/resources/ui/gallery.ui:111
+msgid "_Copy"
+msgstr "_Kopírovať"
+
+#: data/resources/ui/gallery.ui:115
+msgid "_Delete"
+msgstr "O_dstrániť"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Všeobecné"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Fotoaparát"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Play Shutter Sound"
+msgstr "Prehrať zvuk uzávierky"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "Show Composition Guidelines"
+msgstr "Zobraziť vodiace čiary kompozície"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Všeobecné"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Zobrazenie skratiek"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Hlavná ponuka"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Otvorenie predvolieb"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ukončenie"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Fotoaparát"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Režim obrázku"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Režim záznamu"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Zachytenie obrázku alebo spustenie zaznamenávania"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Zobrazenie/skrytie vodiacich čiar kompozície"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galéria"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Otvorenie/zavretie galérie"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Nasledujúci"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Predchádzajúci"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:39
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+msgid "Photo from {date}"
+msgstr "Fotografia zo dňa {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:27
+msgid "Photo {number}"
+msgstr "Fotografia č. {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:40
+msgid "Recording from {date}"
+msgstr "Záznam zo dňa {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:45
+msgid "Recording {number}"
+msgstr "Záznam č. {number}"
+
+#: src/widgets/camera.rs:535
+msgid "Could not play camera stream"
+msgstr "Nepodarilo sa prehrať prúd fotoaparátu"
+
+#: src/widgets/gallery.rs:100
+msgid "Open in Video Player"
+msgstr "Otvorí v prehrávači videí"
+
+#: src/widgets/gallery.rs:375
+msgid "Copied to clipboard"
+msgstr "Skopírované do schránky"
+
+#: src/widgets/gallery.rs:400
+msgid "Picture deleted"
+msgstr "Obrázok bol odstránený"
+
+#: src/widgets/gallery.rs:402
+msgid "Video deleted"
+msgstr "Video bolo odstránené"
+
+# tooltip
+#: src/widgets/shutter_button.rs:81
+msgid "Start Recording"
+msgstr "Spustí zaznamenávanie"
+
+# tooltip
+#: src/widgets/shutter_button.rs:92
+msgid "Stop Recording"
+msgstr "Zastaví zaznamenávanie"
+
+#: src/widgets/window.rs:74 src/widgets/window.rs:311
+msgid "Could not take picture"
+msgstr "Nepodarilo sa zachytiť obrázok"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:315
+msgid "Could not record video"
+msgstr "Nepodarilo sa zaznamenať video"
+
+#: src/widgets/window.rs:267
+msgid "translator-credits"
+msgstr "Dušan Kazik <prescott66@gmail.com>"
