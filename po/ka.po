@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
-"POT-Creation-Date: 2023-06-11 12:07+0000\n"
-"PO-Revision-Date: 2023-06-12 04:58+0200\n"
+"POT-Creation-Date: 2023-06-14 16:22+0000\n"
+"PO-Revision-Date: 2023-06-15 09:16+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:262
+#: src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "სწრაფი ასლი"
 
@@ -108,7 +108,7 @@ msgstr "Snapshot-ის მთავარი ინტერფეისი"
 msgid "Snapshot's gallery viewer"
 msgstr "Snapshot-ის გალერეა"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "პროექტი \"GNOME\""
 
@@ -221,7 +221,7 @@ msgstr "_წაშლა"
 msgid "General"
 msgstr "საერთო"
 
-#: data/resources/ui/preferences_window.ui:14
+#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:30
 msgid "Camera"
 msgstr "კამერა"
 
@@ -303,6 +303,10 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "წინა"
 
+#: data/resources/ui/window.ui:38
+msgid "Gallery"
+msgstr "გალერეა"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:39
@@ -342,15 +346,15 @@ msgstr "კამერის ვიდეონაკადის დაკვ�
 msgid "Open in Video Player"
 msgstr "ვიდეოდამკვრელით გახსნა"
 
-#: src/widgets/gallery.rs:375
+#: src/widgets/gallery.rs:371
 msgid "Copied to clipboard"
 msgstr "დაკოპირდა გაცვლის ბაფერში"
 
-#: src/widgets/gallery.rs:400
+#: src/widgets/gallery.rs:396
 msgid "Picture deleted"
 msgstr "სურათი წაიშალა"
 
-#: src/widgets/gallery.rs:402
+#: src/widgets/gallery.rs:398
 msgid "Video deleted"
 msgstr "ვიდეო წაიშალა"
 
@@ -362,15 +366,15 @@ msgstr "ჩაწერის დაწყება"
 msgid "Stop Recording"
 msgstr "ჩაწერის გაჩერება"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:311
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "სურათის გადაღება შეუძლებელია"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:315
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "ვიდეოს ჩაწერა შეუძლებელია"
 
-#: src/widgets/window.rs:267
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "თემური დოღონაძე"
 
