@@ -5,19 +5,19 @@
     <property name="height-request">294</property>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-aspect-ratio: 4/3 or max-height: 600sp</condition>
+        <condition>max-aspect-ratio: 4/3 or max-height: 600px</condition>
         <setter object="camera" property="breakpoint">SingleHorizontal</setter>
       </object>
     </child>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-height: 400sp</condition>
+        <condition>max-height: 400px</condition>
         <setter object="camera" property="breakpoint">DualVertical</setter>
       </object>
     </child>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-aspect-ratio: 4/3 and max-width: 500sp</condition>
+        <condition>max-aspect-ratio: 4/3 and max-width: 500px</condition>
         <setter object="camera" property="breakpoint">DualHorizontal</setter>
       </object>
     </child>
