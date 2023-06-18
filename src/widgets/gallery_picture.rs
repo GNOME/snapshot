@@ -25,6 +25,12 @@ mod imp {
             let widget = self.obj();
 
             widget.set_child(Some(&self.picture));
+
+            if let Some(basename) = widget.file().basename() {
+                let label = basename.display().to_string();
+                self.picture
+                    .update_property(&[gtk::accessible::Property::Label(&label)]);
+            }
         }
     }
     impl WidgetImpl for GalleryPicture {}

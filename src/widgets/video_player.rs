@@ -139,7 +139,15 @@ impl VideoPlayer {
     }
 
     pub fn set_file(&self, file: &gio::File) {
-        self.imp().media_file.set_file(Some(file));
+        let imp = self.imp();
+
+        imp.media_file.set_file(Some(file));
+
+        if let Some(basename) = file.basename() {
+            let label = basename.display().to_string();
+            imp.picture
+                .update_property(&[gtk::accessible::Property::Label(&label)]);
+        }
     }
 
     fn stream(&self) -> &gtk::MediaStream {
