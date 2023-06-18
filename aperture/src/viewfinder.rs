@@ -240,6 +240,8 @@ mod imp {
 
             self.sink_paintable.set(paintablesink).unwrap();
 
+            self.picture
+                .set_accessible_role(gtk::AccessibleRole::Presentation);
             self.picture.set_hexpand(true);
             self.picture.set_vexpand(true);
             self.picture.set_content_fit(gtk::ContentFit::Fill);
