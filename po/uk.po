@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/iss"
 "ues\n"
-"POT-Creation-Date: 2023-06-11 12:07+0000\n"
-"PO-Revision-Date: 2023-06-11 18:04+0300\n"
+"POT-Creation-Date: 2023-06-14 16:22+0000\n"
+"PO-Revision-Date: 2023-06-18 21:52+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:262
+#: src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "Знімок"
 
@@ -109,11 +109,10 @@ msgid "Snapshot's main interface"
 msgstr "Головний інтерфейс Snapshot"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-#| msgid "Snapshot's main interface"
 msgid "Snapshot's gallery viewer"
 msgstr "Засіб перегляду галереї Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Проєкт GNOME"
 
@@ -199,8 +198,6 @@ msgid "_About Snapshot"
 msgstr "_Про «Знімок»"
 
 #: data/resources/ui/gallery.ui:42
-#| msgctxt "shortcut window"
-#| msgid "Gallery"
 msgid "Gallery Menu"
 msgstr "Меню галереї"
 
@@ -228,7 +225,7 @@ msgstr "В_илучити"
 msgid "General"
 msgstr "Загальне"
 
-#: data/resources/ui/preferences_window.ui:14
+#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:30
 msgid "Camera"
 msgstr "Камера"
 
@@ -310,6 +307,12 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Назад"
 
+#: data/resources/ui/window.ui:38
+#| msgctxt "shortcut window"
+#| msgid "Gallery"
+msgid "Gallery"
+msgstr "Галерея"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:39
@@ -349,16 +352,15 @@ msgstr "Не вдалося відтворити потокові дані з к
 msgid "Open in Video Player"
 msgstr "Відкрити у програвачі відео"
 
-#: src/widgets/gallery.rs:375
+#: src/widgets/gallery.rs:371
 msgid "Copied to clipboard"
 msgstr "Скопійовано до буфера обміну"
 
-#: src/widgets/gallery.rs:400
-#| msgid "Picture Mode"
+#: src/widgets/gallery.rs:396
 msgid "Picture deleted"
 msgstr "Зображення вилучено"
 
-#: src/widgets/gallery.rs:402
+#: src/widgets/gallery.rs:398
 msgid "Video deleted"
 msgstr "Відео вилучено"
 
@@ -370,15 +372,15 @@ msgstr "Почати запис"
 msgid "Stop Recording"
 msgstr "Припинити запис"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:311
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "Не вдалося створити знімок"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:315
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "Не вдалося записати відео"
 
-#: src/widgets/window.rs:267
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2023"
 
