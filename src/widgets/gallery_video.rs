@@ -8,7 +8,6 @@ mod imp {
 
     #[derive(Debug, Default)]
     pub struct GalleryVideo {
-        pub picture: gtk::Picture,
         pub video_player: crate::VideoPlayer,
     }
 
