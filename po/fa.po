@@ -6,20 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-14 13:03+0000\n"
-"PO-Revision-Date: 2023-05-23 01:16+0330\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-06-14 16:22+0000\n"
+"PO-Revision-Date: 2023-06-23 01:56+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:247
+#: src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "عکس فوری"
 
@@ -103,13 +104,17 @@ msgstr "گرفتن نگاره یا ویدیو روی رایانه، رایانک
 msgid "Snapshot's main interface"
 msgstr "واسط اصلی عکس فوری"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Snapshot's gallery viewer"
+msgstr "جُنگ‌بینِ عکس فوری"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
 #: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
-#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:373
-#: data/resources/ui/camera.ui:414 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
+#: data/resources/ui/camera.ui:413
 msgid "Main Menu"
 msgstr "فهرست اصلی"
 
@@ -122,93 +127,101 @@ msgid "Connect a camera device"
 msgstr "افزارهٔ دوربینی وصل کنید"
 
 #: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
-#: data/resources/ui/camera.ui:333 data/resources/ui/camera.ui:436
+#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
 msgid "Picture Mode"
 msgstr "حالت نگاره"
 
 #: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:352 data/resources/ui/camera.ui:455
+#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
 msgid "Recording Mode"
 msgstr "حالت ضبط"
 
 #: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
-#: data/resources/ui/camera.ui:305 data/resources/ui/camera.ui:542
-#: data/resources/ui/camera.ui:573
+#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:572
 msgid "Countdown"
 msgstr "شمارشگر معکوس"
 
-#: data/resources/ui/camera.ui:484
+#: data/resources/ui/camera.ui:483
 msgid "Open Gallery"
 msgstr "گشودن جُنگ"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:490 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "گرفتن نگاره"
 
-#: data/resources/ui/camera.ui:503
+#: data/resources/ui/camera.ui:502
 msgid "Select Camera"
 msgstr "گزینش دوربین"
 
-#: data/resources/ui/camera.ui:517
+#: data/resources/ui/camera.ui:516
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "تعویض دوربین"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:575
 msgid "None"
 msgstr "هیچ‌کدام"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:581
+#: data/resources/ui/camera.ui:580
 msgid "3s"
 msgstr "۳ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:586
+#: data/resources/ui/camera.ui:585
 msgid "5s"
 msgstr "۵ث"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:591
+#: data/resources/ui/camera.ui:590
 msgid "10s"
 msgstr "۱۰ث"
 
-#: data/resources/ui/camera.ui:599 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:598
 msgid "_Preferences"
 msgstr "_ترجیحات"
 
-#: data/resources/ui/camera.ui:603 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:602
 msgid "_Keyboard Shortcuts"
 msgstr "میان‌برهای _صفحه‌کلید"
 
-#: data/resources/ui/camera.ui:607 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:606
 msgid "_About Snapshot"
 msgstr "_دربارهٔ عکس فوری"
 
 #: data/resources/ui/gallery.ui:42
-msgid "Back"
-msgstr "بازگشت"
+msgid "Gallery Menu"
+msgstr "فهرست جُنگ"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "تصویر پیشین"
 
-#: data/resources/ui/gallery.ui:91
+#: data/resources/ui/gallery.ui:79
 msgid "Next Image"
 msgstr "تصویر بعدی"
 
-#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
 msgid "Open in Image Viewer"
 msgstr "گشودن در نمایشگر تصویر"
+
+#: data/resources/ui/gallery.ui:111
+msgid "_Copy"
+msgstr "_رونوشت"
+
+#: data/resources/ui/gallery.ui:115
+msgid "_Delete"
+msgstr "_حذف"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "عمومی"
 
-#: data/resources/ui/preferences_window.ui:14
+#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:30
 msgid "Camera"
 msgstr "دوربین"
 
@@ -290,6 +303,10 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "پیشین"
 
+#: data/resources/ui/window.ui:38
+msgid "Gallery"
+msgstr "جُنگ"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:39
@@ -321,13 +338,25 @@ msgstr "ضبط از {date}"
 msgid "Recording {number}"
 msgstr "ضبط {number}"
 
-#: src/widgets/camera.rs:560
+#: src/widgets/camera.rs:535
 msgid "Could not play camera stream"
 msgstr "نتوانست جریان دوربین را پخش کند"
 
-#: src/widgets/gallery.rs:90
+#: src/widgets/gallery.rs:100
 msgid "Open in Video Player"
 msgstr "گشودن در پخش‌کنندهٔ ویدیو"
+
+#: src/widgets/gallery.rs:371
+msgid "Copied to clipboard"
+msgstr "در تخته‌گیره رونوشت شد"
+
+#: src/widgets/gallery.rs:396
+msgid "Picture deleted"
+msgstr "نگاره حذف شد"
+
+#: src/widgets/gallery.rs:398
+msgid "Video deleted"
+msgstr "ویدیو حذف شد"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
@@ -337,17 +366,20 @@ msgstr "آغاز ضبط"
 msgid "Stop Recording"
 msgstr "پایان ضبط"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:296
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "نتوانست نگاره بردارد"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:300
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "نتوانست ویدیو ضبط کند"
 
-#: src/widgets/window.rs:252
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
+
+#~ msgid "Back"
+#~ msgstr "بازگشت"
 
 #~ msgid "Photo"
 #~ msgstr "عکس"
