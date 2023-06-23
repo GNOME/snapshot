@@ -202,7 +202,7 @@ impl DeviceProvider {
         let provider = self.imp().inner.get().unwrap();
         log::debug!("Starting device provider with file descriptor: {fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {
-            provider.set_property("fd", &fd);
+            provider.set_property("fd", fd);
             let owned_fd = unsafe { OwnedFd::from_raw_fd(fd) };
             self.imp().fd.replace(Some(owned_fd));
             Ok(())
