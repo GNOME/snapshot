@@ -200,7 +200,6 @@
                         <property name="orientation">horizontal</property>
                         <property name="valign">start</property>
                         <style>
-                          <class name="startcontrolsframe"/>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
                         </style>
