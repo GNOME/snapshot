@@ -90,18 +90,6 @@ mod imp {
 
             self.sliding_view.connect_target_page_reached(
                 glib::clone!(@weak obj => move |sliding_view| {
-                    let imp = obj.imp();
-
-                    if let Some(current) = sliding_view.current_page() {
-                        // The tooltip is also set in gallery.ui with a default value.
-                        let tooltip_text = if current.is_picture() {
-                            gettext("Open in Image Viewer")
-                        } else {
-                            gettext("Open in Video Player")
-                        };
-                        imp.open_external.set_tooltip_text(Some(&tooltip_text));
-                    }
-
                     obj.load_neighbor_pages();
 
                     // When deleting an item we need to check again.
@@ -114,6 +102,18 @@ mod imp {
 
             self.sliding_view.connect_current_page_notify(
                 glib::clone!(@weak obj => move |sliding_view| {
+                    let imp = obj.imp();
+
+                    if let Some(current) = sliding_view.current_page() {
+                        // The tooltip is also set in gallery.ui with a default value.
+                        let tooltip_text = if current.is_picture() {
+                            gettext("Open in Image Viewer")
+                        } else {
+                            gettext("Open in Video Player")
+                        };
+                        imp.open_external.set_tooltip_text(Some(&tooltip_text));
+                    }
+
                     let has_prev = sliding_view.prev_page().is_some();
                     let has_next = sliding_view.next_page().is_some();
                     obj.action_set_enabled("gallery.previous", has_prev);
