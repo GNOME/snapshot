@@ -285,7 +285,7 @@
                             <property name="valign">center</property>
                             <property name="spacing">6</property>
                             <child>
-                              <object class="GtkMenuButton" id="horizontal_start_menu_button">
+                              <object class="GtkMenuButton">
                                 <property name="icon-name">open-menu-symbolic</property>
                                 <property name="menu-model">primary_menu</property>
                                 <property name="valign">center</property>
@@ -382,19 +382,6 @@
                                     </child>
                                   </object>
                                 </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkMenuButton">
-                                <property name="icon-name">open-menu-symbolic</property>
-                                <property name="menu-model">primary_menu</property>
-                                <property name="valign">center</property>
-                                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                                <property name="primary">true</property>
-                                <style>
-                                  <class name="circular" />
-                                  <class name="flat" />
-                                </style>
                               </object>
                             </child>
                           </object>

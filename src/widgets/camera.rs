@@ -65,8 +65,6 @@ mod imp {
         #[template_child]
         pub horizontal_start_countdown_button: TemplateChild<gtk::Widget>,
         #[template_child]
-        pub horizontal_start_menu_button: TemplateChild<gtk::Widget>,
-        #[template_child]
         pub horizontal_end_countdown_button: TemplateChild<gtk::Widget>,
 
         #[template_child]
@@ -196,7 +194,6 @@ mod imp {
                     }
 
                     self.horizontal_start_countdown_button.set_visible(false);
-                    self.horizontal_start_menu_button.set_visible(false);
                     self.horizontal_end_countdown_button.set_visible(true);
                 }
                 crate::Breakpoint::DualHorizontal => {
@@ -208,7 +205,6 @@ mod imp {
                     }
 
                     self.horizontal_start_countdown_button.set_visible(true);
-                    self.horizontal_start_menu_button.set_visible(true);
                     self.horizontal_end_countdown_button.set_visible(false);
                 }
             }
