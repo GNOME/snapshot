@@ -91,6 +91,21 @@
                 <child>
                   <object class="GtkOverlay">
                     <child type="overlay">
+                      <object class="GtkRevealer" id="recording_revealer">
+                        <property name="halign">center</property>
+                        <property name="valign">end</property>
+                        <property name="transition-type">crossfade</property>
+                        <child>
+                          <object class="GtkLabel" id="recording_label">
+                            <style>
+                              <class name="recording-label"/>
+                              <class name="heading"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="overlay">
                       <object class="GtkCenterBox" id="sidebar_vertical_start">
                         <property name="orientation">vertical</property>
                         <property name="halign">start</property>

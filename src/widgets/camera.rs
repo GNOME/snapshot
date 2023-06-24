@@ -26,9 +26,16 @@ mod imp {
         pub players: RefCell<Option<gtk::MediaFile>>,
         settings: OnceCell<gio::Settings>,
 
+        pub recording_duration: Cell<u32>,
+        pub recording_source: RefCell<Option<glib::source::SourceId>>,
+
         #[property(get, set = Self::set_breakpoint, explicit_notify, builder(crate::Breakpoint::default()))]
         pub breakpoint: Cell<crate::Breakpoint>,
 
+        #[template_child]
+        pub recording_revealer: TemplateChild<gtk::Revealer>,
+        #[template_child]
+        pub recording_label: TemplateChild<gtk::Label>,
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
         #[template_child]
@@ -387,6 +394,7 @@ impl Camera {
         let path = utils::videos_dir()?.join(filename);
 
         self.imp().viewfinder.start_recording(path)?;
+        self.show_recording_label();
 
         Ok(())
     }
@@ -398,7 +406,8 @@ impl Camera {
         {
             if let Err(err) = imp.viewfinder.stop_recording() {
                 log::error!("Could not stop camera: {err}");
-            };
+            }
+            self.hide_recording_label();
         }
     }
 
@@ -543,6 +552,44 @@ impl Camera {
         });
         imp.vertical_end_window_controls
             .set_decoration_layout(decoration_layout.as_deref());
+    }
+
+    fn show_recording_label(&self) {
+        let imp = self.imp();
+
+        let source = glib::timeout_add_seconds_local(
+            1,
+            glib::clone!(@weak self as obj =>  @default-return glib::Continue(false), move || {
+                let imp = obj.imp();
+
+                // TODO Use Cell::update once stabilized.
+                let duration = imp.recording_duration.get() + 1;
+                imp.recording_duration.set(duration);
+
+                let minutes = duration.div_euclid(60);
+                let seconds = duration.rem_euclid(60);
+                imp.recording_label.set_label(&format!("{minutes}∶{seconds:02}"));
+
+                glib::Continue(true)
+            }),
+        );
+        if let Some(old) = imp.recording_source.replace(Some(source)) {
+            old.remove();
+        }
+        imp.recording_duration.set(0);
+        imp.recording_revealer.set_reveal_child(true);
+        imp.recording_label.set_label("0∶00");
+    }
+
+    fn hide_recording_label(&self) {
+        let imp = self.imp();
+
+        if let Some(source) = imp.recording_source.take() {
+            source.remove();
+            imp.recording_duration.set(0);
+            imp.recording_label.set_label("0∶00");
+            imp.recording_revealer.set_reveal_child(false);
+        }
     }
 }
 
