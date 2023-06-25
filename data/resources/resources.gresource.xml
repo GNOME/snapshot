@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/org/gnome/Snapshot/">
     <file compressed="true" preprocess="xml-stripblanks">ui/camera.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/camera_controls.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/gallery.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/preferences_window.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcuts.ui</file>

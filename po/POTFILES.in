@@ -4,6 +4,7 @@ data/org.gnome.Snapshot.desktop.in.in
 data/org.gnome.Snapshot.gschema.xml.in
 data/org.gnome.Snapshot.metainfo.xml.in.in
 data/resources/ui/camera.ui
+data/resources/ui/camera_controls.ui
 data/resources/ui/gallery.ui
 data/resources/ui/preferences_window.ui
 data/resources/ui/shortcuts.ui

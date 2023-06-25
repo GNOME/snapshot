@@ -3,18 +3,6 @@ use gettextrs::gettext;
 use gtk::glib;
 use gtk::prelude::*;
 
-/// Enum representing the current Adaptive State, determining the layout of the Camera
-#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
-#[repr(u32)]
-#[enum_type(name = "Breakpoint")]
-pub enum Breakpoint {
-    #[default]
-    SingleVertical,
-    DualVertical,
-    SingleHorizontal,
-    DualHorizontal,
-}
-
 /// Enum representing the org.gnome.Snapshot.PictureFormat enum defined in
 /// the gschema.
 #[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
@@ -108,5 +96,4 @@ pub enum ShutterMode {
 
 pub fn init() {
     PictureFormat::static_type();
-    Breakpoint::static_type();
 }

@@ -4,21 +4,47 @@
     <property name="width-request">360</property>
     <property name="height-request">294</property>
     <child>
-      <object class="AdwBreakpoint">
+      <object class="AdwBreakpoint" id="single_landscape_bp">
         <condition>max-aspect-ratio: 4/3 or max-height: 600</condition>
-        <setter object="Camera" property="breakpoint">SingleHorizontal</setter>
+        <setter object="sidebar_vertical_start" property="visible">False</setter>
+        <setter object="sidebar_vertical_end" property="visible">False</setter>
+        <setter object="sidebar_horizontal_start" property="visible">True</setter>
+        <setter object="sidebar_horizontal_end" property="visible">True</setter>
+        <setter object="horizontal_start_countdown_button" property="visible">False</setter>
+        <setter object="horizontal_start_toggles" property="visible">False</setter>
+        <setter object="horizontal_end_countdown_button" property="visible">True</setter>
+        <setter object="horizontal_end_toggles" property="visible">True</setter>
+        <signal name="apply" handler="change_breakpoint" object="Camera" swapped="yes"/>
       </object>
     </child>
     <child>
-      <object class="AdwBreakpoint">
+      <object class="AdwBreakpoint" id="dual_portrait_bp">
         <condition>max-height: 400</condition>
-        <setter object="Camera" property="breakpoint">DualVertical</setter>
+        <setter object="sidebar_vertical_start" property="visible">True</setter>
+        <setter object="sidebar_vertical_end" property="visible">True</setter>
+        <setter object="sidebar_horizontal_start" property="visible">False</setter>
+        <setter object="sidebar_horizontal_end" property="visible">False</setter>
+        <setter object="vertical_start_menu_button" property="visible">True</setter>
+        <setter object="vertical_start_toggles" property="visible">True</setter>
+        <setter object="vertical_start_countdown_button" property="visible">True</setter>
+        <setter object="vertical_end_menu_button" property="visible">False</setter>
+        <setter object="vertical_end_toggles" property="visible">False</setter>
+        <setter object="vertical_end_countdown_button" property="visible">False</setter>
+        <signal name="apply" handler="change_breakpoint" object="Camera" swapped="yes"/>
       </object>
     </child>
     <child>
-      <object class="AdwBreakpoint">
+      <object class="AdwBreakpoint" id="dual_landscape_bp">
         <condition>max-aspect-ratio: 4/3 and max-width: 500</condition>
-        <setter object="Camera" property="breakpoint">DualHorizontal</setter>
+        <setter object="sidebar_vertical_start" property="visible">False</setter>
+        <setter object="sidebar_vertical_end" property="visible">False</setter>
+        <setter object="sidebar_horizontal_start" property="visible">True</setter>
+        <setter object="sidebar_horizontal_end" property="visible">True</setter>
+        <setter object="horizontal_start_countdown_button" property="visible">True</setter>
+        <setter object="horizontal_start_toggles" property="visible">True</setter>
+        <setter object="horizontal_end_countdown_button" property="visible">False</setter>
+        <setter object="horizontal_end_toggles" property="visible">False</setter>
+        <signal name="apply" handler="change_breakpoint" object="Camera" swapped="yes"/>
       </object>
     </child>
     <child>
@@ -109,6 +135,7 @@
                       <object class="GtkCenterBox" id="sidebar_vertical_start">
                         <property name="orientation">vertical</property>
                         <property name="halign">start</property>
+                        <property name="visible">True</property>
                         <style>
                           <class name="startcontrolsframe"/>
                           <class name="cameracontrols"/>
@@ -138,6 +165,7 @@
                                 <property name="valign">center</property>
                                 <property name="tooltip-text" translatable="yes">Main Menu</property>
                                 <property name="primary">True</property>
+                                <property name="visible">False</property>
                                 <style>
                                   <class name="circular" />
                                   <class name="flat" />
@@ -147,10 +175,11 @@
                           </object>
                         </child>
                         <child type="center">
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="vertical_start_toggles">
                             <property name="orientation">vertical</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="visible">False</property>
                             <style>
                               <class name="linked" />
                               <class name="picturevideotoggle" />
@@ -196,12 +225,13 @@
                           </object>
                         </child>
                         <child type="end">
-                          <object class="GtkMenuButton">
+                          <object class="GtkMenuButton" id="vertical_start_countdown_button">
                             <property name="menu-model">countdown_menu</property>
                             <property name="icon-name">camera-timer-symbolic</property>
                             <property name="valign">center</property>
                             <property name="halign">center</property>
                             <property name="tooltip-text" translatable="yes">Countdown</property>
+                            <property name="visible">False</property>
                             <style>
                               <class name="circular"/>
                               <class name="flat"/>
@@ -214,6 +244,7 @@
                       <object class="GtkCenterBox" id="sidebar_horizontal_start">
                         <property name="orientation">horizontal</property>
                         <property name="valign">start</property>
+                        <property name="visible">False</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
@@ -243,7 +274,7 @@
                           </object>
                         </child>
                         <child type="center">
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="horizontal_start_toggles">
                             <property name="orientation">horizontal</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
@@ -325,6 +356,7 @@
                       <object class="GtkCenterBox" id="sidebar_horizontal_end">
                         <property name="orientation">horizontal</property>
                         <property name="valign">end</property>
+                        <property name="visible">False</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
@@ -342,8 +374,13 @@
                             </style>
                           </object>
                         </child>
+                        <child type="center">
+                          <object class="CameraControls" id="camera_controls_horizontal">
+                            <property name="orientation">horizontal</property>
+                          </object>
+                        </child>
                         <child type="end">
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="horizontal_end_toggles">
                             <property name="orientation">horizontal</property>
                             <property name="hexpand">True</property>
                             <property name="halign">end</property>
@@ -406,6 +443,7 @@
                       <object class="GtkCenterBox" id="sidebar_vertical_end">
                         <property name="orientation">vertical</property>
                         <property name="halign">end</property>
+                        <property name="visible">True</property>
                         <style>
                           <class name="cameracontrols"/>
                           <class name="controlsframe"/>
@@ -491,66 +529,8 @@
                           </object>
                         </child>
                         <child type="center">
-                          <object class="GtkBox" id="camera_controls">
+                          <object class="CameraControls" id="camera_controls_vertical">
                             <property name="orientation">vertical</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="spacing">24</property>
-                            <child>
-                              <object class="GalleryButton" id="gallery_button">
-                                <property name="valign">center</property>
-                                <property name="halign">center</property>
-                                <property name="action-name">win.toggle-gallery</property>
-                                <property name="tooltip-text" translatable="yes">Open Gallery</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="ShutterButton" id="shutter_button">
-                                <property name="action-name">win.take-picture</property>
-                                <property name="tooltip-text" translatable="yes">Take Picture</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkStack" id="camera_menu_button_stack">
-                                <child>
-                                  <object class="GtkMenuButton" id="camera_menu_button">
-                                    <style>
-                                      <class name="camerabutton"/>
-                                    </style>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="icon-name">pick-camera-alt2-symbolic</property>
-                                    <property name="tooltip-text" translatable="yes">Select Camera</property>
-                                    <style>
-                                      <class name="circular"/>
-                                    </style>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkButton" id="camera_switch_button">
-                                    <style>
-                                      <class name="camerabutton"/>
-                                    </style>
-                                    <property name="valign">center</property>
-                                    <property name="halign">center</property>
-                                    <property name="icon-name">cameras-symbolic</property>
-                                    <property name="tooltip-text" translatable="yes" context="Switch between front and back camera button">Switch Camera</property>
-                                    <signal name="clicked" handler="on_camera_switch_button_clicked" swapped="yes"/>
-                                    <style>
-                                      <class name="circular"/>
-                                    </style>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkStackPage">
-                                    <property name="name">fake-widget</property>
-                                    <property name="child">
-                                      <object class="AdwBin"/>
-                                    </property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
                           </object>
                         </child>
                         <child type="end">

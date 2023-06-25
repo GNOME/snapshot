@@ -2,6 +2,7 @@
 use gtk::prelude::*;
 
 mod camera;
+mod camera_controls;
 mod camera_row;
 mod flash_bin;
 mod gallery;
@@ -17,6 +18,7 @@ mod video_player;
 mod window;
 
 pub use camera::Camera;
+pub use camera_controls::CameraControls;
 pub use camera_row::CameraRow;
 pub use flash_bin::FlashBin;
 pub use gallery::Gallery;

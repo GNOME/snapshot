@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="CameraControls" parent="GtkBox">
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <property name="spacing">24</property>
+    <child>
+      <object class="GalleryButton" id="gallery_button">
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <property name="action-name">win.toggle-gallery</property>
+        <property name="tooltip-text" translatable="yes">Open Gallery</property>
+      </object>
+    </child>
+    <child>
+      <object class="ShutterButton" id="shutter_button">
+        <property name="action-name">win.take-picture</property>
+        <property name="tooltip-text" translatable="yes">Take Picture</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkStack" id="camera_menu_button_stack">
+        <child>
+          <object class="GtkMenuButton" id="camera_menu_button">
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="icon-name">pick-camera-alt2-symbolic</property>
+            <property name="tooltip-text" translatable="yes">Select Camera</property>
+            <style>
+              <class name="camerabutton" />
+              <class name="circular" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="camera_switch_button">
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <property name="icon-name">cameras-symbolic</property>
+            <property name="tooltip-text" translatable="yes"
+              context="Switch between front and back camera button">Switch Camera</property>
+            <signal name="clicked" handler="on_camera_switch_button_clicked"
+              swapped="yes" />
+            <style>
+              <class name="camerabutton" />
+              <class name="circular" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStackPage">
+            <property name="name">fake-widget</property>
+            <property name="child">
+              <object class="AdwBin" />
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

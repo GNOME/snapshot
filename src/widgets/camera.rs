@@ -1,23 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use adw::subclass::prelude::*;
+use adw::traits::BreakpointBinExt;
 use ashpd::desktop::camera;
 use gettextrs::gettext;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
 use std::os::unix::io::RawFd;
 
-use crate::CameraRow;
 use crate::{config, utils};
+
+use super::CameraControls;
 
 mod imp {
     use super::*;
 
-    use gtk::glib::Properties;
     use once_cell::unsync::OnceCell;
     use std::cell::{Cell, RefCell};
 
-    #[derive(Debug, Default, CompositeTemplate, Properties)]
-    #[properties(wrapper_type = super::Camera)]
+    #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
     pub struct Camera {
         pub stream_list: RefCell<gio::ListStore>,
@@ -29,21 +29,17 @@ mod imp {
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
 
-        #[property(get, set = Self::set_breakpoint, explicit_notify, builder(crate::Breakpoint::default()))]
-        pub breakpoint: Cell<crate::Breakpoint>,
-
+        #[template_child]
+        pub single_landscape_bp: TemplateChild<adw::Breakpoint>,
+        #[template_child]
+        pub dual_landscape_bp: TemplateChild<adw::Breakpoint>,
+        #[template_child]
+        pub dual_portrait_bp: TemplateChild<adw::Breakpoint>,
         #[template_child]
         pub recording_revealer: TemplateChild<gtk::Revealer>,
         #[template_child]
         pub recording_label: TemplateChild<gtk::Label>,
-        #[template_child]
-        pub gallery_button: TemplateChild<crate::GalleryButton>,
-        #[template_child]
-        pub camera_menu_button: TemplateChild<gtk::MenuButton>,
-        #[template_child]
-        pub camera_switch_button: TemplateChild<gtk::Button>,
-        #[template_child]
-        pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
+
         #[template_child]
         pub viewfinder: TemplateChild<aperture::Viewfinder>,
         #[template_child]
@@ -52,36 +48,19 @@ mod imp {
         pub stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub spinner: TemplateChild<gtk::Spinner>,
-        #[template_child]
-        pub shutter_button: TemplateChild<crate::ShutterButton>,
+
         #[template_child]
         pub guidelines: TemplateChild<crate::GuidelinesBin>,
 
         #[template_child]
-        pub camera_controls: TemplateChild<gtk::Box>,
-
+        pub camera_controls_vertical: TemplateChild<crate::CameraControls>,
         #[template_child]
-        pub sidebar_horizontal_start: TemplateChild<gtk::CenterBox>,
+        pub camera_controls_horizontal: TemplateChild<crate::CameraControls>,
+
         #[template_child]
         pub sidebar_horizontal_end: TemplateChild<gtk::CenterBox>,
         #[template_child]
-        pub sidebar_vertical_start: TemplateChild<gtk::CenterBox>,
-        #[template_child]
         pub sidebar_vertical_end: TemplateChild<gtk::CenterBox>,
-
-        #[template_child]
-        pub horizontal_start_countdown_button: TemplateChild<gtk::Widget>,
-        #[template_child]
-        pub horizontal_end_countdown_button: TemplateChild<gtk::Widget>,
-
-        #[template_child]
-        pub vertical_start_menu_button: TemplateChild<gtk::Widget>,
-        #[template_child]
-        pub vertical_end_menu_button: TemplateChild<gtk::Widget>,
-        #[template_child]
-        pub vertical_end_toggles: TemplateChild<gtk::Widget>,
-        #[template_child]
-        pub vertical_end_countdown_button: TemplateChild<gtk::Widget>,
 
         #[template_child]
         pub vertical_end_window_controls: TemplateChild<gtk::WindowControls>,
@@ -111,128 +90,17 @@ mod imp {
                 .get_or_init(|| gio::Settings::new(config::APP_ID))
         }
 
-        fn set_breakpoint(&self, value: crate::Breakpoint) {
+        #[template_callback]
+        fn change_breakpoint(&self, breakpoint: adw::Breakpoint) {
             let obj = self.obj();
 
-            let is_vertical = matches!(
-                value,
-                crate::Breakpoint::SingleVertical | crate::Breakpoint::DualVertical
-            );
-            let is_mobile = matches!(
-                value,
-                crate::Breakpoint::DualVertical | crate::Breakpoint::DualHorizontal
-            );
-
-            self.sidebar_vertical_start.set_visible(is_vertical);
-            self.sidebar_vertical_end.set_visible(is_vertical);
-
-            self.sidebar_horizontal_start.set_visible(!is_vertical);
-            self.sidebar_horizontal_end.set_visible(!is_vertical);
-
-            self.sidebar_horizontal_end
-                .set_center_widget(gtk::Widget::NONE);
-
-            self.sidebar_vertical_end
-                .set_center_widget(gtk::Widget::NONE);
-
-            if is_vertical {
-                self.camera_controls
-                    .set_orientation(gtk::Orientation::Vertical);
-
-                self.camera_controls.set_margin_start(0);
-                self.camera_controls.set_margin_end(0);
-                self.camera_controls.set_margin_top(12);
-                self.camera_controls.set_margin_bottom(12);
-
-                self.sidebar_vertical_end
-                    .set_center_widget(Some(&self.camera_controls.get()));
-            } else {
-                self.camera_controls
-                    .set_orientation(gtk::Orientation::Horizontal);
-
-                self.camera_controls.set_margin_start(12);
-                self.camera_controls.set_margin_end(12);
-                self.camera_controls.set_margin_top(0);
-                self.camera_controls.set_margin_bottom(0);
-
-                self.sidebar_horizontal_end
-                    .set_center_widget(Some(&self.camera_controls.get()));
-            }
-
-            if is_mobile {
-                obj.add_css_class("mobile");
-            } else {
-                obj.remove_css_class("mobile");
-            }
-
-            match value {
-                crate::Breakpoint::SingleVertical => {
-                    if let Some(widget) = self.sidebar_vertical_start.center_widget() {
-                        widget.set_visible(false);
-                    }
-                    if let Some(widget) = self.sidebar_vertical_start.end_widget() {
-                        widget.set_visible(false);
-                    }
-
-                    self.vertical_start_menu_button.set_visible(false);
-                    self.vertical_end_menu_button.set_visible(true);
-                    self.vertical_end_toggles.set_visible(true);
-                    self.vertical_end_countdown_button.set_visible(true);
+            if breakpoint.eq(&self.dual_landscape_bp.get())
+                || breakpoint.eq(&self.dual_portrait_bp.get())
+            {
+                    obj.add_css_class("mobile");
+                } else {
+                    obj.remove_css_class("mobile");
                 }
-                crate::Breakpoint::DualVertical => {
-                    if let Some(widget) = self.sidebar_vertical_start.center_widget() {
-                        widget.set_visible(true);
-                    }
-                    if let Some(widget) = self.sidebar_vertical_start.end_widget() {
-                        widget.set_visible(true);
-                    }
-
-                    self.vertical_start_menu_button.set_visible(true);
-                    self.vertical_end_menu_button.set_visible(false);
-                    self.vertical_end_toggles.set_visible(false);
-                    self.vertical_end_countdown_button.set_visible(false);
-                }
-                crate::Breakpoint::SingleHorizontal => {
-                    if let Some(widget) = self.sidebar_horizontal_start.center_widget() {
-                        widget.set_visible(false);
-                    }
-                    if let Some(widget) = self.sidebar_horizontal_end.end_widget() {
-                        widget.set_visible(true);
-                    }
-
-                    self.horizontal_start_countdown_button.set_visible(false);
-                    self.horizontal_end_countdown_button.set_visible(true);
-                }
-                crate::Breakpoint::DualHorizontal => {
-                    if let Some(widget) = self.sidebar_horizontal_start.center_widget() {
-                        widget.set_visible(true);
-                    }
-                    if let Some(widget) = self.sidebar_horizontal_end.end_widget() {
-                        widget.set_visible(false);
-                    }
-
-                    self.horizontal_start_countdown_button.set_visible(true);
-                    self.horizontal_end_countdown_button.set_visible(false);
-                }
-            }
-
-            if value != self.breakpoint.replace(value) {
-                obj.notify_breakpoint();
-            }
-        }
-
-        #[template_callback]
-        fn on_camera_switch_button_clicked(&self) {
-            let provider = self.provider.get().unwrap();
-
-            let current = self.viewfinder.camera();
-
-            let mut pos = 0;
-            if current == provider.camera(0) {
-                pos += 1;
-            };
-            if let Some(camera) = provider.camera(pos) {
-                self.viewfinder.set_camera(Some(camera));
             }
         }
     }
@@ -242,9 +110,6 @@ mod imp {
             self.parent_constructed();
 
             let obj = self.obj();
-
-            let popover = gtk::Popover::new();
-            popover.add_css_class("menu");
 
             let provider = aperture::DeviceProvider::instance();
             self.provider.set(provider.clone()).unwrap();
@@ -264,36 +129,8 @@ mod imp {
             obj.update_state();
 
             self.selection.set_model(Some(provider));
-            let factory = gtk::SignalListItemFactory::new();
-            factory.connect_setup(|_, item| {
-                let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-                let camera_row = CameraRow::default();
-
-                item.set_child(Some(&camera_row));
-            });
-            let selection = &self.selection;
-            factory.connect_bind(glib::clone!(@weak selection => move |_, item| {
-                let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-                let child = item.child().unwrap();
-                let row = child.downcast_ref::<CameraRow>().unwrap();
-
-                let item = item.item().and_downcast::<aperture::Camera>().unwrap();
-                row.set_item(&item);
-
-                selection.connect_selected_item_notify(glib::clone!(@weak row, @weak item => move |selection| {
-                    if let Some(selected_item) = selection.selected_item() {
-                        row.set_selected(selected_item == item);
-                    } else {
-                        row.set_selected(false);
-                    }
-                }));
-            }));
-            let list_view = gtk::ListView::new(Some(self.selection.clone()), Some(factory));
-
-            popover.set_child(Some(&list_view));
-
             self.selection.connect_selected_item_notify(
-                glib::clone!(@weak obj, @weak popover => move |selection| {
+                glib::clone!(@weak obj => move |selection| {
                     if let Some(selected_item) = selection.selected_item() {
                         let camera = selected_item.downcast::<aperture::Camera>().ok();
 
@@ -301,11 +138,24 @@ mod imp {
                             obj.imp().viewfinder.set_camera(camera);
                         }
                     }
-                    popover.popdown();
                 }),
             );
 
-            self.camera_menu_button.set_popover(Some(&popover));
+            self.camera_controls_horizontal
+                .set_selection(self.selection.clone());
+            self.camera_controls_vertical
+                .set_selection(self.selection.clone());
+
+            self.camera_controls_horizontal.connect_camera_switched(
+                glib::clone!(@weak self as obj => move |_: &CameraControls| {
+                    obj.obj().camera_switched();
+                }),
+            );
+            self.camera_controls_vertical.connect_camera_switched(
+                glib::clone!(@weak self as obj => move |_: &CameraControls| {
+                    obj.obj().camera_switched();
+                }),
+            );
 
             self.settings()
                 .bind(
@@ -324,25 +174,10 @@ mod imp {
                     obj.update_window_controls();
                 }),
             );
-
-            // This makes sure the default state is properly set.
-            obj.set_breakpoint(crate::Breakpoint::default());
         }
 
         fn dispose(&self) {
             self.dispose_template();
-        }
-
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
         }
     }
 
@@ -432,6 +267,20 @@ impl Camera {
         Ok(())
     }
 
+    fn camera_switched(&self) {
+        let provider = self.imp().provider.get().unwrap();
+
+        let current = self.imp().viewfinder.camera();
+
+        let mut pos = 0;
+        if current == provider.camera(0) {
+            pos += 1;
+        };
+        if let Some(camera) = provider.camera(pos) {
+            self.imp().viewfinder.set_camera(Some(camera));
+        }
+    }
+
     fn play_shutter_sound(&self) {
         // If we don't hold a reference to it there is a condition race which
         // will cause the sound to play only sometimes.
@@ -442,27 +291,48 @@ impl Camera {
         self.imp().players.replace(Some(player));
     }
 
+    fn active_controls(&self) -> &CameraControls {
+        if self
+            .current_breakpoint()
+            .is_some_and(|bp| bp.to_string().contains("max-aspect-ratio: 4/3"))
+        {
+            &self.imp().camera_controls_horizontal
+        } else {
+            &self.imp().camera_controls_vertical
+        }
+    }
+
     pub fn set_countdown(&self, countdown: u32) {
-        self.imp().shutter_button.set_countdown(countdown);
+        self.imp()
+            .camera_controls_horizontal
+            .set_countdown(countdown);
+        self.imp().camera_controls_vertical.set_countdown(countdown);
     }
 
     pub fn start_countdown(&self) {
-        self.imp().shutter_button.start_countdown();
+        self.imp().camera_controls_horizontal.start_countdown();
+        self.imp().camera_controls_vertical.start_countdown();
     }
 
     pub fn stop_countdown(&self) {
-        self.imp().shutter_button.stop_countdown();
+        self.imp().camera_controls_horizontal.stop_countdown();
+        self.imp().camera_controls_vertical.stop_countdown();
     }
 
     pub fn shutter_mode(&self) -> crate::ShutterMode {
-        self.imp().shutter_button.shutter_mode()
+        self.active_controls().shutter_mode()
     }
 
     pub fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
         if matches!(shutter_mode, crate::ShutterMode::Picture) {
             self.stop_recording();
         }
-        self.imp().shutter_button.set_shutter_mode(shutter_mode);
+        self.imp()
+            .camera_controls_horizontal
+            .set_shutter_mode(shutter_mode);
+        self.imp()
+            .camera_controls_vertical
+            .set_shutter_mode(shutter_mode);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
@@ -485,12 +355,14 @@ impl Camera {
                 if let Some(file) = file {
                     gallery.add_video(file);
                 }
-                if matches!(imp.shutter_button.shutter_mode(), crate::ShutterMode::Recording) {
-                    imp.shutter_button.set_shutter_mode(crate::ShutterMode::Video);
+                if matches!(imp.camera_controls_horizontal.shutter_mode(), crate::ShutterMode::Recording) {
+                    imp.camera_controls_horizontal.set_shutter_mode(crate::ShutterMode::Video);
+                    imp.camera_controls_vertical.set_shutter_mode(crate::ShutterMode::Video);
                 }
             }),
         );
-        imp.gallery_button.set_gallery(&gallery);
+        imp.camera_controls_horizontal.set_gallery(&gallery);
+        imp.camera_controls_vertical.set_gallery(&gallery);
     }
 
     pub fn toggle_guidelines(&self) {
@@ -501,20 +373,12 @@ impl Camera {
     }
 
     fn update_cameras_button(&self, provider: &aperture::DeviceProvider) {
-        let imp = self.imp();
-        // NOTE We have a stack with an empty bin so that hiding the button does
-        // not ruin the layout.
-        match provider.n_items() {
-            0 | 1 => imp
-                .camera_menu_button_stack
-                .set_visible_child_name("fake-widget"),
-            2 => imp
-                .camera_menu_button_stack
-                .set_visible_child(&imp.camera_switch_button.get()),
-            _ => imp
-                .camera_menu_button_stack
-                .set_visible_child(&imp.camera_menu_button.get()),
-        }
+        self.imp()
+            .camera_controls_horizontal
+            .update_visible_camera_button(provider.n_items());
+        self.imp()
+            .camera_controls_vertical
+            .update_visible_camera_button(provider.n_items());
     }
 
     fn update_state(&self) {

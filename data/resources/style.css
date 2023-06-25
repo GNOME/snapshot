@@ -62,10 +62,6 @@ button.gallerycontrols.circular {
   min-height: 24px;
 }
 
-.horizontal.picturevideotoggle {
-  padding-left: 24px;
-}
-
 camera.mobile .horizontal.picturevideotoggle > button > image {
   padding-left: 18px;
   padding-right: 18px;
