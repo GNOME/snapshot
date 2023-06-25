@@ -26,6 +26,7 @@ mod imp {
 
             let file = widget.file();
             self.video_player.set_file(&file);
+            widget.set_halign(gtk::Align::Center);
 
             widget.set_child(Some(&self.video_player));
         }
