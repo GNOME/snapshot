@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-14 13:03+0000\n"
-"PO-Revision-Date: 2023-06-06 18:58+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-06-24 20:28+0000\n"
+"PO-Revision-Date: 2023-06-25 13:58+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:247
+#: src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -31,8 +32,8 @@ msgstr "Ota kuvia ja videoita kameralla"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "picture;photos;camera;kuva;valokuva;kamera;"
+msgid "picture;photos;camera;webcam;"
+msgstr "picture;photos;camera;webcam;kuva;valokuva;kamera;web-kamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -98,118 +99,130 @@ msgstr "Tallennetaanko videot mp4- vai webm-muodossa"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Ota kuvia ja videoita tietokoneellasi, tablet-laitteella tai puhelimella."
+msgstr ""
+"Ota kuvia ja videoita tietokoneellasi, tablet-laitteella tai puhelimella."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Snapshot's main interface"
 msgstr "Snapshotin käyttöliittymä"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Snapshot's gallery viewer"
+msgstr "Snapshotin galleriakatselin"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Gnome-projekti"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
-#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:373
-#: data/resources/ui/camera.ui:414 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:68 data/resources/ui/camera.ui:124
+#: data/resources/ui/camera.ui:291 data/resources/ui/camera.ui:419
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:78
 msgid "No Camera Found"
 msgstr "Kameraa ei löytynyt"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:79
 msgid "Connect a camera device"
 msgstr "Yhdistä kameralaite"
 
-#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
-#: data/resources/ui/camera.ui:333 data/resources/ui/camera.ui:436
+#: data/resources/ui/camera.ui:148 data/resources/ui/camera.ui:244
+#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:441
 msgid "Picture Mode"
 msgstr "Kuvatila"
 
-#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:352 data/resources/ui/camera.ui:455
+#: data/resources/ui/camera.ui:167 data/resources/ui/camera.ui:263
+#: data/resources/ui/camera.ui:370 data/resources/ui/camera.ui:460
 msgid "Recording Mode"
 msgstr "Tallennustila"
 
-#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
-#: data/resources/ui/camera.ui:305 data/resources/ui/camera.ui:542
-#: data/resources/ui/camera.ui:573
+#: data/resources/ui/camera.ui:189 data/resources/ui/camera.ui:221
+#: data/resources/ui/camera.ui:323 data/resources/ui/camera.ui:547
+#: data/resources/ui/camera.ui:578
 msgid "Countdown"
 msgstr "Ajastin"
 
-#: data/resources/ui/camera.ui:484
+#: data/resources/ui/camera.ui:489
 msgid "Open Gallery"
 msgstr "Avaa galleria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera.ui:490 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera.ui:495 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:130
 msgid "Take Picture"
 msgstr "Ota kuva"
 
-#: data/resources/ui/camera.ui:503
+#: data/resources/ui/camera.ui:508
 msgid "Select Camera"
 msgstr "Valitse kamera"
 
-#: data/resources/ui/camera.ui:517
+#: data/resources/ui/camera.ui:522
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Vaihda kameraa"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:581
 msgid "None"
 msgstr "Ei mitään"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:581
+#: data/resources/ui/camera.ui:586
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:586
+#: data/resources/ui/camera.ui:591
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:591
+#: data/resources/ui/camera.ui:596
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:599 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:604
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: data/resources/ui/camera.ui:603 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:608
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: data/resources/ui/camera.ui:607 data/resources/ui/gallery.ui:131
+#: data/resources/ui/camera.ui:612
 msgid "_About Snapshot"
 msgstr "_Tietoja - Snapshot"
 
 #: data/resources/ui/gallery.ui:42
-msgid "Back"
-msgstr "Edellinen"
+msgid "Gallery Menu"
+msgstr "Galleriavalikko"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Edellinen kuva"
 
-#: data/resources/ui/gallery.ui:91
+#: data/resources/ui/gallery.ui:79
 msgid "Next Image"
 msgstr "Seuraava kuva"
 
-#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:110
 msgid "Open in Image Viewer"
 msgstr "Avaa kuvakatselimella"
+
+#: data/resources/ui/gallery.ui:111
+msgid "_Copy"
+msgstr "_Kopioi"
+
+#: data/resources/ui/gallery.ui:115
+msgid "_Delete"
+msgstr "_Poista"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "Yleiset"
 
-#: data/resources/ui/preferences_window.ui:14
+#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:12
 msgid "Camera"
 msgstr "Kamera"
 
@@ -291,6 +304,10 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Edellinen"
 
+#: data/resources/ui/window.ui:20
+msgid "Gallery"
+msgstr "Galleria"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:39
@@ -300,7 +317,6 @@ msgstr "JPEG"
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
 #: src/utils.rs:22
-#| msgid "Photo from"
 msgid "Photo from {date}"
 msgstr "Kuva - {date}"
 
@@ -314,24 +330,34 @@ msgstr "Kuva {number}"
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
 #: src/utils.rs:40
-#| msgid "Recording from"
 msgid "Recording from {date}"
 msgstr "Tallenne - {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
 #: src/utils.rs:45
-#| msgid "Recording Mode"
 msgid "Recording {number}"
 msgstr "Tallenne {number}"
 
-#: src/widgets/camera.rs:560
+#: src/widgets/camera.rs:531
 msgid "Could not play camera stream"
 msgstr "Kameran suoratoistoa ei voi toistaa"
 
-#: src/widgets/gallery.rs:90
+#: src/widgets/gallery.rs:112
 msgid "Open in Video Player"
 msgstr "Avaa videosoittimessa"
+
+#: src/widgets/gallery.rs:371
+msgid "Copied to clipboard"
+msgstr "Kopioitu leikepöydälle"
+
+#: src/widgets/gallery.rs:396
+msgid "Picture deleted"
+msgstr "Kuva poistettu"
+
+#: src/widgets/gallery.rs:398
+msgid "Video deleted"
+msgstr "Video poistettu"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
@@ -341,17 +367,20 @@ msgstr "Aloita tallennus"
 msgid "Stop Recording"
 msgstr "Pysäytä tallennus"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:296
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "Kuvaa ei voitu ottaa"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:300
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "Videota ei voitu tallentaa"
 
-#: src/widgets/window.rs:252
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
+
+#~ msgid "Back"
+#~ msgstr "Edellinen"
 
 #~ msgid "Photo"
 #~ msgstr "Valokuva"
