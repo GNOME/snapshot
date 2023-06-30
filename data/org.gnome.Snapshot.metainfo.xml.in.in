@@ -27,6 +27,19 @@
   <url type="donation">https://www.gnome.org/donate</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="45.alpha" date="2023-06-30">
+      <description>
+        <p>Minor release with updates to various dependencies.</p>
+        <ul>
+          <li>Update Aperture to v0.2, update Rust to 1.70</li>
+          <li>Update to Libadwaita 1.4, use new adaptive components</li>
+          <li>Show all window controls on the top of the window</li>
+          <li>Improved accessibility</li>
+          <li>Squash various bugs</li>
+          <li>Update translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="44.2" date="2023-05-22">
       <description>
         <p>Minor bugfix release.</p>
