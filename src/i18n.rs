@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 use gettextrs::gettext;
 
 pub fn i18n_f(format: &str, args: &[(&str, &str)]) -> String {

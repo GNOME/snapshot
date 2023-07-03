@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::CompositeTemplate;
