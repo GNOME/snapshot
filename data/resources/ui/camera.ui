@@ -3,6 +3,9 @@
   <template class="Camera" parent="AdwBreakpointBin">
     <property name="width-request">360</property>
     <property name="height-request">294</property>
+    <style>
+      <class name="portrait"/>
+    </style>
     <child>
       <object class="AdwBreakpoint" id="single_landscape_bp">
         <condition>max-aspect-ratio: 4/3 or max-height: 600</condition>

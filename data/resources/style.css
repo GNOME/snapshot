@@ -80,3 +80,7 @@ camera .recording-label {
   margin-bottom: 100px;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+camera.portrait .recording-label {
+  margin-bottom: 24px;
+}

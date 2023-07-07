@@ -35,6 +35,7 @@ mod imp {
         pub dual_landscape_bp: TemplateChild<adw::Breakpoint>,
         #[template_child]
         pub dual_portrait_bp: TemplateChild<adw::Breakpoint>,
+
         #[template_child]
         pub recording_revealer: TemplateChild<gtk::Revealer>,
         #[template_child]
@@ -97,10 +98,9 @@ mod imp {
             if breakpoint.eq(&self.dual_landscape_bp.get())
                 || breakpoint.eq(&self.dual_portrait_bp.get())
             {
-                    obj.add_css_class("mobile");
-                } else {
-                    obj.remove_css_class("mobile");
-                }
+                obj.add_css_class("mobile");
+            } else {
+                obj.remove_css_class("mobile");
             }
         }
     }
@@ -174,6 +174,18 @@ mod imp {
                     obj.update_window_controls();
                 }),
             );
+
+            obj.connect_current_breakpoint_notify(glib::clone!(@weak self as obj => move |imp| {
+                if imp.current_breakpoint().is_none()
+                || imp
+                    .current_breakpoint()
+                    .is_some_and(|breakpoint| breakpoint.eq(&obj.dual_portrait_bp.get()))
+            {
+                imp.add_css_class("portrait");
+            } else {
+                imp.remove_css_class("portrait");
+            }
+            }));
         }
 
         fn dispose(&self) {
