@@ -34,19 +34,14 @@ mod imp {
 
             let widget = self.obj();
 
-            let overlay = gtk::Overlay::new();
             self.picture.set_paintable(Some(&self.media_file));
             self.controls.set_media_stream(Some(&self.media_file));
-            self.controls.set_valign(gtk::Align::End);
+            self.controls.set_valign(gtk::Align::Center);
             self.controls.set_halign(gtk::Align::Fill);
+            self.controls.set_hexpand(true);
             self.controls.add_css_class("videoplayercontrols");
 
-            overlay.set_child(Some(&self.picture));
-            overlay.add_overlay(&self.controls);
-
-            widget.set_valign(gtk::Align::Center);
-
-            widget.set_child(Some(&overlay));
+            widget.set_child(Some(&self.picture));
 
             let id = self.media_file.connect_invalidate_contents(
                 glib::clone!(@weak widget => move |media_file| {
@@ -149,6 +144,10 @@ impl VideoPlayer {
             imp.picture
                 .update_property(&[gtk::accessible::Property::Label(&label)]);
         }
+    }
+
+    pub fn controls(&self) -> &gtk::MediaControls {
+        &self.imp().controls
     }
 
     fn stream(&self) -> &gtk::MediaStream {
