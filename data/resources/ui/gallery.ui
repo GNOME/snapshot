@@ -6,10 +6,9 @@
     <property name="height-request">294</property>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-aspect-ratio: 4/3 and max-width: 500</condition>
-        <setter object="mobile_controls" property="visible">True</setter>
-        <signal name="apply" handler="move_controls" object="Gallery" swapped="yes"/>
-        <signal name="unapply" handler="move_controls" object="Gallery" swapped="yes"/>
+        <condition>max-width: 500</condition>
+        <setter object="mobile_controls_box" property="visible">True</setter>
+        <setter object="desktop_controls" property="visible">False</setter>
       </object>
     </child>
     <child>
@@ -66,10 +65,20 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="AdwBin" id="mobile_controls">
+                  <object class="AdwBin" id="mobile_controls_box">
                     <property name="margin-start">18</property>
                     <property name="margin-end">18</property>
                     <property name="visible">False</property>
+                    <property name="child">
+                      <object class="GtkMediaControls" id="mobile_controls">
+                        <property name="valign">center</property>
+                        <property name="halign">fill</property>
+                        <property name="hexpand">True</property>
+                        <style>
+                          <class name="videoplayercontrols"/>
+                        </style>
+                      </object>
+                    </property>
                   </object>
                 </child>
                 <child>
@@ -112,8 +121,18 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwBin" id="desktop_controls">
+                      <object class="AdwBin">
                         <property name="hexpand">True</property>
+                        <property name="child">
+                          <object class="GtkMediaControls" id="desktop_controls">
+                            <property name="valign">center</property>
+                            <property name="halign">fill</property>
+                            <property name="hexpand">True</property>
+                            <style>
+                              <class name="videoplayercontrols"/>
+                            </style>
+                          </object>
+                        </property>
                       </object>
                     </child>
                     <child>

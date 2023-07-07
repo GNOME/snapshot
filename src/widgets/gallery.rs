@@ -21,7 +21,6 @@ static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
 mod imp {
     use super::*;
 
-    use gtk::Widget;
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
@@ -35,9 +34,9 @@ mod imp {
         #[template_child]
         pub open_external: TemplateChild<gtk::Button>,
         #[template_child]
-        pub desktop_controls: TemplateChild<adw::Bin>,
+        pub desktop_controls: TemplateChild<gtk::MediaControls>,
         #[template_child]
-        pub mobile_controls: TemplateChild<adw::Bin>,
+        pub mobile_controls: TemplateChild<gtk::MediaControls>,
 
         pub current_item: RefCell<Option<crate::GalleryItem>>,
     }
@@ -50,7 +49,6 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
-            klass.bind_template_callbacks();
             klass.set_css_name("gallery");
 
             // Shows an older picture (scrolls to the right)
@@ -83,40 +81,7 @@ mod imp {
         }
     }
 
-    #[gtk::template_callbacks]
-    impl Gallery {
-        #[template_callback]
-        fn move_controls(&self) {
-            // Clear the current controls
-            self.desktop_controls.set_child(Widget::NONE);
-            self.mobile_controls.set_child(Widget::NONE);
-
-            if let Some(video) = self
-                .sliding_view
-                .current_page()
-                .and_downcast_ref::<crate::GalleryVideo>()
-            {
-                // I'm not entirely sure why, but it only works if the breakpoint is *not* set.
-                if self.obj().current_breakpoint().is_none() {
-                    self.mobile_controls
-                        .set_child(video.controls().clone().as_ref());
-                } else {
-                    self.desktop_controls
-                        .set_child(video.controls().clone().as_ref())
-                }
-            }
-        }
-
-        pub fn is_mobile(&self) -> bool {
-            self.obj().current_breakpoint().is_some()
-        }
-    }
-
     impl ObjectImpl for Gallery {
-        fn dispose(&self) {
-            self.dispose_template();
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 
@@ -159,9 +124,11 @@ mod imp {
                         }
                     }
 
-                    imp.move_controls();
+                    obj.setup_media_controls();
                 }),
             );
+
+            obj.setup_media_controls();
 
             let ctx = glib::MainContext::default();
             ctx.spawn_local(glib::clone!(@weak obj => async move {
@@ -410,6 +377,29 @@ impl Gallery {
             Ok(())
         } else {
             anyhow::bail!("Sliding view does not currently have a page");
+        }
+    }
+
+    fn setup_media_controls(&self) {
+        let imp = self.imp();
+
+        if let Some(video) = imp
+            .sliding_view
+            .current_page()
+            .and_downcast_ref::<crate::GalleryVideo>()
+        {
+            imp.mobile_controls.set_media_stream(Some(video.stream()));
+            imp.desktop_controls.set_media_stream(Some(video.stream()));
+
+            imp.mobile_controls.set_visible(true);
+            imp.desktop_controls.set_visible(true);
+        } else {
+            imp.mobile_controls.set_media_stream(gtk::MediaStream::NONE);
+            imp.desktop_controls
+                .set_media_stream(gtk::MediaStream::NONE);
+
+            imp.mobile_controls.set_visible(false);
+            imp.desktop_controls.set_visible(false);
         }
     }
 

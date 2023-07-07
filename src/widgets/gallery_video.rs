@@ -58,8 +58,8 @@ impl GalleryVideo {
             .build()
     }
 
-    pub fn controls(&self) -> Option<gtk::Widget> {
-        Some(self.imp().video_player.controls().clone().upcast())
+    pub fn stream(&self) -> &gtk::MediaStream {
+        self.imp().video_player.stream()
     }
 
     pub async fn load_texture(&self) -> anyhow::Result<()> {

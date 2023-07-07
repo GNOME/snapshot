@@ -146,11 +146,7 @@ impl VideoPlayer {
         }
     }
 
-    pub fn controls(&self) -> &gtk::MediaControls {
-        &self.imp().controls
-    }
-
-    fn stream(&self) -> &gtk::MediaStream {
+    pub fn stream(&self) -> &gtk::MediaStream {
         self.imp().media_file.upcast_ref()
     }
 }
