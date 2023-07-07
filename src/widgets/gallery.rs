@@ -51,7 +51,6 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.bind_template_callbacks();
-            klass.set_layout_manager_type::<gtk::BinLayout>();
             klass.set_css_name("gallery");
 
             // Shows an older picture (scrolls to the right)
@@ -87,26 +86,24 @@ mod imp {
     #[gtk::template_callbacks]
     impl Gallery {
         #[template_callback]
-        fn change_breakpoint(&self) {
-            println!("breakpoint toggled");
+        fn move_controls(&self) {
+            // Clear the current controls
+            self.desktop_controls.set_child(Widget::NONE);
+            self.mobile_controls.set_child(Widget::NONE);
 
             if let Some(video) = self
                 .sliding_view
                 .current_page()
                 .and_downcast_ref::<crate::GalleryVideo>()
             {
-                video
-                    .controls()
-                    .as_ref()
-                    .and_then(|controls| Some(controls.unparent()));
-                if self.is_mobile() {
-                    self.mobile_controls.set_child(video.controls().as_ref());
+                // I'm not entirely sure why, but it only works if the breakpoint is *not* set.
+                if self.obj().current_breakpoint().is_none() {
+                    self.mobile_controls
+                        .set_child(video.controls().clone().as_ref());
                 } else {
-                    self.desktop_controls.set_child(video.controls().as_ref())
+                    self.desktop_controls
+                        .set_child(video.controls().clone().as_ref())
                 }
-            } else {
-                self.desktop_controls.set_child(Widget::NONE);
-                self.mobile_controls.set_child(Widget::NONE);
             }
         }
 
@@ -162,16 +159,7 @@ mod imp {
                         }
                     }
 
-                    if let Some(video) = sliding_view.current_page().and_downcast_ref::<crate::GalleryVideo>() {
-                        if imp.is_mobile() {
-                            imp.mobile_controls.set_child(video.controls().as_ref());
-                        } else {
-                            imp.desktop_controls.set_child(video.controls().as_ref());
-                        }
-                    } else {
-                        imp.desktop_controls.set_child(Widget::NONE);
-                        imp.mobile_controls.set_child(Widget::NONE);
-                    }
+                    imp.move_controls();
                 }),
             );
 
