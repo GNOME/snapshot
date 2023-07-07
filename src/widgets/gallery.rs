@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use adw::prelude::*;
+use adw::subclass::prelude::*;
 use gettextrs::gettext;
-use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gdk, gio, glib};
 
@@ -21,6 +21,7 @@ static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
 mod imp {
     use super::*;
 
+    use gtk::Widget;
     use once_cell::sync::Lazy;
     use std::cell::RefCell;
 
@@ -33,6 +34,10 @@ mod imp {
         pub sliding_view: TemplateChild<crate::SlidingView>,
         #[template_child]
         pub open_external: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub desktop_controls: TemplateChild<adw::Bin>,
+        #[template_child]
+        pub mobile_controls: TemplateChild<adw::Bin>,
 
         pub current_item: RefCell<Option<crate::GalleryItem>>,
     }
@@ -41,10 +46,11 @@ mod imp {
     impl ObjectSubclass for Gallery {
         const NAME: &'static str = "Gallery";
         type Type = super::Gallery;
-        type ParentType = gtk::Widget;
+        type ParentType = adw::BreakpointBin;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
             klass.set_layout_manager_type::<gtk::BinLayout>();
             klass.set_css_name("gallery");
 
@@ -75,6 +81,37 @@ mod imp {
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
             obj.init_template();
+        }
+    }
+
+    #[gtk::template_callbacks]
+    impl Gallery {
+        #[template_callback]
+        fn change_breakpoint(&self) {
+            println!("breakpoint toggled");
+
+            if let Some(video) = self
+                .sliding_view
+                .current_page()
+                .and_downcast_ref::<crate::GalleryVideo>()
+            {
+                video
+                    .controls()
+                    .as_ref()
+                    .and_then(|controls| Some(controls.unparent()));
+                if self.is_mobile() {
+                    self.mobile_controls.set_child(video.controls().as_ref());
+                } else {
+                    self.desktop_controls.set_child(video.controls().as_ref())
+                }
+            } else {
+                self.desktop_controls.set_child(Widget::NONE);
+                self.mobile_controls.set_child(Widget::NONE);
+            }
+        }
+
+        pub fn is_mobile(&self) -> bool {
+            self.obj().current_breakpoint().is_some()
         }
     }
 
@@ -124,6 +161,17 @@ mod imp {
                             video.pause();
                         }
                     }
+
+                    if let Some(video) = sliding_view.current_page().and_downcast_ref::<crate::GalleryVideo>() {
+                        if imp.is_mobile() {
+                            imp.mobile_controls.set_child(video.controls().as_ref());
+                        } else {
+                            imp.desktop_controls.set_child(video.controls().as_ref());
+                        }
+                    } else {
+                        imp.desktop_controls.set_child(Widget::NONE);
+                        imp.mobile_controls.set_child(Widget::NONE);
+                    }
                 }),
             );
 
@@ -150,11 +198,12 @@ mod imp {
         }
     }
     impl WidgetImpl for Gallery {}
+    impl BreakpointBinImpl for Gallery {}
 }
 
 glib::wrapper! {
     pub struct Gallery(ObjectSubclass<imp::Gallery>)
-        @extends gtk::Widget;
+        @extends gtk::Widget, adw::BreakpointBin;
 }
 
 impl Default for Gallery {

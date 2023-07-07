@@ -58,6 +58,10 @@ impl GalleryVideo {
             .build()
     }
 
+    pub fn controls(&self) -> Option<gtk::Widget> {
+        Some(self.imp().video_player.controls().clone().upcast())
+    }
+
     pub async fn load_texture(&self) -> anyhow::Result<()> {
         self.set_started_loading(true);
 
