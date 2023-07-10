@@ -55,6 +55,15 @@ cargo-doc:
     - cargo +nightly rustdoc -- -Z unstable-options ${DOC_OPTIONS}
     - mv target/doc ../
 
+cargo-audit:
+  stage: test
+  interruptible: true
+  image: rust
+  allow_failure: true
+  script:
+    - cargo install cargo-deny
+    - cargo deny check
+
 pages:
   stage: deploy
   script:
