@@ -11,16 +11,15 @@
         <property name="icon-name">applications-system-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Camera</property>
             <child>
               <object class="AdwSwitchRow">
-                <property name="title" translatable="yes">Play Shutter Sound</property>
+                <property name="title" translatable="yes">Shutter Sound</property>
                 <property name="action-name">preferences-window.play-shutter-sound</property>
               </object>
             </child>
             <child>
               <object class="AdwSwitchRow">
-                <property name="title" translatable="yes">Show Composition Guidelines</property>
+                <property name="title" translatable="yes">Composition Guidelines</property>
                 <property name="action-name">preferences-window.show-composition-guidelines</property>
               </object>
             </child>
