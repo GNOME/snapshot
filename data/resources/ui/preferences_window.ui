@@ -13,14 +13,16 @@
           <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwSwitchRow">
-                <property name="title" translatable="yes">Shutter Sound</property>
+                <property name="title" translatable="yes">_Shutter Sound</property>
                 <property name="action-name">preferences-window.play-shutter-sound</property>
+                <property name="use-underline">True</property>
               </object>
             </child>
             <child>
               <object class="AdwSwitchRow">
-                <property name="title" translatable="yes">Composition Guidelines</property>
+                <property name="title" translatable="yes">_Composition Guidelines</property>
                 <property name="action-name">preferences-window.show-composition-guidelines</property>
+                <property name="use-underline">True</property>
               </object>
             </child>
           </object>
