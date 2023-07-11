@@ -30,6 +30,8 @@ mod imp {
         #[template_child]
         pub child: TemplateChild<gtk::Widget>,
         #[template_child]
+        pub mobile_breakpoint: TemplateChild<adw::Breakpoint>,
+        #[template_child]
         pub sliding_view: TemplateChild<crate::SlidingView>,
         #[template_child]
         pub open_external: TemplateChild<gtk::Button>,

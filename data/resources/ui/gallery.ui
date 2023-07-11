@@ -5,10 +5,10 @@
     <property name="width-request">360</property>
     <property name="height-request">294</property>
     <child>
-      <object class="AdwBreakpoint">
+      <object class="AdwBreakpoint" id="mobile_breakpoint">
         <condition>max-width: 500</condition>
         <setter object="mobile_controls_box" property="visible">True</setter>
-        <setter object="desktop_controls" property="visible">False</setter>
+        <setter object="desktop_controls_box" property="visible">False</setter>
       </object>
     </child>
     <child>
@@ -124,13 +124,17 @@
                       <object class="AdwBin">
                         <property name="hexpand">True</property>
                         <property name="child">
-                          <object class="GtkMediaControls" id="desktop_controls">
-                            <property name="valign">center</property>
-                            <property name="halign">fill</property>
-                            <property name="hexpand">True</property>
-                            <style>
-                              <class name="videoplayercontrols"/>
-                            </style>
+                          <object class="AdwBin" id="desktop_controls_box">
+                            <property name="child">
+                              <object class="GtkMediaControls" id="desktop_controls">
+                                <property name="valign">center</property>
+                                <property name="halign">fill</property>
+                                <property name="hexpand">True</property>
+                                <style>
+                                  <class name="videoplayercontrols"/>
+                                </style>
+                              </object>
+                            </property>
                           </object>
                         </property>
                       </object>
