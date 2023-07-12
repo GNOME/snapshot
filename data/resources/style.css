@@ -44,6 +44,11 @@ camera .controlsframe {
   padding: 12px;
 }
 
+camera:not(.mobile) .bottom.controlsframe {
+  padding-left: 18px;
+  padding-right: 24px;
+}
+
 camera:not(.mobile) .startcontrolsframe {
   background: none;
 }
@@ -60,6 +65,11 @@ button.gallerycontrols.circular {
   padding: 9px;
   min-width: 24px;
   min-height: 24px;
+}
+
+camera .horizontal.picturevideotoggle > button > image {
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 camera.mobile .horizontal.picturevideotoggle > button > image {
