@@ -63,8 +63,8 @@ pages:
   artifacts:
     paths:
       - 'public'
-  # rules:
-  #  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 nightly@x86_64:
   extends: ".publish_nightly"
