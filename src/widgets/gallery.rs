@@ -39,6 +39,8 @@ mod imp {
         pub desktop_controls: TemplateChild<gtk::MediaControls>,
         #[template_child]
         pub mobile_controls: TemplateChild<gtk::MediaControls>,
+        #[template_child]
+        pub menu_button: TemplateChild<gtk::MenuButton>,
 
         pub current_item: RefCell<Option<crate::GalleryItem>>,
     }
@@ -106,13 +108,17 @@ mod imp {
                     let imp = obj.imp();
 
                     if let Some(current) = sliding_view.current_page() {
+                        let is_picture = current.is_picture();
+
                         // The tooltip is also set in gallery.ui with a default value.
-                        let tooltip_text = if current.is_picture() {
+                        let tooltip_text = if is_picture {
                             gettext("Open in Image Viewer")
                         } else {
                             gettext("Open in Video Player")
                         };
                         imp.open_external.set_tooltip_text(Some(&tooltip_text));
+
+                        obj.build_menu(is_picture);
                     }
 
                     let has_prev = sliding_view.prev_page().is_some();
@@ -434,5 +440,17 @@ impl Gallery {
         } else {
             anyhow::bail!("Sliding view does not currently have a page");
         }
+    }
+
+    fn build_menu(&self, is_picture: bool) {
+        let menu = gio::Menu::new();
+        if is_picture {
+            menu.append(Some(&gettext("_Copy Picture")), Some("gallery.copy"));
+        } else {
+            menu.append(Some(&gettext("_Copy Video")), Some("gallery.copy"));
+        }
+        menu.append(Some(&gettext("_Delete")), Some("gallery.delete"));
+        menu.freeze();
+        self.imp().menu_button.set_menu_model(Some(&menu));
     }
 }

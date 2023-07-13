@@ -46,9 +46,8 @@
                   <class name="controlsframe"/>
                 </style>
                 <child type="end">
-                  <object class="GtkMenuButton">
+                  <object class="GtkMenuButton" id="menu_button">
                     <property name="icon-name">view-more-symbolic</property>
-                    <property name="menu-model">gallery_menu</property>
                     <property name="tooltip-text" translatable="yes">Gallery Menu</property>
                     <style>
                       <class name="flat"/>
@@ -160,16 +159,4 @@
       </object>
     </child>
   </template>
-  <menu id="gallery_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Copy</attribute>
-        <attribute name="action">gallery.copy</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Delete</attribute>
-        <attribute name="action">gallery.delete</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>
