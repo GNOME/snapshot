@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
-"POT-Creation-Date: 2023-06-24 20:28+0000\n"
-"PO-Revision-Date: 2023-06-25 06:08+0200\n"
+"POT-Creation-Date: 2023-07-12 17:28+0000\n"
+"PO-Revision-Date: 2023-07-13 07:07+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:261
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: src/main.rs:29 src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "სწრაფი ასლი"
 
@@ -108,111 +108,111 @@ msgstr "Snapshot-ის მთავარი ინტერფეისი"
 msgid "Snapshot's gallery viewer"
 msgstr "Snapshot-ის გალერეა"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "პროექტი \"GNOME\""
 
-#: data/resources/ui/camera.ui:68 data/resources/ui/camera.ui:124
-#: data/resources/ui/camera.ui:291 data/resources/ui/camera.ui:419
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
-#: data/resources/ui/camera.ui:78
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "კამერის გარეშე"
 
-#: data/resources/ui/camera.ui:79
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "შეაერთეთ კამერის მოწყობილობა"
 
-#: data/resources/ui/camera.ui:148 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:441
+#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
+#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
 msgstr "სურათის რეჟიმი"
 
-#: data/resources/ui/camera.ui:167 data/resources/ui/camera.ui:263
-#: data/resources/ui/camera.ui:370 data/resources/ui/camera.ui:460
+#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
+#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
 msgstr "ჩაწერის რეჟიმი"
 
-#: data/resources/ui/camera.ui:189 data/resources/ui/camera.ui:221
-#: data/resources/ui/camera.ui:323 data/resources/ui/camera.ui:547
-#: data/resources/ui/camera.ui:578
+#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
+#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:576
 msgid "Countdown"
 msgstr "ათვლა"
 
-#: data/resources/ui/camera.ui:489
-msgid "Open Gallery"
-msgstr "გალერეის გახსნა"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:495 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
-msgid "Take Picture"
-msgstr "სურათის გადაღება"
-
-#: data/resources/ui/camera.ui:508
-msgid "Select Camera"
-msgstr "აირჩიეთ კამერა"
-
-#: data/resources/ui/camera.ui:522
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "კამერის გადართვა"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:581
+#: data/resources/ui/camera.ui:579
 msgid "None"
 msgstr "არაფერი"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:586
+#: data/resources/ui/camera.ui:584
 msgid "3s"
 msgstr "3წმ"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:591
+#: data/resources/ui/camera.ui:589
 msgid "5s"
 msgstr "5წმ"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:596
+#: data/resources/ui/camera.ui:594
 msgid "10s"
 msgstr "10წმ"
 
-#: data/resources/ui/camera.ui:604
+#: data/resources/ui/camera.ui:602
 msgid "_Preferences"
 msgstr "_გამართვა"
 
-#: data/resources/ui/camera.ui:608
+#: data/resources/ui/camera.ui:606
 msgid "_Keyboard Shortcuts"
 msgstr "_კლავიატურის მალსახმობები"
 
-#: data/resources/ui/camera.ui:612
+#: data/resources/ui/camera.ui:610
 msgid "_About Snapshot"
 msgstr "Snapshot-ის _შესახებ"
 
-#: data/resources/ui/gallery.ui:42
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "გალერეის გახსნა"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
+msgid "Take Picture"
+msgstr "სურათის გადაღება"
+
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "აირჩიეთ კამერა"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "კამერის გადართვა"
+
+#: data/resources/ui/gallery.ui:52
 msgid "Gallery Menu"
 msgstr "გალერეის მენიუ"
 
-#: data/resources/ui/gallery.ui:67
+#: data/resources/ui/gallery.ui:101
 msgid "Previous Image"
 msgstr "წინა გამოსახულება"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:113
 msgid "Next Image"
 msgstr "შემდეგი გამოსახულება"
 
-#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:110
+#: data/resources/ui/gallery.ui:146 src/widgets/gallery.rs:111
 msgid "Open in Image Viewer"
 msgstr "სურათების გამხსნელში გახსნა"
 
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:166
 msgid "_Copy"
 msgstr "_კოპირება"
 
-#: data/resources/ui/gallery.ui:115
+#: data/resources/ui/gallery.ui:170
 msgid "_Delete"
 msgstr "_წაშლა"
 
@@ -220,17 +220,13 @@ msgstr "_წაშლა"
 msgid "General"
 msgstr "საერთო"
 
-#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:12
-msgid "Camera"
-msgstr "კამერა"
-
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "შატერის ხმის დაკვრა"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "_შატერის ხმა"
 
 #: data/resources/ui/preferences_window.ui:23
-msgid "Show Composition Guidelines"
-msgstr "კომპოზიციის დირექტივების ჩვენება"
+msgid "_Composition Guidelines"
+msgstr "_კომპოზიციის დირექტივები"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -302,13 +298,17 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "წინა"
 
-#: data/resources/ui/window.ui:20
+#: data/resources/ui/window.ui:13
+msgid "Camera"
+msgstr "კამერა"
+
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "გალერეა"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -337,23 +337,23 @@ msgstr "ჩანაწერის დრო {date}"
 msgid "Recording {number}"
 msgstr "ჩანაწერი {number}"
 
-#: src/widgets/camera.rs:531
+#: src/widgets/camera.rs:416
 msgid "Could not play camera stream"
 msgstr "კამერის ვიდეონაკადის დაკვრის შეცდომა"
 
-#: src/widgets/gallery.rs:112
+#: src/widgets/gallery.rs:113
 msgid "Open in Video Player"
 msgstr "ვიდეოდამკვრელით გახსნა"
 
-#: src/widgets/gallery.rs:371
+#: src/widgets/gallery.rs:377
 msgid "Copied to clipboard"
 msgstr "დაკოპირდა გაცვლის ბაფერში"
 
-#: src/widgets/gallery.rs:396
+#: src/widgets/gallery.rs:425
 msgid "Picture deleted"
 msgstr "სურათი წაიშალა"
 
-#: src/widgets/gallery.rs:398
+#: src/widgets/gallery.rs:427
 msgid "Video deleted"
 msgstr "ვიდეო წაიშალა"
 
