@@ -32,6 +32,14 @@ gallery {
   background-color: black;
 }
 
+.videoplayercontrols {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 50px;
+}
+
 .videoplayercontrols button {
  border-radius: 999px;
 }
