@@ -57,6 +57,8 @@ mod imp {
             if widget.load() {
                 widget.start_loading();
             }
+
+            widget.set_halign(gtk::Align::Center);
         }
     }
 
