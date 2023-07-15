@@ -27,13 +27,38 @@ mod imp {
         pub started_loading: Cell<bool>,
         #[property(get, set)]
         pub loaded: Cell<bool>,
+        #[property(get, set = Self::set_item, explicit_notify)]
+        pub item: RefCell<Option<gtk::Widget>>,
+
+        pub popover: OnceCell<gtk::PopoverMenu>,
+    }
+
+    impl GalleryItem {
+        fn set_item(&self, item: &gtk::Widget) {
+            let widget = self.obj();
+
+            if self.item.borrow().as_ref() == Some(item) {
+                return;
+            }
+
+            if let Some(old) = self.item.replace(Some(item.clone())) {
+                old.unparent();
+            }
+
+            item.set_parent(&*widget);
+            widget.notify_item();
+        }
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for GalleryItem {
         const NAME: &'static str = "GalleryItem";
         type Type = super::GalleryItem;
-        type ParentType = adw::Bin;
+        type ParentType = gtk::Widget;
+
+        fn class_init(klass: &mut Self::Class) {
+            klass.set_layout_manager_type::<gtk::BinLayout>();
+        }
     }
 
     impl ObjectImpl for GalleryItem {
@@ -59,6 +84,42 @@ mod imp {
             }
 
             widget.set_halign(gtk::Align::Center);
+
+            let menu = crate::utils::gallery_item_menu(widget.is_picture());
+
+            let popover = gtk::PopoverMenu::from_model(Some(&menu));
+            popover.set_has_arrow(false);
+            if widget.direction() == gtk::TextDirection::Rtl {
+                popover.set_halign(gtk::Align::End);
+            } else {
+                popover.set_halign(gtk::Align::Start);
+            }
+
+            let gesture = gtk::GestureClick::new();
+            gesture.set_button(gdk::BUTTON_SECONDARY);
+            gesture.connect_pressed(
+                glib::clone!(@weak popover, @weak widget => move |_, _, x, y| {
+                    if x > -1.0 && y > -1.0 {
+                        let rectangle = gdk::Rectangle::new(x as i32, y as i32, 0, 0);
+                        popover.set_pointing_to(Some(&rectangle));
+                    } else {
+                        popover.set_pointing_to(None);
+                    }
+                    popover.popup();
+                }),
+            );
+
+            popover.set_parent(&*widget);
+            widget.add_controller(gesture);
+
+            self.popover.set(popover).unwrap();
+        }
+
+        fn dispose(&self) {
+            self.popover.get().unwrap().unparent();
+            if let Some(child) = self.item.take() {
+                child.unparent();
+            }
         }
     }
 

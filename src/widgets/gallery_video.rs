@@ -28,7 +28,9 @@ mod imp {
             let file = widget.file();
             self.video_player.set_file(&file);
 
-            widget.set_child(Some(&self.video_player));
+            widget
+                .upcast_ref::<crate::GalleryItem>()
+                .set_item(self.video_player.upcast_ref());
         }
     }
 

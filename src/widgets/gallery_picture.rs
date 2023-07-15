@@ -25,7 +25,9 @@ mod imp {
 
             let widget = self.obj();
 
-            widget.set_child(Some(&self.picture));
+            widget
+                .upcast_ref::<crate::GalleryItem>()
+                .set_item(self.picture.upcast_ref());
 
             if let Some(basename) = widget.file().basename() {
                 let label = basename.display().to_string();
