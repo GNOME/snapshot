@@ -61,6 +61,10 @@ camera:not(.mobile) .startcontrolsframe {
   background: none;
 }
 
+gallery headerbar {
+  background: rgba(0, 0, 0, 0.45);
+}
+
 gallery .controlsframe {
   padding: 6px;
 }
