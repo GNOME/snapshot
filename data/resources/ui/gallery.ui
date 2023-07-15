@@ -34,122 +34,118 @@
       </object>
     </child>
     <child>
-      <object class="GtkWindowHandle" id="child">
-        <child>
-          <object class="AdwToolbarView">
-            <property name="extend-content-to-top-edge">True</property>
-            <property name="extend-content-to-bottom-edge">True</property>
-            <child type="top">
-              <object class="AdwHeaderBar">
-                <property name="show-title">False</property>
+      <object class="AdwToolbarView">
+        <property name="extend-content-to-top-edge">True</property>
+        <property name="extend-content-to-bottom-edge">True</property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-title">False</property>
+            <style>
+              <class name="controlsframe"/>
+            </style>
+            <child type="end">
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Gallery Menu</property>
                 <style>
-                  <class name="controlsframe"/>
+                  <class name="flat"/>
+                  <class name="circular"/>
                 </style>
-                <child type="end">
-                  <object class="GtkMenuButton" id="menu_button">
-                    <property name="icon-name">view-more-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Gallery Menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="SlidingView" id="sliding_view"/>
+        </child>
+        <child type="bottom">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwBin" id="mobile_controls_box">
+                <property name="visible">False</property>
+                <property name="child">
+                  <object class="GtkMediaControls" id="mobile_controls">
+                    <property name="valign">center</property>
+                    <property name="halign">fill</property>
+                    <property name="hexpand">True</property>
                     <style>
-                      <class name="flat"/>
-                      <class name="circular"/>
+                      <class name="videoplayercontrols"/>
+                      <class name="osd"/>
                     </style>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <child>
-              <object class="SlidingView" id="sliding_view"/>
-            </child>
-            <child type="bottom">
+              <!--
+                  We can't use a GtkCenterBox here because it has spacing issues.
+                  Instead, we'll use a GtkBox with an AdwBin in the centre to keep the spacing good.
+              -->
               <object class="GtkBox">
-                <property name="orientation">vertical</property>
+                <property name="margin-start">18</property>
+                <property name="margin-end">18</property>
+                <property name="margin-top">18</property>
+                <property name="margin-bottom">18</property>
                 <child>
-                  <object class="AdwBin" id="mobile_controls_box">
-                    <property name="visible">False</property>
-                    <property name="child">
-                      <object class="GtkMediaControls" id="mobile_controls">
-                        <property name="valign">center</property>
-                        <property name="halign">fill</property>
-                        <property name="hexpand">True</property>
+                  <object class="GtkBox">
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkButton" id="prev_button">
+                        <property name="icon-name">go-previous-symbolic</property>
+                        <property name="action-name">gallery.previous</property>
+                        <property name="tooltip-text" translatable="yes">Previous Image</property>
                         <style>
-                          <class name="videoplayercontrols"/>
                           <class name="osd"/>
+                          <class name="circular"/>
+                          <class name="gallerycontrols"/>
                         </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="next_button">
+                        <property name="icon-name">go-next-symbolic</property>
+                        <property name="action-name">gallery.next</property>
+                        <property name="tooltip-text" translatable="yes">Next Image</property>
+                        <style>
+                          <class name="osd"/>
+                          <class name="circular"/>
+                          <class name="gallerycontrols"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwBin">
+                    <property name="hexpand">True</property>
+                    <property name="child">
+                      <object class="AdwBin" id="desktop_controls_box">
+                        <property name="child">
+                          <object class="GtkMediaControls" id="desktop_controls">
+                            <property name="valign">center</property>
+                            <property name="halign">fill</property>
+                            <property name="hexpand">True</property>
+                            <style>
+                              <class name="videoplayercontrols"/>
+                              <class name="osd"/>
+                            </style>
+                          </object>
+                        </property>
                       </object>
                     </property>
                   </object>
                 </child>
                 <child>
-                  <!--
-                    We can't use a GtkCenterBox here because it has spacing issues.
-                    Instead, we'll use a GtkBox with an AdwBin in the centre to keep the spacing good.
-                  -->
-                  <object class="GtkBox">
-                    <property name="margin-start">18</property>
-                    <property name="margin-end">18</property>
-                    <property name="margin-top">18</property>
-                    <property name="margin-bottom">18</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkButton" id="prev_button">
-                            <property name="icon-name">go-previous-symbolic</property>
-                            <property name="action-name">gallery.previous</property>
-                            <property name="tooltip-text" translatable="yes">Previous Image</property>
-                            <style>
-                              <class name="osd"/>
-                              <class name="circular"/>
-                              <class name="gallerycontrols"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="next_button">
-                            <property name="icon-name">go-next-symbolic</property>
-                            <property name="action-name">gallery.next</property>
-                            <property name="tooltip-text" translatable="yes">Next Image</property>
-                            <style>
-                              <class name="osd"/>
-                              <class name="circular"/>
-                              <class name="gallerycontrols"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwBin">
-                        <property name="hexpand">True</property>
-                        <property name="child">
-                          <object class="AdwBin" id="desktop_controls_box">
-                            <property name="child">
-                              <object class="GtkMediaControls" id="desktop_controls">
-                                <property name="valign">center</property>
-                                <property name="halign">fill</property>
-                                <property name="hexpand">True</property>
-                                <style>
-                                  <class name="videoplayercontrols"/>
-                                  <class name="osd"/>
-                                </style>
-                              </object>
-                            </property>
-                          </object>
-                        </property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="open_external">
-                        <property name="icon-name">external-link-symbolic</property>
-                        <property name="action-name">gallery.open</property>
-                        <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
-                        <style>
-                          <class name="osd"/>
-                          <class name="gallerycontrols"/>
-                          <class name="circular"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="GtkButton" id="open_external">
+                    <property name="icon-name">external-link-symbolic</property>
+                    <property name="action-name">gallery.open</property>
+                    <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
+                    <style>
+                      <class name="osd"/>
+                      <class name="gallerycontrols"/>
+                      <class name="circular"/>
+                    </style>
                   </object>
                 </child>
               </object>

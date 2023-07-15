@@ -28,8 +28,6 @@ mod imp {
     #[template(resource = "/org/gnome/Snapshot/ui/gallery.ui")]
     pub struct Gallery {
         #[template_child]
-        pub child: TemplateChild<gtk::Widget>,
-        #[template_child]
         pub mobile_breakpoint: TemplateChild<adw::Breakpoint>,
         #[template_child]
         pub sliding_view: TemplateChild<crate::SlidingView>,
