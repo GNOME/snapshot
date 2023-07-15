@@ -5,7 +5,8 @@ use once_cell::sync::Lazy;
 use std::path::PathBuf;
 
 use anyhow::Context;
-use gtk::glib;
+use gettextrs::gettext;
+use gtk::{gio, glib};
 
 use crate::i18n::i18n_f;
 
@@ -119,4 +120,17 @@ pub fn debug_info() -> String {
     }
 
     debug_string
+}
+
+pub fn gallery_item_menu(is_picture: bool) -> gio::Menu {
+    let menu = gio::Menu::new();
+    if is_picture {
+        menu.append(Some(&gettext("_Copy Picture")), Some("gallery.copy"));
+    } else {
+        menu.append(Some(&gettext("_Copy Video")), Some("gallery.copy"));
+    }
+    menu.append(Some(&gettext("_Delete")), Some("gallery.delete"));
+    menu.freeze();
+
+    menu
 }

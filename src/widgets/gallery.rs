@@ -116,7 +116,8 @@ mod imp {
                         };
                         imp.open_external.set_tooltip_text(Some(&tooltip_text));
 
-                        obj.build_menu(is_picture);
+                        let menu = crate::utils::gallery_item_menu(is_picture);
+                        imp.menu_button.set_menu_model(Some(&menu));
                     }
 
                     let has_prev = sliding_view.prev_page().is_some();
@@ -438,17 +439,5 @@ impl Gallery {
         } else {
             anyhow::bail!("Sliding view does not currently have a page");
         }
-    }
-
-    fn build_menu(&self, is_picture: bool) {
-        let menu = gio::Menu::new();
-        if is_picture {
-            menu.append(Some(&gettext("_Copy Picture")), Some("gallery.copy"));
-        } else {
-            menu.append(Some(&gettext("_Copy Video")), Some("gallery.copy"));
-        }
-        menu.append(Some(&gettext("_Delete")), Some("gallery.delete"));
-        menu.freeze();
-        self.imp().menu_button.set_menu_model(Some(&menu));
     }
 }
