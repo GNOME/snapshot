@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/issu"
-"es\n"
-"POT-Creation-Date: 2023-07-12 17:28+0000\n"
-"PO-Revision-Date: 2023-07-13 09:04+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/iss"
+"ues\n"
+"POT-Creation-Date: 2023-07-14 19:05+0000\n"
+"PO-Revision-Date: 2023-07-17 23:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -197,41 +197,31 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Перемкнути фотоапарат"
 
-#: data/resources/ui/gallery.ui:52
+#: data/resources/ui/gallery.ui:51
 msgid "Gallery Menu"
 msgstr "Меню галереї"
 
-#: data/resources/ui/gallery.ui:101
+#: data/resources/ui/gallery.ui:100
 msgid "Previous Image"
 msgstr "Попереднє зображення"
 
-#: data/resources/ui/gallery.ui:113
+#: data/resources/ui/gallery.ui:112
 msgid "Next Image"
 msgstr "Наступне зображення"
 
-#: data/resources/ui/gallery.ui:146 src/widgets/gallery.rs:111
+#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Відкрити у переглядачі зображень"
-
-#: data/resources/ui/gallery.ui:166
-msgid "_Copy"
-msgstr "_Копіювати"
-
-#: data/resources/ui/gallery.ui:170
-msgid "_Delete"
-msgstr "В_илучити"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "Загальне"
 
 #: data/resources/ui/preferences_window.ui:16
-#| msgid "Play Shutter Sound"
 msgid "_Shutter Sound"
 msgstr "Зв_ук затвора"
 
 #: data/resources/ui/preferences_window.ui:23
-#| msgid "Show Composition Guidelines"
 msgid "_Composition Guidelines"
 msgstr "&Напрямні композиції"
 
@@ -348,21 +338,35 @@ msgstr "Запис {number}"
 msgid "Could not play camera stream"
 msgstr "Не вдалося відтворити потокові дані з камери"
 
-#: src/widgets/gallery.rs:113
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Відкрити у програвачі відео"
 
-#: src/widgets/gallery.rs:377
+#: src/widgets/gallery.rs:383
 msgid "Copied to clipboard"
 msgstr "Скопійовано до буфера обміну"
 
-#: src/widgets/gallery.rs:425
+#: src/widgets/gallery.rs:431
 msgid "Picture deleted"
 msgstr "Зображення вилучено"
 
-#: src/widgets/gallery.rs:427
+#: src/widgets/gallery.rs:433
 msgid "Video deleted"
 msgstr "Відео вилучено"
+
+#: src/widgets/gallery.rs:448
+#| msgid "Take Picture"
+msgid "_Copy Picture"
+msgstr "_Копіювати зображення"
+
+#: src/widgets/gallery.rs:450
+#| msgid "_Copy"
+msgid "_Copy Video"
+msgstr "_Копіювати відео"
+
+#: src/widgets/gallery.rs:452
+msgid "_Delete"
+msgstr "В_илучити"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
