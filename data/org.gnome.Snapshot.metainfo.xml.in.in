@@ -13,16 +13,16 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.gnome.org/GNOME/Incubator/snapshot/raw/main/data/screenshots/screenshot1.png</image>
+      <image>https://gitlab.gnome.org/GNOME/snapshot/raw/main/data/screenshots/screenshot1.png</image>
       <caption>Snapshot's main interface</caption>
     </screenshot>
     <screenshot>
-      <image>https://gitlab.gnome.org/GNOME/Incubator/snapshot/raw/main/data/screenshots/gallery.png</image>
+      <image>https://gitlab.gnome.org/GNOME/snapshot/raw/main/data/screenshots/gallery.png</image>
       <caption>Snapshot's gallery viewer</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://apps.gnome.org/app/org.gnome.Snapshot</url>
-  <url type="bugtracker">https://gitlab.gnome.org/GNOME/Incubator/snapshot/issues</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/snapshot/issues</url>
   <url type="translate">https://l10n.gnome.org/module/snapshot/</url>
   <url type="donation">https://www.gnome.org/donate</url>
   <content_rating type="oars-1.0" />
