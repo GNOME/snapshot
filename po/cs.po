@@ -1,0 +1,300 @@
+# Czech translation for Snapshot.
+# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Snapshot package.
+# Vojtěch Perník <translations@pervoj.cz>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-04-29 17:23+0000\n"
+"PO-Revision-Date: 2023-04-29 22:07+0200\n"
+"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
+#: src/widgets/window.rs:232
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Pořizujte obrázky a videa"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;"
+msgstr "obrázek;fotky;kamera;fotoaparát;foťák;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "Výchozí šířka okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "Výchozí výška okna"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "Výchozí chování okna při maximalizaci"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "Přehrát zvuk závěrky"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Jestli při pořizování obrázků přehrát zvuk závěrky"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Countdown timer"
+msgstr "Časovač odpočtu"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Délka odpočtu před pořízením fotky, v sekundách"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Capture mode"
+msgstr "Režim snímání"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Whether to take pictures or videos"
+msgstr "Jestli pořizovat obrázky nebo videa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Picture format"
+msgstr "Formát obrázku"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Jestli ukládat obrázky jako png nebo jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Video format"
+msgstr "Formát videa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Jestli ukládat videa jako mp4 nebo webm"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Pořizujte obrázky a videa na svém počítači, tabletu nebo telefonu."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Snapshot's main interface"
+msgstr "Hlavní rozhraní Snapshotu"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:238
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
+
+#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
+#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
+#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
+msgid "Main Menu"
+msgstr "Hlavní nabídka"
+
+#: data/resources/ui/camera.ui:58
+msgid "No Camera Found"
+msgstr "Nenalezena žádná kamera"
+
+#: data/resources/ui/camera.ui:59
+msgid "Connect a camera device"
+msgstr "Připojte zařízení kamery"
+
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
+#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
+msgid "Picture Mode"
+msgstr "Režim obrázků"
+
+#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
+#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
+msgid "Recording Mode"
+msgstr "Režim natáčení"
+
+#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
+#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+msgid "Countdown"
+msgstr "Odpočet"
+
+#: data/resources/ui/camera.ui:450
+msgid "Open Gallery"
+msgstr "Otevřít galerii"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
+#: src/widgets/shutter_button.rs:126
+msgid "Take Picture"
+msgstr "Pořídit obrázek"
+
+#: data/resources/ui/camera.ui:469
+msgid "Select Camera"
+msgstr "Vybrat kameru"
+
+#: data/resources/ui/camera.ui:483
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Přepnout kameru"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:538
+msgid "None"
+msgstr "Vypnutý"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:543
+msgid "3s"
+msgstr "3 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:548
+msgid "5s"
+msgstr "5 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:553
+msgid "10s"
+msgstr "10 s"
+
+#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
+msgid "_Preferences"
+msgstr "_Předvolby"
+
+#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
+msgid "_Keyboard Shortcuts"
+msgstr "_Klávesové zkratky"
+
+#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
+msgid "_About Snapshot"
+msgstr "_O aplikaci Snapshot"
+
+#: data/resources/ui/gallery.ui:51
+msgid "Back"
+msgstr "Zpět"
+
+#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
+msgid "Open in Image Viewer"
+msgstr "Otevřít v prohlížeči obrázků"
+
+#: data/resources/ui/gallery.ui:111
+msgid "Previous Image"
+msgstr "Předchozí obrázek"
+
+#: data/resources/ui/gallery.ui:123
+msgid "Next Image"
+msgstr "Následující obrázek"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Obecné"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/preferences_window.ui:17
+msgid "Play Shutter Sound"
+msgstr "Přehrát zvuk závěrky"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Obecné"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Zobrazit zkratky"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Hlavní nabídka"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Otevřít předvolby"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ukončit"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Režim obrázků"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Režim natáčení"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Pořídit obrázek nebo spustit zaznamenávání"
+
+#: data/resources/ui/shortcuts.ui:63
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galerie"
+
+#: data/resources/ui/shortcuts.ui:66
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Otevřít/Zavřít galerii"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Následující"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Předchozí"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:39
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/widgets/camera.rs:431
+msgid "Could not play camera stream"
+msgstr "Nepodařilo se přehrát stream z kamery"
+
+#: src/widgets/gallery.rs:99
+msgid "Open in Video Player"
+msgstr "Otevřít v přehrávači videí"
+
+#: src/widgets/shutter_button.rs:77
+msgid "Start Recording"
+msgstr "Spustit zaznamenávání"
+
+#: src/widgets/shutter_button.rs:88
+msgid "Stop Recording"
+msgstr "Zastavit zaznamenávání"
+
+#: src/widgets/window.rs:237
+msgid "translator-credits"
+msgstr "Vojtěch Perník <translations@pervoj.cz>"
