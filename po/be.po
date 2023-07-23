@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
 "POT-Creation-Date: 2023-07-21 14:57+0000\n"
-"PO-Revision-Date: 2023-07-23 03:27+0300\n"
+"PO-Revision-Date: 2023-07-23 21:47+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -29,13 +29,13 @@ msgstr "Snapshot"
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
-msgstr "Атрыманне здымкаў і відэа з экрана"
+msgstr "Атрыманне здымкаў і запіс відэа"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;"
 msgstr ""
-"picture;photos;camera;webcam;выява;здымак;відарыс;фота;камера;вэб-камера;"
+"picture;photos;camera;webcam;выява;здымак;здымка;фота;камера;вэб-камера;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -57,15 +57,15 @@ msgstr "Гук затвора"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Ці прайграваць гук затвора пры атрыманні здымка"
+msgstr "Ці прайграваць гук затвора, калі робіцца здымак"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Show composition guidelines"
-msgstr ""
+msgstr "Паказваць дапаможныя лініі"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr ""
+msgstr "Паказваць дапаможныя лініі падчас выкарыстання камеры"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -77,11 +77,11 @@ msgstr "Працягласць адваротнага адліку перад а
 
 #: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
-msgstr "Рэжым захопу"
+msgstr "Рэжым здымкі"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
-msgstr "Вызначае, рабіць здымкі ці запісваць відэа з экрана"
+msgstr "Вызначае, рабіць фотаздымкі ці запіс відэа"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
@@ -89,7 +89,7 @@ msgstr "Фармат выявы"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
-msgstr "Вызначае фармат захавання для здымкаў, выявы png або jpeg"
+msgstr "Вызначае фармат захавання для фотаздымкаў, png або jpeg"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
@@ -101,8 +101,7 @@ msgstr "Вызначае фармат захавання для відэа, mp4 
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr ""
-"Атрыманне здымкаў і відэа з экрана камп'ютара, планшэта або тэлефона."
+msgstr "Фотаздымка і запіс відэа на камп'ютары, планшэце або тэлефоне."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Snapshot's main interface"
@@ -132,12 +131,12 @@ msgstr "Падлучыце камеру"
 #: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
 #: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
-msgstr "Рэжым атрымання здымкаў"
+msgstr "Рэжым фотаздымкі"
 
 #: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
 #: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
-msgstr "Рэжым запісу відэа"
+msgstr "Рэжым відэаздымкі"
 
 #: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
 #: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
@@ -222,7 +221,7 @@ msgstr "Гук _затвора"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "_Composition Guidelines"
-msgstr ""
+msgstr "Дапаможныя _лініі"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -257,12 +256,12 @@ msgstr "Камера"
 #: data/resources/ui/shortcuts.ui:43
 msgctxt "shortcut window"
 msgid "Picture Mode"
-msgstr "Рэжым атрымання здымкаў"
+msgstr "Рэжым фотаздымкі"
 
 #: data/resources/ui/shortcuts.ui:49
 msgctxt "shortcut window"
 msgid "Recording Mode"
-msgstr "Рэжым запісу відэа"
+msgstr "Рэжым відэаздымкі"
 
 #: data/resources/ui/shortcuts.ui:55
 msgctxt "shortcut window"
@@ -272,7 +271,7 @@ msgstr "Зрабіць здымак або Пачаць запіс"
 #: data/resources/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr ""
+msgstr "Паказаць/схаваць дапаможныя лініі"
 
 #: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
@@ -331,7 +330,7 @@ msgstr "Запіс ад {date}"
 #. "Recording 12345" and it will be used as a file name.
 #: src/utils.rs:46
 msgid "Recording {number}"
-msgstr "Запіс{number}"
+msgstr "Запіс {number}"
 
 #: src/utils.rs:128
 msgid "_Copy Picture"
