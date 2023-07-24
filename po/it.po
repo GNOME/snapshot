@@ -7,9 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-03 08:58+0000\n"
-"PO-Revision-Date: 2023-05-03 12:47+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
+"issues\n"
+"POT-Creation-Date: 2023-07-14 19:05+0000\n"
+"PO-Revision-Date: 2023-07-23 17:52+0200\n"
 "Last-Translator: Davide Ferracin <davide.ferracin@protonmail.com>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -19,8 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:235
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: src/main.rs:29 src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "Snapshot"
 
@@ -31,8 +32,8 @@ msgstr "Scatta foto e registra video"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "immagine;fotografia;foto;fotocamera;camera;"
+msgid "picture;photos;camera;webcam;"
+msgstr "immagine;fotografia;foto;fotocamera;camera;webcam;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -58,34 +59,42 @@ msgstr ""
 "Se riprodurre il suono di un otturatore quando si scatta una fotografia"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Mostra griglia"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Se mostrare una griglia durante l'uso della fotocamera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "Conto alla rovescia"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "La durata del conto alla rovescia per scattare foto, in secondi"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "Modalità di acquisizione"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "Se scattare foto o registrare video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "Formato foto"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Se salvare le fotografie come png o jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "Formato video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Se salvare i video come mp4 o webm"
 
@@ -97,117 +106,121 @@ msgstr "Scatta foto e registra video su computer, tablet e telefono."
 msgid "Snapshot's main interface"
 msgstr "Interfaccia principale di Snapshot"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:39 src/widgets/window.rs:241
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Snapshot's gallery viewer"
+msgstr "Galleria di Snapshot"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Il progetto GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:100
-#: data/resources/ui/camera.ui:253 data/resources/ui/camera.ui:339
-#: data/resources/ui/camera.ui:382 data/resources/ui/gallery.ui:64
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
 msgid "Main Menu"
 msgstr "Menù principale"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "Nessuna fotocamera trovata"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "Connettere una fotocamera"
 
-#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:208
-#: data/resources/ui/camera.ui:301 data/resources/ui/camera.ui:404
+#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
+#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
 msgstr "Modalità fotografia"
 
-#: data/resources/ui/camera.ui:142 data/resources/ui/camera.ui:226
-#: data/resources/ui/camera.ui:319 data/resources/ui/camera.ui:422
+#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
+#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
 msgstr "Modalità registrazione"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:187
-#: data/resources/ui/camera.ui:508 data/resources/ui/camera.ui:535
+#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
+#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:576
 msgid "Countdown"
 msgstr "Conto alla rovescia"
 
-#: data/resources/ui/camera.ui:450
-msgid "Open Gallery"
-msgstr "Apri galleria"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:456 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
-msgid "Take Picture"
-msgstr "Scatta foto"
-
-#: data/resources/ui/camera.ui:469
-msgid "Select Camera"
-msgstr "Seleziona fotocamera"
-
-#: data/resources/ui/camera.ui:483
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "Cambia fotocamera"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:538
+#: data/resources/ui/camera.ui:579
 msgid "None"
 msgstr "Nessuno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:543
+#: data/resources/ui/camera.ui:584
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:548
+#: data/resources/ui/camera.ui:589
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:553
+#: data/resources/ui/camera.ui:594
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:561 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:602
 msgid "_Preferences"
 msgstr "_Preferenze"
 
-#: data/resources/ui/camera.ui:565 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:606
 msgid "_Keyboard Shortcuts"
 msgstr "_Scorciatoie da tastiera"
 
-#: data/resources/ui/camera.ui:569 data/resources/ui/gallery.ui:155
+#: data/resources/ui/camera.ui:610
 msgid "_About Snapshot"
 msgstr "_Informazioni su Snapshot"
 
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "Apri galleria"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
+msgid "Take Picture"
+msgstr "Scatta foto"
+
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "Seleziona fotocamera"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Cambia fotocamera"
+
 #: data/resources/ui/gallery.ui:51
-msgid "Back"
-msgstr "Indietro"
+msgid "Gallery Menu"
+msgstr "Menù galleria"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "Apri nel visualizzatore di immagini"
-
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:100
 msgid "Previous Image"
 msgstr "Immagine precedente"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:112
 msgid "Next Image"
 msgstr "Immagine successiva"
+
+#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr "Apri nel visualizzatore di immagini"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "Generali"
 
-#: data/resources/ui/preferences_window.ui:14
-msgid "Camera"
-msgstr "Fotocamera"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "_Suono otturatore"
 
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "Riproduci suono otturatore"
+#: data/resources/ui/preferences_window.ui:23
+msgid "_Composition Guidelines"
+msgstr "_Griglia"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -254,53 +267,126 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Scatta una foto o avvia una registrazione"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Mostra/Nasconde la griglia"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galleria"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Apre/Chiude la galleria"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Successivo"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Precedente"
 
+#: data/resources/ui/window.ui:13
+msgid "Camera"
+msgstr "Fotocamera"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galleria"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/camera.rs:431
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+msgid "Photo from {date}"
+msgstr "Foto del {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:27
+msgid "Photo {number}"
+msgstr "Foto {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:40
+msgid "Recording from {date}"
+msgstr "Registrazione del {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:45
+msgid "Recording {number}"
+msgstr "Registrazione {number}"
+
+#: src/widgets/camera.rs:416
 msgid "Could not play camera stream"
 msgstr "Errore nella riproduzione del flusso della fotocamera"
 
-#: src/widgets/gallery.rs:99
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Apri nel lettore video"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/gallery.rs:383
+msgid "Copied to clipboard"
+msgstr "Copiata negli appunti"
+
+#: src/widgets/gallery.rs:431
+msgid "Picture deleted"
+msgstr "Fotografia eliminata"
+
+#: src/widgets/gallery.rs:433
+msgid "Video deleted"
+msgstr "Video eliminato"
+
+#: src/widgets/gallery.rs:448
+msgid "_Copy Picture"
+msgstr "_Copia fotografia"
+
+#: src/widgets/gallery.rs:450
+msgid "_Copy Video"
+msgstr "_Copia video"
+
+#: src/widgets/gallery.rs:452
+msgid "_Delete"
+msgstr "_Elimina"
+
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Avvia la registrazione"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Ferma la registrazione"
 
-#: src/widgets/window.rs:240
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
+msgid "Could not take picture"
+msgstr "Scatto della fotografia non riuscito"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
+msgid "Could not record video"
+msgstr "Registrazione del video non riuscita"
+
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr ""
 "Davide Ferracin <davide.ferracin@protonmail.com>, 2023\n"
 "Lorenzo R. <lorenzorvd@tutanota.com>, 2023"
+
+#~ msgid "Back"
+#~ msgstr "Indietro"
 
 #~ msgid "Maximiliano Sandoval"
 #~ msgstr "Maximiliano Sandoval"
