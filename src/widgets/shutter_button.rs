@@ -380,7 +380,7 @@ fn lerp(t: f32, from: f32, to: f32) -> f32 {
 fn color_lerp(t: f32, from: gdk::RGBA, to: gdk::RGBA) -> gdk::RGBA {
     gdk::RGBA::new(
         lerp(t, from.red(), to.red()),
-        lerp(t, from.green(), to.blue()),
+        lerp(t, from.green(), to.green()),
         lerp(t, from.blue(), to.blue()),
         from.alpha(),
     )
