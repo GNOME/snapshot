@@ -87,6 +87,8 @@
                 <child>
                   <object class="GtkBox">
                     <property name="spacing">12</property>
+                    <property name="halign">start</property>
+                    <property name="hexpand">True</property>
                     <child>
                       <object class="GtkButton" id="prev_button">
                         <property name="icon-name">go-previous-symbolic</property>
@@ -116,24 +118,19 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwBin">
-                    <property name="hexpand">True</property>
+                  <object class="AdwClamp" id="desktop_controls_box">
+                    <property name="maximum-size">800</property>
+                    <property name="tightening-threshold">500</property>
+                    <property name="unit">px</property>
                     <property name="child">
-                      <object class="AdwClamp" id="desktop_controls_box">
-                        <property name="maximum-size">800</property>
-                        <property name="tightening-threshold">500</property>
-                        <property name="unit">px</property>
-                        <property name="child">
-                          <object class="GtkMediaControls" id="desktop_controls">
-                            <property name="valign">center</property>
-                            <property name="halign">fill</property>
-                            <property name="hexpand">True</property>
-                            <style>
-                              <class name="videoplayercontrols"/>
-                              <class name="osd"/>
-                            </style>
-                          </object>
-                        </property>
+                      <object class="GtkMediaControls" id="desktop_controls">
+                        <property name="valign">center</property>
+                        <property name="halign">fill</property>
+                        <property name="hexpand">True</property>
+                        <style>
+                          <class name="videoplayercontrols"/>
+                          <class name="osd"/>
+                        </style>
                       </object>
                     </property>
                   </object>
