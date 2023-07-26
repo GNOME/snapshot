@@ -92,6 +92,7 @@
                         <property name="icon-name">go-previous-symbolic</property>
                         <property name="action-name">gallery.previous</property>
                         <property name="tooltip-text" translatable="yes">Previous Image</property>
+                        <property name="valign">center</property>
                         <style>
                           <class name="osd"/>
                           <class name="circular"/>
@@ -104,6 +105,7 @@
                         <property name="icon-name">go-next-symbolic</property>
                         <property name="action-name">gallery.next</property>
                         <property name="tooltip-text" translatable="yes">Next Image</property>
+                        <property name="valign">center</property>
                         <style>
                           <class name="osd"/>
                           <class name="circular"/>
@@ -138,6 +140,7 @@
                     <property name="icon-name">external-link-symbolic</property>
                     <property name="action-name">gallery.open</property>
                     <property name="tooltip-text" translatable="yes">Open in Image Viewer</property>
+                    <property name="valign">center</property>
                     <style>
                       <class name="osd"/>
                       <class name="gallerycontrols"/>
