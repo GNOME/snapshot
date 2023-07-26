@@ -80,8 +80,8 @@ button.gallerycontrols.circular {
 }
 
 camera .horizontal.picturevideotoggle > button > image {
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 camera.mobile .horizontal.picturevideotoggle > button > image {
