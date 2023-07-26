@@ -119,7 +119,10 @@
                   <object class="AdwBin">
                     <property name="hexpand">True</property>
                     <property name="child">
-                      <object class="AdwBin" id="desktop_controls_box">
+                      <object class="AdwClamp" id="desktop_controls_box">
+                        <property name="maximum-size">800</property>
+                        <property name="tightening-threshold">500</property>
+                        <property name="unit">px</property>
                         <property name="child">
                           <object class="GtkMediaControls" id="desktop_controls">
                             <property name="valign">center</property>
