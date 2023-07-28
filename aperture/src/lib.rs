@@ -36,7 +36,7 @@ pub(crate) use pipeline_tee::PipelineTee;
 pub(crate) static APP_ID: OnceCell<&'static str> = OnceCell::new();
 
 static IS_INIT: Once = Once::new();
-static VERSION: &'static str = env!("CARGO_PKG_VERSION");
+static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Initializes the library
 ///
@@ -80,7 +80,7 @@ pub fn init(app_id: &'static str) {
 ///
 /// The Aperture version
 pub fn version() -> &'static str {
-    &*VERSION
+    VERSION
 }
 
 /// Use this function to check if Aperture has been initialized with

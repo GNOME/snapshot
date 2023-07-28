@@ -457,9 +457,9 @@ impl Viewfinder {
     pub fn aspect_ratio(&self) -> f64 {
         let imp = self.imp();
         if let Some(paintable) = imp.picture.paintable() {
-            return paintable.intrinsic_aspect_ratio();
+            paintable.intrinsic_aspect_ratio()
         } else {
-            return 0.0;
+            0.0
         }
     }
 
