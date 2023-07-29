@@ -87,11 +87,7 @@ mod imp {
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             self.parent_snapshot(snapshot);
 
-            if let Some(vf) = self
-                .obj()
-                .child()
-                .and_then(|child| child.downcast::<aperture::Viewfinder>().ok())
-            {
+            if let Some(vf) = self.obj().child().and_downcast::<aperture::Viewfinder>() {
                 let aspect = vf.aspect_ratio();
 
                 if aspect > f64::EPSILON {
