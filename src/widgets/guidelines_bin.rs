@@ -37,12 +37,12 @@ mod imp {
         }
 
         fn calculate_aspect_ratio(&self, aspect_ratio: f32) -> (f32, f32) {
-            let (width, height) = (self.obj().width(), self.obj().height());
+            let (width, height) = (self.obj().width() as f32, self.obj().height() as f32);
 
-            if height < width && (height as f32 / width as f32) < aspect_ratio.powi(-1) {
-                (aspect_ratio * height as f32, height as f32)
+            if height < width && aspect_ratio < width / height {
+                (height * aspect_ratio, height)
             } else {
-                (width as f32, aspect_ratio.powi(-1) * width as f32)
+                (width, width / aspect_ratio)
             }
         }
     }
