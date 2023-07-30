@@ -289,7 +289,9 @@ impl Gallery {
             .next_files_future(1, glib::Priority::default())
             .await
         {
-            let Some(file_info) = info.first() else { break; };
+            let Some(file_info) = info.first() else {
+                break;
+            };
 
             let name = file_info.name();
             let file = gio::File::for_path(&dir.join(&name));

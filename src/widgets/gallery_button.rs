@@ -77,9 +77,13 @@ mod imp {
             let foreground_radius = value * size;
 
             let binding = self.gallery.borrow();
-            let Some(gallery) = binding.as_ref().and_then(WeakRef::upgrade) else { return; };
+            let Some(gallery) = binding.as_ref().and_then(WeakRef::upgrade) else {
+                return;
+            };
             let items = gallery.items();
-            let Some(foreground) = items.first().and_then(|x| x.thumbnail()) else { return; };
+            let Some(foreground) = items.first().and_then(|x| x.thumbnail()) else {
+                return;
+            };
 
             let scale = widget.hover_ani().value() as f32;
             let translation = (scale - 1.0) * size / 2.0;
