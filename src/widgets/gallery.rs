@@ -36,6 +36,8 @@ mod imp {
         #[template_child]
         pub desktop_controls: TemplateChild<gtk::MediaControls>,
         #[template_child]
+        pub desktop_controls_revealer: TemplateChild<gtk::Revealer>,
+        #[template_child]
         pub mobile_controls: TemplateChild<gtk::MediaControls>,
         #[template_child]
         pub menu_button: TemplateChild<gtk::MenuButton>,
@@ -401,14 +403,14 @@ impl Gallery {
             imp.desktop_controls.set_media_stream(Some(video.stream()));
 
             imp.mobile_controls.set_visible(true);
-            imp.desktop_controls.set_visible(true);
+            imp.desktop_controls_revealer.set_reveal_child(true);
         } else {
             imp.mobile_controls.set_media_stream(gtk::MediaStream::NONE);
             imp.desktop_controls
                 .set_media_stream(gtk::MediaStream::NONE);
 
             imp.mobile_controls.set_visible(false);
-            imp.desktop_controls.set_visible(false);
+            imp.desktop_controls_revealer.set_reveal_child(false);
         }
     }
 

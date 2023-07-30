@@ -119,21 +119,26 @@
                   <object class="AdwBin">
                     <property name="hexpand">True</property>
                     <property name="child">
-                      <object class="AdwClamp" id="desktop_controls_box">
-                        <property name="maximum-size">800</property>
-                        <property name="tightening-threshold">500</property>
-                        <property name="unit">px</property>
-                        <property name="child">
-                          <object class="GtkMediaControls" id="desktop_controls">
-                            <property name="valign">center</property>
-                            <property name="halign">fill</property>
-                            <property name="hexpand">True</property>
-                            <style>
-                              <class name="videoplayercontrols"/>
-                              <class name="osd"/>
-                            </style>
+                      <object class="GtkRevealer" id="desktop_controls_revealer">
+                        <property name="transition-type">none</property>
+                        <child>
+                          <object class="AdwClamp" id="desktop_controls_box">
+                            <property name="maximum-size">800</property>
+                            <property name="tightening-threshold">500</property>
+                            <property name="unit">px</property>
+                            <property name="child">
+                              <object class="GtkMediaControls" id="desktop_controls">
+                                <property name="valign">center</property>
+                                <property name="halign">fill</property>
+                                <property name="hexpand">True</property>
+                                <style>
+                                  <class name="videoplayercontrols"/>
+                                  <class name="osd"/>
+                                </style>
+                              </object>
+                            </property>
                           </object>
-                        </property>
+                        </child>
                       </object>
                     </property>
                   </object>
