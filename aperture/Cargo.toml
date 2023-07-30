@@ -12,7 +12,7 @@ version = "0.2.0"
 rust-version = "1.70"
 
 [dependencies]
-ashpd =  {version = "0.4.0", features = ["gtk4", "tracing"] }
+ashpd = { version = "0.4.0", features = ["gtk4", "tracing"] }
 gst = { package = "gstreamer", version = "0.20", features = ["v1_20"] }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.20" }
 gst-plugin-gtk4 = { version = "0.10.5", features = ["wayland", "x11egl", "x11glx"] }
