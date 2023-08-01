@@ -15,12 +15,13 @@ mod imp {
     use super::*;
 
     use once_cell::sync::Lazy;
-    use once_cell::unsync::OnceCell;
+    use std::cell::OnceCell;
 
     #[derive(Debug, Default)]
     pub struct DeviceProvider {
         pub inner: OnceCell<gst::DeviceProvider>,
         pub cameras: RefCell<Vec<crate::Camera>>,
+        pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
         pub fd: RefCell<Option<OwnedFd>>,
     }
@@ -96,8 +97,6 @@ mod imp {
                 inner.stop();
             }
             inner.set_property("fd", -1);
-            let bus = inner.bus();
-            let _ = bus.remove_watch();
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
@@ -172,13 +171,14 @@ impl DeviceProvider {
 
         STARTED.call_once(glib::clone!(@weak self as obj, @weak provider => move || {
             let bus = provider.bus();
-            bus.add_watch_local(
-                glib::clone!(@weak obj => @default-return glib::Continue(false),
+            let watch = bus.add_watch_local(
+                glib::clone!(@weak obj => @default-return glib::ControlFlow::Break,
                     move |_, msg| {
                         obj.handle_message(msg);
-                        glib::Continue(true)
+                        glib::ControlFlow::Continue
                     })
             ).expect("Failed to add bus watch");
+            obj.imp().bus_watch.set(watch).unwrap();
         }));
 
         Ok(())

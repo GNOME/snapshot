@@ -17,8 +17,8 @@ mod imp {
     use super::*;
 
     use glib::Properties;
-    use once_cell::unsync::OnceCell;
     use std::cell::Cell;
+    use std::cell::OnceCell;
     use std::cell::RefCell;
 
     #[derive(Debug, Default, Properties)]
@@ -37,6 +37,7 @@ mod imp {
         pub camerabin: OnceCell<gst::Element>,
         pub sink_paintable: OnceCell<gst::Element>,
         pub tee: OnceCell<crate::PipelineTee>,
+        pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
         // TODO Port to gio::Task,
         pub is_recording_video: RefCell<Option<PathBuf>>,
@@ -170,19 +171,8 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for Viewfinder {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 
@@ -194,14 +184,14 @@ mod imp {
             self.camerabin.set(camerabin.clone()).unwrap();
 
             let bus = self.camerabin().bus().unwrap();
-            bus.add_watch_local(
-                glib::clone!(@weak obj => @default-return glib::Continue(false), move |_, msg| {
+            let watch = bus.add_watch_local(
+                glib::clone!(@weak obj => @default-return glib::ControlFlow::Break, move |_, msg| {
                     obj.on_bus_message(msg);
-
-                    glib::Continue(true)
+                    glib::ControlFlow::Continue
                 }),
             )
             .unwrap();
+            self.bus_watch.set(watch).unwrap();
 
             let tee = crate::PipelineTee::new();
 
@@ -227,8 +217,7 @@ mod imp {
                 convert.link(&paintablesink).unwrap();
 
                 bin.add_pad(
-                    &gst::GhostPad::with_target(Some("sink"), &convert.static_pad("sink").unwrap())
-                        .unwrap(),
+                    &gst::GhostPad::with_target(&convert.static_pad("sink").unwrap()).unwrap(),
                 )
                 .unwrap();
 
@@ -294,9 +283,6 @@ mod imp {
         }
 
         fn dispose(&self) {
-            if let Some(bus) = self.camerabin().bus() {
-                let _ = bus.remove_watch();
-            };
             if self.is_recording_video.borrow().is_some() {
                 if let Err(err) = self.obj().stop_recording() {
                     log::error!("Could not stop recording: {err}");
@@ -766,7 +752,7 @@ impl Viewfinder {
 }
 
 fn create_zbar_bin() -> Result<gst::Element, glib::BoolError> {
-    let bin = gst::Bin::new(None);
+    let bin = gst::Bin::new();
 
     let videoconvert = gst::ElementFactory::make("videoconvert").build()?;
     let zbar = gst::ElementFactory::make("zbar").build()?;
@@ -776,7 +762,7 @@ fn create_zbar_bin() -> Result<gst::Element, glib::BoolError> {
     gst::Element::link_many(&[&videoconvert, &zbar, &fakesink]).unwrap();
 
     let pad = videoconvert.static_pad("sink").unwrap();
-    let ghost_pad = gst::GhostPad::with_target(Some("sink"), &pad).unwrap();
+    let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
     ghost_pad.set_active(true).unwrap();
     bin.add_pad(&ghost_pad).unwrap();
 

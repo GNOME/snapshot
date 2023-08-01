@@ -7,10 +7,10 @@ mod imp {
     use super::*;
 
     use std::cell::Cell;
+    use std::cell::OnceCell;
     use std::cell::RefCell;
 
     use glib::Properties;
-    use once_cell::sync::OnceCell;
 
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::GalleryItem)]
@@ -61,19 +61,8 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for GalleryItem {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 

@@ -9,7 +9,7 @@ mod imp {
     use super::*;
 
     use glib::Properties;
-    use once_cell::unsync::OnceCell;
+    use std::cell::OnceCell;
 
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Camera)]
@@ -24,19 +24,8 @@ mod imp {
         type Type = super::Camera;
     }
 
-    impl ObjectImpl for Camera {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-    }
+    #[glib::derived_properties]
+    impl ObjectImpl for Camera {}
 }
 
 glib::wrapper! {
@@ -165,7 +154,7 @@ impl Camera {
 fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
     use gst::prelude::*;
 
-    let bin = gst::Bin::new(None);
+    let bin = gst::Bin::new();
 
     let device_src = device.create_element(None).ok()?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
@@ -204,7 +193,7 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     }));
 
     let pad = videoflip.static_pad("src").unwrap();
-    let ghost_pad = gst::GhostPad::with_target(Some("src"), &pad).unwrap();
+    let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
     ghost_pad.set_active(true).unwrap();
 
     bin.add_pad(&ghost_pad).unwrap();

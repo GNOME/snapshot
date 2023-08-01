@@ -6,7 +6,7 @@ use gtk::{gdk, glib, graphene};
 mod imp {
     use super::*;
 
-    use once_cell::unsync::OnceCell;
+    use std::cell::OnceCell;
 
     #[derive(Debug, Default)]
     pub struct FlashBin {

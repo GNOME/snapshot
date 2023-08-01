@@ -23,8 +23,7 @@ mod imp {
     use super::*;
 
     use glib::Properties;
-    use once_cell::sync::OnceCell;
-    use std::cell::Cell;
+    use std::cell::{Cell, OnceCell};
 
     #[derive(Debug, Properties, Default)]
     #[properties(wrapper_type = super::ShutterButton)]
@@ -105,19 +104,8 @@ mod imp {
         type ParentType = gtk::Button;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for ShutterButton {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 

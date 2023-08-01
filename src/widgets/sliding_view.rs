@@ -24,9 +24,9 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{glib, graphene, gsk};
-use once_cell::sync::{Lazy, OnceCell};
+use once_cell::sync::Lazy;
 
-use std::cell::{Cell, RefCell};
+use std::cell::{Cell, OnceCell, RefCell};
 
 static SCROLL_DAMPING_RATIO: f64 = 1.;
 static SCROLL_MASS: f64 = 0.5;
@@ -72,15 +72,8 @@ mod imp {
         type Interfaces = (adw::Swipeable,);
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for SlidingView {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
         fn signals() -> &'static [Signal] {
             static SIGNALS: Lazy<Vec<Signal>> =
                 Lazy::new(|| vec![Signal::builder("target-page-reached").build()]);
@@ -119,22 +112,26 @@ mod imp {
                 gtk::EventControllerScroll::new(gtk::EventControllerScrollFlags::HORIZONTAL);
 
             scroll_controller.connect_scroll(
-                glib::clone!(@weak obj => @default-return gtk::Inhibit(false), move |_, x, _| {
+                glib::clone!(@weak obj => @default-return glib::Propagation::Proceed, move |_, x, _| {
                     let direction_sign = if obj.imp().is_rtl() { -1. } else { 1. };
 
                     if x * direction_sign > 0. {
                         // check end
                         if let Some(max) = obj.imp().snap_points().last() {
-                            gtk::Inhibit(obj.position() >= *max)
+                            if obj.position() >= *max {
+                                glib::Propagation::Stop
+                            } else {
+                                glib::Propagation::Proceed
+                            }
                         } else {
-                            gtk::Inhibit(true)
+                            glib::Propagation::Stop
                         }
                     } else {
                         //check beginning
                         if obj.imp().snap_points().first().is_some() {
-                            gtk::Inhibit(false)
+                            glib::Propagation::Proceed
                         } else {
-                            gtk::Inhibit(true)
+                            glib::Propagation::Stop
                         }
                     }
                 }),
@@ -212,7 +209,7 @@ mod imp {
 
         fn distance(&self) -> f64 {
             let obj = self.obj();
-            let width = obj.allocation().width();
+            let width = obj.width();
 
             width as f64 + self.page_spacing(width) as f64
         }

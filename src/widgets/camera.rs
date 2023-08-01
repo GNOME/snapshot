@@ -14,13 +14,11 @@ use super::CameraControls;
 mod imp {
     use super::*;
 
-    use once_cell::unsync::OnceCell;
-    use std::cell::{Cell, RefCell};
+    use std::cell::{Cell, OnceCell, RefCell};
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
     pub struct Camera {
-        pub stream_list: RefCell<gio::ListStore>,
         pub selection: gtk::SingleSelection,
         pub provider: OnceCell<aperture::DeviceProvider>,
         pub players: RefCell<Option<gtk::MediaFile>>,
@@ -431,7 +429,7 @@ impl Camera {
 
         let source = glib::timeout_add_seconds_local(
             1,
-            glib::clone!(@weak self as obj =>  @default-return glib::Continue(false), move || {
+            glib::clone!(@weak self as obj => @default-return glib::ControlFlow::Break, move || {
                 let imp = obj.imp();
 
                 // TODO Use Cell::update once stabilized.
@@ -442,7 +440,7 @@ impl Camera {
                 let seconds = duration.rem_euclid(60);
                 imp.recording_label.set_label(&format!("{minutes}∶{seconds:02}"));
 
-                glib::Continue(true)
+                glib::ControlFlow::Continue
             }),
         );
         if let Some(old) = imp.recording_source.replace(Some(source)) {

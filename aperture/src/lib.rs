@@ -15,8 +15,7 @@
 
 use gst::prelude::*;
 use gtk::glib;
-use once_cell::sync::OnceCell;
-use std::sync::Once;
+use std::sync::{Once, OnceLock};
 
 mod camera;
 mod device_provider;
@@ -33,7 +32,7 @@ pub use viewfinder::Viewfinder;
 
 pub(crate) use pipeline_tee::PipelineTee;
 
-pub(crate) static APP_ID: OnceCell<&'static str> = OnceCell::new();
+pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 
 static IS_INIT: Once = Once::new();
 static VERSION: &str = env!("CARGO_PKG_VERSION");
