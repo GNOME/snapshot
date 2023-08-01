@@ -8,13 +8,12 @@ use std::collections::HashMap;
 mod imp {
     use super::*;
 
-    use once_cell::sync::OnceCell;
-    use std::sync::Mutex;
+    use std::sync::{Mutex, OnceLock};
 
     #[derive(Debug, Default)]
     pub struct PipelineTee {
         pub hashmap: Mutex<HashMap<gst::Element, gst::Element>>,
-        pub tee: OnceCell<gst::Element>,
+        pub tee: OnceLock<gst::Element>,
     }
 
     #[glib::object_subclass]
@@ -34,7 +33,7 @@ mod imp {
             obj.add(&tee).unwrap();
 
             let pad = tee.static_pad("sink").unwrap();
-            let ghost_pad = gst::GhostPad::with_target(Some("sink"), &pad).unwrap();
+            let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
             ghost_pad.set_active(true).unwrap();
 
             obj.add_pad(&ghost_pad).unwrap();

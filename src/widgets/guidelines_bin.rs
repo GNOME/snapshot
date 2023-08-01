@@ -6,9 +6,7 @@ use gtk::{gdk, glib, graphene};
 mod imp {
     use super::*;
 
-    use once_cell::sync::OnceCell;
-
-    use std::cell::Cell;
+    use std::cell::{Cell, OnceCell};
     use std::sync::Once;
 
     static ANIMATION_SINGLETON: Once = Once::new();
@@ -54,19 +52,8 @@ mod imp {
         type ParentType = adw::Bin;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for GuidelinesBin {
-        fn properties() -> &'static [glib::ParamSpec] {
-            Self::derived_properties()
-        }
-
-        fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-            Self::derived_property(self, id, pspec)
-        }
-
-        fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-            Self::derived_set_property(self, id, value, pspec)
-        }
-
         fn constructed(&self) {
             self.parent_constructed();
 

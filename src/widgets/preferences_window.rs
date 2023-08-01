@@ -9,7 +9,7 @@ use crate::config;
 mod imp {
     use super::*;
 
-    use once_cell::sync::OnceCell;
+    use std::cell::OnceCell;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]

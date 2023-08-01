@@ -10,8 +10,8 @@ mod imp {
     use super::*;
 
     use glib::WeakRef;
-    use once_cell::sync::OnceCell;
 
+    use std::cell::OnceCell;
     use std::cell::RefCell;
 
     #[derive(Debug, Default)]
@@ -37,7 +37,7 @@ mod imp {
 
             let widget = self.obj();
 
-            let bindings = glib::SignalGroup::new(crate::GalleryItem::static_type());
+            let bindings = glib::SignalGroup::new::<crate::GalleryItem>();
             bindings.connect_notify_local(
                 Some("loaded"),
                 glib::clone!(@weak widget => move |_, _| {

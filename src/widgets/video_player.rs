@@ -6,9 +6,7 @@ use gtk::{gdk, gio, glib};
 mod imp {
     use super::*;
 
-    use std::cell::{Cell, RefCell};
-
-    use once_cell::sync::OnceCell;
+    use std::cell::{Cell, OnceCell, RefCell};
 
     #[derive(Debug, Default)]
     pub struct VideoPlayer {
