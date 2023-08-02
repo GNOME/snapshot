@@ -10,12 +10,12 @@ use crate::Application;
 use crate::CaptureMode;
 
 mod imp {
-    use super::*;
-
     use std::cell::{Cell, RefCell};
 
     use adw::subclass::prelude::*;
     use gtk::CompositeTemplate;
+
+    use super::*;
 
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/window.ui")]

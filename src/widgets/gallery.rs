@@ -4,7 +4,6 @@ use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use gtk::CompositeTemplate;
 use gtk::{gdk, gio, glib};
-
 use once_cell::sync::Lazy;
 
 static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
@@ -19,10 +18,11 @@ static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
 });
 
 mod imp {
-    use super::*;
+    use std::cell::RefCell;
 
     use once_cell::sync::Lazy;
-    use std::cell::RefCell;
+
+    use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/gallery.ui")]

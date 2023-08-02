@@ -4,9 +4,9 @@ use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 mod imp {
-    use super::*;
-
     use std::cell::{Cell, OnceCell, RefCell};
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct VideoPlayer {

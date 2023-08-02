@@ -4,9 +4,9 @@ use adw::subclass::prelude::*;
 use gtk::{gdk, glib, graphene};
 
 mod imp {
-    use super::*;
-
     use std::cell::OnceCell;
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct FlashBin {

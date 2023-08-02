@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use crate::widgets::gallery_item::GalleryItemImpl;
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
+
+use crate::widgets::gallery_item::GalleryItemImpl;
 
 mod imp {
     use super::*;

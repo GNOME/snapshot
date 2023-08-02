@@ -1,15 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::collections::HashMap;
+
 use gst::prelude::DeviceExt;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use std::collections::HashMap;
 
 mod imp {
-    use super::*;
+    use std::cell::OnceCell;
 
     use glib::Properties;
-    use std::cell::OnceCell;
+
+    use super::*;
 
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Camera)]
@@ -76,8 +78,8 @@ impl Camera {
     ///
     /// # Returns
     ///
-    /// a [`HashMap`][std::collections::HashMap], with the property name as the key
-    /// and a [`GValue`][gtk::glib::Value] as the value.
+    /// a [`HashMap`][std::collections::HashMap], with the property name as the
+    /// key and a [`GValue`][gtk::glib::Value] as the value.
     pub fn properties(&self) -> HashMap<&'static str, glib::SendValue> {
         self.device()
             .properties()

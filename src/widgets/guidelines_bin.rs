@@ -4,10 +4,10 @@ use adw::subclass::prelude::*;
 use gtk::{gdk, glib, graphene};
 
 mod imp {
-    use super::*;
-
     use std::cell::{Cell, OnceCell};
     use std::sync::Once;
+
+    use super::*;
 
     static ANIMATION_SINGLETON: Once = Once::new();
 

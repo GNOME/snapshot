@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::path::Path;
+use std::path::PathBuf;
+
 use gst::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
-
 use once_cell::sync::Lazy;
-use std::path::Path;
-use std::path::PathBuf;
 
 use crate::ViewfinderState;
 
@@ -14,12 +14,13 @@ const BARCODE_TIMEOUT: u32 = 1;
 const PROVIDER_TIMEOUT: u64 = 2;
 
 mod imp {
-    use super::*;
-
-    use glib::Properties;
     use std::cell::Cell;
     use std::cell::OnceCell;
     use std::cell::RefCell;
+
+    use glib::Properties;
+
+    use super::*;
 
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Viewfinder)]
@@ -439,7 +440,8 @@ impl Viewfinder {
     ///
     /// # Returns
     ///
-    /// an aspect ratio calculated with width/height, or 0 for no valid aspect ratio.
+    /// an aspect ratio calculated with width/height, or 0 for no valid aspect
+    /// ratio.
     pub fn aspect_ratio(&self) -> f64 {
         let imp = self.imp();
         if let Some(paintable) = imp.picture.paintable() {
@@ -451,15 +453,19 @@ impl Viewfinder {
 
     /// Takes a picture.
     ///
-    /// The recording will be saved to `location`. This method throws an error if:
+    /// The recording will be saved to `location`. This method throws an error
+    /// if:
     ///  - we are already recording or taking a picture
-    ///  - the [`fn@Viewfinder::state`] of the camera is not [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
+    ///  - the [`fn@Viewfinder::state`] of the camera is not
+    ///    [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
     ///
-    /// This operation may take a while. The resolution might be changed temporarily,
-    /// autofocusing might take place, etc. Basically everything you'd expect
-    /// to happen when you click the photo button in a camera app.
+    /// This operation may take a while. The resolution might be changed
+    /// temporarily, autofocusing might take place, etc. Basically
+    /// everything you'd expect to happen when you click the photo button in
+    /// a camera app.
     ///
-    /// The [`picture-done`](#picture-done) signal will be emitted when this operation ends.
+    /// The [`picture-done`](#picture-done) signal will be emitted when this
+    /// operation ends.
     pub fn take_picture<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
@@ -490,9 +496,11 @@ impl Viewfinder {
 
     /// Starts recording a video.
     ///
-    /// The recording will be saved to `location`. This method throws an error if:
+    /// The recording will be saved to `location`. This method throws an error
+    /// if:
     ///  - we are already recording or taking a picture
-    ///  - the [`fn@Viewfinder::state`] of the camera is not [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
+    ///  - the [`fn@Viewfinder::state`] of the camera is not
+    ///    [`ViewfinderState::Ready`][crate::ViewfinderState::Ready].
     pub fn start_recording<P: AsRef<Path>>(&self, location: P) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 
@@ -527,9 +535,11 @@ impl Viewfinder {
     ///
     /// This method throws an error if:
     /// - [`fn@Viewfinder::start_recording`] hasn't been called
-    /// - There is another [`fn@Viewfinder::stop_recording`] operation in progress.
+    /// - There is another [`fn@Viewfinder::stop_recording`] operation in
+    ///   progress.
     ///
-    /// The [`recording-done`](#recording-done) signal will be emitted when this operation ends.
+    /// The [`recording-done`](#recording-done) signal will be emitted when this
+    /// operation ends.
     pub fn stop_recording(&self) -> Result<(), crate::CaptureError> {
         let imp = self.imp();
 

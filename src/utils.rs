@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use gst::prelude::*;
-use gtk::prelude::*;
-use once_cell::sync::Lazy;
 use std::path::PathBuf;
 
 use anyhow::Context;
 use gettextrs::gettext;
+use gst::prelude::*;
+use gtk::prelude::*;
 use gtk::{gio, glib};
+use once_cell::sync::Lazy;
 
 use crate::i18n::i18n_f;
 

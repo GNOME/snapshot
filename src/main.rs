@@ -8,14 +8,12 @@ mod utils;
 mod widgets;
 
 use application::Application;
+use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use enums::*;
-use widgets::*;
-
 use gettextrs::{gettext, LocaleCategory};
 use gtk::prelude::*;
 use gtk::{gio, glib};
-
-use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use widgets::*;
 
 fn main() -> glib::ExitCode {
     // Initialize logger

@@ -12,10 +12,11 @@ use gtk::{gio, glib};
 static STARTED: Once = Once::new();
 
 mod imp {
-    use super::*;
+    use std::cell::OnceCell;
 
     use once_cell::sync::Lazy;
-    use std::cell::OnceCell;
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct DeviceProvider {
@@ -145,8 +146,9 @@ impl DeviceProvider {
         use once_cell::sync::Lazy;
 
         struct Wrapper(ThreadGuard<crate::DeviceProvider>);
-        // SAFETY: We only ever hand out a reference to the contained object on the one thread
-        // it was created one so no two threads can access it at the same time.
+        // SAFETY: We only ever hand out a reference to the contained object on the one
+        // thread it was created one so no two threads can access it at the same
+        // time.
         unsafe impl Sync for Wrapper {}
 
         static SINGLETON: Lazy<Wrapper> = Lazy::new(|| {
@@ -197,8 +199,9 @@ impl DeviceProvider {
 
     /// Set a valid file description to load and monitor cameras from.
     ///
-    /// This file descriptor should point to a valid Pipewire remote where camera nodes are available.
-    /// This provider should only provide camera nodes.
+    /// This file descriptor should point to a valid Pipewire remote where
+    /// camera nodes are available. This provider should only provide camera
+    /// nodes.
     ///
     /// One way to get a valid descriptor is with the [`org.freedesktop.portal.Camera`](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Camera)
     /// XDG portal, using the `OpenPipeWireRemote()` method.
