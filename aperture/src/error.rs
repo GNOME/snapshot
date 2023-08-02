@@ -6,17 +6,21 @@ use gtk::glib;
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]
 #[error_domain(name = "ApertureCaptureError")]
 pub enum CaptureError {
-    /// A recording is already in progress and should be stopped before starting a new recording.
+    /// A recording is already in progress and should be stopped before starting
+    /// a new recording.
     RecordingInProgress,
-    /// A recoding is being stopped and should finish before starting a new recording.
+    /// A recoding is being stopped and should finish before starting a new
+    /// recording.
     StopRecordingInProgress,
-    /// A picture is being taken and should be stopped before taking more pictures.
+    /// A picture is being taken and should be stopped before taking more
+    /// pictures.
     SnapshotInProgress,
     /// No recording was found to stop.
     NoRecordingToStop,
     /// The current active camera was disconnected during capture.
     CameraDisconnected,
-    /// The [`Viewfinder`][crate::Viewfinder] is not in the [`Ready`][crate::ViewfinderState::Ready] state.
+    /// The [`Viewfinder`][crate::Viewfinder] is not in the
+    /// [`Ready`][crate::ViewfinderState::Ready] state.
     NotReady,
 }
 

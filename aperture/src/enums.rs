@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use gtk::glib;
 
-/// Describes the possible states of a [`Viewfinder`][crate::Viewfinder]. Many tasks, like taking a picture,
-/// require the viewfinder to be in a particular state.
+/// Describes the possible states of a [`Viewfinder`][crate::Viewfinder]. Many
+/// tasks, like taking a picture, require the viewfinder to be in a particular
+/// state.
 #[derive(Default, Debug, Copy, Clone, glib::Enum, PartialEq)]
 #[enum_type(name = "ApertureViewfinderState")]
 pub enum ViewfinderState {
@@ -17,7 +18,8 @@ pub enum ViewfinderState {
     Error,
 }
 
-/// Describes the possible code types of a scanned code detected by a [`Viewfinder`][crate::Viewfinder].
+/// Describes the possible code types of a scanned code detected by a
+/// [`Viewfinder`][crate::Viewfinder].
 #[derive(Default, Debug, Copy, Clone, glib::Enum, PartialEq)]
 #[enum_type(name = "ApertureCodetype")]
 pub enum CodeType {

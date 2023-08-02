@@ -7,9 +7,9 @@ use gtk::{gio, glib};
 use crate::config;
 
 mod imp {
-    use super::*;
-
     use std::cell::OnceCell;
+
+    use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]

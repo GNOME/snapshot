@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use log::{debug, info};
-
 use gtk::prelude::*;
 use gtk::{gio, glib};
+use log::{debug, info};
 
 use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
 
 mod imp {
-    use super::*;
-
     use adw::subclass::prelude::*;
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct Application;

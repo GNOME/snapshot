@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::os::unix::io::RawFd;
+
 use adw::subclass::prelude::*;
 use adw::traits::BreakpointBinExt;
 use ashpd::desktop::camera;
 use gettextrs::gettext;
 use gtk::{gio, glib};
 use gtk::{prelude::*, CompositeTemplate};
-use std::os::unix::io::RawFd;
-
-use crate::{config, utils};
 
 use super::CameraControls;
+use crate::{config, utils};
 
 mod imp {
-    use super::*;
-
     use std::cell::{Cell, OnceCell, RefCell};
+
+    use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]

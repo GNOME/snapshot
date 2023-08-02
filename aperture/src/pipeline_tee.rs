@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::collections::HashMap;
+
 use gst::prelude::*;
 use gst::subclass::prelude::*;
 use gtk::glib;
 
-use std::collections::HashMap;
-
 mod imp {
-    use super::*;
-
     use std::sync::{Mutex, OnceLock};
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct PipelineTee {

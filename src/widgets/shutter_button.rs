@@ -20,10 +20,11 @@ const HOVER_SCALE: f64 = 1.05;
 const HOVER_DURATION: u32 = 125;
 
 mod imp {
-    use super::*;
+    use std::cell::{Cell, OnceCell};
 
     use glib::Properties;
-    use std::cell::{Cell, OnceCell};
+
+    use super::*;
 
     #[derive(Debug, Properties, Default)]
     #[properties(wrapper_type = super::ShutterButton)]

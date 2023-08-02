@@ -4,13 +4,13 @@ use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
 mod imp {
-    use super::*;
-
     use std::cell::Cell;
     use std::cell::OnceCell;
     use std::cell::RefCell;
 
     use glib::Properties;
+
+    use super::*;
 
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::GalleryItem)]

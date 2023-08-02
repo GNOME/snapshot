@@ -11,11 +11,13 @@
 //! # Usage
 //!
 //! Aperture needs to initialized before use.
-//! This can be done by calling [`fn@init`] on [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
+//! This can be done by calling [`fn@init`] on
+//! [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
+
+use std::sync::{Once, OnceLock};
 
 use gst::prelude::*;
 use gtk::glib;
-use std::sync::{Once, OnceLock};
 
 mod camera;
 mod device_provider;
@@ -28,9 +30,8 @@ pub use camera::Camera;
 pub use device_provider::DeviceProvider;
 pub use enums::{CameraLocation, CodeType, ViewfinderState};
 pub use error::{CaptureError, PipewireError};
-pub use viewfinder::Viewfinder;
-
 pub(crate) use pipeline_tee::PipelineTee;
+pub use viewfinder::Viewfinder;
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 
@@ -42,8 +43,10 @@ static VERSION: &str = env!("CARGO_PKG_VERSION");
 /// This function can be used instead of [`fn@gtk::init`] and [`fn@gst::init`]
 /// as it initializes GTK and GStreamer implicitly.
 ///
-/// This function must be called on the [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup)
-/// of the [`GApplication`][`gtk::gio::Application`]. This function is idempotent.
+/// This function must be called on the
+/// [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup)
+/// of the [`GApplication`][`gtk::gio::Application`]. This function is
+/// idempotent.
 pub fn init(app_id: &'static str) {
     IS_INIT.call_once(|| {
         APP_ID.set(app_id).unwrap();

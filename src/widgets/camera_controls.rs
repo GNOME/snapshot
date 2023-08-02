@@ -5,9 +5,10 @@ use gtk::glib::{self, subclass::Signal};
 use super::CameraRow;
 
 mod imp {
+    use std::cell::OnceCell;
+
     use gtk::CompositeTemplate;
     use once_cell::sync::Lazy;
-    use std::cell::OnceCell;
 
     use super::*;
 

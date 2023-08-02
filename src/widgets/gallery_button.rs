@@ -7,12 +7,12 @@ const BORDER_WIDTH: f32 = 2.0;
 const HOVER_SCALE: f64 = 1.05;
 
 mod imp {
-    use super::*;
+    use std::cell::OnceCell;
+    use std::cell::RefCell;
 
     use glib::WeakRef;
 
-    use std::cell::OnceCell;
-    use std::cell::RefCell;
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct GalleryButton {
@@ -169,7 +169,8 @@ impl GalleryButton {
         let s = graphene::Size::new(size / 2.0, size / 2.0);
         let rounded = gsk::RoundedRect::new(rect, s, s, s, s);
 
-        // We draw the texture to a bigger size to preserve the aspect ration and take the square that fits into its center.
+        // We draw the texture to a bigger size to preserve the aspect ration and take
+        // the square that fits into its center.
         let t_width = texture.width() as f32;
         let t_height = texture.height() as f32;
         let t_ratio = t_width / t_height;
