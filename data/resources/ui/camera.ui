@@ -129,6 +129,7 @@
                             <style>
                               <class name="recording-label"/>
                               <class name="heading"/>
+                              <class name="numeric"/>
                             </style>
                           </object>
                         </child>
