@@ -2,21 +2,23 @@
 # Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 # Boyuan Yang <073plan@gmail.com>, 2023.
+# lumingzh <lumingzh@qq.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
-"POT-Creation-Date: 2023-07-03 21:03+0000\n"
-"PO-Revision-Date: 2023-07-08 16:07+0800\n"
-"Last-Translator: Eni <enigma@petalmail.com>\n"
-"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2023-07-27 13:18+0000\n"
+"PO-Revision-Date: 2023-08-05 15:15+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
@@ -112,125 +114,113 @@ msgstr "快拍的相册查看器"
 msgid "The GNOME Project"
 msgstr "GNOME 项目"
 
-#: data/resources/ui/camera.ui:68 data/resources/ui/camera.ui:139
-#: data/resources/ui/camera.ui:306 data/resources/ui/camera.ui:434
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
 msgid "Main Menu"
 msgstr "主菜单"
 
-#: data/resources/ui/camera.ui:78
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "未找到摄像头"
 
-#: data/resources/ui/camera.ui:79
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "连接摄像头设备"
 
-#: data/resources/ui/camera.ui:163 data/resources/ui/camera.ui:259
-#: data/resources/ui/camera.ui:366 data/resources/ui/camera.ui:456
+#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
+#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
 msgstr "照片模式"
 
-#: data/resources/ui/camera.ui:182 data/resources/ui/camera.ui:278
-#: data/resources/ui/camera.ui:385 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
+#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
 msgstr "录制模式"
 
-#: data/resources/ui/camera.ui:204 data/resources/ui/camera.ui:236
-#: data/resources/ui/camera.ui:338 data/resources/ui/camera.ui:562
-#: data/resources/ui/camera.ui:593
+#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
+#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:576
 msgid "Countdown"
 msgstr "倒计时"
 
-#: data/resources/ui/camera.ui:504
-msgid "Open Gallery"
-msgstr "打开相册"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:510 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
-msgid "Take Picture"
-msgstr "拍摄照片"
-
-#: data/resources/ui/camera.ui:523
-msgid "Select Camera"
-msgstr "选择摄像头"
-
-#: data/resources/ui/camera.ui:537
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "切换摄像头"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:596
+#: data/resources/ui/camera.ui:579
 msgid "None"
 msgstr "无"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:601
+#: data/resources/ui/camera.ui:584
 msgid "3s"
 msgstr "3秒"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:589
 msgid "5s"
 msgstr "5秒"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:594
 msgid "10s"
 msgstr "10秒"
 
-#: data/resources/ui/camera.ui:619
+#: data/resources/ui/camera.ui:602
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: data/resources/ui/camera.ui:623
+#: data/resources/ui/camera.ui:606
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
-#: data/resources/ui/camera.ui:627
+#: data/resources/ui/camera.ui:610
 msgid "_About Snapshot"
 msgstr "关于快拍(_A)"
 
-#: data/resources/ui/gallery.ui:42
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "打开相册"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
+msgid "Take Picture"
+msgstr "拍摄照片"
+
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "选择摄像头"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "切换摄像头"
+
+#: data/resources/ui/gallery.ui:46
 msgid "Gallery Menu"
 msgstr "相册菜单"
 
-#: data/resources/ui/gallery.ui:67
+#: data/resources/ui/gallery.ui:94
 msgid "Previous Image"
 msgstr "上一个图像"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "下一个图像"
 
-#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:110
+#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:113
 msgid "Open in Image Viewer"
 msgstr "用图像查看器打开"
-
-#: data/resources/ui/gallery.ui:111
-msgid "_Copy"
-msgstr "复制(_C)"
-
-#: data/resources/ui/gallery.ui:115
-msgid "_Delete"
-msgstr "删除(_D)"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "通用"
 
-#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "摄像头"
-
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "播放快门声音"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "快门声音(_S)"
 
 #: data/resources/ui/preferences_window.ui:23
-msgid "Show Composition Guidelines"
-msgstr "显示构图参考线"
+msgid "_Composition Guidelines"
+msgstr "构图参考线(_C)"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -302,58 +292,74 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "上一个"
 
+#: data/resources/ui/window.ui:13
+msgid "Camera"
+msgstr "摄像头"
+
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "相册"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:22
+#: src/utils.rs:23
 msgid "Photo from {date}"
 msgstr "拍摄于 {date} 的照片"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
-#: src/utils.rs:27
+#: src/utils.rs:28
 msgid "Photo {number}"
 msgstr "照片 {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:40
+#: src/utils.rs:41
 msgid "Recording from {date}"
 msgstr "录制于 {date} 的视频"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:45
+#: src/utils.rs:46
 msgid "Recording {number}"
 msgstr "视频 {number}"
 
-#: src/widgets/camera.rs:540
+#: src/utils.rs:128
+msgid "_Copy Picture"
+msgstr "复制照片(_C)"
+
+#: src/utils.rs:130
+msgid "_Copy Video"
+msgstr "复制视频(_C)"
+
+#: src/utils.rs:132
+msgid "_Delete"
+msgstr "删除(_D)"
+
+#: src/widgets/camera.rs:412
 msgid "Could not play camera stream"
 msgstr "无法播放摄像头视频流"
 
-#: src/widgets/gallery.rs:112
+#: src/widgets/gallery.rs:115
 msgid "Open in Video Player"
 msgstr "在视频播放器中打开"
 
-#: src/widgets/gallery.rs:371
+#: src/widgets/gallery.rs:382
 msgid "Copied to clipboard"
 msgstr "已复制到剪贴板"
 
-#: src/widgets/gallery.rs:396
+#: src/widgets/gallery.rs:430
 msgid "Picture deleted"
 msgstr "已删除照片"
 
-#: src/widgets/gallery.rs:398
+#: src/widgets/gallery.rs:432
 msgid "Video deleted"
 msgstr "已删除视频"
 
@@ -377,7 +383,8 @@ msgstr "无法录制视频"
 msgid "translator-credits"
 msgstr ""
 "Boyuan Yang <073plan@gmail.com>, 2023.\n"
-"Eni <enigma@petalmail.com>, 2023."
+"Eni <enigma@petalmail.com>, 2023.\n"
+"lumingzh <lumingzh@qq.com>, 2023."
 
 #~ msgid "Back"
 #~ msgstr "返货"
