@@ -28,14 +28,14 @@ use adw::subclass::prelude::*;
 use gtk::{glib, graphene, gsk};
 use once_cell::sync::Lazy;
 
-static SCROLL_DAMPING_RATIO: f64 = 1.;
-static SCROLL_MASS: f64 = 0.5;
-static SCROLL_STIFFNESS: f64 = 500.;
+const SCROLL_DAMPING_RATIO: f64 = 1.0;
+const SCROLL_MASS: f64 = 0.5;
+const SCROLL_STIFFNESS: f64 = 500.0;
 
 /// Space between images in application pixels
 ///
 /// This is combined with the percent component
-static PAGE_SPACING_FIXED: f32 = 25.;
+const PAGE_SPACING_FIXED: f32 = 25.0;
 
 /// Space between images as factor of width
 const PAGE_SPACING_PERCENT: f32 = 0.02;

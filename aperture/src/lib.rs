@@ -36,7 +36,7 @@ pub use viewfinder::Viewfinder;
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 
 static IS_INIT: Once = Once::new();
-static VERSION: &str = env!("CARGO_PKG_VERSION");
+const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Initializes the library
 ///
