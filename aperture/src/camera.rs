@@ -183,9 +183,9 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
         .build()
         .unwrap();
 
-    bin.add_many(&[&device_src, &capsfilter, &decodebin3, &videoflip])
+    bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])
         .unwrap();
-    gst::Element::link_many(&[&device_src, &capsfilter, &decodebin3]).unwrap();
+    gst::Element::link_many([&device_src, &capsfilter, &decodebin3]).unwrap();
 
     decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
         if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {

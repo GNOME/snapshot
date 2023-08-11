@@ -768,8 +768,8 @@ fn create_zbar_bin() -> Result<gst::Element, glib::BoolError> {
     let zbar = gst::ElementFactory::make("zbar").build()?;
     let fakesink = gst::ElementFactory::make("fakesink").build()?;
 
-    bin.add_many(&[&videoconvert, &zbar, &fakesink]).unwrap();
-    gst::Element::link_many(&[&videoconvert, &zbar, &fakesink]).unwrap();
+    bin.add_many([&videoconvert, &zbar, &fakesink]).unwrap();
+    gst::Element::link_many([&videoconvert, &zbar, &fakesink]).unwrap();
 
     let pad = videoconvert.static_pad("sink").unwrap();
     let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();

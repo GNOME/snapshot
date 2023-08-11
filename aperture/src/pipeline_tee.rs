@@ -73,7 +73,7 @@ impl PipelineTee {
             .unwrap()
             .insert(branch.clone(), queue.clone());
 
-        self.add_many(&[&queue, branch]).unwrap();
+        self.add_many([&queue, branch]).unwrap();
         queue.link(branch).unwrap();
 
         let tee_pad = imp.tee.get().unwrap().request_pad_simple("src_%u").unwrap();
