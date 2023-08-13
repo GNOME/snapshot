@@ -11,6 +11,9 @@ documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
 version = "0.3.0"
 rust-version = "1.70"
 
+[features]
+capi = []
+
 [dependencies]
 ashpd = { version = "0.5", features = ["gtk4", "tracing"] }
 gst = { package = "gstreamer", version = "0.21", features = ["v1_20"] }

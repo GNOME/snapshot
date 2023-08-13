@@ -20,6 +20,8 @@ use gst::prelude::*;
 use gtk::glib;
 
 mod camera;
+#[cfg(feature = "capi")]
+mod capi;
 mod device_provider;
 mod enums;
 mod error;

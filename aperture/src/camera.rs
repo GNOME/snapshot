@@ -6,7 +6,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
-mod imp {
+pub(crate) mod imp {
     use std::cell::OnceCell;
 
     use glib::Properties;

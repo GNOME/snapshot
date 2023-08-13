@@ -13,7 +13,7 @@ use crate::ViewfinderState;
 const BARCODE_TIMEOUT: u32 = 1;
 const PROVIDER_TIMEOUT: u64 = 2;
 
-mod imp {
+pub(crate) mod imp {
     use std::cell::Cell;
     use std::cell::OnceCell;
     use std::cell::RefCell;

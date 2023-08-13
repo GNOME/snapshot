@@ -11,7 +11,7 @@ use gtk::{gio, glib};
 
 static STARTED: Once = Once::new();
 
-mod imp {
+pub(crate) mod imp {
     use std::cell::OnceCell;
 
     use once_cell::sync::Lazy;
