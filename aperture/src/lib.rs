@@ -28,12 +28,18 @@ mod utils;
 mod viewfinder;
 
 pub use camera::Camera;
+#[cfg(feature = "c_api")]
+pub use camera::imp::Camera as CameraInner;
 pub use device_provider::DeviceProvider;
+#[cfg(feature = "c_api")]
+pub use device_provider::imp::DeviceProvider as DeviceProviderInner;
 pub use enums::{CameraLocation, VideoFormat, ViewfinderState};
 pub use error::{CaptureError, PipewireError, ProviderError};
 pub(crate) use pipeline_tee::PipelineTee;
 pub use utils::{is_h264_encoding_supported, is_hardware_encoding_supported};
 pub use viewfinder::Viewfinder;
+#[cfg(feature = "c_api")]
+pub use viewfinder::imp::Viewfinder as ViewfinderInner;
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];

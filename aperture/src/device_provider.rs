@@ -16,7 +16,7 @@ static STARTED: Once = Once::new();
 
 type ProviderCallback = Box<dyn Fn(&crate::Camera) -> bool + 'static>;
 
-mod imp {
+pub mod imp {
     use std::cell::OnceCell;
     use std::sync::LazyLock;
 
@@ -40,7 +40,7 @@ mod imp {
     }
 
     impl DeviceProvider {
-        pub fn append(&self, camera: crate::Camera) {
+        pub(crate) fn append(&self, camera: crate::Camera) {
             let pos = self.cameras.borrow().len() as u32;
             self.cameras.borrow_mut().push(camera.clone());
             self.obj().items_changed(pos, 0, 1);
@@ -51,13 +51,13 @@ mod imp {
             STARTED.is_completed()
         }
 
-        pub fn has_camera(&self, camera: &crate::Camera) -> bool {
+        pub(crate) fn has_camera(&self, camera: &crate::Camera) -> bool {
             self.cameras.borrow().iter().any(|c| {
                 c.device() == camera.device() || c.target_object() == camera.target_object()
             })
         }
 
-        pub fn remove(&self, device: crate::Camera) {
+        pub(crate) fn remove(&self, device: crate::Camera) {
             let Some(pos) = self
                 .cameras
                 .borrow()

@@ -8,7 +8,7 @@ use gtk::subclass::prelude::*;
 
 use crate::utils;
 
-mod imp {
+pub mod imp {
     use std::cell::OnceCell;
 
     use glib::Properties;

@@ -27,7 +27,7 @@ enum StateChangeState {
     NotDone,
 }
 
-mod imp {
+pub mod imp {
     use std::cell::Cell;
     use std::cell::OnceCell;
     use std::cell::RefCell;
@@ -75,7 +75,7 @@ mod imp {
     }
 
     impl Viewfinder {
-        pub fn camerabin(&self) -> &gst::Element {
+        pub(crate) fn camerabin(&self) -> &gst::Element {
             self.camerabin.get().unwrap()
         }
 

@@ -1,0 +1,13 @@
+[package]
+name = "libaperture"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository = "https://gitlab.gnome.org/GNOME/snapshot"
+version = "0.0.1"
+rust-version.workspace = true
+
+[dependencies]
+aperture = { path = "../aperture", features = ["c_api"] }
+gtk = { workspace = true }
+gst = { workspace = true }

@@ -11,6 +11,9 @@ documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/aperture"
 version = "0.11.0"
 rust-version.workspace = true
 
+[features]
+c_api = []
+
 [dependencies]
 futures-channel = { workspace = true }
 gst = { workspace = true }

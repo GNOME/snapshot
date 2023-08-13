@@ -1,5 +1,8 @@
 [workspace]
-members = [ "aperture" ]
+members = [
+  "aperture",
+  "libaperture",
+]
 
 [workspace.package]
 edition = "2024"
