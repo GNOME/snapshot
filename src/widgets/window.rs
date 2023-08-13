@@ -258,7 +258,7 @@ impl Window {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutWindow::builder()
-            .application_name(gettext("Snapshot"))
+            .application_name(gettext("Camera"))
             .application_icon(APP_ID)
             .license_type(gtk::License::Gpl30)
             .issue_url("https://gitlab.gnome.org/GNOME/snapshot/-/issues/new")

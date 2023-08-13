@@ -4,7 +4,7 @@
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <name>Snapshot</name>
+  <name>Camera</name>
   <summary>Take pictures and videos</summary>
   <description>
     <p>
@@ -14,11 +14,11 @@
   <screenshots>
     <screenshot type="default">
       <image>https://gitlab.gnome.org/GNOME/snapshot/raw/main/data/screenshots/screenshot1.png</image>
-      <caption>Snapshot's main interface</caption>
+      <caption>Camera's main interface</caption>
     </screenshot>
     <screenshot>
       <image>https://gitlab.gnome.org/GNOME/snapshot/raw/main/data/screenshots/gallery.png</image>
-      <caption>Snapshot's gallery viewer</caption>
+      <caption>Camera's gallery viewer</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://apps.gnome.org/app/org.gnome.Snapshot</url>
