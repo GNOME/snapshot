@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-06 13:19+0000\n"
-"PO-Revision-Date: 2023-08-09 12:16+0200\n"
+"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"PO-Revision-Date: 2023-08-18 13:20+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -21,9 +21,9 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Captura"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Cámara"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -102,12 +102,12 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Hacer fotos y vídeos con su ordenador, tableta o teléfono."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "Interfaz principal de Captura"
+msgid "Camera's main interface"
+msgstr "Interfaz principal de Cámara"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
-msgstr "Visor de la galeria de Captura"
+msgid "Camera's gallery viewer"
+msgstr "Visor de la galeria de Cámara"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
@@ -171,8 +171,8 @@ msgid "_Keyboard Shortcuts"
 msgstr "Atajos del _teclado"
 
 #: data/resources/ui/camera.ui:611
-msgid "_About Snapshot"
-msgstr "Acerca _de Captura"
+msgid "_About Camera"
+msgstr "_Acerca de Cámara"
 
 #: data/resources/ui/camera_controls.ui:12
 msgid "Open Gallery"
@@ -180,7 +180,7 @@ msgstr "Abrir galería"
 
 #. Set a fallback tooltip
 #: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Hacer una foto"
 
@@ -291,10 +291,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Anterior"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Cámara"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galería"
@@ -342,7 +338,7 @@ msgstr "_Copiar vídeo"
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
 msgstr "No se pudo reproducir el flujo de la cámara"
 
@@ -381,3 +377,9 @@ msgstr "No se pudo grabar el vídeo"
 #: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2023"
+
+#~ msgid "Snapshot"
+#~ msgstr "Captura"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "Acerca _de Captura"
