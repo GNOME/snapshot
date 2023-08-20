@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
-"issues\n"
-"POT-Creation-Date: 2023-07-27 13:18+0000\n"
-"PO-Revision-Date: 2023-07-29 09:40+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"PO-Revision-Date: 2023-08-20 23:28+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -21,9 +20,9 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Στιγμιότυπο"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Κάμερα"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -105,19 +104,19 @@ msgstr ""
 "Λήψη φωτογραφιών και βίντεο στον υπολογιστή σας, το tablet ή το τηλέφωνο."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "Η κύρια διεπαφή του Snapshot"
+msgid "Camera's main interface"
+msgstr "Η κύρια διεπαφή της κάμερας"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
-msgstr "Πρόγραμμα προβολής συλλογής Snapshot"
+msgid "Camera's gallery viewer"
+msgstr "Προβολή συλλογής κάμερας"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Κυρίως μενού"
 
@@ -129,53 +128,53 @@ msgstr "Δεν βρέθηκε κάμερα"
 msgid "Connect a camera device"
 msgstr "Σύνδεση συσκευής κάμερας"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Λειτουργία εικόνας"
 
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Λειτουργία εγγραφής"
 
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Αντίστροφη μέτρηση"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Kανένα"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:584
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3δ"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5δ"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10δ"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Προτιμήσεις"
 
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "Συντομεύσεις _πληκτρολογίου"
 
-#: data/resources/ui/camera.ui:610
-msgid "_About Snapshot"
-msgstr "_Περί Στιγμιότυπο"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "_Περί εφαρμγής Κάμερα"
 
 #: data/resources/ui/camera_controls.ui:12
 msgid "Open Gallery"
@@ -183,7 +182,7 @@ msgstr "Άνοιγμα συλλογής"
 
 #. Set a fallback tooltip
 #: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Λήψη φωτογραφίας"
 
@@ -208,7 +207,7 @@ msgstr "Προηγούμενη εικόνα"
 msgid "Next Image"
 msgstr "Επόμενη εικόνα"
 
-#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Άνοιγμα προγράμματος προβολής εικόνων"
 
@@ -294,10 +293,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Κάμερα"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Συλλογή"
@@ -345,23 +340,23 @@ msgstr "_Αντιγραφή βίντεο"
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
 msgstr "Δεν ήταν δυνατή η αναπαραγωγή της ροής της κάμερας"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Άνοιγμα σε πρόγραμμα αναπαραγωγής βίντεο"
 
-#: src/widgets/gallery.rs:382
+#: src/widgets/gallery.rs:386
 msgid "Copied to clipboard"
 msgstr "Αντιγράφηκε στο πρόχειρο"
 
-#: src/widgets/gallery.rs:430
+#: src/widgets/gallery.rs:434
 msgid "Picture deleted"
 msgstr "Η εικόνα διαγράφηκε"
 
-#: src/widgets/gallery.rs:432
+#: src/widgets/gallery.rs:436
 msgid "Video deleted"
 msgstr "Το βίντεο διαγράφηκε"
 
@@ -389,6 +384,12 @@ msgstr ""
 "\n"
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
+
+#~ msgid "Snapshot"
+#~ msgstr "Στιγμιότυπο"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "_Περί Στιγμιότυπο"
 
 #~ msgid "Maximiliano Sandoval"
 #~ msgstr "Maximiliano Sandoval"
