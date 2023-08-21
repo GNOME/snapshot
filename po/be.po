@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
-"issues\n"
-"POT-Creation-Date: 2023-07-21 14:57+0000\n"
-"PO-Revision-Date: 2023-07-23 21:47+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-08-20 20:28+0000\n"
+"PO-Revision-Date: 2023-08-21 19:24+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -18,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Snapshot"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Камера"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -104,19 +103,19 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Фотаздымка і запіс відэа на камп'ютары, планшэце або тэлефоне."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "Асноўны інтэрфейс Snapshot"
+msgid "Camera's main interface"
+msgstr "Асноўны інтэрфейс Camera"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
-msgstr "Прагляд галерэі Snapshot"
+msgid "Camera's gallery viewer"
+msgstr "Прагляд галерэі Camera"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "Праект GNOME"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Галоўнае меню"
 
@@ -128,53 +127,53 @@ msgstr "Камера не знойдзена"
 msgid "Connect a camera device"
 msgstr "Падлучыце камеру"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Рэжым фотаздымкі"
 
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Рэжым відэаздымкі"
 
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Адваротны адлік"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Няма"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:584
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5 с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10 с"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "_Спалучэнні клавіш"
 
-#: data/resources/ui/camera.ui:610
-msgid "_About Snapshot"
-msgstr "Пр_а Snapshot"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "_Аб праграме"
 
 #: data/resources/ui/camera_controls.ui:12
 msgid "Open Gallery"
@@ -182,7 +181,7 @@ msgstr "Адкрыць галерэю"
 
 #. Set a fallback tooltip
 #: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Зрабіць здымак"
 
@@ -203,11 +202,11 @@ msgstr "Меню галерэі"
 msgid "Previous Image"
 msgstr "Папярэдняя выява"
 
-#: data/resources/ui/gallery.ui:106
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "Наступная выява"
 
-#: data/resources/ui/gallery.ui:140 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Адкрыць праз Праглядальнік выяў"
 
@@ -293,10 +292,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Назад"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Камера"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Галерэя"
@@ -344,23 +339,23 @@ msgstr "_Скапіяваць відэа"
 msgid "_Delete"
 msgstr "_Выдаліць"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
 msgstr "Не ўдалося прайграць струмень з камеры"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Адкрыць праз Відэапрайгравальнік"
 
-#: src/widgets/gallery.rs:382
+#: src/widgets/gallery.rs:386
 msgid "Copied to clipboard"
 msgstr "Скапіявана ў буфер абмену"
 
-#: src/widgets/gallery.rs:430
+#: src/widgets/gallery.rs:434
 msgid "Picture deleted"
 msgstr "Выява выдалена"
 
-#: src/widgets/gallery.rs:432
+#: src/widgets/gallery.rs:436
 msgid "Video deleted"
 msgstr "Відэа выдалена"
 
@@ -383,3 +378,15 @@ msgstr "Не ўдалося запісаць відэа"
 #: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "Юрась Шумовіч <shumovichy@gmail.com>"
+
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "Snapshot's main interface"
+#~ msgstr "Асноўны інтэрфейс Snapshot"
+
+#~ msgid "Snapshot's gallery viewer"
+#~ msgstr "Прагляд галерэі Snapshot"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "Пр_а Snapshot"
