@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-12 19:06+0000\n"
-"PO-Revision-Date: 2023-04-12 22:48+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"PO-Revision-Date: 2023-08-27 18:50+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:227
-msgid "Snapshot"
-msgstr "Snapshot"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Camera"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -31,60 +31,72 @@ msgstr "Maak foto’s en video’s"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "picture;photos;camera;foto's;foto’s; afbeeldingen;"
+msgid "picture;photos;camera;webcam;"
+msgstr "picture;photos;camera;webcam;foto's;foto’s; afbeeldingen;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:20
-#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
 msgstr "Standaard vensterbreedte"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:25
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
 msgstr "Standaard vensterhoogte"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:30
+#: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
 msgstr "Standaardgedrag van gemaximaliseerd venster"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:35
+#: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
 msgstr "Sluitergeluid afspelen"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Bepaalt of er een sluitergeluid afgespeeld wordt wanneer er een foto gemaakt wordt"
+msgstr ""
+"Bepaalt of er een sluitergeluid afgespeeld wordt wanneer er een foto gemaakt "
+"wordt"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:40
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Compositiehulplijnen tonen"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr ""
+"Bepaalt of de compositiehulplijnen getoond worden bij het gebruik van de "
+"camera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "Afteltimer"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Hoe lang het aftellen duurt voordat de foto wordt gemaakt, in seconden"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:45
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "Opnamemodus"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "Bepaalt of er foto’s of video’s gemaakt worden"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:50
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "Fotoformaat"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Bepaalt of foto’s als PNG of als JPEG opgeslagen worden"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:55
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "Videoformaat"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Bepaalt of video’s als MP4 of als WebM opgeslagen worden"
 
@@ -96,112 +108,121 @@ msgstr "Maak foto’s en video’s op uw computer, tablet of telefoon."
 msgid "Camera's main interface"
 msgstr "Hoofdinterface van de camera"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Galerijweergave van Camera"
 
-#: data/resources/ui/camera.ui:51 data/resources/ui/camera.ui:154
-#: data/resources/ui/gallery.ui:64
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+msgid "The GNOME Project"
+msgstr "Het GNOME-project"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: data/resources/ui/camera.ui:61
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "Geen camera gevonden"
 
-#: data/resources/ui/camera.ui:62
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "Sluit een camera-apparaat aan"
 
-#: data/resources/ui/camera.ui:89 data/resources/ui/camera.ui:244
-msgid "Countdown"
-msgstr "Aftellen"
-
-#: data/resources/ui/camera.ui:110
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Fotomodus"
 
-#: data/resources/ui/camera.ui:128
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Opnamemodus"
 
-#: data/resources/ui/camera.ui:188
-msgid "Open Gallery"
-msgstr "Galerij openen"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:194 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
-msgid "Take Picture"
-msgstr "Foto maken"
-
-#: data/resources/ui/camera.ui:206
-msgid "Select Camera"
-msgstr "Selecteer camera"
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
+msgid "Countdown"
+msgstr "Aftellen"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:247
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Geen"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:252
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:257
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:262
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:270 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: data/resources/ui/camera.ui:274 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "Snel_toetsen"
 
-#: data/resources/ui/camera.ui:278 data/resources/ui/gallery.ui:155
-msgid "_About Snapshot"
-msgstr "_Over Snapshot"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "_Over Camera"
 
-#: data/resources/ui/gallery.ui:51
-msgid "Back"
-msgstr "Terug"
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "Galerij openen"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "Openen met afbeeldingsweergave"
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Foto maken"
 
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "Selecteer camera"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Wisselen tussen camera’s"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Galerijmenu"
+
+#: data/resources/ui/gallery.ui:94
 msgid "Previous Image"
 msgstr "Vorige afbeelding"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "Volgende afbeelding"
+
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr "Openen met afbeeldingsweergave"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "Algemeen"
 
-#: data/resources/ui/preferences_window.ui:14
-msgid "Camera"
-msgstr "Camera"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "_Sluitergeluid"
 
-#: data/resources/ui/preferences_window.ui:17
-msgid "Picture Format"
-msgstr "Fotoformaat"
-
-#: data/resources/ui/preferences_window.ui:32
-msgid "Play Shutter Sound"
-msgstr "Sluitergeluid afspelen"
+#: data/resources/ui/preferences_window.ui:23
+msgid "_Composition Guidelines"
+msgstr "_Compositiehulplijnen"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -248,56 +269,134 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Foto maken of opname beginnen"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Compositiehulplijnen tonen/verbergen"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerij"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Galerij openen/sluiten"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Volgende"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Vorige"
 
-#. TRANSLATORS This is the image format presented in the preferences
-#. window.
-#: src/enums.rs:30
-msgid "PNG"
-msgstr "PNG"
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galerij"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:33
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/gallery.rs:99
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "Foto van {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "Foto {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "Opname van {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "Opname {number}"
+
+#: src/utils.rs:128
+msgid "_Copy Picture"
+msgstr "Foto _kopiëren"
+
+#: src/utils.rs:130
+msgid "_Copy Video"
+msgstr "Video _kopiëren"
+
+#: src/utils.rs:132
+msgid "_Delete"
+msgstr "Verwij_deren"
+
+#: src/widgets/camera.rs:410
+msgid "Could not play camera stream"
+msgstr "Kon camerastream niet afspelen"
+
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Openen met videospeler"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/gallery.rs:386
+msgid "Copied to clipboard"
+msgstr "Gekopieerd naar klembord"
+
+#: src/widgets/gallery.rs:434
+msgid "Picture deleted"
+msgstr "Foto verwijderd"
+
+#: src/widgets/gallery.rs:436
+msgid "Video deleted"
+msgstr "Video verwijderd"
+
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "Opname beginnen"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "Opname beëindigen"
 
-#: src/widgets/window.rs:232
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
+msgid "Could not take picture"
+msgstr "Kon geen foto maken"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
+msgid "Could not record video"
+msgstr "Kon geen video opnemen"
+
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr ""
 "Nathan Follens <nfollens@gnome.org>\n"
 "Meer info over GNOME-NL https://nl.gnome.org"
 
-#: src/widgets/window.rs:233
-msgid "The GNOME Project"
-msgstr "Het GNOME-project"
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "_Over Snapshot"
+
+#~ msgid "Back"
+#~ msgstr "Terug"
+
+#~ msgid "Picture Format"
+#~ msgstr "Fotoformaat"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
