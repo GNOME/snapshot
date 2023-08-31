@@ -8,7 +8,7 @@ license = "GPL-3.0-or-later"
 name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/snapshot"
 documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
-version = "0.3.0"
+version = "0.3.1"
 rust-version = "1.70"
 
 [dependencies]
