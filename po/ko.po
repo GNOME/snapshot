@@ -6,23 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-04-17 17:53+0000\n"
-"PO-Revision-Date: 2023-04-19 00:53+0900\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"PO-Revision-Date: 2023-08-27 01:35+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:28
-#: src/widgets/window.rs:231
-msgid "Snapshot"
-msgstr "스냅샷"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "카메라"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -31,8 +31,8 @@ msgstr "사진 및 영상을 촬영합니다"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "picture;그림;photos;사진;camera;카메라;"
+msgid "picture;photos;camera;webcam;"
+msgstr "picture;그림;photos;사진;camera;카메라;webcam;웹캠;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -57,34 +57,42 @@ msgid "Whether to play a shutter sound when taking pictures"
 msgstr "사진을 촬영할 때 셔터 소리 재생 여부"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "합성 안내선 표시"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "카메라를 사용할 때 합성 안내선을 표시할지 여부"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
 msgstr "카운트다운 타이머"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "사진 촬영시 카운트 다운 초 단위 시간"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
 msgstr "촬영 모드"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
 msgstr "사진 또는 영상 촬영 여부"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
 msgstr "사진 형식"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
 msgstr "사진을 png 또는 jpeg로 저장할 지 여부"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Video format"
 msgstr "영상 형식"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "영상을 mp4 또는 webm으로 저장할 지 여부"
 
@@ -96,109 +104,121 @@ msgstr "사진과 영상을 컴퓨터, 태블릿, 모바일 전화기에 촬영�
 msgid "Camera's main interface"
 msgstr "카메라 주 인터페이스"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:35
-msgid "Maximiliano Sandoval"
-msgstr "Maximiliano Sandoval"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "카메라 갤러리 보기"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:151
-#: data/resources/ui/gallery.ui:64
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+msgid "The GNOME Project"
+msgstr "그놈 프로젝트"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "주 메뉴"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "카메라가 없습니다"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "카메라 장치를 연결하십시오"
 
-#: data/resources/ui/camera.ui:86 data/resources/ui/camera.ui:256
-msgid "Countdown"
-msgstr "카운트다운"
-
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "사진 모드"
 
-#: data/resources/ui/camera.ui:125
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "녹화 모드"
 
-#: data/resources/ui/camera.ui:185
-msgid "Open Gallery"
-msgstr "갤러리 열기"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:191 src/widgets/shutter_button.rs:66
-#: src/widgets/shutter_button.rs:126
-msgid "Take Picture"
-msgstr "사진 촬영"
-
-#. FIXME Use Switch Camera after string freeze
-#: data/resources/ui/camera.ui:203 data/resources/ui/camera.ui:217
-msgid "Select Camera"
-msgstr "카메라 선택"
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
+msgid "Countdown"
+msgstr "카운트다운"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:259
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "없음"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:264
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3초"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:269
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5초"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:274
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10초"
 
-#: data/resources/ui/camera.ui:282 data/resources/ui/gallery.ui:147
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: data/resources/ui/camera.ui:286 data/resources/ui/gallery.ui:151
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기 키(_K)"
 
-#: data/resources/ui/camera.ui:290 data/resources/ui/gallery.ui:155
-msgid "_About Snapshot"
-msgstr "스냅샷 정보(_A)"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "카메라 정보(_A)"
 
-#: data/resources/ui/gallery.ui:51
-msgid "Back"
-msgstr "뒤로"
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "갤러리 열기"
 
-#: data/resources/ui/gallery.ui:89 src/widgets/gallery.rs:97
-msgid "Open in Image Viewer"
-msgstr "이미지 보기에서 열기"
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "사진 촬영"
 
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "카메라 선택"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "카메라 전환"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "갤러리 메뉴"
+
+#: data/resources/ui/gallery.ui:94
 msgid "Previous Image"
 msgstr "이전 이미지"
 
-#: data/resources/ui/gallery.ui:123
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "다음 이미지"
+
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr "이미지 보기에서 열기"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "일반"
 
-#: data/resources/ui/preferences_window.ui:14
-msgid "Camera"
-msgstr "카메라"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "셔터 소리(_S)"
 
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "셔터 소리 재생"
+#: data/resources/ui/preferences_window.ui:23
+msgid "_Composition Guidelines"
+msgstr "합성 안내선(_C)"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -245,25 +265,34 @@ msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "사진 촬영 또는 녹화 시작"
 
-#: data/resources/ui/shortcuts.ui:63
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "합성 안내선 표시/숨기기"
+
+#: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "갤러리"
 
-#: data/resources/ui/shortcuts.ui:66
+#: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "갤러리 열기/닫기"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "다음"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "이전"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "갤러리"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
@@ -271,22 +300,91 @@ msgstr "이전"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/widgets/gallery.rs:99
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "{date} 사진"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "{number}번 사진"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "{date} 녹화"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "{number}번 녹화"
+
+#: src/utils.rs:128
+msgid "_Copy Picture"
+msgstr "사진 복사(_C)"
+
+#: src/utils.rs:130
+msgid "_Copy Video"
+msgstr "동영상 복사(_C)"
+
+#: src/utils.rs:132
+msgid "_Delete"
+msgstr "삭제(_D)"
+
+#: src/widgets/camera.rs:410
+msgid "Could not play camera stream"
+msgstr "카메라 스트림을 재생할 수 없습니다"
+
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "비디오 재생기에서 열기"
 
-#: src/widgets/shutter_button.rs:77
+#: src/widgets/gallery.rs:386
+msgid "Copied to clipboard"
+msgstr "클립보드로 복사했습니다"
+
+#: src/widgets/gallery.rs:434
+msgid "Picture deleted"
+msgstr "사진을 삭제했습니다"
+
+#: src/widgets/gallery.rs:436
+msgid "Video deleted"
+msgstr "동영상을 삭제했습니다"
+
+#: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
 msgstr "녹화 시작"
 
-#: src/widgets/shutter_button.rs:88
+#: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
 msgstr "녹화 정지"
 
-#: src/widgets/window.rs:236
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
+msgid "Could not take picture"
+msgstr "영상을 촬영할 수 없습니다"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
+msgid "Could not record video"
+msgstr "동영상을 녹화할 수 없습니다"
+
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr "조성호 <shcho@gnome.org>, 2023"
 
-#: src/widgets/window.rs:237
-msgid "The GNOME Project"
-msgstr "그놈 프로젝트"
+#~ msgid "Snapshot"
+#~ msgstr "스냅샷"
+
+#~ msgid "Maximiliano Sandoval"
+#~ msgstr "Maximiliano Sandoval"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "스냅샷 정보(_A)"
+
+#~ msgid "Back"
+#~ msgstr "뒤로"
