@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"POT-Creation-Date: 2023-08-18 11:21+0000\n"
 "PO-Revision-Date: 2023-08-18 13:20+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
@@ -211,7 +211,7 @@ msgstr "Abrir en visor de imágenes"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
-msgstr "<b>General</b>"
+msgstr "General"
 
 #: data/resources/ui/preferences_window.ui:16
 msgid "_Shutter Sound"
@@ -224,7 +224,7 @@ msgstr "_Guías de edición"
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr "<b>General</b>"
+msgstr "General"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
