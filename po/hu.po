@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-07-28 18:00+0000\n"
-"PO-Revision-Date: 2023-07-29 01:13+0200\n"
+"POT-Creation-Date: 2023-08-16 15:59+0000\n"
+"PO-Revision-Date: 2023-09-05 20:06+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Pillanatkép"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Kamera"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -103,19 +103,21 @@ msgstr ""
 "Készítsen képeket és videókat a számítógépén, táblagépén vagy telefonján."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "A Pillanatkép fő felülete"
+#| msgid "Snapshot's main interface"
+msgid "Camera's main interface"
+msgstr "A Kamera fő felülete"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
-msgstr "A Pillanatkép galériamegjelenítője"
+#| msgid "Snapshot's gallery viewer"
+msgid "Camera's gallery viewer"
+msgstr "A Kamera galériamegjelenítője"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "A GNOME projekt"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Főmenü"
 
@@ -127,53 +129,54 @@ msgstr "Nem található kamera"
 msgid "Connect a camera device"
 msgstr "Kameraeszköz csatlakoztatása"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Képkészítési mód"
 
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Videófelvételi mód"
 
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Visszaszámlálás"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Nincs"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:584
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3 mp"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5 mp"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10 mp"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Beállítások"
 
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillentyűk"
 
-#: data/resources/ui/camera.ui:610
-msgid "_About Snapshot"
-msgstr "A Pillanatkép _névjegye"
+#: data/resources/ui/camera.ui:611
+#| msgid "Camera"
+msgid "_About Camera"
+msgstr "A Kamera _névjegye"
 
 #: data/resources/ui/camera_controls.ui:12
 msgid "Open Gallery"
@@ -181,7 +184,7 @@ msgstr "Galéria megnyitása"
 
 #. Set a fallback tooltip
 #: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Kép készítése"
 
@@ -206,7 +209,7 @@ msgstr "Előző kép"
 msgid "Next Image"
 msgstr "Következő kép"
 
-#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Megnyitás a képmegjelenítőben"
 
@@ -292,10 +295,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Előző"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Kamera"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galéria"
@@ -343,23 +342,23 @@ msgstr "Videó _másolása"
 msgid "_Delete"
 msgstr "_Törlés"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
 msgstr "Nem sikerült lejátszani a kamera adatfolyamát"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Megnyitás a videólejátszóban"
 
-#: src/widgets/gallery.rs:382
+#: src/widgets/gallery.rs:386
 msgid "Copied to clipboard"
 msgstr "Vágólapra másolva"
 
-#: src/widgets/gallery.rs:430
+#: src/widgets/gallery.rs:434
 msgid "Picture deleted"
 msgstr "Kép törölve"
 
-#: src/widgets/gallery.rs:432
+#: src/widgets/gallery.rs:436
 msgid "Video deleted"
 msgstr "Videó törölve"
 
