@@ -58,10 +58,6 @@ impl CameraRow {
     }
 
     pub fn set_item(&self, item: &aperture::Camera) {
-        if let Some(nick) = item.nick() {
-            self.set_label(&nick);
-        } else {
-            self.set_label(&item.display_name());
-        }
+        self.set_label(&item.display_name());
     }
 }
