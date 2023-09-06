@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/Incubator/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-05-13 15:00+0000\n"
-"PO-Revision-Date: 2023-05-13 18:16+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-08-15 08:08+0000\n"
+"PO-Revision-Date: 2023-08-15 19:12+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:247
-msgid "Snapshot"
-msgstr "Snapshot"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+msgid "Camera"
+msgstr "Kamera"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -31,8 +31,8 @@ msgstr "Ta bilder och spela in videoklipp"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "bild;foton;kamera;"
+msgid "picture;photos;camera;webcam;"
+msgstr "bild;foton;kamera;webbkamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -102,107 +102,110 @@ msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Ta bilder och spela in videoklipp på din dator, platta eller telefon."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "Snapshots huvudgränssnitt"
+msgid "Camera's main interface"
+msgstr "Kameras huvudgränssnitt"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:51 src/widgets/window.rs:253
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Kameras gallerivisare"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
-#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:373
-#: data/resources/ui/camera.ui:414 data/resources/ui/gallery.ui:53
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "Ingen kamera hittades"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "Anslut en kameraenhet"
 
-#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
-#: data/resources/ui/camera.ui:333 data/resources/ui/camera.ui:436
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Bildläge"
 
-#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:352 data/resources/ui/camera.ui:455
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Inspelningsläge"
 
-#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
-#: data/resources/ui/camera.ui:305 data/resources/ui/camera.ui:542
-#: data/resources/ui/camera.ui:573
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Nedräkning"
 
-#: data/resources/ui/camera.ui:484
-msgid "Open Gallery"
-msgstr "Öppna galleri"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:490 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
-msgid "Take Picture"
-msgstr "Ta bild"
-
-#: data/resources/ui/camera.ui:503
-msgid "Select Camera"
-msgstr "Välj kamera"
-
-#: data/resources/ui/camera.ui:517
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "Växla kamera"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Ingen"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:581
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:586
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:591
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:599 data/resources/ui/gallery.ui:123
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: data/resources/ui/camera.ui:603 data/resources/ui/gallery.ui:127
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "_Tangentbordsgenvägar"
 
-#: data/resources/ui/camera.ui:607 data/resources/ui/gallery.ui:131
-msgid "_About Snapshot"
-msgstr "_Om Snapshot"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "_Om Kamera"
 
-#: data/resources/ui/gallery.ui:42
-msgid "Back"
-msgstr "Bakåt"
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "Öppna galleri"
 
-#: data/resources/ui/gallery.ui:79
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Ta bild"
+
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "Välj kamera"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Växla kamera"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Gallerimeny"
+
+#: data/resources/ui/gallery.ui:94
 msgid "Previous Image"
 msgstr "Föregående bild"
 
-#: data/resources/ui/gallery.ui:91
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "Nästa bild"
 
-#: data/resources/ui/gallery.ui:105 src/widgets/gallery.rs:88
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Öppna i bildvisare"
 
@@ -210,17 +213,13 @@ msgstr "Öppna i bildvisare"
 msgid "General"
 msgstr "Allmänt"
 
-#: data/resources/ui/preferences_window.ui:14
-msgid "Camera"
-msgstr "Kamera"
-
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "Spela upp slutarljud"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "_Slutarljud"
 
 #: data/resources/ui/preferences_window.ui:23
-msgid "Show Composition Guidelines"
-msgstr "Visa kompositionsriktlinjer"
+msgid "_Composition Guidelines"
+msgstr "_Kompositionsriktlinjer"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -292,44 +291,72 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Föregående"
 
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galleri"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:22
+#: src/utils.rs:23
 msgid "Photo from {date}"
 msgstr "Bild från {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
-#: src/utils.rs:27
+#: src/utils.rs:28
 msgid "Photo {number}"
 msgstr "Bild {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:40
+#: src/utils.rs:41
 msgid "Recording from {date}"
 msgstr "Inspelning från {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:45
+#: src/utils.rs:46
 msgid "Recording {number}"
 msgstr "Inspelning {number}"
 
-#: src/widgets/camera.rs:560
+#: src/utils.rs:128
+msgid "_Copy Picture"
+msgstr "_Kopiera bild"
+
+#: src/utils.rs:130
+msgid "_Copy Video"
+msgstr "_Kopiera video"
+
+#: src/utils.rs:132
+msgid "_Delete"
+msgstr "_Ta bort"
+
+#: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
 msgstr "Kunde inte spela upp kameraström"
 
-#: src/widgets/gallery.rs:90
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Öppna i videospelare"
+
+#: src/widgets/gallery.rs:386
+msgid "Copied to clipboard"
+msgstr "Kopierat till urklipp"
+
+#: src/widgets/gallery.rs:434
+msgid "Picture deleted"
+msgstr "Bild borttagen"
+
+#: src/widgets/gallery.rs:436
+msgid "Video deleted"
+msgstr "Film borttagen"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
@@ -339,21 +366,30 @@ msgstr "Börja spela in"
 msgid "Stop Recording"
 msgstr "Sluta spela in"
 
-#: src/widgets/window.rs:68 src/widgets/window.rs:296
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "Kunde inte ta bild"
 
-#: src/widgets/window.rs:72 src/widgets/window.rs:300
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "Kunde inte spela in video"
 
-#: src/widgets/window.rs:252
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "\n"
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
+
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "_Om Snapshot"
+
+#~ msgid "Back"
+#~ msgstr "Bakåt"
 
 #~ msgid "Photo"
 #~ msgstr "Bild"
