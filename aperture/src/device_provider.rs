@@ -14,29 +14,43 @@ static STARTED: Once = Once::new();
 mod imp {
     use std::cell::OnceCell;
 
+    use glib::Properties;
     use once_cell::sync::Lazy;
 
     use super::*;
 
-    #[derive(Debug, Default)]
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::DeviceProvider)]
     pub struct DeviceProvider {
         pub inner: OnceCell<gst::DeviceProvider>,
         pub cameras: RefCell<Vec<crate::Camera>>,
         pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
         pub fd: RefCell<Option<OwnedFd>>,
+
+        pub default_cb: OnceCell<Box<dyn Fn(&crate::Camera) -> bool + 'static>>,
+
+        #[property(get = Self::started)]
+        pub started: std::marker::PhantomData<bool>,
     }
 
     impl DeviceProvider {
-        pub fn append(&self, device: crate::Camera) {
-            let mut guard = self.cameras.borrow_mut();
-            let pos = guard.len() as u32;
-            if !guard.contains(&device) {
-                guard.push(device.clone());
-                drop(guard);
-                self.obj().items_changed(pos, 0, 1);
-                self.obj().emit_camera_added(&device);
-            }
+        pub fn append(&self, camera: crate::Camera) {
+            let pos = self.cameras.borrow().len() as u32;
+            self.cameras.borrow_mut().push(camera.clone());
+            self.obj().items_changed(pos, 0, 1);
+            self.obj().emit_camera_added(&camera);
+        }
+
+        fn started(&self) -> bool {
+            STARTED.is_completed()
+        }
+
+        pub fn has_camera(&self, camera: &crate::Camera) -> bool {
+            self.cameras
+                .borrow()
+                .iter()
+                .any(|c| c.device() == camera.device())
         }
 
         pub fn remove(&self, device: crate::Camera) {
@@ -82,6 +96,7 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for DeviceProvider {
         fn constructed(&self) {
             self.parent_constructed();
@@ -161,13 +176,24 @@ impl DeviceProvider {
         SINGLETON.0.get_ref()
     }
 
-    /// Starts the device provider represented by `self`.
+    /// Starts the device provider
     ///
-    /// This function is idempotent when there are no errors.
-    pub fn start(&self) -> Result<(), crate::ProviderError> {
+    /// Like [`start`] but allows allows to specify a criteria for selecting a
+    /// default camera.
+    ///
+    /// This will be taken into account when the [`Viewfinder`] has to choose a
+    /// default camera.
+    pub fn start_with_default<F: Fn(&crate::Camera) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> Result<(), crate::ProviderError> {
         if STARTED.is_completed() {
             return Ok(());
+        } else {
+            STARTED.call_once(|| ());
         }
+
+        let imp = self.imp();
 
         let Some(provider) = self.imp().inner.get() else {
             return Err(crate::ProviderError::MissingPlugin(
@@ -176,19 +202,56 @@ impl DeviceProvider {
         };
         provider.start()?;
 
-        STARTED.call_once(glib::clone!(@weak self as obj, @weak provider => move || {
-            let bus = provider.bus();
-            let watch = bus.add_watch_local(
-                glib::clone!(@weak obj => @default-return glib::ControlFlow::Break,
-                    move |_, msg| {
-                        obj.handle_message(msg);
-                        glib::ControlFlow::Continue
-                    })
-            ).expect("Failed to add bus watch");
-            obj.imp().bus_watch.set(watch).unwrap();
-        }));
+        let cameras = provider
+            .devices()
+            .iter()
+            .map(crate::Camera::new)
+            .collect::<Vec<_>>();
+        let n_items = cameras.len() as u32;
+        cameras.iter().for_each(|camera| {
+            log::debug!(
+                "Camera found: {}, target-object: {:?}\nProperties {:#?}",
+                camera.display_name(),
+                camera.target_object(),
+                camera.properties(),
+            );
+        });
+        self.imp().cameras.replace(cameras);
+        self.items_changed(0, 0, n_items);
+
+        let bus = provider.bus();
+        let watch = bus
+            .add_watch_local(
+                glib::clone!(@weak self as obj => @default-return glib::ControlFlow::Break,
+                move |_, msg| {
+                    obj.handle_message(msg);
+                    glib::ControlFlow::Continue
+                }),
+            )
+            .expect("Failed to add bus watch");
+        imp.bus_watch.set(watch).unwrap();
+
+        let _ = imp.default_cb.set(Box::new(f));
+
+        self.notify_started();
 
         Ok(())
+    }
+
+    /// Starts the device provider represented by `self`.
+    ///
+    /// This function is idempotent when there are no errors.
+    pub fn start(&self) -> Result<(), crate::ProviderError> {
+        self.start_with_default(|_| false)
+    }
+
+    pub(crate) fn default_camera(&self) -> Option<crate::Camera> {
+        let imp = self.imp();
+        let cameras = imp.cameras.borrow();
+        imp.default_cb
+            .get()
+            .and_then(|f| cameras.iter().find(|c| f(c)))
+            .cloned()
     }
 
     /// Gets a [`Camera`] object for the given camera index.
@@ -256,6 +319,7 @@ impl DeviceProvider {
     }
 
     fn handle_message(&self, msg: &gst::Message) {
+        let imp = self.imp();
         match msg.view() {
             gst::MessageView::Error(err) => {
                 log::error!(
@@ -270,13 +334,15 @@ impl DeviceProvider {
                     if let Ok(device) = s.get::<gst::Device>("device") {
                         if "Video/Source" == device.device_class().as_str() {
                             let device = crate::Camera::new(&device);
-                            log::debug!(
-                                "Camera added: {}, target-object: {:?}\nProperties {:#?}",
-                                device.display_name(),
-                                device.target_object(),
-                                device.properties(),
-                            );
-                            self.imp().append(device);
+                            if !imp.has_camera(&device) {
+                                log::debug!(
+                                    "Camera added: {}, target-object: {:?}\nProperties {:#?}",
+                                    device.display_name(),
+                                    device.target_object(),
+                                    device.properties(),
+                                );
+                                imp.append(device);
+                            }
                         };
                     }
                 }
