@@ -71,6 +71,8 @@ impl std::fmt::Display for CaptureError {
 pub enum PipewireError {
     /// The current Pipewire version is too old to use and must be upgraded.
     OldVersion,
+    /// The device provider has already been started.
+    ProvidedStarted,
 }
 
 impl std::error::Error for PipewireError {}
@@ -79,6 +81,7 @@ impl std::fmt::Display for PipewireError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::OldVersion => f.write_str("Current pipewire version is too old"),
+            Self::ProvidedStarted => f.write_str("The device provided has already been started"),
         }
     }
 }
