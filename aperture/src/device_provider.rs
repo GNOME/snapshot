@@ -212,7 +212,7 @@ impl DeviceProvider {
     /// XDG portal, using the `OpenPipeWireRemote()` method.
     pub fn set_fd(&self, fd: RawFd) -> Result<(), crate::PipewireError> {
         if STARTED.is_completed() {
-            return Err(crate::PipewireError::OldVersion);
+            return Err(crate::PipewireError::ProvidedStarted);
         }
         let provider = self.imp().inner.get().unwrap();
         log::debug!("Starting device provider with file descriptor: {fd}");
