@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
 "issues\n"
-"POT-Creation-Date: 2023-06-11 12:07+0000\n"
-"PO-Revision-Date: 2023-06-11 19:41+0300\n"
+"POT-Creation-Date: 2023-07-12 17:28+0000\n"
+"PO-Revision-Date: 2023-07-13 11:28+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -21,8 +21,8 @@ msgstr ""
 "X-Generator: Gtranslator 42.0\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:262
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: src/main.rs:29 src/widgets/window.rs:261
 msgid "Snapshot"
 msgstr "צילום"
 
@@ -33,8 +33,8 @@ msgstr "צילום תמונות וסרטים"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "תמונה;תמונות;תצלום;צילום;מצלמה;מצלמות;"
+msgid "picture;photos;camera;webcam;"
+msgstr "תמונה;תמונות;תצלום;צילום;מצלמה;מצלמות;מצלמת רשת;מצלמת אינטרנט;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -110,113 +110,112 @@ msgstr "הממשק הראשי של הצילום"
 msgid "Snapshot's gallery viewer"
 msgstr "תצוגה הגלרייה של הצילום"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:268
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
-#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
-#: data/resources/ui/camera.ui:413
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
 msgid "Main Menu"
 msgstr "תפריט ראשי"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "לא נמצאה מצלמה"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "יש לחבר מצלמה"
 
-#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
-#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
+#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
+#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
 msgstr "מצב תמונה"
 
-#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
+#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
+#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
 msgstr "מצב הקלטה"
 
-#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
-#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
-#: data/resources/ui/camera.ui:572
+#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
+#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:576
 msgid "Countdown"
 msgstr "ספירה לאחור"
 
-#: data/resources/ui/camera.ui:483
-msgid "Open Gallery"
-msgstr "פתיחת גלריה"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
-msgid "Take Picture"
-msgstr "צילום תמונה"
-
-#: data/resources/ui/camera.ui:502
-msgid "Select Camera"
-msgstr "בחירת מצלמה"
-
-#: data/resources/ui/camera.ui:516
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "החלפת מצלמה"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:575
+#: data/resources/ui/camera.ui:579
 msgid "None"
 msgstr "ללא"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:584
 msgid "3s"
 msgstr "3 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:589
 msgid "5s"
 msgstr "5 שנ׳"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:594
 msgid "10s"
 msgstr "10 שנ׳"
 
-#: data/resources/ui/camera.ui:598
+#: data/resources/ui/camera.ui:602
 msgid "_Preferences"
 msgstr "_העדפות"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:606
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:610
 msgid "_About Snapshot"
 msgstr "על _צילום"
 
-#: data/resources/ui/gallery.ui:42
+#: data/resources/ui/camera_controls.ui:12
+msgid "Open Gallery"
+msgstr "פתיחת גלריה"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:130
+msgid "Take Picture"
+msgstr "צילום תמונה"
+
+#: data/resources/ui/camera_controls.ui:28
+msgid "Select Camera"
+msgstr "בחירת מצלמה"
+
+#: data/resources/ui/camera_controls.ui:41
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "החלפת מצלמה"
+
 # msgctxt "shortcut window"
+#: data/resources/ui/gallery.ui:52
 msgid "Gallery Menu"
 msgstr "תפריט גלריה"
 
-#: data/resources/ui/gallery.ui:67
+#: data/resources/ui/gallery.ui:101
 msgid "Previous Image"
 msgstr "תמונה הקודמת"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:113
 msgid "Next Image"
 msgstr "תמונה הבאה"
 
-#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
+#: data/resources/ui/gallery.ui:146 src/widgets/gallery.rs:111
 msgid "Open in Image Viewer"
 msgstr "פתיחה במציג התמונות"
 
-#: data/resources/ui/gallery.ui:111
+#: data/resources/ui/gallery.ui:166
 msgid "_Copy"
 msgstr "_העתקה"
 
-#: data/resources/ui/gallery.ui:115
+#: data/resources/ui/gallery.ui:170
 msgid "_Delete"
 msgstr "_מחיקה"
 
@@ -224,17 +223,13 @@ msgstr "_מחיקה"
 msgid "General"
 msgstr "כללי"
 
-#: data/resources/ui/preferences_window.ui:14
-msgid "Camera"
-msgstr "מצלמה"
-
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "הפעלת צליל צמצם"
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "צליל _צמצם"
 
 #: data/resources/ui/preferences_window.ui:23
-msgid "Show Composition Guidelines"
-msgstr "הצגת הנחיות קומפוזיציה"
+msgid "_Composition Guidelines"
+msgstr "הנחיות _קומפוזיציה"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -286,11 +281,6 @@ msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "הצגת/הסתרת הנחיות קומפוזיציה"
 
-#: data/resources/ui/shortcuts.ui:69
-msgctxt "shortcut window"
-msgid "Gallery"
-msgstr "גלריה"
-
 #: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
@@ -306,9 +296,19 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "הקודם"
 
+#: data/resources/ui/window.ui:13
+msgid "Camera"
+msgstr "מצלמה"
+
+#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/window.ui:21
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "גלריה"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
@@ -337,23 +337,23 @@ msgstr "הקלטה מתאריך {date}"
 msgid "Recording {number}"
 msgstr "הקלטה  {number}"
 
-#: src/widgets/camera.rs:535
+#: src/widgets/camera.rs:416
 msgid "Could not play camera stream"
 msgstr "לא ניתן לקבל תזרים תמונות מהמצלמה"
 
-#: src/widgets/gallery.rs:100
+#: src/widgets/gallery.rs:113
 msgid "Open in Video Player"
 msgstr "פתיחת בנגן סרטים"
 
-#: src/widgets/gallery.rs:375
+#: src/widgets/gallery.rs:377
 msgid "Copied to clipboard"
 msgstr "הועתקה ללוח הגזירים"
 
-#: src/widgets/gallery.rs:400
+#: src/widgets/gallery.rs:425
 msgid "Picture deleted"
 msgstr "תמונה נמחקה"
 
-#: src/widgets/gallery.rs:402
+#: src/widgets/gallery.rs:427
 msgid "Video deleted"
 msgstr "סרטון נמחק"
 
@@ -365,15 +365,15 @@ msgstr "התחלת הקלטה"
 msgid "Stop Recording"
 msgstr "עצירת הקלטה"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:311
+#: src/widgets/window.rs:74 src/widgets/window.rs:310
 msgid "Could not take picture"
 msgstr "לא ניתן לצלם תמונה"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:315
+#: src/widgets/window.rs:78 src/widgets/window.rs:314
 msgid "Could not record video"
 msgstr "לא ניתן להקליט וידאו"
 
-#: src/widgets/window.rs:267
+#: src/widgets/window.rs:266
 msgid "translator-credits"
 msgstr ""
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
