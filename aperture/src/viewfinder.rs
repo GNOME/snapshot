@@ -246,6 +246,16 @@ mod imp {
 
             let devices = crate::DeviceProvider::instance();
 
+            self.devices.set(devices.clone()).unwrap();
+
+            if devices.started() {
+                obj.init();
+            } else {
+                devices.connect_started_notify(glib::clone!(@weak obj => move |_| {
+                    obj.init();
+                }));
+            }
+
             devices.connect_camera_added(glib::clone!(@weak obj => move |_, camera| {
                 if matches!(obj.state(), ViewfinderState::NoCameras | ViewfinderState::Loading | ViewfinderState::Error) {
                     obj.imp().set_state(ViewfinderState::Ready);
@@ -267,24 +277,8 @@ mod imp {
                 }
             }));
 
-            if let Some(camera) = devices.camera(0) {
-                obj.imp().set_state(ViewfinderState::Ready);
-                obj.set_camera(Some(camera));
-            }
-
-            self.devices.set(devices.clone()).unwrap();
-
             log::debug!("Setup recording");
             obj.setup_recording();
-
-            glib::timeout_add_local_once(
-                std::time::Duration::from_secs(PROVIDER_TIMEOUT),
-                glib::clone!(@weak obj => move || {
-                    if matches!(obj.state(), ViewfinderState::Loading) {
-                        obj.imp().set_state(ViewfinderState::NoCameras);
-                    }
-                }),
-            );
         }
 
         fn dispose(&self) {
@@ -762,6 +756,30 @@ impl Viewfinder {
         let camerabin = self.imp().camerabin();
 
         camerabin.set_property("video-profile", profiles);
+    }
+
+    fn init(&self) {
+        let imp = self.imp();
+        let devices = imp.devices.get().unwrap();
+
+        if let Some(camera) = devices.default_camera().or_else(|| devices.camera(0)) {
+            if matches!(
+                self.state(),
+                ViewfinderState::NoCameras | ViewfinderState::Loading | ViewfinderState::Error
+            ) {
+                imp.set_state(ViewfinderState::Ready);
+                self.set_camera(Some(camera));
+            }
+        }
+
+        glib::timeout_add_local_once(
+            std::time::Duration::from_secs(PROVIDER_TIMEOUT),
+            glib::clone!(@weak self as obj => move || {
+                if matches!(obj.state(), ViewfinderState::Loading) {
+                    obj.imp().set_state(ViewfinderState::NoCameras);
+                }
+            }),
+        );
     }
 }
 
