@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-18 11:21+0000\n"
-"PO-Revision-Date: 2023-08-20 11:11-0700\n"
+"POT-Creation-Date: 2023-08-20 18:12+0000\n"
+"PO-Revision-Date: 2023-09-09 15:25-0700\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <punjab-translation@googlegroups.com>\n"
 "Language: pa\n"
@@ -47,7 +47,7 @@ msgstr "ਮੂਲ ਵਿੰਡੋ ਉਚਾਈ"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
-msgstr ""
+msgstr "ਮੂਲ ਵਿੰਡੋ ਵੱਧ ਤੋਂ ਵੱਧ ਕਰਨ ਦਾ ਰਵੱਈਆ"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
@@ -59,11 +59,11 @@ msgstr "ਕੀ ਤਸਵੀਰਾਂ ਲੈਣ ਦੌਰਾਨ ਸ਼ੱਟਰ ਦ�
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Show composition guidelines"
-msgstr ""
+msgstr "ਰਚਨਾ ਸੇਧਾਂ ਵੇਖਾਓ"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr ""
+msgstr "ਕੈਮਰਾ ਵਰਤਣ ਦੌਰਾਨ ਕੀ ਰਚਨਾ ਸੇਧਾਂ ਨੂੰ ਵੇਖਾਉਣਾ ਹੈ"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -219,12 +219,12 @@ msgstr "ਸ਼ੱਟਰ ਆਵਾਜ਼(_S)"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "_Composition Guidelines"
-msgstr ""
+msgstr "ਰਚਨਾ ਸੇਧਾਂ(_C)"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr " ਆਮ"
+msgstr "ਆਮ"
 
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
@@ -269,7 +269,7 @@ msgstr "ਤਸਵੀਰ ਖਿੱਚੋ ਜਾਂ ਰਿਕਾਰਡਿੰਗ �
 #: data/resources/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr ""
+msgstr "ਰਚਨਾ ਸੇਧਾਂ ਵੇਖਾਓ/ਲੁਕਾਓ"
 
 #: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
