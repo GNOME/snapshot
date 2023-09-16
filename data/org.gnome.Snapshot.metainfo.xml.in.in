@@ -27,7 +27,7 @@
   <url type="donation">https://www.gnome.org/donate</url>
   <content_rating type="oars-1.0" />
   <releases>
-    <release version="45.beta" date="2023-08-05" type="development">
+    <release version="45~beta" date="2023-08-05" type="development">
       <description>
         <p>Minor release.</p>
         <ul>
@@ -39,7 +39,7 @@
         </ul>
       </description>
     </release>
-    <release version="45.alpha" date="2023-06-30" type="development">
+    <release version="45~alpha" date="2023-06-30" type="development">
       <description>
         <p>Minor release with updates to various dependencies.</p>
         <ul>
