@@ -36,7 +36,6 @@ checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 name = "aperture"
 version = "0.3.1"
 dependencies = [
- "ashpd",
  "gst-plugin-gtk4",
  "gstreamer",
  "gstreamer-pbutils",
