@@ -178,11 +178,11 @@ mod imp {
                 || imp
                     .current_breakpoint()
                     .is_some_and(|breakpoint| breakpoint.eq(&obj.dual_portrait_bp.get()))
-            {
-                imp.add_css_class("portrait");
-            } else {
-                imp.remove_css_class("portrait");
-            }
+                {
+                    imp.add_css_class("portrait");
+                } else {
+                    imp.remove_css_class("portrait");
+                }
             }));
         }
     }
