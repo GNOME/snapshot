@@ -20,6 +20,8 @@ mod imp {
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
         #[template_child]
+        pub fake_gallery_button: TemplateChild<gtk::Widget>,
+        #[template_child]
         pub camera_menu_button: TemplateChild<gtk::MenuButton>,
         #[template_child]
         pub camera_switch_button: TemplateChild<gtk::Button>,
@@ -27,6 +29,8 @@ mod imp {
         pub camera_menu_button_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub shutter_button: TemplateChild<crate::ShutterButton>,
+        #[template_child]
+        pub gallery_button_stack: TemplateChild<gtk::Stack>,
     }
 
     #[glib::object_subclass]
@@ -170,7 +174,14 @@ impl CameraControls {
     }
 
     pub fn set_gallery(&self, gallery: &crate::Gallery) {
-        self.imp().gallery_button.set_gallery(&gallery);
+        self.imp().gallery_button.set_gallery(gallery);
+        gallery.connect_item_added(glib::clone!(@weak self as obj => move |gallery, _| {
+            obj.update_gallery_button(gallery);
+        }));
+        gallery.connect_item_removed(glib::clone!(@weak self as obj => move |gallery, _| {
+            obj.update_gallery_button(gallery);
+        }));
+        self.update_gallery_button(gallery);
     }
 
     pub fn update_visible_camera_button(&self, n_cameras: u32) {
@@ -187,6 +198,17 @@ impl CameraControls {
             _ => imp
                 .camera_menu_button_stack
                 .set_visible_child(&imp.camera_menu_button.get()),
+        }
+    }
+
+    fn update_gallery_button(&self, gallery: &crate::Gallery) {
+        let imp = self.imp();
+        if gallery.items().is_empty() {
+            imp.gallery_button_stack
+                .set_visible_child(&imp.fake_gallery_button.get());
+        } else {
+            imp.gallery_button_stack
+                .set_visible_child(&imp.gallery_button.get());
         }
     }
 }
