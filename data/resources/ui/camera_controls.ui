@@ -5,11 +5,18 @@
     <property name="valign">center</property>
     <property name="spacing">24</property>
     <child>
-      <object class="GalleryButton" id="gallery_button">
-        <property name="valign">center</property>
-        <property name="halign">center</property>
-        <property name="action-name">win.toggle-gallery</property>
-        <property name="tooltip-text" translatable="yes">Open Gallery</property>
+      <object class="GtkStack" id="gallery_button_stack">
+        <child>
+          <object class="AdwBin" id="fake_gallery_button"/>
+        </child>
+        <child>
+          <object class="GalleryButton" id="gallery_button">
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <property name="action-name">win.toggle-gallery</property>
+            <property name="tooltip-text" translatable="yes">Open Gallery</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
