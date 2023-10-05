@@ -165,15 +165,20 @@ mod imp {
                     let enabled = navigation_view.visible_page().is_some_and(|page| &page == &*imp.camera_page);
                     obj.set_shutter_enabled(enabled);
                 }));
+        }
+    }
 
+    impl WidgetImpl for Window {
+        fn map(&self) {
+            self.parent_map();
+            let camera = self.camera.get();
             let ctx = glib::MainContext::default();
-            ctx.spawn_local(glib::clone!(@weak obj => async move {
-                obj.imp().camera.start().await;
+            ctx.spawn_local(glib::clone!(@weak camera => async move {
+                camera.start().await;
             }));
         }
     }
 
-    impl WidgetImpl for Window {}
     impl WindowImpl for Window {
         // Save window state on delete event
         fn close_request(&self) -> glib::Propagation {
