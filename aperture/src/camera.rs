@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::collections::HashMap;
 
-use gst::prelude::DeviceExt;
+use gst::prelude::*;
 use gtk::glib;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
 mod imp {
@@ -153,13 +152,36 @@ impl Camera {
     }
 }
 
-fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
-    use gst::prelude::*;
+fn add_padd(bin: &gst::Bin, src: &gst::Element) {
+    let pad = src.static_pad("src").unwrap();
+    let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
+    ghost_pad.set_active(true).unwrap();
 
+    bin.add_pad(&ghost_pad).unwrap();
+}
+
+// src -- capsfilter -- decodebin -- videoflip
+fn gl_pipeline(device_src: &gst::Element) -> gst::Bin {
     let bin = gst::Bin::new();
 
-    let device_src = device.create_element(None).ok()?;
-    device_src.set_property("client-name", crate::APP_ID.get().unwrap());
+    let glupload = gst::ElementFactory::make("glupload").build().unwrap();
+    let glcolorconvert = gst::ElementFactory::make("glcolorconvert").build().unwrap();
+    let videoflip = gst::ElementFactory::make("glvideoflip")
+        .property_from_str("video-direction", "auto")
+        .build()
+        .unwrap();
+    bin.add_many(&[&device_src, &glupload, &glcolorconvert, &videoflip])
+        .unwrap();
+    gst::Element::link_many(&[&device_src, &glupload, &glcolorconvert, &videoflip]).unwrap();
+
+    add_padd(&bin, &videoflip);
+
+    bin
+}
+
+// src -- capsfilter -- decidebin -- videoflip
+fn non_gl_pipeline(device_src: &gst::Element) -> gst::Bin {
+    let bin = gst::Bin::new();
 
     let capsfilter = gst::ElementFactory::make("capsfilter")
         .property(
@@ -187,18 +209,20 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
         .unwrap();
     gst::Element::link_many([&device_src, &capsfilter, &decodebin3]).unwrap();
 
-    decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
-        if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-            pad.link(&videoflip.static_pad("sink").unwrap())
-               .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
-        }
-    }));
+    add_padd(&bin, &decodebin3);
 
-    let pad = videoflip.static_pad("src").unwrap();
-    let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
-    ghost_pad.set_active(true).unwrap();
+    bin
+}
 
-    bin.add_pad(&ghost_pad).unwrap();
+fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
+    let device_src = device.create_element(None).ok()?;
+    device_src.set_property("client-name", crate::APP_ID.get().unwrap());
+
+    let bin = if crate::is_gl_supported() {
+        gl_pipeline(&device_src)
+    } else {
+        non_gl_pipeline(&device_src)
+    };
 
     let wrapper = gst::ElementFactory::make("wrappercamerabinsrc")
         .property("video-source", &bin)

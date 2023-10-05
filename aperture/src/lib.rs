@@ -17,6 +17,7 @@
 use std::sync::{Once, OnceLock};
 
 use gst::prelude::*;
+use gtk::gdk;
 
 mod camera;
 mod device_provider;
@@ -33,6 +34,7 @@ pub(crate) use pipeline_tee::PipelineTee;
 pub use viewfinder::Viewfinder;
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
+static IS_GL_SUPPORTED: OnceLock<bool> = OnceLock::new();
 
 static IS_INIT: Once = Once::new();
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -83,4 +85,17 @@ pub(crate) fn ensure_init() {
     if !IS_INIT.is_completed() {
         panic!("Aperture is not initialized! Please call `init()` before using the rest of the library to avoid errors and crashes.");
     }
+}
+
+pub(crate) fn is_gl_supported() -> bool {
+    *IS_GL_SUPPORTED.get_or_init(|| {
+        let paintablesink = gst::ElementFactory::make("gtk4paintablesink")
+            .build()
+            .unwrap();
+
+        let paintable = paintablesink.property::<gdk::Paintable>("paintable");
+        paintable
+            .property::<Option<gdk::GLContext>>("gl-context")
+            .is_some()
+    })
 }
