@@ -215,9 +215,10 @@ impl Camera {
             glib::clone!(@weak self as obj, @strong provider => async move {
                 match stream().await {
                     Ok(fd) => {
-                        if let Err(err) = provider.set_fd(fd) {
-                            log::error!("Could not use the camera portal: {err}");
-                        };
+                        match provider.set_fd(fd) {
+                            Ok(_) => log::debug!("Starting the GstDeviceProvider with FD: {fd}"),
+                            Err(err) => log::error!("Could not use the camera portal: {err}"),
+                        }
                     }
                     Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
