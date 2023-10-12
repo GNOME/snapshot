@@ -3,6 +3,7 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
+use crate::widgets::gallery_item::imp::GalleryItemPropertiesExt;
 use crate::widgets::gallery_item::GalleryItemImpl;
 
 mod imp {
@@ -62,9 +63,9 @@ impl GalleryPicture {
     pub async fn load_texture(&self) -> anyhow::Result<()> {
         let imp = self.imp();
 
-        self.set_started_loading(true);
+        GalleryItemPropertiesExt::set_started_loading(self, true);
 
-        let file = self.file();
+        let file = GalleryItemPropertiesExt::file(self);
         let (sender, receiver) = futures_channel::oneshot::channel();
 
         let _ = std::thread::Builder::new()
@@ -80,23 +81,5 @@ impl GalleryPicture {
         self.set_thumbnail(&texture);
 
         Ok(())
-    }
-
-    // Ugh
-    fn file(&self) -> gio::File {
-        self.upcast_ref::<crate::GalleryItem>().file()
-    }
-
-    pub fn started_loading(&self) -> bool {
-        self.upcast_ref::<crate::GalleryItem>().started_loading()
-    }
-
-    fn set_started_loading(&self, value: bool) {
-        self.upcast_ref::<crate::GalleryItem>()
-            .set_started_loading(value);
-    }
-
-    fn set_thumbnail(&self, value: &gdk::Texture) {
-        self.upcast_ref::<crate::GalleryItem>().set_thumbnail(value);
     }
 }

@@ -3,6 +3,7 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
+use crate::widgets::gallery_item::imp::GalleryItemPropertiesExt;
 use crate::widgets::gallery_item::GalleryItemImpl;
 
 mod imp {
@@ -76,19 +77,5 @@ impl GalleryVideo {
 
     pub fn pause(&self) {
         self.imp().video_player.pause();
-    }
-
-    // Ugh
-    fn file(&self) -> gio::File {
-        self.upcast_ref::<crate::GalleryItem>().file()
-    }
-
-    fn set_started_loading(&self, value: bool) {
-        self.upcast_ref::<crate::GalleryItem>()
-            .set_started_loading(value);
-    }
-
-    fn set_thumbnail(&self, value: &gdk::Texture) {
-        self.upcast_ref::<crate::GalleryItem>().set_thumbnail(value);
     }
 }

@@ -28,6 +28,8 @@ use adw::subclass::prelude::*;
 use gtk::{glib, graphene, gsk};
 use once_cell::sync::Lazy;
 
+use crate::widgets::gallery_item::imp::GalleryItemPropertiesExt;
+
 const SCROLL_DAMPING_RATIO: f64 = 1.0;
 const SCROLL_MASS: f64 = 0.5;
 const SCROLL_STIFFNESS: f64 = 500.0;

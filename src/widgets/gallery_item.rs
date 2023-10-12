@@ -3,7 +3,9 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{gdk, gio, glib};
 
-mod imp {
+use imp::GalleryItemPropertiesExt;
+
+pub(crate) mod imp {
     use std::cell::Cell;
     use std::cell::OnceCell;
     use std::cell::RefCell;
@@ -13,7 +15,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, Properties)]
-    #[properties(wrapper_type = super::GalleryItem)]
+    #[properties(wrapper_type = super::GalleryItem, ext_trait)]
     pub struct GalleryItem {
         #[property(get, set, construct_only)]
         pub file: OnceCell<gio::File>,

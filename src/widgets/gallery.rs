@@ -6,6 +6,8 @@ use gtk::CompositeTemplate;
 use gtk::{gdk, gio, glib};
 use once_cell::sync::Lazy;
 
+use crate::widgets::gallery_item::imp::GalleryItemPropertiesExt;
+
 static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
     [
         gio::FILE_ATTRIBUTE_STANDARD_NAME.as_str(),
