@@ -21,10 +21,11 @@
       <caption>Camera's gallery viewer</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://apps.gnome.org/app/org.gnome.Snapshot</url>
+  <url type="homepage">https://apps.gnome.org/Snapshot/</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/snapshot/issues</url>
   <url type="translate">https://l10n.gnome.org/module/snapshot/</url>
   <url type="donation">https://www.gnome.org/donate</url>
+  <url type="vcs-browser">https://gitlab.gnome.org/GNOME/snapshot</url>
   <content_rating type="oars-1.0" />
   <releases>
     <release version="45.0" date="2023-09-16">
