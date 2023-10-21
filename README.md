@@ -29,3 +29,7 @@ You can find everything you need at: [l10n.gnome.org/module/snapshot/](https://l
 ## Code Of Conduct
 
 This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
+
+## Troubleshooting
+
+See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
