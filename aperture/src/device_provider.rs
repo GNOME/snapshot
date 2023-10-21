@@ -88,7 +88,9 @@ mod imp {
 
             crate::ensure_init();
 
-            let provider = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider").unwrap();
+            let provider = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider").expect(
+                "Could not create pipewiredeviceprovider. You are missing gst-pipewire-plugin.",
+            );
             self.inner.set(provider).unwrap();
         }
 
