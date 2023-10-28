@@ -4,7 +4,7 @@ Comment=Take pictures and videos
 Type=Application
 Exec=snapshot
 Terminal=false
-Categories=GNOME;GTK;
+Categories=AudioVideo;Video;Recorder;GNOME;GTK;
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=picture;photos;camera;webcam;
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
