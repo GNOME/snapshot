@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
 "POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-11-01 10:46+0100\n"
+"PO-Revision-Date: 2023-11-01 10:48+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -57,11 +57,11 @@ msgstr "Indiche se riprodusi un sun di oturadôr cuant che tu cjapis sù imagjin
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Show composition guidelines"
-msgstr ""
+msgstr "Mostre liniis vuide di composizion"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr ""
+msgstr "Indiche se mostrâ lis liniis vuide di composizion cuant che tu dopris la fotocjamare"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -105,7 +105,7 @@ msgstr "Interface principâl di Fotocjamare"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
-msgstr ""
+msgstr "Visualizadôr galaire de fotocjamare"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
 msgid "The GNOME Project"
@@ -217,7 +217,7 @@ msgstr "_Sun oturadôr"
 
 #: data/resources/ui/preferences_window.ui:23
 msgid "_Composition Guidelines"
-msgstr ""
+msgstr "_Liniis vuide di composizion"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -267,7 +267,7 @@ msgstr "Cjape sù une imagjin o scomence une regjistrazion"
 #: data/resources/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr ""
+msgstr "Mostre/Plate liniis vuide di composizion"
 
 #: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
@@ -305,13 +305,13 @@ msgstr "JPEG"
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
 #: src/utils.rs:23
 msgid "Photo from {date}"
-msgstr ""
+msgstr "Foto di {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
 #: src/utils.rs:28
 msgid "Photo {number}"
-msgstr ""
+msgstr "Foto {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
@@ -332,15 +332,15 @@ msgstr "_Copie imagjin"
 
 #: src/utils.rs:130
 msgid "_Copy Video"
-msgstr ""
+msgstr "_Copie video"
 
 #: src/utils.rs:132
 msgid "_Delete"
-msgstr ""
+msgstr "_Elimine"
 
 #: src/widgets/camera.rs:410
 msgid "Could not play camera stream"
-msgstr ""
+msgstr "Impussibil riprodusi il flus de fotocjamare"
 
 #: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
@@ -348,7 +348,7 @@ msgstr "Vierç in Riprodutôr video"
 
 #: src/widgets/gallery.rs:386
 msgid "Copied to clipboard"
-msgstr ""
+msgstr "Copiât intes notis"
 
 #: src/widgets/gallery.rs:434
 msgid "Picture deleted"
@@ -356,7 +356,7 @@ msgstr "Imagjin eliminade"
 
 #: src/widgets/gallery.rs:436
 msgid "Video deleted"
-msgstr ""
+msgstr "Video eliminât"
 
 #: src/widgets/shutter_button.rs:81
 msgid "Start Recording"
