@@ -139,8 +139,7 @@ mod imp {
 
             obj.setup_media_controls();
 
-            let ctx = glib::MainContext::default();
-            ctx.spawn_local(glib::clone!(@weak obj => async move {
+            glib::spawn_future_local(glib::clone!(@weak obj => async move {
                 if let Err(err) = obj.load_items().await {
                     log::debug!("Could not load latest items: {err}");
                 }

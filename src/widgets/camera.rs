@@ -210,8 +210,7 @@ impl Camera {
     pub async fn start(&self) {
         let provider = self.imp().provider.get().unwrap();
 
-        let ctx = glib::MainContext::default();
-        ctx.spawn_local(
+        glib::spawn_future_local(
             glib::clone!(@weak self as obj, @strong provider => async move {
                 match stream().await {
                     Ok(fd) => {

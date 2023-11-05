@@ -172,8 +172,7 @@ mod imp {
         fn map(&self) {
             self.parent_map();
             let camera = self.camera.get();
-            let ctx = glib::MainContext::default();
-            ctx.spawn_local(glib::clone!(@weak camera => async move {
+            glib::spawn_future_local(glib::clone!(@weak camera => async move {
                 camera.start().await;
             }));
         }
@@ -306,8 +305,7 @@ impl Window {
             duration,
             glib::clone!(@weak self as window => move || {
                 window.imp().countdown_timer_id.take();
-                let ctx = glib::MainContext::default();
-                ctx.spawn_local(glib::clone!(@weak window => async move {
+                glib::spawn_future_local(glib::clone!(@weak window => async move {
                     if let Err(err) = window.shutter_action().await {
                         match window.capture_mode() {
                             CaptureMode::Picture => {

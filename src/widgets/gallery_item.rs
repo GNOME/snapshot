@@ -129,8 +129,7 @@ unsafe impl<T: GalleryItemImpl> IsSubclassable<T> for GalleryItem {}
 impl GalleryItem {
     pub fn start_loading(&self) {
         self.set_started_loading(true);
-        let ctx = glib::MainContext::default();
-        ctx.spawn_local(glib::clone!(@weak self as widget => async move {
+        glib::spawn_future_local(glib::clone!(@weak self as widget => async move {
             let res = if widget.is_picture() {
                 widget.downcast_ref::<crate::GalleryPicture>().unwrap().load_texture().await
             } else {
