@@ -2,26 +2,28 @@
 # Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 # Ngọc Quân Trần <vnwildman@gmail.com>, 2023.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-07-29 20:00+0000\n"
-"PO-Revision-Date: 2023-07-30 09:56+0700\n"
-"Last-Translator: Ngọc Quân Trần <vnwildman@gmail.com>\n"
-"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
+"POT-Creation-Date: 2023-11-05 16:42+0000\n"
+"PO-Revision-Date: 2023-11-11 14:16+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <Vietnamese <gnome-vi-list@gnome.org>>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Snapshot"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+msgid "Camera"
+msgstr "Máy ảnh"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -97,22 +99,23 @@ msgstr "Nên lưu phim dưới dạng mp4 hay webm hay không"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Chụp ảnh và quay phim trên máy tính, máy tính bảng hoặc điện thoại của bạn."
+msgstr ""
+"Chụp ảnh và quay phim trên máy tính, máy tính bảng hoặc điện thoại của bạn."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
-msgstr "Giao diện chính của Snapshot"
+msgid "Camera's main interface"
+msgstr "Giao diện chính của Máy ảnh"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
-msgstr "Trình xem bộ sưu tập Snapshot"
+msgid "Camera's gallery viewer"
+msgstr "Trình xem bộ sưu tập Máy ảnh"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:78 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:101 src/widgets/window.rs:271
 msgid "The GNOME Project"
 msgstr "Dự án GNOME"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Trình đơn chính"
 
@@ -124,69 +127,69 @@ msgstr "Không tìm thấy máy ảnh nào"
 msgid "Connect a camera device"
 msgstr "Kết nối thiết bị máy ảnh"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Chế độ ảnh"
 
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Chế độ ghi"
 
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:576
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Đếm ngược"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Không"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:584
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3gy"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5gy"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10gy"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "lựa chọn ưu tiên"
 
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "_Phím tắt bàn phím"
 
-#: data/resources/ui/camera.ui:610
-msgid "_About Snapshot"
-msgstr "Giới thiệu về Sn_apshot"
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "_Về Máy ảnh"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Mở bộ sưu tập"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Chụp ảnh"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Chọn máy ảnh"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Đổi máy ảnh"
@@ -203,7 +206,7 @@ msgstr "Ảnh trước"
 msgid "Next Image"
 msgstr "Ảnh tiếp theo"
 
-#: data/resources/ui/gallery.ui:145 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Mở bằng bộ Xem ảnh"
 
@@ -289,10 +292,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Kế trước"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Máy ảnh"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Bộ sưu tập"
@@ -330,7 +329,7 @@ msgstr "Bản ghi hình {number}"
 
 #: src/utils.rs:128
 msgid "_Copy Picture"
-msgstr "_Sao chép hình ảnh"
+msgstr "_Sao chép ảnh"
 
 #: src/utils.rs:130
 msgid "_Copy Video"
@@ -340,23 +339,23 @@ msgstr "_Sao chép phim"
 msgid "_Delete"
 msgstr "_Xóa"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:409
 msgid "Could not play camera stream"
 msgstr "Không thể phát luồng máy ảnh"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Mở bằng bộ phát phim"
 
-#: src/widgets/gallery.rs:382
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Chép vào clipboard"
 
-#: src/widgets/gallery.rs:430
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Ảnh đã bị xóa"
 
-#: src/widgets/gallery.rs:432
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Phim đã bị xóa"
 
@@ -366,16 +365,22 @@ msgstr "Bắt đầu quay phim"
 
 #: src/widgets/shutter_button.rs:92
 msgid "Stop Recording"
-msgstr "Dừng ghi hình"
+msgstr "Dừng quay phim"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Không thể chụp ảnh"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Không thể quay phim"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
+
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "Giới thiệu về Sn_apshot"
