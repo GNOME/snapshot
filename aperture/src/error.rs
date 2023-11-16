@@ -1,6 +1,31 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use gtk::glib;
 
+/// Describes the possible error codes of a
+/// [`DeviceProvider`][crate::DeviceProvider].
+#[derive(Debug, Clone)]
+pub enum ProviderError {
+    MissingPlugin(&'static str),
+    BoolError(glib::BoolError),
+}
+
+impl From<glib::BoolError> for ProviderError {
+    fn from(err: glib::BoolError) -> Self {
+        Self::BoolError(err)
+    }
+}
+
+impl std::error::Error for ProviderError {}
+
+impl std::fmt::Display for ProviderError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::MissingPlugin(plugin) => write!(f, "Missing gstreamer plugin {plugin}"),
+            Self::BoolError(err) => write!(f, "{err}"),
+        }
+    }
+}
+
 /// Describes the possible error codes of a [`Viewfinder`][crate::Viewfinder]
 /// while getting a capture.
 #[derive(Debug, Eq, PartialEq, Clone, Copy, glib::ErrorDomain)]

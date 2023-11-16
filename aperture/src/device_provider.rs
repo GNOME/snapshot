@@ -88,10 +88,9 @@ mod imp {
 
             crate::ensure_init();
 
-            let provider = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider").expect(
-                "Could not create pipewiredeviceprovider. You are missing gst-pipewire-plugin.",
-            );
-            self.inner.set(provider).unwrap();
+            if let Some(provider) = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider") {
+                self.inner.set(provider).unwrap();
+            }
         }
 
         fn dispose(&self) {
@@ -165,12 +164,16 @@ impl DeviceProvider {
     /// Starts the device provider represented by `self`.
     ///
     /// This function is idempotent when there are no errors.
-    pub fn start(&self) -> Result<(), glib::BoolError> {
+    pub fn start(&self) -> Result<(), crate::ProviderError> {
         if STARTED.is_completed() {
             return Ok(());
         }
 
-        let provider = self.imp().inner.get().unwrap();
+        let Some(provider) = self.imp().inner.get() else {
+            return Err(crate::ProviderError::MissingPlugin(
+                "pipewiredeviceprovider",
+            ));
+        };
         provider.start()?;
 
         STARTED.call_once(glib::clone!(@weak self as obj, @weak provider => move || {
