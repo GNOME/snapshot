@@ -176,12 +176,12 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let decodebin3 = gst::ElementFactory::make("decodebin3")
         .property("caps", gst_video::VideoCapsBuilder::new().build())
         .build()
-        .unwrap();
+        .expect("Missing GStreamer Base Plug-ins");
 
     let videoflip = gst::ElementFactory::make("videoflip")
         .property_from_str("video-direction", "auto")
         .build()
-        .unwrap();
+        .expect("Missing GStreamer Good Plug-ins");
 
     bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])
         .unwrap();
@@ -203,7 +203,7 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let wrapper = gst::ElementFactory::make("wrappercamerabinsrc")
         .property("video-source", &bin)
         .build()
-        .unwrap();
+        .expect("Missing GStreamer Bad Plug-ins");
 
     Some((wrapper, device_src))
 }

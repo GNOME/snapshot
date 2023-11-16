@@ -181,7 +181,9 @@ mod imp {
 
             let obj = self.obj();
 
-            let camerabin = gst::ElementFactory::make("camerabin").build().unwrap();
+            let camerabin = gst::ElementFactory::make("camerabin")
+                .build()
+                .expect("Missing GStreamer Bad Plug-ins");
             self.camerabin.set(camerabin.clone()).unwrap();
 
             let bus = self.camerabin().bus().unwrap();
@@ -208,10 +210,12 @@ mod imp {
                 gst::ElementFactory::make("glsinkbin")
                     .property("sink", &paintablesink)
                     .build()
-                    .unwrap()
+                    .expect("Missing GStreamer Base Plug-ins")
             } else {
                 let bin = gst::Bin::default();
-                let convert = gst::ElementFactory::make("videoconvert").build().unwrap();
+                let convert = gst::ElementFactory::make("videoconvert")
+                    .build()
+                    .expect("Missing GStreamer Base Plug-ins");
 
                 bin.add(&convert).unwrap();
                 bin.add(&paintablesink).unwrap();
