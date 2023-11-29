@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-27 10:14+0000\n"
-"PO-Revision-Date: 2023-08-27 21:49+0200\n"
+"POT-Creation-Date: 2023-11-28 16:50+0000\n"
+"PO-Revision-Date: 2023-11-29 11:42+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "Kamera"
 
@@ -33,8 +33,8 @@ msgstr "Bilder und Videos aufnehmen"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;photos;camera;webcam;Bilder;Fotos;Kamera;Webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;Bilder;Fotos;Kamera;Webcam;Schnappschuss;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -110,10 +110,6 @@ msgstr "Haupt-Bedienoberfläche von Kamera"
 msgid "Camera's gallery viewer"
 msgstr "Galeriebetrachter von Kamera"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "Das GNOME-Projekt"
-
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
@@ -175,21 +171,21 @@ msgstr "_Tastenkürzel"
 msgid "_About Camera"
 msgstr "_Info zu Kamera"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Galerie öffnen"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Bild aufnehmen"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Kamera auswählen"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Kamera wechseln"
@@ -339,7 +335,7 @@ msgstr "Video _kopieren"
 msgid "_Delete"
 msgstr "_Löschen"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:409
 msgid "Could not play camera stream"
 msgstr "Kamera-Stream konnte nicht wiedergegeben werden"
 
@@ -347,15 +343,15 @@ msgstr "Kamera-Stream konnte nicht wiedergegeben werden"
 msgid "Open in Video Player"
 msgstr "In Medienwiedergabe öffnen"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "In Zwischenablage kopiert"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Bild gelöscht"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video gelöscht"
 
@@ -367,19 +363,23 @@ msgstr "Aufnahme starten"
 msgid "Stop Recording"
 msgstr "Aufnahme stoppen"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Bild konnte nicht aufgenommen werden"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Video konnte nicht aufgenommen werden"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
-"JÜrgen Benvenuti <gastornis@posteo.org>"
+"Jürgen Benvenuti <gastornis@posteo.org>"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "Das GNOME-Projekt"
 
 #~ msgid "Snapshot"
 #~ msgstr "Schnappschuss"
