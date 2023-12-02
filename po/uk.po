@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-29 16:30+0000\n"
-"PO-Revision-Date: 2023-11-29 19:14+0200\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 17:28+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -32,12 +32,10 @@ msgstr "Створення зображень та відео"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-#| msgid "picture;photos;camera;webcam;"
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr ""
-"picture;photos;camera;webcam;snapshot;зображення;картинка;фото;фотографії;кам"
-"ера;"
-"фотоапарат;вебкамера;знімок;"
+"picture;photos;camera;webcam;snapshot;зображення;картинка;фото;фотографії;"
+"камера;фотоапарат;вебкамера;знімок;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -101,6 +99,14 @@ msgstr "Формат відео"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Формат, у якому слід зберігати відео — mp4 або webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Ідентифікатор останньої використаної камери"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Ідентифікатор, що відповідає останній використаній камері"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -339,7 +345,7 @@ msgstr "_Копіювати відео"
 msgid "_Delete"
 msgstr "В_илучити"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Не вдалося відтворити потокові дані з камери"
 
