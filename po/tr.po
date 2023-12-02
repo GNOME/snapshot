@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-29 16:30+0000\n"
-"PO-Revision-Date: 2023-11-30 21:00+0300\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -99,6 +99,14 @@ msgstr "Video biçimi"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Videoların hangi biçimde kaydedileceği, mp4 ya da webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Kullanılan Son Kamera Kimliği"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Son kullanılan kamerayı belirten kimlik"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -338,7 +346,7 @@ msgstr "Videoyu _Kopyala"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Kamera akımı oynatılamadı"
 
@@ -383,4 +391,3 @@ msgstr ""
 #: src/widgets/window.rs:271
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
-
