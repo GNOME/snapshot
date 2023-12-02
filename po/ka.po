@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-11-29 05:16+0100\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 23:05+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -94,6 +94,14 @@ msgstr "ვიდეოს ფორმატი"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "ვიდეო MP4-ით შევინახო, თუ WEBM"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ბოლო კამერა იყენებდა ID-ს"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "ID, რომელიც ბოლოს გამოყენებულ კამერას წარმოადგენს"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -332,7 +340,7 @@ msgstr "ვიდეოს _კოპირება"
 msgid "_Delete"
 msgstr "_წაშლა"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "კამერის ვიდეონაკადის დაკვრის შეცდომა"
 
