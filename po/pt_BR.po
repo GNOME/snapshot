@@ -4,27 +4,28 @@
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2023.
 # Gabriel Mattoso <gabriel.reis.mattoso@gmail.com>, 2023.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2023.
+# Alex Jr <alexjrsh@proton.me>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-05 21:21+0000\n"
-"PO-Revision-Date: 2023-08-10 11:35-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 21:46-0300\n"
+"Last-Translator: Alex Jr <alexjrsh@proton.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 45.alpha0\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: src/main.rs:29 src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Snapshot"
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+msgid "Camera"
+msgstr "Câmera"
 
 # Dúvido com relação ao modo verbal
 #: data/org.gnome.Snapshot.desktop.in.in:4
@@ -34,7 +35,9 @@ msgstr "Tire fotos e vídeos"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
+#, fuzzy
+#| msgid "picture;photos;camera;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "imagem;fotos;câmera;picture;photos;camera;webcam;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
@@ -99,21 +102,29 @@ msgstr "Formato do vídeo"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Se deseja salvar vídeos como mp4 ou webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID da última câmera utilizada"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Um ID que representa a última câmera utilizada"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Tire fotos e vídeos em seu computador, tablet ou telefone."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
+#, fuzzy
+#| msgid "Snapshot's main interface"
+msgid "Camera's main interface"
 msgstr "Interface principal do Snapshot"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
+#, fuzzy
+#| msgid "Snapshot's gallery viewer"
+msgid "Camera's gallery viewer"
 msgstr "Visualizador da galeria do Snapshot"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "O Projeto GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -173,24 +184,26 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Atalhos de teclado"
 
 #: data/resources/ui/camera.ui:611
-msgid "_About Snapshot"
-msgstr "_Sobre o Snapshot"
+#, fuzzy
+#| msgid "Camera"
+msgid "_About Camera"
+msgstr "Câmera"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Abrir galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Tirar foto"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Selecionar câmera"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Trocar de câmera"
@@ -293,10 +306,6 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Anterior"
 
-#: data/resources/ui/window.ui:13
-msgid "Camera"
-msgstr "Câmera"
-
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galeria"
@@ -344,7 +353,7 @@ msgstr "_Copiar vídeo"
 msgid "_Delete"
 msgstr "_Excluir"
 
-#: src/widgets/camera.rs:412
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Não foi possível reproduzir stream da câmera"
 
@@ -352,15 +361,15 @@ msgstr "Não foi possível reproduzir stream da câmera"
 msgid "Open in Video Player"
 msgstr "Abrir no reprodutor de vídeos"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Copiado para a área de transferência"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Foto apagada"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Vídeo excluído"
 
@@ -372,19 +381,29 @@ msgstr "Começar gravação"
 msgid "Stop Recording"
 msgstr "Parar gravação"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Não foi possível tirar foto"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Não foi possível gravar vídeo"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr ""
 "Leônidas Araújo <leorusvellt@hotmail.com>, 2023\n"
 "Rafael Fontenelle <rafaelff@gnome.org>, 2023"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "O Projeto GNOME"
+
+#~ msgid "Snapshot"
+#~ msgstr "Snapshot"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "_Sobre o Snapshot"
 
 #~ msgid "Back"
 #~ msgstr "Volta"
