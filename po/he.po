@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-30 17:23+0000\n"
-"PO-Revision-Date: 2023-12-01 15:26+0200\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-03 15:34+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -96,6 +96,14 @@ msgstr "תצורת סרטונים"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "האם לשמור סרטונים כ־mp4 או webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "מזהה המצלמה האחרונה בשימוש"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "מזהה שמייצג את המצלמה האחרונה שנעשה בה שימוש"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -336,7 +344,7 @@ msgstr "_העתקת סרטון"
 msgid "_Delete"
 msgstr "_מחיקה"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "לא ניתן לקבל תזרים תמונות מהמצלמה"
 
