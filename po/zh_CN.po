@@ -8,20 +8,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-17 19:12+0800\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-05 18:12+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 42.0\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "相机"
 
@@ -32,8 +32,8 @@ msgstr "拍摄照片和视频"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "图片;照片;相机;照相机;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "图片;照片;相机;照相机;快照;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -97,6 +97,14 @@ msgstr "视频格式"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "将视频保存为 mp4 还是 webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "上次使用的相机 ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "一个代表上次使用的相机 ID"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "在你的计算机、平板设备或手机上拍摄照片和视频。"
@@ -108,10 +116,6 @@ msgstr "相机的主界面"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "相机的相册查看器"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "GNOME 项目"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -174,21 +178,21 @@ msgstr "键盘快捷键(_K)"
 msgid "_About Camera"
 msgstr "关于相机(_A)"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "打开相册"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "拍摄照片"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "选择摄像头"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "切换摄像头"
@@ -338,7 +342,7 @@ msgstr "复制视频(_C)"
 msgid "_Delete"
 msgstr "删除(_D)"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "无法播放摄像头视频流"
 
@@ -346,15 +350,15 @@ msgstr "无法播放摄像头视频流"
 msgid "Open in Video Player"
 msgstr "在视频播放器中打开"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "已复制到剪贴板"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "已删除照片"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "已删除视频"
 
@@ -366,20 +370,24 @@ msgstr "开始录制"
 msgid "Stop Recording"
 msgstr "停止录制"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "无法拍摄照片"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "无法录制视频"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr ""
 "Boyuan Yang <073plan@gmail.com>, 2023.\n"
 "Eni <enigma@petalmail.com>, 2023.\n"
 "lumingzh <lumingzh@qq.com>, 2023."
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "GNOME 项目"
 
 #~ msgid "Snapshot"
 #~ msgstr "快拍"
