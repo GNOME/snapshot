@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-17 10:29+0300\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-06 15:03+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "Kamera"
 
@@ -31,8 +31,8 @@ msgstr "Ota kuvia ja videoita kameralla"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;photos;camera;webcam;kuva;valokuva;kamera;web-kamera;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;kuva;valokuva;kamera;web-kamera;webbikamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -96,6 +96,14 @@ msgstr "Videomuoto"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Tallennetaanko videot mp4- vai webm-muodossa"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Viimeksi käytetyn kameran ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "ID-tunniste, joka esittää viimeksi käytettyä kameraa"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Ota kuvia ja videoita tietokoneellasi, tablet-laitteella tai puhelimella."
@@ -107,10 +115,6 @@ msgstr "Kameran käyttöliittymä"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Kameran galleriakatselin"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "Gnome-projekti"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -173,21 +177,21 @@ msgstr "_Pikanäppäimet"
 msgid "_About Camera"
 msgstr "_Tietoja - Kamera"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Avaa galleria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Ota kuva"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Valitse kamera"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Vaihda kameraa"
@@ -337,7 +341,7 @@ msgstr "Kopioi _video"
 msgid "_Delete"
 msgstr "_Poista"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Kameran suoratoistoa ei voi toistaa"
 
@@ -345,15 +349,15 @@ msgstr "Kameran suoratoistoa ei voi toistaa"
 msgid "Open in Video Player"
 msgstr "Avaa videosoittimessa"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Kopioitu leikepöydälle"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Kuva poistettu"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video poistettu"
 
@@ -365,17 +369,21 @@ msgstr "Aloita tallennus"
 msgid "Stop Recording"
 msgstr "Pysäytä tallennus"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Kuvaa ei voitu ottaa"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Videota ei voitu tallentaa"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "Gnome-projekti"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
