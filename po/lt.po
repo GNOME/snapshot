@@ -7,20 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-09-07 16:24+0000\n"
-"PO-Revision-Date: 2023-09-07 23:24+0300\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-07 22:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "Kamera"
 
@@ -31,7 +32,7 @@ msgstr "Fotografuokite ir filmuokite"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "paveikslėlis;nuotraukos;kamera;internetinė;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
@@ -96,6 +97,14 @@ msgstr "Vaizdo įrašo formatas"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Ar įrašyti vaizdo įrašus kaip mp4, ar webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Paskutinės naudotos kameros ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "ID, nusakantis paskutinę naudotą kamerą"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Fotografuokite ir filmuokite savo kompiuteriu, planšete ar telefonu."
@@ -107,10 +116,6 @@ msgstr "Kameros pagrindinė sąsaja"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Kameros galerijos peržiūra"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "GNOME projektas"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -173,21 +178,21 @@ msgstr "_Klaviatūros trumpiniai"
 msgid "_About Camera"
 msgstr "_Apie kamerą"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Atverti galeriją"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Fotografuoti"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Pasirinkti kamerą"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Keisti kamerą"
@@ -337,7 +342,7 @@ msgstr "_Kopijuoti vaizdo įrašą"
 msgid "_Delete"
 msgstr "Iš_trinti"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Nepavyko groti kameros srauto"
 
@@ -345,15 +350,15 @@ msgstr "Nepavyko groti kameros srauto"
 msgid "Open in Video Player"
 msgstr "Atverti vaizdo grotuvą"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Nukopijuotą į iškarpinę"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Paveikslėlis ištrintas"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Vaizdo įrašas ištrintas"
 
@@ -365,16 +370,20 @@ msgstr "Pradėti filmuoti"
 msgid "Stop Recording"
 msgstr "Stabdyti filmavimą"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Nepavyko nufotografuoti"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Nepavyko įrašyti vaizdo"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "GNOME projektas"
