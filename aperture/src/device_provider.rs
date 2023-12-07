@@ -205,6 +205,7 @@ impl DeviceProvider {
         let cameras = provider
             .devices()
             .iter()
+            .filter(|d| d.device_class() == "Video/Source")
             .map(crate::Camera::new)
             .collect::<Vec<_>>();
         let n_items = cameras.len() as u32;
