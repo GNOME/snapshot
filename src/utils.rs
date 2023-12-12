@@ -106,7 +106,15 @@ pub fn debug_info() -> String {
         .iter::<aperture::Camera>()
         .filter_map(|camera_result| {
             camera_result
-                .map(|camera| format!("{}: {:#?}", camera.display_name(), camera.properties()))
+                .map(|camera| {
+                    let d = camera.property::<gst::Device>("device");
+                    format!(
+                        "{} {}: {:#?}",
+                        camera.display_name(),
+                        d.device_class(),
+                        camera.properties()
+                    )
+                })
                 .ok()
         })
         .collect::<Vec<String>>()
