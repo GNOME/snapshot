@@ -333,7 +333,7 @@ impl DeviceProvider {
             gst::MessageView::DeviceAdded(e) => {
                 if let Some(s) = e.structure() {
                     if let Ok(device) = s.get::<gst::Device>("device") {
-                        if "Video/Source" == device.device_class().as_str() {
+                        if "Video/Source" == device.device_class() {
                             let device = crate::Camera::new(&device);
                             if !imp.has_camera(&device) {
                                 log::debug!(
@@ -351,7 +351,7 @@ impl DeviceProvider {
             gst::MessageView::DeviceRemoved(e) => {
                 if let Some(s) = e.structure() {
                     if let Ok(device) = s.get::<gst::Device>("device") {
-                        if "Video/Source" == device.device_class().as_str() {
+                        if "Video/Source" == device.device_class() {
                             let n_items = self.n_items();
                             for n in 0..n_items {
                                 if let Some(nth_device) = self.camera(n) {
