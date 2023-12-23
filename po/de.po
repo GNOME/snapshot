@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-11-29 11:42+0100\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 11:03+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -34,7 +34,9 @@ msgstr "Bilder und Videos aufnehmen"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "picture;photos;camera;webcam;snapshot;Bilder;Fotos;Kamera;Webcam;Schnappschuss;"
+msgstr ""
+"picture;photos;camera;webcam;snapshot;Bilder;Fotos;Kamera;Webcam;"
+"Schnappschuss;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -56,7 +58,8 @@ msgstr "Auslöser-Klang abspielen"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Legt fest, ob ein Klang abgespielt werden soll, wenn Fotos aufgenommen werden"
+msgstr ""
+"Legt fest, ob ein Klang abgespielt werden soll, wenn Fotos aufgenommen werden"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Show composition guidelines"
@@ -64,7 +67,8 @@ msgstr "Kompositionsraster anzeigen"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr "Legt fest, ob ein Kompositionsraster beim Verwenden der Kamera angezeigt wird"
+msgstr ""
+"Legt fest, ob ein Kompositionsraster beim Verwenden der Kamera angezeigt wird"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -97,6 +101,14 @@ msgstr "Videoformat"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Legt fest, ob Videos als mp4- oder webm-Datei gespeichert werden"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Kennung der zuletzt verwendeten Kamera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Eine die zuletzt verwendete Kamera repräsentierende Kennung"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -335,7 +347,7 @@ msgstr "Video _kopieren"
 msgid "_Delete"
 msgstr "_Löschen"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Kamera-Stream konnte nicht wiedergegeben werden"
 
