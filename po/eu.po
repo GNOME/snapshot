@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-28 14:04+0000\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2023-12-24 14:04+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -17,7 +17,7 @@ msgstr "Project-Id-Version: Snapshot main\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
 msgid "Camera"
 msgstr "Kamera"
 
@@ -28,8 +28,8 @@ msgstr "Sortu irudiak eta bideoak"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "irudia;argazkiak;kamera;web-kamera;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "irudia;argazkiak;kamera;web-kamera;kaptura;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -105,7 +105,7 @@ msgstr "Kameraren interfaze nagusia"
 msgid "Camera's gallery viewer"
 msgstr "Kameraren galeria-ikustailea"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
@@ -170,21 +170,21 @@ msgstr "Las_ter-teklak"
 msgid "_About Camera"
 msgstr "Kamera aplikazioari _buruz"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Ireki galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Sortu irudia"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Hautatu kamera"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Aldatu kamera"
@@ -362,15 +362,15 @@ msgstr "Hasi grabazioa"
 msgid "Stop Recording"
 msgstr "Gelditu grabazioa"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:315
 msgid "Could not take picture"
 msgstr "Ezin da argazkia egin"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:319
 msgid "Could not record video"
 msgstr "Ezin da bideoa grabatu"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:271
 msgid "translator-credits"
 msgstr "translator-credits"
 
