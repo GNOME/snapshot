@@ -225,6 +225,7 @@ impl Camera {
                     log::error!("Could not start the device provider: {err}");
                 } else {
                     log::debug!("Device provider started");
+                    obj.update_cameras_button(&provider);
                 };
             }),
         );
