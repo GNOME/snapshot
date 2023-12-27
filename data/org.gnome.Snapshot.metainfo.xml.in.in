@@ -28,6 +28,14 @@
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/snapshot</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="45.2" date="2023-12-27">
+      <description>
+        <p>Minor bugfix release.</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="45.1" date="2023-12-09">
       <description>
         <p>Minor release.</p>

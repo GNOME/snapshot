@@ -1,6 +1,6 @@
 [package]
 name = "snapshot"
-version = "45.1.0"
+version = "45.2.0"
 authors = ["Maximiliano Sandoval <msandova@gnome.org>"]
 edition = "2021"
 license = "GPL-3.0-or-later"
