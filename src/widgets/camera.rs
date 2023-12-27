@@ -380,12 +380,30 @@ impl Camera {
     }
 
     fn update_cameras_button(&self, provider: &aperture::DeviceProvider) {
-        self.imp()
-            .camera_controls_horizontal
+        let imp = self.imp();
+
+        imp.camera_controls_horizontal
             .update_visible_camera_button(provider.n_items());
-        self.imp()
-            .camera_controls_vertical
+        imp.camera_controls_vertical
             .update_visible_camera_button(provider.n_items());
+
+        // We need to set the correct selected item at least when loading. The
+        // default camera might not be the first one. A similar thing happens
+        // when a camera is removed.
+        let camera = imp.viewfinder.camera();
+        if let Some(pos) = imp
+            .selection
+            // gtk::SingleSelection will Always returns glib::Object as its gio::ListModel::item_type().
+            .iter::<glib::Object>()
+            .enumerate()
+            .find(|(_pos, cam)| {
+                cam.as_ref()
+                    .is_ok_and(|c| c.downcast_ref::<aperture::Camera>() == camera.as_ref())
+            })
+            .map(|(pos, _cam)| pos)
+        {
+            imp.selection.set_selected(pos as u32);
+        }
     }
 
     fn update_state(&self) {
