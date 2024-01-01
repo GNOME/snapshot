@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-20 23:28+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-01-01 19:44+0200\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
 msgid "Camera"
 msgstr "Κάμερα"
 
@@ -31,8 +31,8 @@ msgstr "Λήψη φωτογραφιών και βίντεο"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "εικόνα;φωτογραφίες;κάμερα;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "εικόνα;φωτογραφίες;κάμερα;webcam;στιγμιότυπο;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -111,7 +111,7 @@ msgstr "Η κύρια διεπαφή της κάμερας"
 msgid "Camera's gallery viewer"
 msgstr "Προβολή συλλογής κάμερας"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
@@ -176,21 +176,21 @@ msgstr "Συντομεύσεις _πληκτρολογίου"
 msgid "_About Camera"
 msgstr "_Περί εφαρμγής Κάμερα"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Άνοιγμα συλλογής"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Λήψη φωτογραφίας"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Επιλογή κάμερας"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Εναλλαγή κάμερας"
@@ -368,15 +368,15 @@ msgstr "Έναρξη εγγραφής"
 msgid "Stop Recording"
 msgstr "Διακοπή εγγραφής"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:315
 msgid "Could not take picture"
 msgstr "Δεν ήταν δυνατή η λήψη φωτογραφίας"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:319
 msgid "Could not record video"
 msgstr "Δεν ήταν δυνατή η εγγραφή βίντεο"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:271
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
