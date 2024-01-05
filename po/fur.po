@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-11-01 10:48+0100\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-01-05 15:52+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "Fotocjamare"
 
@@ -30,8 +30,8 @@ msgstr "Cjape sù imagjin e videos"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "imagjin;figure;fotos;fotocjamare;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "imagjin;figure;fotos;fotocjamare;webcam;istantanie;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -53,7 +53,8 @@ msgstr "Riprodûs sun di oturadôr"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Indiche se riprodusi un sun di oturadôr cuant che tu cjapis sù imagjins"
+msgstr ""
+"Indiche se riprodusi un sun di oturadôr cuant che tu cjapis sù imagjins"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:36
 msgid "Show composition guidelines"
@@ -61,7 +62,9 @@ msgstr "Mostre liniis vuide di composizion"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
-msgstr "Indiche se mostrâ lis liniis vuide di composizion cuant che tu dopris la fotocjamare"
+msgstr ""
+"Indiche se mostrâ lis liniis vuide di composizion cuant che tu dopris la "
+"fotocjamare"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
@@ -95,6 +98,14 @@ msgstr "Formât video"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Indiche se salvâ i videos tant che mp4 o webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID de ultime fotocjamare doprade"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Un ID che al rapresente la ultime fotocjamare doprade"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Cjape sù imagjins e videos sul to computer, tablet o telefon."
@@ -106,10 +117,6 @@ msgstr "Interface principâl di Fotocjamare"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Visualizadôr galaire de fotocjamare"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "Il progjet GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -172,21 +179,21 @@ msgstr "_Scurtis tastiere"
 msgid "_About Camera"
 msgstr "_Informazions su Fotocjamare"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Vierç galarie"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Cjape sù imagjin"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Selezione fotocjamare"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Cambie fotocjamare"
@@ -290,8 +297,6 @@ msgid "Previous"
 msgstr "Precedent"
 
 #: data/resources/ui/window.ui:21
-#| msgctxt "shortcut window"
-#| msgid "Gallery"
 msgid "Gallery"
 msgstr "Gallery"
 
@@ -326,19 +331,19 @@ msgstr "Regjistrazion di {date}"
 msgid "Recording {number}"
 msgstr "Regjistrazion {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Copie imagjin"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copie video"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Elimine"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:424
 msgid "Could not play camera stream"
 msgstr "Impussibil riprodusi il flus de fotocjamare"
 
@@ -346,15 +351,15 @@ msgstr "Impussibil riprodusi il flus de fotocjamare"
 msgid "Open in Video Player"
 msgstr "Vierç in Riprodutôr video"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Copiât intes notis"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Imagjin eliminade"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video eliminât"
 
@@ -366,17 +371,21 @@ msgstr "Scomence regjistrazion"
 msgid "Stop Recording"
 msgstr "Ferme regjistrazion"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Impussibil cjapâ sù la imagjin"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Impussibil regjistrâ il video"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
-msgstr "Fabio Tomat <f.t.public@gmail.com>, 2023"
+msgstr "Fabio Tomat <f.t.public@gmail.com>, 2024"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "Il progjet GNOME"
 
 #~ msgid "Snapshot"
 #~ msgstr "Istantanie"
