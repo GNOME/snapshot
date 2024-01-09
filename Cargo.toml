@@ -13,7 +13,6 @@ lto = true
 adw = { package = "libadwaita", version = "0.5", features = ["v1_4"] }
 anyhow = "1.0"
 ashpd = { version = "0.6.2", features = ["gtk4", "tracing"] }
-async-std = { version = "1.12.0", features = ["unstable"] }
 futures-channel = "0.3.26"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 gst = { package = "gstreamer", version = "0.21", features = ["v1_20"] }
