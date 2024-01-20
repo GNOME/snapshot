@@ -8,6 +8,7 @@
         <property name="icon-name">applications-system-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">General</property>
             <child>
               <object class="AdwSwitchRow">
                 <property name="title" translatable="yes">_Shutter Sound</property>
@@ -19,6 +20,18 @@
               <object class="AdwSwitchRow">
                 <property name="title" translatable="yes">_Composition Guidelines</property>
                 <property name="action-name">preferences-window.show-composition-guidelines</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Video Recording</property>
+            <child>
+              <object class="AdwSwitchRow">
+                <property name="title" translatable="yes">_Record Audio</property>
+                <property name="action-name">preferences-window.enable-audio-recording</property>
                 <property name="use-underline">True</property>
               </object>
             </child>

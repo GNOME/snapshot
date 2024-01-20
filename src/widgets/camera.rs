@@ -206,6 +206,15 @@ mod imp {
                 )
                 .build();
 
+            self.settings()
+                .bind(
+                    "enable-audio-recording",
+                    &*self.viewfinder,
+                    "disable-audio-recording",
+                )
+                .invert_boolean()
+                .build();
+
             // TODO remove if
             // https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5960 ever
             // lands.

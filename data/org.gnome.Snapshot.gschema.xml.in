@@ -36,6 +36,11 @@
       <summary>Show composition guidelines</summary>
       <description>Whether to show composition guidelines when using the camera</description>
     </key>
+    <key name="enable-audio-recording" type="b">
+      <default>true</default>
+      <summary>Enable audio recording</summary>
+      <description>Whether to record audio when recording video</description>
+    </key>
     <key name="countdown" type="i">
       <default>0</default>
       <summary>Countdown timer</summary>

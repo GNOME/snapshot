@@ -44,6 +44,8 @@ mod imp {
             action_group.add_action(&play_shutter_sound);
             let show_composition_guidelines = settings.create_action("show-composition-guidelines");
             action_group.add_action(&show_composition_guidelines);
+            let enable_audio_recording = settings.create_action("enable-audio-recording");
+            action_group.add_action(&enable_audio_recording);
 
             self.obj()
                 .insert_action_group("preferences-window", Some(&action_group));
