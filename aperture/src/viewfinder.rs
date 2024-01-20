@@ -595,7 +595,7 @@ impl Viewfinder {
         );
     }
 
-    fn start_camerabin(&self) {
+    pub fn start_camerabin(&self) {
         // TODO Present a toast, banner, or message dialog with the error.
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Playing) {
             log::error!("Could not start camerabin: {err}");
@@ -605,7 +605,7 @@ impl Viewfinder {
         }
     }
 
-    fn stop_camerabin(&self) {
+    pub fn stop_camerabin(&self) {
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Null) {
             log::error!("Could not pause camerabin: {err}");
             self.imp().set_state(ViewfinderState::Error);
