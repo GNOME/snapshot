@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the Snapshot package.
 # brehaviours <m.charly81@gmail.com>, 2023.
 # Kukuh Syafaat <kukuhsyafaat@gnome.org, 2023.
+# Andika Triwidada <andika@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-29 16:30+0000\n"
-"PO-Revision-Date: 2023-11-30 15:38+0700\n"
-"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-01-22 20:07+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
@@ -31,7 +32,7 @@ msgstr "Ambil gambar dan video"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "gambar;foto;kamera;kamera web;snapshot;"
+msgstr "gambar;foto;kamera;kamera web;webcam;snapshot;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -94,6 +95,14 @@ msgstr "Format video"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Apakah akan menyimpan video sebagai mp4 atau webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID Terakhir Kamera yang Dipakai"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Suatu ID yang mewakili kamera yang terakhir dipakai"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -320,19 +329,19 @@ msgstr "Rekaman dari tanggal {date}"
 msgid "Recording {number}"
 msgstr "Rekaman {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Salin Gambar"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Salin Video"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Hapus"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:424
 msgid "Could not play camera stream"
 msgstr "Tidak dapat memutar streaming kamera"
 
