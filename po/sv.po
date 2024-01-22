@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-11-28 20:56+0100\n"
+"POT-Creation-Date: 2023-12-02 08:45+0000\n"
+"PO-Revision-Date: 2023-12-02 14:09+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -96,6 +96,14 @@ msgstr "Videoformat"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Huruvida videoklipp ska sparas som mp4 eller webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Senast använd kamera-ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Ett ID som representerar den senast använda kameran"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -334,7 +342,7 @@ msgstr "_Kopiera video"
 msgid "_Delete"
 msgstr "_Ta bort"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:423
 msgid "Could not play camera stream"
 msgstr "Kunde inte spela upp kameraström"
 
