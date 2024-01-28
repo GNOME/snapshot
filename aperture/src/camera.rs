@@ -6,6 +6,9 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
+/// The maximum framerate, in frames per second.
+const MAXIMUM_RATE: i32 = 30;
+
 mod imp {
     use std::cell::OnceCell;
 
@@ -153,6 +156,24 @@ impl Camera {
     }
 }
 
+fn caps(device: &gst::Device) -> gst::Caps {
+    let fps_range = gst::Fraction::new(0, 1)..=gst::Fraction::new(MAXIMUM_RATE, 1);
+    let device_caps = device
+        .caps()
+        .unwrap_or_else(|| gst_video::VideoCapsBuilder::new().build());
+    let supported_caps = [
+        gst_video::VideoCapsBuilder::new()
+            .framerate_range(fps_range.clone())
+            .build(),
+        gst_video::VideoCapsBuilder::for_encoding("image/jpeg")
+            .framerate_range(fps_range)
+            .build(),
+    ]
+    .into_iter()
+    .collect::<gst::Caps>();
+    device_caps.intersect_with_mode(&supported_caps, gst::CapsIntersectMode::First)
+}
+
 fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
     use gst::prelude::*;
 
@@ -161,16 +182,10 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let device_src = device.create_element(None).ok()?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
 
+    let caps = caps(&device);
+    log::debug!("Using caps: {caps}");
     let capsfilter = gst::ElementFactory::make("capsfilter")
-        .property(
-            "caps",
-            [
-                gst_video::VideoCapsBuilder::new().build(),
-                gst::Caps::builder("image/jpeg").build(),
-            ]
-            .into_iter()
-            .collect::<gst::Caps>(),
-        )
+        .property("caps", caps)
         .build()
         .unwrap();
     let decodebin3 = gst::ElementFactory::make("decodebin3")
