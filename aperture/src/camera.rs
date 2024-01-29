@@ -174,6 +174,72 @@ fn caps(device: &gst::Device) -> gst::Caps {
     device_caps.intersect_with_mode(&supported_caps, gst::CapsIntersectMode::First)
 }
 
+// FIXME this algorithm makes assumptions on the aspect rations, if a single
+// resolution is h=1px and w=999999px, that one will always be choosen.
+/// Picks the best resolution for a given format and framerate.
+fn pick_best_resolution(caps: &gst::Caps, format: &str, framerate: gst::Fraction) -> gst::Caps {
+    let mut biggest_width = 0;
+    let mut biggest_height = 0;
+    let fixed_format = gst_video::VideoCapsBuilder::for_encoding(format)
+        .framerate(framerate)
+        .build();
+    let caps_with_format = caps.intersect_with_mode(&fixed_format, gst::CapsIntersectMode::First);
+    caps_with_format.iter().for_each(|s| {
+        let width = s.get::<i32>("width").unwrap_or_default();
+        let height = s.get::<i32>("height").unwrap_or_default();
+
+        if width >= biggest_width && height >= biggest_height {
+            biggest_height = height;
+            biggest_width = width;
+        }
+    });
+
+    let fixed_res = gst_video::VideoCapsBuilder::for_encoding(format)
+        .width(biggest_width)
+        .height(biggest_height)
+        .build();
+
+    caps_with_format.intersect_with_mode(&fixed_res, gst::CapsIntersectMode::First)
+}
+
+// For each resolution and format we only keep the highest resolution.
+fn filter_caps(caps: &gst::Caps) -> gst::Caps {
+    let mut best_caps = gst::Caps::new_empty();
+    for format in ["video/x-raw", "image/jpeg"] {
+        caps.iter().for_each(|s| {
+            if let Some(framerate) = framerate_from_structure(s) {
+                let best = pick_best_resolution(caps, format, framerate);
+                best_caps.merge(best);
+            }
+        });
+    }
+
+    caps.intersect_with_mode(&best_caps, gst::CapsIntersectMode::First)
+}
+
+fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fraction> {
+    // TODO Handle gst::List and gst::Array
+    if let Ok(framerate) = structure.get::<gst::Fraction>("framerate") {
+        Some(framerate)
+    } else if let Ok(range) = structure.get::<gst::FractionRange>("framerate") {
+        Some(range.max())
+    } else if let Ok(array) = structure.get::<gst::Array>("framerate") {
+        array
+            .iter()
+            .filter_map(|s| s.get::<gst::Fraction>().ok())
+            .filter(|frac| frac < &gst::Fraction::new(MAXIMUM_RATE, 1))
+            .max()
+    } else if let Ok(array) = structure.get::<gst::List>("framerate") {
+        array
+            .iter()
+            .filter_map(|s| s.get::<gst::Fraction>().ok())
+            .filter(|frac| frac < &gst::Fraction::new(MAXIMUM_RATE, 1))
+            .max()
+    } else {
+        None
+    }
+}
+
 fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
     use gst::prelude::*;
 
@@ -182,10 +248,12 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     let device_src = device.create_element(None).ok()?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
 
-    let caps = caps(&device);
-    log::debug!("Using caps: {caps}");
+    let caps = caps(device);
+    log::debug!("Found caps: {caps}");
+    let highest_res_caps = filter_caps(&caps);
+    log::debug!("Using caps: {highest_res_caps}");
     let capsfilter = gst::ElementFactory::make("capsfilter")
-        .property("caps", caps)
+        .property("caps", &highest_res_caps)
         .build()
         .unwrap();
     let decodebin3 = gst::ElementFactory::make("decodebin3")
