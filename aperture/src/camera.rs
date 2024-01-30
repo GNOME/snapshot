@@ -257,7 +257,6 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
         .build()
         .unwrap();
     let decodebin3 = gst::ElementFactory::make("decodebin3")
-        .property("caps", gst_video::VideoCapsBuilder::new().build())
         .build()
         .expect("Missing GStreamer Base Plug-ins");
 
