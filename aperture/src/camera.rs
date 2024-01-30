@@ -160,9 +160,9 @@ fn caps(device: &gst::Device) -> gst::Caps {
     let fps_range = gst::Fraction::new(0, 1)..=gst::Fraction::new(MAXIMUM_RATE, 1);
     let device_caps = device
         .caps()
-        .unwrap_or_else(|| gst_video::VideoCapsBuilder::new().build());
+        .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
     let supported_caps = [
-        gst_video::VideoCapsBuilder::new()
+        gst_video::VideoCapsBuilder::for_encoding("video/x-raw")
             .framerate_range(fps_range.clone())
             .build(),
         gst_video::VideoCapsBuilder::for_encoding("image/jpeg")
