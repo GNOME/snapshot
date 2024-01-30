@@ -3,25 +3,26 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2023.
+# Julián Villodre <jvillodrede@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-18 11:21+0000\n"
-"PO-Revision-Date: 2023-08-18 13:20+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-01-24 01:33+0100\n"
+"Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
-"Language: es_ES\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 45.alpha0\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
 msgid "Camera"
 msgstr "Cámara"
 
@@ -32,8 +33,8 @@ msgstr "Hacer fotos y vídeos"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "imagen;fotos;cámara;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "imagen;fotos;cámara;webcam;snapshot;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -109,7 +110,7 @@ msgstr "Interfaz principal de Cámara"
 msgid "Camera's gallery viewer"
 msgstr "Visor de la galeria de Cámara"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
 msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
@@ -174,21 +175,21 @@ msgstr "Atajos del _teclado"
 msgid "_About Camera"
 msgstr "_Acerca de Cámara"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Abrir galería"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Hacer una foto"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Seleccionar cámara"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Cambiar cámara"
@@ -366,15 +367,15 @@ msgstr "Iniciar grabación"
 msgid "Stop Recording"
 msgstr "Detener grabación"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:315
 msgid "Could not take picture"
 msgstr "No se pudo hacer la foto"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:319
 msgid "Could not record video"
 msgstr "No se pudo grabar el vídeo"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:271
 msgid "translator-credits"
 msgstr "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2023"
 
