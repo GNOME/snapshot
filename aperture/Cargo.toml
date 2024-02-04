@@ -11,10 +11,16 @@ documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
 version = "0.4.1"
 rust-version = "1.70"
 
+[features]
+default = ["wayland", "x11egl", "x11glx"]
+wayland = ["gst-plugin-gtk4/wayland"]
+x11egl = ["gst-plugin-gtk4/x11egl"]
+x11glx = ["gst-plugin-gtk4/x11glx"]
+
 [dependencies]
 gst = { package = "gstreamer", version = "0.21", features = ["v1_20"] }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.21" }
-gst-plugin-gtk4 = { version = "0.11", features = ["wayland", "x11egl", "x11glx"] }
+gst-plugin-gtk4 = { version = "0.11", default-features = false }
 gst-video = { package = "gstreamer-video", version = "0.21" }
 gtk = { package = "gtk4", version = "0.7", features = ["gnome_45"] }
 log = "0.4.17"
