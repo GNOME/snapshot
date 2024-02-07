@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="PreferencesWindow" parent="AdwPreferencesWindow">
-    <property name="modal">True</property>
-    <property name="search-enabled">False</property>
-    <property name="default-height">240</property>
-    <property name="default-width">360</property>
+  <template class="PreferencesWindow" parent="AdwPreferencesDialog">
+    <property name="content-width">360</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">General</property>

@@ -273,7 +273,7 @@ impl Window {
     }
 
     fn show_about_dialog(&self) {
-        let dialog = adw::AboutWindow::builder()
+        let dialog = adw::AboutDialog::builder()
             .application_name(gettext("Camera"))
             .application_icon(APP_ID)
             .license_type(gtk::License::Gpl30)
@@ -284,11 +284,9 @@ impl Window {
             .developers(["Maximiliano Sandoval", "Jamie Murphy <jmurphy@gnome.org>"])
             .designers(["Tobias Bernard"])
             .debug_info(utils::debug_info())
-            .transient_for(self)
-            .modal(true)
             .build();
 
-        dialog.present();
+        dialog.present(self);
     }
 
     fn countdown_cancel(&self) {
@@ -418,8 +416,8 @@ impl Window {
     }
 
     fn show_preferences_window(&self) {
-        let preferences = crate::PreferencesWindow::new(self);
-        preferences.present();
+        let preferences = crate::PreferencesWindow::new();
+        preferences.present(self);
     }
 
     pub fn send_toast(&self, text: &str) {
