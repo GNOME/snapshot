@@ -305,10 +305,11 @@ impl ShutterButton {
         // https://gitlab.gnome.org/GNOME/gtk/-/issues/5755
         if let Some(node) = snap.to_node() {
             let native = self.root().and_upcast::<gtk::Native>().unwrap();
-            let renderer = native.renderer();
-            let texture = renderer.render_texture(node, Some(&rect));
+            if let Some(renderer) = native.renderer() {
+                let texture = renderer.render_texture(node, Some(&rect));
 
-            snapshot.append_texture(&texture, &rect);
+                snapshot.append_texture(&texture, &rect);
+            }
         }
     }
 

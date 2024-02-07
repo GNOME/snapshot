@@ -126,7 +126,7 @@ impl VideoPlayer {
         self.imp().media_file.snapshot(&snapshot, width, height);
         let node = snapshot.to_node()?;
 
-        let renderer = self.native()?.renderer();
+        let renderer = self.native()?.renderer()?;
         let texture = renderer.render_texture(&node, None);
 
         Some(texture)

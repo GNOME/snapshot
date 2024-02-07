@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::os::unix::io::RawFd;
 
+use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::traits::BreakpointBinExt;
 use ashpd::desktop::camera;
 use gettextrs::gettext;
+use gtk::CompositeTemplate;
 use gtk::{gio, glib};
-use gtk::{prelude::*, CompositeTemplate};
 
 use super::CameraControls;
 use crate::{config, utils};
@@ -312,13 +312,16 @@ impl Camera {
     }
 
     fn active_controls(&self) -> &CameraControls {
+        let imp = self.imp();
+        let bp1 = &*imp.single_landscape_bp;
+        let bp2 = &*imp.dual_landscape_bp;
         if self
             .current_breakpoint()
-            .is_some_and(|bp| bp.to_string().contains("max-aspect-ratio: 4/3"))
+            .is_some_and(|bp| &bp == bp1 || &bp == bp2)
         {
-            &self.imp().camera_controls_horizontal
+            &imp.camera_controls_horizontal
         } else {
-            &self.imp().camera_controls_vertical
+            &imp.camera_controls_vertical
         }
     }
 

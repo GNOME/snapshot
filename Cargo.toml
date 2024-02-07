@@ -10,13 +10,13 @@ rust-version = "1.70"
 lto = true
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.5", features = ["v1_4"] }
+adw = { package = "libadwaita", version = "0.6", features = ["v1_4"] }
 anyhow = "1.0"
-ashpd = { version = "0.6.2", features = ["gtk4", "tracing"] }
+ashpd = { version = "0.7", features = ["gtk4", "tracing"] }
 futures-channel = "0.3.26"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-gst = { package = "gstreamer", version = "0.21", features = ["v1_20"] }
-gtk = { package = "gtk4", version = "0.7", features = ["gnome_45"] }
+gst = { package = "gstreamer", version = "0.22", features = ["v1_20"] }
+gtk = { package = "gtk4", version = "0.8", features = ["gnome_45"] }
 log = "0.4"
 once_cell = "1.17"
 tracing-subscriber = "0.3"
