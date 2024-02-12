@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::cell::RefCell;
-use std::os::fd::{FromRawFd, OwnedFd};
+use std::os::fd::{AsRawFd, OwnedFd};
 use std::os::unix::io::RawFd;
 use std::sync::Once;
 
@@ -274,16 +274,16 @@ impl DeviceProvider {
     ///
     /// One way to get a valid descriptor is with the [`org.freedesktop.portal.Camera`](https://flatpak.github.io/xdg-desktop-portal/#gdbus-org.freedesktop.portal.Camera)
     /// XDG portal, using the `OpenPipeWireRemote()` method.
-    pub fn set_fd(&self, fd: RawFd) -> Result<(), crate::PipewireError> {
+    pub fn set_fd(&self, fd: OwnedFd) -> Result<(), crate::PipewireError> {
         if STARTED.is_completed() {
             return Err(crate::PipewireError::ProvidedStarted);
         }
+        let raw_fd = fd.as_raw_fd();
         let provider = self.imp().inner.get().unwrap();
-        log::debug!("Starting device provider with file descriptor: {fd}");
+        log::debug!("Starting device provider with file descriptor: {raw_fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {
-            provider.set_property("fd", fd);
-            let owned_fd = unsafe { OwnedFd::from_raw_fd(fd) };
-            self.imp().fd.replace(Some(owned_fd));
+            provider.set_property("fd", raw_fd);
+            self.imp().fd.replace(Some(fd));
             Ok(())
         } else {
             log::warn!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");

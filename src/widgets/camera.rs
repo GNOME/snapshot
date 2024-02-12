@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-use std::os::unix::io::RawFd;
+use std::os::unix::io::OwnedFd;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
@@ -498,7 +498,7 @@ impl Camera {
     }
 }
 
-async fn stream() -> ashpd::Result<RawFd> {
+async fn stream() -> ashpd::Result<OwnedFd> {
     let proxy = camera::Camera::new().await?;
     proxy.request_access().await?;
 
