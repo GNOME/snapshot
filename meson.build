@@ -1,7 +1,7 @@
 project(
   'snapshot',
   'rust',
-  version: '46.alpha',
+  version: '46.beta',
   meson_version: '>= 0.59',
   license: 'GPL-3.0-or-later',
 )
@@ -13,7 +13,7 @@ base_id = 'org.gnome.Snapshot'
 
 dependency('glib-2.0', version: '>= 2.75')
 dependency('gtk4', version: '>= 4.13.6')
-dependency('libadwaita-1', version: '>= 1.4.alpha')
+dependency('libadwaita-1', version: '>= 1.4.0')
 dependency('gstreamer-1.0', version: '>= 1.20')
 dependency('gstreamer-video-1.0', version: '>= 1.20')
 # Needed for camerabin
