@@ -28,6 +28,16 @@
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/snapshot</url>
   <content_rating type="oars-1.0" />
   <releases>
+    <release version="46~beta" date="2024-02-17">
+      <description>
+	<p>Beta Release</p>
+	<ul>
+	  <li>Better camera resolution and formatting</li>
+	  <li>Update Dependencies</li>
+	  <li>Update translations</li>
+	</ul>
+      </description>
+    </release>
     <release version="45.2" date="2023-12-27">
       <description>
         <p>Minor bugfix release.</p>
