@@ -1,14 +1,14 @@
 # Dutch translation for Snapshot.
 # Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
-# Nathan Follens <nfollens@gnome.org>, 2023.
+# Nathan Follens <nfollens@gnome.org>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-27 18:50+0200\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-02-18 13:12+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
 msgid "Camera"
 msgstr "Camera"
 
@@ -31,8 +31,8 @@ msgstr "Maak foto’s en video’s"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;photos;camera;webcam;foto's;foto’s; afbeeldingen;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;foto's;foto’s; afbeeldingen;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -100,6 +100,14 @@ msgstr "Videoformaat"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Bepaalt of video’s als MP4 of als WebM opgeslagen worden"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID van laatst gebruikte camera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Een ID dat de laatst gebruikte camera voorstelt"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Maak foto’s en video’s op uw computer, tablet of telefoon."
@@ -111,10 +119,6 @@ msgstr "Hoofdinterface van de camera"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Galerijweergave van Camera"
-
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
-msgid "The GNOME Project"
-msgstr "Het GNOME-project"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -177,21 +181,21 @@ msgstr "Snel_toetsen"
 msgid "_About Camera"
 msgstr "_Over Camera"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Galerij openen"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Foto maken"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Selecteer camera"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Wisselen tussen camera’s"
@@ -329,19 +333,19 @@ msgstr "Opname van {date}"
 msgid "Recording {number}"
 msgstr "Opname {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "Foto _kopiëren"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "Video _kopiëren"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "Verwij_deren"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:424
 msgid "Could not play camera stream"
 msgstr "Kon camerastream niet afspelen"
 
@@ -349,15 +353,15 @@ msgstr "Kon camerastream niet afspelen"
 msgid "Open in Video Player"
 msgstr "Openen met videospeler"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Gekopieerd naar klembord"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Foto verwijderd"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video verwijderd"
 
@@ -369,19 +373,23 @@ msgstr "Opname beginnen"
 msgid "Stop Recording"
 msgstr "Opname beëindigen"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:313
 msgid "Could not take picture"
 msgstr "Kon geen foto maken"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:317
 msgid "Could not record video"
 msgstr "Kon geen video opnemen"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:270
 msgid "translator-credits"
 msgstr ""
 "Nathan Follens <nfollens@gnome.org>\n"
 "Meer info over GNOME-NL https://nl.gnome.org"
+
+#: src/widgets/window.rs:271
+msgid "The GNOME Project"
+msgstr "Het GNOME-project"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
