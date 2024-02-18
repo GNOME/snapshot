@@ -147,6 +147,14 @@ mod imp {
                     }
                 }));
 
+            self.camera_page
+                .connect_hiding(glib::clone!(@weak obj => move |_| {
+                    obj.imp().camera.stop_stream();
+                }));
+            self.camera_page
+                .connect_showing(glib::clone!(@weak obj => move |_| {
+                    obj.imp().camera.start_stream();
+                }));
             // Load latest window state
             obj.load_window_size();
             obj.setup_gactions();

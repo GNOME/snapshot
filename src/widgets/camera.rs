@@ -388,6 +388,14 @@ impl Camera {
         imp.camera_controls_vertical.set_gallery(&gallery);
     }
 
+    pub fn stop_stream(&self) {
+        self.imp().viewfinder.stop_stream();
+    }
+
+    pub fn start_stream(&self) {
+        self.imp().viewfinder.start_stream();
+    }
+
     pub fn toggle_guidelines(&self) {
         let imp = self.imp();
 
