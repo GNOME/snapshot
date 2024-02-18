@@ -134,7 +134,7 @@ mod imp {
                     gst::State::Playing | gst::State::Paused
                 )
             {
-                obj.stop_camerabin();
+                obj.stop_stream();
             }
 
             if let Some(camera) = camera {
@@ -154,7 +154,7 @@ mod imp {
             }
 
             if obj.is_realized() && matches!(obj.state(), ViewfinderState::Ready) {
-                obj.start_camerabin();
+                obj.start_stream();
             }
 
             obj.notify_camera();
@@ -315,12 +315,12 @@ mod imp {
             self.parent_realize();
 
             if matches!(self.obj().state(), ViewfinderState::Ready) {
-                self.obj().start_camerabin();
+                self.obj().start_stream();
             }
         }
 
         fn unrealize(&self) {
-            self.obj().stop_camerabin();
+            self.obj().stop_stream();
 
             self.parent_unrealize();
         }
@@ -595,7 +595,8 @@ impl Viewfinder {
         );
     }
 
-    pub fn start_camerabin(&self) {
+    /// Starts the viewfinder.
+    pub fn start_stream(&self) {
         // TODO Present a toast, banner, or message dialog with the error.
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Playing) {
             log::error!("Could not start camerabin: {err}");
@@ -605,7 +606,10 @@ impl Viewfinder {
         }
     }
 
-    pub fn stop_camerabin(&self) {
+    /// Stops the viewfinder.
+    ///
+    /// A black frame will be shown after this methods has been called.
+    pub fn stop_stream(&self) {
         if let Err(err) = self.imp().camerabin().set_state(gst::State::Null) {
             log::error!("Could not pause camerabin: {err}");
             self.imp().set_state(ViewfinderState::Error);
