@@ -23,6 +23,7 @@ mod imp {
         pub provider: OnceCell<aperture::DeviceProvider>,
         pub players: RefCell<Option<gtk::MediaFile>>,
         settings: OnceCell<gio::Settings>,
+        pub permission_denied: Cell<bool>,
 
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
@@ -218,6 +219,14 @@ impl Camera {
                             log::error!("Could not use the camera portal: {err}");
                         };
                     }
+                    Err(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(err))) => {
+                        // We don't start the device provider if we are not
+                        // allowed to use cameras.
+                        log::warn!("Permission to use the camera portal denied: {err}");
+                        obj.imp().permission_denied.set(true);
+                        obj.update_state();
+                        return;
+                    },
                     Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
                 if let Err(err) = provider.start_with_default(glib::clone!(@weak obj => @default-return false, move |camera| {
@@ -432,6 +441,13 @@ impl Camera {
 
     fn update_state(&self) {
         let imp = self.imp();
+
+        if imp.permission_denied.get() {
+            imp.spinner.stop();
+            imp.stack.set_visible_child_name("not-found");
+            return;
+        }
+
         match imp.viewfinder.state() {
             aperture::ViewfinderState::Loading => {
                 imp.spinner.start();
