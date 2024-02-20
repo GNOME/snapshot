@@ -445,7 +445,7 @@ impl Camera {
 
         if imp.permission_denied.get() {
             imp.spinner.stop();
-            imp.stack.set_visible_child_name("not-found");
+            imp.stack.set_visible_child_name("permission-denied");
             return;
         }
 
