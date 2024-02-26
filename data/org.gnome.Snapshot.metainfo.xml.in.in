@@ -142,8 +142,6 @@
   <requires>
     <display_length compare="ge">360</display_length>
   </requires>
-  <platform>GTK 4</platform>
-  <platform>Libadwaita</platform>
   <provides>
     <binary>@bin-name@</binary>
   </provides>
