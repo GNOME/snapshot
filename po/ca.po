@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-11-28 22:36+0100\n"
+"POT-Creation-Date: 2023-12-13 17:30+0000\n"
+"PO-Revision-Date: 2024-02-28 22:11+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -94,6 +94,14 @@ msgstr "Format de vídeo"
 #: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Si s'han de desar els vídeos com a mp4 o com a webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Identificador de la darrera càmera usada"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Un identificador que representa la darrera càmera usada"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -320,19 +328,19 @@ msgstr "S'està enregistrant des de {date}"
 msgid "Recording {number}"
 msgstr "S'està enregistrant {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "C_opia la imatge"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copia el vídeo"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Suprimeix"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:424
 msgid "Could not play camera stream"
 msgstr "No s'ha pogut reproduir el flux de la càmera"
 
