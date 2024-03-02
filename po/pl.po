@@ -1,15 +1,15 @@
 # Polish translation for Snapshot.
-# Copyright © 2023 the Snapshot authors.
+# Copyright © 2023-2024 the Snapshot authors.
 # This file is distributed under the same license as the Snapshot package.
-# Piotr Drąg <piotrdrag@gmail.com>, 2023.
-# Aviary.pl <community-poland@mozilla.org>, 2023.
+# Piotr Drąg <piotrdrag@gmail.com>, 2023-2024.
+# Aviary.pl <community-poland@mozilla.org>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-08-15 16:28+0200\n"
+"POT-Creation-Date: 2024-03-02 18:51+0000\n"
+"PO-Revision-Date: 2024-03-02 19:52+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Aparat"
 
@@ -99,6 +99,14 @@ msgstr "Format filmu"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Czy zapisywać filmy jako pliki MP4 czy WebM"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Identyfikator ostatnio użytego aparatu"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Identyfikator reprezentujący ostatnio używany aparat"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
@@ -111,6 +119,11 @@ msgstr "Główny interfejs programu"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Przeglądarka galerii"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -325,19 +338,19 @@ msgstr "Nagranie z {date}"
 msgid "Recording {number}"
 msgstr "Nagranie {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "S_kopiuj zdjęcie"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "S_kopiuj film"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Usuń"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Nie można odtworzyć strumienia aparatu"
 
@@ -365,20 +378,16 @@ msgstr "Rozpoczyna nagrywanie"
 msgid "Stop Recording"
 msgstr "Zatrzymuje nagrywanie"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Nie można zrobić zdjęcia"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Nie można nagrać filmu"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2023\n"
-"Aviary.pl <community-poland@mozilla.org>, 2023"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "Projekt GNOME"
+"Piotr Drąg <piotrdrag@gmail.com>, 2023-2024\n"
+"Aviary.pl <community-poland@mozilla.org>, 2023-2024"
