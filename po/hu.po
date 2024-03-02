@@ -1,15 +1,15 @@
 # Hungarian translation for Snapshot.
-# Copyright (C) 2023 Free Software Foundation, Inc.
+# Copyright (C) 2023, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the Snapshot package.
 #
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2023.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2023.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-09-05 20:06+0200\n"
+"POT-Creation-Date: 2024-03-02 18:51+0000\n"
+"PO-Revision-Date: 2024-03-02 20:31+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Kamera"
 
@@ -32,8 +32,9 @@ msgstr "Képek és videók rögzítése"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "fénykép;kép;kamera;webkamera;"
+#| msgid "picture;photos;camera;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "kép;fénykép;kamera;webkamera;pillanatkép;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -97,22 +98,29 @@ msgstr "Videóformátum"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "A videók MP4 vagy WEBM formátumban legyenek-e mentve"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Utoljára használt kamera azonosítója"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Az utoljára használt kamerát jelölő azonosító"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
 "Készítsen képeket és videókat a számítógépén, táblagépén vagy telefonján."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-#| msgid "Snapshot's main interface"
 msgid "Camera's main interface"
 msgstr "A Kamera fő felülete"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-#| msgid "Snapshot's gallery viewer"
 msgid "Camera's gallery viewer"
 msgstr "A Kamera galériamegjelenítője"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "A GNOME projekt"
 
@@ -174,25 +182,24 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillentyűk"
 
 #: data/resources/ui/camera.ui:611
-#| msgid "Camera"
 msgid "_About Camera"
 msgstr "A Kamera _névjegye"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Galéria megnyitása"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Kép készítése"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Kamera kiválasztása"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Kamera váltása"
@@ -330,19 +337,19 @@ msgstr "Felvétel ekkorról: {date}"
 msgid "Recording {number}"
 msgstr "{number}. felvétel"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "Kép _másolása"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "Videó _másolása"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Törlés"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Nem sikerült lejátszani a kamera adatfolyamát"
 
@@ -350,15 +357,15 @@ msgstr "Nem sikerült lejátszani a kamera adatfolyamát"
 msgid "Open in Video Player"
 msgstr "Megnyitás a videólejátszóban"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Vágólapra másolva"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Kép törölve"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Videó törölve"
 
@@ -370,15 +377,15 @@ msgstr "Felvétel indítása"
 msgid "Stop Recording"
 msgstr "Felvétel leállítása"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Nem sikerült elkészíteni a képet"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Nem sikerült felvenni a videót"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr ""
 "Meskó Balázs <mesko dot balazs at fsf dot hu>, 2023.\n"
