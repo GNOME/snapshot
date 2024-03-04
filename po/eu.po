@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the Snapshot package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2023, 2024.
+#
 msgid ""
 msgstr "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2023-12-24 14:04+0000\n"
+"POT-Creation-Date: 2024-03-02 19:33+0000\n"
+"PO-Revision-Date: 2024-03-04 14:04+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -17,7 +19,7 @@ msgstr "Project-Id-Version: Snapshot main\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Kamera"
 
@@ -93,6 +95,14 @@ msgstr "Bideoaren formatua"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Bideoak mp4 ala webm gisa gordeko diren"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Erabilitako azken kameraren IDa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Erabilitako azken kamera adierazten duen ID bat"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Sortu irudiak eta bideoak zure ordenagailuan, tabletan edo telefonoan."
@@ -105,7 +115,8 @@ msgstr "Kameraren interfaze nagusia"
 msgid "Camera's gallery viewer"
 msgstr "Kameraren galeria-ikustailea"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
@@ -322,19 +333,19 @@ msgstr "Grabazioaren data: {date}"
 msgid "Recording {number}"
 msgstr "Grabazio-zenbakia: {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "Kopiatu _irudia"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "Kopiatu _bideoa"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "Ez_abatu"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Ezin da kameraren korrontea erreproduzitu"
 
@@ -342,15 +353,15 @@ msgstr "Ezin da kameraren korrontea erreproduzitu"
 msgid "Open in Video Player"
 msgstr "Ireki bideo-erreproduzigailuan"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Arbelean kopiatu da"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Irudia ezabatu da"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Bideoa ezabatu da"
 
@@ -362,15 +373,15 @@ msgstr "Hasi grabazioa"
 msgid "Stop Recording"
 msgstr "Gelditu grabazioa"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:315
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Ezin da argazkia egin"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:319
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Ezin da bideoa grabatu"
 
-#: src/widgets/window.rs:271
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr "translator-credits"
 
