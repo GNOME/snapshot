@@ -2,18 +2,18 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2023.
 # Julián Villodre <jvillodrede@gmail.com>, 2024.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-01-24 01:33+0100\n"
-"Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
+"POT-Creation-Date: 2024-03-02 19:33+0000\n"
+"PO-Revision-Date: 2024-03-04 10:47+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Cámara"
 
@@ -98,6 +98,14 @@ msgstr "Formato de vídeo"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Indica si se deben guardar los videos como mp4 o como webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID de la última cámara usada"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Un ID que representa la última cámara usada"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Hacer fotos y vídeos con su ordenador, tableta o teléfono."
@@ -110,7 +118,8 @@ msgstr "Interfaz principal de Cámara"
 msgid "Camera's gallery viewer"
 msgstr "Visor de la galeria de Cámara"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
@@ -327,19 +336,19 @@ msgstr "Grabación de {date}"
 msgid "Recording {number}"
 msgstr "Grabación {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Copiar foto"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copiar vídeo"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "No se pudo reproducir el flujo de la cámara"
 
@@ -347,15 +356,15 @@ msgstr "No se pudo reproducir el flujo de la cámara"
 msgid "Open in Video Player"
 msgstr "Abrir en el reproductor de vídeo"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Copiado al portapapeles"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Foto eliminada"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Vídeo eliminado"
 
@@ -367,15 +376,15 @@ msgstr "Iniciar grabación"
 msgid "Stop Recording"
 msgstr "Detener grabación"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:315
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "No se pudo hacer la foto"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:319
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "No se pudo grabar el vídeo"
 
-#: src/widgets/window.rs:271
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2023"
 
