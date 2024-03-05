@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-22 04:38+0000\n"
-"PO-Revision-Date: 2023-11-23 19:20+0000\n"
-"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
+"POT-Creation-Date: 2024-03-02 10:06+0000\n"
+"PO-Revision-Date: 2024-02-23 12:11+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: British English <en_GB@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Camera"
 
@@ -31,8 +31,8 @@ msgstr "Take pictures and videos"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;photos;camera;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -96,6 +96,14 @@ msgstr "Video format"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Whether to save videos as mp4 or webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Last Camera Used ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "An ID representing the last used camera"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Take pictures and videos on your computer, tablet, or phone."
@@ -107,6 +115,11 @@ msgstr "Camera's main interface"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Camera's gallery viewer"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:139 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "The GNOME Project"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -321,19 +334,19 @@ msgstr "Recording from {date}"
 msgid "Recording {number}"
 msgstr "Recording {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Copy Picture"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copy Video"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Delete"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "Could not play camera stream"
 
@@ -361,18 +374,16 @@ msgstr "Start Recording"
 msgid "Stop Recording"
 msgstr "Stop Recording"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "Could not take picture"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "Could not record video"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:282
 msgid "translator-credits"
-msgstr "Bruce Cowan <bruce@bcowan.me.uk>"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "The GNOME Project"
+msgstr ""
+"Bruce Cowan <bruce@bcowan.me.uk>\n"
+"Andi Chandler <andi@gowling.com>"
