@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-01-22 14:00+0100\n"
+"POT-Creation-Date: 2024-03-06 03:11+0000\n"
+"PO-Revision-Date: 2024-03-06 10:30+0100\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Caméra"
 
@@ -99,6 +99,14 @@ msgstr "Format vidéo"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Indique s’il faut enregistrer les vidéos en tant que mp4 ou webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Identifiant de la dernière caméra utilisée"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Un identifiant représentant la dernière caméra utilisée"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
@@ -113,7 +121,8 @@ msgstr "Interface principale de Caméra"
 msgid "Camera's gallery viewer"
 msgstr "Visionneur de la galerie de Caméra"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "Le projet GNOME"
 
@@ -330,19 +339,19 @@ msgstr "Enregistrement du {date}"
 msgid "Recording {number}"
 msgstr "Enregistrement {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Copier la photo"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copier la vidéo"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Supprimer"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Impossible de diffuser le flux de la caméra"
 
@@ -350,15 +359,15 @@ msgstr "Impossible de diffuser le flux de la caméra"
 msgid "Open in Video Player"
 msgstr "Ouvrir dans le lecteur vidéo"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Copiée vers le presse-papiers"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Photo supprimée"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Vidéo supprimée"
 
@@ -370,15 +379,15 @@ msgstr "Démarrer l’enregistrement"
 msgid "Stop Recording"
 msgstr "Arrêter l’enregistrement"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:315
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Impossible de prendre une photo"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:319
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Impossible d’enregistrer une vidéo"
 
-#: src/widgets/window.rs:271
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr ""
 "Guillaume Bernard <associations@guillaume-bernard.fr>\n"
