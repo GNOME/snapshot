@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-09-02 07:15+0000\n"
-"PO-Revision-Date: 2023-09-03 09:15+0600\n"
+"POT-Creation-Date: 2024-03-05 11:40+0000\n"
+"PO-Revision-Date: 2024-03-06 08:10+0500\n"
 "Last-Translator: \n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Камера"
 
@@ -30,8 +30,8 @@ msgstr "Фотолар мен видеоларды түсіру"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;photos;camera;webcam;сурет;фото;камера;веб-камера;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;сурет;фото;камера;веб-камера;түсірілім;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -95,6 +95,14 @@ msgstr "Видео пішімі"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Видеоларды mp4 немесе webm ретінде сақтау керек пе"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Соңғы қолданылған камера идентификаторы"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Соңғы пайдаланылған камераны білдіретін идентификатор"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Фото мен видеоларды компьютер, планшет немесе телефоныңызда түсіру."
@@ -107,7 +115,8 @@ msgstr "Камераның негізгі интерфейсі"
 msgid "Camera's gallery viewer"
 msgstr "Камераның галерея көрсетушісі"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "GNOME жобасы"
 
@@ -172,21 +181,21 @@ msgstr "_Пернетақта жарлықтары"
 msgid "_About Camera"
 msgstr "Камера тур_алы"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "Галереяны ашу"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "Фотоны түсіру"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Камераны таңдау"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Камераны ауыстыру"
@@ -324,19 +333,19 @@ msgstr "Жазба, түсірілген күні {date}"
 msgid "Recording {number}"
 msgstr "Жазба {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "Суретті _көшіру"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "Видеоны _көшіру"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "Ө_шіру"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Камера ағынын ойнату мүмкін емес"
 
@@ -344,15 +353,15 @@ msgstr "Камера ағынын ойнату мүмкін емес"
 msgid "Open in Video Player"
 msgstr "Видео плеерінде ашу"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Алмасу буферіне көшірілді"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Сурет өшірілді"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Видео өшірілді"
 
@@ -364,14 +373,14 @@ msgstr "Жазуды бастау"
 msgid "Stop Recording"
 msgstr "Жазуды аяқтау"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Фото түсіру мүмкін емес"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Видео түсіру мүмкін емес"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
