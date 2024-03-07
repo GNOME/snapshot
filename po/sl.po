@@ -9,22 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-26 18:06+0000\n"
-"PO-Revision-Date: 2024-02-17 08:44+0100\n"
+"POT-Creation-Date: 2024-03-04 20:21+0000\n"
+"PO-Revision-Date: 2024-03-07 19:47+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: ISO-8859-1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Kamera"
 
@@ -113,8 +113,8 @@ msgstr "Določilo ID zadnje uporabljene kamere"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
-"Slikanje in snemanje videa na osebnem računalniku, tabličnem računalniku "
-"ali telefonu."
+"Slikanje in snemanje videa na osebnem računalniku, tabličnem računalniku ali "
+"telefonu."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
@@ -124,8 +124,14 @@ msgstr "Glavni vmesnik Kamere"
 msgid "Camera's gallery viewer"
 msgstr "Preglednik galerije Kamere"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:139 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
+
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
 msgid "Main Menu"
 msgstr "Glavni meni"
 
@@ -149,39 +155,47 @@ msgstr "Način snemanja"
 
 #: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
 #: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:607
 msgid "Countdown"
 msgstr "Odštevalnik"
 
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "Manjkajoče dovoljenje za kamero"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "Dovoli uporabo kamere v nastavitvah"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:610
 msgid "None"
 msgstr "Prazno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:615
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:620
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:625
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:633
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:637
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:641
 msgid "_About Camera"
 msgstr "_O programu Kamera"
 
@@ -349,7 +363,7 @@ msgstr "_Kopiraj video"
 msgid "_Delete"
 msgstr "_Izbriši"
 
-#: src/widgets/camera.rs:442
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "Predvajanje toka kamere ni bilo mogoče"
 
@@ -377,18 +391,14 @@ msgstr "Začni snemati"
 msgid "Stop Recording"
 msgstr "Ustavi snemanje"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "Slike ni mogoče zajeti"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "Videa ni mogoče posneti"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr "Martin Srebotnjak <miles@filmsi.net>"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "Projekt GNOME"
