@@ -22,6 +22,7 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://apps.gnome.org/Snapshot/</url>
+  <url type="contribute">https://welcome.gnome.org/app/Snapshot/</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/snapshot/issues</url>
   <url type="translate">https://l10n.gnome.org/module/snapshot/</url>
   <url type="donation">https://www.gnome.org/donate</url>
