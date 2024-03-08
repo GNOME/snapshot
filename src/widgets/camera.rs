@@ -426,7 +426,8 @@ impl Camera {
         let camera = imp.viewfinder.camera();
         if let Some(pos) = imp
             .selection
-            // gtk::SingleSelection will Always returns glib::Object as its gio::ListModel::item_type().
+            // gtk::SingleSelection will Always returns glib::Object as its
+            // gio::ListModel::item_type().
             .iter::<glib::Object>()
             .enumerate()
             .find(|(_pos, cam)| {
