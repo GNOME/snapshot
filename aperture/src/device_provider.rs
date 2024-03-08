@@ -283,7 +283,10 @@ impl DeviceProvider {
         log::debug!("Starting device provider with file descriptor: {raw_fd}");
         if provider.has_property("fd", Some(RawFd::static_type())) {
             provider.set_property("fd", raw_fd);
-            self.imp().fd.replace(Some(fd));
+            self.imp()
+                .fd
+                .replace(Some(fd))
+                .inspect(|old_fd| log::debug!("Freeing fd {}", old_fd.as_raw_fd()));
             Ok(())
         } else {
             log::warn!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");

@@ -4,7 +4,7 @@ version = "46.0.0"
 authors = ["Maximiliano Sandoval <msandova@gnome.org>"]
 edition = "2021"
 license = "GPL-3.0-or-later"
-rust-version = "1.70"
+rust-version = "1.75"
 
 [profile.release]
 lto = true
