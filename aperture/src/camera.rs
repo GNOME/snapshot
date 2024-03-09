@@ -144,13 +144,13 @@ impl Camera {
     pub(crate) fn source_element(
         &self,
         previous: Option<&gst::Element>,
-    ) -> Option<(gst::Element, gst::Element)> {
+    ) -> Result<Option<(gst::Element, gst::Element)>, glib::BoolError> {
         let device = self.device();
         let Some(previous) = previous else {
             return create_element(&device);
         };
         match device.reconfigure_element(previous) {
-            Ok(_) => None,
+            Ok(_) => Ok(None),
             Err(_) => create_element(&device),
         }
     }
@@ -250,12 +250,14 @@ fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fracti
     }
 }
 
-fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> {
+fn create_element(
+    device: &gst::Device,
+) -> Result<Option<(gst::Element, gst::Element)>, glib::BoolError> {
     use gst::prelude::*;
 
     let bin = gst::Bin::new();
 
-    let device_src = device.create_element(None).ok()?;
+    let device_src = device.create_element(None)?;
     device_src.set_property("client-name", crate::APP_ID.get().unwrap());
 
     let caps = caps(device);
@@ -264,20 +266,15 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     log::debug!("Using caps: {highest_res_caps}");
     let capsfilter = gst::ElementFactory::make("capsfilter")
         .property("caps", &highest_res_caps)
-        .build()
-        .unwrap();
-    let decodebin3 = gst::ElementFactory::make("decodebin3")
-        .build()
-        .expect("Missing GStreamer Base Plug-ins");
+        .build()?;
+    let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
 
     let videoflip = gst::ElementFactory::make("videoflip")
         .property_from_str("video-direction", "auto")
-        .build()
-        .expect("Missing GStreamer Good Plug-ins");
+        .build()?;
 
-    bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])
-        .unwrap();
-    gst::Element::link_many([&device_src, &capsfilter, &decodebin3]).unwrap();
+    bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])?;
+    gst::Element::link_many([&device_src, &capsfilter, &decodebin3])?;
 
     decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
         if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
@@ -287,15 +284,15 @@ fn create_element(device: &gst::Device) -> Option<(gst::Element, gst::Element)> 
     }));
 
     let pad = videoflip.static_pad("src").unwrap();
-    let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
-    ghost_pad.set_active(true).unwrap();
+    let ghost_pad = gst::GhostPad::with_target(&pad)?;
+    ghost_pad.set_active(true)?;
 
-    bin.add_pad(&ghost_pad).unwrap();
+    bin.add_pad(&ghost_pad)?;
 
     let wrapper = gst::ElementFactory::make("wrappercamerabinsrc")
         .property("video-source", &bin)
         .build()
         .expect("Missing GStreamer Bad Plug-ins");
 
-    Some((wrapper, device_src))
+    Ok(Some((wrapper, device_src)))
 }
