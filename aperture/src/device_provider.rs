@@ -9,6 +9,8 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
+use crate::utils;
+
 static STARTED: Once = Once::new();
 
 mod imp {
@@ -339,6 +341,10 @@ impl DeviceProvider {
                         if "Video/Source" == device.device_class() {
                             let device = crate::Camera::new(&device);
                             if !imp.has_camera(&device) {
+                                // We ignore/filter IR cameras.
+                                if device.caps().as_ref().is_some_and(utils::caps::is_infrared) {
+                                    return;
+                                }
                                 log::debug!(
                                     "Camera added: {}, target-object: {:?}\nProperties {:#?}",
                                     device.display_name(),
