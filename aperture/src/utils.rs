@@ -15,6 +15,68 @@ pub(crate) mod caps {
     pub(crate) fn is_infrared(cap: &gst::Caps) -> bool {
         cap.is_subset(&IR_CAPS)
     }
+
+    /// Limits FPS to `crate::MAXIMUM_RATE`.
+    pub(crate) fn limit_fps(caps: &gst::Caps) -> gst::Caps {
+        let limited_caps = crate::SUPPORTED_ENCODINGS
+            .iter()
+            .map(|encoding| {
+                gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                    .framerate_range(
+                        gst::Fraction::new(0, 1)..=gst::Fraction::new(crate::MAXIMUM_RATE, 1),
+                    )
+                    .build()
+            })
+            .collect::<gst::Caps>();
+        caps.intersect_with_mode(&limited_caps, gst::CapsIntersectMode::First)
+    }
+
+    pub(crate) fn best_resolution_for_fps(caps: &gst::Caps, framerate: gst::Fraction) -> gst::Caps {
+        // There are multiple aspect rations for 1080p. Therefore, we look for
+        // height rather than width.
+        const MAX_HEIGHT: i32 = 1080;
+
+        let fixed_caps = crate::SUPPORTED_ENCODINGS
+            .iter()
+            .map(|encoding| {
+                gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                    .framerate(framerate)
+                    .build()
+            })
+            .collect::<gst::Caps>();
+        let caps_with_format = caps.intersect_with_mode(&fixed_caps, gst::CapsIntersectMode::First);
+
+        let heights: Vec<i32> = caps_with_format
+            .iter()
+            .filter_map(|s| s.get::<i32>("height").ok())
+            .collect();
+
+        // We try to find the bigest height smaller than `MAX_HEIGHT`p.
+        let best_height: Option<i32> = heights
+            .iter()
+            .filter(|h| MAX_HEIGHT >= **h)
+            .max()
+            .copied()
+            .or_else(|| {
+                // If not, we pick the smallest height bigger than `MAX_HEIGHT`.
+                heights.into_iter().filter(|h| MAX_HEIGHT <= *h).min()
+            });
+
+        if let Some(height) = best_height {
+            let fixed_res = crate::SUPPORTED_ENCODINGS
+                .iter()
+                .map(|encoding| {
+                    gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                        .height(height)
+                        .build()
+                })
+                .collect::<gst::Caps>();
+
+            caps_with_format.intersect_with_mode(&fixed_res, gst::CapsIntersectMode::First)
+        } else {
+            caps_with_format
+        }
+    }
 }
 
 #[cfg(test)]

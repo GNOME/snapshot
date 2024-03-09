@@ -6,8 +6,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
-/// The maximum framerate, in frames per second.
-const MAXIMUM_RATE: i32 = 30;
+use crate::utils;
 
 mod imp {
     use std::cell::OnceCell;
@@ -160,66 +159,18 @@ fn caps(device: &gst::Device) -> gst::Caps {
     let device_caps = device
         .caps()
         .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
-    let supported_caps = crate::SUPPORTED_ENCODINGS
-        .iter()
-        .map(|encoding| {
-            gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                .framerate_range(gst::Fraction::new(0, 1)..=gst::Fraction::new(MAXIMUM_RATE, 1))
-                .build()
-        })
-        .collect::<gst::Caps>();
-    device_caps.intersect_with_mode(&supported_caps, gst::CapsIntersectMode::First)
-}
-
-/// Picks the best resolution for a given format and framerate.
-fn pick_best_resolution(caps: &gst::Caps, format: &str, framerate: gst::Fraction) -> gst::Caps {
-    // There are multiple aspect rations for 1080p. Therefore, we look for
-    // height rather than width.
-    const MAX_HEIGHT: i32 = 1080;
-
-    let fixed_format = gst_video::VideoCapsBuilder::for_encoding(format)
-        .framerate(framerate)
-        .build();
-    let caps_with_format = caps.intersect_with_mode(&fixed_format, gst::CapsIntersectMode::First);
-
-    let heights: Vec<i32> = caps_with_format
-        .iter()
-        .filter_map(|s| s.get::<i32>("height").ok())
-        .collect();
-
-    // We try to find the bigest height smaller than `MAX_HEIGHT`p.
-    let best_height: Option<i32> = heights
-        .iter()
-        .filter(|h| MAX_HEIGHT >= **h)
-        .max()
-        .copied()
-        .or_else(|| {
-            // If not, we pick the smallest height bigger than `MAX_HEIGHT`.
-            heights.into_iter().filter(|h| MAX_HEIGHT <= *h).min()
-        });
-
-    if let Some(height) = best_height {
-        let fixed_res = gst_video::VideoCapsBuilder::for_encoding(format)
-            .height(height)
-            .build();
-
-        caps_with_format.intersect_with_mode(&fixed_res, gst::CapsIntersectMode::First)
-    } else {
-        caps_with_format
-    }
+    utils::caps::limit_fps(&device_caps)
 }
 
 // For each resolution and format we only keep the highest resolution.
 fn filter_caps(caps: &gst::Caps) -> gst::Caps {
     let mut best_caps = gst::Caps::new_empty();
-    for format in ["video/x-raw", "image/jpeg"] {
-        caps.iter().for_each(|s| {
-            if let Some(framerate) = framerate_from_structure(s) {
-                let best = pick_best_resolution(caps, format, framerate);
-                best_caps.merge(best);
-            }
-        });
-    }
+    caps.iter().for_each(|s| {
+        if let Some(framerate) = framerate_from_structure(s) {
+            let best = utils::caps::best_resolution_for_fps(caps, framerate);
+            best_caps.merge(best);
+        }
+    });
 
     caps.intersect_with_mode(&best_caps, gst::CapsIntersectMode::First)
 }
@@ -234,13 +185,13 @@ fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fracti
         array
             .iter()
             .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac < &gst::Fraction::new(MAXIMUM_RATE, 1))
+            .filter(|frac| frac < &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
             .max()
     } else if let Ok(array) = structure.get::<gst::List>("framerate") {
         array
             .iter()
             .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac < &gst::Fraction::new(MAXIMUM_RATE, 1))
+            .filter(|frac| frac < &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
             .max()
     } else {
         None
