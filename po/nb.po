@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-03-02 11:17+0100\n"
+"POT-Creation-Date: 2024-03-09 12:34+0000\n"
+"PO-Revision-Date: 2024-03-10 14:33+0100\n"
 "Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Kamera"
 
@@ -32,7 +32,7 @@ msgstr "Ta bilder og videoer"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "bilder;fotografi;kamera;webkamera;snapshot;"
+msgstr "bilde;fotografi;fotografering;kamera;webkamera;snapshot;ta bilder;videoer;videoklipp;ta opp;videokamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -102,7 +102,7 @@ msgstr "Sist brukte kamera"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "An ID representing the last used camera"
-msgstr "En ID som representerer det sist brukte kameraet"
+msgstr "En unik ID som representerer det sist brukte kameraet"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -115,6 +115,11 @@ msgstr "Kamera sin hovedskjerm"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Kamera sitt galleri"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:140 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -341,7 +346,7 @@ msgstr "_Kopier video"
 msgid "_Delete"
 msgstr "_Slett"
 
-#: src/widgets/camera.rs:424
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "Kunne ikke spille kamerasending"
 
@@ -369,18 +374,14 @@ msgstr "Start opptak"
 msgid "Stop Recording"
 msgstr "Stopp opptak"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "Kunne ikke ta bilde"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "Kunne ikke ta opp video"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr "Brage Fuglseth https://bragefuglseth.dev"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "GNOME"
