@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-03-09 12:34+0000\n"
-"PO-Revision-Date: 2024-03-10 14:33+0100\n"
+"POT-Creation-Date: 2024-03-10 11:47+0000\n"
+"PO-Revision-Date: 2024-03-10 14:36+0100\n"
 "Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
@@ -32,7 +32,9 @@ msgstr "Ta bilder og videoer"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "bilde;fotografi;fotografering;kamera;webkamera;snapshot;ta bilder;videoer;videoklipp;ta opp;videokamera;"
+msgstr ""
+"bilde;fotografi;fotografering;kamera;webkamera;snapshot;ta bilder;videoer;"
+"videoklipp;ta opp;videokamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -74,7 +76,7 @@ msgstr "Varigheten til nedtellingen for å ta bilder, i sekunder"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Capture mode"
-msgstr "Opptaksmodus"
+msgstr "Videomodus"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Whether to take pictures or videos"
@@ -123,6 +125,7 @@ msgstr "GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
 msgid "Main Menu"
 msgstr "Hovedmeny"
 
@@ -142,43 +145,51 @@ msgstr "Bildemodus"
 #: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
 #: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
-msgstr "Opptaksmodus"
+msgstr "Videomodus"
 
 #: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
 #: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:607
 msgid "Countdown"
 msgstr "Nedtelling"
 
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "Ingen kameratilgang"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "Gi Kamera tilgang til å bruke enhetens kamera i innstillinger"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:610
 msgid "None"
 msgstr "Ingen"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:615
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:620
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:625
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:633
 msgid "_Preferences"
 msgstr "_Innstillinger"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:637
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastatursnarveier"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:641
 msgid "_About Camera"
 msgstr "_Om Kamera"
 
@@ -217,15 +228,15 @@ msgstr "Neste bilde"
 msgid "Open in Image Viewer"
 msgstr "Åpne i Bildevisning"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
 msgid "General"
 msgstr "Generelt"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:13
 msgid "_Shutter Sound"
 msgstr "_Lukkerlyd"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:20
 msgid "_Composition Guidelines"
 msgstr "_Hjelpelinjer"
 
@@ -267,7 +278,7 @@ msgstr "Bildemodus"
 #: data/resources/ui/shortcuts.ui:49
 msgctxt "shortcut window"
 msgid "Recording Mode"
-msgstr "Opptaksmodus"
+msgstr "Videomodus"
 
 #: data/resources/ui/shortcuts.ui:55
 msgctxt "shortcut window"
@@ -374,11 +385,11 @@ msgstr "Start opptak"
 msgid "Stop Recording"
 msgstr "Stopp opptak"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:325
+#: src/widgets/window.rs:74 src/widgets/window.rs:323
 msgid "Could not take picture"
 msgstr "Kunne ikke ta bilde"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:329
+#: src/widgets/window.rs:78 src/widgets/window.rs:327
 msgid "Could not record video"
 msgstr "Kunne ikke ta opp video"
 
