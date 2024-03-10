@@ -220,8 +220,8 @@ impl Window {
         app.connect_screensaver_active_notify(glib::clone!(@weak window => move |app| {
             if app.is_screensaver_active() {
                 window.imp().camera.stop_stream();
-            } else {
-                window.imp().camera.start_stream();
+                let devices = aperture::DeviceProvider::instance();
+                devices.stop();
             }
         }));
         window

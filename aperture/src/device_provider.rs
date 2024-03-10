@@ -316,6 +316,15 @@ impl DeviceProvider {
         );
     }
 
+    pub fn stop(&self) {
+        let inner = self.imp().inner.get().unwrap();
+        if inner.is_started() {
+            inner.stop();
+        }
+        self.imp().fd.take();
+        inner.set_property("fd", -1);
+    }
+
     fn emit_camera_added(&self, camera: &crate::Camera) {
         self.emit_by_name::<()>("camera-added", &[&camera]);
     }
