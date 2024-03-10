@@ -81,6 +81,7 @@ impl Default for Application {
         glib::Object::builder()
             .property("application-id", APP_ID)
             .property("resource-base-path", "/org/gnome/Snapshot/")
+            .property("register-session", true)
             .build()
     }
 }
