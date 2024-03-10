@@ -90,7 +90,7 @@ mod imp {
                 if imp
                     .navigation_view
                     .visible_page()
-                    .is_some_and(|page| &page == &*imp.camera_page)
+                    .is_some_and(|page| page == *imp.camera_page)
                 {
                     imp.camera.stop_recording();
                     imp.recording_active.set(false);
@@ -170,7 +170,7 @@ mod imp {
             self.navigation_view
                 .connect_visible_page_notify(glib::clone!(@weak obj => move |navigation_view| {
                     let imp = obj.imp();
-                    let enabled = navigation_view.visible_page().is_some_and(|page| &page == &*imp.camera_page);
+                    let enabled = navigation_view.visible_page().is_some_and(|page| page == *imp.camera_page);
                     obj.set_shutter_enabled(enabled);
                 }));
         }
