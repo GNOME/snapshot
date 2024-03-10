@@ -416,7 +416,7 @@ impl Window {
     }
 
     fn show_preferences_window(&self) {
-        let preferences = crate::PreferencesWindow::new();
+        let preferences = crate::PreferencesWindow::default();
         preferences.present(self);
     }
 

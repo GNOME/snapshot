@@ -62,8 +62,8 @@ glib::wrapper! {
         @extends gtk::Widget, adw::Dialog, adw::PreferencesDialog;
 }
 
-impl PreferencesWindow {
-    pub fn new() -> Self {
+impl Default for PreferencesWindow {
+    fn default() -> Self {
         glib::Object::new()
     }
 }
