@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-02-23 01:25+0100\n"
+"POT-Creation-Date: 2024-03-10 13:36+0000\n"
+"PO-Revision-Date: 2024-03-10 23:29+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Kamera"
 
@@ -32,7 +32,6 @@ msgstr "Képek és videók rögzítése"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-#| msgid "picture;photos;camera;webcam;"
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "fénykép;kép;fotó;kamera;webkamera;képernyőkép;"
 
@@ -119,8 +118,14 @@ msgstr "A Kamera fő felülete"
 msgid "Camera's gallery viewer"
 msgstr "A Kamera galériamegjelenítője"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:140 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "A GNOME projekt"
+
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
 msgid "Main Menu"
 msgstr "Főmenü"
 
@@ -144,39 +149,47 @@ msgstr "Videófelvételi mód"
 
 #: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
 #: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:607
 msgid "Countdown"
 msgstr "Visszaszámlálás"
 
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "Hiányzó kamerajogosultság"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "Engedélyezze a kamera használatát a beállításokban"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:610
 msgid "None"
 msgstr "Nincs"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:615
 msgid "3s"
 msgstr "3 mp"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:620
 msgid "5s"
 msgstr "5 mp"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:625
 msgid "10s"
 msgstr "10 mp"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:633
 msgid "_Preferences"
 msgstr "_Beállítások"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:637
 msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillentyűk"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:641
 msgid "_About Camera"
 msgstr "A Kamera _névjegye"
 
@@ -215,15 +228,15 @@ msgstr "Következő kép"
 msgid "Open in Image Viewer"
 msgstr "Megnyitás a képmegjelenítőben"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
 msgid "General"
 msgstr "Általános"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:13
 msgid "_Shutter Sound"
 msgstr "_Zárhang"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:20
 msgid "_Composition Guidelines"
 msgstr "_Kompozíciós segédvonalak"
 
@@ -344,7 +357,7 @@ msgstr "Videó _másolása"
 msgid "_Delete"
 msgstr "_Törlés"
 
-#: src/widgets/camera.rs:424
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "Nem sikerült lejátszani a kamera adatfolyamát"
 
@@ -372,20 +385,16 @@ msgstr "Felvétel indítása"
 msgid "Stop Recording"
 msgstr "Felvétel leállítása"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:323
 msgid "Could not take picture"
 msgstr "Nem sikerült elkészíteni a képet"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:327
 msgid "Could not record video"
 msgstr "Nem sikerült felvenni a videót"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr ""
 "Meskó Balázs <mesko dot balazs at fsf dot hu>, 2023.\n"
-"Úr Balázs <ur dot balazs at fsf dot hu>, 2023."
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "A GNOME projekt"
+"Úr Balázs <ur dot balazs at fsf dot hu>, 2023, 2024."
