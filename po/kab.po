@@ -1,0 +1,402 @@
+# Kabyle translation for snapshot.
+# Copyright (C) 2024 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2024-03-11 13:56+0000\n"
+"PO-Revision-Date: 2024-03-12 15:01+0100\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"Language-Team: Kabyle <>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Team: kab\n"
+"X-DL-Module: snapshot\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: None\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+msgid "Camera"
+msgstr ""
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Countdown timer"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Capture mode"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to take pictures or videos"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Picture format"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Whether to save videos as mp4 or webm"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr ""
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr ""
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr ""
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr ""
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:140 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "Asenfar n GNOME"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
+msgid "Main Menu"
+msgstr "Umuɣ agejdan"
+
+#: data/resources/ui/camera.ui:107
+msgid "No Camera Found"
+msgstr ""
+
+#: data/resources/ui/camera.ui:108
+msgid "Connect a camera device"
+msgstr ""
+
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+msgid "Picture Mode"
+msgstr ""
+
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+msgid "Recording Mode"
+msgstr ""
+
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:607
+msgid "Countdown"
+msgstr "Asiḍen yettadren"
+
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr ""
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr ""
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:610
+msgid "None"
+msgstr "Ulac"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:615
+msgid "3s"
+msgstr ""
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:620
+msgid "5s"
+msgstr ""
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:625
+msgid "10s"
+msgstr ""
+
+#: data/resources/ui/camera.ui:633
+msgid "_Preferences"
+msgstr "Ismenyafen (_P)"
+
+#: data/resources/ui/camera.ui:637
+msgid "_Keyboard Shortcuts"
+msgstr "Inegzumen n unasiw (_K)"
+
+#: data/resources/ui/camera.ui:641
+msgid "_About Camera"
+msgstr "Ɣef takamiṛat"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr ""
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Ṭṭef tawlaft"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Fren takamiṛat"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Beddel takamiṛat"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr ""
+
+#: data/resources/ui/gallery.ui:94
+msgid "Previous Image"
+msgstr "Tugna tuzwirt"
+
+#: data/resources/ui/gallery.ui:107
+msgid "Next Image"
+msgstr "Tugna tuḍfirt"
+
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr ""
+
+#: data/resources/ui/preferences_window.ui:7
+msgid "General"
+msgstr "Amatu"
+
+#: data/resources/ui/preferences_window.ui:13
+msgid "_Shutter Sound"
+msgstr ""
+
+#: data/resources/ui/preferences_window.ui:20
+msgid "_Composition Guidelines"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Amatu"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Sken inegzumen"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Umuɣ agejdan"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Ldi ismenyifen"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ffeɣ"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Takamiṛat"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr ""
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Uḍfir"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Uzwir"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr ""
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr ""
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr ""
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr ""
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr ""
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "Nɣel tugna (_C)"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "Nɣel tavidyutt (_C)"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "Kkes (_D)"
+
+#: src/widgets/camera.rs:470
+msgid "Could not play camera stream"
+msgstr ""
+
+#: src/widgets/gallery.rs:117
+msgid "Open in Video Player"
+msgstr ""
+
+#: src/widgets/gallery.rs:385
+msgid "Copied to clipboard"
+msgstr ""
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "Tettwakess tugna"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "Tettwakkes tvidyutt"
+
+#: src/widgets/shutter_button.rs:81
+msgid "Start Recording"
+msgstr "Bdu asekles"
+
+#: src/widgets/shutter_button.rs:92
+msgid "Stop Recording"
+msgstr "Ḥbes asekles"
+
+#: src/widgets/window.rs:74 src/widgets/window.rs:323
+msgid "Could not take picture"
+msgstr ""
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:327
+msgid "Could not record video"
+msgstr ""
+
+#: src/widgets/window.rs:282
+msgid "translator-credits"
+msgstr ""
