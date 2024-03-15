@@ -23,6 +23,7 @@ mod device_provider;
 mod enums;
 mod error;
 mod pipeline_tee;
+mod utils;
 mod viewfinder;
 
 pub use camera::Camera;
