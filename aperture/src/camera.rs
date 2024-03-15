@@ -157,20 +157,17 @@ impl Camera {
 }
 
 fn caps(device: &gst::Device) -> gst::Caps {
-    let fps_range = gst::Fraction::new(0, 1)..=gst::Fraction::new(MAXIMUM_RATE, 1);
     let device_caps = device
         .caps()
         .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
-    let supported_caps = [
-        gst_video::VideoCapsBuilder::for_encoding("video/x-raw")
-            .framerate_range(fps_range.clone())
-            .build(),
-        gst_video::VideoCapsBuilder::for_encoding("image/jpeg")
-            .framerate_range(fps_range)
-            .build(),
-    ]
-    .into_iter()
-    .collect::<gst::Caps>();
+    let supported_caps = crate::SUPPORTED_ENCODINGS
+        .iter()
+        .map(|encoding| {
+            gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                .framerate_range(gst::Fraction::new(0, 1)..=gst::Fraction::new(MAXIMUM_RATE, 1))
+                .build()
+        })
+        .collect::<gst::Caps>();
     device_caps.intersect_with_mode(&supported_caps, gst::CapsIntersectMode::First)
 }
 
