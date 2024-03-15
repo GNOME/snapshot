@@ -287,6 +287,10 @@ mod imp {
                     log::error!("Could not stop recording: {err}");
                 }
             }
+            if let Err(err) = self.camerabin().set_state(gst::State::Null) {
+                log::error!("Could not stop camerabin: {err}");
+            }
+
             self.picture.unparent();
         }
 
