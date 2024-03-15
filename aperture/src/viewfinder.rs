@@ -143,10 +143,18 @@ mod imp {
 
                 // TODO This is incredibly not idiomatic.
                 let guard = self.camera_src.borrow();
-                if let Some((bin, camera_src)) = camera.source_element(guard.as_ref()) {
-                    drop(guard);
-                    self.camerabin().set_property("camera-source", &bin);
-                    self.camera_src.replace(Some(camera_src));
+                match camera.source_element(guard.as_ref()) {
+                    Ok(Some((bin, camera_src))) => {
+                        drop(guard);
+                        self.camerabin().set_property("camera-source", &bin);
+                        self.camera_src.replace(Some(camera_src));
+                    }
+                    Ok(None) => (),
+                    Err(err) => {
+                        log::error!("Could not get source element: {err}");
+                        self.set_state(ViewfinderState::Error);
+                        return;
+                    }
                 }
 
                 let is_front_camera = matches!(camera.location(), crate::CameraLocation::Front);
