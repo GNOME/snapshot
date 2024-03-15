@@ -2,16 +2,14 @@ pub(crate) mod caps {
     use once_cell::sync::Lazy;
 
     static IR_CAPS: Lazy<gst::Caps> = Lazy::new(|| {
-        [
-            gst_video::VideoCapsBuilder::for_encoding("video/x-raw")
-                .format(gst_video::VideoFormat::Gray8)
-                .build(),
-            gst_video::VideoCapsBuilder::for_encoding("image/jpeg")
-                .format(gst_video::VideoFormat::Gray8)
-                .build(),
-        ]
-        .into_iter()
-        .collect()
+        crate::SUPPORTED_ENCODINGS
+            .iter()
+            .map(|encoding| {
+                gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                    .format(gst_video::VideoFormat::Gray8)
+                    .build()
+            })
+            .collect()
     });
 
     pub(crate) fn is_infrared(cap: &gst::Caps) -> bool {

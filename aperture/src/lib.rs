@@ -34,6 +34,7 @@ pub(crate) use pipeline_tee::PipelineTee;
 pub use viewfinder::Viewfinder;
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
+pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];
 
 static IS_INIT: Once = Once::new();
 const VERSION: &str = env!("CARGO_PKG_VERSION");
