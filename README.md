@@ -18,8 +18,8 @@ If you have any questions regarding the use or development of Snapshot, please j
 ## Hack on Snapshot
 
 To build the development version of Snapshot and hack on the code
-see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
-for building GNOME apps with Flatpak and GNOME Builder.
+see the [guide](https://welcome.gnome.org/app/Snapshot/)
+for building the app with Flatpak and GNOME Builder.
 
 ## Translations
 
@@ -28,7 +28,7 @@ You can find everything you need at: [l10n.gnome.org/module/snapshot/](https://l
 
 ## Code Of Conduct
 
-This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
+This project follows the [GNOME Code of Conduct](https://conduct.gnome.org/).
 
 ## Troubleshooting
 
