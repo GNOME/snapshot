@@ -1,14 +1,14 @@
 # Korean translation for Snapshot.
-# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# Copyright (C) 2023 Snapshot's Contributors.
 # This file is distributed under the same license as the Snapshot package.
-# Seong-ho Cho <shcho@gnome.org>, 2023.
+# Seong-ho Cho <shcho@gnome.org>, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-16 15:59+0000\n"
-"PO-Revision-Date: 2023-08-27 01:35+0900\n"
+"POT-Creation-Date: 2024-03-10 16:09+0000\n"
+"PO-Revision-Date: 2024-03-15 23:02+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "카메라"
 
@@ -31,8 +31,8 @@ msgstr "사진 및 영상을 촬영합니다"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "picture;그림;photos;사진;camera;카메라;webcam;웹캠;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;그림;photos;사진;camera;카메라;webcam;웹캠;snapshot;스냅샷;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -96,6 +96,14 @@ msgstr "영상 형식"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "영상을 mp4 또는 webm으로 저장할 지 여부"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "최근 사용한 카메라 ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "최근 사용한 카메라를 나타내는 ID"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "사진과 영상을 컴퓨터, 태블릿, 모바일 전화기에 촬영합니다."
@@ -108,7 +116,8 @@ msgstr "카메라 주 인터페이스"
 msgid "Camera's gallery viewer"
 msgstr "카메라 갤러리 보기"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:140 src/widgets/window.rs:283
 msgid "The GNOME Project"
 msgstr "그놈 프로젝트"
 
@@ -173,21 +182,21 @@ msgstr "키보드 바로 가기 키(_K)"
 msgid "_About Camera"
 msgstr "카메라 정보(_A)"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "갤러리 열기"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "사진 촬영"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "카메라 선택"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "카메라 전환"
@@ -325,19 +334,19 @@ msgstr "{date} 녹화"
 msgid "Recording {number}"
 msgstr "{number}번 녹화"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "사진 복사(_C)"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "동영상 복사(_C)"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "삭제(_D)"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "카메라 스트림을 재생할 수 없습니다"
 
@@ -345,15 +354,15 @@ msgstr "카메라 스트림을 재생할 수 없습니다"
 msgid "Open in Video Player"
 msgstr "비디오 재생기에서 열기"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "클립보드로 복사했습니다"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "사진을 삭제했습니다"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "동영상을 삭제했습니다"
 
@@ -365,17 +374,17 @@ msgstr "녹화 시작"
 msgid "Stop Recording"
 msgstr "녹화 정지"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "영상을 촬영할 수 없습니다"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "동영상을 녹화할 수 없습니다"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:282
 msgid "translator-credits"
-msgstr "조성호 <shcho@gnome.org>, 2023"
+msgstr "조성호 <shcho@gnome.org>, 2023, 2024"
 
 #~ msgid "Snapshot"
 #~ msgstr "스냅샷"
