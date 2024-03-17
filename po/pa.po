@@ -3,25 +3,25 @@
 # This file is distributed under the same license as the snapshot package.
 #
 # Amn Alam <amanpreet.alam@gmail.com>, 2023.
-# A S Alam <aalam@satluj.org>, 2023.
+# SPDX-FileCopyrightText: 2023, 2024 A S Alam <aalam@satluj.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-08-20 18:12+0000\n"
-"PO-Revision-Date: 2023-09-09 15:25-0700\n"
-"Last-Translator: A S Alam <aalam@satluj.org>\n"
+"POT-Creation-Date: 2024-03-02 18:51+0000\n"
+"PO-Revision-Date: 2024-03-17 18:27-0500\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <punjab-translation@googlegroups.com>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "ਕੈਮਰਾ"
 
@@ -32,8 +32,9 @@ msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਵੀਡੀਓ ਬਣਾਓ"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "ਤਸਵੀਰ;ਫ਼ੋਟੋ,ਕੈਮਰਾ;ਵੈਬਕੈਮ;"
+#| msgid "picture;photos;camera;webcam;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "ਤਸਵੀਰ;ਫ਼ੋਟੋ,ਕੈਮਰਾ;ਵੈਬਕੈਮ;ਸਨੈਪਸ਼ਾਟ;ਪਿਕਚਰ;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -97,6 +98,14 @@ msgstr "ਵੀਡੀਓ ਫਾਰਮੈਟ"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "ਕੀ ਵੀਡੀਓ ਨੂੰ mp4 ਜਾਂ webm ਵਜੋਂ ਸੰਭਾਲਣਾ ਹੈ"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ਆਖਰੀ ਕੈਮਰਾ ਵਰਤਿਆ ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "ਆਖਰੀ ਵਰਤੇ ਕੈਮਰੇ ਨੂੰ ਦਰਸਾਉਣ ਵਾਲਾ ID"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "ਆਪਣੇ ਕੰਪਿਊਟਰ, ਟੈਬਲੇਟ ਜਾਂ ਫ਼ੋਨ ਉੱਤੇ ਤਸਵੀਰ ਖਿੱਚੋਂ ਅਤੇ ਵੀਡੀਓ ਲਵੋ।"
@@ -109,7 +118,8 @@ msgstr "ਕੈਮਰੇ ਦਾ ਮੁੱਖ ਇੰਟਰਫ਼ੇਸ"
 msgid "Camera's gallery viewer"
 msgstr "ਕੈਮਰੇ ਦੀ ਗੈਲਰੀ ਦਰਸ਼ਕ"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "ਗਨੋਮ ਪਰੋਜੈਕਟ"
 
@@ -174,21 +184,21 @@ msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ(_K)"
 msgid "_About Camera"
 msgstr "ਕੈਮਰੇ ਬਾਰੇ(_A)"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
 msgstr "ਗੈਲਰੀ ਖੋਲ੍ਹੋ"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
 #: src/widgets/shutter_button.rs:119
 msgid "Take Picture"
 msgstr "ਤਸਵੀਰ ਲਵੋ"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "ਕੈਮਰਾ ਚੁਣੋ"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "ਕੈਮਰਾ ਬਦਲੋ"
@@ -326,19 +336,19 @@ msgstr "{date} ਤੋਂ ਰਿਕਾਰਡਿੰਗ"
 msgid "Recording {number}"
 msgstr "ਰਿਕਾਰਡਿੰਗ {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "ਤਸਵੀਰ ਕਾਪੀ ਕਰੋ(_C)"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "ਵੀਡੀਓ ਕਾਪੀ ਕਰੋ(_C)"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "ਹਟਾਓ(_D)"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "ਕੈਮਰਾ ਸਟਰੀਮ ਚਲਾਈ ਨਹੀਂ ਜਾ ਸਕੀ"
 
@@ -346,15 +356,15 @@ msgstr "ਕੈਮਰਾ ਸਟਰੀਮ ਚਲਾਈ ਨਹੀਂ ਜਾ ਸਕ�
 msgid "Open in Video Player"
 msgstr "ਵੀਡੀਓ ਪਲੇਅਰ ਵਿੱਚ ਚਲਾਓ"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "ਤਸਵੀਰ ਹਟਾਈ ਗਈ"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "ਵੀਡੀਓ ਹਟਾਈ"
 
@@ -366,16 +376,17 @@ msgstr "ਰਿਕਾਰਡਿੰਗ ਸ਼ੁਰੂ ਕਰੋ"
 msgid "Stop Recording"
 msgstr "ਰਿਕਾਰਡਿੰਗ ਨੂੰ ਰੋਕੋ"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "ਤਸਵੀਰ ਲਈ ਨਹੀਂ ਜਾ ਸਕੀ"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "ਵੀਡੀਓ ਰਿਕਾਰਡ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr ""
 "ਅ ਸ ਆਲਮ (A S Alam) ੨੦੨੩\n"
 "Punjabi Linux www.punlinux.org"
+
