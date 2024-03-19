@@ -342,7 +342,10 @@ impl DeviceProvider {
                             let device = crate::Camera::new(&device);
                             if !imp.has_camera(&device) {
                                 // We ignore/filter IR cameras.
-                                if device.caps().as_ref().is_some_and(utils::caps::is_infrared) {
+                                if device.caps().as_ref().is_some_and(utils::caps::is_infrared)
+                                    || device.nick().is_some_and(|nick| nick.contains("IR"))
+                                    || device.display_name().contains("IR")
+                                {
                                     return;
                                 }
                                 log::debug!(
