@@ -346,6 +346,12 @@ impl DeviceProvider {
                                     || device.nick().is_some_and(|nick| nick.contains("IR"))
                                     || device.display_name().contains("IR")
                                 {
+                                    log::info!(
+                                        "IR Camera ignored: {}, target-object: {:?}\nProperties {:#?}\nPlease report upstream if this is a false-positive.",
+                                        device.display_name(),
+                                        device.target_object(),
+                                        device.properties(),
+                                    );
                                     return;
                                 }
                                 log::debug!(
