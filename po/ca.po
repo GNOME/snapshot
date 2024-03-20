@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-11-28 16:50+0000\n"
-"PO-Revision-Date: 2023-11-28 22:36+0100\n"
+"POT-Creation-Date: 2024-03-17 23:29+0000\n"
+"PO-Revision-Date: 2024-03-19 22:23+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Càmera"
 
@@ -95,6 +95,14 @@ msgstr "Format de vídeo"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Si s'han de desar els vídeos com a mp4 o com a webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Identificador de la darrera càmera usada"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Un identificador que representa la darrera càmera usada"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Feu fotos i vídeos a l'ordinador, a la tauleta o al telèfon."
@@ -106,6 +114,11 @@ msgstr "Interfície principal de la càmera"
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Visualitzador de la galeria de la càmera"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:151 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "El projecte GNOME"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
@@ -320,19 +333,19 @@ msgstr "S'està enregistrant des de {date}"
 msgid "Recording {number}"
 msgstr "S'està enregistrant {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "C_opia la imatge"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Copia el vídeo"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Suprimeix"
 
-#: src/widgets/camera.rs:409
+#: src/widgets/camera.rs:470
 msgid "Could not play camera stream"
 msgstr "No s'ha pogut reproduir el flux de la càmera"
 
@@ -360,18 +373,14 @@ msgstr "Inicia l'enregistrament"
 msgid "Stop Recording"
 msgstr "Atura l'enregistrament"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "No s'ha pogut fer la fotografia"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "No s'ha pogut enregistrar el vídeo"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>, 2023"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "El projecte GNOME"
