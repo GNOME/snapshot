@@ -166,4 +166,9 @@
   <provides>
     <binary>@bin-name@</binary>
   </provides>
+  <branding>
+    <!-- Blue 2 and Purple 3 -->
+    <color type="primary" scheme_preference="light">#62a0ea</color>
+    <color type="primary" scheme_preference="dark">#9141ac</color>
+  </branding>
 </component>
