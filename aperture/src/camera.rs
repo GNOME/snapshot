@@ -172,7 +172,8 @@ fn filter_caps(caps: &gst::Caps) -> gst::Caps {
         }
     });
 
-    caps.intersect_with_mode(&best_caps, gst::CapsIntersectMode::First)
+    best_caps.merge(caps.clone());
+    best_caps
 }
 
 fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fraction> {
