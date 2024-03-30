@@ -185,13 +185,13 @@ fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fracti
         array
             .iter()
             .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac < &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
+            .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
             .max()
     } else if let Ok(array) = structure.get::<gst::List>("framerate") {
         array
             .iter()
             .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac < &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
+            .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
             .max()
     } else {
         None
