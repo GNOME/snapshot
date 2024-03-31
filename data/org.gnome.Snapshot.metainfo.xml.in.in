@@ -31,7 +31,7 @@
   <releases>
     <release version="46.0" date="2024-03-15">
       <description>
-        <p>Release Candidate Release</p>
+        <p>Snapshot 46.0 release</p>
         <ul>
           <li>Update to zbus 4.0</li>
           <li>Improve default camera resolution selection</li>
