@@ -19,6 +19,7 @@ use std::sync::{LazyLock, Once, OnceLock};
 use gst::prelude::*;
 
 mod camera;
+mod code_detector;
 mod device_provider;
 mod enums;
 mod error;
