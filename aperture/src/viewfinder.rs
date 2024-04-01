@@ -8,6 +8,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
+use crate::code_detector::QrCodeDetector;
 use crate::ViewfinderState;
 
 const BARCODE_TIMEOUT: u32 = 1;
@@ -44,7 +45,7 @@ mod imp {
         #[property(get, set = Self::set_disable_audio_recording, explicit_notify)]
         disable_audio_recording: Cell<bool>,
 
-        pub zbar_branch: RefCell<Option<gst::Element>>,
+        pub qrcode_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
         pub camera_src: RefCell<Option<gst::Element>>,
         pub camerabin: OnceCell<gst::Element>,
@@ -80,7 +81,7 @@ mod imp {
         }
 
         fn detect_codes(&self) -> bool {
-            self.zbar_branch.borrow().is_some()
+            self.qrcode_branch.borrow().is_some()
         }
 
         fn set_detect_codes(&self, value: bool) {
@@ -90,17 +91,17 @@ mod imp {
 
             let tee = self.tee.get().unwrap();
             if value {
-                match create_zbar_bin() {
-                    Ok(zbar_branch) => {
-                        tee.add_branch(&zbar_branch);
-                        self.zbar_branch.replace(Some(zbar_branch));
+                match create_qrcode_bin() {
+                    Ok(qrcode_branch) => {
+                        tee.add_branch(&qrcode_branch);
+                        self.qrcode_branch.replace(Some(qrcode_branch));
                     }
                     Err(err) => {
-                        log::error!("Could not create zbar element: {err}");
+                        log::error!("Could not create qrcode element: {err}");
                     }
                 }
-            } else if let Some(zbar_branch) = self.zbar_branch.take() {
-                tee.remove_branch(&zbar_branch);
+            } else if let Some(qrcode_branch) = self.qrcode_branch.take() {
+                tee.remove_branch(&qrcode_branch);
             }
 
             self.obj().notify_detect_codes();
@@ -370,7 +371,7 @@ mod imp {
                         .param_types([Option::<gio::File>::static_type()])
                         .build(),
                     glib::subclass::Signal::builder("code-detected")
-                        .param_types([crate::CodeType::static_type(), String::static_type()])
+                        .param_types([glib::Bytes::static_type()])
                         .build(),
                 ]
             });
@@ -639,12 +640,12 @@ impl Viewfinder {
         );
     }
 
-    pub fn connect_code_detected<F: Fn(&Self, crate::CodeType, &str) + 'static>(&self, f: F) {
+    pub fn connect_code_detected<F: Fn(&Self, glib::Bytes) + 'static>(&self, f: F) {
         self.connect_closure(
             "code-detected",
             false,
-            glib::closure_local!(|obj, data_type, data| {
-                f(obj, data_type, data);
+            glib::closure_local!(|obj, data| {
+                f(obj, data);
             }),
         );
     }
@@ -744,12 +745,10 @@ impl Viewfinder {
                 Some(s) if s.has_name("video-done") => {
                     self.on_video_done();
                 }
-                Some(s) if s.has_name("barcode") => {
-                    let type_str = s.get::<&str>("type").unwrap();
-                    let data_type = type_str.into();
-                    let data = s.get::<&str>("symbol").unwrap();
+                Some(s) if s.has_name("qrcode") => {
+                    let data = s.get::<glib::Bytes>("payload").unwrap();
 
-                    self.on_barcode_detected(data_type, data);
+                    self.on_qrcode_detected(data);
                 }
                 _ => (),
             },
@@ -773,7 +772,7 @@ impl Viewfinder {
         }
     }
 
-    fn on_barcode_detected(&self, data_type: crate::CodeType, data: &str) {
+    fn on_qrcode_detected(&self, data: glib::Bytes) {
         // We don't emit the signal if we just emitted it
         if self.imp().timeout_handler.borrow().is_none() {
             let id = glib::timeout_add_seconds_local_once(
@@ -787,7 +786,7 @@ impl Viewfinder {
                 ),
             );
             self.imp().timeout_handler.replace(Some(id));
-            self.emit_code_detected(data_type, data);
+            self.emit_code_detected(data);
         }
     }
 
@@ -827,8 +826,9 @@ impl Viewfinder {
         self.emit_by_name::<()>("recording-done", &[&file]);
     }
 
-    fn emit_code_detected(&self, data_type: crate::CodeType, data: &str) {
-        self.emit_by_name::<()>("code-detected", &[&data_type, &data]);
+    fn emit_code_detected(&self, data: glib::Bytes) {
+        log::info!("Code detected: {}", String::from_utf8_lossy(&data));
+        self.emit_by_name::<()>("code-detected", &[&data]);
     }
 
     fn set_tags(&self) {
@@ -994,15 +994,15 @@ impl Viewfinder {
     }
 }
 
-fn create_zbar_bin() -> Result<gst::Element, glib::BoolError> {
+fn create_qrcode_bin() -> Result<gst::Element, glib::BoolError> {
     let bin = gst::Bin::new();
 
     let videoconvert = gst::ElementFactory::make("videoconvert").build()?;
-    let zbar = gst::ElementFactory::make("zbar").build()?;
+    let qrcode = QrCodeDetector::new().upcast::<gst::Element>();
     let fakesink = gst::ElementFactory::make("fakesink").build()?;
 
-    bin.add_many([&videoconvert, &zbar, &fakesink]).unwrap();
-    gst::Element::link_many([&videoconvert, &zbar, &fakesink]).unwrap();
+    bin.add_many([&videoconvert, &qrcode, &fakesink]).unwrap();
+    gst::Element::link_many([&videoconvert, &qrcode, &fakesink]).unwrap();
 
     let pad = videoconvert.static_pad("sink").unwrap();
     let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
