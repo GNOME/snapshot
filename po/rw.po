@@ -1,0 +1,402 @@
+# Kinyarwanda translation for snapshot.
+# Copyright (C) 2024 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Angelo Verlain <hey@vixalien.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2024-03-31 10:20+0000\n"
+"PO-Revision-Date: 2024-04-03 14:15+0200\n"
+"Last-Translator: Angelo Verlain <hey@vixalien.com>\n"
+"Language-Team: Kinyarwanda\n"
+"Language: rw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Lang: rw\n"
+"X-DL-Module: snapshot\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: None\n"
+"Plural-Forms: \n"
+"X-Generator: Gtranslator 46.0\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Fata amafoto n'amavidewo"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "ishusho;amafoto;kamera;webcam;snapshot;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "Ubugari mburabuzi bw'idirishya"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "Uburebure mburabuzi bw'idirishya"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "Imyitwarire mburabuzi y'igihe idirishya ryaguwe"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "Gukina ijwi ryo gufata ifoto"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Niba havuga ijwi igihe ufashe ifoto"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Kwerekana imirongo ngenderwaho"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Niba herekanwa imirongo ngenderwaho ifasha gufata amafoto aringaniye"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Countdown timer"
+msgstr "Ingengabihe yo gufata ifoto hashize igihe"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Igihe gishira kugirango hafatwe ifoto, mu masegonda"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Capture mode"
+msgstr "Uburyo bwo gufata amashusho"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to take pictures or videos"
+msgstr "Gufata amafoto cyangwa amavidewo"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Picture format"
+msgstr "Imiterere y'ifoto"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Niba amafoto abikwa nka png cyangwa jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr "Imiterere ya videwo"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Niba amavidewo abikwa nka mp4 cyangwa webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "Umubare uranga kamera yakoreshejwe byanyuma"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Umubare uhagararira kamera yakoreshejwe byanyuma"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Gufata amafoto n'amavidewo kuri murandasi, tablet, cyangwa telefone."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Imigaragarire nyamukuru ya Kamera"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Mwerekanamashusho ya Kamera"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:162 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "Umushinga wa GNOME"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
+msgid "Main Menu"
+msgstr "Ibikubiyemo"
+
+#: data/resources/ui/camera.ui:107
+msgid "No Camera Found"
+msgstr "Nta Kamera Yabonetse"
+
+#: data/resources/ui/camera.ui:108
+msgid "Connect a camera device"
+msgstr "Comeka kamera"
+
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+msgid "Picture Mode"
+msgstr "Gufata amafoto"
+
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+msgid "Recording Mode"
+msgstr "Gufata amashusho"
+
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:607
+msgid "Countdown"
+msgstr "Kubara usubira inyuma"
+
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "Nta ruhushya rwo kwerekana za kamera"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "Emera gukoresha kamera mu Igenamiterere"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:610
+msgid "None"
+msgstr "Ntabyo"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:615
+msgid "3s"
+msgstr "s3"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:620
+msgid "5s"
+msgstr "s5"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:625
+msgid "10s"
+msgstr "s10"
+
+#: data/resources/ui/camera.ui:633
+msgid "_Preferences"
+msgstr "I_byifuzo"
+
+#: data/resources/ui/camera.ui:637
+msgid "_Keyboard Shortcuts"
+msgstr "Ama_hinanzira ya mwandikisho"
+
+#: data/resources/ui/camera.ui:641
+msgid "_About Camera"
+msgstr "_Ibyerekeye Kamera"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Gufungura Mwerekanamashusho"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Gufata Ifoto"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Guhitamo Kamera"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Guhindura Kamera"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Ibikubiyemo bya Mwerekanamashusho"
+
+#: data/resources/ui/gallery.ui:94
+msgid "Previous Image"
+msgstr "Ifoto yabanjirije"
+
+#: data/resources/ui/gallery.ui:107
+msgid "Next Image"
+msgstr "Ifoto ikurikira"
+
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr "Gufungura muri Mwerekanamashusho"
+
+#: data/resources/ui/preferences_window.ui:7
+msgid "General"
+msgstr "Rusange"
+
+#: data/resources/ui/preferences_window.ui:13
+msgid "_Shutter Sound"
+msgstr "I_jwi ryo Gufata Ifoto"
+
+#: data/resources/ui/preferences_window.ui:20
+msgid "_Composition Guidelines"
+msgstr "Imiron_go ngenderwaho"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Rusange"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Kwerekana Amahinanzira"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Ibikubiyemo"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Guhindura Ibyifuzo"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Gusohoka"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Gufata amafoto"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Gufata amashusho"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Gufata Ifoto cyangwa Gutangira gufata amashusho"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Kwerekana/Guhisha imirongo ngenderwaho"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Mwerekanamashusho"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Gufungura/Gufunga Mwerekanamashusho"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Ibikurikira"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Ibibanziriza"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Mwerekanamashusho"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "Ifoto yo ku wa {data}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "Ifoto nimero {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "Amashusho yo ku wa {data}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "Amashusho nimero {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "Guko_piya Ifoto"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "Guko_piya videwo"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "Gu_siba"
+
+#: src/widgets/camera.rs:470
+msgid "Could not play camera stream"
+msgstr "Kwerekana amashusho ya kamera byanze"
+
+#: src/widgets/gallery.rs:117
+msgid "Open in Video Player"
+msgstr "Gufungura muri Nyiramukinamashusho"
+
+#: src/widgets/gallery.rs:385
+msgid "Copied to clipboard"
+msgstr "Byashyizwe mu bubiko"
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "Ifoto yasibwe"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "Videwo yasibwe"
+
+#: src/widgets/shutter_button.rs:81
+msgid "Start Recording"
+msgstr "Gutangira Gufata Amashusho"
+
+#: src/widgets/shutter_button.rs:92
+msgid "Stop Recording"
+msgstr "Guhagarika Gufata Amashusho"
+
+#: src/widgets/window.rs:74 src/widgets/window.rs:323
+msgid "Could not take picture"
+msgstr "Gufata ifoto byanze"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:327
+msgid "Could not record video"
+msgstr "Gufata videwo byanze"
+
+#: src/widgets/window.rs:282
+msgid "translator-credits"
+msgstr "Angelo Verlain"
