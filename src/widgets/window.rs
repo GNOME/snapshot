@@ -184,7 +184,7 @@ mod imp {
                 // HACK we add a small timeout to give the shell time to get the
                 // windows focus, otherwise the Shell won't ask for camera
                 // permission.
-                glib::timeout_future(std::time::Duration::from_millis(50)).await;
+                glib::timeout_future(std::time::Duration::from_millis(250)).await;
                 camera.start().await;
             }));
         }
