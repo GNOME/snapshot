@@ -181,10 +181,6 @@ mod imp {
             self.parent_map();
             let camera = self.camera.get();
             glib::spawn_future_local(glib::clone!(@weak camera => async move {
-                // HACK we add a small timeout to give the shell time to get the
-                // windows focus, otherwise the Shell won't ask for camera
-                // permission.
-                glib::timeout_future(std::time::Duration::from_millis(250)).await;
                 camera.start().await;
             }));
         }
