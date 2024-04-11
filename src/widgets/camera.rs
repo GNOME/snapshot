@@ -526,6 +526,8 @@ impl Camera {
 async fn stream() -> ashpd::Result<OwnedFd> {
     let proxy = camera::Camera::new().await?;
     proxy.request_access().await?;
+    let is_present = proxy.is_present().await?;
+    log::debug!("org.freedesktop.portal.Camera:IsCameraPresent: {is_present}");
 
     proxy.open_pipe_wire_remote().await
 }
