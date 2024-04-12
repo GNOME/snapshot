@@ -54,7 +54,8 @@
             "buildsystem": "meson",
             "run-tests": true,
             "config-opts": [
-                "-Dprofile=development"
+                "-Dprofile=development",
+                "-Dportal=true"
             ],
             "sources": [
                 {

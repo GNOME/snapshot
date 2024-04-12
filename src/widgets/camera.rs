@@ -5,6 +5,11 @@ use gettextrs::gettext;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
 
+#[cfg(feature = "portal")]
+use ashpd::desktop::camera;
+#[cfg(feature = "portal")]
+use std::os::unix::io::OwnedFd;
+
 use super::CameraControls;
 use crate::{config, utils};
 
@@ -210,6 +215,25 @@ impl Camera {
 
         glib::spawn_future_local(
             glib::clone!(@weak self as obj, @strong provider => async move {
+
+                #[cfg(feature = "portal")]
+                match stream().await {
+                    Ok(fd) => {
+                        if let Err(err) = provider.set_fd(fd) {
+                            log::error!("Could not use the camera portal: {err}");
+                        };
+                    }
+                    Err(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(err))) => {
+                        // We don't start the device provider if we are not
+                        // allowed to use cameras.
+                        log::warn!("Permission to use the camera portal denied: {err}");
+                        obj.imp().permission_denied.set(true);
+                        obj.update_state();
+                        return;
+                    },
+                    Err(err) => log::warn!("Could not use the camera portal: {err}"),
+                }
+
                 if let Err(err) = provider.start_with_default(glib::clone!(@weak obj => @default-return false, move |camera| {
                     let stored_id = obj.imp().settings().string("last-camera-id");
                     !stored_id.is_empty() && id_from_pw(camera) == stored_id
@@ -502,6 +526,16 @@ impl Camera {
             imp.recording_revealer.set_reveal_child(false);
         }
     }
+}
+
+#[cfg(feature = "portal")]
+async fn stream() -> ashpd::Result<OwnedFd> {
+    let proxy = camera::Camera::new().await?;
+    proxy.request_access().await?;
+    let is_present = proxy.is_present().await?;
+    log::debug!("org.freedesktop.portal.Camera:IsCameraPresent: {is_present}");
+
+    proxy.open_pipe_wire_remote().await
 }
 
 // Id used to identify the last-used camera.

@@ -8,3 +8,10 @@ option(
   value: 'default',
   description: 'The build profile for Snapshot. One of "default" or "development".'
 )
+
+option(
+  'portal',
+  type: 'boolean',
+  value: false,
+  description: 'Enables the usage of the XDG Camera Portal. By default this is Disabled. This is subject to change in a future major release'
+)
