@@ -190,6 +190,7 @@ mod imp {
             let obj = self.obj();
 
             let camerabin = gst::ElementFactory::make("camerabin")
+                .property("location", None::<&str>)
                 .build()
                 .expect("Missing GStreamer Bad Plug-ins");
             self.camerabin.set(camerabin.clone()).unwrap();
