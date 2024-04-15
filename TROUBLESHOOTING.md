@@ -42,3 +42,14 @@ gst-device-monitor-1.0 Video/Source
 for non-Flatpak installations.
 
 In the later case, make sure to have the Gstreamer Pipewire plugin installed.
+
+## Logs
+In case the issue persists you can get debug output for the application by
+running:
+
+```
+RUST_LOG=snapshot=debug,aperture=debug flatpak run org.gnome.Snapshot
+```
+
+If you file an issue make sure to include the version info from the
+"Troubleshooting" panel in the application's About dialog.
