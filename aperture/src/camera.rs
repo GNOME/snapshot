@@ -140,26 +140,27 @@ impl Camera {
         glib::Object::builder().property("device", device).build()
     }
 
-    pub(crate) fn source_element(
-        &self,
-        previous: Option<&gst::Element>,
-    ) -> Result<Option<(gst::Element, gst::Element)>, glib::BoolError> {
-        let device = self.device();
-        let Some(previous) = previous else {
-            return create_element(&device);
-        };
-        match device.reconfigure_element(previous) {
-            Ok(_) => Ok(None),
-            Err(_) => create_element(&device),
-        }
+    pub(crate) fn reconfigure(&self, element: &gst::Element) -> Result<(), glib::BoolError> {
+        self.device().reconfigure_element(element)
     }
-}
 
-fn caps(device: &gst::Device) -> gst::Caps {
-    let device_caps = device
-        .caps()
-        .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
-    utils::caps::limit_fps(&device_caps)
+    pub(crate) fn create_element(&self) -> Result<gst::Element, glib::BoolError> {
+        let element = self.device().create_element(None)?;
+        element.set_property("client-name", crate::APP_ID.get().unwrap());
+        Ok(element)
+    }
+
+    pub(crate) fn best_caps(&self) -> gst::Caps {
+        let caps = self
+            .caps()
+            .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
+        let limited_caps = utils::caps::limit_fps(&caps);
+        log::debug!("Found caps: {limited_caps}");
+        let highest_res_caps = filter_caps(&limited_caps);
+        log::debug!("Using caps: {highest_res_caps}");
+
+        highest_res_caps
+    }
 }
 
 // For each resolution and format we only keep the highest resolution.
@@ -197,51 +198,4 @@ fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fracti
     } else {
         None
     }
-}
-
-fn create_element(
-    device: &gst::Device,
-) -> Result<Option<(gst::Element, gst::Element)>, glib::BoolError> {
-    use gst::prelude::*;
-
-    let bin = gst::Bin::new();
-
-    let device_src = device.create_element(None)?;
-    device_src.set_property("client-name", crate::APP_ID.get().unwrap());
-
-    let caps = caps(device);
-    log::debug!("Found caps: {caps}");
-    let highest_res_caps = filter_caps(&caps);
-    log::debug!("Using caps: {highest_res_caps}");
-    let capsfilter = gst::ElementFactory::make("capsfilter")
-        .property("caps", &highest_res_caps)
-        .build()?;
-    let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
-
-    let videoflip = gst::ElementFactory::make("videoflip")
-        .property_from_str("video-direction", "auto")
-        .build()?;
-
-    bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])?;
-    gst::Element::link_many([&device_src, &capsfilter, &decodebin3])?;
-
-    decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
-        if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-            pad.link(&videoflip.static_pad("sink").unwrap())
-               .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
-        }
-    }));
-
-    let pad = videoflip.static_pad("src").unwrap();
-    let ghost_pad = gst::GhostPad::with_target(&pad)?;
-    ghost_pad.set_active(true)?;
-
-    bin.add_pad(&ghost_pad)?;
-
-    let wrapper = gst::ElementFactory::make("wrappercamerabinsrc")
-        .property("video-source", &bin)
-        .build()
-        .expect("Missing GStreamer Bad Plug-ins");
-
-    Ok(Some((wrapper, device_src)))
 }
