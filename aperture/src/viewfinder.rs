@@ -36,6 +36,8 @@ mod imp {
         pub devices: OnceCell<crate::DeviceProvider>,
         pub camera_src: RefCell<Option<gst::Element>>,
         pub camerabin: OnceCell<gst::Element>,
+        pub camera_element: OnceCell<gst::Element>,
+        pub capsfilter: OnceCell<gst::Element>,
         pub sink_paintable: OnceCell<gst::Element>,
         pub tee: OnceCell<crate::PipelineTee>,
         pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
@@ -138,27 +140,10 @@ mod imp {
             }
 
             if let Some(camera) = camera {
-                // `camera_src` might be `None`, which means the element was
-                // reconfigured and we should keep using it
-
-                // TODO This is incredibly not idiomatic.
-                let guard = self.camera_src.borrow();
-                match camera.source_element(guard.as_ref()) {
-                    Ok(Some((bin, camera_src))) => {
-                        drop(guard);
-                        self.camerabin().set_property("camera-source", &bin);
-                        self.camera_src.replace(Some(camera_src));
-                    }
-                    Ok(None) => (),
-                    Err(err) => {
-                        log::error!("Could not get source element: {err}");
-                        self.set_state(ViewfinderState::Error);
-                        return;
-                    }
+                if let Err(err) = obj.setup_camera_element(&camera) {
+                    log::error!("Could not reconfigure camera element: {err}");
+                    self.set_state(ViewfinderState::Error);
                 }
-
-                let is_front_camera = matches!(camera.location(), crate::CameraLocation::Front);
-                self.is_front_camera.set(is_front_camera);
             }
 
             if obj.is_realized() && matches!(obj.state(), ViewfinderState::Ready) {
@@ -797,6 +782,72 @@ impl Viewfinder {
                 }
             }),
         );
+    }
+
+    fn create_camera_element(
+        &self,
+        device_src: &gst::Element,
+    ) -> Result<gst::Element, glib::BoolError> {
+        use gst::prelude::*;
+
+        let bin = gst::Bin::new();
+
+        let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
+        let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
+
+        let videoflip = gst::ElementFactory::make("videoflip")
+            .property_from_str("video-direction", "auto")
+            .build()?;
+
+        bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])?;
+        gst::Element::link_many([&device_src, &capsfilter, &decodebin3])?;
+
+        self.imp().capsfilter.set(capsfilter).unwrap();
+
+        decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
+            if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
+                pad.link(&videoflip.static_pad("sink").unwrap())
+                   .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
+            }
+        }));
+
+        let pad = videoflip.static_pad("src").unwrap();
+        let ghost_pad = gst::GhostPad::with_target(&pad)?;
+        ghost_pad.set_active(true)?;
+
+        bin.add_pad(&ghost_pad)?;
+
+        let wrappercamerabinsrc = gst::ElementFactory::make("wrappercamerabinsrc")
+            .property("video-source", &bin)
+            .build()
+            .expect("Missing GStreamer Bad Plug-ins");
+
+        Ok(wrappercamerabinsrc)
+    }
+
+    fn setup_camera_element(&self, camera: &crate::Camera) -> Result<(), glib::BoolError> {
+        let imp = self.imp();
+
+        if let Some(element) = imp.camera_element.get() {
+            camera.reconfigure(&element)?;
+        } else {
+            let element = camera.create_element()?;
+
+            let wrapper = self.create_camera_element(&element)?;
+            imp.camerabin().set_property("camera-source", &wrapper);
+
+            imp.camera_element.set(element).unwrap();
+        }
+
+        if let Some(capsfilter) = imp.capsfilter.get() {
+            let caps = camera.best_caps();
+            capsfilter.set_property("caps", &caps);
+        }
+
+        let is_front_camera = matches!(camera.location(), crate::CameraLocation::Front);
+        imp.is_front_camera.set(is_front_camera);
+
+        Ok(())
     }
 }
 
