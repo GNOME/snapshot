@@ -35,6 +35,7 @@ mod imp {
 
         pub settings: gio::Settings,
         pub countdown_timer_id: RefCell<Option<glib::SourceId>>,
+        pub is_active_handle: RefCell<Option<glib::SignalHandlerId>>,
 
         pub recording_active: Cell<bool>,
     }
@@ -51,6 +52,7 @@ mod imp {
 
                 settings: gio::Settings::new(APP_ID),
                 countdown_timer_id: Default::default(),
+                is_active_handle: Default::default(),
 
                 recording_active: Default::default(),
             }
@@ -173,19 +175,24 @@ mod imp {
                     let enabled = navigation_view.visible_page().is_some_and(|page| page == *imp.camera_page);
                     obj.set_shutter_enabled(enabled);
                 }));
+
+            // We start the camera only after the window is active.
+            let is_active_handle = obj.connect_is_active_notify(|obj| {
+                if !obj.is_active() {
+                    return;
+                }
+                if let Some(handle) = obj.imp().is_active_handle.take() {
+                    obj.disconnect(handle);
+                }
+                glib::spawn_future_local(glib::clone!(@weak obj => async move {
+                    obj.imp().camera.start().await;
+                }));
+            });
+            self.is_active_handle.replace(Some(is_active_handle));
         }
     }
 
-    impl WidgetImpl for Window {
-        fn map(&self) {
-            self.parent_map();
-            let camera = self.camera.get();
-            glib::spawn_future_local(glib::clone!(@weak camera => async move {
-                camera.start().await;
-            }));
-        }
-    }
-
+    impl WidgetImpl for Window {}
     impl WindowImpl for Window {
         // Save window state on delete event
         fn close_request(&self) -> glib::Propagation {
