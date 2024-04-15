@@ -11,6 +11,16 @@
 
 ![screenshot](data/screenshots/screenshot1.png)
 
+## Requirements
+
+Snapshot requires:
+
+- PipeWire
+- WirePlumber
+- gstreamer-pipewire plugin
+- Optional: libcamera
+- Optional: gstreamer-libcamera plugin (if using libcamera)
+
 ## Getting in touch
 
 If you have any questions regarding the use or development of Snapshot, please join us on our [#snapshot:gnome.org](https://matrix.to/#/#snapshot:gnome.org) channel.
