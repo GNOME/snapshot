@@ -13,6 +13,14 @@ use crate::ViewfinderState;
 const BARCODE_TIMEOUT: u32 = 1;
 const PROVIDER_TIMEOUT: u64 = 2;
 
+#[derive(Debug)]
+enum StateChangeState {
+    Equal,
+    Differ,
+    Error,
+    NotDone,
+}
+
 mod imp {
     use std::cell::Cell;
     use std::cell::OnceCell;
@@ -595,13 +603,70 @@ impl Viewfinder {
 
     /// Starts the viewfinder.
     pub fn start_stream(&self) {
-        // TODO Present a toast, banner, or message dialog with the error.
-        match self.imp().camerabin().set_state(gst::State::Playing) {
+        glib::spawn_future_local(glib::clone!(@weak self as obj => async move {
+            obj.change_state_inner(gst::State::Playing).await;
+        }));
+    }
+
+    // It is not needed to call this for gst::State::Null.
+    async fn change_state_inner(&self, state: gst::State) {
+        let (sender, receiver) = futures_channel::oneshot::channel();
+
+        let camerabin = self.imp().camerabin();
+        std::thread::spawn(glib::clone!(@weak camerabin => move || {
+            let timeout = gst::format::ClockTime::from_seconds(2);
+            let (res, current_state, pending_state) = camerabin.state(Some(timeout));
+            let new_state_is = match res {
+                Ok(change_done) => {
+                    if change_done == gst::StateChangeSuccess::Async {
+                        camerabin.set_locked_state(true);
+                        log::debug!("Camerabin could not change its state from {current_state:?} to {pending_state:?}");
+                        StateChangeState::NotDone
+                    } else {
+                        if current_state == state {
+                            StateChangeState::Equal
+                        } else {
+                            StateChangeState::Differ
+                        }
+                    }
+                }
+                Err(err) => {
+                    log::error!("Previous camerabin state changed failed: {err}");
+                    StateChangeState::Error
+                }
+            };
+            sender.send(new_state_is).unwrap();
+        }))
+            .join()
+            .unwrap();
+
+        let change_state = receiver.await.unwrap();
+        match change_state {
+            StateChangeState::Equal => {
+                // Nothing to do, the new state matches the current one.
+            }
+            StateChangeState::NotDone => {
+                log::debug!("Aborting camerabin state change {state:?}");
+                camerabin.abort_state();
+                camerabin.set_locked_state(false);
+                self.set_camerabin_state(state);
+            }
+            // If the previous state change failed, we might as well try to set it now.
+            StateChangeState::Error => self.set_camerabin_state(state),
+            StateChangeState::Differ => self.set_camerabin_state(state),
+        }
+    }
+
+    fn set_camerabin_state(&self, state: gst::State) {
+        match self.imp().camerabin().set_state(state) {
             Err(err) => {
                 log::error!("Could not start camerabin: {err}");
                 self.imp().set_state(ViewfinderState::Error);
             }
-            Ok(state) => log::debug!("Camerabin state succesfully set to PLAYING: {state:?}"),
+            Ok(gst::StateChangeSuccess::Async) => {
+                log::debug!("Trying to set camerabin state to {state:?}")
+            }
+            Ok(_) => log::debug!("Camerabin succesfully state set to {state:?}"),
         }
     }
 
