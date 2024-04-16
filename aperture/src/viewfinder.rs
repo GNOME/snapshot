@@ -244,6 +244,16 @@ mod imp {
             tee.add_branch(&sink);
             camerabin.set_property("viewfinder-sink", &tee);
 
+            let videoconvert_video = gst::ElementFactory::make("videoconvert")
+                .build()
+                .expect("Missing GStreamer Good Plug-ins");
+            camerabin.set_property("video-filter", &videoconvert_video);
+
+            let videoconvert_image = gst::ElementFactory::make("videoconvert")
+                .build()
+                .expect("Missing GStreamer Good Plug-ins");
+            camerabin.set_property("image-filter", &videoconvert_image);
+
             self.sink_paintable.set(paintablesink).unwrap();
 
             self.picture
@@ -892,31 +902,20 @@ impl Viewfinder {
 
         let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
         let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
-        let videoconvert = gst::ElementFactory::make("videoconvert").build()?;
+        let identity = gst::ElementFactory::make("identity").build()?;
 
-        let videoflip = gst::ElementFactory::make("videoflip")
-            .property_from_str("video-direction", "auto")
-            .build()?;
-
-        bin.add_many([
-            device_src,
-            &capsfilter,
-            &decodebin3,
-            &videoconvert,
-            &videoflip,
-        ])?;
+        bin.add_many([device_src, &capsfilter, &decodebin3, &identity])?;
         gst::Element::link_many([device_src, &capsfilter, &decodebin3])?;
-        videoconvert.link(&videoflip)?;
 
         self.imp().capsfilter.set(capsfilter).unwrap();
 
         let (sender, receiver) = futures_channel::oneshot::channel::<bool>();
         let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
-        decodebin3.connect_pad_added(glib::clone!(#[weak] videoconvert, move |_, pad| {
+        decodebin3.connect_pad_added(glib::clone!(#[weak] identity, move |_, pad| {
             if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-                let has_succeeded = pad.link(&videoconvert.static_pad("sink").unwrap())
+                let has_succeeded = pad.link(&identity.static_pad("sink").unwrap())
                                        .inspect_err(|err| {
-                                           log::error!("Failed to link decodebin3:video_%u pad with videoflip:sink pad: {err}");
+                                           log::error!("Failed to link decodebin3:video_%u pad with identity:sink pad: {err}");
                                        })
                                        .is_ok();
                 let mut guard = sender.lock().unwrap();
@@ -937,7 +936,7 @@ impl Viewfinder {
             }
         ));
 
-        let pad = videoflip.static_pad("src").unwrap();
+        let pad = identity.static_pad("src").unwrap();
         let ghost_pad = gst::GhostPad::with_target(&pad)?;
         ghost_pad.set_active(true)?;
 
