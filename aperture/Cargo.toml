@@ -18,6 +18,7 @@ x11egl = ["gst-plugin-gtk4/x11egl"]
 x11glx = ["gst-plugin-gtk4/x11glx"]
 
 [dependencies]
+futures-channel = "0.3.26"
 gst = { package = "gstreamer", version = "0.22", features = ["v1_20"] }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.22" }
 gst-plugin-gtk4 = { version = "0.12", default-features = false, features = ["gtk_v4_14"] }
