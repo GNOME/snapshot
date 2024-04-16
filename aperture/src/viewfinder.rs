@@ -844,7 +844,7 @@ impl Viewfinder {
             capsfilter.set_property("caps", &caps);
         }
 
-        let is_front_camera = matches!(camera.location(), crate::CameraLocation::Front);
+        let is_front_camera = !matches!(camera.location(), crate::CameraLocation::Back);
         imp.is_front_camera.set(is_front_camera);
 
         Ok(())
