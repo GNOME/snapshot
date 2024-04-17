@@ -50,6 +50,24 @@
     ],
     "modules": [
         {
+            "name": "glycin",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dlibglycin=false",
+                "-Dintrospection=false",
+                "-Dvapi=false",
+                "-Dtests=false",
+                "-Dloaders=glycin-image-rs"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/sophie-h/glycin.git",
+                    "branch": "main"
+                }
+            ]
+        },
+        {
             "name": "snapshot",
             "buildsystem": "meson",
             "run-tests": true,

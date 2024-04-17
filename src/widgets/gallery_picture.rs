@@ -51,16 +51,10 @@ impl GalleryPicture {
         self.set_started_loading(true);
 
         let file = self.file();
-        let (sender, receiver) = futures_channel::oneshot::channel();
-
-        let _ = std::thread::Builder::new()
-            .name("Load Texture".to_string())
-            .spawn(move || {
-                let result = gdk::Texture::from_file(&file);
-                let _ = sender.send(result);
-            });
-
-        let texture = receiver.await.unwrap()?;
+        let mut loader = glycin::Loader::new(file);
+        loader.sandbox_mechanism(Some(glycin::SandboxMechanism::NotSandboxed));
+        let image = loader.load().await?;
+        let texture = image.next_frame().await?.texture();
 
         let picture = imp.picture.get_or_init(gtk::Picture::default);
 
