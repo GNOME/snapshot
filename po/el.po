@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-01-01 19:44+0200\n"
+"POT-Creation-Date: 2024-03-02 18:51+0000\n"
+"PO-Revision-Date: 2024-04-29 02:31+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
 msgid "Camera"
 msgstr "Κάμερα"
 
@@ -98,6 +98,14 @@ msgstr "Μορφή βίντεο"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Εάν θα αποθηκεύονται τα βίντεο ως mp4 ή webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "ID της τελευταίας κάμερας που χρησιμοποιήθηκε"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "Ένα ID που αντιπροσωπεύει την τελευταία κάμερα που χρησιμοποιήθηκε"
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
@@ -111,7 +119,8 @@ msgstr "Η κύρια διεπαφή της κάμερας"
 msgid "Camera's gallery viewer"
 msgstr "Προβολή συλλογής κάμερας"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
@@ -328,19 +337,19 @@ msgstr "Εγγραφή από {date}"
 msgid "Recording {number}"
 msgstr "Εγγραφή {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Αντιγραφή φωτογραφίας"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Αντιγραφή βίντεο"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Δεν ήταν δυνατή η αναπαραγωγή της ροής της κάμερας"
 
@@ -348,15 +357,15 @@ msgstr "Δεν ήταν δυνατή η αναπαραγωγή της ροής �
 msgid "Open in Video Player"
 msgstr "Άνοιγμα σε πρόγραμμα αναπαραγωγής βίντεο"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Αντιγράφηκε στο πρόχειρο"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Η εικόνα διαγράφηκε"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Το βίντεο διαγράφηκε"
 
@@ -368,15 +377,15 @@ msgstr "Έναρξη εγγραφής"
 msgid "Stop Recording"
 msgstr "Διακοπή εγγραφής"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:315
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Δεν ήταν δυνατή η λήψη φωτογραφίας"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:319
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Δεν ήταν δυνατή η εγγραφή βίντεο"
 
-#: src/widgets/window.rs:271
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
