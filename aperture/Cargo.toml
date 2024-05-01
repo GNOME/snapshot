@@ -21,7 +21,7 @@ x11glx = ["gst-plugin-gtk4/x11glx"]
 futures-channel = "0.3.26"
 gst = { package = "gstreamer", version = "0.22", features = ["v1_20"] }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.22" }
-gst-plugin-gtk4 = { version = "0.12", default-features = false, features = ["gtk_v4_14"] }
+gst-plugin-gtk4 = { version = "0.12.5", default-features = false, features = ["gtk_v4_14"] }
 gst-video = { package = "gstreamer-video", version = "0.22" }
 gtk = { package = "gtk4", version = "0.8", features = ["gnome_45"] }
 log = "0.4.17"

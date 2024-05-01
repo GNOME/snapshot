@@ -240,7 +240,6 @@ mod imp {
                 .set_accessible_role(gtk::AccessibleRole::Presentation);
             self.picture.set_hexpand(true);
             self.picture.set_vexpand(true);
-            self.picture.set_content_fit(gtk::ContentFit::Fill);
             self.picture.set_parent(&*obj);
             self.picture.set_paintable(Some(&paintable));
 
@@ -333,6 +332,11 @@ mod imp {
 
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
             let w = self.obj().width() as f32;
+            let h = self.obj().height() as f32;
+
+            // Make the background black
+            let rect = graphene::Rect::new(0.0, 0.0, w, h);
+            snapshot.append_color(&gdk::RGBA::BLACK, &rect);
 
             // This is the composition of translate (-w / 2.0, 0.0), map x to
             // -x, and translate (w / 2.0 , 0.0). Note that gsk matrices are
