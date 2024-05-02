@@ -596,11 +596,12 @@ impl Viewfinder {
     /// Starts the viewfinder.
     pub fn start_stream(&self) {
         // TODO Present a toast, banner, or message dialog with the error.
-        if let Err(err) = self.imp().camerabin().set_state(gst::State::Playing) {
-            log::error!("Could not start camerabin: {err}");
-            self.imp().set_state(ViewfinderState::Error);
-        } else {
-            log::debug!("Camerabin state succesfully set to PLAYING");
+        match self.imp().camerabin().set_state(gst::State::Playing) {
+            Err(err) => {
+                log::error!("Could not start camerabin: {err}");
+                self.imp().set_state(ViewfinderState::Error);
+            }
+            Ok(state) => log::debug!("Camerabin state succesfully set to PLAYING: {state:?}"),
         }
     }
 
