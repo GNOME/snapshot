@@ -1862,14 +1862,12 @@ dependencies = [
  "ashpd",
  "futures-channel",
  "gettext-rs",
- "gst-plugin-gtk4",
  "gstreamer",
  "gtk4",
  "libadwaita",
  "log",
  "once_cell",
  "tracing-subscriber",
- "zbus",
 ]
 
 [[package]]
