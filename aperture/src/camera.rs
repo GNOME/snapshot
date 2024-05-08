@@ -155,9 +155,9 @@ impl Camera {
             .caps()
             .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
         let limited_caps = utils::caps::limit_fps(&caps);
-        log::debug!("Found caps: {limited_caps}");
+        log::debug!("Found caps: {limited_caps:#?}");
         let highest_res_caps = filter_caps(&limited_caps);
-        log::debug!("Using caps: {highest_res_caps}");
+        log::debug!("Using caps: {highest_res_caps:#?}");
 
         highest_res_caps
     }
