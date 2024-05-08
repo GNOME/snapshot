@@ -213,10 +213,11 @@ impl DeviceProvider {
         let n_items = cameras.len() as u32;
         cameras.iter().for_each(|camera| {
             log::debug!(
-                "Camera found: {}, target-object: {:?}\nProperties {:#?}",
+                "Camera found: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}",
                 camera.display_name(),
                 camera.target_object(),
                 camera.properties(),
+                camera.caps(),
             );
         });
         self.imp().cameras.replace(cameras);
@@ -355,10 +356,11 @@ impl DeviceProvider {
                                     return;
                                 }
                                 log::debug!(
-                                    "Camera added: {}, target-object: {:?}\nProperties {:#?}",
+                                    "Camera added: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}",
                                     device.display_name(),
                                     device.target_object(),
                                     device.properties(),
+                                    device.caps(),
                                 );
                                 imp.append(device);
                             }
