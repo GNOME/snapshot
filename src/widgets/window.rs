@@ -38,6 +38,7 @@ mod imp {
         pub is_active_handle: RefCell<Option<glib::SignalHandlerId>>,
 
         pub recording_active: Cell<bool>,
+        pub inhibit_cookie: Cell<Option<u32>>,
     }
 
     impl Default for Window {
@@ -55,6 +56,7 @@ mod imp {
                 is_active_handle: Default::default(),
 
                 recording_active: Default::default(),
+                inhibit_cookie: Default::default(),
             }
         }
     }
@@ -430,5 +432,32 @@ impl Window {
 
     pub fn set_shutter_enabled(&self, enabled: bool) {
         self.action_set_enabled("win.take-picture", enabled);
+    }
+
+    pub fn inhibit(&self, reason: &str) {
+        let imp = self.imp();
+        let Some(app) = self.application() else {
+            return;
+        };
+
+        // We make sure the app is not doubly inhibited.
+        self.uninhibit();
+
+        let cookie = app.inhibit(Some(self), gtk::ApplicationInhibitFlags::IDLE, Some(reason));
+        if cookie > 0 {
+            log::debug!("Inhibiting app with reason '{reason}' and cookie: {cookie}");
+            imp.inhibit_cookie.set(Some(cookie));
+        }
+    }
+
+    pub fn uninhibit(&self) {
+        let imp = self.imp();
+        let Some(app) = self.application() else {
+            return;
+        };
+        if let Some(cookie) = imp.inhibit_cookie.take() {
+            log::debug!("Uninhibiting app with cookie: {cookie}");
+            app.uninhibit(cookie);
+        }
     }
 }

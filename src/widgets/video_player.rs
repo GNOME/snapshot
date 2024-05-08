@@ -50,6 +50,17 @@ mod imp {
                 }),
             );
             self.signal_handler.replace(Some(id));
+
+            self.media_file.connect_playing_notify(
+                glib::clone!(@weak widget => move |media_file| {
+                    let window = widget.root().and_downcast::<crate::Window>().unwrap();
+                    if media_file.is_playing() {
+                        window.inhibit("Playing Video");
+                    } else {
+                        window.uninhibit();
+                    }
+                }),
+            );
         }
     }
     impl WidgetImpl for VideoPlayer {}

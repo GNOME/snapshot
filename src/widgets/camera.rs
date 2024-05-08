@@ -254,6 +254,9 @@ impl Camera {
         self.imp().viewfinder.start_recording(path)?;
         self.show_recording_label();
 
+        let window = self.root().and_downcast::<crate::Window>().unwrap();
+        window.inhibit("Recording Video");
+
         Ok(())
     }
 
@@ -266,6 +269,9 @@ impl Camera {
                 log::error!("Could not stop camera: {err}");
             }
             self.hide_recording_label();
+
+            let window = self.root().and_downcast::<crate::Window>().unwrap();
+            window.uninhibit();
         }
     }
 
