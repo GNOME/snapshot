@@ -154,7 +154,7 @@ impl Camera {
         let caps = self
             .caps()
             .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
-        let highest_res_caps = filter_caps(&caps);
+        let highest_res_caps = filter_caps(caps);
         log::debug!("Using caps: {highest_res_caps:#?}");
 
         highest_res_caps
@@ -162,16 +162,16 @@ impl Camera {
 }
 
 // For each resolution and format we only keep the highest resolution.
-fn filter_caps(caps: &gst::Caps) -> gst::Caps {
+fn filter_caps(caps: gst::Caps) -> gst::Caps {
     let mut best_caps = gst::Caps::new_empty();
     caps.iter().for_each(|s| {
         if let Some(framerate) = framerate_from_structure(s) {
-            let best = utils::caps::best_resolution_for_fps(caps, framerate);
+            let best = utils::caps::best_resolution_for_fps(&caps, framerate);
             best_caps.merge(best);
         }
     });
 
-    best_caps.merge(caps.clone());
+    best_caps.merge(caps);
     best_caps
 }
 
