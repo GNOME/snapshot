@@ -73,6 +73,14 @@ mod imp {
                 CaptureMode::Video => obj.set_shutter_mode(crate::ShutterMode::Video),
                 CaptureMode::Picture => obj.set_shutter_mode(crate::ShutterMode::Picture),
             }
+
+            obj.set_shutter_enabled(false);
+        }
+
+        #[template_callback]
+        fn on_camera_page_showing(&self) {
+            self.camera.start_stream();
+            self.obj().set_shutter_enabled(true);
         }
     }
 
@@ -158,14 +166,6 @@ mod imp {
                     }
                 }));
 
-            self.camera_page
-                .connect_hiding(glib::clone!(@weak obj => move |_| {
-                    obj.imp().camera.stop_stream();
-                }));
-            self.camera_page
-                .connect_showing(glib::clone!(@weak obj => move |_| {
-                    obj.imp().camera.start_stream();
-                }));
             // Load latest window state
             obj.load_window_size();
             obj.setup_gactions();
@@ -177,13 +177,6 @@ mod imp {
             self.camera.set_countdown(duration as u32);
 
             self.camera.set_gallery(self.gallery.get());
-
-            self.navigation_view
-                .connect_visible_page_notify(glib::clone!(@weak obj => move |navigation_view| {
-                    let imp = obj.imp();
-                    let enabled = navigation_view.visible_page().is_some_and(|page| page == *imp.camera_page);
-                    obj.set_shutter_enabled(enabled);
-                }));
 
             // We start the camera only after the window is active.
             let is_active_handle = obj.connect_is_active_notify(|obj| {
