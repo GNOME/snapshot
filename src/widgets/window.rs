@@ -37,7 +37,6 @@ mod imp {
         pub countdown_timer_id: RefCell<Option<glib::SourceId>>,
         pub is_active_handle: RefCell<Option<glib::SignalHandlerId>>,
 
-        pub recording_active: Cell<bool>,
         pub inhibit_cookie: Cell<Option<u32>>,
     }
 
@@ -55,7 +54,6 @@ mod imp {
                 countdown_timer_id: Default::default(),
                 is_active_handle: Default::default(),
 
-                recording_active: Default::default(),
                 inhibit_cookie: Default::default(),
             }
         }
@@ -80,7 +78,6 @@ mod imp {
                         CaptureMode::Video => {
                             log::error!("Could not record video: {err}");
                             window.send_toast(&gettext("Could not record video"));
-                            window.imp().recording_active.set(false);
                         }
                     }
                 };
@@ -97,7 +94,6 @@ mod imp {
                     .is_some_and(|page| page == *imp.camera_page)
                 {
                     imp.camera.stop_recording();
-                    imp.recording_active.set(false);
                     match window.capture_mode() {
                         CaptureMode::Video => window.set_shutter_mode(crate::ShutterMode::Video),
                         CaptureMode::Picture => {
@@ -330,7 +326,6 @@ impl Window {
                             CaptureMode::Video => {
                                 log::error!("Could not record video: {err}");
                                 window.send_toast(&gettext("Could not record video"));
-                                window.imp().recording_active.set(false);
                             }
                         }
                     };
@@ -351,18 +346,16 @@ impl Window {
         let imp = self.imp();
 
         if matches!(self.capture_mode(), CaptureMode::Video) {
-            if imp.recording_active.get() {
+            if imp.camera.is_recording_active() {
                 // disable the button while the video is ending
                 //
                 // TODO This is prone to errors, create start/stop_decoding functions
                 // that do the correct thing.
                 self.set_shutter_enabled(false);
-                imp.recording_active.set(false);
                 imp.camera.stop_recording();
                 self.set_shutter_enabled(true);
                 self.set_shutter_mode(crate::ShutterMode::Video);
             } else {
-                imp.recording_active.set(true);
                 let format = imp.settings.enum_("video-format").into();
                 imp.camera.start_recording(format).await?;
                 self.set_shutter_mode(crate::ShutterMode::Recording);
@@ -385,7 +378,7 @@ impl Window {
 
     async fn on_take_picture(&self) -> anyhow::Result<()> {
         let imp = self.imp();
-        if imp.recording_active.get() {
+        if imp.camera.is_recording_active() {
             self.shutter_action().await?;
         } else if self.countdown() > 0 {
             if self.is_countdown_active() {

@@ -429,6 +429,10 @@ impl Camera {
             .set_draw_guidelines(!imp.guidelines.draw_guidelines());
     }
 
+    pub fn is_recording_active(&self) -> bool {
+        self.imp().viewfinder.is_recording()
+    }
+
     fn update_cameras_button(&self, provider: &aperture::DeviceProvider) {
         let imp = self.imp();
 
