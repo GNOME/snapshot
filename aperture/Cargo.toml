@@ -9,7 +9,7 @@ name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/snapshot"
 documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
 version = "0.6.2"
-rust-version = "1.70"
+rust-version = "1.76"
 
 [features]
 default = ["wayland", "x11egl", "x11glx"]
