@@ -109,7 +109,7 @@ mod imp {
             crate::ensure_init();
 
             let monitor = gst::DeviceMonitor::new();
-            monitor.add_filter(Some("Video/Source"), None);
+            monitor.add_filter(Some("Video/Source"), Some(&crate::SUPPORTED_CAPS));
             self.monitor.set(monitor).unwrap();
 
             if let Some(provider) = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider") {
