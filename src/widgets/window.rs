@@ -354,11 +354,9 @@ impl Window {
                 self.set_shutter_enabled(false);
                 imp.camera.stop_recording();
                 self.set_shutter_enabled(true);
-                self.set_shutter_mode(crate::ShutterMode::Video);
             } else {
                 let format = imp.settings.enum_("video-format").into();
                 imp.camera.start_recording(format).await?;
-                self.set_shutter_mode(crate::ShutterMode::Recording);
             }
         } else {
             let format = imp.settings.enum_("picture-format").into();

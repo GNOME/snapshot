@@ -134,11 +134,15 @@ mod imp {
                     let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
 
                     if viewfinder.is_recording() {
+                        obj.set_shutter_mode(crate::ShutterMode::Recording);
                         window.inhibit("Recording Video");
                         obj.show_recording_label();
                     } else {
                         obj.hide_recording_label();
                         window.uninhibit();
+                        if matches!(obj.shutter_mode(), crate::ShutterMode::Recording) {
+                            obj.set_shutter_mode(crate::ShutterMode::Video);
+                        }
                     }
                 }),
             );
@@ -399,14 +403,10 @@ impl Camera {
         );
         imp.viewfinder.connect_recording_done(
             glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
-                let imp = obj.imp();
-                // TODO Maybe report error via toast on None
                 if let Some(file) = file {
                     gallery.add_video(file);
-                }
-                if matches!(imp.camera_controls_horizontal.shutter_mode(), crate::ShutterMode::Recording) {
-                    imp.camera_controls_horizontal.set_shutter_mode(crate::ShutterMode::Video);
-                    imp.camera_controls_vertical.set_shutter_mode(crate::ShutterMode::Video);
+                } else {
+                    log::error!("Didn't find any file when recording finished!");
                 }
             }),
         );
