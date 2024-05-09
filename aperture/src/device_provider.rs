@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::cell::RefCell;
+use std::collections::HashSet;
 use std::os::fd::{AsRawFd, OwnedFd};
 use std::os::unix::io::RawFd;
 use std::sync::Once;
@@ -49,10 +50,9 @@ mod imp {
         }
 
         pub fn has_camera(&self, camera: &crate::Camera) -> bool {
-            self.cameras
-                .borrow()
-                .iter()
-                .any(|c| c.device() == camera.device())
+            self.cameras.borrow().iter().any(|c| {
+                c.device() == camera.device() || c.target_object() == camera.target_object()
+            })
         }
 
         pub fn remove(&self, device: crate::Camera) {
@@ -204,13 +204,15 @@ impl DeviceProvider {
         };
         provider.start()?;
 
-        let cameras = provider
+        let mut seen = HashSet::new();
+        let mut cameras = provider
             .devices()
             .iter()
             .filter(|d| is_camera(d))
             .map(crate::Camera::new)
             .filter(|d| !is_ir_camera(d))
             .collect::<Vec<_>>();
+        cameras.retain(|item| seen.insert(item.target_object()));
         let n_items = cameras.len() as u32;
         cameras.iter().for_each(|camera| {
             log::debug!(
