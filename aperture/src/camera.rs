@@ -100,7 +100,7 @@ impl Camera {
     ///
     /// the available caps if available.
     pub fn caps(&self) -> Option<gst::Caps> {
-        self.device().caps()
+        self.device().caps().as_ref().map(utils::caps::limit_fps)
     }
 
     /// Gets the location of the camera represented by `self`.
@@ -154,9 +154,7 @@ impl Camera {
         let caps = self
             .caps()
             .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
-        let limited_caps = utils::caps::limit_fps(&caps);
-        log::debug!("Found caps: {limited_caps:#?}");
-        let highest_res_caps = filter_caps(&limited_caps);
+        let highest_res_caps = filter_caps(&caps);
         log::debug!("Using caps: {highest_res_caps:#?}");
 
         highest_res_caps

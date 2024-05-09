@@ -399,7 +399,11 @@ impl DeviceProvider {
 }
 
 fn is_ir_camera(device: &crate::Camera) -> bool {
-    device.caps().as_ref().is_some_and(utils::caps::is_infrared)
+    device
+        .device()
+        .caps()
+        .as_ref()
+        .is_some_and(utils::caps::is_infrared)
         || device.nick().is_some_and(|nick| nick.contains("IR"))
         || device.display_name().contains("IR")
 }
