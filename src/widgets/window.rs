@@ -59,6 +59,23 @@ mod imp {
         }
     }
 
+    #[gtk::template_callbacks]
+    impl Window {
+        #[template_callback]
+        fn on_camera_page_hidden(&self) {
+            let obj = self.obj();
+
+            if self.camera.is_recording_active() {
+                self.camera.stop_recording();
+            }
+
+            match obj.capture_mode() {
+                CaptureMode::Video => obj.set_shutter_mode(crate::ShutterMode::Video),
+                CaptureMode::Picture => obj.set_shutter_mode(crate::ShutterMode::Picture),
+            }
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for Window {
         const NAME: &'static str = "Window";
@@ -67,6 +84,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
 
             klass.install_action_async("win.take-picture", None, |window, _, _| async move {
                 if let Err(err) = window.on_take_picture().await {
@@ -93,13 +111,6 @@ mod imp {
                     .visible_page()
                     .is_some_and(|page| page == *imp.camera_page)
                 {
-                    imp.camera.stop_recording();
-                    match window.capture_mode() {
-                        CaptureMode::Video => window.set_shutter_mode(crate::ShutterMode::Video),
-                        CaptureMode::Picture => {
-                            window.set_shutter_mode(crate::ShutterMode::Picture)
-                        }
-                    }
                     imp.navigation_view.push(&*imp.gallery_page);
                     window.imp().gallery.open();
                 } else {

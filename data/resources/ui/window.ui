@@ -11,6 +11,7 @@
             <child>
               <object class="AdwNavigationPage" id="camera_page">
                 <property name="title" translatable="yes">Camera</property>
+                <signal name="hidden" handler="on_camera_page_hidden" swapped="yes"/>
                 <child>
                   <object class="Camera" id="camera"/>
                 </child>
