@@ -129,6 +129,20 @@ mod imp {
                 }));
             obj.update_state();
 
+            self.viewfinder.connect_is_recording_notify(
+                glib::clone!(@weak obj => move |viewfinder| {
+                    let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
+
+                    if viewfinder.is_recording() {
+                        window.inhibit("Recording Video");
+                        obj.show_recording_label();
+                    } else {
+                        obj.hide_recording_label();
+                        window.uninhibit();
+                    }
+                }),
+            );
+
             self.selection.set_model(Some(provider));
             self.selection.connect_selected_item_notify(
                 glib::clone!(@weak obj => move |selection| {
@@ -252,10 +266,6 @@ impl Camera {
         let path = utils::videos_dir()?.join(filename);
 
         self.imp().viewfinder.start_recording(path)?;
-        self.show_recording_label();
-
-        let window = self.root().and_downcast::<crate::Window>().unwrap();
-        window.inhibit("Recording Video");
 
         Ok(())
     }
@@ -268,10 +278,6 @@ impl Camera {
             if let Err(err) = imp.viewfinder.stop_recording() {
                 log::error!("Could not stop camera: {err}");
             }
-            self.hide_recording_label();
-
-            let window = self.root().and_downcast::<crate::Window>().unwrap();
-            window.uninhibit();
         }
     }
 
