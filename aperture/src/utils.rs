@@ -18,17 +18,7 @@ pub(crate) mod caps {
 
     /// Limits FPS to `crate::MAXIMUM_RATE`.
     pub(crate) fn limit_fps(caps: &gst::Caps) -> gst::Caps {
-        let limited_caps = crate::SUPPORTED_ENCODINGS
-            .iter()
-            .map(|encoding| {
-                gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                    .framerate_range(
-                        gst::Fraction::new(0, 1)..=gst::Fraction::new(crate::MAXIMUM_RATE, 1),
-                    )
-                    .build()
-            })
-            .collect::<gst::Caps>();
-        caps.intersect_with_mode(&limited_caps, gst::CapsIntersectMode::First)
+        caps.intersect_with_mode(&crate::SUPPORTED_CAPS, gst::CapsIntersectMode::First)
     }
 
     pub fn best_height(caps: &gst::Caps, for_height: i32) -> Option<i32> {

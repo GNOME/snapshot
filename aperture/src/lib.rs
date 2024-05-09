@@ -30,6 +30,7 @@ pub use camera::Camera;
 pub use device_provider::DeviceProvider;
 pub use enums::{CameraLocation, CodeType, ViewfinderState};
 pub use error::{CaptureError, PipewireError, ProviderError};
+use once_cell::sync::Lazy;
 pub(crate) use pipeline_tee::PipelineTee;
 pub use viewfinder::Viewfinder;
 
@@ -37,6 +38,20 @@ pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];
 /// The maximum framerate, in frames per second.
 pub(crate) const MAXIMUM_RATE: i32 = 30;
+
+/// Supported caps for the app, already frame capped.
+pub(crate) static SUPPORTED_CAPS: Lazy<gst::Caps> = Lazy::new(|| {
+    crate::SUPPORTED_ENCODINGS
+        .iter()
+        .map(|encoding| {
+            gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                .framerate_range(
+                    gst::Fraction::new(0, 1)..=gst::Fraction::new(crate::MAXIMUM_RATE, 1),
+                )
+                .build()
+        })
+        .collect()
+});
 
 static IS_INIT: Once = Once::new();
 const VERSION: &str = env!("CARGO_PKG_VERSION");
