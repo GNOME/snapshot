@@ -207,8 +207,9 @@ impl DeviceProvider {
         let cameras = provider
             .devices()
             .iter()
-            .filter(|d| d.device_class() == "Video/Source")
+            .filter(|d| is_camera(d))
             .map(crate::Camera::new)
+            .filter(|d| !is_ir_camera(d))
             .collect::<Vec<_>>();
         let n_items = cameras.len() as u32;
         cameras.iter().for_each(|camera| {
@@ -339,19 +340,17 @@ impl DeviceProvider {
             gst::MessageView::DeviceAdded(e) => {
                 if let Some(s) = e.structure() {
                     if let Ok(device) = s.get::<gst::Device>("device") {
-                        if "Video/Source" == device.device_class() {
+                        if is_camera(&device) {
                             let device = crate::Camera::new(&device);
                             if !imp.has_camera(&device) {
                                 // We ignore/filter IR cameras.
-                                if device.caps().as_ref().is_some_and(utils::caps::is_infrared)
-                                    || device.nick().is_some_and(|nick| nick.contains("IR"))
-                                    || device.display_name().contains("IR")
-                                {
+                                if is_ir_camera(&device) {
                                     log::info!(
-                                        "IR Camera ignored: {}, target-object: {:?}\nProperties {:#?}\nPlease report upstream if this is a false-positive.",
+                                        "IR Camera ignored: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}\nPlease report upstream if this is a false-positive.",
                                         device.display_name(),
                                         device.target_object(),
                                         device.properties(),
+                                        device.caps(),
                                     );
                                     return;
                                 }
@@ -371,7 +370,7 @@ impl DeviceProvider {
             gst::MessageView::DeviceRemoved(e) => {
                 if let Some(s) = e.structure() {
                     if let Ok(device) = s.get::<gst::Device>("device") {
-                        if "Video/Source" == device.device_class() {
+                        if is_camera(&device) {
                             let n_items = self.n_items();
                             for n in 0..n_items {
                                 if let Some(nth_device) = self.camera(n) {
@@ -389,4 +388,14 @@ impl DeviceProvider {
             _ => (),
         }
     }
+}
+
+fn is_ir_camera(device: &crate::Camera) -> bool {
+    device.caps().as_ref().is_some_and(utils::caps::is_infrared)
+        || device.nick().is_some_and(|nick| nick.contains("IR"))
+        || device.display_name().contains("IR")
+}
+
+fn is_camera(device: &gst::Device) -> bool {
+    device.device_class() == "Video/Source"
 }
