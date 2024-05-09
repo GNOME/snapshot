@@ -28,6 +28,7 @@ mod imp {
     #[properties(wrapper_type = super::DeviceProvider)]
     pub struct DeviceProvider {
         pub inner: OnceCell<gst::DeviceProvider>,
+        pub monitor: OnceCell<gst::DeviceMonitor>,
         pub cameras: RefCell<Vec<crate::Camera>>,
         pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
@@ -106,6 +107,10 @@ mod imp {
             self.parent_constructed();
 
             crate::ensure_init();
+
+            let monitor = gst::DeviceMonitor::new();
+            monitor.add_filter(Some("Video/Source"), None);
+            self.monitor.set(monitor).unwrap();
 
             if let Some(provider) = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider") {
                 self.inner.set(provider).unwrap();
@@ -206,11 +211,12 @@ impl DeviceProvider {
         };
         provider.start()?;
 
+        let monitor = imp.monitor.get().unwrap();
+
         let mut seen = HashSet::new();
-        let mut cameras = provider
+        let mut cameras = monitor
             .devices()
             .iter()
-            .filter(|d| is_camera(d))
             .map(crate::Camera::new)
             .filter(|d| !is_ir_camera(d))
             .collect::<Vec<_>>();
@@ -228,7 +234,7 @@ impl DeviceProvider {
         self.imp().cameras.replace(cameras);
         self.items_changed(0, 0, n_items);
 
-        let bus = provider.bus();
+        let bus = monitor.bus();
         let watch = bus
             .add_watch_local(
                 glib::clone!(@weak self as obj => @default-return glib::ControlFlow::Break,
@@ -342,48 +348,46 @@ impl DeviceProvider {
                 );
             }
             gst::MessageView::DeviceAdded(e) => {
-                if let Some(s) = e.structure() {
-                    if let Ok(device) = s.get::<gst::Device>("device") {
-                        if is_camera(&device) {
-                            let device = crate::Camera::new(&device);
-                            if !imp.has_camera(&device) {
-                                // We ignore/filter IR cameras.
-                                if is_ir_camera(&device) {
-                                    log::info!(
-                                        "IR Camera ignored: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}\nPlease report upstream if this is a false-positive.",
-                                        device.display_name(),
-                                        device.target_object(),
-                                        device.properties(),
-                                        device.caps(),
-                                    );
-                                    return;
-                                }
-                                log::debug!(
-                                    "Camera added: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}",
-                                    device.display_name(),
-                                    device.target_object(),
-                                    device.properties(),
-                                    device.caps(),
-                                );
-                                imp.append(device);
-                            }
-                        };
+                if let Some(device) = e
+                    .structure()
+                    .and_then(|s| s.get::<gst::Device>("device").ok())
+                {
+                    let device = crate::Camera::new(&device);
+                    if !imp.has_camera(&device) {
+                        // We ignore/filter IR cameras.
+                        if is_ir_camera(&device) {
+                            log::info!(
+                                "IR Camera ignored: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}\nPlease report upstream if this is a false-positive.",
+                                device.display_name(),
+                                device.target_object(),
+                                device.properties(),
+                                device.caps(),
+                            );
+                            return;
+                        }
+                        log::debug!(
+                            "Camera added: {}, target-object: {:?}\nProperties {:#?}\nCaps: {:#?}",
+                            device.display_name(),
+                            device.target_object(),
+                            device.properties(),
+                            device.caps(),
+                        );
+                        imp.append(device);
                     }
                 }
             }
             gst::MessageView::DeviceRemoved(e) => {
-                if let Some(s) = e.structure() {
-                    if let Ok(device) = s.get::<gst::Device>("device") {
-                        if is_camera(&device) {
-                            let n_items = self.n_items();
-                            for n in 0..n_items {
-                                if let Some(nth_device) = self.camera(n) {
-                                    if device == nth_device.device() {
-                                        self.imp().remove(nth_device);
-                                        log::debug!("Camera removed: {}", device.display_name());
-                                        break;
-                                    }
-                                };
+                if let Some(device) = e
+                    .structure()
+                    .and_then(|s| s.get::<gst::Device>("device").ok())
+                {
+                    let n_items = self.n_items();
+                    for n in 0..n_items {
+                        if let Some(nth_device) = self.camera(n) {
+                            if device == nth_device.device() {
+                                self.imp().remove(nth_device);
+                                log::debug!("Camera removed: {}", device.display_name());
+                                break;
                             }
                         };
                     }
@@ -398,8 +402,4 @@ fn is_ir_camera(device: &crate::Camera) -> bool {
     device.caps().as_ref().is_some_and(utils::caps::is_infrared)
         || device.nick().is_some_and(|nick| nick.contains("IR"))
         || device.display_name().contains("IR")
-}
-
-fn is_camera(device: &gst::Device) -> bool {
-    device.device_class() == "Video/Source"
 }
