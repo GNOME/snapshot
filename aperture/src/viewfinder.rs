@@ -626,12 +626,10 @@ impl Viewfinder {
                         camerabin.set_locked_state(true);
                         log::debug!("Camerabin could not change its state from {current_state:?} to {pending_state:?}");
                         StateChangeState::NotDone
+                    } else if current_state == state {
+                        StateChangeState::Equal
                     } else {
-                        if current_state == state {
-                            StateChangeState::Equal
-                        } else {
-                            StateChangeState::Differ
-                        }
+                        StateChangeState::Differ
                     }
                 }
                 Err(err) => {
@@ -869,8 +867,8 @@ impl Viewfinder {
             .property_from_str("video-direction", "auto")
             .build()?;
 
-        bin.add_many([&device_src, &capsfilter, &decodebin3, &videoflip])?;
-        gst::Element::link_many([&device_src, &capsfilter, &decodebin3])?;
+        bin.add_many([device_src, &capsfilter, &decodebin3, &videoflip])?;
+        gst::Element::link_many([device_src, &capsfilter, &decodebin3])?;
 
         self.imp().capsfilter.set(capsfilter).unwrap();
 
@@ -899,7 +897,7 @@ impl Viewfinder {
         let imp = self.imp();
 
         if let Some(element) = imp.camera_element.get() {
-            camera.reconfigure(&element)?;
+            camera.reconfigure(element)?;
         } else {
             let element = camera.create_element()?;
 
