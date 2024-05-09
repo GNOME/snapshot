@@ -34,7 +34,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct QrCodeDetector {
-        pub last_code: Mutex<Option<Vec<u8>>>,
+        pub last_code: Mutex<Option<glib::Bytes>>,
     }
 
     #[glib::object_subclass]
@@ -120,11 +120,9 @@ mod imp {
 
                 match grid.decode_to(&mut decoded) {
                     Ok(_) => {
-                        let mut previous_code = self.last_code.lock().unwrap();
-                        if previous_code.as_ref() != Some(&decoded) {
-                            previous_code.replace(decoded.clone());
-
-                            let bytes = glib::Bytes::from_owned(decoded);
+                        let bytes = glib::Bytes::from_owned(decoded);
+                        let is_new_code = self.set_code(bytes.clone());
+                        if is_new_code {
                             let structure = gst::Structure::builder("qrcode")
                                 .field("payload", bytes)
                                 .build();
@@ -145,6 +143,18 @@ mod imp {
             );
 
             Ok(gst::FlowSuccess::Ok)
+        }
+    }
+
+    impl QrCodeDetector {
+        fn set_code(&self, bytes: glib::Bytes) -> bool {
+            let mut previous_code = self.last_code.lock().unwrap();
+            if previous_code.as_ref() != Some(&bytes) {
+                previous_code.replace(bytes);
+                true
+            } else {
+                false
+            }
         }
     }
 }
