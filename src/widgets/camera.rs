@@ -368,6 +368,10 @@ impl Camera {
             imp.settings().set_string("last-camera-id", &id).unwrap();
         }
 
+        if imp.viewfinder.is_recording() {
+            self.stop_recording();
+        }
+
         imp.viewfinder.set_camera(camera);
     }
 
