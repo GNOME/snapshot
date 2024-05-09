@@ -39,6 +39,8 @@ mod imp {
         detect_codes: Cell<bool>,
         #[property(get, set = Self::set_camera, nullable, explicit_notify)]
         camera: RefCell<Option<crate::Camera>>,
+        #[property(get = Self::is_recording, name = "is-recording", type = bool)]
+        pub is_recording_video: RefCell<Option<PathBuf>>,
 
         pub zbar_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
@@ -50,8 +52,6 @@ mod imp {
         pub tee: OnceCell<crate::PipelineTee>,
         pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
-        // TODO Port to gio::Task,
-        pub is_recording_video: RefCell<Option<PathBuf>>,
         pub is_stopping_recording: Cell<bool>,
         pub is_taking_picture: Cell<bool>,
         pub is_front_camera: Cell<bool>,
@@ -70,6 +70,10 @@ mod imp {
             if state != self.state.replace(state) {
                 self.obj().notify_state();
             }
+        }
+
+        fn is_recording(&self) -> bool {
+            self.is_recording_video.borrow().is_some()
         }
 
         fn detect_codes(&self) -> bool {
@@ -525,8 +529,13 @@ impl Viewfinder {
         }
 
         // Set after we cannot fail anymore.
-        imp.is_recording_video
-            .replace(Some(location.as_ref().to_owned()));
+        if !imp
+            .is_recording_video
+            .replace(Some(location.as_ref().to_owned()))
+            .is_some_and(|old| old == location.as_ref())
+        {
+            self.notify_is_recording();
+        };
 
         let camerabin = imp.camerabin();
         camerabin.set_property_from_str("mode", "mode-video");
@@ -564,15 +573,6 @@ impl Viewfinder {
         imp.camerabin().emit_by_name::<()>("stop-capture", &[]);
 
         Ok(())
-    }
-
-    /// Gets whether a recording is in progress.
-    ///
-    /// # Returns
-    ///
-    /// if a recording is in progress.
-    pub fn is_recording(&self) -> bool {
-        self.imp().is_recording_video.borrow().is_some()
     }
 
     pub fn connect_picture_done<F: Fn(&Self, Option<&gio::File>) + 'static>(&self, f: F) {
@@ -720,6 +720,7 @@ impl Viewfinder {
         self.imp().is_stopping_recording.set(false);
 
         if let Some(path) = self.imp().is_recording_video.take() {
+            self.notify_is_recording();
             let file = gio::File::for_path(path);
             self.emit_recording_done(Some(&file));
         }
@@ -761,6 +762,7 @@ impl Viewfinder {
             self.emit_picture_done(None);
         }
         if imp.is_recording_video.replace(None).is_some() {
+            self.notify_is_recording();
             self.emit_recording_done(None);
         }
         imp.is_stopping_recording.set(false);
