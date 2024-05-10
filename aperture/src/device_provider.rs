@@ -14,6 +14,8 @@ use crate::utils;
 
 static STARTED: Once = Once::new();
 
+type ProviderCallback = Box<dyn Fn(&crate::Camera) -> bool + 'static>;
+
 mod imp {
     use std::cell::OnceCell;
 
@@ -31,7 +33,7 @@ mod imp {
 
         pub fd: RefCell<Option<OwnedFd>>,
 
-        pub default_cb: OnceCell<Box<dyn Fn(&crate::Camera) -> bool + 'static>>,
+        pub default_cb: OnceCell<ProviderCallback>,
 
         #[property(get = Self::started)]
         pub started: std::marker::PhantomData<bool>,
