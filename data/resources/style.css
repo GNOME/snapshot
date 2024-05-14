@@ -94,12 +94,9 @@ camera.mobile .vertical.picturevideotoggle > button > image {
 }
 
 camera .recording-label {
-  padding: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 24px;
   border-radius: 500px;
   margin-bottom: 100px;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 camera.portrait .recording-label {
