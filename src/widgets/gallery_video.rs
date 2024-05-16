@@ -20,20 +20,7 @@ mod imp {
         type ParentType = crate::GalleryItem;
     }
 
-    impl ObjectImpl for GalleryVideo {
-        fn constructed(&self) {
-            self.parent_constructed();
-
-            let widget = self.obj();
-
-            let file = widget.file();
-            self.video_player.set_file(&file);
-
-            widget
-                .upcast_ref::<crate::GalleryItem>()
-                .set_item(self.video_player.upcast_ref());
-        }
-    }
+    impl ObjectImpl for GalleryVideo {}
 
     impl WidgetImpl for GalleryVideo {
         fn unmap(&self) {
@@ -65,9 +52,17 @@ impl GalleryVideo {
     }
 
     pub async fn load_texture(&self) -> anyhow::Result<()> {
+        let imp = self.imp();
+
         self.set_started_loading(true);
 
-        if let Some(texture) = self.imp().video_player.thumbnail().await {
+        let file = self.file();
+        imp.video_player.set_file(&file);
+
+        self.upcast_ref::<crate::GalleryItem>()
+            .set_item(imp.video_player.upcast_ref());
+
+        if let Some(texture) = imp.video_player.thumbnail().await {
             self.set_thumbnail(texture);
         }
 
