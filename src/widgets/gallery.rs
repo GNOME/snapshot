@@ -288,33 +288,39 @@ impl Gallery {
             .await?;
 
         let mut items = vec![];
-        while let Ok(info) = enumerator
-            .next_files_future(1, glib::Priority::default())
+        while let Ok(files) = enumerator
+            .next_files_future(10, glib::Priority::default())
             .await
         {
-            let Some(file_info) = info.first() else {
+            let Some(_) = files.first() else {
                 break;
             };
 
-            let name = file_info.name();
-            let file = gio::File::for_path(&dir.join(&name));
+            let mut collected = files
+                .into_iter()
+                .map(|file_info| {
+                    let name = file_info.name();
+                    let file = gio::File::for_path(dir.join(name));
 
-            // TODO Do not add items with wrong mime type.
+                    // TODO Do not add items with wrong mime type.
 
-            // NOTE Filesystems that do not support either creation or modified
-            // dates will get files with a random ordering.
-            let stamp = file_info
-                .creation_date_time()
-                .or(file_info.modification_date_time())
-                .map(|date_time| {
-                    let microsecond = date_time.microsecond() as u64;
-                    let unix = date_time.to_unix() as u64;
+                    // NOTE Filesystems that do not support either creation or modified
+                    // dates will get files with a random ordering.
+                    let stamp = file_info
+                        .creation_date_time()
+                        .or(file_info.modification_date_time())
+                        .map(|date_time| {
+                            let microsecond = date_time.microsecond() as u64;
+                            let unix = date_time.to_unix() as u64;
 
-                    unix * 1_000_000 + microsecond
+                            unix * 1_000_000 + microsecond
+                        })
+                        .unwrap_or_default();
+
+                    (file, stamp, is_picture)
                 })
-                .unwrap_or_default();
-
-            items.push((file, stamp, is_picture))
+                .collect::<Vec<(gio::File, u64, bool)>>();
+            items.append(&mut collected);
         }
 
         Ok(items)
