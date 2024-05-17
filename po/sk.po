@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/Incubator/snapshot/-/"
-"issues\n"
-"POT-Creation-Date: 2023-06-14 16:22+0000\n"
-"PO-Revision-Date: 2023-06-14 12:23-0400\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2024-03-02 18:51+0000\n"
+"PO-Revision-Date: 2024-05-18 00:04+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -20,10 +19,10 @@ msgstr ""
 "X-Generator: Poedit 3.3.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 src/main.rs:29
-#: src/widgets/window.rs:261
-msgid "Snapshot"
-msgstr "Snímka"
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
+msgid "Camera"
+msgstr "Fotoaparát"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:8
@@ -32,8 +31,9 @@ msgstr "Zachytáva obrázky a videá"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;"
-msgstr "obrázok;fotografie;kamera;fotoaparát;"
+#| msgid "picture;photos;camera;"
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "obrázok;fotografie;kamera;webkamera;snímka;fotoaparát;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -97,146 +97,151 @@ msgstr "Formát videa"
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Či sa majú videá ukladať vo formáte mp4 alebo webm"
 
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr ""
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr ""
+
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
 "Zachytávajte obrázky a videá do vášho počítača, tabletu alebo telefónu."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-msgid "Snapshot's main interface"
+#, fuzzy
+#| msgid "Snapshot's main interface"
+msgid "Camera's main interface"
 msgstr "Hlavné rozhranie aplikácie Snímka"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-msgid "Snapshot's gallery viewer"
+#, fuzzy
+#| msgid "Snapshot's gallery viewer"
+msgid "Camera's gallery viewer"
 msgstr "Prehliadač galérie aplikácie Snímka"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:65 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
-#: data/resources/ui/camera.ui:48 data/resources/ui/camera.ui:104
-#: data/resources/ui/camera.ui:272 data/resources/ui/camera.ui:372
-#: data/resources/ui/camera.ui:413
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
 msgid "Main Menu"
 msgstr "Hlavná ponuka"
 
-#: data/resources/ui/camera.ui:58
+#: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
 msgstr "Nenašiel sa žiadny fotoaparát"
 
-#: data/resources/ui/camera.ui:59
+#: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
 msgstr "Pripojte zariadenie s fotoaparátom"
 
-#: data/resources/ui/camera.ui:128 data/resources/ui/camera.ui:225
-#: data/resources/ui/camera.ui:332 data/resources/ui/camera.ui:435
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
 msgstr "Režim obrázku"
 
-#: data/resources/ui/camera.ui:147 data/resources/ui/camera.ui:244
-#: data/resources/ui/camera.ui:351 data/resources/ui/camera.ui:454
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
 msgid "Recording Mode"
 msgstr "Režim záznamu"
 
-#: data/resources/ui/camera.ui:169 data/resources/ui/camera.ui:202
-#: data/resources/ui/camera.ui:304 data/resources/ui/camera.ui:541
-#: data/resources/ui/camera.ui:572
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
 msgid "Countdown"
 msgstr "Odpočítavanie"
 
-# tooltip
-#: data/resources/ui/camera.ui:483
-msgid "Open Gallery"
-msgstr "Otvorí galériu"
-
-#. Set a fallback tooltip
-#: data/resources/ui/camera.ui:489 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:130
-msgid "Take Picture"
-msgstr "Zachytí obrázok"
-
-# tooltip
-#: data/resources/ui/camera.ui:502
-msgid "Select Camera"
-msgstr "Vyberie fotoaparát"
-
-# tooltip
-#: data/resources/ui/camera.ui:516
-msgctxt "Switch between front and back camera button"
-msgid "Switch Camera"
-msgstr "Prepne fotoaparát"
-
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:575
+#: data/resources/ui/camera.ui:580
 msgid "None"
 msgstr "Žiadne"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:585
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:590
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:595
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:598
+#: data/resources/ui/camera.ui:603
 msgid "_Preferences"
 msgstr "_Predvoľby"
 
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:607
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové skratky"
 
-#: data/resources/ui/camera.ui:606
-msgid "_About Snapshot"
-msgstr "_O aplikácii Snímka"
+#: data/resources/ui/camera.ui:611
+#, fuzzy
+#| msgid "Camera"
+msgid "_About Camera"
+msgstr "Fotoaparát"
 
-#: data/resources/ui/gallery.ui:42
+# tooltip
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Otvorí galériu"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Zachytí obrázok"
+
+# tooltip
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Vyberie fotoaparát"
+
+# tooltip
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Prepne fotoaparát"
+
+#: data/resources/ui/gallery.ui:46
 msgid "Gallery Menu"
 msgstr "Ponuka galérie"
 
-#: data/resources/ui/gallery.ui:67
+#: data/resources/ui/gallery.ui:94
 msgid "Previous Image"
 msgstr "Predchádzajúci obrázok"
 
-#: data/resources/ui/gallery.ui:79
+#: data/resources/ui/gallery.ui:107
 msgid "Next Image"
 msgstr "Nasledujúci obrázok"
 
 # tooltip
-#: data/resources/ui/gallery.ui:93 src/widgets/gallery.rs:98
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
 msgid "Open in Image Viewer"
 msgstr "Otvorí v prehliadači obrázkov"
-
-#: data/resources/ui/gallery.ui:111
-msgid "_Copy"
-msgstr "_Kopírovať"
-
-#: data/resources/ui/gallery.ui:115
-msgid "_Delete"
-msgstr "O_dstrániť"
 
 #: data/resources/ui/preferences_window.ui:10
 msgid "General"
 msgstr "Všeobecné"
 
-#: data/resources/ui/preferences_window.ui:14 data/resources/ui/window.ui:30
-msgid "Camera"
-msgstr "Fotoaparát"
-
-#: data/resources/ui/preferences_window.ui:17
-msgid "Play Shutter Sound"
-msgstr "Prehrať zvuk uzávierky"
+#: data/resources/ui/preferences_window.ui:16
+#| msgid "Play Shutter Sound"
+msgid "_Shutter Sound"
+msgstr "Zvuk _uzávierky"
 
 #: data/resources/ui/preferences_window.ui:23
-msgid "Show Composition Guidelines"
+#, fuzzy
+#| msgid "Show Composition Guidelines"
+msgid "_Composition Guidelines"
 msgstr "Zobraziť vodiace čiary kompozície"
 
 #: data/resources/ui/shortcuts.ui:11
@@ -247,7 +252,7 @@ msgstr "Všeobecné"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Zobrazenie skratiek"
+msgstr "Zobraziť skratky"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -257,12 +262,12 @@ msgstr "Hlavná ponuka"
 #: data/resources/ui/shortcuts.ui:26
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
-msgstr "Otvorenie predvolieb"
+msgstr "Otvoriť predvoľby"
 
 #: data/resources/ui/shortcuts.ui:32
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Ukončenie"
+msgstr "Ukončiť"
 
 #: data/resources/ui/shortcuts.ui:40
 msgctxt "shortcut window"
@@ -282,12 +287,12 @@ msgstr "Režim záznamu"
 #: data/resources/ui/shortcuts.ui:55
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
-msgstr "Zachytenie obrázku alebo spustenie zaznamenávania"
+msgstr "Zachytiť obrázok alebo spustiť zaznamenávanie"
 
 #: data/resources/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr "Zobrazenie/skrytie vodiacich čiar kompozície"
+msgstr "Zobraziť/skryť vodiace čiary kompozície"
 
 #: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
@@ -297,7 +302,7 @@ msgstr "Galéria"
 #: data/resources/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
-msgstr "Otvorenie/zavretie galérie"
+msgstr "Otvoriť/zatvoriť galériu"
 
 #: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
@@ -309,58 +314,72 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Predchádzajúci"
 
-#: data/resources/ui/window.ui:38
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galéria"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
-#: src/enums.rs:39
+#: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:22
+#: src/utils.rs:23
 msgid "Photo from {date}"
-msgstr "Fotografia zo dňa {date}"
+msgstr "Fotografia z dňa {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
-#: src/utils.rs:27
+#: src/utils.rs:28
 msgid "Photo {number}"
 msgstr "Fotografia č. {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:40
+#: src/utils.rs:41
 msgid "Recording from {date}"
-msgstr "Záznam zo dňa {date}"
+msgstr "Záznam z dňa {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:45
+#: src/utils.rs:46
 msgid "Recording {number}"
 msgstr "Záznam č. {number}"
 
-#: src/widgets/camera.rs:535
+#: src/utils.rs:136
+#| msgid "Take Picture"
+msgid "_Copy Picture"
+msgstr "_Kopírovať obrázok"
+
+#: src/utils.rs:138
+#| msgid "_Copy"
+msgid "_Copy Video"
+msgstr "_Kopírovať video"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "O_dstrániť"
+
+#: src/widgets/camera.rs:445
 msgid "Could not play camera stream"
 msgstr "Nepodarilo sa prehrať prúd fotoaparátu"
 
-#: src/widgets/gallery.rs:100
+#: src/widgets/gallery.rs:117
 msgid "Open in Video Player"
 msgstr "Otvorí v prehrávači videí"
 
-#: src/widgets/gallery.rs:371
+#: src/widgets/gallery.rs:385
 msgid "Copied to clipboard"
 msgstr "Skopírované do schránky"
 
-#: src/widgets/gallery.rs:396
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Obrázok bol odstránený"
 
-#: src/widgets/gallery.rs:398
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video bolo odstránené"
 
@@ -374,14 +393,20 @@ msgstr "Spustí zaznamenávanie"
 msgid "Stop Recording"
 msgstr "Zastaví zaznamenávanie"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:74 src/widgets/window.rs:317
 msgid "Could not take picture"
 msgstr "Nepodarilo sa zachytiť obrázok"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:78 src/widgets/window.rs:321
 msgid "Could not record video"
 msgstr "Nepodarilo sa zaznamenať video"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:274
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
+
+#~ msgid "Snapshot"
+#~ msgstr "Snímka"
+
+#~ msgid "_About Snapshot"
+#~ msgstr "_O aplikácii Snímka"
