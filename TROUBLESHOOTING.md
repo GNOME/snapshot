@@ -6,6 +6,12 @@ Snapshot relies on number of modern components which are under rapid development
 ## Pipewire
 Snapshot exclusively uses [Pipewire](https://gitlab.freedesktop.org/pipewire/pipewire/) (from here on **PW**) to access camera devices.
 
+Please restart PW to ensure all camera devices are found:
+
+```
+systemctl --user restart pipewire
+```
+
 A useful tool to look up information from PW is `pw-dump`. In order to check whether PW currently recognizes any camera devices, run:
 
 ```
