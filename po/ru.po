@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-02 08:45+0000\n"
-"PO-Revision-Date: 2023-12-03 22:08+0300\n"
+"POT-Creation-Date: 2024-05-06 17:03+0000\n"
+"PO-Revision-Date: 2024-05-25 14:54+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:280
 msgid "Camera"
 msgstr "Камера"
 
@@ -118,8 +118,14 @@ msgstr "Главный интерфейс Камеры"
 msgid "Camera's gallery viewer"
 msgstr "Просмотр галереи Камеры"
 
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:171 src/widgets/window.rs:286
+msgid "The GNOME Project"
+msgstr "Проект GNOME"
+
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
 msgid "Main Menu"
 msgstr "Главное меню"
 
@@ -143,39 +149,47 @@ msgstr "Режим видеозаписи"
 
 #: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
 #: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:607
 msgid "Countdown"
 msgstr "Обратный отсчет"
 
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "Отсутствует разрешение на использование камеры"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "Разрешите использование камеры в Настройках"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:610
 msgid "None"
 msgstr "Нет"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:615
 msgid "3s"
 msgstr "3с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:620
 msgid "5s"
 msgstr "5с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:625
 msgid "10s"
 msgstr "10с"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:633
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:637
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:641
 msgid "_About Camera"
 msgstr "_О приложении"
 
@@ -214,15 +228,15 @@ msgstr "Следующее изображение"
 msgid "Open in Image Viewer"
 msgstr "Открыть в Просмотрщике изображений"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
 msgid "General"
 msgstr "Общие"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:13
 msgid "_Shutter Sound"
 msgstr "Звук _затвора"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:20
 msgid "_Composition Guidelines"
 msgstr "Рекомендации по _композиции"
 
@@ -331,19 +345,19 @@ msgstr "Видеозапись от {date}"
 msgid "Recording {number}"
 msgstr "Видеозапись {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Копировать снимок"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Копировать видео"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: src/widgets/camera.rs:423
+#: src/widgets/camera.rs:475
 msgid "Could not play camera stream"
 msgstr "Не удалось воспроизвести потоковые данные с камеры"
 
@@ -371,21 +385,17 @@ msgstr "Начать запись"
 msgid "Stop Recording"
 msgstr "Остановить запись"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:76 src/widgets/window.rs:326
 msgid "Could not take picture"
 msgstr "Не удалось сделать снимок"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:80 src/widgets/window.rs:330
 msgid "Could not record video"
 msgstr "Не удалось записать видео"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:285
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2023"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "Проект GNOME"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
