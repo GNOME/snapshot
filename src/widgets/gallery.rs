@@ -407,7 +407,9 @@ impl Gallery {
             .and_downcast_ref::<crate::GalleryVideo>()
         {
             imp.media_controls.set_visible(true);
-            imp.media_controls.set_media_stream(Some(video.stream()));
+            if let Ok(stream) = video.stream() {
+                imp.media_controls.set_media_stream(Some(stream));
+            }
         } else {
             imp.media_controls.set_visible(false);
             imp.media_controls.set_media_stream(gtk::MediaStream::NONE);

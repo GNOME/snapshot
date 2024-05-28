@@ -6,11 +6,13 @@ use gtk::{gdk, gio, glib};
 use crate::widgets::gallery_item::GalleryItemImpl;
 
 mod imp {
+    use std::cell::OnceCell;
+
     use super::*;
 
     #[derive(Debug, Default)]
     pub struct GalleryPicture {
-        pub picture: gtk::Picture,
+        pub picture: OnceCell<gtk::Picture>,
     }
 
     #[glib::object_subclass]
@@ -20,23 +22,7 @@ mod imp {
         type ParentType = crate::GalleryItem;
     }
 
-    impl ObjectImpl for GalleryPicture {
-        fn constructed(&self) {
-            self.parent_constructed();
-
-            let widget = self.obj();
-
-            widget
-                .upcast_ref::<crate::GalleryItem>()
-                .set_item(self.picture.upcast_ref());
-
-            if let Some(basename) = widget.file().basename() {
-                let label = basename.display().to_string();
-                self.picture
-                    .update_property(&[gtk::accessible::Property::Label(&label)]);
-            }
-        }
-    }
+    impl ObjectImpl for GalleryPicture {}
     impl WidgetImpl for GalleryPicture {}
     impl BinImpl for GalleryPicture {}
     impl GalleryItemImpl for GalleryPicture {}
@@ -76,7 +62,17 @@ impl GalleryPicture {
 
         let texture = receiver.await.unwrap()?;
 
-        imp.picture.set_paintable(Some(&texture));
+        let picture = imp.picture.get_or_init(gtk::Picture::default);
+
+        self.upcast_ref::<crate::GalleryItem>()
+            .set_item(picture.upcast_ref());
+
+        if let Some(basename) = self.file().basename() {
+            let label = basename.display().to_string();
+            picture.update_property(&[gtk::accessible::Property::Label(&label)]);
+        }
+
+        picture.set_paintable(Some(&texture));
         self.set_thumbnail(&texture);
 
         Ok(())

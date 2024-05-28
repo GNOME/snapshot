@@ -5,12 +5,16 @@ use gtk::{gdk, gio, glib};
 
 use crate::widgets::gallery_item::GalleryItemImpl;
 
+use super::video_player;
+
 mod imp {
+    use std::cell::OnceCell;
+
     use super::*;
 
     #[derive(Debug, Default)]
     pub struct GalleryVideo {
-        pub video_player: crate::VideoPlayer,
+        pub video_player: OnceCell<video_player::VideoPlayer>,
     }
 
     #[glib::object_subclass]
@@ -47,8 +51,12 @@ impl GalleryVideo {
             .build()
     }
 
-    pub fn stream(&self) -> &gtk::MediaStream {
-        self.imp().video_player.stream()
+    pub fn stream(&self) -> anyhow::Result<&gtk::MediaStream> {
+        if let Some(video_player) = self.imp().video_player.get() {
+            Ok(video_player.stream())
+        } else {
+            anyhow::bail!("Tried to stream before video player loaded")
+        }
     }
 
     pub async fn load_texture(&self) -> anyhow::Result<()> {
@@ -57,12 +65,15 @@ impl GalleryVideo {
         self.set_started_loading(true);
 
         let file = self.file();
-        imp.video_player.set_file(&file);
+
+        let video_player = imp.video_player.get_or_init(crate::VideoPlayer::default);
+
+        video_player.set_file(&file);
 
         self.upcast_ref::<crate::GalleryItem>()
-            .set_item(imp.video_player.upcast_ref());
+            .set_item(video_player.upcast_ref());
 
-        if let Some(texture) = imp.video_player.thumbnail().await {
+        if let Some(texture) = video_player.thumbnail().await {
             self.set_thumbnail(texture);
         }
 
@@ -70,7 +81,9 @@ impl GalleryVideo {
     }
 
     pub fn pause(&self) {
-        self.imp().video_player.pause();
+        if let Some(video_player) = self.imp().video_player.get() {
+            video_player.pause()
+        }
     }
 
     // Ugh
