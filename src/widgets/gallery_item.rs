@@ -73,41 +73,12 @@ mod imp {
             }
 
             widget.set_halign(gtk::Align::Center);
-
-            let menu = crate::utils::gallery_item_menu(widget.is_picture());
-
-            let popover = gtk::PopoverMenu::from_model(Some(&menu));
-            popover.set_has_arrow(false);
-            if widget.direction() == gtk::TextDirection::Rtl {
-                popover.set_halign(gtk::Align::End);
-            } else {
-                popover.set_halign(gtk::Align::Start);
-            }
-
-            let gesture = gtk::GestureClick::new();
-            gesture.set_button(gdk::BUTTON_SECONDARY);
-            gesture.connect_pressed(glib::clone!(
-                #[weak]
-                popover,
-                move |_, _, x, y| {
-                    if x > -1.0 && y > -1.0 {
-                        let rectangle = gdk::Rectangle::new(x as i32, y as i32, 0, 0);
-                        popover.set_pointing_to(Some(&rectangle));
-                    } else {
-                        popover.set_pointing_to(None);
-                    }
-                    popover.popup();
-                }
-            ));
-
-            popover.set_parent(&*widget);
-            widget.add_controller(gesture);
-
-            self.popover.set(popover).unwrap();
         }
 
         fn dispose(&self) {
-            self.popover.get().unwrap().unparent();
+            if let Some(popover) = self.popover.get() {
+                popover.unparent();
+            }
             if let Some(child) = self.item.take() {
                 child.unparent();
             }
@@ -131,6 +102,8 @@ unsafe impl<T: GalleryItemImpl> IsSubclassable<T> for GalleryItem {}
 impl GalleryItem {
     pub fn start_loading(&self) {
         self.set_started_loading(true);
+        self.construct_popover();
+
         glib::spawn_future_local(glib::clone!(
             #[weak(rename_to = widget)]
             self,
@@ -160,5 +133,38 @@ impl GalleryItem {
                 }
             }
         ));
+    }
+
+    fn construct_popover(&self) {
+        let menu = crate::utils::gallery_item_menu(self.is_picture());
+
+        let popover = gtk::PopoverMenu::from_model(Some(&menu));
+        popover.set_has_arrow(false);
+        if self.direction() == gtk::TextDirection::Rtl {
+            popover.set_halign(gtk::Align::End);
+        } else {
+            popover.set_halign(gtk::Align::Start);
+        }
+
+        let gesture = gtk::GestureClick::new();
+        gesture.set_button(gdk::BUTTON_SECONDARY);
+        gesture.connect_pressed(glib::clone!(
+            #[weak]
+            popover,
+            move |_, _, x, y| {
+                if x > -1.0 && y > -1.0 {
+                    let rectangle = gdk::Rectangle::new(x as i32, y as i32, 0, 0);
+                    popover.set_pointing_to(Some(&rectangle));
+                } else {
+                    popover.set_pointing_to(None);
+                }
+                popover.popup();
+            }
+        ));
+
+        popover.set_parent(self);
+        self.add_controller(gesture);
+
+        self.imp().popover.set(popover).unwrap();
     }
 }
