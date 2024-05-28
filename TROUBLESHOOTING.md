@@ -20,7 +20,7 @@ pw-dump | grep default.video.source
 
 If that is not the case, you may want to double-check that all required components for Pipewire camera support are installed, notably:
 
-* [Wireplumber](https://gitlab.freedesktop.org/pipewire/wireplumber) (the PW "session-manager)
+* [Wireplumber](https://gitlab.freedesktop.org/pipewire/wireplumber) (the PW "session-manager")
 * potentially [libcamera](https://libcamera.org/) and the PW libcamera plugin
 
 ## XDG Desktop Portal
