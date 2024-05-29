@@ -1,0 +1,387 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnome Nepali Translation Project\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2024-05-23 09:27+0000\n"
+"PO-Revision-Date: 2024-05-29 19:19+0545\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
+"Language-Team: Nepali Language Translation Team <chautari@gmail.com>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+msgid "Camera"
+msgstr "क्यामेरा"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "फोटो वा भिडियो खिच्ने"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "तस्वीर; फोटो; क्यामेरा; वेबकैम; स्नैपशॉट;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "पूर्वनिर्धारित सञ्झ्याल चौडाइ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "पूर्वनिर्धारित सञ्झ्याल उचाइ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "पूर्वनिर्धारित सञ्झ्याल ठूलो पारिएको व्यवहार"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "सटर ध्वनि बजाउनुहोस्"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "तस्वीर खिच्दा सटर ध्वनि बजाउने या नबजाउने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "रचना दिशानिर्देशहरू देखाउने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "क्यामेरा प्रयोग गर्दा रचना दिशानिर्देशहरू देखाउने या नदेखाउने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Countdown timer"
+msgstr "काउन्टडाउन टाइमर"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "फोटो खिच्नका लागि काउन्टडाउनको अवधि, सेकेन्डमा"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Capture mode"
+msgstr "क्याप्चर शैलि"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to take pictures or videos"
+msgstr "फोटो वा भिडियो खिच्ने कि नलिने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Picture format"
+msgstr "तस्वीर ढाँचा"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr "चित्रहरू पीएनजी वा जेपीईजीको रूपमा बचत गर्ने या नगर्ने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr "भिडियो ढाँचा"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Whether to save videos as mp4 or webm"
+msgstr "एमपी ४ वा वेबको रूपमा भिडियोहरू बचत गर्ने या नगर्ने"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:61
+msgid "Last Camera Used ID"
+msgstr "अन्तिम क्यामेरा प्रयोग गरिएको आईडी"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "An ID representing the last used camera"
+msgstr "अन्तिम प्रयोग गरिएको क्यामेरा प्रतिनिधित्व गर्ने आईडी"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "तपाईंको कम्प्युटर, ट्याब्लेट वा फोनमा तस्वीरहरू र भिडियोहरू लिनुहोस्."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "क्यामेराको मुख्य इन्टरफेस"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "क्यामेराको छवि सङ्कलन प्रदर्शक"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:183 src/widgets/window.rs:283
+msgid "The GNOME Project"
+msgstr "जिनोम परियोजना"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+msgid "Main Menu"
+msgstr "मुख्य मेनु"
+
+#: data/resources/ui/camera.ui:107
+msgid "No Camera Found"
+msgstr "क्यामेरा फेला परेन"
+
+#: data/resources/ui/camera.ui:108
+msgid "Connect a camera device"
+msgstr "क्यामेरा यन्त्र जडान गर्नुहोस्"
+
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+msgid "Picture Mode"
+msgstr "तस्वीर शैलि"
+
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+msgid "Recording Mode"
+msgstr "रेकर्डिङ शैलि"
+
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
+msgid "Countdown"
+msgstr "काउन्टडाउन"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:580
+msgid "None"
+msgstr "कुनै पनि होइन"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "3s"
+msgstr "३s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:590
+msgid "5s"
+msgstr "५s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:595
+msgid "10s"
+msgstr "१०s"
+
+#: data/resources/ui/camera.ui:603
+msgid "_Preferences"
+msgstr "_प्राथमिकताहरू"
+
+#: data/resources/ui/camera.ui:607
+msgid "_Keyboard Shortcuts"
+msgstr "कुञ्जीपाटी सटकर्ट"
+
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "क्यामेरा बारेमा"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "छवि संङ्कलन  खोल्नुसहोस्"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "तस्वीर लिनुहोस्"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "क्यामेरा छान्नुहोस्"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "क्यामेरा बदल्नुहोस्"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "छवि संङ्कलन  मेनु"
+
+#: data/resources/ui/gallery.ui:94
+msgid "Previous Image"
+msgstr "अघिल्लो छवि"
+
+#: data/resources/ui/gallery.ui:107
+msgid "Next Image"
+msgstr "अर्को छवि"
+
+#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+msgid "Open in Image Viewer"
+msgstr "छवि प्रदर्शकमा खोल्नुहोस्"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "साधारण"
+
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "सटरको आवाज"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "_Composition Guidelines"
+msgstr "रचना दिशानिर्देश"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "साधारण"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "सर्टकट देखाउनुहोस्"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "मुख्य मेनु"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "प्राथमिकताहरू खोल्नुहोस्"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "अन्त्य गर्नुहोस्"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "क्यामेरा"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "तस्वीर शैलि"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "रेकर्डिङ शैलि"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "तस्वीर लिनुहोस् वा रेकर्डिङ सुरु गर्नुहोस्"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "रचना दिशानिर्देश देखाउनुहोस्/लुकाउनुहोस्"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "छवि सङ्कलन"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "छवि संङ्कलन खोल्ने / बन्द गर्ने"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "पछिल्लो"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "अघिल्लो"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "छवि सङ्कलन"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "तस्वीर {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "तस्वीर {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "रेकर्डिङ {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "रेकर्डिङ {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "तस्वीर प्रतिलिपि बनाउनुहोस्"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "भिडियो  प्रतिलिपि बनाउनुहोस्"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "मेटाउ"
+
+#: src/widgets/camera.rs:451
+msgid "Could not play camera stream"
+msgstr "क्यामेरा स्ट्रिम प्ले गर्न सकेन"
+
+#: src/widgets/gallery.rs:117
+msgid "Open in Video Player"
+msgstr "भिडियो प्लेयरमा खोल्नुहोस्"
+
+#: src/widgets/gallery.rs:385
+msgid "Copied to clipboard"
+msgstr "क्लिपबोर्डमा प्रतिलिपि"
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "तस्वीर मेटियो"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "भिडियो मेटियो"
+
+#: src/widgets/shutter_button.rs:81
+msgid "Start Recording"
+msgstr "रेकर्डिङ सुरु गर्नुहोस्"
+
+#: src/widgets/shutter_button.rs:92
+msgid "Stop Recording"
+msgstr "रेकर्ड: रोक्नुहोस्"
+
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
+msgid "Could not take picture"
+msgstr "तस्वीर लिन सकेन"
+
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
+msgid "Could not record video"
+msgstr "भिडियो रेकर्ड गर्न सकेन"
+
+#: src/widgets/window.rs:282
+msgid "translator-credits"
+msgstr "pawan Chitrakar <chautari@gmail.com>"
