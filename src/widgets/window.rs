@@ -282,7 +282,7 @@ impl Window {
             .application_name(gettext("Camera"))
             .application_icon(APP_ID)
             .license_type(gtk::License::Gpl30)
-            .issue_url("https://gitlab.gnome.org/GNOME/snapshot/-/issues/new")
+            .issue_url("https://gitlab.gnome.org/GNOME/snapshot/-/issues/")
             .version(VERSION)
             .translator_credits(gettext("translator-credits"))
             .developer_name(gettext("The GNOME Project"))
