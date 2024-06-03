@@ -874,10 +874,26 @@ impl Viewfinder {
 
         self.imp().capsfilter.set(capsfilter).unwrap();
 
+        let (sender, receiver) = futures_channel::oneshot::channel::<bool>();
+        let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
         decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
             if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-                pad.link(&videoflip.static_pad("sink").unwrap())
-                   .expect("Failed to link decodebin3:video_%u pad with videoflip:sink");
+                let has_succeeded = pad.link(&videoflip.static_pad("sink").unwrap())
+                                       .inspect_err(|err| {
+                                           log::error!("Failed to link decodebin3:video_%u pad with videoflip:sink pad: {err}");
+                                       })
+                                       .is_ok();
+                let mut guard = sender.lock().unwrap();
+                if let Some(sender) = guard.take() {
+                    let _ = sender.send(has_succeeded);
+                }
+            }
+        }));
+
+        glib::spawn_future_local(glib::clone!(@weak self as viewfinder => async move {
+            let has_succeeded = receiver.await.unwrap_or_default();
+            if !has_succeeded {
+                viewfinder.imp().set_state(ViewfinderState::Error);
             }
         }));
 
