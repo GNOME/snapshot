@@ -28,17 +28,11 @@ mod imp {
     #[template(resource = "/org/gnome/Snapshot/ui/gallery.ui")]
     pub struct Gallery {
         #[template_child]
-        pub mobile_breakpoint: TemplateChild<adw::Breakpoint>,
-        #[template_child]
         pub sliding_view: TemplateChild<crate::SlidingView>,
         #[template_child]
         pub open_external: TemplateChild<gtk::Button>,
         #[template_child]
-        pub desktop_controls: TemplateChild<gtk::MediaControls>,
-        #[template_child]
-        pub desktop_controls_revealer: TemplateChild<gtk::Revealer>,
-        #[template_child]
-        pub mobile_controls: TemplateChild<gtk::MediaControls>,
+        pub media_controls: TemplateChild<gtk::MediaControls>,
         #[template_child]
         pub menu_button: TemplateChild<gtk::MenuButton>,
 
@@ -398,18 +392,9 @@ impl Gallery {
             .current_page()
             .and_downcast_ref::<crate::GalleryVideo>()
         {
-            imp.mobile_controls.set_media_stream(Some(video.stream()));
-            imp.desktop_controls.set_media_stream(Some(video.stream()));
-
-            imp.mobile_controls.set_visible(true);
-            imp.desktop_controls_revealer.set_reveal_child(true);
+            imp.media_controls.set_media_stream(Some(video.stream()));
         } else {
-            imp.mobile_controls.set_media_stream(gtk::MediaStream::NONE);
-            imp.desktop_controls
-                .set_media_stream(gtk::MediaStream::NONE);
-
-            imp.mobile_controls.set_visible(false);
-            imp.desktop_controls_revealer.set_reveal_child(false);
+            imp.media_controls.set_media_stream(gtk::MediaStream::NONE);
         }
     }
 
