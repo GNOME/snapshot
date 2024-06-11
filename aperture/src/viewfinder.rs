@@ -864,21 +864,29 @@ impl Viewfinder {
 
         let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
         let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
+        let videoconvert = gst::ElementFactory::make("videoconvert").build()?;
 
         let videoflip = gst::ElementFactory::make("videoflip")
             .property_from_str("video-direction", "auto")
             .build()?;
 
-        bin.add_many([device_src, &capsfilter, &decodebin3, &videoflip])?;
+        bin.add_many([
+            device_src,
+            &capsfilter,
+            &decodebin3,
+            &videoconvert,
+            &videoflip,
+        ])?;
         gst::Element::link_many([device_src, &capsfilter, &decodebin3])?;
+        videoconvert.link(&videoflip)?;
 
         self.imp().capsfilter.set(capsfilter).unwrap();
 
         let (sender, receiver) = futures_channel::oneshot::channel::<bool>();
         let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
-        decodebin3.connect_pad_added(glib::clone!(@weak videoflip => move |_, pad| {
+        decodebin3.connect_pad_added(glib::clone!(@weak videoconvert => move |_, pad| {
             if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-                let has_succeeded = pad.link(&videoflip.static_pad("sink").unwrap())
+                let has_succeeded = pad.link(&videoconvert.static_pad("sink").unwrap())
                                        .inspect_err(|err| {
                                            log::error!("Failed to link decodebin3:video_%u pad with videoflip:sink pad: {err}");
                                        })
