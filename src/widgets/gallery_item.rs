@@ -136,7 +136,12 @@ impl GalleryItem {
                 widget.downcast_ref::<crate::GalleryVideo>().unwrap().load_texture().await
             };
             if let Err(err) = res {
-                log::error!("Could not load gallery item: {err}");
+                if let Some(path) = widget.imp().file.get().and_then(FileExt::basename) {
+                    let path = path.display();
+                    log::error!("Could not load gallery item for {path}: {err}");
+                } else {
+                    log::error!("Could not load gallery item: {err}");
+                }
             } else {
                 widget.set_loaded(true);
             }
