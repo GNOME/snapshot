@@ -236,13 +236,16 @@ impl DeviceProvider {
 
         let bus = monitor.bus();
         let watch = bus
-            .add_watch_local(
-                glib::clone!(@weak self as obj => @default-return glib::ControlFlow::Break,
+            .add_watch_local(glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                #[upgrade_or]
+                glib::ControlFlow::Break,
                 move |_, msg| {
                     obj.handle_message(msg);
                     glib::ControlFlow::Continue
-                }),
-            )
+                }
+            ))
             .expect("Failed to add bus watch");
         imp.bus_watch.set(watch).unwrap();
 

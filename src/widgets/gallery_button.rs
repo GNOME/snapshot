@@ -40,26 +40,36 @@ mod imp {
             let bindings = glib::SignalGroup::new::<crate::GalleryItem>();
             bindings.connect_notify_local(
                 Some("loaded"),
-                glib::clone!(@weak widget => move |_, _| {
-                    widget.animation().play();
-                }),
+                glib::clone!(
+                    #[weak]
+                    widget,
+                    move |_, _| {
+                        widget.animation().play();
+                    }
+                ),
             );
             self.foreground_bindings.set(bindings).unwrap();
 
             widget.add_css_class("gallerybutton");
             widget.add_css_class("flat");
 
-            let target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, target);
             self.size_ani.set(ani).unwrap();
 
-            let hover_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let hover_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let hover_ani = adw::TimedAnimation::new(&*widget, 1.0, HOVER_SCALE, 125, hover_target);
             self.hover_ani.set(hover_ani).unwrap();
         }
@@ -203,18 +213,31 @@ impl GalleryButton {
     }
 
     pub fn set_gallery(&self, gallery: &crate::Gallery) {
-        gallery.connect_item_added(glib::clone!(@weak self as widget => move |_, item| {
-            if item.loaded() {
-                widget.animation().play();
-            } else {
-                widget.imp().foreground_bindings.get().unwrap().set_target(Some(item));
+        gallery.connect_item_added(glib::clone!(
+            #[weak(rename_to = widget)]
+            self,
+            move |_, item| {
+                if item.loaded() {
+                    widget.animation().play();
+                } else {
+                    widget
+                        .imp()
+                        .foreground_bindings
+                        .get()
+                        .unwrap()
+                        .set_target(Some(item));
+                }
             }
-        }));
-        gallery.connect_item_removed(glib::clone!(@weak self as widget => move |_, is_last| {
-            if is_last {
-                widget.animation().play();
+        ));
+        gallery.connect_item_removed(glib::clone!(
+            #[weak(rename_to = widget)]
+            self,
+            move |_, is_last| {
+                if is_last {
+                    widget.animation().play();
+                }
             }
-        }));
+        ));
         self.imp().gallery.replace(Some(gallery.downgrade()));
     }
 

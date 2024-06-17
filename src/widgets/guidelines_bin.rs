@@ -59,10 +59,13 @@ mod imp {
 
             let obj = self.obj();
 
-            let target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak obj => move |_value| {
+            let target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                obj,
+                move |_value| {
                     obj.queue_draw();
-                }));
+                }
+            ));
             let ani = adw::TimedAnimation::new(&*obj, 0.0, 1.0, 250, target);
             ani.set_easing(adw::Easing::EaseInQuad);
 

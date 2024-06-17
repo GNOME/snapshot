@@ -115,22 +115,35 @@ mod imp {
             let provider = aperture::DeviceProvider::instance();
             self.provider.set(provider.clone()).unwrap();
 
-            provider.connect_camera_added(glib::clone!(@weak obj => move |provider, _| {
-                obj.update_cameras_button(provider);
-            }));
-            provider.connect_camera_removed(glib::clone!(@weak obj => move |provider, _| {
-                obj.update_cameras_button(provider);
-            }));
+            provider.connect_camera_added(glib::clone!(
+                #[weak]
+                obj,
+                move |provider, _| {
+                    obj.update_cameras_button(provider);
+                }
+            ));
+            provider.connect_camera_removed(glib::clone!(
+                #[weak]
+                obj,
+                move |provider, _| {
+                    obj.update_cameras_button(provider);
+                }
+            ));
             obj.update_cameras_button(provider);
 
-            self.viewfinder
-                .connect_state_notify(glib::clone!(@weak obj => move |_| {
+            self.viewfinder.connect_state_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
                     obj.update_state();
-                }));
+                }
+            ));
             obj.update_state();
 
-            self.viewfinder.connect_is_recording_notify(
-                glib::clone!(@weak obj => move |viewfinder| {
+            self.viewfinder.connect_is_recording_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |viewfinder| {
                     let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
 
                     if viewfinder.is_recording() {
@@ -144,37 +157,48 @@ mod imp {
                             obj.set_shutter_mode(crate::ShutterMode::Video);
                         }
                     }
-                }),
-            );
+                }
+            ));
 
             self.selection.set_model(Some(provider));
-            self.selection.connect_selected_item_notify(
-                glib::clone!(@weak obj => move |selection| {
+            self.selection.connect_selected_item_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |selection| {
                     if let Some(selected_item) = selection.selected_item() {
                         let camera = selected_item.downcast::<aperture::Camera>().ok();
 
-                        if matches!(obj.imp().viewfinder.state(), aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error) {
+                        if matches!(
+                            obj.imp().viewfinder.state(),
+                            aperture::ViewfinderState::Ready | aperture::ViewfinderState::Error
+                        ) {
                             obj.set_camera_inner(camera);
                         }
                     }
-                }),
-            );
+                }
+            ));
 
             self.camera_controls_horizontal
                 .set_selection(self.selection.clone());
             self.camera_controls_vertical
                 .set_selection(self.selection.clone());
 
-            self.camera_controls_horizontal.connect_camera_switched(
-                glib::clone!(@weak self as obj => move |_: &CameraControls| {
-                    obj.obj().camera_switched();
-                }),
-            );
-            self.camera_controls_vertical.connect_camera_switched(
-                glib::clone!(@weak self as obj => move |_: &CameraControls| {
-                    obj.obj().camera_switched();
-                }),
-            );
+            self.camera_controls_horizontal
+                .connect_camera_switched(glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self,
+                    move |_: &CameraControls| {
+                        obj.obj().camera_switched();
+                    }
+                ));
+            self.camera_controls_vertical
+                .connect_camera_switched(glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self,
+                    move |_: &CameraControls| {
+                        obj.obj().camera_switched();
+                    }
+                ));
 
             self.settings()
                 .bind(
@@ -188,23 +212,30 @@ mod imp {
             // https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5960 ever
             // lands.
             obj.update_window_controls();
-            obj.settings().connect_gtk_decoration_layout_notify(
-                glib::clone!(@weak obj => move |_| {
-                    obj.update_window_controls();
-                }),
-            );
+            obj.settings()
+                .connect_gtk_decoration_layout_notify(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |_| {
+                        obj.update_window_controls();
+                    }
+                ));
 
-            obj.connect_current_breakpoint_notify(glib::clone!(@weak self as obj => move |imp| {
-                if imp.current_breakpoint().is_none()
-                || imp
-                    .current_breakpoint()
-                    .is_some_and(|breakpoint| breakpoint.eq(&obj.dual_portrait_bp.get()))
-                {
-                    imp.add_css_class("portrait");
-                } else {
-                    imp.remove_css_class("portrait");
+            obj.connect_current_breakpoint_notify(glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                move |imp| {
+                    if imp.current_breakpoint().is_none()
+                        || imp
+                            .current_breakpoint()
+                            .is_some_and(|breakpoint| breakpoint.eq(&obj.dual_portrait_bp.get()))
+                    {
+                        imp.add_css_class("portrait");
+                    } else {
+                        imp.remove_css_class("portrait");
+                    }
                 }
-            }));
+            ));
         }
     }
 
@@ -231,9 +262,12 @@ impl Camera {
     pub async fn start(&self) {
         let provider = self.imp().provider.get().unwrap();
 
-        glib::spawn_future_local(
-            glib::clone!(@weak self as obj, @strong provider => async move {
-
+        glib::spawn_future_local(glib::clone!(
+            #[weak(rename_to = obj)]
+            self,
+            #[strong]
+            provider,
+            async move {
                 #[cfg(feature = "portal")]
                 match stream().await {
                     Ok(fd) => {
@@ -248,21 +282,27 @@ impl Camera {
                         obj.imp().permission_denied.set(true);
                         obj.update_state();
                         return;
-                    },
+                    }
                     Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
 
-                if let Err(err) = provider.start_with_default(glib::clone!(@weak obj => @default-return false, move |camera| {
-                    let stored_id = obj.imp().settings().string("last-camera-id");
-                    !stored_id.is_empty() && id_from_pw(camera) == stored_id
-                })) {
+                if let Err(err) = provider.start_with_default(glib::clone!(
+                    #[weak]
+                    obj,
+                    #[upgrade_or]
+                    false,
+                    move |camera| {
+                        let stored_id = obj.imp().settings().string("last-camera-id");
+                        !stored_id.is_empty() && id_from_pw(camera) == stored_id
+                    }
+                )) {
                     log::error!("Could not start the device provider: {err}");
                 } else {
                     log::debug!("Device provider started");
                     obj.update_cameras_button(&provider);
                 };
-            }),
-        );
+            }
+        ));
     }
 
     pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
@@ -391,25 +431,31 @@ impl Camera {
     pub fn set_gallery(&self, gallery: crate::Gallery) {
         let imp = self.imp();
 
-        imp.viewfinder.connect_picture_done(
-            glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
+        imp.viewfinder.connect_picture_done(glib::clone!(
+            #[weak]
+            gallery,
+            #[weak(rename_to = obj)]
+            self,
+            move |_, file| {
                 let window = obj.root().and_downcast::<crate::Window>().unwrap();
                 window.set_shutter_enabled(true);
                 // TODO Maybe report error via toast on None
                 if let Some(file) = file {
                     gallery.add_image(file);
                 }
-            }),
-        );
-        imp.viewfinder.connect_recording_done(
-            glib::clone!(@weak gallery, @weak self as obj => move |_, file| {
+            }
+        ));
+        imp.viewfinder.connect_recording_done(glib::clone!(
+            #[weak]
+            gallery,
+            move |_, file| {
                 if let Some(file) = file {
                     gallery.add_video(file);
                 } else {
                     log::error!("Didn't find any file when recording finished!");
                 }
-            }),
-        );
+            }
+        ));
         imp.camera_controls_horizontal.set_gallery(&gallery);
         imp.camera_controls_vertical.set_gallery(&gallery);
     }
@@ -510,19 +556,26 @@ impl Camera {
 
         let source = glib::timeout_add_seconds_local(
             1,
-            glib::clone!(@weak self as obj => @default-return glib::ControlFlow::Break, move || {
-                let imp = obj.imp();
+            glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                #[upgrade_or]
+                glib::ControlFlow::Break,
+                move || {
+                    let imp = obj.imp();
 
-                // TODO Use Cell::update once stabilized.
-                let duration = imp.recording_duration.get() + 1;
-                imp.recording_duration.set(duration);
+                    // TODO Use Cell::update once stabilized.
+                    let duration = imp.recording_duration.get() + 1;
+                    imp.recording_duration.set(duration);
 
-                let minutes = duration.div_euclid(60);
-                let seconds = duration.rem_euclid(60);
-                imp.recording_label.set_label(&format!("{minutes}∶{seconds:02}"));
+                    let minutes = duration.div_euclid(60);
+                    let seconds = duration.rem_euclid(60);
+                    imp.recording_label
+                        .set_label(&format!("{minutes}∶{seconds:02}"));
 
-                glib::ControlFlow::Continue
-            }),
+                    glib::ControlFlow::Continue
+                }
+            ),
         );
         if let Some(old) = imp.recording_source.replace(Some(source)) {
             old.remove();

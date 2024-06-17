@@ -154,19 +154,25 @@ mod imp {
             }
 
             obj.action_set_enabled("win.toggle-gallery", false);
-            self.gallery
-                .connect_item_added(glib::clone!(@weak obj => move |_, _| {
+            self.gallery.connect_item_added(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _| {
                     obj.action_set_enabled("win.toggle-gallery", true);
-                }));
-            self.gallery
-                .connect_item_removed(glib::clone!(@weak obj => move |gallery, _| {
+                }
+            ));
+            self.gallery.connect_item_removed(glib::clone!(
+                #[weak]
+                obj,
+                move |gallery, _| {
                     if gallery.items().is_empty() {
                         let imp = obj.imp();
 
                         obj.action_set_enabled("win.toggle-gallery", false);
                         imp.navigation_view.pop();
                     }
-                }));
+                }
+            ));
 
             // Load latest window state
             obj.load_window_size();
@@ -188,9 +194,13 @@ mod imp {
                 if let Some(handle) = obj.imp().is_active_handle.take() {
                     obj.disconnect(handle);
                 }
-                glib::spawn_future_local(glib::clone!(@weak obj => async move {
-                    obj.imp().camera.start().await;
-                }));
+                glib::spawn_future_local(glib::clone!(
+                    #[weak]
+                    obj,
+                    async move {
+                        obj.imp().camera.start().await;
+                    }
+                ));
             });
             self.is_active_handle.replace(Some(is_active_handle));
         }
@@ -230,23 +240,31 @@ impl Window {
         let countdown_action = self.imp().settings.create_action("countdown");
         self.imp().settings.connect_changed(
             Some("countdown"),
-            glib::clone!(@weak self as window => move |_, _| {
-                window.countdown_cancel();
-                let duration = window.countdown();
-                window.imp().camera.set_countdown(duration as u32);
-            }),
+            glib::clone!(
+                #[weak(rename_to = window)]
+                self,
+                move |_, _| {
+                    window.countdown_cancel();
+                    let duration = window.countdown();
+                    window.imp().camera.set_countdown(duration as u32);
+                }
+            ),
         );
         self.add_action(&countdown_action);
 
         let capture_mode_action = self.imp().settings.create_action("capture-mode");
         self.imp().settings.connect_changed(
             Some("capture-mode"),
-            glib::clone!(@weak self as window => move |_, _| {
-                let capture_mode = window.capture_mode();
-                log::debug!("Set capture mode to {capture_mode:?}");
+            glib::clone!(
+                #[weak(rename_to = window)]
+                self,
+                move |_, _| {
+                    let capture_mode = window.capture_mode();
+                    log::debug!("Set capture mode to {capture_mode:?}");
 
-                window.set_capture_mode(capture_mode);
-            }),
+                    window.set_capture_mode(capture_mode);
+                }
+            ),
         );
         self.add_action(&capture_mode_action);
     }
@@ -320,24 +338,32 @@ impl Window {
         let duration = std::time::Duration::from_secs(duration as u64);
         let countdown_timer_id = glib::timeout_add_local_once(
             duration,
-            glib::clone!(@weak self as window => move || {
-                window.imp().countdown_timer_id.take();
-                glib::spawn_future_local(glib::clone!(@weak window => async move {
-                    if let Err(err) = window.shutter_action().await {
-                        match window.capture_mode() {
-                            CaptureMode::Picture => {
-                                log::error!("Could not take picture: {err}");
-                                window.send_toast(&gettext("Could not take picture"));
-                            }
-                            CaptureMode::Video => {
-                                log::error!("Could not record video: {err}");
-                                window.send_toast(&gettext("Could not record video"));
-                            }
+            glib::clone!(
+                #[weak(rename_to = window)]
+                self,
+                move || {
+                    window.imp().countdown_timer_id.take();
+                    glib::spawn_future_local(glib::clone!(
+                        #[weak]
+                        window,
+                        async move {
+                            if let Err(err) = window.shutter_action().await {
+                                match window.capture_mode() {
+                                    CaptureMode::Picture => {
+                                        log::error!("Could not take picture: {err}");
+                                        window.send_toast(&gettext("Could not take picture"));
+                                    }
+                                    CaptureMode::Video => {
+                                        log::error!("Could not record video: {err}");
+                                        window.send_toast(&gettext("Could not record video"));
+                                    }
+                                }
+                            };
                         }
-                    };
-                }));
-                window.countdown_cleanup();
-            }),
+                    ));
+                    window.countdown_cleanup();
+                }
+            ),
         );
         if let Some(old_id) = self
             .imp()

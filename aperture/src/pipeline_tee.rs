@@ -91,20 +91,43 @@ impl PipelineTee {
             let queue_pad = queue.static_pad("sink").unwrap();
             let tee_pad = queue_pad.peer().unwrap();
 
-            tee_pad.add_probe(gst::PadProbeType::BLOCK_DOWNSTREAM, glib::clone!(@weak self as obj, @weak tee_pad, @weak branch, @weak queue => @default-return gst::PadProbeReturn::Remove, move |_pad, _| {
-                let tee = obj.imp().tee.get().unwrap();
-                tee.call_async(glib::clone!(@weak obj, @weak tee_pad, @weak branch, @weak queue => move |tee| {
-                    tee.release_request_pad(&tee_pad);
+            tee_pad.add_probe(
+                gst::PadProbeType::BLOCK_DOWNSTREAM,
+                glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self,
+                    #[weak]
+                    branch,
+                    #[weak]
+                    queue,
+                    #[upgrade_or]
+                    gst::PadProbeReturn::Remove,
+                    move |tee_pad, _| {
+                        let tee = obj.imp().tee.get().unwrap();
+                        tee.call_async(glib::clone!(
+                            #[weak]
+                            obj,
+                            #[weak]
+                            tee_pad,
+                            #[weak]
+                            branch,
+                            #[weak]
+                            queue,
+                            move |tee| {
+                                tee.release_request_pad(&tee_pad);
 
-                    branch.set_state(gst::State::Null).unwrap();
-                    queue.set_state(gst::State::Null).unwrap();
+                                branch.set_state(gst::State::Null).unwrap();
+                                queue.set_state(gst::State::Null).unwrap();
 
-                    obj.remove(&queue).unwrap();
-                    obj.remove(&branch).unwrap();
-                }));
+                                obj.remove(&queue).unwrap();
+                                obj.remove(&branch).unwrap();
+                            }
+                        ));
 
-                gst::PadProbeReturn::Remove
-            }));
+                        gst::PadProbeReturn::Remove
+                    }
+                ),
+            );
         } else {
             log::error!("Branch {branch:?} not in the pipeline");
         }

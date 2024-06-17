@@ -41,26 +41,30 @@ mod imp {
 
             widget.set_child(Some(&self.picture));
 
-            let id = self.media_file.connect_invalidate_contents(
-                glib::clone!(@weak widget => move |media_file| {
+            let id = self.media_file.connect_invalidate_contents(glib::clone!(
+                #[weak]
+                widget,
+                move |media_file| {
                     widget.imp().has_thumbnail.set(true);
                     if let Some(id) = widget.imp().signal_handler.take() {
                         media_file.disconnect(id);
                     }
-                }),
-            );
+                }
+            ));
             self.signal_handler.replace(Some(id));
 
-            self.media_file.connect_playing_notify(
-                glib::clone!(@weak widget => move |media_file| {
+            self.media_file.connect_playing_notify(glib::clone!(
+                #[weak]
+                widget,
+                move |media_file| {
                     let window = widget.root().and_downcast::<crate::Window>().unwrap();
                     if media_file.is_playing() {
                         window.inhibit("Playing Video");
                     } else {
                         window.uninhibit();
                     }
-                }),
-            );
+                }
+            ));
         }
     }
     impl WidgetImpl for VideoPlayer {}
@@ -92,16 +96,20 @@ impl VideoPlayer {
                     futures_channel::oneshot::channel::<Option<gdk::Texture>>();
                 let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
 
-                let id = self.stream().connect_invalidate_contents(
-                    glib::clone!(@weak self as obj, @strong sender => move |_| {
+                let id = self.stream().connect_invalidate_contents(glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self,
+                    #[strong]
+                    sender,
+                    move |_| {
                         let opt_texture = obj.snapshot_thumbnail();
 
                         let mut guard = sender.lock().unwrap();
                         if let Some(sender) = guard.take() {
                             let _ = sender.send(opt_texture);
                         };
-                    }),
-                );
+                    }
+                ));
 
                 let texture = receiver.await.unwrap();
                 self.stream().disconnect(id);

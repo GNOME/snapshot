@@ -85,8 +85,10 @@ mod imp {
 
             let obj = self.obj();
 
-            self.sliding_view.connect_target_page_reached(
-                glib::clone!(@weak obj => move |sliding_view| {
+            self.sliding_view.connect_target_page_reached(glib::clone!(
+                #[weak]
+                obj,
+                move |sliding_view| {
                     obj.load_neighbor_pages();
 
                     // When deleting an item we need to check again.
@@ -94,11 +96,13 @@ mod imp {
                     let has_next = sliding_view.next_page().is_some();
                     obj.action_set_enabled("gallery.previous", has_prev);
                     obj.action_set_enabled("gallery.next", has_next);
-                }),
-            );
+                }
+            ));
 
-            self.sliding_view.connect_current_page_notify(
-                glib::clone!(@weak obj => move |sliding_view| {
+            self.sliding_view.connect_current_page_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |sliding_view| {
                     let imp = obj.imp();
 
                     if let Some(current) = sliding_view.current_page() {
@@ -128,16 +132,20 @@ mod imp {
                     }
 
                     obj.setup_media_controls();
-                }),
-            );
+                }
+            ));
 
             obj.setup_media_controls();
 
-            glib::spawn_future_local(glib::clone!(@weak obj => async move {
-                if let Err(err) = obj.load_items().await {
-                    log::debug!("Could not load latest items: {err}");
+            glib::spawn_future_local(glib::clone!(
+                #[weak]
+                obj,
+                async move {
+                    if let Err(err) = obj.load_items().await {
+                        log::debug!("Could not load latest items: {err}");
+                    }
                 }
-            }));
+            ));
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {

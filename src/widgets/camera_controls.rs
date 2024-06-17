@@ -115,7 +115,10 @@ impl CameraControls {
 
             item.set_child(Some(&camera_row));
         });
-        factory.connect_bind(glib::clone!(@weak provider_selection => move |_, item| {
+        factory.connect_bind(glib::clone!(
+            #[weak]
+            provider_selection,
+            move |_, item| {
                 let item = item.downcast_ref::<gtk::ListItem>().unwrap();
                 let child = item.child().unwrap();
                 let row = child.downcast_ref::<CameraRow>().unwrap();
@@ -123,22 +126,33 @@ impl CameraControls {
                 let item = item.item().and_downcast::<aperture::Camera>().unwrap();
                 row.set_item(&item);
 
-                provider_selection.connect_selected_item_notify(glib::clone!(@weak row, @weak item => move |selection| {
-                    if let Some(selected_item) = selection.selected_item() {
-                        row.set_selected(selected_item == item);
-                    } else {
-                        row.set_selected(false);
+                provider_selection.connect_selected_item_notify(glib::clone!(
+                    #[weak]
+                    row,
+                    #[weak]
+                    item,
+                    move |selection| {
+                        if let Some(selected_item) = selection.selected_item() {
+                            row.set_selected(selected_item == item);
+                        } else {
+                            row.set_selected(false);
+                        }
                     }
-                }));
-            }));
+                ));
+            }
+        ));
 
         let list_view = gtk::ListView::new(Some(provider_selection.clone()), Some(factory));
 
         popover.set_child(Some(&list_view));
 
-        provider_selection.connect_selected_item_notify(glib::clone!(@weak popover => move |_| {
-            popover.popdown();
-        }));
+        provider_selection.connect_selected_item_notify(glib::clone!(
+            #[weak]
+            popover,
+            move |_| {
+                popover.popdown();
+            }
+        ));
 
         self.imp().camera_menu_button.set_popover(Some(&popover));
     }
@@ -175,12 +189,20 @@ impl CameraControls {
 
     pub fn set_gallery(&self, gallery: &crate::Gallery) {
         self.imp().gallery_button.set_gallery(gallery);
-        gallery.connect_item_added(glib::clone!(@weak self as obj => move |gallery, _| {
-            obj.update_gallery_button(gallery);
-        }));
-        gallery.connect_item_removed(glib::clone!(@weak self as obj => move |gallery, _| {
-            obj.update_gallery_button(gallery);
-        }));
+        gallery.connect_item_added(glib::clone!(
+            #[weak(rename_to = obj)]
+            self,
+            move |gallery, _| {
+                obj.update_gallery_button(gallery);
+            }
+        ));
+        gallery.connect_item_removed(glib::clone!(
+            #[weak(rename_to = obj)]
+            self,
+            move |gallery, _| {
+                obj.update_gallery_button(gallery);
+            }
+        ));
         self.update_gallery_button(gallery);
     }
 

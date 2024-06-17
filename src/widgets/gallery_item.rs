@@ -86,8 +86,10 @@ mod imp {
 
             let gesture = gtk::GestureClick::new();
             gesture.set_button(gdk::BUTTON_SECONDARY);
-            gesture.connect_pressed(
-                glib::clone!(@weak popover, @weak widget => move |_, _, x, y| {
+            gesture.connect_pressed(glib::clone!(
+                #[weak]
+                popover,
+                move |_, _, x, y| {
                     if x > -1.0 && y > -1.0 {
                         let rectangle = gdk::Rectangle::new(x as i32, y as i32, 0, 0);
                         popover.set_pointing_to(Some(&rectangle));
@@ -95,8 +97,8 @@ mod imp {
                         popover.set_pointing_to(None);
                     }
                     popover.popup();
-                }),
-            );
+                }
+            ));
 
             popover.set_parent(&*widget);
             widget.add_controller(gesture);
@@ -129,22 +131,34 @@ unsafe impl<T: GalleryItemImpl> IsSubclassable<T> for GalleryItem {}
 impl GalleryItem {
     pub fn start_loading(&self) {
         self.set_started_loading(true);
-        glib::spawn_future_local(glib::clone!(@weak self as widget => async move {
-            let res = if widget.is_picture() {
-                widget.downcast_ref::<crate::GalleryPicture>().unwrap().load_texture().await
-            } else {
-                widget.downcast_ref::<crate::GalleryVideo>().unwrap().load_texture().await
-            };
-            if let Err(err) = res {
-                if let Some(path) = widget.imp().file.get().and_then(FileExt::basename) {
-                    let path = path.display();
-                    log::error!("Could not load gallery item for {path}: {err}");
+        glib::spawn_future_local(glib::clone!(
+            #[weak(rename_to = widget)]
+            self,
+            async move {
+                let res = if widget.is_picture() {
+                    widget
+                        .downcast_ref::<crate::GalleryPicture>()
+                        .unwrap()
+                        .load_texture()
+                        .await
                 } else {
-                    log::error!("Could not load gallery item: {err}");
+                    widget
+                        .downcast_ref::<crate::GalleryVideo>()
+                        .unwrap()
+                        .load_texture()
+                        .await
+                };
+                if let Err(err) = res {
+                    if let Some(path) = widget.imp().file.get().and_then(FileExt::basename) {
+                        let path = path.display();
+                        log::error!("Could not load gallery item for {path}: {err}");
+                    } else {
+                        log::error!("Could not load gallery item: {err}");
+                    }
+                } else {
+                    widget.set_loaded(true);
                 }
-            } else {
-                widget.set_loaded(true);
             }
-        }));
+        ));
     }
 }

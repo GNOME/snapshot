@@ -119,42 +119,57 @@ mod imp {
             widget.set_tooltip_text(Some(&gettext("Take Picture")));
 
             // Initialize animations.
-            let press_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let press_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let press_ani = adw::TimedAnimation::new(&*widget, 4.0, 8.0, 125, press_target);
             self.press_ani.set(press_ani).unwrap();
 
-            let hover_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let hover_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let hover_ani =
                 adw::TimedAnimation::new(&*widget, 1.0, HOVER_SCALE, HOVER_DURATION, hover_target);
             self.hover_ani.set(hover_ani).unwrap();
 
-            let mode_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let mode_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let mode_ani = adw::TimedAnimation::new(&*widget, 0.0, 1.0, 250, mode_target);
             self.mode_ani.set(mode_ani).unwrap();
 
-            let countdown_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let countdown_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let countdown_ani = adw::TimedAnimation::new(&*widget, 1.0, 0.0, 250, countdown_target);
             // TODO Figure out what easing to use.
             countdown_ani.set_easing(adw::Easing::Linear);
             countdown_ani.set_follow_enable_animations_setting(false);
             self.countdown_ani.set(countdown_ani).unwrap();
 
-            let record_target =
-                adw::CallbackAnimationTarget::new(glib::clone!(@weak widget => move |_value| {
+            let record_target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak]
+                widget,
+                move |_value| {
                     widget.queue_draw();
-                }));
+                }
+            ));
             let record_ani = adw::TimedAnimation::new(&*widget, 0.0, 0.0, 250, record_target);
             self.record_ani.set(record_ani).unwrap();
         }

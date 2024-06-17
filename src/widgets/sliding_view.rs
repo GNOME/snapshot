@@ -92,19 +92,29 @@ mod imp {
                 .reversed(self.is_rtl())
                 .build();
 
-            swipe_tracker.connect_begin_swipe(
-                glib::clone!(@weak obj => move |_| obj.scroll_animation().pause()),
-            );
+            swipe_tracker.connect_begin_swipe(glib::clone!(
+                #[weak]
+                obj,
+                move |_| obj.scroll_animation().pause()
+            ));
 
-            swipe_tracker.connect_update_swipe(glib::clone!(@weak obj => move |_, position| {
-                obj.set_position(position);
-            }));
-
-            swipe_tracker.connect_end_swipe(glib::clone!(@weak obj => move |_, velocity, to| {
-                if let Some(page) = obj.page_at(to) {
-                    obj.scroll_to_velocity(&page, Some(velocity));
+            swipe_tracker.connect_update_swipe(glib::clone!(
+                #[weak]
+                obj,
+                move |_, position| {
+                    obj.set_position(position);
                 }
-            }));
+            ));
+
+            swipe_tracker.connect_end_swipe(glib::clone!(
+                #[weak]
+                obj,
+                move |_, velocity, to| {
+                    if let Some(page) = obj.page_at(to) {
+                        obj.scroll_to_velocity(&page, Some(velocity));
+                    }
+                }
+            ));
 
             self.swipe_tracker.set(swipe_tracker).unwrap();
 
@@ -112,8 +122,12 @@ mod imp {
             let scroll_controller =
                 gtk::EventControllerScroll::new(gtk::EventControllerScrollFlags::HORIZONTAL);
 
-            scroll_controller.connect_scroll(
-                glib::clone!(@weak obj => @default-return glib::Propagation::Proceed, move |_, x, _| {
+            scroll_controller.connect_scroll(glib::clone!(
+                #[weak]
+                obj,
+                #[upgrade_or]
+                glib::Propagation::Proceed,
+                move |_, x, _| {
                     let direction_sign = if obj.imp().is_rtl() { -1. } else { 1. };
 
                     if x * direction_sign > 0. {
@@ -135,8 +149,8 @@ mod imp {
                             glib::Propagation::Stop
                         }
                     }
-                }),
-            );
+                }
+            ));
 
             obj.add_controller(scroll_controller);
         }
@@ -469,9 +483,11 @@ impl SlidingView {
 
     fn scroll_animation(&self) -> &adw::SpringAnimation {
         self.imp().scroll_animation.get_or_init(|| {
-            let target = adw::CallbackAnimationTarget::new(
-                glib::clone!(@weak self as obj => move |position| obj.set_position(position)),
-            );
+            let target = adw::CallbackAnimationTarget::new(glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                move |position| obj.set_position(position)
+            ));
 
             let animation = adw::SpringAnimation::builder()
                 .spring_params(&adw::SpringParams::new(
@@ -483,9 +499,11 @@ impl SlidingView {
                 .target(&target)
                 .build();
 
-            animation.connect_done(glib::clone!(@weak self as obj => move |_| {
-                obj.emit_by_name("target-page-reached", &[])
-            }));
+            animation.connect_done(glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                move |_| obj.emit_by_name("target-page-reached", &[])
+            ));
 
             animation
         })

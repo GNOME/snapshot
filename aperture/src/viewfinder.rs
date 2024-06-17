@@ -193,13 +193,18 @@ mod imp {
             self.camerabin.set(camerabin.clone()).unwrap();
 
             let bus = self.camerabin().bus().unwrap();
-            let watch = bus.add_watch_local(
-                glib::clone!(@weak obj => @default-return glib::ControlFlow::Break, move |_, msg| {
-                    obj.on_bus_message(msg);
-                    glib::ControlFlow::Continue
-                }),
-            )
-            .unwrap();
+            let watch = bus
+                .add_watch_local(glib::clone!(
+                    #[weak]
+                    obj,
+                    #[upgrade_or]
+                    glib::ControlFlow::Break,
+                    move |_, msg| {
+                        obj.on_bus_message(msg);
+                        glib::ControlFlow::Continue
+                    }
+                ))
+                .unwrap();
             self.bus_watch.set(watch).unwrap();
 
             let tee = crate::PipelineTee::new();
@@ -256,31 +261,48 @@ mod imp {
             if devices.started() {
                 obj.init();
             } else {
-                devices.connect_started_notify(glib::clone!(@weak obj => move |_| {
-                    obj.init();
-                }));
+                devices.connect_started_notify(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |_| {
+                        obj.init();
+                    }
+                ));
             }
 
-            devices.connect_camera_added(glib::clone!(@weak obj => move |_, camera| {
-                if matches!(obj.state(), ViewfinderState::NoCameras | ViewfinderState::Loading | ViewfinderState::Error) {
-                    obj.imp().set_state(ViewfinderState::Ready);
-                    obj.set_camera(Some(camera.clone()));
-                }
-            }));
-
-            devices.connect_camera_removed(glib::clone!(@weak obj => move |devices, camera| {
-                let imp = obj.imp();
-                if Some(camera) == imp.camera.borrow().as_ref() {
-                    obj.cancel_current_operation();
-
-                    let next_camera = devices.camera(0);
-                    let is_none = next_camera.is_none();
-                    obj.set_camera(next_camera);
-                    if is_none {
-                        obj.imp().set_state(ViewfinderState::NoCameras);
+            devices.connect_camera_added(glib::clone!(
+                #[weak]
+                obj,
+                move |_, camera| {
+                    if matches!(
+                        obj.state(),
+                        ViewfinderState::NoCameras
+                            | ViewfinderState::Loading
+                            | ViewfinderState::Error
+                    ) {
+                        obj.imp().set_state(ViewfinderState::Ready);
+                        obj.set_camera(Some(camera.clone()));
                     }
                 }
-            }));
+            ));
+
+            devices.connect_camera_removed(glib::clone!(
+                #[weak]
+                obj,
+                move |devices, camera| {
+                    let imp = obj.imp();
+                    if Some(camera) == imp.camera.borrow().as_ref() {
+                        obj.cancel_current_operation();
+
+                        let next_camera = devices.camera(0);
+                        let is_none = next_camera.is_none();
+                        obj.set_camera(next_camera);
+                        if is_none {
+                            obj.imp().set_state(ViewfinderState::NoCameras);
+                        }
+                    }
+                }
+            ));
 
             log::debug!("Setup recording");
             obj.setup_recording();
@@ -607,9 +629,13 @@ impl Viewfinder {
 
     /// Starts the viewfinder.
     pub fn start_stream(&self) {
-        glib::spawn_future_local(glib::clone!(@weak self as obj => async move {
-            obj.change_state_inner(gst::State::Playing).await;
-        }));
+        glib::spawn_future_local(glib::clone!(
+            #[weak(rename_to = obj)]
+            self,
+            async move {
+                obj.change_state_inner(gst::State::Playing).await;
+            }
+        ));
     }
 
     // It is not needed to call this for gst::State::Null.
@@ -617,7 +643,7 @@ impl Viewfinder {
         let (sender, receiver) = futures_channel::oneshot::channel();
 
         let camerabin = self.imp().camerabin();
-        std::thread::spawn(glib::clone!(@weak camerabin => move || {
+        std::thread::spawn(glib::clone!(#[weak] camerabin, move || {
             let timeout = gst::format::ClockTime::from_seconds(2);
             let (res, current_state, pending_state) = camerabin.state(Some(timeout));
             let new_state_is = match res {
@@ -731,9 +757,13 @@ impl Viewfinder {
         if self.imp().timeout_handler.borrow().is_none() {
             let id = glib::timeout_add_seconds_local_once(
                 BARCODE_TIMEOUT,
-                glib::clone!(@weak self as obj => move || {
-                    obj.imp().timeout_handler.take();
-                }),
+                glib::clone!(
+                    #[weak(rename_to = obj)]
+                    self,
+                    move || {
+                        obj.imp().timeout_handler.take();
+                    }
+                ),
             );
             self.imp().timeout_handler.replace(Some(id));
             self.emit_code_detected(data_type, data);
@@ -846,11 +876,15 @@ impl Viewfinder {
 
         glib::timeout_add_local_once(
             std::time::Duration::from_secs(PROVIDER_TIMEOUT),
-            glib::clone!(@weak self as obj => move || {
-                if matches!(obj.state(), ViewfinderState::Loading) {
-                    obj.imp().set_state(ViewfinderState::NoCameras);
+            glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                move || {
+                    if matches!(obj.state(), ViewfinderState::Loading) {
+                        obj.imp().set_state(ViewfinderState::NoCameras);
+                    }
                 }
-            }),
+            ),
         );
     }
 
@@ -884,7 +918,7 @@ impl Viewfinder {
 
         let (sender, receiver) = futures_channel::oneshot::channel::<bool>();
         let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
-        decodebin3.connect_pad_added(glib::clone!(@weak videoconvert => move |_, pad| {
+        decodebin3.connect_pad_added(glib::clone!(#[weak] videoconvert, move |_, pad| {
             if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
                 let has_succeeded = pad.link(&videoconvert.static_pad("sink").unwrap())
                                        .inspect_err(|err| {
@@ -898,12 +932,16 @@ impl Viewfinder {
             }
         }));
 
-        glib::spawn_future_local(glib::clone!(@weak self as viewfinder => async move {
-            let has_succeeded = receiver.await.unwrap_or_default();
-            if !has_succeeded {
-                viewfinder.imp().set_state(ViewfinderState::Error);
+        glib::spawn_future_local(glib::clone!(
+            #[weak(rename_to = viewfinder)]
+            self,
+            async move {
+                let has_succeeded = receiver.await.unwrap_or_default();
+                if !has_succeeded {
+                    viewfinder.imp().set_state(ViewfinderState::Error);
+                }
             }
-        }));
+        ));
 
         let pad = videoflip.static_pad("src").unwrap();
         let ghost_pad = gst::GhostPad::with_target(&pad)?;
