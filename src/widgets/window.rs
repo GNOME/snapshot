@@ -69,6 +69,8 @@ mod imp {
                 self.camera.stop_recording();
             }
 
+            self.camera.stop_stream();
+
             match obj.capture_mode() {
                 CaptureMode::Video => obj.set_shutter_mode(crate::ShutterMode::Video),
                 CaptureMode::Picture => obj.set_shutter_mode(crate::ShutterMode::Picture),
