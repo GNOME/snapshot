@@ -293,7 +293,7 @@ impl Window {
             .debug_info(utils::debug_info())
             .build();
 
-        dialog.present(self);
+        dialog.present(Some(self));
     }
 
     fn countdown_cancel(&self) {
@@ -419,7 +419,7 @@ impl Window {
 
     fn show_preferences_window(&self) {
         let preferences = crate::PreferencesWindow::default();
-        preferences.present(self);
+        preferences.present(Some(self));
     }
 
     pub fn send_toast(&self, text: &str) {
