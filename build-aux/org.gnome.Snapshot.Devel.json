@@ -79,7 +79,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
-                    "tag": "1.24.4",
+                    "tag": "1.24.5",
                     "disable-submodules": true
                 }
             ]
@@ -116,7 +116,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.freedesktop.org/pipewire/pipewire.git",
-                    "tag": "1.1.83",
+                    "tag": "1.2.0",
                     "disable-submodules": true
                 }
             ]
