@@ -81,8 +81,8 @@ mod imp {
                 self.media_file.realize(&surface);
             }
 
-            if let Some(file) = self.file.borrow().as_ref() {
-                self.media_file.set_file(Some(file));
+            if let Some(file) = self.file.take() {
+                self.media_file.set_file(Some(&file));
             }
         }
     }
@@ -172,10 +172,10 @@ impl VideoPlayer {
     pub fn set_file(&self, file: &gio::File) {
         let imp = self.imp();
 
-        imp.file.replace(Some(file.clone()));
-
         if imp.obj().is_realized() {
             imp.media_file.set_file(Some(file));
+        } else {
+            imp.file.replace(Some(file.clone()));
         }
 
         if let Some(basename) = file.basename() {
