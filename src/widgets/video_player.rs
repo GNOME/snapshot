@@ -15,6 +15,7 @@ mod imp {
         pub controls: gtk::MediaControls,
         pub thumbnail: OnceCell<gdk::Texture>,
         pub has_thumbnail: Cell<bool>,
+        pub file: RefCell<Option<gio::File>>,
 
         pub signal_handler: RefCell<Option<glib::SignalHandlerId>>,
     }
@@ -67,7 +68,24 @@ mod imp {
             ));
         }
     }
-    impl WidgetImpl for VideoPlayer {}
+    impl WidgetImpl for VideoPlayer {
+        fn realize(&self) {
+            self.parent_realize();
+
+            if let Some(surface) = self
+                .obj()
+                .root()
+                .and_then(|r| r.native())
+                .and_then(|n| n.surface())
+            {
+                self.media_file.realize(&surface);
+            }
+
+            if let Some(file) = self.file.borrow().as_ref() {
+                self.media_file.set_file(Some(file));
+            }
+        }
+    }
     impl BinImpl for VideoPlayer {}
 }
 
@@ -154,7 +172,11 @@ impl VideoPlayer {
     pub fn set_file(&self, file: &gio::File) {
         let imp = self.imp();
 
-        imp.media_file.set_file(Some(file));
+        imp.file.replace(Some(file.clone()));
+
+        if imp.obj().is_realized() {
+            imp.media_file.set_file(Some(file));
+        }
 
         if let Some(basename) = file.basename() {
             let label = basename.display().to_string();
