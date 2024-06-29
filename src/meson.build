@@ -22,13 +22,13 @@ run_command(
 cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
 
-if get_option('profile') == 'default'
+if is_devel
+  rust_target = 'debug'
+  message('Building in debug mode')
+else
   cargo_options += [ '--release' ]
   rust_target = 'release'
   message('Building in release mode')
-else
-  rust_target = 'debug'
-  message('Building in debug mode')
 endif
 
 if get_option('portal') == true

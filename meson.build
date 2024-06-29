@@ -37,7 +37,9 @@ iconsdir = datadir / 'icons'
 podir = meson.project_source_root() / 'po'
 gettext_package = meson.project_name()
 
-if get_option('profile') == 'development'
+is_devel = get_option('profile') == 'development'
+
+if is_devel
   profile = 'Devel'
   vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD', check: false).stdout().strip()
   if vcs_tag == ''
@@ -58,7 +60,7 @@ meson.add_dist_script(
   meson.project_source_root()
 )
 
-if get_option('profile') == 'development'
+if is_devel
   # Setup pre-commit hook for ensuring coding style is always consistent
   message('Setting up git pre-commit hook..')
   run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: false)
