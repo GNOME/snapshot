@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-03-02 18:51+0000\n"
-"PO-Revision-Date: 2024-05-18 00:04+0200\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"POT-Creation-Date: 2024-05-17 22:06+0000\n"
+"PO-Revision-Date: 2024-06-29 10:59+0200\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Fotoaparát"
 
@@ -31,7 +31,6 @@ msgstr "Zachytáva obrázky a videá"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
-#| msgid "picture;photos;camera;"
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "obrázok;fotografie;kamera;webkamera;snímka;fotoaparát;"
 
@@ -83,7 +82,7 @@ msgstr "Či sa majú zachytávať obrázky alebo videá"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Picture format"
-msgstr "Formát obrázku"
+msgstr "Formát obrázka"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to save pictures as png or jpeg"
@@ -99,11 +98,11 @@ msgstr "Či sa majú videá ukladať vo formáte mp4 alebo webm"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:61
 msgid "Last Camera Used ID"
-msgstr ""
+msgstr "ID posledného použitého fotoaparátu"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "An ID representing the last used camera"
-msgstr ""
+msgstr "ID predstavujúce naposledy použitý fotoaparát"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
@@ -111,19 +110,17 @@ msgstr ""
 "Zachytávajte obrázky a videá do vášho počítača, tabletu alebo telefónu."
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:17
-#, fuzzy
 #| msgid "Snapshot's main interface"
 msgid "Camera's main interface"
-msgstr "Hlavné rozhranie aplikácie Snímka"
+msgstr "Hlavné rozhranie aplikácie Fotoaparát"
 
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:21
-#, fuzzy
 #| msgid "Snapshot's gallery viewer"
 msgid "Camera's gallery viewer"
-msgstr "Prehliadač galérie aplikácie Snímka"
+msgstr "Prehliadač galérie aplikácie Fotoaparát"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:183 src/widgets/window.rs:283
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -143,7 +140,7 @@ msgstr "Pripojte zariadenie s fotoaparátom"
 #: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
 #: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
 msgid "Picture Mode"
-msgstr "Režim obrázku"
+msgstr "Režim obrázka"
 
 #: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
 #: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
@@ -185,10 +182,9 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové skratky"
 
 #: data/resources/ui/camera.ui:611
-#, fuzzy
 #| msgid "Camera"
 msgid "_About Camera"
-msgstr "Fotoaparát"
+msgstr "O aplikácii _Fotoaparát"
 
 # tooltip
 #: data/resources/ui/camera_controls.ui:17
@@ -234,15 +230,13 @@ msgid "General"
 msgstr "Všeobecné"
 
 #: data/resources/ui/preferences_window.ui:16
-#| msgid "Play Shutter Sound"
 msgid "_Shutter Sound"
 msgstr "Zvuk _uzávierky"
 
 #: data/resources/ui/preferences_window.ui:23
-#, fuzzy
 #| msgid "Show Composition Guidelines"
 msgid "_Composition Guidelines"
-msgstr "Zobraziť vodiace čiary kompozície"
+msgstr "_Vodiace čiary kompozície"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -277,7 +271,7 @@ msgstr "Fotoaparát"
 #: data/resources/ui/shortcuts.ui:43
 msgctxt "shortcut window"
 msgid "Picture Mode"
-msgstr "Režim obrázku"
+msgstr "Režim obrázka"
 
 #: data/resources/ui/shortcuts.ui:49
 msgctxt "shortcut window"
@@ -350,12 +344,10 @@ msgid "Recording {number}"
 msgstr "Záznam č. {number}"
 
 #: src/utils.rs:136
-#| msgid "Take Picture"
 msgid "_Copy Picture"
 msgstr "_Kopírovať obrázok"
 
 #: src/utils.rs:138
-#| msgid "_Copy"
 msgid "_Copy Video"
 msgstr "_Kopírovať video"
 
@@ -363,7 +355,7 @@ msgstr "_Kopírovať video"
 msgid "_Delete"
 msgstr "O_dstrániť"
 
-#: src/widgets/camera.rs:445
+#: src/widgets/camera.rs:451
 msgid "Could not play camera stream"
 msgstr "Nepodarilo sa prehrať prúd fotoaparátu"
 
@@ -393,15 +385,15 @@ msgstr "Spustí zaznamenávanie"
 msgid "Stop Recording"
 msgstr "Zastaví zaznamenávanie"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:317
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "Nepodarilo sa zachytiť obrázok"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:321
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "Nepodarilo sa zaznamenať video"
 
-#: src/widgets/window.rs:274
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
