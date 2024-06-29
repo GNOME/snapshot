@@ -17,6 +17,24 @@ mod imp {
         pub video_player: OnceCell<video_player::VideoPlayer>,
     }
 
+    impl GalleryVideo {
+        pub fn video_player(&self) -> &video_player::VideoPlayer {
+            self.video_player.get_or_init(|| {
+                let obj = self.obj();
+
+                let file = obj.file();
+
+                let video_player = crate::VideoPlayer::default();
+                video_player.set_file(&file);
+
+                obj.upcast_ref::<crate::GalleryItem>()
+                    .set_item(video_player.upcast_ref());
+
+                video_player
+            })
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for GalleryVideo {
         const NAME: &'static str = "GalleryVideo";
@@ -51,12 +69,8 @@ impl GalleryVideo {
             .build()
     }
 
-    pub fn stream(&self) -> anyhow::Result<&gtk::MediaStream> {
-        if let Some(video_player) = self.imp().video_player.get() {
-            Ok(video_player.stream())
-        } else {
-            anyhow::bail!("Tried to stream before video player loaded")
-        }
+    pub fn stream(&self) -> &gtk::MediaStream {
+        self.imp().video_player().stream()
     }
 
     pub async fn load_texture(&self) -> anyhow::Result<()> {
@@ -64,14 +78,7 @@ impl GalleryVideo {
 
         self.set_started_loading(true);
 
-        let file = self.file();
-
-        let video_player = imp.video_player.get_or_init(crate::VideoPlayer::default);
-
-        video_player.set_file(&file);
-
-        self.upcast_ref::<crate::GalleryItem>()
-            .set_item(video_player.upcast_ref());
+        let video_player = imp.video_player();
 
         if let Some(texture) = video_player.thumbnail().await {
             self.set_thumbnail(texture);
