@@ -292,9 +292,9 @@ impl Gallery {
             .next_files_future(10, glib::Priority::default())
             .await
         {
-            let Some(_) = files.first() else {
+            if files.is_empty() {
                 break;
-            };
+            }
 
             let mut collected = files
                 .into_iter()
