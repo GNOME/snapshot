@@ -80,6 +80,8 @@ impl GalleryVideo {
 
         let video_player = imp.video_player();
 
+        video_player.realize();
+
         if let Some(texture) = video_player.thumbnail().await {
             self.set_thumbnail(texture);
         }
