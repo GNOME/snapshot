@@ -4,7 +4,7 @@ use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
-use crate::config::{APP_ID, PROFILE, VERSION};
+use crate::config::{APP_ID, IS_DEVEL, VERSION};
 use crate::utils;
 use crate::Application;
 use crate::CaptureMode;
@@ -149,7 +149,7 @@ mod imp {
             let obj = self.obj();
 
             // Devel Profile
-            if PROFILE == "Devel" {
+            if IS_DEVEL {
                 obj.add_css_class("devel");
             }
 

@@ -2,6 +2,11 @@ global_conf = configuration_data()
 global_conf.set_quoted('APP_ID', application_id)
 global_conf.set_quoted('PKGDATADIR', pkgdatadir)
 global_conf.set_quoted('PROFILE', profile)
+if is_devel
+  global_conf.set('IS_DEVEL', 'true')
+else
+  global_conf.set('IS_DEVEL', 'false')
+endif
 global_conf.set_quoted('VERSION', version + version_suffix)
 global_conf.set_quoted('GETTEXT_PACKAGE', gettext_package)
 global_conf.set_quoted('LOCALEDIR', localedir)

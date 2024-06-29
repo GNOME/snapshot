@@ -3,7 +3,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 use log::{debug, info};
 
-use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
+use crate::config::{APP_ID, IS_DEVEL, PKGDATADIR, PROFILE, VERSION};
 
 mod imp {
     use adw::subclass::prelude::*;
@@ -40,10 +40,10 @@ mod imp {
 
         fn startup(&self) {
             info!("Snapshot ({})", APP_ID);
-            if PROFILE.is_empty() {
-                info!("Version: {}", VERSION);
-            } else {
+            if IS_DEVEL {
                 info!("Version: {} ({})", VERSION, PROFILE);
+            } else {
+                info!("Version: {}", VERSION);
             }
             info!("Datadir: {}", PKGDATADIR);
             debug!("Application::startup");
