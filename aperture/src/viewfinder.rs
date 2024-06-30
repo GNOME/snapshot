@@ -59,6 +59,7 @@ mod imp {
         pub timeout_handler: RefCell<Option<glib::SourceId>>,
 
         pub picture: gtk::Picture,
+        pub offload: gtk::GraphicsOffload,
     }
 
     impl Viewfinder {
@@ -249,8 +250,10 @@ mod imp {
                 .set_accessible_role(gtk::AccessibleRole::Presentation);
             self.picture.set_hexpand(true);
             self.picture.set_vexpand(true);
-            self.picture.set_parent(&*obj);
             self.picture.set_paintable(Some(&paintable));
+
+            self.offload.set_child(Some(&self.picture));
+            self.offload.set_parent(&*obj);
 
             self.tee.set(tee).unwrap();
 
@@ -318,7 +321,7 @@ mod imp {
                 log::error!("Could not stop camerabin: {err}");
             }
 
-            self.picture.unparent();
+            self.offload.unparent();
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
