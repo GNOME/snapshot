@@ -10,7 +10,6 @@ mod imp {
 
     #[derive(Debug, Default)]
     pub struct VideoPlayer {
-        pub offload: gtk::GraphicsOffload,
         pub media_file: gtk::MediaFile,
         pub picture: gtk::Picture,
         pub controls: gtk::MediaControls,
@@ -40,9 +39,8 @@ mod imp {
             self.controls.set_halign(gtk::Align::Fill);
             self.controls.set_hexpand(true);
             self.controls.add_css_class("videoplayercontrols");
-            self.offload.set_child(Some(&self.picture));
 
-            widget.set_child(Some(&self.offload));
+            widget.set_child(Some(&self.picture));
 
             let id = self.media_file.connect_invalidate_contents(glib::clone!(
                 #[weak]
