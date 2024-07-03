@@ -977,6 +977,7 @@ dependencies = [
  "gdk4-x11",
  "gst-plugin-version-helper",
  "gstreamer",
+ "gstreamer-allocators",
  "gstreamer-base",
  "gstreamer-gl",
  "gstreamer-gl-egl",
@@ -1019,6 +1020,30 @@ dependencies = [
  "pin-project-lite",
  "smallvec",
  "thiserror",
+]
+
+[[package]]
+name = "gstreamer-allocators"
+version = "0.23.0"
+source = "git+https://gitlab.freedesktop.org/gstreamer/gstreamer-rs?branch=main#adf3e9236aa6974147866242617cf651938e0ccc"
+dependencies = [
+ "glib",
+ "gstreamer",
+ "gstreamer-allocators-sys",
+ "libc",
+ "once_cell",
+]
+
+[[package]]
+name = "gstreamer-allocators-sys"
+version = "0.23.0"
+source = "git+https://gitlab.freedesktop.org/gstreamer/gstreamer-rs?branch=main#adf3e9236aa6974147866242617cf651938e0ccc"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "gstreamer-sys",
+ "libc",
+ "system-deps 7.0.1",
 ]
 
 [[package]]
