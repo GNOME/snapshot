@@ -48,8 +48,6 @@ mod imp {
         pub flash_bin: TemplateChild<crate::FlashBin>,
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
-        #[template_child]
-        pub spinner: TemplateChild<gtk::Spinner>,
 
         #[template_child]
         pub guidelines: TemplateChild<crate::GuidelinesBin>,
@@ -515,26 +513,19 @@ impl Camera {
         let imp = self.imp();
 
         if imp.permission_denied.get() {
-            imp.spinner.stop();
             imp.stack.set_visible_child_name("permission-denied");
             return;
         }
 
         match imp.viewfinder.state() {
             aperture::ViewfinderState::Loading => {
-                imp.spinner.start();
                 imp.stack.set_visible_child_name("loading");
             }
             aperture::ViewfinderState::Ready => {
-                imp.spinner.stop();
                 imp.stack.set_visible_child_name("camera");
             }
-            aperture::ViewfinderState::NoCameras => {
-                imp.spinner.stop();
-                imp.stack.set_visible_child_name("not-found")
-            }
+            aperture::ViewfinderState::NoCameras => imp.stack.set_visible_child_name("not-found"),
             aperture::ViewfinderState::Error => {
-                imp.spinner.stop();
                 imp.stack.set_visible_child_name("camera");
 
                 let window = self.root().and_downcast::<crate::Window>().unwrap();
