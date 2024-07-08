@@ -51,8 +51,7 @@ impl GalleryPicture {
         self.set_started_loading(true);
 
         let file = self.file();
-        let mut loader = glycin::Loader::new(file);
-        loader.sandbox_mechanism(Some(glycin::SandboxMechanism::NotSandboxed));
+        let loader = glycin::Loader::new(file);
         let image = loader.load().await?;
         let texture = image.next_frame().await?.texture();
 
