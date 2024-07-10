@@ -364,19 +364,10 @@ mod imp {
             let rect = graphene::Rect::new(0.0, 0.0, w, h);
             snapshot.append_color(&gdk::RGBA::BLACK, &rect);
 
-            // This is the composition of translate (-w / 2.0, 0.0), map x to
-            // -x, and translate (w / 2.0 , 0.0). Note that gsk matrices are
-            // transposed (they act on row vectors).
             if self.is_front_camera.get() {
-                #[rustfmt::skip]
-                let flip_matrix = graphene::Matrix::from_float([
-                    -1.0,  0.0,  0.0,  0.0,
-                     0.0,  1.0,  0.0,  0.0,
-                     0.0,  0.0,  1.0,  0.0,
-                       w,  0.0,  0.0,  1.0,
-                ]);
                 snapshot.save();
-                snapshot.transform_matrix(&flip_matrix);
+                snapshot.translate(&graphene::Point::new(w, 0.0));
+                snapshot.scale(-1.0, 1.0);
                 self.parent_snapshot(snapshot);
                 snapshot.restore();
             } else {
