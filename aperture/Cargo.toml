@@ -20,9 +20,9 @@ x11glx = ["gst-plugin-gtk4/x11glx"]
 [dependencies]
 futures-channel = { workspace = true }
 gst = { workspace = true }
-gst-pbutils = { package = "gstreamer-pbutils", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", version = "0.23", branch = "main" }
-gst-video = { package = "gstreamer-video", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", version = "0.23", branch = "main"}
-gst-plugin-gtk4 = { git = "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs", default-features = false, features = ["gtk_v4_14"], version = "0.13.0-alpha.1", branch = "main" }
+gst-pbutils = { package = "gstreamer-pbutils", version = "0.23" }
+gst-plugin-gtk4 = { version = "0.13", default-features = false, features = ["gtk_v4_14"] }
+gst-video = { package = "gstreamer-video", version = "0.23" }
 gtk = { workspace = true }
 log = { workspace = true }
 once_cell = { workspace = true }
