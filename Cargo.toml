@@ -1,10 +1,26 @@
+[workspace]
+members = [ "aperture" ]
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.76"
+license = "GPL-3.0-or-later"
+authors = ["The GNOME Project"]
+
+[workspace.dependencies]
+log = "0.4"
+once_cell = "1.19"
+futures-channel = "0.3.30"
+gst = { package = "gstreamer", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", features = ["v1_20"], version = "0.23", branch = "main" }
+gtk = { package = "gtk4", git = "https://github.com/gtk-rs/gtk4-rs", features = ["gnome_45"], version = "0.9", branch = "master" }
+
 [package]
 name = "snapshot"
 version = "46.0.0"
-authors = ["Maximiliano Sandoval <msandova@gnome.org>"]
-edition = "2021"
-license = "GPL-3.0-or-later"
-rust-version = "1.76"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
 
 # This is manually enabled by meson
 [features]
@@ -20,9 +36,9 @@ ashpd = { version = "0.9", features = ["gtk4", "tracing"], optional = true, git 
 futures-channel = "0.3.26"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 glycin = { git = "https://gitlab.gnome.org/sophie-h/glycin", features = ["gdk4"] }
-gst = { package = "gstreamer", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", features = ["v1_20"], version = "0.23", branch = "main" }
-gtk = { package = "gtk4", git = "https://github.com/gtk-rs/gtk4-rs", features = ["gnome_45"], version = "0.9", branch = "master" }
-log = "0.4"
-once_cell = "1.17"
+gst = { workspace = true }
+gtk = { workspace = true }
+log = { workspace = true }
+once_cell = { workspace = true }
 tracing-subscriber = "0.3"
-aperture = { path = "./aperture" }
+aperture = { path = "aperture" }

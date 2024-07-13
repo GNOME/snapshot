@@ -1,15 +1,15 @@
 [package]
-authors = ["The GNOME Project"]
+authors.workspace = true
 categories = ["multimedia", "os::linux-apis", "gui"]
 description = "GTK Widget for cameras using gstreamer and pipewire"
-edition = "2021"
+edition.workspace = true
 keywords = ["camera", "gtk", "gstreamer"]
-license = "GPL-3.0-or-later"
+license.workspace = true
 name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/snapshot"
 documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
 version = "0.6.3"
-rust-version = "1.76"
+rust-version.workspace = true
 
 [features]
 default = ["wayland", "x11egl", "x11glx"]
@@ -18,11 +18,11 @@ x11egl = ["gst-plugin-gtk4/x11egl"]
 x11glx = ["gst-plugin-gtk4/x11glx"]
 
 [dependencies]
-futures-channel = "0.3.26"
-gst = { package = "gstreamer", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", features = ["v1_20"], version = "0.23", branch = "main" }
+futures-channel = { workspace = true }
+gst = { workspace = true }
 gst-pbutils = { package = "gstreamer-pbutils", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", version = "0.23", branch = "main" }
 gst-video = { package = "gstreamer-video", git = "https://gitlab.freedesktop.org/gstreamer/gstreamer-rs", version = "0.23", branch = "main"}
 gst-plugin-gtk4 = { git = "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs", default-features = false, features = ["gtk_v4_14"], version = "0.13.0-alpha.1", branch = "main" }
-gtk = { package = "gtk4", git = "https://github.com/gtk-rs/gtk4-rs", features = ["gnome_45"], version = "0.9", branch = "master" }
-log = "0.4.17"
-once_cell = "1.17.1"
+gtk = { workspace = true }
+log = { workspace = true }
+once_cell = { workspace = true }
