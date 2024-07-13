@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot gnome-46\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-04-11 16:40+0000\n"
-"PO-Revision-Date: 2024-04-17 11:20+0530\n"
+"POT-Creation-Date: 2024-05-06 17:03+0000\n"
+"PO-Revision-Date: 2024-07-01 11:02+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
-"Language-Team: Hindi\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 46.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:280
 msgid "Camera"
 msgstr "कैमरा"
 
@@ -37,16 +37,16 @@ msgstr "तस्वीर;फोटो;कैमरा;वेबकैम;स�
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
 msgid "Default window width"
-msgstr "मौलिक विंडो चौड़ाई"
+msgstr "तयशुदा खिड़की चौड़ाई"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
 msgid "Default window height"
-msgstr "मौलिक विंडो ऊंचाई"
+msgstr "तयशुदा खिड़की ऊंचाई"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:26
 msgid "Default window maximized behaviour"
-msgstr "मौलिक विंडो अधिकतम व्यवहार"
+msgstr "तयशुदा खिड़की अधिकतम व्यवहार"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:31
 msgid "Play shutter sound"
@@ -66,7 +66,7 @@ msgstr "कैमरे का उपयोग करते समय रचन�
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
 msgid "Countdown timer"
-msgstr "उलटी-गिनती टाइमर"
+msgstr "काउंटडाउन टाइमर"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "The duration of the countdown for taking photos, in seconds"
@@ -117,12 +117,13 @@ msgid "Camera's gallery viewer"
 msgstr "कैमरे की गैलरी दर्शक"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:171 src/widgets/window.rs:283
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:171 src/widgets/window.rs:286
 msgid "The GNOME Project"
-msgstr "GNOME परियोजना"
+msgstr "गनोम परियोजना"
 
 #: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
 #: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:584
 msgid "Main Menu"
 msgstr "मुख्य मेनू"
 
@@ -146,41 +147,49 @@ msgstr "रिकॉर्डिंग मोड"
 
 #: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
 #: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:607
 msgid "Countdown"
 msgstr "उलटी गिनती"
 
+#: data/resources/ui/camera.ui:594
+msgid "Missing Camera Permission"
+msgstr "कैमरा अनुमति अनुपलब्ध"
+
+#: data/resources/ui/camera.ui:595
+msgid "Allow camera usage in Settings"
+msgstr "सेटिंग्स में कैमरा उपयोग की अनुमति दें"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:610
 msgid "None"
 msgstr "कोई नहीं"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:615
 msgid "3s"
 msgstr "3से"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:620
 msgid "5s"
 msgstr "5से"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:625
 msgid "10s"
 msgstr "10से"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:633
 msgid "_Preferences"
 msgstr "प्राथमिकताएं (_P)"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:637
 msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:641
 msgid "_About Camera"
-msgstr "Camera के बारे में (_A)"
+msgstr "कैमरा के बारे में (_A)"
 
 #: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
@@ -217,15 +226,15 @@ msgstr "अगली छवि"
 msgid "Open in Image Viewer"
 msgstr "छवि दर्शक में खोलें"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
 msgid "General"
 msgstr "सामान्य"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:13
 msgid "_Shutter Sound"
 msgstr "शटर ध्वनि (_S)"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:20
 msgid "_Composition Guidelines"
 msgstr "रचना दिशानिर्देश (_C)"
 
@@ -346,7 +355,7 @@ msgstr "वीडियो कॉपी करें (_C)"
 msgid "_Delete"
 msgstr "मिटाएं (_D)"
 
-#: src/widgets/camera.rs:451
+#: src/widgets/camera.rs:475
 msgid "Could not play camera stream"
 msgstr "कैमरा स्ट्रीम नहीं चलाया जा सका"
 
@@ -374,14 +383,14 @@ msgstr "रिकॉर्डिंग प्रारंभ करें"
 msgid "Stop Recording"
 msgstr "रिकॉर्डिंग बंद करें"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:325
+#: src/widgets/window.rs:76 src/widgets/window.rs:326
 msgid "Could not take picture"
 msgstr "तस्वीर नहीं ले सके"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:329
+#: src/widgets/window.rs:80 src/widgets/window.rs:330
 msgid "Could not record video"
 msgstr "वीडियो रिकार्ड नहीं हो सका"
 
-#: src/widgets/window.rs:282
+#: src/widgets/window.rs:285
 msgid "translator-credits"
 msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
