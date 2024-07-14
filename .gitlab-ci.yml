@@ -51,8 +51,7 @@ cargo-doc:
     - source $HOME/.cargo/env
     - rustup toolchain install nightly --profile minimal --allow-downgrade
   script:
-    - cd aperture
-    - cargo +nightly rustdoc -- -Z unstable-options ${DOC_OPTIONS}
+    - cargo +nightly rustdoc -p aperture -- -Z unstable-options ${DOC_OPTIONS}
     - mv target/doc ../
 
 cargo-audit:
