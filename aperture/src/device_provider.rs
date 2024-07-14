@@ -192,6 +192,9 @@ impl DeviceProvider {
     ///
     /// This will be taken into account when the [`Viewfinder`] has to choose a
     /// default camera.
+    ///
+    /// [`Viewfinder`]: crate::Viewfinder
+    /// [`start`]: Self::start()
     pub fn start_with_default<F: Fn(&crate::Camera) -> bool + 'static>(
         &self,
         f: F,
