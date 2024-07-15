@@ -97,11 +97,9 @@ mod imp {
 
             let scale = widget.hover_ani().value() as f32;
             let translation = (scale - 1.0) * size / 2.0;
-            let transform = gsk::Transform::new()
-                .translate(&graphene::Point::new(-translation, -translation))
-                .scale(scale, scale);
 
-            snapshot.transform(Some(&transform));
+            snapshot.translate(&graphene::Point::new(-translation, -translation));
+            snapshot.scale(scale, scale);
 
             // We draw the border at full size if we already had a previous
             // image otherwise at the size of the current image.

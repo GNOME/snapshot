@@ -187,11 +187,9 @@ mod imp {
 
             let scale = widget.hover_ani().value() as f32;
             let translation = (scale - 1.0) * size / 2.0;
-            let transform = gsk::Transform::new()
-                .translate(&graphene::Point::new(-translation, -translation))
-                .scale(scale, scale);
 
-            snapshot.transform(Some(&transform));
+            snapshot.translate(&graphene::Point::new(-translation, -translation));
+            snapshot.scale(scale, scale);
 
             widget.draw_border(snapshot, size, border_width);
             widget.draw_play(snapshot, size, border_width);
