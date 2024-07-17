@@ -30,6 +30,12 @@ rustfmt:
     - cargo fmt --version
     - cargo fmt --all -- --color=always --check
 
+codespell:
+  stage: check
+  script:
+    - dnf install -y codespell
+    - codespell -S "*.png,*.po,.git,*.jpg" -L crate -f
+
 cargo-doc:
   stage: test
   image: "ghcr.io/gtk-rs/gtk4-rs/gtk4:latest"
