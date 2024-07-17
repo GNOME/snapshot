@@ -327,7 +327,7 @@ impl Camera {
         let imp = self.imp();
         let window = self.root().and_downcast::<crate::Window>().unwrap();
 
-        // We enable the shutter whenever picture-stored is emited.
+        // We enable the shutter whenever picture-stored is emitted.
         window.set_shutter_enabled(false);
 
         let filename = utils::picture_file_name(format);

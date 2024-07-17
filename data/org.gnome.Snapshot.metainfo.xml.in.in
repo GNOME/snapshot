@@ -59,7 +59,7 @@
         <p>Snapshot 46.2 bugfix release</p>
         <ul>
           <li>Disable portal</li>
-          <li>Always use prefered caps</li>
+          <li>Always use preferred caps</li>
         </ul>
       </description>
     </release>

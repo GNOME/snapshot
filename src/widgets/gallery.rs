@@ -188,7 +188,7 @@ impl Gallery {
         self.emit_item_added(&video);
     }
 
-    // We have this inner method so we can add items without emiting signals.
+    // We have this inner method so we can add items without emitting signals.
     // Used for `load_pictures`.
     fn add_item_inner(&self, file: &gio::File, load: bool, is_picture: bool) -> crate::GalleryItem {
         let imp = self.imp();

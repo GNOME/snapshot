@@ -170,7 +170,7 @@ impl GalleryButton {
         height: f32,
         size: f32,
     ) {
-        // Rect where we clip the image to. We clip sligthly smaller so we don't
+        // Rect where we clip the image to. We clip slightly smaller so we don't
         // have artifacts on the borders of the border.
         let x = (width - size) / 2.0;
         let y = (height - size) / 2.0;
