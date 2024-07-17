@@ -698,7 +698,7 @@ impl Viewfinder {
             Ok(gst::StateChangeSuccess::Async) => {
                 log::debug!("Trying to set camerabin state to {state:?}")
             }
-            Ok(_) => log::debug!("Camerabin succesfully state set to {state:?}"),
+            Ok(_) => log::debug!("Camerabin successfully state set to {state:?}"),
         }
     }
 
@@ -710,7 +710,7 @@ impl Viewfinder {
             log::error!("Could not pause camerabin: {err}");
             self.imp().set_state(ViewfinderState::Error);
         } else {
-            log::debug!("Camerabin state succesfully set to NULL");
+            log::debug!("Camerabin state successfully set to NULL");
         }
     }
 
@@ -757,7 +757,7 @@ impl Viewfinder {
     }
 
     fn on_barcode_detected(&self, data_type: crate::CodeType, data: &str) {
-        // We don't emit the signal if we just emited it
+        // We don't emit the signal if we just emitted it
         if self.imp().timeout_handler.borrow().is_none() {
             let id = glib::timeout_add_seconds_local_once(
                 BARCODE_TIMEOUT,

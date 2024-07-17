@@ -53,7 +53,7 @@ pub(crate) mod caps {
             .collect::<gst::Caps>();
         let caps_with_format = caps.intersect_with_mode(&fixed_caps, gst::CapsIntersectMode::First);
 
-        // We try to find the bigest height smaller than `MAX_HEIGHT`p.
+        // We try to find the biggest height smaller than `MAX_HEIGHT`p.
         let best_height: Option<i32> = best_height(&caps_with_format, MAX_HEIGHT);
 
         if let Some(height) = best_height {
@@ -79,7 +79,7 @@ mod tests {
 
     #[test]
     fn test_is_infrared() {
-        gst::init().expect("Failed to initalize gst");
+        gst::init().expect("Failed to initialize gst");
 
         let infrared_caps = [
             gst_video::VideoCapsBuilder::for_encoding("image/jpeg")
@@ -129,7 +129,7 @@ mod tests {
 
     #[test]
     fn test_limit_fps() {
-        gst::init().expect("Failed to initalize gst");
+        gst::init().expect("Failed to initialize gst");
 
         let good_caps = [
             gst_video::VideoCapsBuilder::new()
@@ -161,7 +161,7 @@ mod tests {
 
     #[test]
     fn test_best_height() {
-        gst::init().expect("Failed to initalize gst");
+        gst::init().expect("Failed to initialize gst");
 
         let caps_1080 = [
             gst_video::VideoCapsBuilder::new().height(1080).build(),

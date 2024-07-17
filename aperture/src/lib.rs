@@ -70,8 +70,8 @@ pub fn init(app_id: &'static str) {
         APP_ID.set(app_id).unwrap();
 
         gtk::init().expect("Unable to start GTK");
-        gst::init().expect("Failed to initalize gst");
-        gstgtk4::plugin_register_static().expect("Failed to initalize gstgtk4");
+        gst::init().expect("Failed to initialize gst");
+        gstgtk4::plugin_register_static().expect("Failed to initialize gstgtk4");
 
         Viewfinder::static_type();
         DeviceProvider::static_type();
