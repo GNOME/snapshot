@@ -79,6 +79,7 @@ pages:
       - 'public'
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs: ["cargo-doc"]
 
 nightly@x86_64:
   extends: ".publish_nightly"
