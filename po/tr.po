@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-03-04 20:21+0000\n"
-"PO-Revision-Date: 2024-03-13 15:12+0300\n"
+"POT-Creation-Date: 2024-05-06 17:03+0000\n"
+"PO-Revision-Date: 2024-05-07 12:25+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:280
 msgid "Camera"
 msgstr "Kamera"
 
@@ -31,12 +31,13 @@ msgstr "Kamera"
 msgid "Take pictures and videos"
 msgstr "Resim ve video çek"
 
+# https://gitlab.gnome.org/GNOME/glib/-/issues/443 hatası sebebiyle uygulama adı dahil ingilizce hallerini de koruyalım.
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr ""
-"resim;fotoğraf;görüntü;web kamerası;picture;photos;camera;kamera;webcam;"
-"kamera;şipşak;snapshot;"
+"camera;picture;photos;webcam;snapshot;resim;fotoğraf;görüntü;web kamerası;"
+"kamera;şipşak;cheese;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -122,7 +123,7 @@ msgid "Camera's gallery viewer"
 msgstr "Kamera galeri gösterici"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:139 src/widgets/window.rs:283
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:171 src/widgets/window.rs:286
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -231,15 +232,15 @@ msgstr "Sonraki Görüntü"
 msgid "Open in Image Viewer"
 msgstr "Resim Görüntüleyiciyle Aç"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
 msgid "General"
 msgstr "Genel"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:13
 msgid "_Shutter Sound"
 msgstr "Deklanşör _Sesi"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:20
 msgid "_Composition Guidelines"
 msgstr "_Yapıt Izgaraları"
 
@@ -360,7 +361,7 @@ msgstr "Videoyu _Kopyala"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: src/widgets/camera.rs:470
+#: src/widgets/camera.rs:475
 msgid "Could not play camera stream"
 msgstr "Kamera akımı oynatılamadı"
 
@@ -388,15 +389,15 @@ msgstr "Kaydı Başlat"
 msgid "Stop Recording"
 msgstr "Kaydı Durdur"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:325
+#: src/widgets/window.rs:76 src/widgets/window.rs:326
 msgid "Could not take picture"
 msgstr "Fotoğraf çekilemedi"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:329
+#: src/widgets/window.rs:80 src/widgets/window.rs:330
 msgid "Could not record video"
 msgstr "Video kaydedilemedi"
 
-#: src/widgets/window.rs:282
+#: src/widgets/window.rs:285
 msgid "translator-credits"
 msgstr ""
 "Sabri Ünal <libreajans@gmail.com>\n"
