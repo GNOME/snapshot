@@ -41,6 +41,8 @@ mod imp {
         camera: RefCell<Option<crate::Camera>>,
         #[property(get = Self::is_recording, name = "is-recording", type = bool)]
         pub is_recording_video: RefCell<Option<PathBuf>>,
+        #[property(get, set = Self::set_disable_audio_recording, explicit_notify)]
+        disable_audio_recording: Cell<bool>,
 
         pub zbar_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
@@ -164,6 +166,27 @@ mod imp {
             }
 
             obj.notify_camera();
+        }
+
+        fn set_disable_audio_recording(&self, value: bool) {
+            let obj = self.obj();
+
+            if value == self.disable_audio_recording.replace(value) {
+                return;
+            }
+
+            if matches!(
+                self.camerabin().current_state(),
+                gst::State::Playing | gst::State::Paused
+            ) {
+                obj.stop_stream();
+                obj.setup_recording();
+                obj.start_stream();
+            } else {
+                obj.setup_recording();
+            }
+
+            obj.notify_disable_audio_recording();
         }
     }
 
@@ -841,27 +864,28 @@ impl Viewfinder {
     fn setup_recording(&self) {
         use gst_pbutils::encoding_profile::EncodingProfileBuilder;
 
+        let caps = gst::Caps::builder("video/webm").build();
+        let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
+            .name("WebM audio/video")
+            .description("Standard WebM/VP8/Vorbis");
+
         let video_profile =
             gst_pbutils::EncodingVideoProfile::builder(&gst::Caps::builder("video/x-vp8").build())
                 .preset("Profile Realtime")
                 .variable_framerate(true)
                 .build();
-        let audio_profile = gst_pbutils::EncodingAudioProfile::builder(
-            &gst::Caps::builder("audio/x-vorbis").build(),
-        )
-        .build();
-        let profiles = gst_pbutils::EncodingContainerProfile::builder(
-            &gst::Caps::builder("video/webm").build(),
-        )
-        .name("WebM audio/video")
-        .description("Standard WebM/VP8/Vorbis")
-        .add_profile(video_profile)
-        .add_profile(audio_profile)
-        .build();
+        container_profile = container_profile.add_profile(video_profile);
+
+        if !self.disable_audio_recording() {
+            let audio_profile = gst_pbutils::EncodingAudioProfile::builder(
+                &gst::Caps::builder("audio/x-vorbis").build(),
+            )
+            .build();
+            container_profile = container_profile.add_profile(audio_profile);
+        }
 
         let camerabin = self.imp().camerabin();
-
-        camerabin.set_property("video-profile", profiles);
+        camerabin.set_property("video-profile", container_profile.build());
     }
 
     fn init(&self) {
