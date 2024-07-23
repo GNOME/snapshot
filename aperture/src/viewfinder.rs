@@ -13,6 +13,15 @@ use crate::code_detector::QrCodeDetector;
 
 const PROVIDER_TIMEOUT: u64 = 2;
 
+#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
+#[repr(u32)]
+#[enum_type(name = "ApertureVideoFormat")]
+pub enum VideoFormat {
+    #[default]
+    Vp8Webm,
+    H264Mp4,
+}
+
 #[derive(Debug)]
 enum StateChangeState {
     Equal,
@@ -43,6 +52,8 @@ mod imp {
         pub is_recording_video: RefCell<Option<PathBuf>>,
         #[property(get, set = Self::set_disable_audio_recording, explicit_notify)]
         disable_audio_recording: Cell<bool>,
+        #[property(get, set = Self::set_video_format, explicit_notify, builder(Default::default()))]
+        video_format: Cell<VideoFormat>,
 
         pub qrcode_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
@@ -171,22 +182,19 @@ mod imp {
         fn set_disable_audio_recording(&self, value: bool) {
             let obj = self.obj();
 
-            if value == self.disable_audio_recording.replace(value) {
-                return;
+            if value != self.disable_audio_recording.replace(value) {
+                obj.reset_pipeline();
+                obj.notify_disable_audio_recording();
             }
+        }
 
-            if matches!(
-                self.camerabin().current_state(),
-                gst::State::Playing | gst::State::Paused
-            ) {
-                obj.stop_stream();
-                obj.setup_recording();
-                obj.start_stream();
-            } else {
-                obj.setup_recording();
+        fn set_video_format(&self, video_format: VideoFormat) {
+            let obj = self.obj();
+
+            if video_format != self.video_format.replace(video_format) {
+                obj.reset_pipeline();
+                obj.notify_video_format();
             }
-
-            obj.notify_disable_audio_recording();
         }
     }
 
@@ -864,30 +872,62 @@ impl Viewfinder {
     fn setup_recording(&self) {
         use gst_pbutils::encoding_profile::EncodingProfileBuilder;
 
-        log::debug!("Setup recording");
+        let profile = match self.video_format() {
+            VideoFormat::H264Mp4 => {
+                log::debug!("Setting up recording with h264/mp4 profile");
 
-        let caps = gst::Caps::builder("video/webm").build();
-        let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
-            .name("WebM audio/video")
-            .description("Standard WebM/VP8/Vorbis");
+                let caps = gst::Caps::builder("video/quicktime").build();
+                let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
+                    .name("MP4 audio/video")
+                    .description("Standard MP4/H264/MP3");
 
-        let video_profile =
-            gst_pbutils::EncodingVideoProfile::builder(&gst::Caps::builder("video/x-vp8").build())
+                let video_profile = gst_pbutils::EncodingVideoProfile::builder(
+                    &gst::Caps::builder("video/x-h264").build(),
+                )
+                .variable_framerate(true)
+                .build();
+                container_profile = container_profile.add_profile(video_profile);
+
+                if !self.disable_audio_recording() {
+                    let audio_profile = gst_pbutils::EncodingAudioProfile::builder(
+                        &gst::Caps::builder("audio/mpeg").build(),
+                    )
+                    .build();
+                    container_profile = container_profile.add_profile(audio_profile);
+                }
+
+                container_profile.build()
+            }
+            VideoFormat::Vp8Webm => {
+                log::debug!("Setting up recording with vp8/webm profile");
+
+                let caps = gst::Caps::builder("video/webm").build();
+                let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
+                    .name("WebM audio/video")
+                    .description("Standard WebM/VP8/Vorbis");
+
+                let video_profile = gst_pbutils::EncodingVideoProfile::builder(
+                    &gst::Caps::builder("video/x-vp8").build(),
+                )
                 .preset("Profile Realtime")
                 .variable_framerate(true)
                 .build();
-        container_profile = container_profile.add_profile(video_profile);
+                container_profile = container_profile.add_profile(video_profile);
 
-        if !self.disable_audio_recording() {
-            let audio_profile = gst_pbutils::EncodingAudioProfile::builder(
-                &gst::Caps::builder("audio/x-vorbis").build(),
-            )
-            .build();
-            container_profile = container_profile.add_profile(audio_profile);
-        }
+                if !self.disable_audio_recording() {
+                    let audio_profile = gst_pbutils::EncodingAudioProfile::builder(
+                        &gst::Caps::builder("audio/x-vorbis").build(),
+                    )
+                    .build();
+                    container_profile = container_profile.add_profile(audio_profile);
+                }
+
+                container_profile.build()
+            }
+        };
 
         let camerabin = self.imp().camerabin();
-        camerabin.set_property("video-profile", container_profile.build());
+        camerabin.set_property("video-profile", profile);
     }
 
     fn init(&self) {
@@ -999,6 +1039,19 @@ impl Viewfinder {
         imp.is_front_camera.set(is_front_camera);
 
         Ok(())
+    }
+
+    fn reset_pipeline(&self) {
+        if matches!(
+            self.imp().camerabin().current_state(),
+            gst::State::Playing | gst::State::Paused
+        ) {
+            self.stop_stream();
+            self.setup_recording();
+            self.start_stream();
+        } else {
+            self.setup_recording();
+        }
     }
 }
 
