@@ -10,6 +10,7 @@
   </enum>
   <enum id="org.gnome.Snapshot.VideoFormat">
     <value nick="vp8webm" value="0" />
+    <value nick="h264mp4" value="1" />
   </enum>
   <schema path="/org/gnome/Snapshot/" id="@app-id@" gettext-domain="@gettext-package@">
     <key name="window-width" type="i">
