@@ -55,6 +55,8 @@ mod imp {
         #[template_child]
         pub flash_bin: TemplateChild<crate::FlashBin>,
         #[template_child]
+        pub qr_screen_bin: TemplateChild<crate::QrScreenBin>,
+        #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
 
         #[template_child]
@@ -65,6 +67,11 @@ mod imp {
 
         #[template_child]
         pub vertical_window_controls: TemplateChild<gtk::WindowControls>,
+
+        #[template_child]
+        pub bottom_sheet: TemplateChild<adw::BottomSheet>,
+        #[template_child]
+        pub qr_bottom_sheet: TemplateChild<crate::QrBottomSheet>,
     }
 
     #[glib::object_subclass]
@@ -91,8 +98,11 @@ mod imp {
                 let shutter_mode = match capture_mode {
                     CaptureMode::Picture => crate::ShutterMode::Picture,
                     CaptureMode::Video => crate::ShutterMode::Video,
+                    CaptureMode::QrDetection => crate::ShutterMode::Hidden,
                 };
                 self.obj().set_shutter_mode(shutter_mode);
+                self.obj()
+                    .set_detect_codes(matches!(capture_mode, CaptureMode::QrDetection));
 
                 self.obj().notify_capture_mode();
             }
@@ -173,6 +183,26 @@ mod imp {
                     obj.update_state();
                 }
             ));
+
+            self.viewfinder.connect_code_detected(glib::clone!(
+                #[weak]
+                obj,
+                move |_, code| {
+                    match std::str::from_utf8(&code) {
+                        Ok(code) => {
+                            log::debug!("Detected QR code: {code}");
+                            obj.imp().bottom_sheet.set_open(true);
+                            obj.imp().qr_bottom_sheet.set_contents(code);
+                        }
+                        Err(err) => {
+                            log::error!("Could not decode QR code: {err}");
+                        }
+                    }
+                }
+            ));
+
+            self.qr_screen_bin.set_viewfinder(self.viewfinder.clone());
+
             obj.update_state();
 
             self.viewfinder.connect_is_recording_notify(glib::clone!(
@@ -441,6 +471,13 @@ impl Camera {
             self.stop_recording();
         }
         self.imp().camera_controls.set_shutter_mode(shutter_mode);
+    }
+
+    pub fn set_detect_codes(&self, detect_codes: bool) {
+        let imp = self.imp();
+
+        imp.viewfinder.set_detect_codes(detect_codes);
+        imp.qr_screen_bin.set_enabled(detect_codes);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {

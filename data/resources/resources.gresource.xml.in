@@ -6,6 +6,7 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/camera_controls.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/gallery.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/preferences_window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/qr_bottom_sheet.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcuts.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
     <file compressed="true">style.css</file>
@@ -17,5 +18,6 @@
     <file preprocess="xml-stripblanks" alias="camera-timer-symbolic.svg">icons/camera-timer-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias ="external-link-symbolic.svg">icons/external-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias ="pick-camera-alt2-symbolic.svg">icons/pick-camera-alt2-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias ="qr-code-symbolic.svg">icons/qr-code-symbolic.svg</file>
   </gresource>
 </gresources>

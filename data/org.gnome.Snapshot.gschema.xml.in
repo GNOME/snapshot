@@ -3,6 +3,7 @@
   <enum id="org.gnome.Snapshot.CaptureMode">
     <value nick="picture" value="0" />
     <value nick="video" value="1" />
+    <value nick="qr-detection" value="2" />
   </enum>
   <enum id="org.gnome.Snapshot.PictureFormat">
     <value nick="jpeg" value="0" />
