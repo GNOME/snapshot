@@ -47,6 +47,8 @@ mod imp {
         #[template_child]
         pub flash_bin: TemplateChild<crate::FlashBin>,
         #[template_child]
+        pub qr_screen_bin: TemplateChild<crate::QrScreenBin>,
+        #[template_child]
         pub stack: TemplateChild<gtk::Stack>,
 
         #[template_child]
@@ -64,6 +66,11 @@ mod imp {
 
         #[template_child]
         pub vertical_end_window_controls: TemplateChild<gtk::WindowControls>,
+
+        #[template_child]
+        pub bottom_sheet: TemplateChild<adw::BottomSheet>,
+        #[template_child]
+        pub qr_bottom_sheet: TemplateChild<crate::QrBottomSheet>,
     }
 
     #[glib::object_subclass]
@@ -136,6 +143,19 @@ mod imp {
                     obj.update_state();
                 }
             ));
+
+            self.viewfinder.connect_code_detected(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _, code| {
+                    log::debug!("Detected QR code: {code}");
+                    obj.imp().bottom_sheet.set_open(true);
+                    obj.imp().qr_bottom_sheet.set_contents(code);
+                }
+            ));
+
+            self.qr_screen_bin.set_viewfinder(self.viewfinder.clone());
+
             obj.update_state();
 
             self.viewfinder.connect_is_recording_notify(glib::clone!(
@@ -428,6 +448,13 @@ impl Camera {
         self.imp()
             .camera_controls_vertical
             .set_shutter_mode(shutter_mode);
+    }
+
+    pub fn set_detect_codes(&self, detect_codes: bool) {
+        let imp = self.imp();
+
+        imp.viewfinder.set_detect_codes(detect_codes);
+        imp.qr_screen_bin.set_enabled(detect_codes);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {

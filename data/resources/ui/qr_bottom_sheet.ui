@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="QrBottomSheet" parent="AdwBin">
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">36</property>
+        <property name="margin-bottom">36</property>
+        <child>
+          <object class="AdwActionRow" id="action_row">
+            <property name="title" translatable="yes">Contents</property>
+            <child>
+              <object class="GtkButton">
+                <property name="valign">center</property>
+                <property name="action-name">qr-bottom-sheet.copy</property>
+                <property name="tooltip-text" translatable="yes">Copy to Clipboard</property>
+                <property name="icon-name">edit-copy-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="open_external_button">
+                <property name="valign">center</property>
+                <property name="visible">False</property>
+                <property name="action-name">qr-bottom-sheet.open-external</property>
+                <property name="tooltip-text" translatable="yes">Open Link</property>
+                <property name="icon-name">external-link-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

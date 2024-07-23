@@ -57,6 +57,9 @@ mod imp {
                 let record_ani = widget.record_ani();
                 let mode_from = widget.mode_ani().value();
                 let record_from = widget.record_ani().value();
+
+                widget.set_visible(!matches!(shutter_mode, ShutterMode::Hidden));
+
                 match shutter_mode {
                     ShutterMode::Picture => {
                         mode_ani.set_value_to(0.0);
@@ -91,6 +94,7 @@ mod imp {
 
                         widget.set_tooltip_text(Some(&gettext("Stop Recording")));
                     }
+                    ShutterMode::Hidden => (),
                 }
 
                 widget.notify_shutter_mode();

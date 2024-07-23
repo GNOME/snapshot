@@ -72,6 +72,7 @@ pub enum CaptureMode {
     #[default]
     Picture,
     Video,
+    QrDetection,
 }
 
 impl From<i32> for CaptureMode {
@@ -79,6 +80,7 @@ impl From<i32> for CaptureMode {
         match value {
             0 => Self::Picture,
             1 => Self::Video,
+            2 => Self::QrDetection,
             _ => Self::default(),
         }
     }
@@ -92,6 +94,7 @@ pub enum ShutterMode {
     Picture,
     Video,
     Recording,
+    Hidden,
 }
 
 pub fn init() {
