@@ -74,6 +74,7 @@ mod imp {
             match obj.capture_mode() {
                 CaptureMode::Video => obj.set_shutter_mode(crate::ShutterMode::Video),
                 CaptureMode::Picture => obj.set_shutter_mode(crate::ShutterMode::Picture),
+                CaptureMode::QrDetection => obj.set_shutter_mode(crate::ShutterMode::Hidden),
             }
 
             obj.set_shutter_enabled(false);
@@ -107,6 +108,7 @@ mod imp {
                             log::error!("Could not record video: {err}");
                             window.send_toast(&gettext("Could not record video"));
                         }
+                        CaptureMode::QrDetection => (),
                     }
                 };
             });
@@ -347,6 +349,7 @@ impl Window {
                                         log::error!("Could not record video: {err}");
                                         window.send_toast(&gettext("Could not record video"));
                                     }
+                                    CaptureMode::QrDetection => (),
                                 }
                             };
                         }

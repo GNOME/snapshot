@@ -67,6 +67,63 @@
             ]
         },
         {
+            "name": "zbar",
+            "config-opts": [
+                "--disable-doc",
+                "--disable-video",
+                "--enable-codes=qrcode",
+                "--without-dbus",
+                "--without-directshow",
+                "--without-gir",
+                "--without-graphicsmagick",
+                "--without-gtk",
+                "--without-imagemagick",
+                "--without-jpeg",
+                "--without-java",
+                "--without-npapi",
+                "--without-python",
+                "--without-qt",
+                "--without-qt5",
+                "--without-xshm",
+                "--without-xv"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://linuxtv.org/downloads/zbar/zbar-0.23.1.tar.gz",
+                    "sha256": "c72b19eb63f48781ae5ff1830236f4e753f4bd6418cd781aea1cd85d625b119e"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "autogen.sh",
+                    "commands": [
+                        "autoreconf -vfi -W none"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "gst-bad-plugins",
+            "buildsystem": "meson",
+            "subdir": "subprojects/gst-plugins-bad",
+            "config-opts": [
+                "-Dzbar=enabled",
+                "-Drsvg=disabled",
+                "-Dvulkan=disabled",
+                "-Dexamples=disabled",
+                "-Dtests=disabled",
+                "-Dintrospection=disabled"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "disable-submodules": true,
+                    "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
+                    "tag": "1.24"
+                }
+            ]
+        },
+        {
             "name": "snapshot",
             "buildsystem": "meson",
             "run-tests": true,
