@@ -201,9 +201,9 @@ impl DeviceProvider {
     ) -> Result<(), crate::ProviderError> {
         if STARTED.is_completed() {
             return Ok(());
-        } else {
-            STARTED.call_once(|| ());
         }
+
+        STARTED.call_once(|| ());
 
         let imp = self.imp();
 

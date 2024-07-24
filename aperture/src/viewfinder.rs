@@ -707,8 +707,7 @@ impl Viewfinder {
                 self.set_camerabin_state(state);
             }
             // If the previous state change failed, we might as well try to set it now.
-            StateChangeState::Error => self.set_camerabin_state(state),
-            StateChangeState::Differ => self.set_camerabin_state(state),
+            StateChangeState::Error | StateChangeState::Differ => self.set_camerabin_state(state),
         }
     }
 
@@ -719,7 +718,7 @@ impl Viewfinder {
                 self.imp().set_state(ViewfinderState::Error);
             }
             Ok(gst::StateChangeSuccess::Async) => {
-                log::debug!("Trying to set camerabin state to {state:?}")
+                log::debug!("Trying to set camerabin state to {state:?}");
             }
             Ok(_) => log::debug!("Camerabin successfully state set to {state:?}"),
         }
