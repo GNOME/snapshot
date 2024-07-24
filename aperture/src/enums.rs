@@ -64,7 +64,7 @@ impl From<&str> for CodeType {
             "Codabar" => Self::Codabar,
             "CODE-39" => Self::Code39,
             "CODE-93" => Self::Code93,
-            "CODE-128" => Self::Code93,
+            "CODE-128" => Self::Code128,
             "PDF417" => Self::Pdf417,
             _ => Self::Unknown,
         }
