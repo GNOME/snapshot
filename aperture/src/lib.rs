@@ -65,6 +65,10 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 /// [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup)
 /// of the [`GApplication`][`gtk::gio::Application`]. This function is
 /// idempotent.
+///
+/// # Panics
+///
+/// If it is not possible to initialize GTK, GST, and gst-rust-plugins.
 pub fn init(app_id: &'static str) {
     IS_INIT.call_once(|| {
         APP_ID.set(app_id).unwrap();
