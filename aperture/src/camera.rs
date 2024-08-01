@@ -145,7 +145,7 @@ impl Camera {
     }
 
     pub(crate) fn create_element(&self) -> Result<gst::Element, glib::BoolError> {
-        let element = self.device().create_element(None)?;
+        let element = self.device().create_element(Some("pipewiresrc"))?;
         element.set_property("client-name", crate::APP_ID.get().unwrap());
         Ok(element)
     }
