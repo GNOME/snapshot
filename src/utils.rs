@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::path::PathBuf;
+use std::sync::LazyLock;
 
 use anyhow::Context;
 use gettextrs::gettext;
 use gst::prelude::*;
 use gtk::prelude::*;
 use gtk::{gio, glib};
-use once_cell::sync::Lazy;
 
 use crate::i18n::i18n_f;
 
@@ -75,7 +75,7 @@ pub fn pictures_dir() -> anyhow::Result<PathBuf> {
     Ok(path)
 }
 
-static DEBUG_STR: Lazy<String> = Lazy::new(|| {
+static DEBUG_STR: LazyLock<String> = LazyLock::new(|| {
     let registry = gst::Registry::get();
     let mut version_string = String::new();
 

@@ -22,11 +22,11 @@
 //! This widget it similar to `AdwCarousel`.
 
 use std::cell::{Cell, OnceCell, RefCell};
+use std::sync::LazyLock;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gtk::{glib, graphene, gsk};
-use once_cell::sync::Lazy;
 
 const SCROLL_DAMPING_RATIO: f64 = 1.0;
 const SCROLL_MASS: f64 = 0.5;
@@ -76,8 +76,8 @@ mod imp {
     #[glib::derived_properties]
     impl ObjectImpl for SlidingView {
         fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> =
-                Lazy::new(|| vec![Signal::builder("target-page-reached").build()]);
+            static SIGNALS: LazyLock<Vec<Signal>> =
+                LazyLock::new(|| vec![Signal::builder("target-page-reached").build()]);
             SIGNALS.as_ref()
         }
 

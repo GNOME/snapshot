@@ -27,7 +27,6 @@ dependencies = [
  "gstreamer-video",
  "gtk4",
  "log",
- "once_cell",
 ]
 
 [[package]]
@@ -1874,7 +1873,6 @@ dependencies = [
  "gtk4",
  "libadwaita",
  "log",
- "once_cell",
  "tracing-subscriber",
 ]
 

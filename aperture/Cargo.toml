@@ -18,4 +18,3 @@ gst-pbutils = { package = "gstreamer-pbutils", version = "0.23" }
 gst-video = { package = "gstreamer-video", version = "0.23" }
 gtk = { workspace = true }
 log = { workspace = true }
-once_cell = { workspace = true }

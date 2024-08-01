@@ -3,13 +3,12 @@ members = [ "aperture" ]
 
 [workspace.package]
 edition = "2021"
-rust-version = "1.76"
+rust-version = "1.80"
 license = "GPL-3.0-or-later"
 authors = ["The GNOME Project"]
 
 [workspace.dependencies]
 log = "0.4"
-once_cell = "1.19"
 futures-channel = "0.3.30"
 gst = { package = "gstreamer", version = "0.23" , features = ["v1_20"] }
 gtk = { package = "gtk4", version = "0.9", features = ["gnome_46"] }
@@ -40,6 +39,5 @@ glycin = { version = "2.0.0", features = ["gdk4"] }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
-once_cell = { workspace = true }
 tracing-subscriber = "0.3"
 aperture = { path = "aperture" }

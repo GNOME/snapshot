@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::sync::LazyLock;
+
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use gtk::CompositeTemplate;
 use gtk::{gdk, gio, glib};
-use once_cell::sync::Lazy;
 
-static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
+static ATTRIBUTES: LazyLock<String> = LazyLock::new(|| {
     [
         gio::FILE_ATTRIBUTE_STANDARD_NAME.as_str(),
         gio::FILE_ATTRIBUTE_TIME_CREATED.as_str(),
@@ -19,8 +20,6 @@ static ATTRIBUTES: Lazy<String> = Lazy::new(|| {
 
 mod imp {
     use std::cell::RefCell;
-
-    use once_cell::sync::Lazy;
 
     use super::*;
 
@@ -149,7 +148,7 @@ mod imp {
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
-            static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
+            static SIGNALS: LazyLock<Vec<glib::subclass::Signal>> = LazyLock::new(|| {
                 vec![
                     glib::subclass::Signal::builder("item-added")
                         .param_types([crate::GalleryItem::static_type()])

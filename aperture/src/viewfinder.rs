@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::path::Path;
 use std::path::PathBuf;
+use std::sync::LazyLock;
 
 use gst::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
-use once_cell::sync::Lazy;
 
 use crate::ViewfinderState;
 
@@ -358,7 +358,7 @@ mod imp {
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
-            static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
+            static SIGNALS: LazyLock<Vec<glib::subclass::Signal>> = LazyLock::new(|| {
                 vec![
                     // These are emitted whenever the saving process finishes,
                     // successful or not.
