@@ -14,7 +14,7 @@
 //! This can be done by calling [`fn@init`] on
 //! [`startup`](fn@gtk::gio::prelude::ApplicationExt::connect_startup).
 
-use std::sync::{Once, OnceLock};
+use std::sync::{LazyLock, Once, OnceLock};
 
 use gst::prelude::*;
 
@@ -30,7 +30,6 @@ pub use camera::Camera;
 pub use device_provider::DeviceProvider;
 pub use enums::{CameraLocation, CodeType, ViewfinderState};
 pub use error::{CaptureError, PipewireError, ProviderError};
-use once_cell::sync::Lazy;
 pub(crate) use pipeline_tee::PipelineTee;
 pub use viewfinder::Viewfinder;
 
@@ -40,7 +39,7 @@ pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];
 pub(crate) const MAXIMUM_RATE: i32 = 30;
 
 /// Supported caps for the app, already frame capped.
-pub(crate) static SUPPORTED_CAPS: Lazy<gst::Caps> = Lazy::new(|| {
+pub(crate) static SUPPORTED_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
     crate::SUPPORTED_ENCODINGS
         .iter()
         .map(|encoding| {

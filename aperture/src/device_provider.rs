@@ -18,9 +18,9 @@ type ProviderCallback = Box<dyn Fn(&crate::Camera) -> bool + 'static>;
 
 mod imp {
     use std::cell::OnceCell;
+    use std::sync::LazyLock;
 
     use glib::Properties;
-    use once_cell::sync::Lazy;
 
     use super::*;
 
@@ -126,7 +126,7 @@ mod imp {
         }
 
         fn signals() -> &'static [glib::subclass::Signal] {
-            static SIGNALS: Lazy<Vec<glib::subclass::Signal>> = Lazy::new(|| {
+            static SIGNALS: LazyLock<Vec<glib::subclass::Signal>> = LazyLock::new(|| {
                 vec![
                     glib::subclass::Signal::builder("camera-added")
                         .param_types([crate::Camera::static_type()])
@@ -167,8 +167,9 @@ glib::wrapper! {
 impl DeviceProvider {
     /// Gets the default [`DeviceProvider`][crate::DeviceProvider].
     pub fn instance() -> &'static Self {
+        use std::sync::LazyLock;
+
         use glib::thread_guard::ThreadGuard;
-        use once_cell::sync::Lazy;
 
         struct Wrapper(ThreadGuard<crate::DeviceProvider>);
         // SAFETY: We only ever hand out a reference to the contained object on the one
@@ -176,7 +177,7 @@ impl DeviceProvider {
         // time.
         unsafe impl Sync for Wrapper {}
 
-        static SINGLETON: Lazy<Wrapper> = Lazy::new(|| {
+        static SINGLETON: LazyLock<Wrapper> = LazyLock::new(|| {
             Wrapper(ThreadGuard::new(
                 glib::Object::new::<crate::DeviceProvider>(),
             ))

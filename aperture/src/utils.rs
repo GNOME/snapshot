@@ -1,7 +1,7 @@
 pub(crate) mod caps {
-    use once_cell::sync::Lazy;
+    use std::sync::LazyLock;
 
-    static IR_CAPS: Lazy<gst::Caps> = Lazy::new(|| {
+    static IR_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
         crate::SUPPORTED_ENCODINGS
             .iter()
             .map(|encoding| {

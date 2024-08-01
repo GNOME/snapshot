@@ -6,9 +6,9 @@ use super::CameraRow;
 
 mod imp {
     use std::cell::OnceCell;
+    use std::sync::LazyLock;
 
     use gtk::CompositeTemplate;
-    use once_cell::sync::Lazy;
 
     use super::*;
 
@@ -82,8 +82,8 @@ mod imp {
         }
 
         fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> =
-                Lazy::new(|| vec![Signal::builder("camera-switched").build()]);
+            static SIGNALS: LazyLock<Vec<Signal>> =
+                LazyLock::new(|| vec![Signal::builder("camera-switched").build()]);
             SIGNALS.as_ref()
         }
     }
