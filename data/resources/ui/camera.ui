@@ -68,7 +68,11 @@
                       </object>
                     </child>
                     <property name="content">
-                      <object class="AdwSpinner"/>
+                      <object class="AdwSpinner">
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
                     </property>
                   </object>
                 </child>
