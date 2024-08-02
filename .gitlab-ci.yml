@@ -67,7 +67,7 @@ cargo-audit:
   allow_failure: true
   script:
     - cargo install cargo-deny
-    - cargo deny check
+    - cargo deny check advisories bans sources
 
 pages:
   stage: deploy
