@@ -58,7 +58,7 @@ cargo-doc:
     - rustup toolchain install nightly --profile minimal --allow-downgrade
   script:
     - cargo +nightly rustdoc -p aperture -- -Z unstable-options ${DOC_OPTIONS}
-    - mv target/doc/aperture doc
+    - mv target/doc doc
 
 cargo-audit:
   stage: test
