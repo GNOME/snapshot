@@ -29,6 +29,18 @@
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/snapshot</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="47~beta" date="2024-08-14" type="development">
+      <description>
+        <p>Snapshot Beta Release</p>
+        <ul>
+          <li>Offload DMABUFs in Viewfinder</li>
+          <li>Improve recording pipeline</li>
+          <li>Update dependencies</li>
+          <li>Squash various bugs</li>
+          <li>Update translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="47~alpha" date="2024-07-01" type="development">
       <description>
         <p>Snapshot Alpha Release</p>
