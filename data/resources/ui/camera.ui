@@ -97,7 +97,6 @@
                 </child>
                 <property name="content">
                   <object class="AdwStatusPage">
-                    <property name="vexpand">True</property>
                     <property name="icon-name">camera-disabled-symbolic</property>
                     <property name="title" translatable="yes">No Camera Found</property>
                     <property name="description" translatable="yes">Connect a camera device</property>
@@ -584,7 +583,6 @@
                 </child>
                 <property name="content">
                   <object class="AdwStatusPage">
-                    <property name="vexpand">True</property>
                     <property name="icon-name">camera-disabled-symbolic</property>
                     <property name="title" translatable="yes">Missing Camera Permission</property>
                     <property name="description" translatable="yes">Allow camera usage in Settings</property>
