@@ -63,9 +63,7 @@
                 <child>
                   <object class="AdwToolbarView">
                     <child type="top">
-                      <object class="AdwHeaderBar">
-                        <property name="show-title">False</property>
-                      </object>
+                      <object class="AdwHeaderBar"/>
                     </child>
                     <property name="content">
                       <object class="AdwSpinner">
@@ -87,7 +85,6 @@
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
-                    <property name="show-title">False</property>
                     <child type="end">
                       <object class="GtkMenuButton">
                         <property name="icon-name">open-menu-symbolic</property>
@@ -575,7 +572,6 @@
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
-                    <property name="show-title">False</property>
                     <child type="end">
                       <object class="GtkMenuButton">
                         <property name="icon-name">open-menu-symbolic</property>
