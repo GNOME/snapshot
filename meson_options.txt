@@ -15,3 +15,9 @@ option(
   value: false,
   description: 'Enables the usage of the XDG Camera Portal. By default this is Disabled. This is subject to change in a future major release'
 )
+
+option(
+  'x11',
+  type: 'feature',
+  description: 'Enable X11 specific features.'
+)

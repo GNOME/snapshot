@@ -25,6 +25,7 @@ rust-version.workspace = true
 # This is manually enabled by meson
 [features]
 portal = ["dep:ashpd"]
+x11 = ["ashpd/gtk4_x11"]
 
 [profile.release]
 lto = true
@@ -32,7 +33,7 @@ lto = true
 [dependencies]
 adw = { package = "libadwaita", version = "0.7", features = ["v1_6"] }
 anyhow = "1.0"
-ashpd = { version = "0.9", features = ["gtk4", "tracing"], optional = true }
+ashpd = { version = "0.9", features = ["gtk4_wayland", "tracing"], optional = true }
 futures-channel = "0.3.26"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 glycin = { version = "2.0.0-beta", features = ["gdk4"] }

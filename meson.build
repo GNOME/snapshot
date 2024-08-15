@@ -19,6 +19,9 @@ dependency('gstreamer-video-1.0', version: '>= 1.20')
 # Needed for camerabin
 dependency('gstreamer-plugins-bad-1.0', version: '>= 1.20')
 
+# Optional dependencies
+gtk4_x11 = dependency('gtk4-x11', required: get_option('x11'))
+
 glib_compile_resources = find_program('glib-compile-resources', required: true)
 glib_compile_schemas = find_program('glib-compile-schemas', required: true)
 desktop_file_validate = find_program('desktop-file-validate', required: false)

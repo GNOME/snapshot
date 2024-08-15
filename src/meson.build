@@ -36,6 +36,10 @@ else
   message('Building in release mode')
 endif
 
+if gtk4_x11.found()
+  cargo_options += [ '--features', 'x11' ]
+endif
+
 if get_option('portal') == true
   cargo_options += [ '--features', 'portal' ]
 endif
