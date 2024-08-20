@@ -11,17 +11,10 @@ documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
 version = "0.7.0"
 rust-version.workspace = true
 
-[features]
-default = ["wayland", "x11egl", "x11glx"]
-wayland = ["gst-plugin-gtk4/wayland", "gst-plugin-gtk4/dmabuf"]
-x11egl = ["gst-plugin-gtk4/x11egl"]
-x11glx = ["gst-plugin-gtk4/x11glx"]
-
 [dependencies]
 futures-channel = { workspace = true }
 gst = { workspace = true }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.23" }
-gst-plugin-gtk4 = { version = "0.13", default-features = false, features = ["gtk_v4_14"] }
 gst-video = { package = "gstreamer-video", version = "0.23" }
 gtk = { workspace = true }
 log = { workspace = true }

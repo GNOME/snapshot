@@ -75,7 +75,6 @@ pub fn init(app_id: &'static str) {
 
         gtk::init().expect("Unable to start GTK");
         gst::init().expect("Failed to initialize gst");
-        gstgtk4::plugin_register_static().expect("Failed to initialize gstgtk4");
 
         Viewfinder::static_type();
         DeviceProvider::static_type();

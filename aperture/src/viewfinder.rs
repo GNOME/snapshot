@@ -235,7 +235,7 @@ mod imp {
 
             let paintablesink = gst::ElementFactory::make("gtk4paintablesink")
                 .build()
-                .unwrap();
+                .expect("Missing gst-plugin-gtk4");
 
             let paintable = paintablesink.property::<gdk::Paintable>("paintable");
             let is_gl_supported = paintable
