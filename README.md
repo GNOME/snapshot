@@ -18,6 +18,7 @@ Snapshot requires:
 - PipeWire
 - WirePlumber
 - gstreamer-pipewire plugin
+- gst-plugin-gtk4 plugin
 - Optional: libcamera
 - Optional: gstreamer-libcamera plugin (if using libcamera)
 
