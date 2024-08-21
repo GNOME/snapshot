@@ -269,12 +269,12 @@ mod imp {
 
             let videoconvert_video = gst::ElementFactory::make("videoconvert")
                 .build()
-                .expect("Missing GStreamer Good Plug-ins");
+                .expect("Missing GStreamer Base Plug-ins");
             camerabin.set_property("video-filter", &videoconvert_video);
 
             let videoconvert_image = gst::ElementFactory::make("videoconvert")
                 .build()
-                .expect("Missing GStreamer Good Plug-ins");
+                .expect("Missing GStreamer Base Plug-ins");
             camerabin.set_property("image-filter", &videoconvert_image);
 
             self.sink_paintable.set(paintablesink).unwrap();
