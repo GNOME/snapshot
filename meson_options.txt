@@ -12,8 +12,8 @@ option(
 option(
   'portal',
   type: 'boolean',
-  value: false,
-  description: 'Enables the usage of the XDG Camera Portal. By default this is Disabled. This is subject to change in a future major release'
+  value: true,
+  description: 'Enables the usage of the XDG Camera Portal.'
 )
 
 option(

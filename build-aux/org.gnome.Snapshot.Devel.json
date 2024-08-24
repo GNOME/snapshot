@@ -14,7 +14,6 @@
         "--env=RUST_BACKTRACE=1",
         "--env=RUST_LOG=snapshot=debug,aperture=debug",
         "--filesystem=xdg-pictures/Camera:create",
-        "--filesystem=xdg-run/pipewire-0",
         "--filesystem=xdg-videos/Camera:create",
         "--share=ipc",
         "--socket=fallback-x11",
@@ -72,8 +71,7 @@
             "buildsystem": "meson",
             "run-tests": true,
             "config-opts": [
-                "-Dprofile=development",
-                "-Dportal=true"
+                "-Dprofile=development"
             ],
             "sources": [
                 {
