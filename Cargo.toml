@@ -30,7 +30,7 @@ x11 = ["ashpd/gtk4_x11"]
 lto = true
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.7", features = ["v1_6"] }
+# adw = { package = "libadwaita", version = "0.7", features = ["v1_6"] }
 anyhow = "1.0"
 ashpd = { version = "0.9", features = ["gtk4_wayland", "tracing"], optional = true }
 futures-channel = "0.3.26"
@@ -41,3 +41,9 @@ gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
 tracing-subscriber = "0.3"
 aperture = { path = "aperture" }
+
+[dependencies.adw]
+package = "libadwaita"
+git = "https://gitlab.gnome.org/msandova/libadwaita-rs"
+branch = "v0.7-adw-toggle"
+features = ["v1_7"]
