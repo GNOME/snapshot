@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-03-11 13:56+0000\n"
-"PO-Revision-Date: 2024-03-28 21:05+0100\n"
+"POT-Creation-Date: 2024-08-04 18:01+0000\n"
+"PO-Revision-Date: 2024-08-31 22:45+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
 msgid "Camera"
 msgstr "Camèra"
 
@@ -64,42 +64,50 @@ msgid "Whether to show composition guidelines when using the camera"
 msgstr "Indica se cal mostrar la guida de composicion en utilizant l’aparelh de fòto"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Enable audio recording"
+msgstr "Activar l’enregistrament de l’àudio"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Whether to record audio when recording video"
+msgstr "Se cal enregistrar l’àudio pendent un enregistrament vidèo"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Countdown timer"
 msgstr "Minutador"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "La durada del retardador per prendre de fòtos, en segondas"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Capture mode"
 msgstr "Mòde de captura"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to take pictures or videos"
 msgstr "Se cal prendre de fòtos o vidèos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Picture format"
 msgstr "Format d’imatge"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Se cal enregistrar los imatges en png o jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:61
 msgid "Video format"
 msgstr "Format vidèo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Se cal salvar las vidèos en mp4 o webm"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
+#: data/org.gnome.Snapshot.gschema.xml.in:66
 msgid "Last Camera Used ID"
 msgstr "ID darrièra camèra utilizada"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
+#: data/org.gnome.Snapshot.gschema.xml.in:67
 msgid "An ID representing the last used camera"
 msgstr "Un identificant que representa la darrièra camèra utilizada"
 
@@ -116,77 +124,77 @@ msgid "Camera's gallery viewer"
 msgstr "Visualizaire de la galariá de Camèra"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:140 src/widgets/window.rs:283
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:196 src/widgets/window.rs:308
 msgid "The GNOME Project"
 msgstr "Lo projècte GNOME"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
-#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
-#: data/resources/ui/camera.ui:584
+#: data/resources/ui/camera.ui:95 data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
+#: data/resources/ui/camera.ui:583
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:105
 msgid "No Camera Found"
 msgstr "Cap de camèra pas trobada"
 
-#: data/resources/ui/camera.ui:108
+#: data/resources/ui/camera.ui:106
 msgid "Connect a camera device"
 msgstr "Connectatz un periferic fotografic"
 
-#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
-#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
+#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
 msgid "Picture Mode"
 msgstr "Mòde fòto"
 
-#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
-#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
+#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
 msgid "Recording Mode"
 msgstr "Mòde enregistrament"
 
-#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
-#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
+#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:606
 msgid "Countdown"
 msgstr "Retardador"
 
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:593
 msgid "Missing Camera Permission"
 msgstr "Autorizacion per la camèra absenta"
 
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:594
 msgid "Allow camera usage in Settings"
 msgstr "Autorizatz l'utilizacion de la camèra als Paramètres"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:610
+#: data/resources/ui/camera.ui:609
 msgid "None"
 msgstr "Pas cap"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:615
+#: data/resources/ui/camera.ui:614
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:620
+#: data/resources/ui/camera.ui:619
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:625
+#: data/resources/ui/camera.ui:624
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:633
+#: data/resources/ui/camera.ui:632
 msgid "_Preferences"
 msgstr "_Preferéncias"
 
-#: data/resources/ui/camera.ui:637
+#: data/resources/ui/camera.ui:636
 msgid "_Keyboard Shortcuts"
 msgstr "_Acorchis de clavièr"
 
-#: data/resources/ui/camera.ui:641
+#: data/resources/ui/camera.ui:640
 msgid "_About Camera"
 msgstr "_A prepaus de Camèra"
 
@@ -213,29 +221,38 @@ msgstr "Cambiar de camèra"
 msgid "Gallery Menu"
 msgstr "Menú galariá"
 
-#: data/resources/ui/gallery.ui:94
-msgid "Previous Image"
-msgstr "Imatge precedent"
-
-#: data/resources/ui/gallery.ui:107
+#: data/resources/ui/gallery.ui:75
 msgid "Next Image"
 msgstr "Imatge seguent"
 
-#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "Imatge precedent"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
 msgid "Open in Image Viewer"
 msgstr "Dobrir amb lo visionador d'imatge"
 
 #: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
 msgid "General"
 msgstr "General"
 
-#: data/resources/ui/preferences_window.ui:13
+#: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
 msgstr "_Son de l'obturator"
 
-#: data/resources/ui/preferences_window.ui:20
+#: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
 msgstr "_Guida de composicion"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Enregistrament vidèo"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "_Enregistrar l’àudio"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -307,7 +324,7 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Precedent"
 
-#: data/resources/ui/window.ui:21
+#: data/resources/ui/window.ui:23
 msgid "Gallery"
 msgstr "Galariá"
 
@@ -354,23 +371,23 @@ msgstr "_Copiar la vidèo"
 msgid "_Delete"
 msgstr "_Suprimir"
 
-#: src/widgets/camera.rs:470
+#: src/widgets/camera.rs:541
 msgid "Could not play camera stream"
 msgstr "Lectura impossibla del flux de la camèra"
 
-#: src/widgets/gallery.rs:117
+#: src/widgets/gallery.rs:115
 msgid "Open in Video Player"
 msgstr "Dorbir dins un lector vidèo"
 
-#: src/widgets/gallery.rs:385
+#: src/widgets/gallery.rs:393
 msgid "Copied to clipboard"
 msgstr "Copiat al quichapapièrs"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:434
 msgid "Picture deleted"
 msgstr "Imatge suprimit"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:436
 msgid "Video deleted"
 msgstr "Vidèo suprimida"
 
@@ -382,15 +399,15 @@ msgstr "Aviar l'enregistrament"
 msgid "Stop Recording"
 msgstr "Arrestar l'enregistrament"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:323
+#: src/widgets/window.rs:104 src/widgets/window.rs:354
 msgid "Could not take picture"
 msgstr "Presa de vista impossibla"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:327
+#: src/widgets/window.rs:108 src/widgets/window.rs:358
 msgid "Could not record video"
 msgstr "Enregistrament vidèo impossible"
 
-#: src/widgets/window.rs:282
+#: src/widgets/window.rs:307
 msgid "translator-credits"
 msgstr "Quentin PAGÈS"
 
