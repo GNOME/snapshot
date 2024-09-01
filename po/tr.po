@@ -1,16 +1,16 @@
 # Turkish translation for Snapshot.
-# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# Copyright (C) 2023-2024 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 #
-# Sabri Ünal <libreajans@gmail.com>, 2023.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2023.
+# Sabri Ünal <yakushabb@gmail.com>, 2023, 2024
+# Emin Tufan Çetin <etcetin@gmail.com>, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-07-23 18:23+0000\n"
-"PO-Revision-Date: 2024-07-30 00:02+0300\n"
+"POT-Creation-Date: 2024-08-23 17:00+0000\n"
+"PO-Revision-Date: 2024-08-24 21:44+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-DamnedLies-Scope: partial\n"
 "X-Generator: Poedit 3.4.3\n"
+"X-DamnedLies-Scope: partial\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
@@ -69,6 +69,10 @@ msgstr "Yapıt ızgaralarını göster"
 #: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "Kamera kullanılırken yapıt ızgaralarının gösterilme durumu"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Enable audio recording"
+msgstr "Ses kaydını etkinleştir"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Whether to record audio when recording video"
@@ -128,36 +132,36 @@ msgid "Camera's gallery viewer"
 msgstr "Kamera galeri gösterici"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:196 src/widgets/window.rs:308
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:208 src/widgets/window.rs:308
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
-#: data/resources/ui/camera.ui:91 data/resources/ui/camera.ui:165
-#: data/resources/ui/camera.ui:336 data/resources/ui/camera.ui:471
+#: data/resources/ui/camera.ui:92 data/resources/ui/camera.ui:166
+#: data/resources/ui/camera.ui:337 data/resources/ui/camera.ui:472
 #: data/resources/ui/camera.ui:579
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: data/resources/ui/camera.ui:101
+#: data/resources/ui/camera.ui:102
 msgid "No Camera Found"
 msgstr "Kamera Bulunamadı"
 
-#: data/resources/ui/camera.ui:102
+#: data/resources/ui/camera.ui:103
 msgid "Connect a camera device"
 msgstr "Kameraya bağlanamadı"
 
-#: data/resources/ui/camera.ui:191 data/resources/ui/camera.ui:289
-#: data/resources/ui/camera.ui:402 data/resources/ui/camera.ui:493
+#: data/resources/ui/camera.ui:192 data/resources/ui/camera.ui:290
+#: data/resources/ui/camera.ui:403 data/resources/ui/camera.ui:494
 msgid "Picture Mode"
 msgstr "Resim Kipi"
 
-#: data/resources/ui/camera.ui:210 data/resources/ui/camera.ui:308
-#: data/resources/ui/camera.ui:421 data/resources/ui/camera.ui:512
+#: data/resources/ui/camera.ui:211 data/resources/ui/camera.ui:309
+#: data/resources/ui/camera.ui:422 data/resources/ui/camera.ui:513
 msgid "Recording Mode"
 msgstr "Kayıt Kipi"
 
-#: data/resources/ui/camera.ui:232 data/resources/ui/camera.ui:266
-#: data/resources/ui/camera.ui:369 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:233 data/resources/ui/camera.ui:267
+#: data/resources/ui/camera.ui:370 data/resources/ui/camera.ui:542
 #: data/resources/ui/camera.ui:602
 msgid "Countdown"
 msgstr "Geri sayım"
@@ -414,5 +418,5 @@ msgstr "Video kaydedilemedi"
 #: src/widgets/window.rs:307
 msgid "translator-credits"
 msgstr ""
-"Sabri Ünal <libreajans@gmail.com>\n"
+"Sabri Ünal <yakushabb@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
