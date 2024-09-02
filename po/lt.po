@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-02 08:45+0000\n"
-"PO-Revision-Date: 2023-12-07 22:56+0200\n"
+"POT-Creation-Date: 2024-07-23 18:23+0000\n"
+"PO-Revision-Date: 2024-09-02 22:57+0300\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:265
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
 msgid "Camera"
 msgstr "Kamera"
 
@@ -66,42 +66,50 @@ msgid "Whether to show composition guidelines when using the camera"
 msgstr "Ar rodyti komponavimo gaires naudojant kamerą"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Enable audio recording"
+msgstr "Įjungti garso įrašymą"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Whether to record audio when recording video"
+msgstr "Ar įrašyti garsą filmuojant"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
 msgid "Countdown timer"
 msgstr "Laikmatis"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Laikmačio trukmė sekundėmis fotografuojant"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:51
 msgid "Capture mode"
 msgstr "Kameros veiksena"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Whether to take pictures or videos"
 msgstr "Fotografuoti ar filmuoti"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:56
 msgid "Picture format"
 msgstr "Paveikslėlio formatas"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Ar įrašyti paveikslėlius kaip png, ar jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:61
 msgid "Video format"
 msgstr "Vaizdo įrašo formatas"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Ar įrašyti vaizdo įrašus kaip mp4, ar webm"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
+#: data/org.gnome.Snapshot.gschema.xml.in:66
 msgid "Last Camera Used ID"
 msgstr "Paskutinės naudotos kameros ID"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
+#: data/org.gnome.Snapshot.gschema.xml.in:67
 msgid "An ID representing the last used camera"
 msgstr "ID, nusakantis paskutinę naudotą kamerą"
 
@@ -117,64 +125,78 @@ msgstr "Kameros pagrindinė sąsaja"
 msgid "Camera's gallery viewer"
 msgstr "Kameros galerijos peržiūra"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
-#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:196 src/widgets/window.rs:308
+msgid "The GNOME Project"
+msgstr "GNOME projektas"
+
+#: data/resources/ui/camera.ui:91 data/resources/ui/camera.ui:165
+#: data/resources/ui/camera.ui:336 data/resources/ui/camera.ui:471
+#: data/resources/ui/camera.ui:579
 msgid "Main Menu"
 msgstr "Pagrindinis meniu"
 
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:101
 msgid "No Camera Found"
 msgstr "Kamera nerasta"
 
-#: data/resources/ui/camera.ui:108
+#: data/resources/ui/camera.ui:102
 msgid "Connect a camera device"
 msgstr "Prijungti kameros įrenginį"
 
-#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
-#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+#: data/resources/ui/camera.ui:191 data/resources/ui/camera.ui:289
+#: data/resources/ui/camera.ui:402 data/resources/ui/camera.ui:493
 msgid "Picture Mode"
 msgstr "Paveikslėlio veiksena"
 
-#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
-#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+#: data/resources/ui/camera.ui:210 data/resources/ui/camera.ui:308
+#: data/resources/ui/camera.ui:421 data/resources/ui/camera.ui:512
 msgid "Recording Mode"
 msgstr "Filmavimo veiksena"
 
-#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
-#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:232 data/resources/ui/camera.ui:266
+#: data/resources/ui/camera.ui:369 data/resources/ui/camera.ui:541
+#: data/resources/ui/camera.ui:602
 msgid "Countdown"
 msgstr "Laikmatis"
 
+#: data/resources/ui/camera.ui:589
+msgid "Missing Camera Permission"
+msgstr "Trūksta kameros leidimo"
+
+#: data/resources/ui/camera.ui:590
+msgid "Allow camera usage in Settings"
+msgstr "Leiskite naudoti kamerą Nustatymuose"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:605
 msgid "None"
 msgstr "Nėra"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:610
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:615
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:620
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:628
 msgid "_Preferences"
 msgstr "_Nuostatos"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:632
 msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatūros trumpiniai"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:636
 msgid "_About Camera"
 msgstr "_Apie kamerą"
 
@@ -201,29 +223,38 @@ msgstr "Keisti kamerą"
 msgid "Gallery Menu"
 msgstr "Galerijos meniu"
 
-#: data/resources/ui/gallery.ui:94
-msgid "Previous Image"
-msgstr "Ankstesnis paveikslėlis"
-
-#: data/resources/ui/gallery.ui:107
+#: data/resources/ui/gallery.ui:75
 msgid "Next Image"
 msgstr "Kitas paveikslėlis"
 
-#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "Ankstesnis paveikslėlis"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
 msgid "Open in Image Viewer"
 msgstr "Atverti paveikslėlių žiūryklę"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
 msgid "General"
 msgstr "Esmė"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
 msgstr "_Fotografavimo garsas"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
 msgstr "_Komponavimo gairės"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Filmavimas"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "Į_rašyti garsą"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -295,7 +326,7 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: data/resources/ui/window.ui:21
+#: data/resources/ui/window.ui:23
 msgid "Gallery"
 msgstr "Galerija"
 
@@ -330,35 +361,35 @@ msgstr "Filmuoti nuo {date}"
 msgid "Recording {number}"
 msgstr "Įrašas {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Kopijuoti paveikslėlį"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Kopijuoti vaizdo įrašą"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "Iš_trinti"
 
-#: src/widgets/camera.rs:423
+#: src/widgets/camera.rs:541
 msgid "Could not play camera stream"
 msgstr "Nepavyko groti kameros srauto"
 
-#: src/widgets/gallery.rs:117
+#: src/widgets/gallery.rs:115
 msgid "Open in Video Player"
 msgstr "Atverti vaizdo grotuvą"
 
-#: src/widgets/gallery.rs:385
+#: src/widgets/gallery.rs:393
 msgid "Copied to clipboard"
 msgstr "Nukopijuotą į iškarpinę"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:434
 msgid "Picture deleted"
 msgstr "Paveikslėlis ištrintas"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:436
 msgid "Video deleted"
 msgstr "Vaizdo įrašas ištrintas"
 
@@ -370,20 +401,16 @@ msgstr "Pradėti filmuoti"
 msgid "Stop Recording"
 msgstr "Stabdyti filmavimą"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:313
+#: src/widgets/window.rs:104 src/widgets/window.rs:354
 msgid "Could not take picture"
 msgstr "Nepavyko nufotografuoti"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:317
+#: src/widgets/window.rs:108 src/widgets/window.rs:358
 msgid "Could not record video"
 msgstr "Nepavyko įrašyti vaizdo"
 
-#: src/widgets/window.rs:270
+#: src/widgets/window.rs:307
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
-
-#: src/widgets/window.rs:271
-msgid "The GNOME Project"
-msgstr "GNOME projektas"
