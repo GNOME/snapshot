@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-03-06 03:11+0000\n"
-"PO-Revision-Date: 2024-03-06 10:30+0100\n"
+"POT-Creation-Date: 2024-08-04 18:01+0000\n"
+"PO-Revision-Date: 2024-09-15 14:55+0200\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:269
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:277
 msgid "Camera"
 msgstr "Caméra"
 
@@ -32,7 +32,7 @@ msgstr "Prendre des photos ou enregistrer des vidéos"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "image;photos;caméra;webcam;snapshot;"
+msgstr "image;photos;caméra;appareil;webcam;snapshot;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
@@ -122,7 +122,7 @@ msgid "Camera's gallery viewer"
 msgstr "Visionneur de la galerie de Caméra"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:130 src/widgets/window.rs:275
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:183 src/widgets/window.rs:283
 msgid "The GNOME Project"
 msgstr "Le projet GNOME"
 
@@ -133,11 +133,11 @@ msgstr "Menu principal"
 
 #: data/resources/ui/camera.ui:107
 msgid "No Camera Found"
-msgstr "Aucun appareil photo trouvée"
+msgstr "Aucune caméra trouvée"
 
 #: data/resources/ui/camera.ui:108
 msgid "Connect a camera device"
-msgstr "Connecter un appareil photo"
+msgstr "Connecter une caméra"
 
 #: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
 #: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
@@ -297,12 +297,12 @@ msgstr "Ouvrir ou fermer la galerie"
 #: data/resources/ui/shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Next"
-msgstr "Suivant"
+msgstr "Suivante"
 
 #: data/resources/ui/shortcuts.ui:84
 msgctxt "shortcut window"
 msgid "Previous"
-msgstr "Précédent"
+msgstr "Précédente"
 
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
@@ -351,7 +351,7 @@ msgstr "_Copier la vidéo"
 msgid "_Delete"
 msgstr "_Supprimer"
 
-#: src/widgets/camera.rs:445
+#: src/widgets/camera.rs:451
 msgid "Could not play camera stream"
 msgstr "Impossible de diffuser le flux de la caméra"
 
@@ -379,15 +379,15 @@ msgstr "Démarrer l’enregistrement"
 msgid "Stop Recording"
 msgstr "Arrêter l’enregistrement"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:317
+#: src/widgets/window.rs:74 src/widgets/window.rs:325
 msgid "Could not take picture"
 msgstr "Impossible de prendre une photo"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:321
+#: src/widgets/window.rs:78 src/widgets/window.rs:329
 msgid "Could not record video"
 msgstr "Impossible d’enregistrer une vidéo"
 
-#: src/widgets/window.rs:274
+#: src/widgets/window.rs:282
 msgid "translator-credits"
 msgstr ""
 "Guillaume Bernard <associations@guillaume-bernard.fr>\n"
