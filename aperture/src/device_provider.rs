@@ -28,7 +28,6 @@ mod imp {
     #[properties(wrapper_type = super::DeviceProvider)]
     pub struct DeviceProvider {
         pub inner: OnceCell<gst::DeviceProvider>,
-        pub monitor: OnceCell<gst::DeviceMonitor>,
         pub cameras: RefCell<Vec<crate::Camera>>,
         pub bus_watch: OnceCell<gst::bus::BusWatchGuard>,
 
@@ -107,10 +106,6 @@ mod imp {
             self.parent_constructed();
 
             crate::ensure_init();
-
-            let monitor = gst::DeviceMonitor::new();
-            monitor.add_filter(Some("Video/Source"), Some(&crate::SUPPORTED_CAPS));
-            self.monitor.set(monitor).unwrap();
 
             if let Some(provider) = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider") {
                 self.inner.set(provider).unwrap();
@@ -214,12 +209,11 @@ impl DeviceProvider {
         };
         provider.start()?;
 
-        let monitor = imp.monitor.get().unwrap();
-
         let mut seen = HashSet::new();
-        let mut cameras = monitor
+        let mut cameras = provider
             .devices()
             .iter()
+            .filter(|d| is_camera(d))
             .map(crate::Camera::new)
             .filter(|d| !is_ir_camera(d))
             .collect::<Vec<_>>();
@@ -237,7 +231,7 @@ impl DeviceProvider {
         self.imp().cameras.replace(cameras);
         self.items_changed(0, 0, n_items);
 
-        let bus = monitor.bus();
+        let bus = provider.bus();
         let watch = bus
             .add_watch_local(glib::clone!(
                 #[weak(rename_to = obj)]
@@ -358,6 +352,9 @@ impl DeviceProvider {
                     .structure()
                     .and_then(|s| s.get::<gst::Device>("device").ok())
                 {
+                    if !is_camera(&device) {
+                        return;
+                    }
                     let device = crate::Camera::new(&device);
                     if !imp.has_camera(&device) {
                         // We ignore/filter IR cameras.
@@ -402,6 +399,13 @@ impl DeviceProvider {
             _ => (),
         }
     }
+}
+
+fn is_camera(device: &gst::Device) -> bool {
+    device.has_classes("Video/Source")
+        && device
+            .caps()
+            .is_some_and(|c| c.can_intersect(&crate::SUPPORTED_CAPS))
 }
 
 fn is_ir_camera(device: &crate::Camera) -> bool {
