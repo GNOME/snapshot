@@ -53,17 +53,10 @@ mod imp {
         pub guidelines: TemplateChild<crate::GuidelinesBin>,
 
         #[template_child]
-        pub camera_controls_vertical: TemplateChild<crate::CameraControls>,
-        #[template_child]
-        pub camera_controls_horizontal: TemplateChild<crate::CameraControls>,
+        pub camera_controls: TemplateChild<crate::CameraControls>,
 
         #[template_child]
-        pub sidebar_horizontal_end: TemplateChild<gtk::CenterBox>,
-        #[template_child]
-        pub sidebar_vertical_end: TemplateChild<gtk::CenterBox>,
-
-        #[template_child]
-        pub vertical_end_window_controls: TemplateChild<gtk::WindowControls>,
+        pub vertical_window_controls: TemplateChild<gtk::WindowControls>,
     }
 
     #[glib::object_subclass]
@@ -176,27 +169,14 @@ mod imp {
                 }
             ));
 
-            self.camera_controls_horizontal
-                .set_selection(self.selection.clone());
-            self.camera_controls_vertical
-                .set_selection(self.selection.clone());
-
-            self.camera_controls_horizontal
-                .connect_camera_switched(glib::clone!(
-                    #[weak(rename_to = obj)]
-                    self,
-                    move |_: &CameraControls| {
-                        obj.obj().camera_switched();
-                    }
-                ));
-            self.camera_controls_vertical
-                .connect_camera_switched(glib::clone!(
-                    #[weak(rename_to = obj)]
-                    self,
-                    move |_: &CameraControls| {
-                        obj.obj().camera_switched();
-                    }
-                ));
+            self.camera_controls.set_selection(self.selection.clone());
+            self.camera_controls.connect_camera_switched(glib::clone!(
+                #[weak(rename_to = obj)]
+                self,
+                move |_: &CameraControls| {
+                    obj.obj().camera_switched();
+                }
+            ));
 
             self.settings()
                 .bind(
@@ -392,51 +372,27 @@ impl Camera {
         self.imp().players.replace(Some(player));
     }
 
-    fn active_controls(&self) -> &CameraControls {
-        let imp = self.imp();
-        let bp1 = &*imp.single_landscape_bp;
-        let bp2 = &*imp.dual_landscape_bp;
-        if self
-            .current_breakpoint()
-            .is_some_and(|bp| &bp == bp1 || &bp == bp2)
-        {
-            &imp.camera_controls_horizontal
-        } else {
-            &imp.camera_controls_vertical
-        }
-    }
-
     pub fn set_countdown(&self, countdown: u32) {
-        self.imp()
-            .camera_controls_horizontal
-            .set_countdown(countdown);
-        self.imp().camera_controls_vertical.set_countdown(countdown);
+        self.imp().camera_controls.set_countdown(countdown);
     }
 
     pub fn start_countdown(&self) {
-        self.imp().camera_controls_horizontal.start_countdown();
-        self.imp().camera_controls_vertical.start_countdown();
+        self.imp().camera_controls.start_countdown();
     }
 
     pub fn stop_countdown(&self) {
-        self.imp().camera_controls_horizontal.stop_countdown();
-        self.imp().camera_controls_vertical.stop_countdown();
+        self.imp().camera_controls.stop_countdown();
     }
 
     pub fn shutter_mode(&self) -> crate::ShutterMode {
-        self.active_controls().shutter_mode()
+        self.imp().camera_controls.shutter_mode()
     }
 
     pub fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
         if matches!(shutter_mode, crate::ShutterMode::Picture) {
             self.stop_recording();
         }
-        self.imp()
-            .camera_controls_horizontal
-            .set_shutter_mode(shutter_mode);
-        self.imp()
-            .camera_controls_vertical
-            .set_shutter_mode(shutter_mode);
+        self.imp().camera_controls.set_shutter_mode(shutter_mode);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {
@@ -467,8 +423,7 @@ impl Camera {
                 }
             }
         ));
-        imp.camera_controls_horizontal.set_gallery(&gallery);
-        imp.camera_controls_vertical.set_gallery(&gallery);
+        imp.camera_controls.set_gallery(&gallery);
     }
 
     pub fn stop_stream(&self) {
@@ -493,9 +448,7 @@ impl Camera {
     fn update_cameras_button(&self, provider: &aperture::DeviceProvider) {
         let imp = self.imp();
 
-        imp.camera_controls_horizontal
-            .update_visible_camera_button(provider.n_items());
-        imp.camera_controls_vertical
+        imp.camera_controls
             .update_visible_camera_button(provider.n_items());
 
         // We need to set the correct selected item at least when loading. The
@@ -551,7 +504,7 @@ impl Camera {
                 .split_once(':')
                 .map(|(_start, end)| end.split(',').rev().collect::<Vec<_>>().join(","))
         });
-        imp.vertical_end_window_controls
+        imp.vertical_window_controls
             .set_decoration_layout(decoration_layout.as_deref());
     }
 
