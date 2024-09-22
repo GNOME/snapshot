@@ -1,5 +1,13 @@
+#[derive(Debug, PartialEq)]
+pub(crate) struct Size {
+    pub width: i32,
+    pub height: i32,
+}
+
 pub(crate) mod caps {
     use std::sync::LazyLock;
+
+    use super::Size;
 
     static IR_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
         crate::SUPPORTED_ENCODINGS
@@ -21,28 +29,68 @@ pub(crate) mod caps {
         caps.intersect_with_mode(&crate::SUPPORTED_CAPS, gst::CapsIntersectMode::First)
     }
 
-    pub fn best_height(caps: &gst::Caps, for_height: i32) -> Option<i32> {
-        let heights: Vec<i32> = caps
-            .iter()
-            .filter_map(|s| s.get::<i32>("height").ok())
-            .collect();
+    pub(crate) fn best_mode(caps: &gst::Caps) -> Option<Size> {
+        const MIN_WIDTH: i32 = 640;
+        const MIN_HEIGHT: i32 = 480;
+        const MAX_HEIGHT: i32 = 1080;
+        const OPTIMAL_RATIO: f32 = 16.0 / 9.0;
 
-        heights
-            .iter()
-            .filter(|h| for_height >= **h)
-            .max()
-            .copied()
-            .or_else(|| {
-                // If not, we pick the smallest height bigger than `MAX_HEIGHT`.
-                heights.into_iter().filter(|h| for_height <= *h).min()
-            })
+        let mut best_size_optimal_ratio: Option<Size> = None;
+        let mut best_size_any_ratio: Option<Size> = None;
+        let mut best_size_fallback: Option<Size> = None;
+
+        for cap in caps.iter() {
+            let Ok(width) = cap.get::<i32>("width") else {
+                continue;
+            };
+            let Ok(height) = cap.get::<i32>("height") else {
+                continue;
+            };
+
+            if best_size_fallback.is_none() {
+                best_size_fallback = Some(Size { width, height });
+            }
+
+            let max_width = (height as f32 * OPTIMAL_RATIO).ceil() as i32;
+            if MIN_WIDTH <= width
+                && width <= max_width
+                && MIN_HEIGHT <= height
+                && height <= MAX_HEIGHT
+            {
+                if width == (height as f32 * OPTIMAL_RATIO) as i32 {
+                    if let Some(Size {
+                        width: best_w,
+                        height: best_h,
+                    }) = best_size_optimal_ratio
+                    {
+                        if width > best_w && height > best_h {
+                            best_size_optimal_ratio = Some(Size { width, height });
+                        }
+                    } else {
+                        best_size_optimal_ratio = Some(Size { width, height });
+                    }
+                } else {
+                    if let Some(Size {
+                        width: best_w,
+                        height: best_h,
+                    }) = best_size_any_ratio
+                    {
+                        if width > best_w && height > best_h {
+                            best_size_any_ratio = Some(Size { width, height });
+                        }
+                    } else {
+                        best_size_any_ratio = Some(Size { width, height });
+                    }
+                }
+            }
+        }
+
+        best_size_optimal_ratio
+            .or(best_size_any_ratio)
+            .or(best_size_fallback)
     }
 
     pub(crate) fn best_resolution_for_fps(caps: &gst::Caps, framerate: gst::Fraction) -> gst::Caps {
-        // There are multiple aspect rations for 1080p. Therefore, we look for
-        // height rather than width.
-        const MAX_HEIGHT: i32 = 1080;
-
         let fixed_caps = crate::SUPPORTED_ENCODINGS
             .iter()
             .map(|encoding| {
@@ -54,13 +102,12 @@ pub(crate) mod caps {
         let caps_with_format = caps.intersect_with_mode(&fixed_caps, gst::CapsIntersectMode::First);
 
         // We try to find the biggest height smaller than `MAX_HEIGHT`p.
-        let best_height: Option<i32> = best_height(&caps_with_format, MAX_HEIGHT);
-
-        if let Some(height) = best_height {
+        if let Some(Size { height, width }) = best_mode(&caps_with_format) {
             let fixed_res = crate::SUPPORTED_ENCODINGS
                 .iter()
                 .map(|encoding| {
                     gst_video::VideoCapsBuilder::for_encoding(*encoding)
+                        .width(width)
                         .height(height)
                         .build()
                 })
@@ -164,37 +211,155 @@ mod tests {
         gst::init().expect("Failed to initialize gst");
 
         let caps_1080 = [
-            gst_video::VideoCapsBuilder::new().height(1080).build(),
+            gst_video::VideoCapsBuilder::new()
+                .width(1920)
+                .height(1080)
+                .build(),
             [
-                gst_video::VideoCapsBuilder::new().height(1080).build(),
-                gst_video::VideoCapsBuilder::new().height(1081).build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1920)
+                    .height(1080)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1920)
+                    .height(1081)
+                    .build(),
             ]
             .into_iter()
             .collect(),
             [
-                gst_video::VideoCapsBuilder::new().height(1079).build(),
-                gst_video::VideoCapsBuilder::new().height(1080).build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1920)
+                    .height(1079)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1920)
+                    .height(1080)
+                    .build(),
+            ]
+            .into_iter()
+            .collect(),
+            [
+                gst_video::VideoCapsBuilder::new()
+                    .width(2160)
+                    .height(1080)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1920)
+                    .height(1080)
+                    .build(),
             ]
             .into_iter()
             .collect(),
         ];
 
         let caps_720 = [
-            gst_video::VideoCapsBuilder::new().height(720).build(),
+            gst_video::VideoCapsBuilder::new()
+                .width(1280)
+                .height(720)
+                .build(),
             [
-                gst_video::VideoCapsBuilder::new().height(720).build(),
-                gst_video::VideoCapsBuilder::new().height(1081).build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1280)
+                    .height(720)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1280)
+                    .height(1081)
+                    .build(),
+            ]
+            .into_iter()
+            .collect(),
+            [
+                gst_video::VideoCapsBuilder::new()
+                    .width(1280)
+                    .height(720)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(1280)
+                    .height(1080)
+                    .build(),
+            ]
+            .into_iter()
+            .collect(),
+        ];
+
+        let caps_fallback_4k = [
+            gst_video::VideoCapsBuilder::new()
+                .width(3840)
+                .height(2160)
+                .build(),
+            [
+                gst_video::VideoCapsBuilder::new()
+                    .width(3840)
+                    .height(2160)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(640)
+                    .height(360)
+                    .build(),
+            ]
+            .into_iter()
+            .collect(),
+        ];
+
+        let caps_fallback_small = [
+            gst_video::VideoCapsBuilder::new()
+                .width(640)
+                .height(360)
+                .build(),
+            [
+                gst_video::VideoCapsBuilder::new()
+                    .width(640)
+                    .height(360)
+                    .build(),
+                gst_video::VideoCapsBuilder::new()
+                    .width(3840)
+                    .height(2160)
+                    .build(),
             ]
             .into_iter()
             .collect(),
         ];
 
         for cap in caps_1080 {
-            assert_eq!(caps::best_height(&cap, 1080), Some(1080));
+            assert_eq!(
+                caps::best_mode(&cap),
+                Some(Size {
+                    width: 1920,
+                    height: 1080
+                })
+            );
         }
 
         for cap in caps_720 {
-            assert_eq!(caps::best_height(&cap, 1080), Some(720));
+            assert_eq!(
+                caps::best_mode(&cap),
+                Some(Size {
+                    width: 1280,
+                    height: 720
+                })
+            );
+        }
+
+        for cap in caps_fallback_4k {
+            assert_eq!(
+                caps::best_mode(&cap),
+                Some(Size {
+                    width: 3840,
+                    height: 2160
+                })
+            );
+        }
+
+        for cap in caps_fallback_small {
+            assert_eq!(
+                caps::best_mode(&cap),
+                Some(Size {
+                    width: 640,
+                    height: 360
+                })
+            );
         }
     }
 }
