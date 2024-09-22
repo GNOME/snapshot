@@ -16,10 +16,15 @@ use crate::{config, utils};
 mod imp {
     use std::cell::{Cell, OnceCell, RefCell};
 
+    use gtk::{CallbackAction, Shortcut, ShortcutController, ShortcutTrigger};
+
+    use crate::CaptureMode;
+
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate, glib::Properties)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera.ui")]
+    #[properties(wrapper_type = super::Camera)]
     pub struct Camera {
         pub selection: gtk::SingleSelection,
         pub provider: OnceCell<aperture::DeviceProvider>,
@@ -29,6 +34,9 @@ mod imp {
 
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
+
+        #[property(get, set = Self::set_capture_mode, explicit_notify, builder(Default::default()))]
+        capture_mode: Cell<crate::CaptureMode>,
 
         #[template_child]
         pub single_landscape_bp: TemplateChild<adw::Breakpoint>,
@@ -78,6 +86,18 @@ mod imp {
 
     #[gtk::template_callbacks]
     impl Camera {
+        fn set_capture_mode(&self, capture_mode: crate::CaptureMode) {
+            if capture_mode != self.capture_mode.replace(capture_mode) {
+                let shutter_mode = match capture_mode {
+                    CaptureMode::Picture => crate::ShutterMode::Picture,
+                    CaptureMode::Video => crate::ShutterMode::Video,
+                };
+                self.obj().set_shutter_mode(shutter_mode);
+
+                self.obj().notify_capture_mode();
+            }
+        }
+
         pub fn settings(&self) -> &gio::Settings {
             self.settings
                 .get_or_init(|| gio::Settings::new(config::APP_ID))
@@ -97,6 +117,7 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for Camera {
         fn constructed(&self) {
             self.parent_constructed();
@@ -105,6 +126,29 @@ mod imp {
 
             let provider = aperture::DeviceProvider::instance();
             self.provider.set(provider.clone()).unwrap();
+
+            let create_shortcut = |shortcut, value: CaptureMode| {
+                return Shortcut::new(
+                    ShortcutTrigger::parse_string(shortcut),
+                    Some(CallbackAction::new(glib::clone!(
+                        #[weak]
+                        obj,
+                        #[upgrade_or]
+                        glib::Propagation::Proceed,
+                        move |_, _| {
+                            obj.set_capture_mode(value);
+                            glib::Propagation::Proceed
+                        }
+                    ))),
+                );
+            };
+
+            let controller = ShortcutController::new();
+            controller.set_scope(gtk::ShortcutScope::Managed);
+            controller.add_shortcut(create_shortcut("p", CaptureMode::Picture));
+            controller.add_shortcut(create_shortcut("r", CaptureMode::Video));
+
+            obj.add_controller(controller);
 
             provider.connect_camera_added(glib::clone!(
                 #[weak]
@@ -193,6 +237,10 @@ mod imp {
                     "disable-audio-recording",
                 )
                 .invert_boolean()
+                .build();
+
+            self.settings()
+                .bind("capture-mode", &*obj, "capture-mode")
                 .build();
 
             // TODO remove if

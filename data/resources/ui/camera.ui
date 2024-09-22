@@ -157,50 +157,25 @@
                           </object>
                         </child>
                         <child type="camera-mode-toggle">
-                          <object class="GtkBox" id="camera_mode_toggles">
+                          <object class="AdwToggleGroup" id="camera_mode_toggles">
                             <property name="orientation">vertical</property>
-                            <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="active" bind-source="Camera" bind-property="capture-mode" bind-flags="sync-create|bidirectional"/>
                             <style>
-                              <class name="linked" />
-                              <class name="picturevideotoggle" />
+                              <class name="round" />
                             </style>
                             <child>
-                              <object class="GtkToggleButton">
+                              <object class="AdwToggle">
+                                <property name="name">picture</property>
                                 <property name="icon-name">camera-photo-symbolic</property>
-                                <property name="action-name">win.capture-mode</property>
-                                <property name="action-target">'picture'</property>
-                                <property name="tooltip-text" translatable="yes">Picture Mode</property>
-                                <child>
-                                  <object class="GtkShortcutController">
-                                    <property name="scope">global</property>
-                                    <child>
-                                      <object class="GtkShortcut">
-                                        <property name="trigger">p</property>
-                                        <property name="action">activate</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
+                                <property name="tooltip" translatable="yes">Picture Mode</property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkToggleButton">
+                              <object class="AdwToggle">
                                 <property name="icon-name">camera-web-symbolic</property>
-                                <property name="action-name">win.capture-mode</property>
-                                <property name="action-target">'video'</property>
-                                <property name="tooltip-text" translatable="yes">Recording Mode</property>
-                                <child>
-                                  <object class="GtkShortcutController">
-                                    <property name="scope">global</property>
-                                    <child>
-                                      <object class="GtkShortcut">
-                                        <property name="trigger">r</property>
-                                        <property name="action">activate</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
+                                <property name="tooltip" translatable="yes">Recording Mode</property>
+                                <property name="name">video</property>
                               </object>
                             </child>
                           </object>

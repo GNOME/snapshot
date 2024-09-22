@@ -78,21 +78,6 @@ button.gallerycontrols.circular {
   min-height: 24px;
 }
 
-camera .horizontal.picturevideotoggle > button > image {
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-camera.mobile .horizontal.picturevideotoggle > button > image {
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-camera.mobile .vertical.picturevideotoggle > button > image {
-  padding-top: 9px;
-  padding-bottom: 9px;
-}
-
 camera .recording-label {
   padding: 12px 24px;
   border-radius: 500px;

@@ -180,7 +180,7 @@ mod imp {
 
             // TODO Ensure the initial values are set. This should be done more
             // cleanly.
-            obj.set_capture_mode(obj.capture_mode());
+            self.camera.set_capture_mode(obj.capture_mode());
             let duration = obj.countdown();
             self.camera.set_countdown(duration as u32);
 
@@ -237,7 +237,9 @@ impl Window {
     }
 
     fn setup_gactions(&self) {
-        let countdown_action = self.imp().settings.create_action("countdown");
+        let imp = self.imp();
+
+        let countdown_action = imp.settings.create_action("countdown");
         self.imp().settings.connect_changed(
             Some("countdown"),
             glib::clone!(
@@ -252,21 +254,13 @@ impl Window {
         );
         self.add_action(&countdown_action);
 
-        let capture_mode_action = self.imp().settings.create_action("capture-mode");
-        self.imp().settings.connect_changed(
-            Some("capture-mode"),
-            glib::clone!(
-                #[weak(rename_to = window)]
-                self,
-                move |_, _| {
-                    let capture_mode = window.capture_mode();
-                    log::debug!("Set capture mode to {capture_mode:?}");
-
-                    window.set_capture_mode(capture_mode);
-                }
-            ),
-        );
-        self.add_action(&capture_mode_action);
+        imp.camera.connect_capture_mode_notify(glib::clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |_| {
+                window.countdown_cancel();
+            }
+        ));
     }
 
     fn save_window_size(&self) -> Result<(), glib::BoolError> {
@@ -424,19 +418,6 @@ impl Window {
 
     fn capture_mode(&self) -> CaptureMode {
         self.imp().settings.enum_("capture-mode").into()
-    }
-
-    fn set_capture_mode(&self, capture_mode: CaptureMode) {
-        self.countdown_cancel();
-
-        match capture_mode {
-            CaptureMode::Picture => {
-                self.set_shutter_mode(crate::ShutterMode::Picture);
-            }
-            CaptureMode::Video => {
-                self.set_shutter_mode(crate::ShutterMode::Video);
-            }
-        }
     }
 
     fn set_shutter_mode(&self, shutter_mode: crate::ShutterMode) {
