@@ -237,7 +237,9 @@ impl Window {
     }
 
     fn setup_gactions(&self) {
-        let countdown_action = self.imp().settings.create_action("countdown");
+        let imp = self.imp();
+
+        let countdown_action = imp.settings.create_action("countdown");
         self.imp().settings.connect_changed(
             Some("countdown"),
             glib::clone!(
@@ -252,21 +254,15 @@ impl Window {
         );
         self.add_action(&countdown_action);
 
-        let capture_mode_action = self.imp().settings.create_action("capture-mode");
-        self.imp().settings.connect_changed(
-            Some("capture-mode"),
-            glib::clone!(
-                #[weak(rename_to = window)]
-                self,
-                move |_, _| {
-                    let capture_mode = window.capture_mode();
-                    log::debug!("Set capture mode to {capture_mode:?}");
-
-                    window.set_capture_mode(capture_mode);
-                }
-            ),
-        );
-        self.add_action(&capture_mode_action);
+        // FIXME Now this might makes more sense inside of camera.rs.
+        imp.camera.connect_capture_mode_notify(glib::clone!(
+            #[weak(rename_to = window)]
+            self,
+            move |camera| {
+                let capture_mode = camera.capture_mode();
+                window.set_capture_mode(capture_mode);
+            }
+        ));
     }
 
     fn save_window_size(&self) -> Result<(), glib::BoolError> {

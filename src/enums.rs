@@ -66,7 +66,8 @@ impl From<i32> for VideoFormat {
 
 /// Enum representing the org.gnome.Snapshot.CaptureMode enum defined in
 /// the gschema.
-#[derive(Default, Debug, Copy, Clone, PartialEq)]
+#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
+#[enum_type(name = "CaptureMode")]
 #[repr(u32)]
 pub enum CaptureMode {
     #[default]
