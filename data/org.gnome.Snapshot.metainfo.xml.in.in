@@ -29,6 +29,15 @@
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/snapshot</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="47.1" date="2024-10-12">
+      <description>
+        <p>Snapshot 47.1 release</p>
+        <ul>
+          <li>Optimize caps selection for 16:9</li>
+          <li>Only get devices from pipewire</li>
+        </ul>
+      </description>
+    </release>
     <release version="47.0.1" date="2024-09-15">
       <description>
         <p>Snapshot 47.0.1 release</p>
