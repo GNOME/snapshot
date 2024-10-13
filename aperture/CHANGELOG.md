@@ -18,9 +18,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 - Correct `From<&str>` for `CodeType::Code128`
 
-### Removed
-- The method `utils::best_height` was removed
-
 ## 0.7.0 - 2024-07-17
 
 ### Added
