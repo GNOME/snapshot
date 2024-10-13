@@ -287,6 +287,7 @@ mod imp {
 
             self.offload.set_child(Some(&self.picture));
             self.offload.set_parent(&*obj);
+            self.offload.set_black_background(true);
 
             self.tee.set(tee).unwrap();
 
@@ -393,14 +394,8 @@ mod imp {
         }
 
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
-            let w = self.obj().width() as f32;
-            let h = self.obj().height() as f32;
-
-            // Make the background black
-            let rect = graphene::Rect::new(0.0, 0.0, w, h);
-            snapshot.append_color(&gdk::RGBA::BLACK, &rect);
-
             if self.is_front_camera.get() {
+                let w = self.obj().width() as f32;
                 snapshot.save();
                 snapshot.translate(&graphene::Point::new(w, 0.0));
                 snapshot.scale(-1.0, 1.0);

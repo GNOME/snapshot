@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   should require it as a dependency (!309)
 - Only get devices from the `pipewiredeviceprovider` (!316)
 - Optimize best mode selection for 16:9 (!317)
+- Use GraphicsOffload to draw black background. This requires GTK 4.16 (!324)
 
 ### Fixed
 - Correct `From<&str>` for `CodeType::Code128`
