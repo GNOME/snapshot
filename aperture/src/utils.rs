@@ -52,10 +52,8 @@ pub(crate) mod caps {
             }
 
             let max_width = (height as f32 * OPTIMAL_RATIO).ceil() as i32;
-            if MIN_WIDTH <= width
-                && width <= max_width
-                && MIN_HEIGHT <= height
-                && height <= MAX_HEIGHT
+            if (MIN_WIDTH..=max_width).contains(&width)
+                && (MIN_HEIGHT..=MAX_HEIGHT).contains(&height)
             {
                 if width == (height as f32 * OPTIMAL_RATIO) as i32 {
                     if let Some(Size {
@@ -69,18 +67,16 @@ pub(crate) mod caps {
                     } else {
                         best_size_optimal_ratio = Some(Size { width, height });
                     }
-                } else {
-                    if let Some(Size {
-                        width: best_w,
-                        height: best_h,
-                    }) = best_size_any_ratio
-                    {
-                        if width >= best_w && height >= best_h {
-                            best_size_any_ratio = Some(Size { width, height });
-                        }
-                    } else {
+                } else if let Some(Size {
+                    width: best_w,
+                    height: best_h,
+                }) = best_size_any_ratio
+                {
+                    if width >= best_w && height >= best_h {
                         best_size_any_ratio = Some(Size { width, height });
                     }
+                } else {
+                    best_size_any_ratio = Some(Size { width, height });
                 }
             }
         }
