@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## 0.8.0 - 2024-10-18
+
 ### Added
 - A new changelog
 - viewfinder: Add a `disable_audio_recording` property (!294)
