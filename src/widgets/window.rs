@@ -425,6 +425,9 @@ impl Window {
     }
 
     fn show_preferences_window(&self) {
+        if self.visible_dialog().is_some() {
+            return;
+        }
         let preferences = crate::PreferencesWindow::default();
         preferences.present(Some(self));
     }
