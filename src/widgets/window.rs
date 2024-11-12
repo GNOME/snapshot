@@ -4,7 +4,7 @@ use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
-use crate::config::{APP_ID, IS_DEVEL, VERSION};
+use crate::config::{APP_ID, IS_DEVEL};
 use crate::utils;
 use crate::Application;
 use crate::CaptureMode;
@@ -292,18 +292,14 @@ impl Window {
     }
 
     fn show_about_dialog(&self) {
-        let dialog = adw::AboutDialog::builder()
-            .application_name(gettext("Camera"))
-            .application_icon(APP_ID)
-            .license_type(gtk::License::Gpl30)
-            .issue_url("https://gitlab.gnome.org/GNOME/snapshot/-/issues/")
-            .version(VERSION)
-            .translator_credits(gettext("translator-credits"))
-            .developer_name(gettext("The GNOME Project"))
-            .developers(["Maximiliano Sandoval", "Jamie Murphy <jmurphy@gnome.org>"])
-            .designers(["Tobias Bernard"])
-            .debug_info(utils::debug_info())
-            .build();
+        let dialog = adw::AboutDialog::from_appdata(
+            &format!("/org/gnome/Snapshot/{APP_ID}.metainfo.xml"),
+            None,
+        );
+        dialog.set_translator_credits(&gettext("translator-credits"));
+        dialog.set_developers(&["Maximiliano Sandoval", "Jamie Murphy <jmurphy@gnome.org>"]);
+        dialog.set_designers(&["Tobias Bernard"]);
+        dialog.set_debug_info(&utils::debug_info());
 
         dialog.present(Some(self));
     }

@@ -9,6 +9,7 @@ For changes related to aperture please see
 - camera: Port to AdwToggleGroup
 - camera: Port to AdwMultiLayoutView
 - Remove once_cell dependency
+- window: Use adw::AboutDialog::from_appdata
 
 ## 47.1 - 2024-10-12
 - Optimize caps selection for 16:9

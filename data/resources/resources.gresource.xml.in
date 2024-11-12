@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/Snapshot/">
+    <file compressed="true" preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/camera.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/camera_controls.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/gallery.ui</file>
