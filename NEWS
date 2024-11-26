@@ -1,11 +1,5 @@
-# Changelog
-All notable changes to this project will be documented in this file.
-
-For changes related to aperture please see
-[aperture/CHANGELOG.md](aperture/CHANGELOG.md).
-
 ## Unreleased
-- Add a changelog
+- Add a NEWS file
 - camera: Port to AdwToggleGroup
 - camera: Port to AdwMultiLayoutView
 - Remove once_cell dependency
