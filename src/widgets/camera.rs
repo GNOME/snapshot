@@ -128,7 +128,7 @@ mod imp {
             self.provider.set(provider.clone()).unwrap();
 
             let create_shortcut = |shortcut, value: CaptureMode| {
-                return Shortcut::new(
+                Shortcut::new(
                     ShortcutTrigger::parse_string(shortcut),
                     Some(CallbackAction::new(glib::clone!(
                         #[weak]
@@ -140,7 +140,7 @@ mod imp {
                             glib::Propagation::Proceed
                         }
                     ))),
-                );
+                )
             };
 
             let controller = ShortcutController::new();

@@ -143,10 +143,10 @@ mod imp {
                         }
                     } else {
                         //check beginning
-                        if obj.imp().snap_points().first().is_some() {
-                            glib::Propagation::Proceed
-                        } else {
+                        if obj.imp().snap_points().is_empty() {
                             glib::Propagation::Stop
+                        } else {
+                            glib::Propagation::Proceed
                         }
                     }
                 }
