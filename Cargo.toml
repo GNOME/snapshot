@@ -24,7 +24,7 @@ rust-version.workspace = true
 # This is manually enabled by meson
 [features]
 portal = ["dep:ashpd"]
-x11 = ["ashpd/gtk4_x11"]
+x11 = ["ashpd?/gtk4_x11"]
 
 [profile.release]
 lto = true
