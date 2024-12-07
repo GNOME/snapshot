@@ -415,6 +415,10 @@ fn is_ir_camera(device: &crate::Camera) -> bool {
         .caps()
         .as_ref()
         .is_some_and(utils::caps::is_infrared)
-        || device.nick().is_some_and(|nick| nick.contains("IR"))
-        || device.display_name().contains("IR")
+        || device.nick().is_some_and(|nick| contains_ir(&nick))
+        || contains_ir(&device.display_name())
+}
+
+fn contains_ir(s: &str) -> bool {
+    s.starts_with("IR ") || s.contains(" IR ") || s.ends_with(" IR")
 }
