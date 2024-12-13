@@ -16,9 +16,6 @@ use gtk::{gio, glib};
 use widgets::*;
 
 fn main() -> glib::ExitCode {
-    // Initialize logger
-    tracing_subscriber::fmt::init();
-
     // Prepare i18n
     gettextrs::setlocale(LocaleCategory::LcAll, "");
     gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
