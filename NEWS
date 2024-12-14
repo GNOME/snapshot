@@ -1,4 +1,6 @@
-## Unreleased
+## 48.alpha - 2024-12-14
+- Fix opening multiple preference windows
+- Improve offloading performance
 - Add a NEWS file
 - camera: Port to AdwToggleGroup
 - camera: Port to AdwMultiLayoutView

@@ -30,6 +30,20 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="48.alpha" date="2024-12-24" type="development">
+      <description>
+        <p>Snapshot 48.alpha release</p>
+        <ul>
+          <li>Fix opening multiple preference windows</li>
+          <li>Improve offloading performanceli</li>
+          <li>Add a NEWS file</li>
+          <li>camera: Port to AdwToggleGroup</li>
+          <li>camera: Port to AdwMultiLayoutView</li>
+          <li>Remove once_cell dependency</li>
+          <li>window: Use adw::AboutDialog::from_appdata</li>
+        </ul>
+      </description>
+    </release>
     <release version="47.1" date="2024-10-12">
       <description>
         <p>Snapshot 47.1 release</p>
