@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   presents the contents as GBytes instead of String, it also does not have a
   data type parameter anymore
 
+### Removed
+- CodeType is not used anymore and was removed
+
 ## 0.8.0 - 2024-10-18
 
 ### Added

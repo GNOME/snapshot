@@ -29,7 +29,7 @@ mod viewfinder;
 
 pub use camera::Camera;
 pub use device_provider::DeviceProvider;
-pub use enums::{CameraLocation, CodeType, ViewfinderState};
+pub use enums::{CameraLocation, ViewfinderState};
 pub use error::{CaptureError, PipewireError, ProviderError};
 pub(crate) use pipeline_tee::PipelineTee;
 pub use viewfinder::Viewfinder;
@@ -80,7 +80,6 @@ pub fn init(app_id: &'static str) {
         DeviceProvider::static_type();
         Camera::static_type();
 
-        CodeType::static_type();
         ViewfinderState::static_type();
         CameraLocation::static_type();
     });
