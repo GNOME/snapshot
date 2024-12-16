@@ -997,14 +997,42 @@ impl Viewfinder {
 fn create_qrcode_bin() -> Result<gst::Element, glib::BoolError> {
     let bin = gst::Bin::new();
 
+    let videorate = gst::ElementFactory::make("videorate").build()?;
+    videorate.set_property("max-rate", 5);
+    videorate.set_property("drop-only", true);
     let videoconvert = gst::ElementFactory::make("videoconvert").build()?;
+
+    // Ensure a copy is made
+    let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
+    let caps = gst_video::VideoCapsBuilder::for_encoding("video/x-raw")
+        .format(gst_video::VideoFormat::Gray8)
+        .build();
+    capsfilter.set_property("caps", &caps);
+
+    let queue = gst::ElementFactory::make("queue").build()?;
     let qrcode = QrCodeDetector::new().upcast::<gst::Element>();
     let fakesink = gst::ElementFactory::make("fakesink").build()?;
 
-    bin.add_many([&videoconvert, &qrcode, &fakesink]).unwrap();
-    gst::Element::link_many([&videoconvert, &qrcode, &fakesink]).unwrap();
+    bin.add_many([
+        &videorate,
+        &videoconvert,
+        &capsfilter,
+        &queue,
+        &qrcode,
+        &fakesink,
+    ])
+    .unwrap();
+    gst::Element::link_many([
+        &videorate,
+        &videoconvert,
+        &capsfilter,
+        &queue,
+        &qrcode,
+        &fakesink,
+    ])
+    .unwrap();
 
-    let pad = videoconvert.static_pad("sink").unwrap();
+    let pad = videorate.static_pad("sink").unwrap();
     let ghost_pad = gst::GhostPad::with_target(&pad).unwrap();
     ghost_pad.set_active(true).unwrap();
     bin.add_pad(&ghost_pad).unwrap();
