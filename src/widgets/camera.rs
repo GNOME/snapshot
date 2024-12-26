@@ -62,9 +62,6 @@ mod imp {
 
         #[template_child]
         pub camera_controls: TemplateChild<crate::CameraControls>,
-
-        #[template_child]
-        pub vertical_window_controls: TemplateChild<gtk::WindowControls>,
     }
 
     #[glib::object_subclass]
@@ -242,19 +239,6 @@ mod imp {
             self.settings()
                 .bind("capture-mode", &*obj, "capture-mode")
                 .build();
-
-            // TODO remove if
-            // https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5960 ever
-            // lands.
-            obj.update_window_controls();
-            obj.settings()
-                .connect_gtk_decoration_layout_notify(glib::clone!(
-                    #[weak]
-                    obj,
-                    move |_| {
-                        obj.update_window_controls();
-                    }
-                ));
 
             obj.connect_current_breakpoint_notify(glib::clone!(
                 #[weak(rename_to = obj)]
@@ -542,18 +526,6 @@ impl Camera {
                 window.send_toast(&gettext("Could not play camera stream"));
             }
         }
-    }
-
-    fn update_window_controls(&self) {
-        let imp = self.imp();
-
-        let decoration_layout = self.settings().gtk_decoration_layout().and_then(|layout| {
-            layout
-                .split_once(':')
-                .map(|(_start, end)| end.split(',').rev().collect::<Vec<_>>().join(","))
-        });
-        imp.vertical_window_controls
-            .set_decoration_layout(decoration_layout.as_deref());
     }
 
     fn show_recording_label(&self) {
