@@ -61,7 +61,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/sophie-h/glycin.git",
+                    "url": "https://gitlab.gnome.org/GNOME/glycin.git",
                     "branch": "main"
                 }
             ]
