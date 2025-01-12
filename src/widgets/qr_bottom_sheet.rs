@@ -103,19 +103,22 @@ impl QrBottomSheet {
     async fn open_external(&self) -> Result<(), glib::Error> {
         let imp = self.imp();
 
-        if let Some(uri) = imp.contents.borrow().as_ref() {
-            let launcher = gtk::UriLauncher::new(&uri);
-            let root = self.root();
-            let window = root.and_downcast_ref::<gtk::Window>();
-            let res = launcher.launch_future(window).await;
+        let launcher = if let Some(uri) = imp.contents.borrow().as_ref() {
+            gtk::UriLauncher::new(uri)
+        } else {
+            return Ok(());
+        };
 
-            if let Err(ref err) = res {
-                if err.matches(gtk::DialogError::Dismissed) {
-                    return Ok(());
-                }
+        let root = self.root();
+        let window = root.and_downcast_ref::<gtk::Window>();
+        let res = launcher.launch_future(window).await;
+
+        if let Err(ref err) = res {
+            if err.matches(gtk::DialogError::Dismissed) {
+                return Ok(());
             }
-            res?;
         }
+        res?;
 
         Ok(())
     }
