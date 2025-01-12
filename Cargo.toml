@@ -41,3 +41,6 @@ gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
 tracing-subscriber = "0.3"
 aperture = { path = "aperture" }
+
+[profile.dev.package.rqrr]
+opt-level = 3
