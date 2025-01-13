@@ -122,7 +122,7 @@ mod imp {
                 match grid.decode_to(&mut decoded) {
                     Ok(_) => {
                         let bytes = glib::Bytes::from_owned(decoded);
-                        let is_new_code = self.set_code(bytes.clone());
+                        let is_new_code = self.set_code(&bytes);
                         if is_new_code {
                             let structure = gst::Structure::builder("qrcode")
                                 .field("payload", bytes)
@@ -148,10 +148,10 @@ mod imp {
     }
 
     impl QrCodeDetector {
-        fn set_code(&self, bytes: glib::Bytes) -> bool {
+        fn set_code(&self, bytes: &glib::Bytes) -> bool {
             let mut previous_code = self.last_code.lock().unwrap();
-            if previous_code.as_ref() != Some(&bytes) {
-                previous_code.replace(bytes);
+            if previous_code.as_ref() != Some(bytes) {
+                previous_code.replace(bytes.clone());
                 true
             } else {
                 false
