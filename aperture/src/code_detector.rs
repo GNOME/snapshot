@@ -178,6 +178,3 @@ impl Default for QrCodeDetector {
         glib::Object::new()
     }
 }
-
-unsafe impl Send for QrCodeDetector {}
-unsafe impl Sync for QrCodeDetector {}
