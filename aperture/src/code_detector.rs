@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 use std::sync::LazyLock;
+use std::time::Duration;
 
 use gst_video::{prelude::*, video_frame::VideoFrameRef};
 use gtk::glib;
@@ -12,6 +13,7 @@ pub static CAT: LazyLock<gst::DebugCategory> = LazyLock::new(|| {
     )
 });
 
+const DETECTOR_COLD_DOWN: Duration = Duration::from_secs(1);
 const DETECTOR_CAPS: &[gst_video::VideoFormat] = &[
     gst_video::VideoFormat::Gray8,
     gst_video::VideoFormat::I420,
@@ -34,7 +36,7 @@ mod imp {
 
     #[derive(Default)]
     pub struct QrCodeDetector {
-        pub last_code: Mutex<Option<glib::Bytes>>,
+        pub last_detection_t: Mutex<Option<std::time::Instant>>,
     }
 
     #[glib::object_subclass]
@@ -104,6 +106,16 @@ mod imp {
         ) -> Result<gst::FlowSuccess, gst::FlowError> {
             let now = std::time::Instant::now();
 
+            // Return early if we have detected a code not so long ago.
+            if self
+                .last_detection_t
+                .lock()
+                .unwrap()
+                .is_some_and(|t| (now - t) < DETECTOR_COLD_DOWN)
+            {
+                return Ok(gst::FlowSuccess::Ok);
+            }
+
             // all formats we support start with an 8-bit Y plane. We don't need
             // to know about the chroma plane(s)
             let data = frame.comp_data(0).unwrap();
@@ -116,22 +128,23 @@ mod imp {
             });
             let grids = image.detect_grids();
 
+            if !grids.is_empty() {
+                self.last_detection_t.lock().unwrap().replace(now);
+            }
+
             for grid in grids {
                 let mut decoded = Vec::new();
 
                 match grid.decode_to(&mut decoded) {
                     Ok(_) => {
                         let bytes = glib::Bytes::from_owned(decoded);
-                        let is_new_code = self.set_code(&bytes);
-                        if is_new_code {
-                            let structure = gst::Structure::builder("qrcode")
-                                .field("payload", bytes)
-                                .build();
-                            let msg = gst::message::Element::builder(structure)
-                                .src(&*self.obj())
-                                .build();
-                            self.post_message(msg);
-                        }
+                        let structure = gst::Structure::builder("qrcode")
+                            .field("payload", bytes)
+                            .build();
+                        let msg = gst::message::Element::builder(structure)
+                            .src(&*self.obj())
+                            .build();
+                        self.post_message(msg);
                     }
                     Err(e) => {
                         gst::warning!(CAT, "Failed to decode QR code: {e}");
@@ -146,18 +159,6 @@ mod imp {
             );
 
             Ok(gst::FlowSuccess::Ok)
-        }
-    }
-
-    impl QrCodeDetector {
-        fn set_code(&self, bytes: &glib::Bytes) -> bool {
-            let mut previous_code = self.last_code.lock().unwrap();
-            if previous_code.as_ref() != Some(bytes) {
-                previous_code.replace(bytes.clone());
-                true
-            } else {
-                false
-            }
         }
     }
 }
