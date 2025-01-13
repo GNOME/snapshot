@@ -127,7 +127,9 @@ mod imp {
                             let structure = gst::Structure::builder("qrcode")
                                 .field("payload", bytes)
                                 .build();
-                            let msg = gst::message::Element::new(structure);
+                            let msg = gst::message::Element::builder(structure)
+                                .src(&*self.obj())
+                                .build();
                             self.post_message(msg);
                         }
                     }
