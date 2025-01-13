@@ -93,14 +93,14 @@ mod imp {
     impl BaseTransformImpl for QrCodeDetector {
         const MODE: gst_base::subclass::BaseTransformMode =
             gst_base::subclass::BaseTransformMode::AlwaysInPlace;
-        const PASSTHROUGH_ON_SAME_CAPS: bool = false;
+        const PASSTHROUGH_ON_SAME_CAPS: bool = true;
         const TRANSFORM_IP_ON_PASSTHROUGH: bool = true;
     }
 
     impl VideoFilterImpl for QrCodeDetector {
-        fn transform_frame_ip(
+        fn transform_frame_ip_passthrough(
             &self,
-            frame: &mut VideoFrameRef<&mut BufferRef>,
+            frame: &VideoFrameRef<&BufferRef>,
         ) -> Result<gst::FlowSuccess, gst::FlowError> {
             let now = std::time::Instant::now();
 
