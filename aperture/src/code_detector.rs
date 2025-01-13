@@ -107,11 +107,12 @@ mod imp {
             // all formats we support start with an 8-bit Y plane. We don't need
             // to know about the chroma plane(s)
             let data = frame.comp_data(0).unwrap();
-            let width = frame.comp_stride(0) as usize;
+            let width = frame.width() as usize;
             let height = frame.height() as usize;
+            let stride = frame.comp_stride(0) as usize;
 
             let mut image = rqrr::PreparedImage::prepare_from_greyscale(width, height, |x, y| {
-                data[x + (y * width)]
+                data[x + (y * stride)]
             });
             let grids = image.detect_grids();
 
