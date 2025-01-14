@@ -5,6 +5,8 @@ stages:
 
 include:
   - project: "GNOME/citemplates"
+    file: "templates/default-rules.yml"
+  - project: "GNOME/citemplates"
     file: "flatpak/flatpak_ci_initiative.yml"
   - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
     inputs:
