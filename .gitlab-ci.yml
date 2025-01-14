@@ -10,6 +10,9 @@ include:
     inputs:
       dist-job-name: "flatpak@x86_64"
       tarball-artifact-path: "${TARBALL_ARTIFACT_PATH}"
+  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
+    inputs:
+      docs-job-name: "cargo-doc"
 
 variables:
   BUNDLE: "org.gnome.Snapshot.Devel.flatpak"
@@ -63,7 +66,7 @@ cargo-doc:
     - rustup toolchain install nightly --profile minimal --allow-downgrade
   script:
     - cargo +nightly rustdoc -p aperture -- -Z unstable-options ${DOC_OPTIONS}
-    - mv target/doc doc
+    - tar --auto-compress --create --file "$CI_PROJECT_DIR/${CI_PROJECT_NAME}-docs.tar.gz" --directory "target/doc" .
 
 cargo-audit:
   stage: test
@@ -73,18 +76,6 @@ cargo-audit:
   script:
     - cargo install cargo-deny
     - cargo deny check advisories bans sources
-
-pages:
-  stage: deploy
-  script:
-    - mkdir public
-    - mv doc public
-  artifacts:
-    paths:
-      - 'public'
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  needs: ["cargo-doc"]
 
 nightly@x86_64:
   extends: ".publish_nightly"
