@@ -11,6 +11,7 @@
         <child>
           <object class="AdwActionRow" id="action_row">
             <property name="title" translatable="yes">Contents</property>
+            <property name="use-markup">False</property>
             <style>
               <class name="property"/>
             </style>
