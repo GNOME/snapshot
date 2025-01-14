@@ -7,7 +7,7 @@ keywords = ["camera", "gtk", "gstreamer"]
 license.workspace = true
 name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/snapshot"
-documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/doc/aperture"
+documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/aperture"
 version = "0.9.0"
 rust-version.workspace = true
 
