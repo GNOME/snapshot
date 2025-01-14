@@ -30,6 +30,16 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="48.alpha.2" date="2025-01-14" type="development">
+      <description>
+        <p>Snapshot 48.alpha.2 release</p>
+        <ul>
+          <li>Add QR code detection</li>
+          <li>Include left-side window controls</li>
+          <li>Add debug output via flag</li>
+        </ul>
+      </description>
+    </release>
     <release version="48.alpha" date="2024-12-24" type="development">
       <description>
         <p>Snapshot 48.alpha release</p>
