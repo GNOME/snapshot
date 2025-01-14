@@ -53,7 +53,7 @@ cargo-doc:
   artifacts:
     name: 'Code Documentation'
     paths:
-      - doc
+      - ${CI_PROJECT_NAME}-docs.tar.gz
   variables:
     DOC_OPTIONS: |
       --extern-html-root-url=gtk4=https://gtk-rs.org/gtk4-rs/stable/latest/docs/
