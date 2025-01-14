@@ -128,11 +128,7 @@ mod imp {
             });
             let grids = image.detect_grids();
 
-            if !grids.is_empty() {
-                self.last_detection_t.lock().unwrap().replace(now);
-            }
-
-            for grid in grids {
+            if let Some(grid) = grids.first() {
                 let mut decoded = Vec::new();
 
                 match grid.decode_to(&mut decoded) {
@@ -150,13 +146,15 @@ mod imp {
                         gst::warning!(CAT, "Failed to decode QR code: {e}");
                     }
                 }
-            }
 
-            gst::trace!(
-                CAT,
-                "Spent {}ms to detect qr code",
-                now.elapsed().as_millis()
-            );
+                self.last_detection_t.lock().unwrap().replace(now);
+
+                gst::trace!(
+                    CAT,
+                    "Spent {}ms to detect qr code",
+                    now.elapsed().as_millis()
+                );
+            }
 
             Ok(gst::FlowSuccess::Ok)
         }
