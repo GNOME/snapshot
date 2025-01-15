@@ -6,6 +6,8 @@ use gtk::CompositeTemplate;
 use gtk::{gio, glib};
 
 #[cfg(feature = "portal")]
+use anyhow::Context;
+#[cfg(feature = "portal")]
 use ashpd::desktop::camera;
 #[cfg(feature = "portal")]
 use std::os::unix::io::OwnedFd;
@@ -324,15 +326,21 @@ impl Camera {
                             log::error!("Could not use the camera portal: {err}");
                         };
                     }
-                    Err(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(err))) => {
-                        // We don't start the device provider if we are not
-                        // allowed to use cameras.
-                        log::warn!("Permission to use the camera portal denied: {err}");
-                        obj.imp().permission_denied.set(true);
-                        obj.update_state();
-                        return;
+                    Err(err) => {
+                        if let Some(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(
+                            _inner_err,
+                        ))) = err.downcast_ref::<ashpd::Error>()
+                        {
+                            // We don't start the device provider if we are not
+                            // allowed to use cameras.
+                            log::warn!("{err:#}");
+                            obj.imp().permission_denied.set(true);
+                            obj.update_state();
+                            return;
+                        } else {
+                            log::warn!("Could not use the camera portal: {err:#}")
+                        }
                     }
-                    Err(err) => log::warn!("Could not use the camera portal: {err}"),
                 }
 
                 if let Err(err) = provider.start_with_default(glib::clone!(
@@ -612,13 +620,22 @@ impl Camera {
 }
 
 #[cfg(feature = "portal")]
-async fn stream() -> ashpd::Result<OwnedFd> {
+async fn stream() -> anyhow::Result<OwnedFd> {
     let proxy = camera::Camera::new().await?;
-    proxy.request_access().await?;
-    let is_present = proxy.is_present().await?;
+    proxy
+        .request_access()
+        .await
+        .context("org.freedesktop.portal.Camera.AccessCamera failed")?;
+    let is_present = proxy
+        .is_present()
+        .await
+        .context("org.freedesktop.portal.Camera.IsCameraPresent failed")?;
     log::debug!("org.freedesktop.portal.Camera:IsCameraPresent: {is_present}");
 
-    proxy.open_pipe_wire_remote().await
+    proxy
+        .open_pipe_wire_remote()
+        .await
+        .context("org.freedesktop.portal.Camera.OpenPipeWireRemote")
 }
 
 // Id used to identify the last-used camera.
