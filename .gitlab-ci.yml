@@ -26,9 +26,16 @@ variables:
 
 flatpak@x86_64:
   extends: ".flatpak@x86_64"
+  interruptible: true
+  variables:
+    CONFIG_OPTS: "-Dprofile=default"
 
 flatpak@aarch64:
   extends: ".flatpak@aarch64"
+  allow_failure: true
+  interruptible: true
+  variables:
+    CONFIG_OPTS: "-Dprofile=default"
 
 rustfmt:
   image: "rust:slim"
