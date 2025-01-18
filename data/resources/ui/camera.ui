@@ -173,7 +173,7 @@
                                 <child>
                                   <object class="AdwToggle">
                                     <property name="icon-name">qr-code-symbolic</property>
-                                    <property name="tooltip" translatable="yes">Qr Code Scanning Mode</property>
+                                    <property name="tooltip" translatable="yes">QR Code Scanning Mode</property>
                                     <property name="name">qr-code</property>
                                   </object>
                                 </child>
