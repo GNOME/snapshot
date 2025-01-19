@@ -310,6 +310,13 @@ impl Camera {
         Self::default()
     }
 
+    fn on_portal_not_allowed(&self) {
+        // We don't start the device provider if we are not
+        // allowed to use cameras.
+        self.imp().permission_denied.set(true);
+        self.update_state();
+    }
+
     pub async fn start(&self) {
         let provider = self.imp().provider.get().unwrap();
 
@@ -326,21 +333,23 @@ impl Camera {
                             log::error!("Could not use the camera portal: {err}");
                         };
                     }
-                    Err(err) => {
-                        if let Some(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(
-                            _inner_err,
-                        ))) = err.downcast_ref::<ashpd::Error>()
-                        {
-                            // We don't start the device provider if we are not
-                            // allowed to use cameras.
-                            log::warn!("{err:#}");
-                            obj.imp().permission_denied.set(true);
-                            obj.update_state();
+                    Err(err) => match err.downcast_ref::<ashpd::Error>() {
+                        Some(ashpd::Error::Portal(ashpd::PortalError::NotAllowed(err))) => {
+                            log::warn!("Permission to use the camera portal denied: {err:#?}");
+                            obj.on_portal_not_allowed();
                             return;
-                        } else {
-                            log::warn!("Could not use the camera portal: {err:#}")
                         }
-                    }
+                        Some(ashpd::Error::Zbus(ashpd::zbus::Error::MethodError(
+                            name,
+                            _,
+                            message,
+                        ))) if *name == "org.freedesktop.portal.Error.NotAllowed" => {
+                            log::warn!("Permission to use the camera portal denied: {message}");
+                            obj.on_portal_not_allowed();
+                            return;
+                        }
+                        _ => (),
+                    },
                 }
 
                 if let Err(err) = provider.start_with_default(glib::clone!(
