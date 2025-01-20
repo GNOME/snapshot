@@ -11,7 +11,6 @@ use gtk::{gdk, gio, glib, graphene};
 use crate::code_detector::QrCodeDetector;
 use crate::ViewfinderState;
 
-const BARCODE_TIMEOUT: u32 = 1;
 const PROVIDER_TIMEOUT: u64 = 2;
 
 #[derive(Debug)]
@@ -748,7 +747,7 @@ impl Viewfinder {
                 Some(s) if s.has_name("qrcode") => {
                     let data = s.get::<glib::Bytes>("payload").unwrap();
 
-                    self.on_qrcode_detected(data);
+                    self.emit_code_detected(data);
                 }
                 _ => (),
             },
@@ -769,24 +768,6 @@ impl Viewfinder {
             self.notify_is_recording();
             let file = gio::File::for_path(path);
             self.emit_recording_done(Some(&file));
-        }
-    }
-
-    fn on_qrcode_detected(&self, data: glib::Bytes) {
-        // We don't emit the signal if we just emitted it
-        if self.imp().timeout_handler.borrow().is_none() {
-            let id = glib::timeout_add_seconds_local_once(
-                BARCODE_TIMEOUT,
-                glib::clone!(
-                    #[weak(rename_to = obj)]
-                    self,
-                    move || {
-                        obj.imp().timeout_handler.take();
-                    }
-                ),
-            );
-            self.imp().timeout_handler.replace(Some(id));
-            self.emit_code_detected(data);
         }
     }
 
