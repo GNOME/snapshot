@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-01-14 12:01+0000\n"
-"PO-Revision-Date: 2025-01-14 20:16+0300\n"
+"POT-Creation-Date: 2025-01-19 11:57+0000\n"
+"PO-Revision-Date: 2025-01-27 13:28+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -127,7 +127,7 @@ msgid "Camera's gallery viewer"
 msgstr "Просмотр галереи Камеры"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:221
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:231
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
@@ -157,7 +157,7 @@ msgid "Recording Mode"
 msgstr "Режим видеозаписи"
 
 #: data/resources/ui/camera.ui:176
-msgid "Qr Code Scanning Mode"
+msgid "QR Code Scanning Mode"
 msgstr "Режим сканирования QR-кода"
 
 #: data/resources/ui/camera.ui:551
@@ -255,6 +255,22 @@ msgstr "Запись видео"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "З_аписывать звук"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Обнаружен код"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Содержимое"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Копировать в буфер обмена"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Открыть ссылку"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -377,7 +393,7 @@ msgstr "_Копировать видео"
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: src/widgets/camera.rs:563
+#: src/widgets/camera.rs:580
 msgid "Could not play camera stream"
 msgstr "Не удалось воспроизвести потоковые данные с камеры"
 
