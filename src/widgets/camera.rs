@@ -13,6 +13,7 @@ use ashpd::desktop::camera;
 use std::os::unix::io::OwnedFd;
 
 use super::CameraControls;
+use crate::enums::ControlsLayout;
 use crate::{config, utils};
 
 mod imp {
@@ -479,6 +480,13 @@ impl Camera {
 
         imp.viewfinder.set_detect_codes(detect_codes);
         imp.qr_screen_bin.set_enabled(detect_codes);
+
+        let layout = if detect_codes {
+            ControlsLayout::DetectingCodes
+        } else {
+            ControlsLayout::Default
+        };
+        imp.camera_controls.set_layout(layout);
     }
 
     pub fn set_gallery(&self, gallery: crate::Gallery) {

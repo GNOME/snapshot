@@ -3,19 +3,24 @@ use adw::subclass::prelude::*;
 use gtk::glib::{self, subclass::Signal};
 
 use super::CameraRow;
+use crate::enums::ControlsLayout;
 
 mod imp {
-    use std::cell::OnceCell;
+    use std::cell::{Cell, OnceCell};
     use std::sync::LazyLock;
 
     use gtk::CompositeTemplate;
 
     use super::*;
 
-    #[derive(Default, Debug, CompositeTemplate)]
+    #[derive(Default, Debug, CompositeTemplate, glib::Properties)]
     #[template(resource = "/org/gnome/Snapshot/ui/camera_controls.ui")]
+    #[properties(wrapper_type = super::CameraControls)]
     pub struct CameraControls {
         pub provider: OnceCell<aperture::DeviceProvider>,
+
+        #[property(get, set = Self::set_layout, explicit_notify, builder(Default::default()))]
+        layout: Cell<ControlsLayout>,
 
         #[template_child]
         pub gallery_button: TemplateChild<crate::GalleryButton>,
@@ -55,8 +60,20 @@ mod imp {
         fn on_camera_switch_button_clicked(&self) {
             self.obj().emit_by_name::<()>("camera-switched", &[])
         }
+
+        fn set_layout(&self, layout: ControlsLayout) {
+            if layout == self.layout.replace(layout) {
+                return;
+            }
+
+            let is_detecting_codes = matches!(layout, ControlsLayout::DetectingCodes);
+            self.gallery_button_stack.set_visible(!is_detecting_codes);
+
+            self.obj().notify_layout();
+        }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for CameraControls {
         fn constructed(&self) {
             self.parent_constructed();

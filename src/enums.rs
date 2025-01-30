@@ -101,3 +101,12 @@ pub enum ShutterMode {
 pub fn init() {
     PictureFormat::static_type();
 }
+
+#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
+#[enum_type(name = "ControlsLayout")]
+#[repr(u32)]
+pub enum ControlsLayout {
+    #[default]
+    Default,
+    DetectingCodes,
+}
