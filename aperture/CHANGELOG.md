@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.9.1 - 2025-01-31
+
+### Changed
+- Limit QR code detection to one per second
+- Docs are now at https://gnome.pages.gitlab.gnome.org/snapshot/aperture
+- General improvements in QR code detector gstreamer element
+
 ## 0.9.0 - 2025-01-11
 
 ### Changed
