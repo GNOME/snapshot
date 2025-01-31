@@ -58,8 +58,6 @@ mod imp {
                 let mode_from = widget.mode_ani().value();
                 let record_from = widget.record_ani().value();
 
-                widget.set_visible(!matches!(shutter_mode, ShutterMode::Hidden));
-
                 match shutter_mode {
                     ShutterMode::Picture => {
                         mode_ani.set_value_to(0.0);

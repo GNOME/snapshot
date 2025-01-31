@@ -67,6 +67,7 @@ mod imp {
             }
 
             let is_detecting_codes = matches!(layout, ControlsLayout::DetectingCodes);
+            self.shutter_button.set_visible(!is_detecting_codes);
             self.gallery_button_stack.set_visible(!is_detecting_codes);
 
             self.obj().notify_layout();
