@@ -95,7 +95,6 @@ pub enum ShutterMode {
     Picture,
     Video,
     Recording,
-    Hidden,
 }
 
 pub fn init() {

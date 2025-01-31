@@ -95,12 +95,15 @@ mod imp {
     impl Camera {
         fn set_capture_mode(&self, capture_mode: crate::CaptureMode) {
             if capture_mode != self.capture_mode.replace(capture_mode) {
-                let shutter_mode = match capture_mode {
-                    CaptureMode::Picture => crate::ShutterMode::Picture,
-                    CaptureMode::Video => crate::ShutterMode::Video,
-                    CaptureMode::QrDetection => crate::ShutterMode::Hidden,
+                match capture_mode {
+                    CaptureMode::Picture => {
+                        self.obj().set_shutter_mode(crate::ShutterMode::Picture);
+                    }
+                    CaptureMode::Video => {
+                        self.obj().set_shutter_mode(crate::ShutterMode::Video);
+                    }
+                    CaptureMode::QrDetection => (),
                 };
-                self.obj().set_shutter_mode(shutter_mode);
                 self.obj()
                     .set_detect_codes(matches!(capture_mode, CaptureMode::QrDetection));
 

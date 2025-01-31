@@ -92,7 +92,6 @@ mod imp {
 
                         widget.set_tooltip_text(Some(&gettext("Stop Recording")));
                     }
-                    ShutterMode::Hidden => (),
                 }
 
                 widget.notify_shutter_mode();
