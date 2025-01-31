@@ -314,6 +314,7 @@ impl Camera {
         Self::default()
     }
 
+    #[cfg(feature = "portal")]
     fn on_portal_not_allowed(&self) {
         // We don't start the device provider if we are not
         // allowed to use cameras.
