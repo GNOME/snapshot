@@ -478,7 +478,7 @@ impl Camera {
         self.imp().camera_controls.set_shutter_mode(shutter_mode);
     }
 
-    pub fn set_detect_codes(&self, detect_codes: bool) {
+    fn set_detect_codes(&self, detect_codes: bool) {
         let imp = self.imp();
 
         imp.viewfinder.set_detect_codes(detect_codes);
