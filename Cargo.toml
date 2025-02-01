@@ -3,7 +3,7 @@ members = [ "aperture" ]
 
 [workspace.package]
 edition = "2021"
-rust-version = "1.80"
+rust-version = "1.82"
 license = "GPL-3.0-or-later"
 authors = ["The GNOME Project"]
 

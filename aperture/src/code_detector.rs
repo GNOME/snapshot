@@ -37,6 +37,7 @@ mod imp {
     #[derive(Default)]
     pub struct QrCodeDetector {
         pub last_detection_t: Mutex<Option<std::time::Instant>>,
+        pub handle: Mutex<Option<std::thread::JoinHandle<()>>>,
     }
 
     #[glib::object_subclass]
@@ -116,44 +117,63 @@ mod imp {
                 return Ok(gst::FlowSuccess::Ok);
             }
 
-            // all formats we support start with an 8-bit Y plane. We don't need
-            // to know about the chroma plane(s)
-            let data = frame.comp_data(0).unwrap();
-            let width = frame.width() as usize;
-            let height = frame.height() as usize;
-            let stride = frame.comp_stride(0) as usize;
+            let mut locked_handle = self.handle.lock().unwrap();
 
-            let mut image = rqrr::PreparedImage::prepare_from_greyscale(width, height, |x, y| {
-                data[x + (y * stride)]
-            });
-            let grids = image.detect_grids();
+            if locked_handle
+                .as_ref()
+                .is_none_or(std::thread::JoinHandle::is_finished)
+            {
+                // all formats we support start with an 8-bit Y plane. We don't need
+                // to know about the chroma plane(s)
+                let data = frame.comp_data(0).unwrap().to_vec();
+                let width = frame.width() as usize;
+                let height = frame.height() as usize;
+                let stride = frame.comp_stride(0) as usize;
 
-            if let Some(grid) = grids.first() {
-                let mut decoded = Vec::new();
+                let handle = std::thread::spawn(glib::clone!(
+                    #[weak(rename_to=codedetector)]
+                    self,
+                    move || {
+                        let mut image =
+                            rqrr::PreparedImage::prepare_from_greyscale(width, height, |x, y| {
+                                data[x + (y * stride)]
+                            });
+                        let grids = image.detect_grids();
 
-                match grid.decode_to(&mut decoded) {
-                    Ok(_) => {
-                        let bytes = glib::Bytes::from_owned(decoded);
-                        let structure = gst::Structure::builder("qrcode")
-                            .field("payload", bytes)
-                            .build();
-                        let msg = gst::message::Element::builder(structure)
-                            .src(&*self.obj())
-                            .build();
-                        self.post_message(msg);
+                        if let Some(grid) = grids.first() {
+                            let mut decoded = Vec::new();
+
+                            match grid.decode_to(&mut decoded) {
+                                Ok(_) => {
+                                    let bytes = glib::Bytes::from_owned(decoded);
+                                    let structure = gst::Structure::builder("qrcode")
+                                        .field("payload", bytes)
+                                        .build();
+                                    let msg = gst::message::Element::builder(structure)
+                                        .src(&*codedetector.obj())
+                                        .build();
+                                    codedetector.post_message(msg);
+                                }
+                                Err(e) => {
+                                    gst::warning!(CAT, "Failed to decode QR code: {e}");
+                                }
+                            }
+
+                            codedetector.last_detection_t.lock().unwrap().replace(now);
+
+                            gst::trace!(
+                                CAT,
+                                "Spent {}ms to detect qr code",
+                                now.elapsed().as_millis()
+                            );
+                        }
                     }
-                    Err(e) => {
-                        gst::warning!(CAT, "Failed to decode QR code: {e}");
-                    }
-                }
+                ));
 
-                self.last_detection_t.lock().unwrap().replace(now);
-
-                gst::trace!(
-                    CAT,
-                    "Spent {}ms to detect qr code",
-                    now.elapsed().as_millis()
-                );
+                locked_handle.replace(handle);
+            } else {
+                // Thread is running, skip processing this frame.
+                return Ok(gst::FlowSuccess::Ok);
             }
 
             Ok(gst::FlowSuccess::Ok)
