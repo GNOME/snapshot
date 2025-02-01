@@ -29,8 +29,10 @@ const DETECTOR_CAPS: &[gst_video::VideoFormat] = &[
 mod imp {
     use std::sync::Mutex;
 
+    use futures_util::stream::StreamExt;
     use gst::{subclass::prelude::*, BufferRef};
     use gst_video::subclass::prelude::*;
+    use gtk::gio;
 
     use super::*;
 
@@ -123,38 +125,70 @@ mod imp {
             let height = frame.height() as usize;
             let stride = frame.comp_stride(0) as usize;
 
-            let mut image = rqrr::PreparedImage::prepare_from_greyscale(width, height, |x, y| {
-                data[x + (y * stride)]
-            });
-            let grids = image.detect_grids();
+            let (sender, mut receiver) = futures_channel::mpsc::unbounded::<Option<glib::Bytes>>();
 
-            if let Some(grid) = grids.first() {
-                let mut decoded = Vec::new();
+            gio::spawn_blocking(glib::clone!(
+                #[to_owned]
+                data,
+                #[strong]
+                width,
+                #[strong]
+                height,
+                #[strong]
+                stride,
+                move || {
+                    let mut image =
+                        rqrr::PreparedImage::prepare_from_greyscale(width, height, |x, y| {
+                            data[x + (y * stride)]
+                        });
+                    let grids = image.detect_grids();
 
-                match grid.decode_to(&mut decoded) {
-                    Ok(_) => {
-                        let bytes = glib::Bytes::from_owned(decoded);
-                        let structure = gst::Structure::builder("qrcode")
-                            .field("payload", bytes)
-                            .build();
-                        let msg = gst::message::Element::builder(structure)
-                            .src(&*self.obj())
-                            .build();
-                        self.post_message(msg);
+                    let mut returned_bytes: Option<glib::Bytes> = None;
+
+                    if let Some(grid) = grids.first() {
+                        let mut decoded = Vec::new();
+
+                        match grid.decode_to(&mut decoded) {
+                            Ok(_) => {
+                                let bytes = glib::Bytes::from_owned(decoded);
+                                returned_bytes = Some(bytes);
+                            }
+                            Err(e) => {
+                                gst::warning!(CAT, "Failed to decode QR code: {e}");
+                                returned_bytes = None;
+                            }
+                        }
                     }
-                    Err(e) => {
-                        gst::warning!(CAT, "Failed to decode QR code: {e}");
+
+                    sender.unbounded_send(returned_bytes).unwrap();
+                }
+            ));
+
+            glib::spawn_future(glib::clone!(
+                #[weak(rename_to = codedetector)]
+                self,
+                async move {
+                    while let Some(bytes) = receiver.next().await {
+                        if let Some(data) = bytes {
+                            let structure = gst::Structure::builder("qrcode")
+                                .field("payload", data)
+                                .build();
+                            let msg = gst::message::Element::builder(structure)
+                                .src(&*codedetector.obj())
+                                .build();
+                            codedetector.post_message(msg);
+
+                            codedetector.last_detection_t.lock().unwrap().replace(now);
+                        }
                     }
                 }
+            ));
 
-                self.last_detection_t.lock().unwrap().replace(now);
-
-                gst::trace!(
-                    CAT,
-                    "Spent {}ms to detect qr code",
-                    now.elapsed().as_millis()
-                );
-            }
+            gst::trace!(
+                CAT,
+                "Spent {}ms to detect qr code",
+                now.elapsed().as_millis()
+            );
 
             Ok(gst::FlowSuccess::Ok)
         }

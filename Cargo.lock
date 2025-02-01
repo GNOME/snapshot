@@ -28,6 +28,7 @@ name = "aperture"
 version = "0.9.1"
 dependencies = [
  "futures-channel",
+ "futures-util",
  "gstreamer",
  "gstreamer-base",
  "gstreamer-pbutils",

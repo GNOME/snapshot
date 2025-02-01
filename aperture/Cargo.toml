@@ -12,6 +12,7 @@ version = "0.9.1"
 rust-version.workspace = true
 
 [dependencies]
+futures-util = "0.3.26" # This version should match the futures-channel version in the workspace
 futures-channel = { workspace = true }
 gst = { workspace = true }
 gst-base = { package = "gstreamer-base", version = "0.23" }
