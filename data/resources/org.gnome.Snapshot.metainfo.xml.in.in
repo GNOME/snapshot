@@ -30,6 +30,15 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="48.beta" date="2025-02-01" type="development">
+      <description>
+        <p>Snapshot 48.beta release</p>
+        <ul>
+          <li>Properly detects missing camera permissions</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="48.alpha.2" date="2025-01-14" type="development">
       <description>
         <p>Snapshot 48.alpha.2 release</p>

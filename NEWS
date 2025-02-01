@@ -1,3 +1,10 @@
+## 48.beta - 2025-02-01
+- Improve bottom sheet labels and size
+- Properly detects missing camera permissions
+- Detect codes no more than once a second
+- Hide gallery button in QR code detection mode
+- Updated translations
+
 ## 48.alpha.2 - 2025-01-14
 - Use .cargo/config.toml for the cargo-vendor config
 - Add QR code detection
