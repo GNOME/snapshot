@@ -1,16 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+use std::os::unix::io::OwnedFd;
+
 use adw::prelude::*;
 use adw::subclass::prelude::*;
+use anyhow::Context;
+use ashpd::desktop::camera;
 use gettextrs::gettext;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
-
-#[cfg(feature = "portal")]
-use anyhow::Context;
-#[cfg(feature = "portal")]
-use ashpd::desktop::camera;
-#[cfg(feature = "portal")]
-use std::os::unix::io::OwnedFd;
 
 use super::CameraControls;
 use crate::enums::ControlsLayout;
@@ -314,7 +311,6 @@ impl Camera {
         Self::default()
     }
 
-    #[cfg(feature = "portal")]
     fn on_portal_not_allowed(&self) {
         // We don't start the device provider if we are not
         // allowed to use cameras.
@@ -331,14 +327,12 @@ impl Camera {
             #[strong]
             provider,
             async move {
-                #[cfg(feature = "portal")]
                 if let Err(err) = ashpd::register_host_app(config::APP_ID.try_into().unwrap()).await
                 {
                     log::error!(
                         "Failed to run org.freedesktop.host.portal.Registry.Register: {err}"
                     );
                 }
-                #[cfg(feature = "portal")]
                 match stream().await {
                     Ok(fd) => {
                         if let Err(err) = provider.set_fd(fd) {
@@ -647,7 +641,6 @@ impl Camera {
     }
 }
 
-#[cfg(feature = "portal")]
 async fn stream() -> anyhow::Result<OwnedFd> {
     let proxy = camera::Camera::new().await?;
     proxy
