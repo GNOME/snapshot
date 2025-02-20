@@ -8,8 +8,8 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
-use crate::code_detector::QrCodeDetector;
 use crate::ViewfinderState;
+use crate::code_detector::QrCodeDetector;
 
 const PROVIDER_TIMEOUT: u64 = 2;
 

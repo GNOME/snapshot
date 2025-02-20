@@ -29,7 +29,7 @@ const DETECTOR_CAPS: &[gst_video::VideoFormat] = &[
 mod imp {
     use std::sync::{Mutex, OnceLock};
 
-    use gst::{subclass::prelude::*, BufferRef};
+    use gst::{BufferRef, subclass::prelude::*};
     use gst_video::subclass::prelude::*;
 
     use super::*;

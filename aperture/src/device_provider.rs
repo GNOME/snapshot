@@ -304,7 +304,9 @@ impl DeviceProvider {
                 .inspect(|old_fd| log::debug!("Freeing fd {}", old_fd.as_raw_fd()));
             Ok(())
         } else {
-            log::warn!("Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64");
+            log::warn!(
+                "Pipewire device provider does not have the `fd` property, please update to a version newer than 0.3.64"
+            );
             Err(crate::PipewireError::OldVersion)
         }
     }
