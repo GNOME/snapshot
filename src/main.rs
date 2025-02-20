@@ -10,7 +10,7 @@ mod widgets;
 use application::Application;
 use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use enums::*;
-use gettextrs::{gettext, LocaleCategory};
+use gettextrs::{LocaleCategory, gettext};
 use gtk::prelude::*;
 use gtk::{gio, glib};
 use widgets::*;
