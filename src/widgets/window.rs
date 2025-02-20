@@ -4,10 +4,10 @@ use gettextrs::gettext;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 
-use crate::config::{APP_ID, IS_DEVEL, VERSION};
-use crate::utils;
 use crate::Application;
 use crate::CaptureMode;
+use crate::config::{APP_ID, IS_DEVEL, VERSION};
+use crate::utils;
 
 mod imp {
     use std::cell::{Cell, RefCell};

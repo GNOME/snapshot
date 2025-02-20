@@ -41,8 +41,8 @@ const PAGE_SPACING_FIXED: f32 = 25.0;
 const PAGE_SPACING_PERCENT: f32 = 0.02;
 
 mod imp {
-    use glib::subclass::Signal;
     use glib::Properties;
+    use glib::subclass::Signal;
 
     use super::*;
 
