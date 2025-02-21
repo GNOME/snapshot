@@ -58,8 +58,9 @@ mod imp {
         }
 
         pub fn remove(&self, device: crate::Camera) {
-            let guard = self.cameras.borrow();
-            let Some((pos, _)) = guard
+            let Some((pos, _)) = self
+                .cameras
+                .borrow()
                 .iter()
                 .enumerate()
                 .find(|(_idx, x)| x.target_object() == device.target_object())
@@ -70,7 +71,6 @@ mod imp {
                 );
                 return;
             };
-            drop(guard);
             self.cameras.borrow_mut().remove(pos);
             self.obj().items_changed(pos as u32, 1, 0);
             self.obj().emit_camera_removed(&device);

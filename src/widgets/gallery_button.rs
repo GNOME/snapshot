@@ -86,8 +86,7 @@ mod imp {
             let value = widget.animation().value() as f32;
             let foreground_radius = value * size;
 
-            let binding = self.gallery.borrow();
-            let Some(gallery) = binding.as_ref().and_then(WeakRef::upgrade) else {
+            let Some(gallery) = self.gallery.borrow().as_ref().and_then(WeakRef::upgrade) else {
                 return;
             };
             let items = gallery.items();
