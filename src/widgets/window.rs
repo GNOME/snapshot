@@ -97,7 +97,7 @@ mod imp {
             klass.bind_template();
             klass.bind_template_callbacks();
 
-            klass.install_action_async("win.take-picture", None, |window, _, _| async move {
+            klass.install_action_async("win.take-picture", None, async move |window, _, _| {
                 if let Err(err) = window.on_take_picture().await {
                     match window.capture_mode() {
                         CaptureMode::Picture => {

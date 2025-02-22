@@ -56,7 +56,7 @@ mod imp {
             klass.install_action("gallery.previous", None, move |widget, _, _| {
                 widget.previous();
             });
-            klass.install_action_async("gallery.open", None, |widget, _, _| async move {
+            klass.install_action_async("gallery.open", None, async move |widget, _, _| {
                 if let Err(err) = widget.open_with_system().await {
                     log::error!("Could not open with system handler: {err}");
                 }
@@ -66,7 +66,7 @@ mod imp {
                     log::error!("Could not copy gallery item: {err}");
                 }
             });
-            klass.install_action_async("gallery.delete", None, |widget, _, _| async move {
+            klass.install_action_async("gallery.delete", None, async move |widget, _, _| {
                 if let Err(err) = widget.delete().await {
                     log::error!("Could not delete gallery item: {err}");
                 }
