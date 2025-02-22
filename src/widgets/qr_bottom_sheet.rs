@@ -58,7 +58,7 @@ mod imp {
             klass.install_action_async(
                 "qr-bottom-sheet.open-external",
                 None,
-                |widget, _, _| async move {
+                async move |widget, _, _| {
                     if let Err(err) = widget.open_external().await {
                         log::error!("Could not open external URI: {err}");
                     }
