@@ -1,6 +1,6 @@
 # Bulgarian translation of snapshot po-file.
-# Copyright (C) 2024 twlvnn kraftwerk.
-# Copyright (C) 2024 Alexander Shopov.
+# Copyright (C) 2024 twlvnn kraftwerk <kraft_werk@tutanota.com>.
+# Copyright (C) 2024 Alexander Shopov <ash@kambanaria.org>.
 # This file is distributed under the same license as the snapshot package.
 # twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
 # Alexander Shopov <ash@kambanaria.org>, 2024.
@@ -8,25 +8,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-09-07 08:18+0000\n"
-"PO-Revision-Date: 2024-09-07 17:41+0200\n"
+"POT-Creation-Date: 2025-02-25 02:19+0000\n"
+"PO-Revision-Date: 2025-02-25 08:30+0100\n"
 "Last-Translator: twlvnn <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 46.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Камера"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Заснемане на снимки и видео клипове"
 
@@ -35,169 +35,168 @@ msgstr "Заснемане на снимки и видео клипове"
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "снимка;снимки;камера;picture;photos;camera;webcam;snapshot;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
 msgid "Default window width"
 msgstr "Стандартна широчина на прозореца"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
 msgid "Default window height"
 msgstr "Стандартна височина на прозореца"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:27
 msgid "Default window maximized behaviour"
 msgstr "Стандартно поведение на максимизиран прозорец"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Play shutter sound"
 msgstr "Пускане на звук при снимка"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:33
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Дали да се пуска звук при правене на снимки"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Show composition guidelines"
 msgstr "Показване на водачите за композицията"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:38
 msgid "Whether to show composition guidelines when using the camera"
 msgstr ""
 "Дали да се покажат водачите за композицията, когато се използва камерата"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Enable audio recording"
 msgstr "Включване на записване на аудиото"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:43
 msgid "Whether to record audio when recording video"
 msgstr "Дали да се записва и аудио при видео запис"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Countdown timer"
 msgstr "Таймер за обратно броене"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:48
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Продължителността на обратното броене при снимки [секунди]"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Capture mode"
 msgstr "Режим на заснемане"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:53
 msgid "Whether to take pictures or videos"
 msgstr "Дали да се правят снимки или видео клипове"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Picture format"
 msgstr "Формат на снимката"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:58
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Дали снимките да се запазват като png или jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Video format"
 msgstr "Формат на видеото"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
+#: data/org.gnome.Snapshot.gschema.xml.in:63
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Дали видео клиповете да се запазват като mp4 или webm"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:66
+#: data/org.gnome.Snapshot.gschema.xml.in:67
 msgid "Last Camera Used ID"
 msgstr "Идентификатор на последно използваната камерата"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:68
 msgid "An ID representing the last used camera"
 msgstr "Идентификатор, представящ последно използваната камера"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Заснимане на снимки и видео клипове с компютър, таблет или телефон."
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "Основен интерфейс на камерата"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Галерия на камерата"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:208 src/widgets/window.rs:308
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:240
 msgid "The GNOME Project"
 msgstr "Проектът GNOME"
 
-#: data/resources/ui/camera.ui:92 data/resources/ui/camera.ui:166
-#: data/resources/ui/camera.ui:337 data/resources/ui/camera.ui:472
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Основно меню"
 
-#: data/resources/ui/camera.ui:102
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
 msgstr "Няма камера"
 
-#: data/resources/ui/camera.ui:103
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
 msgstr "Свържете камера"
 
-#: data/resources/ui/camera.ui:192 data/resources/ui/camera.ui:290
-#: data/resources/ui/camera.ui:403 data/resources/ui/camera.ui:494
-msgid "Picture Mode"
-msgstr "Режим на снимане"
-
-#: data/resources/ui/camera.ui:211 data/resources/ui/camera.ui:309
-#: data/resources/ui/camera.ui:422 data/resources/ui/camera.ui:513
-msgid "Recording Mode"
-msgstr "Режим на записване"
-
-#: data/resources/ui/camera.ui:233 data/resources/ui/camera.ui:267
-#: data/resources/ui/camera.ui:370 data/resources/ui/camera.ui:542
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Отброяване"
 
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Режим на снимане"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Режим на записване"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "Режим на сканиране на QR код"
+
+#: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
 msgstr "Липсват права за камерата"
 
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
 msgstr "Позволете права за камерата в настройките"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:605
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Без"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:610
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:615
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:620
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:628
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Настройки"
 
-#: data/resources/ui/camera.ui:632
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавишни комбинации"
 
-#: data/resources/ui/camera.ui:636
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "_Относно „Камера“"
 
@@ -206,8 +205,8 @@ msgid "Open Gallery"
 msgstr "Отваряне на галерията"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "Заснимане"
 
@@ -232,7 +231,7 @@ msgstr "Следващо изображение"
 msgid "Previous Image"
 msgstr "Предишно изображение"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
 msgid "Open in Image Viewer"
 msgstr "Отваряне в програма за преглед на изображения"
 
@@ -256,6 +255,22 @@ msgstr "Видео запис"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "Запис на _аудио"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Открит е код"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Съдържание"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Копирано в буфера за обмен"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Отваряне на връзката"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -327,7 +342,7 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Предишно"
 
-#: data/resources/ui/window.ui:23
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Галерия"
 
@@ -336,6 +351,10 @@ msgstr "Галерия"
 #: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Включване на съобщенията за отстраняване на грешки"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
@@ -374,43 +393,47 @@ msgstr "_Копиране на видеото"
 msgid "_Delete"
 msgstr "_Изтриване"
 
-#: src/widgets/camera.rs:541
+#: src/widgets/camera.rs:599
 msgid "Could not play camera stream"
 msgstr "Камерата не може да се пусне"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:114
 msgid "Open in Video Player"
 msgstr "Отваряне във видео плеър"
 
-#: src/widgets/gallery.rs:393
+#: src/widgets/gallery.rs:392
 msgid "Copied to clipboard"
 msgstr "Копирано в буфера за обмен"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Снимката е изтрита"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Видеото е изтрито"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Сканиране на код"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Начало на запис"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Край на запис"
 
-#: src/widgets/window.rs:104 src/widgets/window.rs:354
+#: src/widgets/window.rs:105 src/widgets/window.rs:346
 msgid "Could not take picture"
 msgstr "Снимката не може да бъде запазена"
 
-#: src/widgets/window.rs:108 src/widgets/window.rs:358
+#: src/widgets/window.rs:109 src/widgets/window.rs:350
 msgid "Could not record video"
 msgstr "Видеото не може да бъде запазено"
 
-#: src/widgets/window.rs:307
+#: src/widgets/window.rs:301
 msgid "translator-credits"
 msgstr ""
 "twlvnn &lt;<a href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</"
