@@ -1,36 +1,37 @@
 # Brazilian Portuguese translation for Snapshot.
-# Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
+# Copyright (C) 2025 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2023.
 # Gabriel Mattoso <gabriel.reis.mattoso@gmail.com>, 2023.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2023.
 # Alex Jr <alexjrsh@proton.me>, 2023.
 # Juliano de Souza Camargo <julianosc@pm.me>, 2024.
+# Álvaro Burns <>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-09-15 14:09+0000\n"
-"PO-Revision-Date: 2024-08-25 09:57-0300\n"
-"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"POT-Creation-Date: 2025-02-25 07:32+0000\n"
+"PO-Revision-Date: 2025-02-26 02:08-0300\n"
+"Last-Translator: Álvaro Burns <>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 46.1\n"
+"X-Generator: Gtranslator 47.1\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Câmera"
 
 # Dúvido com relação ao modo verbal
 #: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Tire fotos e vídeos"
 
@@ -41,168 +42,167 @@ msgstr ""
 "picture;photos;camera;webcam;snapshot;imagem;fotos;camera;webcam;captura;"
 "imagens;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
 msgid "Default window width"
 msgstr "Largura padrão da janela"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
 msgid "Default window height"
 msgstr "Altura padrão da janela"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:27
 msgid "Default window maximized behaviour"
 msgstr "Comportamento padrão da janela maximizada"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Play shutter sound"
 msgstr "Reproduzir som do obturador"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:33
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Se deve reproduzir um som do obturador ao tirar fotos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Show composition guidelines"
 msgstr "Mostrar linhas de composição"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:38
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "Se as linhas de composição devem ser mostradas ao usar a câmera"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Enable audio recording"
 msgstr "Ativar a gravação de áudio"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:43
 msgid "Whether to record audio when recording video"
 msgstr "Se deve gravar o áudio quando gravando um vídeo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Countdown timer"
 msgstr "Temporizador de contagem regressiva"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:48
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "A duração da contagem regressiva para tirar fotos, em segundos"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Capture mode"
 msgstr "Modo captura"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:53
 msgid "Whether to take pictures or videos"
 msgstr "Para tirar fotos ou vídeos (Fuzzy)"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Picture format"
 msgstr "Formato da foto"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:58
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Se deseja salvar imagens como png ou jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Video format"
 msgstr "Formato do vídeo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
+#: data/org.gnome.Snapshot.gschema.xml.in:63
 msgid "Whether to save videos as mp4 or webm"
 msgstr "Se deseja salvar vídeos como mp4 ou webm"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:66
+#: data/org.gnome.Snapshot.gschema.xml.in:67
 msgid "Last Camera Used ID"
 msgstr "ID da última câmera utilizada"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:68
 msgid "An ID representing the last used camera"
 msgstr "Um ID que representa a última câmera utilizada"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Tire fotos e vídeos em seu computador, tablet ou telefone."
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "Interface principal do Câmera"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Visualizador de galeria do Câmera"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:197 src/widgets/window.rs:308
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:240
 msgid "The GNOME Project"
 msgstr "O Projeto GNOME"
 
-#: data/resources/ui/camera.ui:92 data/resources/ui/camera.ui:166
-#: data/resources/ui/camera.ui:337 data/resources/ui/camera.ui:472
-#: data/resources/ui/camera.ui:579
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: data/resources/ui/camera.ui:102
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
 msgstr "Nenhuma câmera encontrada"
 
-#: data/resources/ui/camera.ui:103
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
 msgstr "Conectar um dispositivo de câmera"
 
-#: data/resources/ui/camera.ui:192 data/resources/ui/camera.ui:290
-#: data/resources/ui/camera.ui:403 data/resources/ui/camera.ui:494
-msgid "Picture Mode"
-msgstr "Modo foto"
-
-#: data/resources/ui/camera.ui:211 data/resources/ui/camera.ui:309
-#: data/resources/ui/camera.ui:422 data/resources/ui/camera.ui:513
-msgid "Recording Mode"
-msgstr "Modo gravação"
-
-#: data/resources/ui/camera.ui:233 data/resources/ui/camera.ui:267
-#: data/resources/ui/camera.ui:370 data/resources/ui/camera.ui:542
-#: data/resources/ui/camera.ui:602
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Contagem regressiva"
 
-#: data/resources/ui/camera.ui:589
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Modo foto"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Modo gravação"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "Modo de digitalização de código QR"
+
+#: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
 msgstr "Faltando permissão de câmera"
 
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
 msgstr "Permita o uso da câmera nas Configurações"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:605
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Nenhuma"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:610
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:615
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:620
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:628
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: data/resources/ui/camera.ui:632
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Atalhos de teclado"
 
-#: data/resources/ui/camera.ui:636
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "_Sobre o Câmera"
 
@@ -211,8 +211,8 @@ msgid "Open Gallery"
 msgstr "Abrir galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "Tirar foto"
 
@@ -237,7 +237,7 @@ msgstr "Próxima imagem"
 msgid "Previous Image"
 msgstr "Imagem anterior"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
 msgid "Open in Image Viewer"
 msgstr "Abrir no visualizador de imagens"
 
@@ -261,6 +261,22 @@ msgstr "Gravando vídeo"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "_Gravar áudio"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Código detectado"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Conteúdo"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Copiar para a área de transferência"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Abrir link"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -332,7 +348,7 @@ msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Anterior"
 
-#: data/resources/ui/window.ui:23
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galeria"
 
@@ -341,6 +357,10 @@ msgstr "Galeria"
 #: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Habilitar mensagens de depuração"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
@@ -379,48 +399,53 @@ msgstr "_Copiar vídeo"
 msgid "_Delete"
 msgstr "_Excluir"
 
-#: src/widgets/camera.rs:541
+#: src/widgets/camera.rs:599
 msgid "Could not play camera stream"
 msgstr "Não foi possível reproduzir stream da câmera"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:114
 msgid "Open in Video Player"
 msgstr "Abrir no reprodutor de vídeos"
 
-#: src/widgets/gallery.rs:393
+#: src/widgets/gallery.rs:392
 msgid "Copied to clipboard"
 msgstr "Copiado para a área de transferência"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Foto apagada"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Vídeo excluído"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Digitalizar código"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Começar gravação"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Parar gravação"
 
-#: src/widgets/window.rs:104 src/widgets/window.rs:354
+#: src/widgets/window.rs:105 src/widgets/window.rs:346
 msgid "Could not take picture"
 msgstr "Não foi possível tirar foto"
 
-#: src/widgets/window.rs:108 src/widgets/window.rs:358
+#: src/widgets/window.rs:109 src/widgets/window.rs:350
 msgid "Could not record video"
 msgstr "Não foi possível gravar vídeo"
 
-#: src/widgets/window.rs:307
+#: src/widgets/window.rs:301
 msgid "translator-credits"
 msgstr ""
 "Leônidas Araújo <leorusvellt@hotmail.com>, 2023\n"
 "Rafael Fontenelle <rafaelff@gnome.org>, 2023\n"
-"Juliano de Souza Camargo <julianosc@pm.me>"
+"Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Álvaro Burns"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
