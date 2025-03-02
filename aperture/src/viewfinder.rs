@@ -573,10 +573,10 @@ impl Viewfinder {
         }
 
         // Set after we cannot fail anymore.
-        if !imp
+        if imp
             .is_recording_video
             .replace(Some(location.as_ref().to_owned()))
-            .is_some_and(|old| old == location.as_ref())
+            .is_none_or(|old| old != location.as_ref())
         {
             self.notify_is_recording();
         };
