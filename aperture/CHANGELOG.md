@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.9.2 - 2025-03-07
+
+### Changed
+- The QR code detection is now done in a separate thread
+
 ## 0.9.1 - 2025-01-31
 
 ### Changed
