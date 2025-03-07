@@ -27,7 +27,7 @@ const DETECTOR_CAPS: &[gst_video::VideoFormat] = &[
 ];
 
 mod imp {
-    use std::sync::Mutex;
+    use std::sync::{Mutex, OnceLock};
 
     use gst::{subclass::prelude::*, BufferRef};
     use gst_video::subclass::prelude::*;
@@ -37,7 +37,7 @@ mod imp {
     #[derive(Default)]
     pub struct QrCodeDetector {
         pub last_detection_t: Mutex<Option<std::time::Instant>>,
-        pub handle: Mutex<Option<std::thread::JoinHandle<()>>>,
+        pub thread_pool: OnceLock<glib::ThreadPool>,
     }
 
     #[glib::object_subclass]
@@ -117,12 +117,12 @@ mod imp {
                 return Ok(gst::FlowSuccess::Ok);
             }
 
-            let mut locked_handle = self.handle.lock().unwrap();
+            // TODO use get_or_try_init once stabilized.
+            let thread_pool = self
+                .thread_pool
+                .get_or_init(|| glib::ThreadPool::exclusive(1).unwrap());
 
-            if locked_handle
-                .as_ref()
-                .is_none_or(std::thread::JoinHandle::is_finished)
-            {
+            if thread_pool.unprocessed() == 0 {
                 // all formats we support start with an 8-bit Y plane. We don't need
                 // to know about the chroma plane(s)
                 let data = frame.comp_data(0).unwrap().to_vec();
@@ -130,7 +130,7 @@ mod imp {
                 let height = frame.height() as usize;
                 let stride = frame.comp_stride(0) as usize;
 
-                let handle = std::thread::spawn(glib::clone!(
+                let res = thread_pool.push(glib::clone!(
                     #[weak(rename_to=codedetector)]
                     self,
                     move || {
@@ -169,8 +169,9 @@ mod imp {
                         }
                     }
                 ));
-
-                locked_handle.replace(handle);
+                if let Err(err) = res {
+                    log::error!("Could not spawn thread: {err}");
+                }
             } else {
                 // Thread is running, skip processing this frame.
                 return Ok(gst::FlowSuccess::Ok);
