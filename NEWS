@@ -1,3 +1,8 @@
+## 48.0 - 2025-03-14
+- Register app id when app is not sandboxed
+- QR code detection now happens on a thread pool
+- Updated translations
+
 ## 48.beta - 2025-02-01
 - Improve bottom sheet labels and size
 - Properly detects missing camera permissions

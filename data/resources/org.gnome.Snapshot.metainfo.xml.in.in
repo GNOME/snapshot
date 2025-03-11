@@ -30,36 +30,19 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="48.beta" date="2025-02-01" type="development">
+    <release version="48.0" date="2025-03-14">
       <description>
-        <p>Snapshot 48.beta release</p>
-        <ul>
-          <li>Properly detects missing camera permissions</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-    <release version="48.alpha.2" date="2025-01-14" type="development">
-      <description>
-        <p>Snapshot 48.alpha.2 release</p>
+        <p>Snapshot 48.0 release</p>
         <ul>
           <li>Add QR code detection</li>
+          <li>Register app id when app is not sandboxed</li>
+          <li>Properly detects missing camera permissions</li>
           <li>Include left-side window controls</li>
+          <li>Improve offloading performance</li>
+          <li>Port to new libadwaita widgets</li>
           <li>Add debug output via flag</li>
-        </ul>
-      </description>
-    </release>
-    <release version="48.alpha" date="2024-12-24" type="development">
-      <description>
-        <p>Snapshot 48.alpha release</p>
-        <ul>
           <li>Fix opening multiple preference windows</li>
-          <li>Improve offloading performanceli</li>
-          <li>Add a NEWS file</li>
-          <li>camera: Port to AdwToggleGroup</li>
-          <li>camera: Port to AdwMultiLayoutView</li>
-          <li>Remove once_cell dependency</li>
-          <li>window: Use adw::AboutDialog::from_appdata</li>
+          <li>Updated translations</li>
         </ul>
       </description>
     </release>
