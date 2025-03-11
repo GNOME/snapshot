@@ -33,7 +33,7 @@ lto = true
 adw = { package = "libadwaita", version = "0.7", features = ["v1_7"] }
 anyhow = "1.0"
 ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"], optional = true }
-futures-channel = "0.3.26"
+futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 glycin = { version = "2.1.0-beta", features = ["gdk4"] }
 gst = { workspace = true }
