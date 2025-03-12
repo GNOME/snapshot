@@ -58,12 +58,11 @@ mod imp {
         }
 
         pub fn remove(&self, device: crate::Camera) {
-            let Some((pos, _)) = self
+            let Some(pos) = self
                 .cameras
                 .borrow()
                 .iter()
-                .enumerate()
-                .find(|(_idx, x)| x.target_object() == device.target_object())
+                .position(|x| x.target_object() == device.target_object())
             else {
                 log::error!(
                     "Tried to remove camera with target-object {:?} but it wasn't in the vec?",
