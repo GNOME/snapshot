@@ -30,7 +30,7 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="48.0" date="2025-03-14">
+    <release version="48.0.1" date="2025-03-15">
       <description>
         <p>Snapshot 48.0 release</p>
         <ul>

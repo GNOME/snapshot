@@ -1,3 +1,6 @@
+## 48.0.1 - 2025-03-15
+- Fix dist-vendor script
+
 ## 48.0 - 2025-03-14
 - Register app id when app is not sandboxed
 - QR code detection now happens on a thread pool
