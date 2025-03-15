@@ -87,3 +87,22 @@ nightly@x86_64:
 nightly@aarch64:
   extends: ".publish_nightly"
   needs: ["flatpak@aarch64"]
+
+.flatpak-command: &flatpak-command
+  image: '${RUNTIME_IMAGE}'
+  tags:
+    - flatpak
+  script:
+    - flatpak-builder --user --disable-rofiles-fuse --keep-build-dirs --stop-at=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+    - flatpak build-finish --share=network flatpak_app
+    - echo "cd .. && ${COMMAND}" | flatpak-builder --user --disable-rofiles-fuse --build-shell=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+
+cargo-clippy:
+  <<: *flatpak-command
+  variables:
+    COMMAND: "cargo clippy --all-targets --workspace --all-features -- -D warnings"
+
+cargo-test:
+  <<: *flatpak-command
+  variables:
+    COMMAND: "cargo test --workspace --all-features --all-targets"
