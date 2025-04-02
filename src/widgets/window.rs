@@ -303,6 +303,10 @@ impl Window {
         dialog.set_designers(&["Tobias Bernard"]);
         dialog.set_debug_info(&utils::debug_info());
 
+        if IS_DEVEL {
+            dialog.set_version(VERSION);
+        }
+
         dialog.present(Some(self));
     }
 
