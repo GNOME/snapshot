@@ -1,0 +1,435 @@
+# Uzbek (Latin) translation for snapshot.
+# Copyright (C) 2025 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# Baxrom Raxmatov <magdiyevbahrom@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2025-03-30 14:03+0000\n"
+"PO-Revision-Date: 2025-04-03 08:41+0500\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Latin) <uz@li.org>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Rasmlar va videolarni oling"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "rasm;fotosuratlar;kamera;veb-kamera;snapshot;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
+msgid "Default window width"
+msgstr "Odatiy oyna kengligi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
+msgid "Default window height"
+msgstr "Odatiy oyna balandligi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:27
+msgid "Default window maximized behaviour"
+msgstr "Odatiy oyna maksimallashtirilgan xatti-harakati"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Play shutter sound"
+msgstr "Deklanşör ovozini ijro eting"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:33
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Rasmga tushirishda deklanşör ovozi o'ynaladimi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Show composition guidelines"
+msgstr "Kompozitsiya qoidalarini ko'rsating"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:38
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Kameradan foydalanganda kompozitsiya qoidalarini ko'rsatish kerakmi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Enable audio recording"
+msgstr "Ovoz yozishni yoqing"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:43
+msgid "Whether to record audio when recording video"
+msgstr "Video yozishda ovoz yozish kerakmi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Countdown timer"
+msgstr "Ortga hisoblash taymer"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:48
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Suratga olish uchun ortga hisoblash davomiyligi, soniyalarda"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Capture mode"
+msgstr "Rasmga tushirish rejimi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:53
+msgid "Whether to take pictures or videos"
+msgstr "Rasm yoki video olish kerakmi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Picture format"
+msgstr "Rasm formati"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:58
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Rasmlarni png yoki jpeg sifatida saqlash kerakmi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "Video format"
+msgstr "Video formati"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:63
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Videolarni mp4 yoki webm sifatida saqlash kerakmi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:67
+msgid "Last Camera Used ID"
+msgstr "So‘nggi foydalanilgan kamera identifikatori"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:68
+msgid "An ID representing the last used camera"
+msgstr "Oxirgi foydalanilgan kamerani ifodalovchi identifikator"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Kompyuteringizda, planshetingizda yoki telefoningizda rasm va videolarni oling."
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Kameraning asosiy interfeysi"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Kamera galereyasi tomoshabin"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:223
+msgid "The GNOME Project"
+msgstr "GNOME loyihasi"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "Asosiy menyu"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "Hech qanday kamera topilmadi"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "Kamera qurilmasini ulang"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "Ortga hisoblash"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Rasm rejimi"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Yozib olish rejimi"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR kodini skanerlash rejimi"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "Kamera ruxsati etishmayapti"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "Sozlamalar orqali kameradan foydalanishga ruxsat bering"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "Hech biri"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "_Afzalliklar"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "_Klaviatura yorliqlari"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "_Kamera haqida"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Galereyani oching"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "Rasmga olish"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Kamera-ni tanlang"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Kamerani almashtirish"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Galereya menyusi"
+
+#: data/resources/ui/gallery.ui:75
+msgid "Next Image"
+msgstr "Keyingi rasm"
+
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "Oldingi rasm"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+msgid "Open in Image Viewer"
+msgstr "Rasmlarni ko'rish dasturida oching"
+
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "Umumiy"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "_ Deklanşör ovozi"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "_Kompozitsiya bo'yicha ko'rsatmalar"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Video yozib olish"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "_Ovozni yozib olish"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Kod aniqlandi"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Kontentlar"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Clipboardga ko'chirish"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Havolani oching"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Umumiy"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Yorliqlarni ko’rsatish"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Asosiy menyu"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Parametrlarni oching"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Chiqish"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Rasm rejimi"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Yozib olish rejimi"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Rasmga oling yoki yozishni boshlang"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Kompozitsiya bo'yicha ko'rsatmalarni ko'rsatish/yashirish"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galereya"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Galereyani ochish/yopish"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Keyingi"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Oldingi"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galereya"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Nosozliklarni tuzatish xabarlarini yoqish"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "{date} dan surat"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "Surat {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "{date} dan yozib olinmoqda"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "Yozilmoqda: {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "_Rasmni nusxalash"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "_Videoni nusxalash"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "_Oʻchirish"
+
+#: src/widgets/camera.rs:599
+msgid "Could not play camera stream"
+msgstr "Kamera oqimini o‘ynatib bo‘lmadi"
+
+#: src/widgets/gallery.rs:114
+msgid "Open in Video Player"
+msgstr "Video pleerda oching"
+
+#: src/widgets/gallery.rs:392
+msgid "Copied to clipboard"
+msgstr "Buferga nusxalandi"
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "Rasm oʻchirildi"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "Video oʻchirildi"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Kodni skanerlash"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "Yozishni boshlang"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "Yozishni to‘xtating"
+
+#: src/widgets/window.rs:105 src/widgets/window.rs:346
+msgid "Could not take picture"
+msgstr "Rasmga tushirib boʻlmadi"
+
+#: src/widgets/window.rs:109 src/widgets/window.rs:350
+msgid "Could not record video"
+msgstr "Video yozib bo‘lmadi"
+
+#: src/widgets/window.rs:301
+msgid "translator-credits"
+msgstr "Baxrom Raxmatov <magdiyevbahrom@gmail.com>"
