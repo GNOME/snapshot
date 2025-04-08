@@ -76,6 +76,10 @@ pub fn init(app_id: &'static str) {
         gtk::init().expect("Unable to start GTK");
         gst::init().expect("Failed to initialize gst");
 
+        if let Err(err) = check_plugins() {
+            log::warn!("{err:#}");
+        }
+
         Viewfinder::static_type();
         DeviceProvider::static_type();
         Camera::static_type();
@@ -103,5 +107,25 @@ pub fn version() -> &'static str {
 pub(crate) fn ensure_init() {
     if !IS_INIT.is_completed() {
         panic!("Aperture is not initialized! Please call `init()` before using the rest of the library to avoid errors and crashes.");
+    }
+}
+
+// Check if all GStreamer plugins we require are available
+fn check_plugins() -> Result<(), String> {
+    let needed = ["camerabin", "gtk4", "pipewire", "videorate"];
+
+    let registry = gst::Registry::get();
+
+    let missing = needed
+        .iter()
+        .filter(|n| registry.find_plugin(n).is_none())
+        .collect::<Vec<_>>();
+
+    if missing.is_empty() {
+        Ok(())
+    } else {
+        Err(format!(
+            "Features might be missing due to missing gstreamer plugins: {missing:?}"
+        ))
     }
 }
