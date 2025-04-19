@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.9.3 - 2025-04-19
+
+### Changed
+- Print a warning when a plugin is missing
+
 ## 0.9.2 - 2025-03-07
 
 ### Changed

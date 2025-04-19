@@ -8,7 +8,7 @@ license.workspace = true
 name = "aperture"
 repository = "https://gitlab.gnome.org/GNOME/snapshot"
 documentation = "https://gnome.pages.gitlab.gnome.org/snapshot/aperture"
-version = "0.9.2"
+version = "0.9.3"
 rust-version.workspace = true
 
 [dependencies]
