@@ -7,168 +7,195 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-12-13 17:30+0000\n"
-"PO-Revision-Date: 2024-02-12 00:39+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2025-03-14 16:05+0000\n"
+"PO-Revision-Date: 2025-04-03 20:30+0800\n"
+"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "相機"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "拍攝照片與錄製影片"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "picture;photos;camera;webcam;snapshot;相片;圖片;影像;相機;照相機;攝影;錄影;拍照;快拍;"
+msgstr ""
+"picture;photos;camera;webcam;snapshot;相片;圖片;影像;相機;照相機;攝影;錄影;"
+"拍照;快拍;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
 msgid "Default window width"
 msgstr "預設視窗寬度"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
 msgid "Default window height"
 msgstr "預設視窗高度"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:27
 msgid "Default window maximized behaviour"
 msgstr "預設的視窗最大化行為"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Play shutter sound"
 msgstr "播放快門聲"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:33
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "是否在拍照時播放快門聲"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:37
 msgid "Show composition guidelines"
 msgstr "顯示構圖參考線"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:38
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "是否在畫面上顯示構圖參考線"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Enable audio recording"
+msgstr "啟用音訊錄製"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:43
+msgid "Whether to record audio when recording video"
+msgstr "錄影時是否要錄音"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
 msgid "Countdown timer"
 msgstr "倒數計時器"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:48
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "拍攝照片的倒數計時秒數"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:52
 msgid "Capture mode"
 msgstr "相機模式"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:53
 msgid "Whether to take pictures or videos"
 msgstr "拍攝照片或是錄製影片"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:57
 msgid "Picture format"
 msgstr "照片格式"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:58
 msgid "Whether to save pictures as png or jpeg"
 msgstr "將照片儲存為 PNG 或是 JPEG 格式"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Video format"
 msgstr "影片格式"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:63
 msgid "Whether to save videos as mp4 or webm"
 msgstr "將影片儲存為 MP4 或是 WEBM 格式"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/org.gnome.Snapshot.gschema.xml.in:67
+msgid "Last Camera Used ID"
+msgstr "上次使用的相機 ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:68
+msgid "An ID representing the last used camera"
+msgstr "代表上次使用相機的 ID"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "用您的電腦、平板、手機等拍攝照片與錄製影片。"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "相機的主介面"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "相機的相片庫"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:111 src/widgets/window.rs:272
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:223
 msgid "The GNOME Project"
 msgstr "GNOME 專案"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
-#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "主選單"
 
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
 msgstr "找不到相機"
 
-#: data/resources/ui/camera.ui:108
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
 msgstr "請先連接相機裝置"
 
-#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
-#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
-msgid "Picture Mode"
-msgstr "拍照模式"
-
-#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
-#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
-msgid "Recording Mode"
-msgstr "錄影模式"
-
-#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
-#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "倒數計時"
 
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "拍照模式"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "錄影模式"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR 碼掃描模式"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "無權取用相機"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "在《設定》中允許使用相機"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "無"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3 秒"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5 秒"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10 秒"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "鍵盤快捷鍵(_K)"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "關於相機(_A)"
 
@@ -177,8 +204,8 @@ msgid "Open Gallery"
 msgstr "開啟相片庫"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "拍照"
 
@@ -195,29 +222,54 @@ msgstr "切換相機"
 msgid "Gallery Menu"
 msgstr "相片庫選單"
 
-#: data/resources/ui/gallery.ui:94
-msgid "Previous Image"
-msgstr "上一張影像"
-
-#: data/resources/ui/gallery.ui:107
+#: data/resources/ui/gallery.ui:75
 msgid "Next Image"
 msgstr "下一張影像"
 
-#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "上一張影像"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
 msgid "Open in Image Viewer"
 msgstr "在影像檢視器中開啟"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
 msgid "General"
 msgstr "一般"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
 msgstr "快門聲(_S)"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
 msgstr "構圖參考線(_C)"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "影片錄製"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "錄音(_R)"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "偵測到 QR 碼"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "內容"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "複製到剪貼簿"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "開啟連結"
 
 #: data/resources/ui/shortcuts.ui:11
 msgctxt "shortcut window"
@@ -299,6 +351,10 @@ msgstr "相片庫"
 msgid "JPEG"
 msgstr "JPEG"
 
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "啟用除錯訊息"
+
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
 #: src/utils.rs:23
@@ -324,54 +380,60 @@ msgstr "影片 {date}"
 msgid "Recording {number}"
 msgstr "影片 {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "複製相片(_C)"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "複製影片(_C)"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "刪除(_D)"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:599
 msgid "Could not play camera stream"
 msgstr "無法擷取相機串流訊號"
 
-#: src/widgets/gallery.rs:117
+#: src/widgets/gallery.rs:114
 msgid "Open in Video Player"
 msgstr "在影片播放器中開啟"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:392
 msgid "Copied to clipboard"
 msgstr "已複製到剪貼簿"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "已刪除照片"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "已刪除影片"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "掃描 QR 碼"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "開始錄影"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "停止錄影"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:315
+#: src/widgets/window.rs:105 src/widgets/window.rs:346
 msgid "Could not take picture"
 msgstr "無法拍攝照片"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:319
+#: src/widgets/window.rs:109 src/widgets/window.rs:350
 msgid "Could not record video"
 msgstr "無法錄製影片"
 
-#: src/widgets/window.rs:271
+#: src/widgets/window.rs:301
 msgid "translator-credits"
-msgstr "Freddy Cheng <freddy4212@gmail.com>, 2023."
+msgstr ""
+"Freddy Cheng <freddy4212@gmail.com>, 2023.\n"
+"Yi-Jyun Pan <me@pan93.com>, 2024."
