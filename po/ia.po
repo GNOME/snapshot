@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-02-16 15:14+0000\n"
-"PO-Revision-Date: 2025-02-17 14:25-0300\n"
+"POT-Creation-Date: 2025-05-10 22:17+0000\n"
+"PO-Revision-Date: 2025-05-20 19:22-0400\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
 "Language-Team: Interlingua <softinterlingua@gmail.com>\n"
 "Language: ia\n"
@@ -22,7 +22,8 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
@@ -72,7 +73,7 @@ msgstr "Si monstrar le guidas de composition al usar le camera"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:42
 msgid "Enable audio recording"
-msgstr "Habilitar registration de audio"
+msgstr "Activar registration de audio"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:43
 msgid "Whether to record audio when recording video"
@@ -131,7 +132,7 @@ msgid "Camera's gallery viewer"
 msgstr "Visualisator de galeria de Camera"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:240
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:223
 msgid "The GNOME Project"
 msgstr "Le projecto GNOME"
 
@@ -198,7 +199,7 @@ msgstr "_Preferentias"
 
 #: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
-msgstr "_Commandos curte de claviero"
+msgstr "Vias breve de _claviero"
 
 #: data/resources/ui/camera.ui:601
 msgid "_About Camera"
@@ -216,7 +217,7 @@ msgstr "Prender imagine"
 
 #: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
-msgstr "Selectionar camera"
+msgstr "Seliger camera"
 
 #: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
@@ -284,7 +285,7 @@ msgstr "General"
 #: data/resources/ui/shortcuts.ui:14
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Monstrar commandos curte"
+msgstr "Monstrar vias breve"
 
 #: data/resources/ui/shortcuts.ui:20
 msgctxt "shortcut window"
@@ -324,7 +325,7 @@ msgstr "Prender imagine o initiar registration"
 #: data/resources/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr "Monstrar/Occultar guidas de composition"
+msgstr "Monstrar/Celar guidas de composition"
 
 #: data/resources/ui/shortcuts.ui:69
 msgctxt "shortcut window"
@@ -377,7 +378,7 @@ msgstr "Photo {number}"
 #. file name.
 #: src/utils.rs:41
 msgid "Recording from {date}"
-msgstr "Registration de {date}"
+msgstr "Registration ab {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
@@ -387,7 +388,7 @@ msgstr "Registration {number}"
 
 #: src/utils.rs:136
 msgid "_Copy Picture"
-msgstr "_Copiar _¿imagine"
+msgstr "_Copiar imagine"
 
 #: src/utils.rs:138
 msgid "_Copy Video"
@@ -395,9 +396,9 @@ msgstr "_Copiar video"
 
 #: src/utils.rs:140
 msgid "_Delete"
-msgstr "_Supprimer"
+msgstr "_Deler"
 
-#: src/widgets/camera.rs:599
+#: src/widgets/camera.rs:593
 msgid "Could not play camera stream"
 msgstr "Non poteva aperir le fluxo de camera"
 
@@ -411,11 +412,11 @@ msgstr "Copiate al area de transferentia"
 
 #: src/widgets/gallery.rs:433
 msgid "Picture deleted"
-msgstr "Imagine supprimite"
+msgstr "Imagine delite"
 
 #: src/widgets/gallery.rs:435
 msgid "Video deleted"
-msgstr "Video supprimite"
+msgstr "Video delite"
 
 #: src/widgets/qr_screen_bin.rs:50
 msgid "Scan Code"
@@ -429,11 +430,11 @@ msgstr "Initiar registration"
 msgid "Stop Recording"
 msgstr "Detener registration"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:346
+#: src/widgets/window.rs:105 src/widgets/window.rs:350
 msgid "Could not take picture"
 msgstr "Impossibile de prender le imagine"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:350
+#: src/widgets/window.rs:109 src/widgets/window.rs:354
 msgid "Could not record video"
 msgstr "Impossibile de registrar le video"
 
