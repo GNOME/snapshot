@@ -52,13 +52,13 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
 
-            klass.install_action("qr-bottom-sheet.copy", None, move |widget, _, _| {
+            klass.install_action("qr-bottom-sheet.copy", None, |widget, _, _| {
                 widget.copy();
             });
             klass.install_action_async(
                 "qr-bottom-sheet.open-external",
                 None,
-                async move |widget, _, _| {
+                async |widget, _, _| {
                     if let Err(err) = widget.open_external().await {
                         log::error!("Could not open external URI: {err}");
                     }

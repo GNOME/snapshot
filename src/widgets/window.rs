@@ -97,7 +97,7 @@ mod imp {
             klass.bind_template();
             klass.bind_template_callbacks();
 
-            klass.install_action_async("win.take-picture", None, async move |window, _, _| {
+            klass.install_action_async("win.take-picture", None, async |window, _, _| {
                 if let Err(err) = window.on_take_picture().await {
                     match window.capture_mode() {
                         CaptureMode::Picture => {
@@ -112,10 +112,10 @@ mod imp {
                     }
                 };
             });
-            klass.install_action("win.about", None, move |window, _, _| {
+            klass.install_action("win.about", None, |window, _, _| {
                 window.show_about_dialog();
             });
-            klass.install_action("win.toggle-gallery", None, move |window, _, _| {
+            klass.install_action("win.toggle-gallery", None, |window, _, _| {
                 let imp = window.imp();
 
                 if imp
@@ -129,12 +129,12 @@ mod imp {
                     imp.navigation_view.pop();
                 }
             });
-            klass.install_action("win.toggle-guidelines", None, move |window, _, _| {
+            klass.install_action("win.toggle-guidelines", None, |window, _, _| {
                 let imp = window.imp();
 
                 imp.camera.toggle_guidelines();
             });
-            klass.install_action("win.preferences", None, move |window, _, _| {
+            klass.install_action("win.preferences", None, |window, _, _| {
                 window.show_preferences_window();
             });
         }

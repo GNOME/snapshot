@@ -49,14 +49,14 @@ mod imp {
             klass.set_css_name("gallery");
 
             // Shows an older picture (scrolls to the right)
-            klass.install_action("gallery.next", None, move |widget, _, _| {
+            klass.install_action("gallery.next", None, |widget, _, _| {
                 widget.next();
             });
             // Shows a newer picture (scrolls to the left)
-            klass.install_action("gallery.previous", None, move |widget, _, _| {
+            klass.install_action("gallery.previous", None, |widget, _, _| {
                 widget.previous();
             });
-            klass.install_action_async("gallery.open", None, async move |widget, _, _| {
+            klass.install_action_async("gallery.open", None, async |widget, _, _| {
                 if let Err(err) = widget.open_with_system().await {
                     log::error!("Could not open with system handler: {err}");
                 }
@@ -66,7 +66,7 @@ mod imp {
                     log::error!("Could not copy gallery item: {err}");
                 }
             });
-            klass.install_action_async("gallery.delete", None, async move |widget, _, _| {
+            klass.install_action_async("gallery.delete", None, async |widget, _, _| {
                 if let Err(err) = widget.delete().await {
                     log::error!("Could not delete gallery item: {err}");
                 }
