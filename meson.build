@@ -18,6 +18,9 @@ dependency('gstreamer-1.0', version: '>= 1.20')
 dependency('gstreamer-video-1.0', version: '>= 1.20')
 # Needed for camerabin
 dependency('gstreamer-plugins-bad-1.0', version: '>= 1.20')
+# Required by glycin crate
+dependency('lcms2', version: '>=2.12.0')
+dependency('libseccomp', version: '>= 2.5.0')
 
 # Optional dependencies
 gtk4_x11 = dependency('gtk4-x11', required: get_option('x11'))
