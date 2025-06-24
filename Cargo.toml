@@ -11,7 +11,7 @@ authors = ["The GNOME Project"]
 log = "0.4"
 futures-channel = "0.3.30"
 gst = { package = "gstreamer", version = "0.23" , features = ["v1_20"] }
-gtk = { package = "gtk4", version = "0.9", features = ["gnome_46", "v4_16"] }
+gtk = { package = "gtk4", version = "0.9", features = ["gnome_46", "v4_18"] }
 
 [package]
 name = "snapshot"
