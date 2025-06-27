@@ -458,8 +458,7 @@ impl SlidingView {
     fn shift_position(&self, old_index: Option<usize>) {
         if let (Some(old_index), Some(new_index)) = (old_index, self.current_index()) {
             let shift = new_index as f64 - old_index as f64;
-            // TODO Use Cell::update once stabilized.
-            self.imp().position_shift.set(self.position_shift() + shift);
+            self.imp().position_shift.update(|s| s + shift);
         }
     }
 

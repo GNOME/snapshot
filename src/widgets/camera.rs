@@ -622,9 +622,8 @@ impl Camera {
                 move || {
                     let imp = obj.imp();
 
-                    // TODO Use Cell::update once stabilized.
-                    let duration = imp.recording_duration.get() + 1;
-                    imp.recording_duration.set(duration);
+                    imp.recording_duration.update(|d| d + 1);
+                    let duration = imp.recording_duration.get();
 
                     let minutes = duration.div_euclid(60);
                     let seconds = duration.rem_euclid(60);
