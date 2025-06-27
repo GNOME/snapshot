@@ -405,10 +405,9 @@ impl Camera {
         let imp = self.imp();
         if matches!(imp.viewfinder.state(), aperture::ViewfinderState::Ready)
             && imp.viewfinder.is_recording()
+            && let Err(err) = imp.viewfinder.stop_recording()
         {
-            if let Err(err) = imp.viewfinder.stop_recording() {
-                log::error!("Could not stop camera: {err}");
-            }
+            log::error!("Could not stop camera: {err}");
         }
     }
 

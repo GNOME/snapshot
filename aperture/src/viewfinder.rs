@@ -159,11 +159,11 @@ mod imp {
                 obj.stop_stream();
             }
 
-            if let Some(camera) = camera {
-                if let Err(err) = obj.setup_camera_element(&camera) {
-                    log::error!("Could not reconfigure camera element: {err}");
-                    self.set_state(ViewfinderState::Error);
-                }
+            if let Some(camera) = camera
+                && let Err(err) = obj.setup_camera_element(&camera)
+            {
+                log::error!("Could not reconfigure camera element: {err}");
+                self.set_state(ViewfinderState::Error);
             }
 
             if obj.is_realized() && matches!(obj.state(), ViewfinderState::Ready) {
@@ -383,10 +383,10 @@ mod imp {
         }
 
         fn dispose(&self) {
-            if self.is_recording_video.borrow().is_some() {
-                if let Err(err) = self.obj().stop_recording() {
-                    log::error!("Could not stop recording: {err}");
-                }
+            if self.is_recording_video.borrow().is_some()
+                && let Err(err) = self.obj().stop_recording()
+            {
+                log::error!("Could not stop recording: {err}");
             }
             if let Err(err) = self.camerabin().set_state(gst::State::Null) {
                 log::error!("Could not stop camerabin: {err}");
@@ -1019,14 +1019,14 @@ impl Viewfinder {
         let imp = self.imp();
         let devices = imp.devices.get().unwrap();
 
-        if let Some(camera) = devices.default_camera().or_else(|| devices.camera(0)) {
-            if matches!(
+        if let Some(camera) = devices.default_camera().or_else(|| devices.camera(0))
+            && matches!(
                 self.state(),
                 ViewfinderState::NoCameras | ViewfinderState::Loading | ViewfinderState::Error
-            ) {
-                imp.set_state(ViewfinderState::Ready);
-                self.set_camera(Some(camera));
-            }
+            )
+        {
+            imp.set_state(ViewfinderState::Ready);
+            self.set_camera(Some(camera));
         }
 
         glib::timeout_add_local_once(

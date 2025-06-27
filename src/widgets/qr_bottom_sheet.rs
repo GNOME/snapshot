@@ -118,10 +118,10 @@ impl QrBottomSheet {
         let window = root.and_downcast_ref::<gtk::Window>();
         let res = launcher.launch_future(window).await;
 
-        if let Err(ref err) = res {
-            if err.matches(gtk::DialogError::Dismissed) {
-                return Ok(());
-            }
+        if let Err(ref err) = res
+            && err.matches(gtk::DialogError::Dismissed)
+        {
+            return Ok(());
         }
         res?;
 

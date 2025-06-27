@@ -392,12 +392,12 @@ impl DeviceProvider {
                 {
                     let n_items = self.n_items();
                     for n in 0..n_items {
-                        if let Some(nth_device) = self.camera(n) {
-                            if device == nth_device.device() {
-                                self.imp().remove(nth_device);
-                                log::debug!("Camera removed: {}", device.display_name());
-                                break;
-                            }
+                        if let Some(nth_device) = self.camera(n)
+                            && device == nth_device.device()
+                        {
+                            self.imp().remove(nth_device);
+                            log::debug!("Camera removed: {}", device.display_name());
+                            break;
                         };
                     }
                 }

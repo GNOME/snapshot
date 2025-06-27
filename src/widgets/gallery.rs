@@ -151,10 +151,10 @@ mod imp {
                     obj.action_set_enabled("gallery.previous", has_prev);
                     obj.action_set_enabled("gallery.next", has_next);
 
-                    if let Some(old) = obj.imp().current_item.replace(sliding_view.current_page()) {
-                        if let Some(video) = old.downcast_ref::<crate::GalleryVideo>() {
-                            video.pause();
-                        }
+                    if let Some(old) = obj.imp().current_item.replace(sliding_view.current_page())
+                        && let Some(video) = old.downcast_ref::<crate::GalleryVideo>()
+                    {
+                        video.pause();
                     }
 
                     obj.setup_media_controls();
@@ -381,28 +381,28 @@ impl Gallery {
     fn load_neighbor_pages(&self) {
         let sliding_view = self.imp().sliding_view.get();
 
-        if let Some(current) = sliding_view.current_page() {
-            if !current.started_loading() {
-                current.start_loading();
-            }
+        if let Some(current) = sliding_view.current_page()
+            && !current.started_loading()
+        {
+            current.start_loading();
         }
 
-        if let Some(next) = sliding_view.next_page() {
-            if !next.started_loading() {
-                next.start_loading();
-            }
+        if let Some(next) = sliding_view.next_page()
+            && !next.started_loading()
+        {
+            next.start_loading();
         }
 
-        if let Some(next) = sliding_view.next_next_page() {
-            if !next.started_loading() {
-                next.start_loading();
-            }
+        if let Some(next) = sliding_view.next_next_page()
+            && !next.started_loading()
+        {
+            next.start_loading();
         }
 
-        if let Some(previous) = sliding_view.prev_page() {
-            if !previous.started_loading() {
-                previous.start_loading();
-            }
+        if let Some(previous) = sliding_view.prev_page()
+            && !previous.started_loading()
+        {
+            previous.start_loading();
         }
     }
 
