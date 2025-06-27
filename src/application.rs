@@ -72,13 +72,13 @@ mod imp {
         }
 
         fn startup(&self) {
-            info!("Snapshot ({})", APP_ID);
+            info!("Snapshot ({APP_ID})");
             if IS_DEVEL {
-                info!("Version: {} ({})", VERSION, PROFILE);
+                info!("Version: {VERSION} ({PROFILE})");
             } else {
-                info!("Version: {}", VERSION);
+                info!("Version: {VERSION}");
             }
-            info!("Datadir: {}", PKGDATADIR);
+            info!("Datadir: {PKGDATADIR}");
             debug!("Application::startup");
             self.parent_startup();
 
