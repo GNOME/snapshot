@@ -29,6 +29,7 @@ x11 = ["ashpd/gtk4_x11"]
 lto = true
 
 [dependencies]
+# TODO: Use feature v1_8
 adw = { package = "libadwaita", version = "0.7", features = ["v1_7"] }
 anyhow = "1.0"
 ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
