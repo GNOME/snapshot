@@ -7,7 +7,7 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/gallery.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/preferences_window.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/qr_bottom_sheet.ui</file>
-    <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcuts.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
     <file compressed="true">style.css</file>
     <file>sounds/camera-shutter.wav</file>

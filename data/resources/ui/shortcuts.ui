@@ -1,90 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkShortcutsWindow" id="help_overlay">
-    <property name="modal">True</property>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
     <child>
-      <object class="GtkShortcutsSection">
-        <property name="section-name">shortcuts</property>
-        <property name="max-height">10</property>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">General</property>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">General</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
-                <property name="action-name">win.show-help-overlay</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Main Menu</property>
-                <property name="accelerator">F10</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="Shortcut window description">Open Preferences</property>
-                <property name="action-name">win.preferences</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Quit</property>
-                <property name="action-name">app.quit</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
+            <property name="action-name">app.shortcuts</property>
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">Camera</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Picture Mode</property>
-                <property name="accelerator">P</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Recording Mode</property>
-                <property name="accelerator">R</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Take Picture or Start Recording</property>
-                <property name="action-name">win.take-picture</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Show/Hide Composition Guidelines</property>
-                <property name="accelerator">C</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Main Menu</property>
+            <property name="accelerator">F10</property>
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">Gallery</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Open/Close Gallery</property>
-                <property name="action-name">win.toggle-gallery</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Next</property>
-                <property name="accelerator">Right</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Previous</property>
-                <property name="accelerator">Left</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="Shortcut window description">Open Preferences</property>
+            <property name="action-name">win.preferences</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Quit</property>
+            <property name="action-name">app.quit</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">Camera</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Picture Mode</property>
+            <property name="accelerator">P</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Recording Mode</property>
+            <property name="accelerator">R</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Take Picture or Start Recording</property>
+            <property name="action-name">win.take-picture</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Show/Hide Composition Guidelines</property>
+            <property name="accelerator">C</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">Gallery</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Open/Close Gallery</property>
+            <property name="action-name">win.toggle-gallery</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Next</property>
+            <property name="accelerator">Right</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Previous</property>
+            <property name="accelerator">Left</property>
           </object>
         </child>
       </object>
