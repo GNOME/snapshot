@@ -40,6 +40,8 @@ gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
 tracing-subscriber = "0.3"
+# TODO Remove once https://github.com/dbus2/zbus/issues/1417 is resolved
+zvariant = "~5.4.0"
 aperture = { path = "aperture" }
 
 [profile.dev.package.rqrr]
