@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-01-19 11:57+0000\n"
-"PO-Revision-Date: 2025-01-19 15:16+0100\n"
+"POT-Creation-Date: 2025-06-30 16:11+0000\n"
+"PO-Revision-Date: 2025-06-30 23:42+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -133,12 +133,12 @@ msgid "Camera's gallery viewer"
 msgstr "Preglednik galerije Kamere"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:231
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
-#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:138
-#: data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Glavni meni"
 
@@ -150,59 +150,59 @@ msgstr "Ni zaznane kamere"
 msgid "Connect a camera device"
 msgstr "Poveži kamero"
 
-#: data/resources/ui/camera.ui:126 data/resources/ui/camera.ui:564
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Odštevalnik"
 
-#: data/resources/ui/camera.ui:163
+#: data/resources/ui/camera.ui:164
 msgid "Picture Mode"
 msgstr "Način slikanja"
 
-#: data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:170
 msgid "Recording Mode"
 msgstr "Način snemanja"
 
-#: data/resources/ui/camera.ui:176
+#: data/resources/ui/camera.ui:177
 msgid "QR Code Scanning Mode"
 msgstr "Način optičnega branja QR-kode"
 
-#: data/resources/ui/camera.ui:551
+#: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
 msgstr "Manjkajoče dovoljenje za kamero"
 
-#: data/resources/ui/camera.ui:552
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
 msgstr "Dovoli uporabo kamere v nastavitvah"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:567
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Prazno"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:572
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5 s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:582
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10 s"
 
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
-#: data/resources/ui/camera.ui:598
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "_O programu Kamera"
 
@@ -211,8 +211,8 @@ msgid "Open Gallery"
 msgstr "Odpri galerijo"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:73
-#: src/widgets/shutter_button.rs:123
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "Naredi sliko"
 
@@ -278,72 +278,77 @@ msgstr "Kopiraj v odložišče"
 msgid "Open Link"
 msgstr "Odpri povezavo"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Splošno"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Pokaže tipkovne bližnjice‫"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Odpre nastavitve"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Zapri okno"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Konča program"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Kamera"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Preklopi način slikanja"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Preklopi način snemanja"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Začne slikanje ali snemanje"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "Pokaže/Skrije vodila za kompozicijo"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerija"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Odpre/Zapre galerijo"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Naprej"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Nazaj"
@@ -399,7 +404,7 @@ msgstr "_Kopiraj video"
 msgid "_Delete"
 msgstr "_Izbriši"
 
-#: src/widgets/camera.rs:580
+#: src/widgets/camera.rs:587
 msgid "Could not play camera stream"
 msgstr "Predvajanje toka kamere ni bilo mogoče"
 
@@ -423,19 +428,19 @@ msgstr "Videoposnetek izbrisan"
 msgid "Scan Code"
 msgstr "Optično preberi kodo"
 
-#: src/widgets/shutter_button.rs:84
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Začni snemati"
 
-#: src/widgets/shutter_button.rs:95
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Ustavi snemanje"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:346
+#: src/widgets/window.rs:105 src/widgets/window.rs:350
 msgid "Could not take picture"
 msgstr "Slike ni mogoče zajeti"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:350
+#: src/widgets/window.rs:109 src/widgets/window.rs:354
 msgid "Could not record video"
 msgstr "Videa ni mogoče posneti"
 
