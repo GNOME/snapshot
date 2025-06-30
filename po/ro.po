@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-05-10 22:17+0000\n"
-"PO-Revision-Date: 2025-05-19 16:24+0200\n"
+"POT-Creation-Date: 2025-06-30 16:11+0000\n"
+"PO-Revision-Date: 2025-06-30 18:20+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -129,7 +129,7 @@ msgid "Camera's gallery viewer"
 msgstr "Galerie de poze integrată"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:223
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
 msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
@@ -274,72 +274,77 @@ msgstr "Copiat"
 msgid "Open Link"
 msgstr "Deschide legătura"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Generale"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Arată scurtăturile"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Opțiuni"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Deschide preferințele"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Închide fereastra"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Închide"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Camera"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Fotografie"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Video"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Fotografiază sau Filmează"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "Arată/Ascunde grila"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerie"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Deschide/Închide galeria"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Următoarea"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Precedenta"
@@ -395,7 +400,7 @@ msgstr "_Copiază videoul"
 msgid "_Delete"
 msgstr "Șt_erge"
 
-#: src/widgets/camera.rs:593
+#: src/widgets/camera.rs:587
 msgid "Could not play camera stream"
 msgstr "Nu s-a putut reda fluxul camerei"
 
