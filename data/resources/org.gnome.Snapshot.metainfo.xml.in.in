@@ -30,6 +30,18 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="49.alpha" date="2025-06-30" type="development">
+      <description>
+        <p>Snapshot 49.alpha release</p>
+        <ul>
+          <li>Port shortcuts dialog to AdwShortcutsDialog</li>
+          <li>Remove meson option to run without portals</li>
+          <li>Show release notes on about dialog</li>
+          <li>Add warning when there are missing GStreamer plugins</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="48.0.1" date="2025-03-15">
       <description>
         <p>Snapshot 48.0 release</p>

@@ -1,3 +1,10 @@
+## 49.alpha - 2025-06-30
+- Port shortcuts dialog to AdwShortcutsDialog
+- Remove meson option to run without portals
+- Show release notes on about dialog
+- Add warning when there are missing GStreamer plugins
+- Updated translations
+
 ## 48.0.1 - 2025-03-15
 - Fix dist-vendor script
 
