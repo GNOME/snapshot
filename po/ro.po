@@ -2,204 +2,203 @@
 # Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 # Florentina Musat <florentina.musat.28@gmail.com>, 2023.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-08-04 18:01+0000\n"
-"PO-Revision-Date: 2024-08-23 08:26+0300\n"
-"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
-"gmail [dot] com>\n"
+"POT-Creation-Date: 2025-06-30 21:43+0000\n"
+"PO-Revision-Date: 2025-06-30 18:20+0200\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 3.4.4\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Camera"
 
 #: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
-msgstr "Ia poze și video-uri"
+msgstr "Fotografiază și filmează"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:10
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr ""
 "picture;photos;camera;webcam;snapshot;poză;fotografii;cameră web;instantaneu;"
+"filmează;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
 #: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
 msgid "Default window width"
-msgstr "Lățime fereastră implicită"
+msgstr "Lățimea prestabilită a ferestrei"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
 #: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
 msgid "Default window height"
-msgstr "Înălțime fereastră implicită"
+msgstr "Înălțimea prestabilită a ferestrei"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:27
 msgid "Default window maximized behaviour"
-msgstr "Comportament implicit de fereastră maximizată"
+msgstr "Comportamentul prestabilit al ferestrei maximizate"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:32
 msgid "Play shutter sound"
 msgstr "Redă sunet obturator"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:33
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Dacă se redă un sunet de obturator când se iau poze"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:36
-msgid "Show composition guidelines"
-msgstr "Arată liniile directoare de compoziție"
+msgstr "Dacă să se audă un sunet de obturator când se fac poze"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:37
-msgid "Whether to show composition guidelines when using the camera"
-msgstr ""
-"Dacă să se arate liniile directoare de compoziție când se utilizează camera"
+msgid "Show composition guidelines"
+msgstr "Afișează o grilă"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
-msgid "Enable audio recording"
-msgstr "Activează înregistrarea audio"
+#: data/org.gnome.Snapshot.gschema.xml.in:38
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Dacă să se arate linii sub formă de grilă când se utilizează camera"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:42
-msgid "Whether to record audio when recording video"
-msgstr "Dacă să se înregistreze audio când se înregistrează video"
+msgid "Enable audio recording"
+msgstr "Activează înregistrarea sunetului"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
-msgid "Countdown timer"
-msgstr "Temporizator numărătoare inversă"
+#: data/org.gnome.Snapshot.gschema.xml.in:43
+msgid "Whether to record audio when recording video"
+msgstr "Dacă să se înregistreze sunetul când se filmează"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:47
-msgid "The duration of the countdown for taking photos, in seconds"
-msgstr "Durata numărătoarei inverse pentru luarea de fotografii, în secunde"
+msgid "Countdown timer"
+msgstr "Numărătoare inversă"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
-msgid "Capture mode"
-msgstr "Mod captură"
+#: data/org.gnome.Snapshot.gschema.xml.in:48
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Durata în secunde a numărătorii inverse pentru fotografiere"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:52
-msgid "Whether to take pictures or videos"
-msgstr "Dacă se iau poze sau video"
+msgid "Capture mode"
+msgstr "Mod fotografie/video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
-msgid "Picture format"
-msgstr "Format poză"
+#: data/org.gnome.Snapshot.gschema.xml.in:53
+msgid "Whether to take pictures or videos"
+msgstr "Dacă să se facă poze sau video"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:57
-msgid "Whether to save pictures as png or jpeg"
-msgstr "Dacă se salvează pozele ca png sau jpeg"
+msgid "Picture format"
+msgstr "Formatul pozei"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
+#: data/org.gnome.Snapshot.gschema.xml.in:58
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Dacă să se salveze pozele ca png sau jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
 msgid "Video format"
 msgstr "Format video"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
+#: data/org.gnome.Snapshot.gschema.xml.in:63
 msgid "Whether to save videos as mp4 or webm"
-msgstr "Dacă se salvează video-urile ca mp4 sau webm"
+msgstr "Dacă să se salvează videourile ca mp4 sau webm"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:66
+#: data/org.gnome.Snapshot.gschema.xml.in:67
 msgid "Last Camera Used ID"
 msgstr "ID-ul ultimei camere utilizate"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:68
 msgid "An ID representing the last used camera"
 msgstr "Un ID reprezentând ultima cameră utilizată"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Ia poze sau video-uri pe calculator, tabletă sau telefon."
+msgstr "Fotografiază și filmează cu calculatorul, tableta sau telefonul."
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "Interfața principală Camera"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
-msgstr "Vizualizatorul de galerie Camera"
+msgstr "Galerie de poze integrată"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:196 src/widgets/window.rs:308
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
 msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
-#: data/resources/ui/camera.ui:95 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
-#: data/resources/ui/camera.ui:583
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
-msgstr "Meniu principal"
+msgstr "Opțiuni"
 
-#: data/resources/ui/camera.ui:105
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
-msgstr "Nu s-a găsit camera"
+msgstr "Nicio cameră"
 
-#: data/resources/ui/camera.ui:106
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
-msgstr "Conectează un dispozitiv cameră"
+msgstr "Conectează o cameră"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
-msgid "Picture Mode"
-msgstr "Mod poză"
-
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
-msgid "Recording Mode"
-msgstr "Mod înregistrare"
-
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Numărătoare inversă"
 
-#: data/resources/ui/camera.ui:593
-msgid "Missing Camera Permission"
-msgstr "Lipsește permisiunea camerei"
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Fotografie"
 
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Video"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "Scanare cod QR"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "Nu este permis accesul la cameră"
+
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
-msgstr "Permite utilizarea camerei în Configurări"
+msgstr "Trebuie permis accesul la cameră din „Confidențialitate și securitate”"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:609
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Nimic"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:614
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:619
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:624
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:632
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Preferințe"
 
-#: data/resources/ui/camera.ui:636
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
-msgstr "Scurtături de _tastatură"
+msgstr "Scur_tături"
 
-#: data/resources/ui/camera.ui:640
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "Despre C_amera"
 
@@ -208,40 +207,40 @@ msgid "Open Gallery"
 msgstr "Deschide galeria"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
-msgstr "Ia poză"
+msgstr "Fotografiază"
 
 #: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
-msgstr "Selectează camera"
+msgstr "Alege camera"
 
 #: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
-msgstr "Comută camera"
+msgstr "Schimbă camera"
 
 #: data/resources/ui/gallery.ui:46
 msgid "Gallery Menu"
-msgstr "Meniu galerie"
+msgstr "Opțiuni Galerie"
 
 #: data/resources/ui/gallery.ui:75
 msgid "Next Image"
-msgstr "Imagine următoare"
+msgstr "Imaginea următoare"
 
 #: data/resources/ui/gallery.ui:89
 msgid "Previous Image"
-msgstr "Imagine anterioară"
+msgstr "Imaginea precedentă"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
 msgid "Open in Image Viewer"
-msgstr "Deschide în Vizualizator imagini"
+msgstr "Deschide în aplicația pentru imagini"
 
 #: data/resources/ui/preferences_window.ui:7
 #: data/resources/ui/preferences_window.ui:11
 msgid "General"
-msgstr "General"
+msgstr "Generale"
 
 #: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
@@ -249,7 +248,7 @@ msgstr "_Sunet obturator"
 
 #: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
-msgstr "Linii directoare de _compoziție"
+msgstr "_Grilă"
 
 #: data/resources/ui/preferences_window.ui:30
 msgid "Video Recording"
@@ -257,79 +256,100 @@ msgstr "Înregistrare video"
 
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
-msgstr "În_registrează audio"
+msgstr "În_registrează sunetul"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Cod detectat"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Conținut"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Copiat"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Deschide legătura"
+
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Generale"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Arată scurtăturile"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
-msgstr "Meniu principal"
+msgstr "Opțiuni"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Deschide preferințele"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Închide fereastra"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Ieșire"
+msgstr "Închide"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Camera"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
-msgstr "Mod poză"
+msgstr "Fotografie"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
-msgstr "Mod înregistrare"
+msgstr "Video"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
-msgstr "Ia poză sau începe înregistrarea"
+msgstr "Fotografiază sau Filmează"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr "Arată/Ascunde liniile directoare de compoziție"
+msgstr "Arată/Ascunde grila"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerie"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Deschide/Închide galeria"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
-msgstr "Următor"
+msgstr "Următoarea"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
-msgstr "Anterior"
+msgstr "Precedenta"
 
-#: data/resources/ui/window.ui:23
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Galerie"
 
@@ -339,30 +359,34 @@ msgstr "Galerie"
 msgid "JPEG"
 msgstr "JPEG"
 
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Activează mesajele de depanare"
+
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
 #: src/utils.rs:23
 msgid "Photo from {date}"
-msgstr "Fotografie din {date}"
+msgstr "Poză din {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
 #: src/utils.rs:28
 msgid "Photo {number}"
-msgstr "Fotografie {number}"
+msgstr "Poza {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
 #: src/utils.rs:41
 msgid "Recording from {date}"
-msgstr "Înregistrare din {date}"
+msgstr "Video din {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
 #: src/utils.rs:46
 msgid "Recording {number}"
-msgstr "Înregistare {number}"
+msgstr "Video {number}"
 
 #: src/utils.rs:136
 msgid "_Copy Picture"
@@ -370,56 +394,55 @@ msgstr "_Copiază poza"
 
 #: src/utils.rs:138
 msgid "_Copy Video"
-msgstr "_Copiază video-ul"
+msgstr "_Copiază videoul"
 
 #: src/utils.rs:140
 msgid "_Delete"
 msgstr "Șt_erge"
 
-#: src/widgets/camera.rs:541
+#: src/widgets/camera.rs:587
 msgid "Could not play camera stream"
 msgstr "Nu s-a putut reda fluxul camerei"
 
-#: src/widgets/gallery.rs:115
+#: src/widgets/gallery.rs:114
 msgid "Open in Video Player"
-msgstr "Deschide în Player video"
+msgstr "Deschide cu aplicația pentru video"
 
-#: src/widgets/gallery.rs:393
+#: src/widgets/gallery.rs:392
 msgid "Copied to clipboard"
-msgstr "Copiat la clipboard"
+msgstr "Copiat"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:433
 msgid "Picture deleted"
 msgstr "Poză ștearsă"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:435
 msgid "Video deleted"
 msgstr "Video șters"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Scanează codul"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
-msgstr "Începe înregistrarea"
+msgstr "Filmează"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
-msgstr "Oprește înregistrarea"
+msgstr "Oprește filmarea"
 
-#: src/widgets/window.rs:104 src/widgets/window.rs:354
+#: src/widgets/window.rs:105 src/widgets/window.rs:350
 msgid "Could not take picture"
-msgstr "Nu s-a putut lua poza"
+msgstr "Nu s-a putut fotografia"
 
-#: src/widgets/window.rs:108 src/widgets/window.rs:358
+#: src/widgets/window.rs:109 src/widgets/window.rs:354
 msgid "Could not record video"
-msgstr "Nu s-a putut înregistra video-ul"
+msgstr "Nu s-a putut filma"
 
-#: src/widgets/window.rs:307
+#: src/widgets/window.rs:301
 msgid "translator-credits"
 msgstr ""
 "Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, "
-"2023-2024"
-
-#~ msgid "Snapshot"
-#~ msgstr "Instantaneu"
-
-#~ msgid "_About Snapshot"
-#~ msgstr "_Despre Instantaneu"
+"2023-2024\n"
+"Antonio Marin <gnmer.6qxyg@slmail.me>, 2025"
