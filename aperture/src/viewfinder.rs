@@ -238,30 +238,54 @@ mod imp {
                 .expect("Missing gst-plugin-gtk4");
 
             let paintable = paintablesink.property::<gdk::Paintable>("paintable");
-            let is_gl_supported = paintable
-                .property::<Option<gdk::GLContext>>("gl-context")
-                .is_some();
-            let sink = if is_gl_supported {
-                gst::ElementFactory::make("glsinkbin")
-                    .property("sink", &paintablesink)
-                    .build()
-                    .expect("Missing GStreamer Base Plug-ins")
-            } else {
+
+            let is_yuv_natively_supported = {
+                let yuv_caps =
+                    gst_video::video_make_raw_caps(&[gst_video::VideoFormat::Yuy2]).build();
+                !paintablesink
+                    .pad_template("sink")
+                    .unwrap()
+                    .caps()
+                    .intersect(&yuv_caps)
+                    .is_empty()
+            };
+            let sink = if is_yuv_natively_supported {
                 let bin = gst::Bin::default();
-                let convert = gst::ElementFactory::make("videoconvert")
-                    .build()
-                    .expect("Missing GStreamer Base Plug-ins");
 
-                bin.add(&convert).unwrap();
                 bin.add(&paintablesink).unwrap();
-                convert.link(&paintablesink).unwrap();
-
                 bin.add_pad(
-                    &gst::GhostPad::with_target(&convert.static_pad("sink").unwrap()).unwrap(),
+                    &gst::GhostPad::with_target(&paintablesink.static_pad("sink").unwrap())
+                        .unwrap(),
                 )
                 .unwrap();
 
                 bin.upcast()
+            } else {
+                let is_gl_supported = paintable
+                    .property::<Option<gdk::GLContext>>("gl-context")
+                    .is_some();
+                if is_gl_supported {
+                    gst::ElementFactory::make("glsinkbin")
+                        .property("sink", &paintablesink)
+                        .build()
+                        .expect("Missing GStreamer Base Plug-ins")
+                } else {
+                    let bin = gst::Bin::default();
+                    let convert = gst::ElementFactory::make("videoconvert")
+                        .build()
+                        .expect("Missing GStreamer Base Plug-ins");
+
+                    bin.add(&convert).unwrap();
+                    bin.add(&paintablesink).unwrap();
+                    convert.link(&paintablesink).unwrap();
+
+                    bin.add_pad(
+                        &gst::GhostPad::with_target(&convert.static_pad("sink").unwrap()).unwrap(),
+                    )
+                    .unwrap();
+
+                    bin.upcast()
+                }
             };
 
             tee.add_branch(&sink);
