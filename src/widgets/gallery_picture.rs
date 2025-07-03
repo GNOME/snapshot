@@ -61,8 +61,9 @@ impl GalleryPicture {
             .set_item(picture.upcast_ref());
 
         if let Some(basename) = self.file().basename() {
-            let label = basename.display().to_string();
-            picture.update_property(&[gtk::accessible::Property::Label(&label)]);
+            if let Some(label) = basename.to_str() {
+                picture.update_property(&[gtk::accessible::Property::Label(label)]);
+            }
         }
 
         picture.set_paintable(Some(&texture));
