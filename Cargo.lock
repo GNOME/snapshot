@@ -2136,7 +2136,6 @@ dependencies = [
  "libadwaita",
  "log",
  "tracing-subscriber",
- "zvariant",
 ]
 
 [[package]]
@@ -2774,14 +2773,13 @@ dependencies = [
 
 [[package]]
 name = "zvariant"
-version = "5.4.0"
+version = "5.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2df9ee044893fcffbdc25de30546edef3e32341466811ca18421e3cd6c5a3ac"
+checksum = "d91b3680bb339216abd84714172b5138a4edac677e641ef17e1d8cb1b3ca6e6f"
 dependencies = [
  "endi",
  "enumflags2",
  "serde",
- "static_assertions",
  "url",
  "winnow",
  "zvariant_derive",
@@ -2790,9 +2788,9 @@ dependencies = [
 
 [[package]]
 name = "zvariant_derive"
-version = "5.4.0"
+version = "5.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "74170caa85b8b84cc4935f2d56a57c7a15ea6185ccdd7eadb57e6edd90f94b2f"
+checksum = "3a8c68501be459a8dbfffbe5d792acdd23b4959940fc87785fb013b32edbc208"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
