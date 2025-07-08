@@ -9,7 +9,7 @@ cd "$SOURCE_ROOT"
 mkdir "$DIST"/.cargo
 # cargo-vendor-filterer can be found at https://github.com/coreos/cargo-vendor-filterer
 # It is also part of the Rust SDK extension.
-cargo vendor-filterer --platform=x86_64-unknown-linux-gnu --platform=aarch64-unknown-linux-gnu > "$DIST"/.cargo/config.toml
+cargo vendor-filterer --all-features --platform=x86_64-unknown-linux-gnu --platform=aarch64-unknown-linux-gnu > "$DIST"/.cargo/config.toml
 set -- vendor/gettext-sys/gettext-*.tar.*
 TARBALL_PATH=$1
 TARBALL_NAME=$(basename "$TARBALL_PATH")
