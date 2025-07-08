@@ -108,6 +108,10 @@ mod imp {
 
             if let Some(provider) = gst::DeviceProviderFactory::by_name("pipewiredeviceprovider") {
                 self.inner.set(provider).unwrap();
+            } else {
+                log::error!(
+                    "Could not create DeviceProviderFactory with name pipewiredeviceprovider"
+                );
             }
         }
 
