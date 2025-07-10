@@ -78,7 +78,17 @@ mod imp {
                 "gallery.next",
             );
             klass.add_binding_action(
+                gdk::Key::KP_Right,
+                gdk::ModifierType::NO_MODIFIER_MASK,
+                "gallery.next",
+            );
+            klass.add_binding_action(
                 gdk::Key::Left,
+                gdk::ModifierType::NO_MODIFIER_MASK,
+                "gallery.previous",
+            );
+            klass.add_binding_action(
+                gdk::Key::KP_Left,
                 gdk::ModifierType::NO_MODIFIER_MASK,
                 "gallery.previous",
             );
