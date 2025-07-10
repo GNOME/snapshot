@@ -71,6 +71,23 @@ mod imp {
                     log::error!("Could not delete gallery item: {err}");
                 }
             });
+
+            klass.add_binding_action(
+                gdk::Key::Right,
+                gdk::ModifierType::NO_MODIFIER_MASK,
+                "gallery.next",
+            );
+            klass.add_binding_action(
+                gdk::Key::Left,
+                gdk::ModifierType::NO_MODIFIER_MASK,
+                "gallery.previous",
+            );
+
+            klass.add_binding_action(
+                gdk::Key::Escape,
+                gdk::ModifierType::NO_MODIFIER_MASK,
+                "win.toggle-gallery",
+            );
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
