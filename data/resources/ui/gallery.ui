@@ -12,28 +12,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkShortcutController">
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Right</property>
-            <property name="action">action(gallery.next)</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Left</property>
-            <property name="action">action(gallery.previous)</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Escape</property>
-            <property name="action">action(win.toggle-gallery)</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="AdwToolbarView">
         <property name="extend-content-to-top-edge">True</property>
         <property name="extend-content-to-bottom-edge">True</property>
