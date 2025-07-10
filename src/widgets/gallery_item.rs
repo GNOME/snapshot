@@ -151,13 +151,14 @@ impl GalleryItem {
         gesture.connect_pressed(glib::clone!(
             #[weak]
             popover,
-            move |_, _, x, y| {
+            move |gesture, _, x, y| {
                 if x > -1.0 && y > -1.0 {
                     let rectangle = gdk::Rectangle::new(x as i32, y as i32, 0, 0);
                     popover.set_pointing_to(Some(&rectangle));
                 } else {
                     popover.set_pointing_to(None);
                 }
+                gesture.set_state(gtk::EventSequenceState::Claimed);
                 popover.popup();
             }
         ));
