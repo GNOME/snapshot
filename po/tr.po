@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-01-19 11:57+0000\n"
-"PO-Revision-Date: 2025-02-09 16:06+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2025-06-30 16:11+0000\n"
+"PO-Revision-Date: 2025-07-13 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -132,12 +132,12 @@ msgid "Camera's gallery viewer"
 msgstr "Kamera galeri gösterici"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:231
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
-#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:138
-#: data/resources/ui/camera.ui:542
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Ana Menü"
 
@@ -149,59 +149,59 @@ msgstr "Kamera Bulunamadı"
 msgid "Connect a camera device"
 msgstr "Kameraya bağlanamadı"
 
-#: data/resources/ui/camera.ui:126 data/resources/ui/camera.ui:564
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Geri sayım"
 
-#: data/resources/ui/camera.ui:163
+#: data/resources/ui/camera.ui:164
 msgid "Picture Mode"
 msgstr "Resim Kipi"
 
-#: data/resources/ui/camera.ui:169
+#: data/resources/ui/camera.ui:170
 msgid "Recording Mode"
 msgstr "Kayıt Kipi"
 
-#: data/resources/ui/camera.ui:176
+#: data/resources/ui/camera.ui:177
 msgid "QR Code Scanning Mode"
 msgstr "QR Kod Tarama Kipi"
 
-#: data/resources/ui/camera.ui:551
+#: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
 msgstr "Eksik Kamera İzni"
 
-#: data/resources/ui/camera.ui:552
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
 msgstr "Ayarlar’da kamera kullanımına izin ver"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:567
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Hiçbiri"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:572
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3sn"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5sn"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:582
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10sn"
 
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: data/resources/ui/camera.ui:598
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "Kamera _Hakkında"
 
@@ -210,8 +210,8 @@ msgid "Open Gallery"
 msgstr "Galeriyi Aç"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:73
-#: src/widgets/shutter_button.rs:123
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "Resim Çek"
 
@@ -277,72 +277,77 @@ msgstr "Panoya Kopyala"
 msgid "Open Link"
 msgstr "Bağlantıyı Aç"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Genel"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Kısayolları Göster"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Tercihleri Aç"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Pencereyi Kapat"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Çık"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Kamera"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Resim Kipi"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Kayıt Kipi"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Resim Çek ya da Kayıt Başlat"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "Yapıt Izgaralarını Göster/Gizle"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galeri"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Galeriyi Aç/Kapat"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Sonraki"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Önceki"
@@ -398,7 +403,7 @@ msgstr "Videoyu _Kopyala"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: src/widgets/camera.rs:580
+#: src/widgets/camera.rs:587
 msgid "Could not play camera stream"
 msgstr "Kamera akımı oynatılamadı"
 
@@ -422,19 +427,19 @@ msgstr "Video silindi"
 msgid "Scan Code"
 msgstr "Kodu Tara"
 
-#: src/widgets/shutter_button.rs:84
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Kaydı Başlat"
 
-#: src/widgets/shutter_button.rs:95
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Kaydı Durdur"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:346
+#: src/widgets/window.rs:105 src/widgets/window.rs:350
 msgid "Could not take picture"
 msgstr "Fotoğraf çekilemedi"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:350
+#: src/widgets/window.rs:109 src/widgets/window.rs:354
 msgid "Could not record video"
 msgstr "Video kaydedilemedi"
 
