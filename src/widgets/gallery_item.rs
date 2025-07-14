@@ -148,7 +148,7 @@ impl GalleryItem {
 
         let gesture = gtk::GestureClick::new();
         gesture.set_button(gdk::BUTTON_SECONDARY);
-        gesture.connect_pressed(glib::clone!(
+        gesture.connect_released(glib::clone!(
             #[weak]
             popover,
             move |gesture, _, x, y| {
