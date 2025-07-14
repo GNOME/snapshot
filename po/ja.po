@@ -1,0 +1,443 @@
+# Japanese translation for snapshot.
+# Copyright (C) 2025 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# Makoto Sakaguchi <ycco34vx@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2025-07-07 17:46+0000\n"
+"PO-Revision-Date: 2025-07-08 07:58+0900\n"
+"Last-Translator: Makoto Sakaguchi <ycco34vx@gmail.com>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+msgid "Camera"
+msgstr "カメラ"
+
+#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "写真と動画を撮影"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:10
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;写真;カメラ;ウェブカメラ;スナップショット;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
+msgid "Default window width"
+msgstr "デフォルトのウィンドウ幅"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
+msgid "Default window height"
+msgstr "デフォルトのウィンドウ高さ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:27
+msgid "Default window maximized behaviour"
+msgstr "デフォルトのウィンドウ最大化動作"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Play shutter sound"
+msgstr "シャッター音を鳴らす"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:33
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "写真を撮る時にシャッター音を再生するかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Show composition guidelines"
+msgstr "構図ガイドを表示"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:38
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "カメラ使用時に構図ガイドを表示するかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Enable audio recording"
+msgstr "録音を有効にする"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:43
+msgid "Whether to record audio when recording video"
+msgstr "録画時に音声を録音するかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Countdown timer"
+msgstr "カウントダウンタイマー"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:48
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "写真撮影のカウントダウンの時間 (秒)"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Capture mode"
+msgstr "撮影モード"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:53
+msgid "Whether to take pictures or videos"
+msgstr "写真または動画を撮影するかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Picture format"
+msgstr "写真フォーマット"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:58
+msgid "Whether to save pictures as png or jpeg"
+msgstr "写真を png または jpeg で保存するかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "Video format"
+msgstr "動画フォーマット"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:63
+msgid "Whether to save videos as mp4 or webm"
+msgstr "動画を mp4 または webm のどちらで保存するか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:67
+msgid "Last Camera Used ID"
+msgstr "最後に使用したカメラの ID"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:68
+msgid "An ID representing the last used camera"
+msgstr "最後に使用したカメラを表す ID"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "コンピューター、タブレット、スマートフォンで写真や動画を撮影する。"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "カメラのメイン画面"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "カメラのギャラリー画面"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
+msgid "The GNOME Project"
+msgstr "The GNOME Project"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "メインメニュー"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "カメラが見つかりません"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "カメラデバイスを接続してください"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "カウントダウン"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "写真モード"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "録画モード"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR コードスキャンモード"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "カメラの権限がありません"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "“設定” でカメラの使用を許可してください"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "なし"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3秒"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5秒"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10秒"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "キーボードショートカット(_K)"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "“カメラ”について(_A)"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "ギャラリーを開く"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "写真を撮る"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "カメラを選択"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "カメラを切り替え"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "ギャラリーメニュー"
+
+#: data/resources/ui/gallery.ui:75
+msgid "Next Image"
+msgstr "次の画像"
+
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "前の画像"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+msgid "Open in Image Viewer"
+msgstr "画像ビューアーで開く"
+
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "全般"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "シャッター音(_S)"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "構図ガイド(_C)"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "録画"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "音声も録音(_R)"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "コードが検出されました"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "内容"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "クリップボードにコピー"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "リンクを開く"
+
+#: data/resources/ui/shortcuts.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr "全般"
+
+#: data/resources/ui/shortcuts.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "ショートカットを表示"
+
+#: data/resources/ui/shortcuts.ui:15
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "メインメニュー"
+
+#: data/resources/ui/shortcuts.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "設定を開く"
+
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "ウィンドウを閉じる"
+
+#: data/resources/ui/shortcuts.ui:33
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "終了する"
+
+#: data/resources/ui/shortcuts.ui:41
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "カメラ"
+
+#: data/resources/ui/shortcuts.ui:44
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "写真モード"
+
+#: data/resources/ui/shortcuts.ui:50
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "録画モード"
+
+#: data/resources/ui/shortcuts.ui:56
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "写真を撮る または 録画を開始"
+
+#: data/resources/ui/shortcuts.ui:62
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "構図ガイドを表示/非表示"
+
+#: data/resources/ui/shortcuts.ui:70
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#: data/resources/ui/shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "ギャラリーを開く/閉じる"
+
+#: data/resources/ui/shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "次へ"
+
+#: data/resources/ui/shortcuts.ui:85
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "前へ"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "デバッグメッセージを有効にする"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "Photo from {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "Photo {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "Recording from {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "Recording {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "写真をコピー(_C)"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "動画をコピー(_C)"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "削除(_D)"
+
+#: src/widgets/camera.rs:587
+msgid "Could not play camera stream"
+msgstr "カメラのストリームを再生できませんでした"
+
+#: src/widgets/gallery.rs:114
+msgid "Open in Video Player"
+msgstr "動画プレーヤーで開く"
+
+#: src/widgets/gallery.rs:392
+msgid "Copied to clipboard"
+msgstr "クリップボードにコピーしました"
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "写真が削除されました"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "動画が削除されました"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "コードをスキャン"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "録画を開始"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "録画を停止"
+
+#: src/widgets/window.rs:105 src/widgets/window.rs:350
+msgid "Could not take picture"
+msgstr "写真を撮影できませんでした"
+
+#: src/widgets/window.rs:109 src/widgets/window.rs:354
+msgid "Could not record video"
+msgstr "録画できませんでした"
+
+#: src/widgets/window.rs:301
+msgid "translator-credits"
+msgstr ""
+"Japanese Translation Team <https://l10n.gnome.org/teams/ja/>\n"
+"Makoto Sakaguchi <ycco34vx@gmail.com>"
