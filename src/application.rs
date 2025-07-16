@@ -38,7 +38,10 @@ mod imp {
     }
 
     impl ApplicationImpl for Application {
-        fn handle_local_options(&self, options: &glib::VariantDict) -> glib::ExitCode {
+        fn handle_local_options(
+            &self,
+            options: &glib::VariantDict,
+        ) -> std::ops::ControlFlow<glib::ExitCode> {
             // Initialize logger
             let is_debug = options.lookup::<bool>("debug").unwrap().unwrap_or_default()
                 || !glib::log_writer_default_would_drop(glib::LogLevel::Debug, Some("snapshot"));

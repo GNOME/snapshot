@@ -92,7 +92,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct GalleryItem(ObjectSubclass<imp::GalleryItem>)
-        @extends gtk::Widget, adw::Bin;
+        @extends gtk::Widget, adw::Bin,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 pub trait GalleryItemImpl: WidgetImpl + BinImpl {}

@@ -29,7 +29,7 @@ mod imp {
     #[derive(Debug, Properties, Default)]
     #[properties(wrapper_type = super::ShutterButton)]
     pub struct ShutterButton {
-        #[property(get, set = Self::set_shutter_mode, explicit_notify, builder(ShutterMode::default()))]
+        #[property(get, set = Self::set_shutter_mode, explicit_notify, default)]
         pub shutter_mode: Cell<ShutterMode>,
         #[property(get, set = Self::set_countdown, explicit_notify)]
         pub countdown: Cell<u32>,
@@ -244,7 +244,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct ShutterButton(ObjectSubclass<imp::ShutterButton>)
-        @extends gtk::Widget, gtk::Button;
+        @extends gtk::Widget, gtk::Button,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible, gtk::Actionable;
 }
 
 impl Default for ShutterButton {

@@ -10,11 +10,11 @@ authors = ["The GNOME Project"]
 [workspace.dependencies]
 log = "0.4"
 futures-channel = "0.3.30"
-gst = { package = "gstreamer", version = "0.23" , features = ["v1_20"] }
-gst-base = { package = "gstreamer-base", version = "0.23" }
-gst-pbutils = { package = "gstreamer-pbutils", version = "0.23" }
-gst-video = { package = "gstreamer-video", version = "0.23" }
-gtk = { package = "gtk4", version = "0.9", features = ["gnome_46", "v4_18"] }
+gst = { package = "gstreamer", version = "0.24" , features = ["v1_20"] }
+gst-base = { package = "gstreamer-base", version = "0.24" }
+gst-pbutils = { package = "gstreamer-pbutils", version = "0.24" }
+gst-video = { package = "gstreamer-video", version = "0.24" }
+gtk = { package = "gtk4", version = "0.10", features = ["gnome_46", "v4_18"] }
 
 [package]
 name = "snapshot"
@@ -32,13 +32,12 @@ x11 = ["ashpd/gtk4_x11"]
 lto = true
 
 [dependencies]
-# TODO: Use feature v1_8
-adw = { package = "libadwaita", version = "0.7", features = ["v1_7"] }
+adw = { package = "libadwaita", version = "0.8", features = ["v1_8"] }
 anyhow = "1.0"
-ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
+ashpd = { git = "https://github.com/bilelmoussaoui/ashpd", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { version = "3.0.0-beta", features = ["gdk4"] }
+glycin = { git = "https://gitlab.gnome.org/GNOME/glycin", features = ["gdk4"] }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
