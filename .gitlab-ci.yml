@@ -27,7 +27,6 @@ flatpak@x86_64:
 
 flatpak@aarch64:
   extends: ".flatpak@aarch64"
-  allow_failure: true
 
 rustfmt:
   image: "rust:slim"
