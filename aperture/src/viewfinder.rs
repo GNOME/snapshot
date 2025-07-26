@@ -365,7 +365,6 @@ mod imp {
                 }
             ));
 
-            log::debug!("Setup recording");
             obj.setup_recording();
         }
 
@@ -864,6 +863,8 @@ impl Viewfinder {
 
     fn setup_recording(&self) {
         use gst_pbutils::encoding_profile::EncodingProfileBuilder;
+
+        log::debug!("Setup recording");
 
         let caps = gst::Caps::builder("video/webm").build();
         let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
