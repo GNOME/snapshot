@@ -32,7 +32,7 @@ pub use device_provider::DeviceProvider;
 pub use enums::{CameraLocation, ViewfinderState};
 pub use error::{CaptureError, PipewireError, ProviderError};
 pub(crate) use pipeline_tee::PipelineTee;
-pub use viewfinder::Viewfinder;
+pub use viewfinder::{VideoFormat, Viewfinder};
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];
