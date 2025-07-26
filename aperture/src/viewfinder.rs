@@ -8,38 +8,11 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, gio, glib, graphene};
 
+use crate::VideoFormat;
 use crate::ViewfinderState;
 use crate::code_detector::QrCodeDetector;
 
 const PROVIDER_TIMEOUT: u64 = 2;
-
-#[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]
-#[repr(u32)]
-#[enum_type(name = "ApertureVideoFormat")]
-pub enum VideoFormat {
-    #[default]
-    Vp8Webm,
-    H264Mp4,
-}
-
-impl VideoFormat {
-    pub fn extension_as_str(&self) -> &str {
-        match self {
-            Self::Vp8Webm => "webm",
-            Self::H264Mp4 => "mp4",
-        }
-    }
-}
-
-impl From<i32> for VideoFormat {
-    fn from(value: i32) -> Self {
-        match value {
-            0 => Self::Vp8Webm,
-            1 => Self::H264Mp4,
-            _ => Self::default(),
-        }
-    }
-}
 
 #[derive(Debug)]
 enum StateChangeState {
