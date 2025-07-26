@@ -407,11 +407,13 @@ mod imp {
             self.parent_realize();
 
             if matches!(self.obj().state(), ViewfinderState::Ready) {
+                log::debug!("Viewfinder realized: starting stream");
                 self.obj().start_stream();
             }
         }
 
         fn unrealize(&self) {
+            log::debug!("Viewfinder unrealized: stopping stream");
             self.obj().stop_stream();
 
             self.parent_unrealize();
