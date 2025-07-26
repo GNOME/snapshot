@@ -176,6 +176,17 @@ mod imp {
                 }
             ));
 
+            obj.connect_suspended_notify(|window| {
+                let imp = window.imp();
+                if window.is_suspended() && !imp.camera.is_recording_active() {
+                    log::debug!("Window suspended: stopping stream");
+                    imp.camera.stop_stream();
+                } else {
+                    log::debug!("Window un-suspended: starting stream");
+                    imp.camera.start_stream();
+                }
+            });
+
             // Load latest window state
             obj.load_window_size();
             obj.setup_gactions();
