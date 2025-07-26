@@ -371,7 +371,7 @@ impl Camera {
         ));
     }
 
-    pub async fn start_recording(&self, format: crate::VideoFormat) -> anyhow::Result<()> {
+    pub async fn start_recording(&self, format: aperture::VideoFormat) -> anyhow::Result<()> {
         let filename = utils::video_file_name(format);
         let path = utils::videos_dir()?.join(filename);
 

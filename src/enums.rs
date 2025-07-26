@@ -38,35 +38,6 @@ impl From<i32> for PictureFormat {
     }
 }
 
-/// Enum representing the org.gnome.Snapshot.VideoFormat enum defined in
-/// the gschema.
-#[derive(Default, Debug, Copy, Clone, PartialEq)]
-#[repr(u32)]
-pub enum VideoFormat {
-    #[default]
-    Vp8Webm,
-    H264Mp4,
-}
-
-impl VideoFormat {
-    pub fn as_str(&self) -> &str {
-        match self {
-            Self::Vp8Webm => "webm",
-            Self::H264Mp4 => "mp4",
-        }
-    }
-}
-
-impl From<i32> for VideoFormat {
-    fn from(value: i32) -> Self {
-        match value {
-            0 => Self::Vp8Webm,
-            1 => Self::H264Mp4,
-            _ => Self::default(),
-        }
-    }
-}
-
 /// Enum representing the org.gnome.Snapshot.CaptureMode enum defined in
 /// the gschema.
 #[derive(Default, Debug, Copy, Clone, PartialEq, glib::Enum)]

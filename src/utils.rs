@@ -31,7 +31,7 @@ pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
     format!("{file_name}.{format}")
 }
 
-pub fn video_file_name(video_format: crate::VideoFormat) -> String {
+pub fn video_file_name(video_format: aperture::VideoFormat) -> String {
     let format = video_format.as_str();
     let file_name = if let Ok(date_time) = glib::DateTime::now_local() {
         let f_date = date_time.format(DATE_FORMAT).unwrap();
