@@ -273,6 +273,10 @@ mod imp {
                 .bind("capture-mode", &*obj, "capture-mode")
                 .build();
 
+            self.settings()
+                .bind("video-format", &*self.viewfinder, "video-format")
+                .build();
+
             obj.connect_current_breakpoint_notify(glib::clone!(
                 #[weak(rename_to = obj)]
                 self,
