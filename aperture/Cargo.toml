@@ -19,4 +19,4 @@ gst-pbutils = { package = "gstreamer-pbutils", version = "0.23" }
 gst-video = { package = "gstreamer-video", version = "0.23" }
 gtk = { workspace = true }
 log = { workspace = true }
-rqrr = { version = "0.9", default-features = false }
+rqrr = { version = "0.10", default-features = false }
