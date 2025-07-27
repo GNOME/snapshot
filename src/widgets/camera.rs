@@ -245,10 +245,10 @@ mod imp {
 
             self.camera_controls.set_selection(self.selection.clone());
             self.camera_controls.connect_camera_switched(glib::clone!(
-                #[weak(rename_to = obj)]
-                self,
+                #[weak]
+                obj,
                 move |_: &CameraControls| {
-                    obj.obj().camera_switched();
+                    obj.camera_switched();
                 }
             ));
 
