@@ -51,7 +51,9 @@ impl<S: AsRef<str>> From<S> for CameraLocation {
 #[enum_type(name = "ApertureVideoFormat")]
 pub enum VideoFormat {
     #[default]
+    #[enum_value(nick = "vp8webm")]
     Vp8Webm,
+    #[enum_value(nick = "h264mp4")]
     H264Mp4,
 }
 
