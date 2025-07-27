@@ -277,6 +277,14 @@ mod imp {
                 .bind("video-format", &*self.viewfinder, "video-format")
                 .build();
 
+            self.settings()
+                .bind(
+                    "enable-hardware-encoding",
+                    &*self.viewfinder,
+                    "enable-hw-encoding",
+                )
+                .build();
+
             obj.connect_current_breakpoint_notify(glib::clone!(
                 #[weak(rename_to = obj)]
                 self,

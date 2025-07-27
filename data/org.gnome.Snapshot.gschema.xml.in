@@ -43,6 +43,11 @@
       <summary>Enable audio recording</summary>
       <description>Whether to record audio when recording video</description>
     </key>
+    <key name="enable-hardware-encoding" type="b">
+      <default>false</default>
+      <summary>Enable hardware recording</summary>
+      <description>Whether to record video using hardware encoding</description>
+    </key>
     <key name="countdown" type="i">
       <default>0</default>
       <summary>Countdown timer</summary>
