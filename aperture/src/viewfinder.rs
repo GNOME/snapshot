@@ -54,6 +54,8 @@ mod imp {
         disable_audio_recording: Cell<bool>,
         #[property(get, set = Self::set_video_format, explicit_notify, builder(Default::default()))]
         video_format: Cell<VideoFormat>,
+        #[property(get, set = Self::set_enable_hw_encoding, explicit_notify)]
+        enable_hw_encoding: Cell<bool>,
 
         pub qrcode_branch: RefCell<Option<gst::Element>>,
         pub devices: OnceCell<crate::DeviceProvider>,
@@ -194,6 +196,18 @@ mod imp {
             if video_format != self.video_format.replace(video_format) {
                 obj.reset_pipeline();
                 obj.notify_video_format();
+            }
+        }
+
+        fn set_enable_hw_encoding(&self, value: bool) {
+            let obj = self.obj();
+
+            if value != self.enable_hw_encoding.replace(value) {
+                match self.video_format.get() {
+                    VideoFormat::Vp8Webm => (),
+                    VideoFormat::H264Mp4 => obj.reset_pipeline(),
+                }
+                obj.notify_enable_hw_encoding();
             }
         }
     }
@@ -874,7 +888,40 @@ impl Viewfinder {
 
         let profile = match self.video_format() {
             VideoFormat::H264Mp4 => {
-                log::debug!("Setting up recording with h264/mp4 profile");
+                let mut hw_encoder_found = false;
+                let registry = gst::Registry::get();
+                if let Some(encoder) = registry.lookup_feature("vah264lpenc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 2);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                if let Some(encoder) = registry.lookup_feature("vah264enc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 1);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                if let Some(encoder) = registry.lookup_feature("v4l2h264enc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 1);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                log::debug!(
+                    "Setting up recording with h264/mp4 profile {} hw acceleration",
+                    if self.enable_hw_encoding() && hw_encoder_found {
+                        "with"
+                    } else {
+                        "without"
+                    }
+                );
 
                 let caps = gst::Caps::builder("video/quicktime").build();
                 let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
@@ -899,7 +946,40 @@ impl Viewfinder {
                 container_profile.build()
             }
             VideoFormat::Vp8Webm => {
-                log::debug!("Setting up recording with vp8/webm profile");
+                let mut hw_encoder_found = false;
+                let registry = gst::Registry::get();
+                if let Some(encoder) = registry.lookup_feature("vavp8lpenc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 2);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                if let Some(encoder) = registry.lookup_feature("vavp8enc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 1);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                if let Some(encoder) = registry.lookup_feature("v4l2vp8enc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 1);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
+                log::debug!(
+                    "Setting up recording with vp8/webm profile {} hw acceleration",
+                    if self.enable_hw_encoding() && hw_encoder_found {
+                        "with"
+                    } else {
+                        "without"
+                    }
+                );
 
                 let caps = gst::Caps::builder("video/webm").build();
                 let mut container_profile = gst_pbutils::EncodingContainerProfile::builder(&caps)
