@@ -15,6 +15,9 @@ mod imp {
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]
     pub struct PreferencesWindow {
         settings: OnceCell<gio::Settings>,
+
+        #[template_child]
+        pub experimental_group: TemplateChild<adw::PreferencesGroup>,
     }
 
     #[glib::object_subclass]
@@ -49,6 +52,17 @@ mod imp {
             let enable_hw_encoder = settings.create_action("enable-hardware-encoding");
             action_group.add_action(&enable_hw_encoder);
 
+            if aperture::is_h264_encoding_supported() {
+                self.experimental_group
+                    .set_visible(aperture::is_hardware_encoding_supported(
+                        aperture::VideoFormat::H264Mp4,
+                    ))
+            } else {
+                self.experimental_group
+                    .set_visible(aperture::is_hardware_encoding_supported(
+                        aperture::VideoFormat::Vp8Webm,
+                    ))
+            }
             self.obj()
                 .insert_action_group("preferences-window", Some(&action_group));
 
