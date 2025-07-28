@@ -443,7 +443,8 @@ impl Window {
         if self.visible_dialog().is_some() {
             return;
         }
-        let preferences = crate::PreferencesWindow::default();
+        let is_recording = self.imp().camera.is_recording_active();
+        let preferences = crate::PreferencesWindow::new(is_recording);
         preferences.present(Some(self));
     }
 

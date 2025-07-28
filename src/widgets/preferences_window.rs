@@ -7,14 +7,18 @@ use gtk::{gio, glib};
 use crate::config;
 
 mod imp {
-    use std::cell::OnceCell;
+    use std::cell::{Cell, OnceCell};
 
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, CompositeTemplate, glib::Properties)]
     #[template(resource = "/org/gnome/Snapshot/ui/preferences_window.ui")]
+    #[properties(wrapper_type = super::PreferencesWindow)]
     pub struct PreferencesWindow {
         settings: OnceCell<gio::Settings>,
+
+        #[property(get, set, construct_only)]
+        pub is_app_recording: Cell<bool>,
 
         #[template_child]
         pub experimental_group: TemplateChild<adw::PreferencesGroup>,
@@ -35,6 +39,7 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for PreferencesWindow {
         fn constructed(&self) {
             self.parent_constructed();
@@ -47,10 +52,12 @@ mod imp {
             action_group.add_action(&play_shutter_sound);
             let show_composition_guidelines = settings.create_action("show-composition-guidelines");
             action_group.add_action(&show_composition_guidelines);
-            let enable_audio_recording = settings.create_action("enable-audio-recording");
-            action_group.add_action(&enable_audio_recording);
-            let enable_hw_encoder = settings.create_action("enable-hardware-encoding");
-            action_group.add_action(&enable_hw_encoder);
+            if !self.obj().is_app_recording() {
+                let enable_audio_recording = settings.create_action("enable-audio-recording");
+                action_group.add_action(&enable_audio_recording);
+                let enable_hw_encoder = settings.create_action("enable-hardware-encoding");
+                action_group.add_action(&enable_hw_encoder);
+            }
 
             if aperture::is_h264_encoding_supported() {
                 self.experimental_group
@@ -80,8 +87,10 @@ glib::wrapper! {
         @extends gtk::Widget, adw::Dialog, adw::PreferencesDialog;
 }
 
-impl Default for PreferencesWindow {
-    fn default() -> Self {
-        glib::Object::new()
+impl PreferencesWindow {
+    pub fn new(is_recording: bool) -> Self {
+        glib::Object::builder()
+            .property("is-app-recording", is_recording)
+            .build()
     }
 }
