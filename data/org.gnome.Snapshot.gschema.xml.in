@@ -8,10 +8,6 @@
   <enum id="org.gnome.Snapshot.PictureFormat">
     <value nick="jpeg" value="0" />
   </enum>
-  <enum id="org.gnome.Snapshot.VideoFormat">
-    <value nick="vp8webm" value="0" />
-    <value nick="h264mp4" value="1" />
-  </enum>
   <schema path="/org/gnome/Snapshot/" id="@app-id@" gettext-domain="@gettext-package@">
     <key name="window-width" type="i">
       <default>800</default>
@@ -62,11 +58,6 @@
       <default>"jpeg"</default>
       <summary>Picture format</summary>
       <description>Whether to save pictures as png or jpeg</description>
-    </key>
-    <key name="video-format" enum="org.gnome.Snapshot.VideoFormat">
-      <default>"vp8webm"</default>
-      <summary>Video format</summary>
-      <description>Whether to save videos as mp4 or webm</description>
     </key>
     <key name="last-camera-id" type="s">
       <default>""</default>
