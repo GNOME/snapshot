@@ -37,6 +37,19 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Experimental</property>
+            <property name="description" translatable="yes">Some graphic drivers may cause the system to be unstable or crash. In these cases, reboot the system and disable the option.</property>
+            <child>
+              <object class="AdwSwitchRow">
+                <property name="title" translatable="yes">_Hardware Video Encoding</property>
+                <property name="action-name">preferences-window.enable-hardware-encoding</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>

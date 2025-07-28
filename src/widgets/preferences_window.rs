@@ -46,6 +46,8 @@ mod imp {
             action_group.add_action(&show_composition_guidelines);
             let enable_audio_recording = settings.create_action("enable-audio-recording");
             action_group.add_action(&enable_audio_recording);
+            let enable_hw_encoder = settings.create_action("enable-hardware-encoding");
+            action_group.add_action(&enable_hw_encoder);
 
             self.obj()
                 .insert_action_group("preferences-window", Some(&action_group));
