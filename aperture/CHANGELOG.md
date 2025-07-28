@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.10.0 - 2025-08-03
+
+### Added
+- Warnings when there are missing plugins
+- Support recording with H264/MP4 profile
+- Support for hardware video encoding
+- VideoFormat enum and utilities for checking support
+- docs for some viewfinder properties
+
+### Changed
+- Use native GTK's YUV support if available
+- Bump rqrr to 0.10
+- Bump to rust 2024 edition
+
+### Fixed
+- Now mirrored QR codes can be scanned
+
 ## 0.9.2 - 2025-03-07
 
 ### Changed
