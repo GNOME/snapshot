@@ -1052,20 +1052,27 @@ impl Viewfinder {
 
         let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
         let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
-        let identity = gst::ElementFactory::make("identity").build()?;
+        let capsfilter_post_decode = gst::ElementFactory::make("capsfilter").build()?;
+        let caps_post_decode = gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build();
+        capsfilter_post_decode.set_property("caps", &caps_post_decode);
 
-        bin.add_many([device_src, &capsfilter, &decodebin3, &identity])?;
+        bin.add_many([
+            device_src,
+            &capsfilter,
+            &decodebin3,
+            &capsfilter_post_decode,
+        ])?;
         gst::Element::link_many([device_src, &capsfilter, &decodebin3])?;
 
         self.imp().capsfilter.set(capsfilter).unwrap();
 
         let (sender, receiver) = futures_channel::oneshot::channel::<bool>();
         let sender = std::sync::Arc::new(std::sync::Mutex::new(Some(sender)));
-        decodebin3.connect_pad_added(glib::clone!(#[weak] identity, move |_, pad| {
+        decodebin3.connect_pad_added(glib::clone!(#[weak] capsfilter_post_decode, move |_, pad| {
             if pad.stream().is_some_and(|stream| matches!(stream.stream_type(), gst::StreamType::VIDEO)) {
-                let has_succeeded = pad.link(&identity.static_pad("sink").unwrap())
+                let has_succeeded = pad.link(&capsfilter_post_decode.static_pad("sink").unwrap())
                                        .inspect_err(|err| {
-                                           log::error!("Failed to link decodebin3:video_%u pad with identity:sink pad: {err}");
+                                           log::error!("Failed to link decodebin3:video_%u pad with capsfilter_post_decode:sink pad: {err}");
                                        })
                                        .is_ok();
                 let mut guard = sender.lock().unwrap();
@@ -1086,7 +1093,7 @@ impl Viewfinder {
             }
         ));
 
-        let pad = identity.static_pad("src").unwrap();
+        let pad = capsfilter_post_decode.static_pad("src").unwrap();
         let ghost_pad = gst::GhostPad::with_target(&pad)?;
         ghost_pad.set_active(true)?;
 
