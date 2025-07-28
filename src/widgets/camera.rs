@@ -273,9 +273,17 @@ mod imp {
                 .bind("capture-mode", &*obj, "capture-mode")
                 .build();
 
-            self.settings()
-                .bind("video-format", &*self.viewfinder, "video-format")
-                .build();
+            let registry = gst::Registry::get();
+            let format = if registry.lookup_feature("openh264enc").is_some()
+                || registry.lookup_feature("x264enc").is_some()
+            {
+                log::debug!("Found openh264enc feature, using the h264/mp4 profile");
+                aperture::VideoFormat::H264Mp4
+            } else {
+                log::debug!("Did not find openh264enc feature, using the vp8/webm profile");
+                aperture::VideoFormat::Vp8Webm
+            };
+            self.viewfinder.set_video_format(format);
 
             self.settings()
                 .bind(
