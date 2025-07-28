@@ -30,6 +30,19 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="49.beta" date="2025-08-03" type="development">
+      <description>
+        <p>Snapshot 49.beta release</p>
+        <ul>
+          <li>Prefer H264/MP4 format if possible</li>
+          <li>Use native GTK's YUV support if available</li>
+          <li>Mirrored QR codes can now be scanned</li>
+          <li>Support for hardware video encoding</li>
+          <li>Remove video-format gsetting</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="49.alpha" date="2025-06-30" type="development">
       <description>
         <p>Snapshot 49.alpha release</p>

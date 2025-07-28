@@ -1,3 +1,14 @@
+## 49.beta - 2025-08-03
+- Prefer H264/MP4 format if possible
+- Use native GTK's YUV support if available
+- Mirrored QR codes can now be scanned
+- Support for hardware video encoding
+- Bump zvariant to 5.6.0
+- Improve gesture handling
+- Remove video-format gsetting
+- Disallow changing recording settings while recording
+- Updated translations
+
 ## 49.alpha - 2025-06-30
 - Port shortcuts dialog to AdwShortcutsDialog
 - Remove meson option to run without portals
