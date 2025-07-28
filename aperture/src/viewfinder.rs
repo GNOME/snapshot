@@ -475,6 +475,18 @@ glib::wrapper! {
     ///
     ///  Readable | Writable
     ///
+    /// ### `video-format`
+    /// The video format for recordings. `[crate::is_h264_encoding_supported]`
+    /// can be used to detect whether there is h264 support.
+    ///
+    ///  Readable | Writable
+    ///
+    /// ### `enable-hw-encoding`
+    /// Whether to enable hardware video encoding.
+    /// `[crate::is_hardware_encoding_supported]` can be used to detect whether
+    /// the system supports hardware encoding for a given format.
+    ///
+    ///  Readable | Writable
     ///
     /// #### `camera`
     ///  The camera that is currently being used.
