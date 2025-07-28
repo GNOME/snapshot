@@ -1,5 +1,6 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use gtk::CompositeTemplate;
 use gtk::glib;
 
@@ -97,6 +98,9 @@ impl QrBottomSheet {
     fn copy(&self) {
         if let Some(contents) = self.imp().contents.borrow().as_ref() {
             self.clipboard().set_text(contents);
+            let root = self.root();
+            let window = root.and_downcast_ref::<crate::Window>().unwrap();
+            window.send_toast(&gettext("Copied to clipboard"));
         }
     }
 
