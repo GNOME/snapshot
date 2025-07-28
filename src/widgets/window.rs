@@ -397,8 +397,7 @@ impl Window {
                 imp.camera.stop_recording();
                 self.set_shutter_enabled(true);
             } else {
-                let format = imp.settings.enum_("video-format").into();
-                imp.camera.start_recording(format).await?;
+                imp.camera.start_recording().await?;
             }
         } else {
             let format = imp.settings.enum_("picture-format").into();

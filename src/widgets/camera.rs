@@ -384,11 +384,13 @@ impl Camera {
         ));
     }
 
-    pub async fn start_recording(&self, format: aperture::VideoFormat) -> anyhow::Result<()> {
+    pub async fn start_recording(&self) -> anyhow::Result<()> {
+        let imp = self.imp();
+        let format = imp.viewfinder.video_format();
         let filename = utils::video_file_name(format);
         let path = utils::videos_dir()?.join(filename);
 
-        self.imp().viewfinder.start_recording(path)?;
+        imp.viewfinder.start_recording(path)?;
 
         Ok(())
     }
