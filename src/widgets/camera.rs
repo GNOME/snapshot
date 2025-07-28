@@ -283,6 +283,7 @@ mod imp {
                     &*self.viewfinder,
                     "enable-hw-encoding",
                 )
+                .get_only()
                 .build();
 
             obj.connect_current_breakpoint_notify(glib::clone!(
