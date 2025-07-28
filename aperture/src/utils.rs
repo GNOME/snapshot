@@ -116,6 +116,29 @@ pub(crate) mod caps {
     }
 }
 
+// Whether the system supports h264 video encoding.
+pub fn is_h264_encoding_supported() -> bool {
+    let registry = gst::Registry::get();
+    registry.lookup_feature("openh264enc").is_some() || registry.lookup_feature("x264enc").is_some()
+}
+
+// Whether the system supports hardware video encoding for a given format.
+pub fn is_hardware_encoding_supported(format: crate::VideoFormat) -> bool {
+    let registry = gst::Registry::get();
+    match format {
+        crate::VideoFormat::H264Mp4 => {
+            registry.lookup_feature("vah264lpenc").is_some()
+                || registry.lookup_feature("vah264enc").is_some()
+                || registry.lookup_feature("v4l2h264enc").is_some()
+        }
+        crate::VideoFormat::Vp8Webm => {
+            registry.lookup_feature("vavp8lpenc").is_some()
+                || registry.lookup_feature("vavp8enc").is_some()
+                || registry.lookup_feature("v4l2vp8enc").is_some()
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

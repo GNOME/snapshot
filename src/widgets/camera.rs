@@ -273,10 +273,7 @@ mod imp {
                 .bind("capture-mode", &*obj, "capture-mode")
                 .build();
 
-            let registry = gst::Registry::get();
-            let format = if registry.lookup_feature("openh264enc").is_some()
-                || registry.lookup_feature("x264enc").is_some()
-            {
+            let format = if aperture::is_h264_encoding_supported() {
                 log::debug!("Found openh264enc feature, using the h264/mp4 profile");
                 aperture::VideoFormat::H264Mp4
             } else {
