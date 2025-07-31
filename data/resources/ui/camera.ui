@@ -51,7 +51,7 @@
                     <property name="content">
                       <object class="AdwSpinner">
                         <style>
-                          <class name="dim-label"/>
+                          <class name="dimmed"/>
                         </style>
                       </object>
                     </property>
