@@ -1,0 +1,461 @@
+# Arabic translation for snapshot.
+# Copyright (C) 2025 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# ots <ots@duck.com>, 2024.
+# Amar <al_janabi7@yahoo.com>, 2025.
+# Ahmed Najmawi <iramosu@protonmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2025-07-28 21:54+0000\n"
+"PO-Revision-Date: 2025-08-02 09:34+0300\n"
+"Last-Translator: Ahmed Najmawi <iramosu@protonmail.com>\n"
+"Language-Team: Arabic <Arabic>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:2 data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+msgid "Camera"
+msgstr "المصوِّرة"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3 data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "خُذ صورًا وفيديوهات"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "الصورة;التصوير;الكمرة;الكامرة;الكاميرا;ويبكام;لقطة;المصورة;picture;photos;camera;webcam;snapshot;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:14 data/org.gnome.Snapshot.gschema.xml.in:15
+msgid "Default window width"
+msgstr "عرض النافذة المبدئي"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:19 data/org.gnome.Snapshot.gschema.xml.in:20
+msgid "Default window height"
+msgstr "ارتفاع النافذة المبدئي"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:24
+msgid "Default window maximized behaviour"
+msgstr "سلوك تكبير النافذة"
+
+# آلية في آلة التصوير، عندما تفتح، تسمح للضوء بالوصول إلى الطبقة الحساسة من الفلم أو اللوحة، ولفترة زمنية محددة وقصيرة
+#: data/org.gnome.Snapshot.gschema.xml.in:29
+msgid "Play shutter sound"
+msgstr "تشغيل صوت المغلاق"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "فيما لو يشغَّل صوت المغلاق عند التقاط الصور"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:34
+msgid "Show composition guidelines"
+msgstr "إظهار إرشادات التركيب"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "فيما لو تظهر خطوط إرشاد التركيب عند استخدام المصوِّرة"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:39
+msgid "Enable audio recording"
+msgstr "تفعيل تسجيل الصوت"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Whether to record audio when recording video"
+msgstr "فيما لو يسجَّل الصوت عند تسجيل فيديو"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "تفعيل التسجيل بالعتاد"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "فيما لو يسجَّل الفيديوهات باستخدام ترميز العتاد"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
+msgid "Countdown timer"
+msgstr "مؤقت العد التنازلي"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "مدة العد التنازلي لالتقاط الصور بالثواني"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:54
+msgid "Capture mode"
+msgstr "وضع الالتقاط"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Whether to take pictures or videos"
+msgstr "فيما لو تؤخذ صور أو فيديوهات"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:59
+msgid "Picture format"
+msgstr "نسق الصورة"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:60
+msgid "Whether to save pictures as png or jpeg"
+msgstr "فيما لو تحفظ الصور بنسق png أو jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:64
+msgid "Last Camera Used ID"
+msgstr "معرِّف آخر مصوِّرة استُخدمت"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:65
+msgid "An ID representing the last used camera"
+msgstr "معرِّف يمثِّل آخر مصوِّرة استُخدمت"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "التقط صورًا وسجِّل فيديوهات على حاسوبك أو لوحيِّك أو هاتفك."
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "واجهة المصوِّرة الرئيسية"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "مُظهر معرض المصوِّرة"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
+msgid "The GNOME Project"
+msgstr "مشروع جنوم"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139 data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "القائمة الرئيسية"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "لم يُعثر على مصوِّرة"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "صِل آلة تصوير"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "عد تنازلي"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "وضع الصور"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "وضع التسجيل"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "وضع مسح رموز الاستجابة السريعة"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "إذن المصوِّرة مفقود"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "اسمح باستخدام المصوِّرة في الإعدادات"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "بلا"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3ث"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5ث"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10ث"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "ال_تفضيلات"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "اِ_ختصارات لوحة المفاتيح"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "_عَنْ «المصوِّرة»"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "افتح المعرض"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "التقط صورة"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "اختر مصوِّرة"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "بدِّل المصوِّرة"
+
+#: data/resources/ui/gallery.ui:24
+msgid "Gallery Menu"
+msgstr "قائمة المعرض"
+
+#: data/resources/ui/gallery.ui:53
+msgid "Next Image"
+msgstr "الصورة التالية"
+
+#: data/resources/ui/gallery.ui:67
+msgid "Previous Image"
+msgstr "الصورة السابقة"
+
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
+msgid "Open in Image Viewer"
+msgstr "افتح في مُظهر الصور"
+
+#: data/resources/ui/preferences_window.ui:7 data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "عام"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "صوت الم_غلاق"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "إرشادات التر_كيب"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "تسجيل فيديو"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "تسجيل ال_صوت"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "التجريبية"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these cases, reboot the system "
+"and disable the option."
+msgstr ""
+"قد توقف بعض تعاريف الرسوميات نظامك أو تجعله غير مستقر. في تلك الحالات، أعد تشغيل النظام وعطِّل الخيار."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "ترمي_ز الفيديوهات بالعتاد"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "اكتُشف رمز"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "المحتويات"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "انسخ إلى الحافظة"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "افتح الوصلة"
+
+#: data/resources/ui/shortcuts.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عام"
+
+#: data/resources/ui/shortcuts.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "أظهِر الاختصارات"
+
+#: data/resources/ui/shortcuts.ui:15
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "القائمة الرئيسية"
+
+#: data/resources/ui/shortcuts.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "افتح التفضيلات"
+
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "أغلٍق النافذة"
+
+#: data/resources/ui/shortcuts.ui:33
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "اخرج"
+
+#: data/resources/ui/shortcuts.ui:41
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "المصوِّرة"
+
+#: data/resources/ui/shortcuts.ui:44
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "وضع الصور"
+
+#: data/resources/ui/shortcuts.ui:50
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "وضع التسجيل"
+
+#: data/resources/ui/shortcuts.ui:56
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "التقط صورة أو ابدأ التسجيل"
+
+#: data/resources/ui/shortcuts.ui:62
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "أظهر\\أخفِ إرشادات التركيب"
+
+#: data/resources/ui/shortcuts.ui:70
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "المعرض"
+
+#: data/resources/ui/shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "افتح\\أغلق المعرض"
+
+#: data/resources/ui/shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "التالي"
+
+#: data/resources/ui/shortcuts.ui:85
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "السابق"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "المعرض"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "فعِّل رسائل التنقيح"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "صورة من {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "صورة {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "تسجيل من {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "تسجيل {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "ا_نسخ الصورة"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "ا_نسخ الفيديو"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "ا_حذف"
+
+#: src/widgets/camera.rs:607
+msgid "Could not play camera stream"
+msgstr "تعذَّر تشغيل دفق المصوِّرة"
+
+#: src/widgets/gallery.rs:141
+msgid "Open in Video Player"
+msgstr "افتح في مشغِّل الفيديوهات"
+
+#: src/widgets/gallery.rs:419
+msgid "Copied to clipboard"
+msgstr "نُسخ إلى الحافظة"
+
+#: src/widgets/gallery.rs:460
+msgid "Picture deleted"
+msgstr "حُذفت الصورة"
+
+#: src/widgets/gallery.rs:462
+msgid "Video deleted"
+msgstr "حُذف الفيديو"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "امسح الرمز"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "ابدأ التسجيل"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "أوقف التسجيل"
+
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
+msgid "Could not take picture"
+msgstr "تعذَّر التقاط صورة"
+
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
+msgid "Could not record video"
+msgstr "تعذَّر تسجيل فيديو"
+
+#: src/widgets/window.rs:314
+msgid "translator-credits"
+msgstr ""
+"عمر أبو محمد <ots@duck.com>\n"
+"عمار <al_janabi7@yahoo.com>\n"
+"أحمد النجماوي <iramosu@protonmail.com>"
+
+#~ msgid "Video format"
+#~ msgstr "نسق الفيديو"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "فيما لو تحفَظ الفيديوهات بنسق mp4 أو webm"
