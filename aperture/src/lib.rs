@@ -44,11 +44,13 @@ pub(crate) const MAXIMUM_RATE: i32 = 30;
 pub(crate) static SUPPORTED_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
     crate::SUPPORTED_ENCODINGS
         .iter()
-        .map(|encoding| {
-            gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                .framerate_range(
-                    gst::Fraction::new(0, 1)..=gst::Fraction::new(crate::MAXIMUM_RATE, 1),
-                )
+        .map(|enc| {
+            let framerate_range = gst::FractionRange::new(
+                gst::Fraction::new(0, 1),
+                gst::Fraction::new(crate::MAXIMUM_RATE, 1),
+            );
+            gst::Caps::builder(*enc)
+                .field("framerate", framerate_range)
                 .build()
         })
         .collect()

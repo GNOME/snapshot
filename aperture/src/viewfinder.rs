@@ -1156,8 +1156,8 @@ fn create_qrcode_bin() -> Result<gst::Element, glib::BoolError> {
 
     // Ensure a copy is made
     let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
-    let caps = gst_video::VideoCapsBuilder::for_encoding("video/x-raw")
-        .format(gst_video::VideoFormat::Gray8)
+    let caps = gst::Caps::builder("video/x-raw")
+        .field("format", gst_video::VideoFormat::Gray8.to_str())
         .build();
     capsfilter.set_property("caps", &caps);
 

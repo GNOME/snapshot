@@ -9,12 +9,12 @@ pub(crate) mod caps {
 
     use super::Size;
 
-    static IR_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
+    pub static IR_CAPS: LazyLock<gst::Caps> = LazyLock::new(|| {
         crate::SUPPORTED_ENCODINGS
             .iter()
-            .map(|encoding| {
-                gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                    .format(gst_video::VideoFormat::Gray8)
+            .map(|enc| {
+                gst::Caps::builder(*enc)
+                    .field("format", gst_video::VideoFormat::Gray8.to_str())
                     .build()
             })
             .collect()
@@ -90,8 +90,8 @@ pub(crate) mod caps {
         let fixed_caps = crate::SUPPORTED_ENCODINGS
             .iter()
             .map(|encoding| {
-                gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                    .framerate(framerate)
+                gst::Caps::builder(*encoding)
+                    .field("framerate", framerate)
                     .build()
             })
             .collect::<gst::Caps>();
@@ -102,9 +102,9 @@ pub(crate) mod caps {
             let fixed_res = crate::SUPPORTED_ENCODINGS
                 .iter()
                 .map(|encoding| {
-                    gst_video::VideoCapsBuilder::for_encoding(*encoding)
-                        .width(width)
-                        .height(height)
+                    gst::Caps::builder(*encoding)
+                        .field("width", width)
+                        .field("height", height)
                         .build()
                 })
                 .collect::<gst::Caps>();

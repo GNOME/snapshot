@@ -153,7 +153,7 @@ impl Camera {
     pub(crate) fn best_caps(&self) -> gst::Caps {
         let caps = self
             .caps()
-            .unwrap_or_else(|| gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build());
+            .unwrap_or_else(|| gst::Caps::builder("video/x-raw").build());
         let highest_res_caps = filter_caps(caps);
         log::debug!("Using caps: {highest_res_caps:#?}");
 
