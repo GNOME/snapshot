@@ -1053,7 +1053,7 @@ impl Viewfinder {
         let capsfilter = gst::ElementFactory::make("capsfilter").build()?;
         let decodebin3 = gst::ElementFactory::make("decodebin3").build()?;
         let capsfilter_post_decode = gst::ElementFactory::make("capsfilter").build()?;
-        let caps_post_decode = gst_video::VideoCapsBuilder::for_encoding("video/x-raw").build();
+        let caps_post_decode = gst::Caps::builder("video/x-raw").build();
         capsfilter_post_decode.set_property("caps", &caps_post_decode);
 
         bin.add_many([
