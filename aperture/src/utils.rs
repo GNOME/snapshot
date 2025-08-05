@@ -118,8 +118,20 @@ pub(crate) mod caps {
 
 // Whether the system supports h264 video encoding.
 pub fn is_h264_encoding_supported() -> bool {
-    let registry = gst::Registry::get();
-    registry.lookup_feature("openh264enc").is_some() || registry.lookup_feature("x264enc").is_some()
+    let caps = gst::Caps::builder("video/x-h264").build();
+    let factories = gst::ElementFactory::factories_with_type(
+        gst::ElementFactoryType::ENCODER,
+        gst::Rank::MARGINAL,
+    );
+    factories.iter().any(|factory| {
+        factory.static_pad_templates().iter().any(|template| {
+            let template_caps = template.caps();
+
+            template.direction() == gst::PadDirection::Src
+                && !template_caps.is_any()
+                && caps.can_intersect(&template_caps)
+        })
+    })
 }
 
 // Whether the system supports hardware video encoding for a given format.
