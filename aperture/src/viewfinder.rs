@@ -918,6 +918,14 @@ impl Viewfinder {
                     }
                     hw_encoder_found = true;
                 }
+                if let Some(encoder) = registry.lookup_feature("varenderD129h264enc") {
+                    if self.enable_hw_encoding() {
+                        encoder.set_rank(gst::Rank::PRIMARY + 1);
+                    } else {
+                        encoder.set_rank(gst::Rank::NONE);
+                    }
+                    hw_encoder_found = true;
+                }
                 log::debug!(
                     "Setting up recording with h264/mp4 profile {} hw acceleration",
                     if self.enable_hw_encoding() && hw_encoder_found {

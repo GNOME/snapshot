@@ -142,6 +142,7 @@ pub fn is_hardware_encoding_supported(format: crate::VideoFormat) -> bool {
             registry.lookup_feature("vah264lpenc").is_some()
                 || registry.lookup_feature("vah264enc").is_some()
                 || registry.lookup_feature("v4l2h264enc").is_some()
+                || registry.lookup_feature("varenderD129h264enc").is_some()
         }
         crate::VideoFormat::Vp8Webm => {
             registry.lookup_feature("vavp8lpenc").is_some()
