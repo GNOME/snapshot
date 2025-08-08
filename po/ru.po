@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-06-30 16:11+0000\n"
-"PO-Revision-Date: 2025-06-30 19:16+0300\n"
+"POT-Creation-Date: 2025-07-28 10:34+0000\n"
+"PO-Revision-Date: 2025-07-29 10:44+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -19,98 +19,98 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
 #: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Камера"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Снимайте фото и видео"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
+#: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr ""
 "изображение;фото;камера;веб-камера;picture;photos;camera;webcam;snapshot;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:17
-#: data/org.gnome.Snapshot.gschema.xml.in:18
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "Ширина окна по умолчанию"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:22
-#: data/org.gnome.Snapshot.gschema.xml.in:23
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "Высота окна по умолчанию"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:27
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "Поведение при развернутом окне по умолчанию"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
 msgstr "Воспроизводить звук затвора"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:33
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Должен ли воспроизводиться звук затвора при съемке фото"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "Показывать рекомендации по композиции"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:38
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "Показывать ли рекомендации по композиции при использовании камеры"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
 msgstr "Включить запись звука"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:43
+#: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
 msgstr "Записывать ли звук при записи видео"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Включить аппаратную запись"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Записывать ли видео с использованием аппаратного кодирования"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
 msgstr "Таймер обратного отсчета"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:48
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Продолжительность обратного отсчета для съемки фото, в секундах"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "Режим захвата экрана"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:53
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "Снимать ли фото или видео"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "Формат изображения"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:58
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Сохранять ли изображения в формате png или jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
-msgid "Video format"
-msgstr "Формат видео"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:63
-msgid "Whether to save videos as mp4 or webm"
-msgstr "Сохранять ли видео в формате mp4 или webm"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
 msgstr "Идентификатор последней использованной камеры"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:68
+#: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
 msgstr "Идентификатор, представляющий последнюю использованную камеру"
 
@@ -219,19 +219,19 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Переключить камеру"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "Меню галереи"
 
-#: data/resources/ui/gallery.ui:75
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "Следующее изображение"
 
-#: data/resources/ui/gallery.ui:89
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Предыдущее изображение"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
 msgid "Open in Image Viewer"
 msgstr "Открыть в Просмотрщике изображений"
 
@@ -255,6 +255,21 @@ msgstr "Запись видео"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "З_аписывать звук"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Экспериментально"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"Некоторые графические драйверы могут привести к нестабильной работе системы или сбою в работе. В таких случаях перезагрузите систему и отключите эту опцию."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "А_ппаратное кодирование видео"
 
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
@@ -398,23 +413,23 @@ msgstr "_Копировать видео"
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: src/widgets/camera.rs:587
+#: src/widgets/camera.rs:607
 msgid "Could not play camera stream"
 msgstr "Не удалось воспроизвести потоковые данные с камеры"
 
-#: src/widgets/gallery.rs:114
+#: src/widgets/gallery.rs:141
 msgid "Open in Video Player"
 msgstr "Открыть в Проигрывателе видео"
 
-#: src/widgets/gallery.rs:392
+#: src/widgets/gallery.rs:419
 msgid "Copied to clipboard"
 msgstr "Скопировано в буфер обмена"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:460
 msgid "Picture deleted"
 msgstr "Фотография удалена"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:462
 msgid "Video deleted"
 msgstr "Видео удалено"
 
@@ -430,17 +445,23 @@ msgstr "Начать запись"
 msgid "Stop Recording"
 msgstr "Остановить запись"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:350
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
 msgid "Could not take picture"
 msgstr "Не удалось сделать снимок"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:354
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
 msgid "Could not record video"
 msgstr "Не удалось записать видео"
 
-#: src/widgets/window.rs:301
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2023"
+
+#~ msgid "Video format"
+#~ msgstr "Формат видео"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "Сохранять ли видео в формате mp4 или webm"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
