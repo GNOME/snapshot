@@ -524,7 +524,8 @@ glib::wrapper! {
     ///
     /// [`gtk::prelude::WidgetExt`][trait@gtk::prelude::WidgetExt], [`glib::ObjectExt`][trait@gtk::glib::ObjectExt]
     pub struct Viewfinder(ObjectSubclass<imp::Viewfinder>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl Default for Viewfinder {

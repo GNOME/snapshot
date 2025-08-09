@@ -14,7 +14,7 @@ gst = { package = "gstreamer", version = "0.24" , features = ["v1_20"] }
 gst-base = { package = "gstreamer-base", version = "0.24" }
 gst-pbutils = { package = "gstreamer-pbutils", version = "0.24" }
 gst-video = { package = "gstreamer-video", version = "0.24" }
-gtk = { package = "gtk4", version = "0.9", features = ["gnome_46", "v4_18"] }
+gtk = { package = "gtk4", version = "0.10", features = ["gnome_46", "v4_18"] }
 
 [package]
 name = "snapshot"
@@ -32,8 +32,7 @@ rust-version.workspace = true
 lto = true
 
 [dependencies]
-# TODO: Use feature v1_8
-adw = { package = "libadwaita", version = "0.7", features = ["v1_7"] }
+adw = { package = "libadwaita", version = "0.8", features = ["v1_8"] }
 anyhow = "1.0"
 # ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
 futures-channel = { workspace = true }
