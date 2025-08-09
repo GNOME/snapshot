@@ -82,12 +82,12 @@ impl Camera {
     ///
     /// a [`HashMap`][std::collections::HashMap], with the property name as the
     /// key and a [`GValue`][gtk::glib::Value] as the value.
-    pub fn properties(&self) -> HashMap<&'static str, glib::SendValue> {
+    pub fn properties(&self) -> HashMap<String, glib::SendValue> {
         self.device()
             .properties()
             .map(|s| {
                 s.iter()
-                    .map(|(key, val)| (key.as_ref(), val.clone()))
+                    .map(|(key, val)| (key.to_string(), val.clone()))
                     .collect()
             })
             .unwrap_or_default()
@@ -129,7 +129,7 @@ impl Camera {
     /// device.
     pub(crate) fn target_object(&self) -> Option<u64> {
         let device = self.device();
-        if device.has_property("serial", Some(u64::static_type())) {
+        if device.has_property_with_type("serial", u64::static_type()) {
             Some(device.property::<u64>("serial"))
         } else {
             None
