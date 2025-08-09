@@ -119,25 +119,27 @@ pub(crate) mod caps {
 // Whether the system supports h264 video encoding.
 pub fn is_h264_encoding_supported() -> bool {
     let registry = gst::Registry::get();
-    registry.lookup_feature("openh264enc").is_some() || registry.lookup_feature("x264enc").is_some()
+    ["openh264enc", "x264enc"]
+        .iter()
+        .any(|enc| registry.lookup_feature(enc).is_some())
 }
 
 // Whether the system supports hardware video encoding for a given format.
 pub fn is_hardware_encoding_supported(format: crate::VideoFormat) -> bool {
     let registry = gst::Registry::get();
-    match format {
-        crate::VideoFormat::H264Mp4 => {
-            registry.lookup_feature("vah264lpenc").is_some()
-                || registry.lookup_feature("vah264enc").is_some()
-                || registry.lookup_feature("v4l2h264enc").is_some()
-                || registry.lookup_feature("varenderD129h264enc").is_some()
-        }
-        crate::VideoFormat::Vp8Webm => {
-            registry.lookup_feature("vavp8lpenc").is_some()
-                || registry.lookup_feature("vavp8enc").is_some()
-                || registry.lookup_feature("v4l2vp8enc").is_some()
-        }
-    }
+    let encoders = match format {
+        crate::VideoFormat::H264Mp4 => [
+            "v4l2h264enc",
+            "vah264enc",
+            "vah264lpenc",
+            "varenderD129h264enc",
+        ]
+        .as_slice(),
+        crate::VideoFormat::Vp8Webm => ["v4l2vp8enc", "vavp8enc", "vavp8lpenc"].as_slice(),
+    };
+    encoders
+        .iter()
+        .any(|enc| registry.lookup_feature(enc).is_some())
 }
 
 #[cfg(test)]
