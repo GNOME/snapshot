@@ -299,7 +299,7 @@ impl DeviceProvider {
         let raw_fd = fd.as_raw_fd();
         let provider = self.imp().inner.get().unwrap();
         log::debug!("Starting device provider with file descriptor: {raw_fd}");
-        if provider.has_property("fd", Some(RawFd::static_type())) {
+        if provider.has_property_with_type("fd", RawFd::static_type()) {
             provider.set_property("fd", raw_fd);
             self.imp()
                 .fd
