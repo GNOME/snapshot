@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.11.0 - 2025-08-09
+
+### Changed
+- Ported to gtk-rs-core 0.21
+- Camera::properties now returns `HashMap<String, _>` instead of
+  `HashMap<&'static str, _>` to accommodate to gstreamer-rs changes
+
 ## 0.10.0 - 2025-08-03
 
 ### Added
