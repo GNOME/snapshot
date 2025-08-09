@@ -25,8 +25,8 @@ license.workspace = true
 rust-version.workspace = true
 
 # This is manually enabled by meson
-[features]
-x11 = ["ashpd/gtk4_x11"]
+# [features]
+# x11 = ["ashpd/gtk4_x11"]
 
 [profile.release]
 lto = true
@@ -35,10 +35,10 @@ lto = true
 # TODO: Use feature v1_8
 adw = { package = "libadwaita", version = "0.7", features = ["v1_7"] }
 anyhow = "1.0"
-ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
+# ashpd = { version = "0.11", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { version = "3.0.0-beta", features = ["gdk4"] }
+# glycin = { version = "3.0.0-beta", features = ["gdk4"] }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
