@@ -75,7 +75,7 @@ cargo-audit:
   allow_failure: true
   script:
     - cargo install cargo-deny
-    - cargo deny check advisories bans sources licenses
+    - cargo deny check
 
 nightly@x86_64:
   extends: ".publish_nightly"
