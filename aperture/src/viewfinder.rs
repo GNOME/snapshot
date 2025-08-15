@@ -34,7 +34,7 @@ mod imp {
     #[derive(Debug, Default, Properties)]
     #[properties(wrapper_type = super::Viewfinder)]
     pub struct Viewfinder {
-        #[property(get, explicit_notify, builder(Default::default()))]
+        #[property(get, explicit_notify, default)]
         state: Cell<ViewfinderState>,
         #[property(get = Self::detect_codes, set = Self::set_detect_codes, explicit_notify)]
         detect_codes: Cell<bool>,
@@ -44,7 +44,7 @@ mod imp {
         pub is_recording_video: RefCell<Option<PathBuf>>,
         #[property(get, set = Self::set_disable_audio_recording, explicit_notify)]
         disable_audio_recording: Cell<bool>,
-        #[property(get, set = Self::set_video_format, explicit_notify, builder(Default::default()))]
+        #[property(get, set = Self::set_video_format, explicit_notify, default)]
         video_format: Cell<VideoFormat>,
         #[property(get, set = Self::set_enable_hw_encoding, explicit_notify)]
         enable_hw_encoding: Cell<bool>,
