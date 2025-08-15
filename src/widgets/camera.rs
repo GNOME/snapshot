@@ -35,7 +35,7 @@ mod imp {
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
 
-        #[property(get, set = Self::set_capture_mode, explicit_notify, builder(Default::default()))]
+        #[property(get, set = Self::set_capture_mode, explicit_notify, default)]
         capture_mode: Cell<crate::CaptureMode>,
 
         #[template_child]
@@ -315,7 +315,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct Camera(ObjectSubclass<imp::Camera>)
-        @extends gtk::Widget, adw::BreakpointBin;
+        @extends gtk::Widget, adw::BreakpointBin,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for Camera {

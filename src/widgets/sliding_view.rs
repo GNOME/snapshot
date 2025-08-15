@@ -264,7 +264,7 @@ mod imp {
 glib::wrapper! {
     pub struct SlidingView(ObjectSubclass<imp::SlidingView>)
         @extends gtk::Widget,
-        @implements gtk::Buildable, adw::Swipeable;
+        @implements gtk::Buildable, adw::Swipeable, gtk::Accessible, gtk::ConstraintTarget;
 }
 
 impl SlidingView {

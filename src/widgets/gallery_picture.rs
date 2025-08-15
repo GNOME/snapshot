@@ -30,7 +30,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct GalleryPicture(ObjectSubclass<imp::GalleryPicture>)
-        @extends gtk::Widget, adw::Bin, crate::GalleryItem;
+        @extends gtk::Widget, adw::Bin, crate::GalleryItem,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl GalleryPicture {

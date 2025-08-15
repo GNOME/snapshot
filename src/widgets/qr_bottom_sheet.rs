@@ -85,7 +85,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct QrBottomSheet(ObjectSubclass<imp::QrBottomSheet>)
-        @extends gtk::Widget, adw::Bin;
+        @extends gtk::Widget, adw::Bin,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for QrBottomSheet {
