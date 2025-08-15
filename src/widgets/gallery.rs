@@ -194,7 +194,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct Gallery(ObjectSubclass<imp::Gallery>)
-        @extends gtk::Widget, adw::BreakpointBin;
+        @extends gtk::Widget, adw::BreakpointBin,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for Gallery {

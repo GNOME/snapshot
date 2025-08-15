@@ -57,7 +57,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct GalleryVideo(ObjectSubclass<imp::GalleryVideo>)
-        @extends gtk::Widget, adw::Bin, crate::GalleryItem;
+        @extends gtk::Widget, adw::Bin, crate::GalleryItem,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl GalleryVideo {

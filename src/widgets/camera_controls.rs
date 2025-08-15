@@ -19,7 +19,7 @@ mod imp {
     pub struct CameraControls {
         pub provider: OnceCell<aperture::DeviceProvider>,
 
-        #[property(get, set = Self::set_layout, explicit_notify, builder(Default::default()))]
+        #[property(get, set = Self::set_layout, explicit_notify, default)]
         layout: Cell<ControlsLayout>,
 
         #[template_child]
@@ -112,7 +112,7 @@ mod imp {
 glib::wrapper! {
     pub struct CameraControls(ObjectSubclass<imp::CameraControls>)
         @extends gtk::Widget, gtk::Box,
-        @implements gtk::Orientable;
+        @implements gtk::Orientable, gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for CameraControls {

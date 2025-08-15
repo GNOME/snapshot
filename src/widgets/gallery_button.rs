@@ -149,7 +149,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct GalleryButton(ObjectSubclass<imp::GalleryButton>)
-        @extends gtk::Widget, gtk::Button;
+        @extends gtk::Widget, gtk::Button,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible, gtk::Actionable;
 }
 
 impl Default for GalleryButton {

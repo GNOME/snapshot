@@ -39,7 +39,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct CameraRow(ObjectSubclass<imp::CameraRow>)
-        @extends gtk::Widget, gtk::Box;
+        @extends gtk::Widget, gtk::Box,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for CameraRow {

@@ -93,7 +93,8 @@ mod imp {
 
 glib::wrapper! {
     pub struct VideoPlayer(ObjectSubclass<imp::VideoPlayer>)
-        @extends gtk::Widget, adw::Bin;
+        @extends gtk::Widget, adw::Bin,
+        @implements gtk::ConstraintTarget, gtk::Buildable, gtk::Accessible;
 }
 
 impl Default for VideoPlayer {
