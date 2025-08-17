@@ -10,8 +10,8 @@ data/resources/ui/preferences_window.ui
 data/resources/ui/qr_bottom_sheet.ui
 data/resources/ui/shortcuts.ui
 data/resources/ui/window.ui
-src/enums.rs
 src/application.rs
+src/enums.rs
 src/main.rs
 src/utils.rs
 src/widgets/camera.rs
