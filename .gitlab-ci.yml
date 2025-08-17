@@ -41,7 +41,7 @@ rustfmt:
 codespell:
   stage: check
   script:
-    - dnf install -y codespell
+    - dnf install --quiet -y codespell
     - codespell -S "*.png,*.po,.git,*.jpg" -L crate -f
 
 cargo-doc:
