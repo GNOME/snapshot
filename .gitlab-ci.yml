@@ -1,3 +1,5 @@
+image: fedora:latest
+
 stages:
   - check
   - test
