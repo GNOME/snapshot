@@ -73,11 +73,10 @@ cargo-doc:
 cargo-audit:
   stage: test
   interruptible: true
-  image: rust
   allow_failure: true
   script:
-    - cargo install cargo-deny
-    - cargo deny check
+    - dnf install --quiet -y cargo-deny cargo
+    - cargo-deny check
 
 nightly@x86_64:
   extends: ".publish_nightly"
