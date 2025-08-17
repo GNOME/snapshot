@@ -105,3 +105,10 @@ cargo-test:
   <<: *flatpak-command
   variables:
     COMMAND: "cargo test --workspace --all-features --all-targets"
+
+check-potfiles:
+  stage: check
+  script:
+    - dnf install --quiet -y gettext python3 git-core
+    - git clone --quiet --depth=1 https://gitlab.gnome.org/msandova/check-potfiles.git
+    - python3 check-potfiles/check_potfiles.py --directory src,data
