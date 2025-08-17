@@ -16,6 +16,7 @@ src/main.rs
 src/utils.rs
 src/widgets/camera.rs
 src/widgets/gallery.rs
+src/widgets/qr_bottom_sheet.rs
 src/widgets/qr_screen_bin.rs
 src/widgets/shutter_button.rs
 src/widgets/window.rs
