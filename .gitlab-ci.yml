@@ -111,5 +111,6 @@ check-potfiles:
   script:
     - dnf install --quiet -y gettext python3 git-core
     - git clone --quiet --depth=1 https://gitlab.gnome.org/msandova/check-potfiles.git
-    - python3 check-potfiles/check_potfiles.py --directory src,data
-        --keyword=i18n_f  --exclude=src/i18n.rs
+    - python3 check-potfiles/check_potfiles.py
+        --directory src --directory data
+        --keyword=i18n_f --exclude=src/i18n.rs
