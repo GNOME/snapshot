@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-02-16 15:14+0000\n"
-"PO-Revision-Date: 2025-02-22 00:54+0100\n"
+"POT-Creation-Date: 2025-08-19 17:37+0000\n"
+"PO-Revision-Date: 2025-08-19 20:22+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -16,99 +16,100 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
 #: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Fotoaparát"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Pořizujte obrázky a videa"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
+#: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr "obrázek;fotky;kamera;fotoaparát;foťák;webkamera;snapshot;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:17
-#: data/org.gnome.Snapshot.gschema.xml.in:18
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "Výchozí šířka okna"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:22
-#: data/org.gnome.Snapshot.gschema.xml.in:23
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "Výchozí výška okna"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:27
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "Výchozí chování okna při maximalizaci"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
 msgstr "Přehrát zvuk závěrky"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:33
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Jestli při pořizování obrázků přehrát zvuk závěrky"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "Zobrazit vodítka pro kompozici"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:38
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
-msgstr "Jestli se mají při používání fotoaparátu zobrazovat vodítka pro kompozici"
+msgstr ""
+"Jestli se mají při používání fotoaparátu zobrazovat vodítka pro kompozici"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
 msgstr "Povolit nahrávání zvuku"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:43
+#: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
 msgstr "Jestli nahrávat zvuk při nahrávání videa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Povolit hardwarové nahrávání"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Jestli nahrávat video pomocí hardwarového kódování"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
 msgstr "Časovač odpočtu"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:48
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Délka odpočtu před pořízením fotky, v sekundách"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "Režim snímání"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:53
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "Jestli pořizovat obrázky nebo videa"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "Formát obrázku"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:58
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Jestli ukládat obrázky jako png nebo jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
-msgid "Video format"
-msgstr "Formát videa"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:63
-msgid "Whether to save videos as mp4 or webm"
-msgstr "Jestli ukládat videa jako mp4 nebo webm"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
 msgstr "ID posledního použitého fotoaparátu"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:68
+#: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
 msgstr "ID představující naposledy použitý fotoaparát"
 
@@ -125,7 +126,7 @@ msgid "Camera's gallery viewer"
 msgstr "Prohlížeč galerie Fotoaparátu"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:240
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:248
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -217,19 +218,19 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Přepnout fotoaparát"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "Nabídka galerie"
 
-#: data/resources/ui/gallery.ui:75
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "Následující obrázek"
 
-#: data/resources/ui/gallery.ui:89
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Předchozí obrázek"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
 msgid "Open in Image Viewer"
 msgstr "Otevřít v prohlížeči obrázků"
 
@@ -254,6 +255,22 @@ msgstr "Nahrávání videa"
 msgid "_Record Audio"
 msgstr "Nah_rávat zvuk"
 
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Experimentální"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"Některé grafické ovladače mohou způsobit nestabilitu nebo pády systému. V "
+"těchto případech restartujte systém a tuto možnost deaktivujte."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "_Hardwarové kódování videa"
+
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
 msgstr "Zjištěn kód"
@@ -270,72 +287,77 @@ msgstr "Kopírovat do schránky"
 msgid "Open Link"
 msgstr "Otevřít odkaz"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Obecné"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Zobrazit zkratky"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Hlavní nabídka"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Otevřít předvolby"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Zavřít okno"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Ukončit"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Fotoaparát"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Režim obrázků"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Režim natáčení"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Pořídit obrázek nebo spustit zaznamenávání"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "Zobrazit/skrýt vodítka pro kompozici"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerie"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Otevřít/zavřít galerii"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Následující"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Předchozí"
@@ -391,23 +413,23 @@ msgstr "_Kopírovat video"
 msgid "_Delete"
 msgstr "S_mazat"
 
-#: src/widgets/camera.rs:599
+#: src/widgets/camera.rs:607
 msgid "Could not play camera stream"
 msgstr "Nepodařilo se přehrát stream z fotoaparátu"
 
-#: src/widgets/gallery.rs:114
+#: src/widgets/gallery.rs:141
 msgid "Open in Video Player"
 msgstr "Otevřít v přehrávači videí"
 
-#: src/widgets/gallery.rs:392
+#: src/widgets/gallery.rs:419 src/widgets/qr_bottom_sheet.rs:103
 msgid "Copied to clipboard"
 msgstr "Zkopírováno do schránky"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:460
 msgid "Picture deleted"
 msgstr "Obrázek smazán"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:462
 msgid "Video deleted"
 msgstr "Video smazáno"
 
@@ -423,17 +445,23 @@ msgstr "Spustit zaznamenávání"
 msgid "Stop Recording"
 msgstr "Zastavit zaznamenávání"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:346
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
 msgid "Could not take picture"
 msgstr "Nepodařilo se pořídit obrázek"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:350
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
 msgid "Could not record video"
 msgstr "Nepodařilo se nahrát video"
 
-#: src/widgets/window.rs:301
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr "Vojtěch Perník <translations@pervoj.cz>"
+
+#~ msgid "Video format"
+#~ msgstr "Formát videa"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "Jestli ukládat videa jako mp4 nebo webm"
 
 #~ msgid "Snapshot"
 #~ msgstr "Snapshot"
