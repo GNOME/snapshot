@@ -1,3 +1,9 @@
+## 49.rc - 2025-08-29
+- Make app DBus-activatable
+- Improve how GstCaps were created
+- Update glycin to 3.0.3.rc and gtk-rs to 0.21
+- Updated translations
+
 ## 49.beta - 2025-08-03
 - Prefer H264/MP4 format if possible
 - Use native GTK's YUV support if available

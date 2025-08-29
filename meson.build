@@ -1,7 +1,7 @@
 project(
   'snapshot',
   'rust',
-  version: '49.beta',
+  version: '49.rc',
   meson_version: '>= 0.59',
   license: 'GPL-3.0-or-later',
 )

@@ -30,6 +30,17 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="49.rc" date="2025-08-29" type="development">
+      <description>
+        <p>Snapshot 49.rc release</p>
+        <ul>
+          <li>Make app DBus-activatable</li>
+          <li>Improve how GstCaps were created</li>
+          <li>Update glycin to 3.0.3.rc and gtk-rs to 0.21</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="49.beta" date="2025-08-03" type="development">
       <description>
         <p>Snapshot 49.beta release</p>
