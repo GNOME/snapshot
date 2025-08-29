@@ -865,9 +865,9 @@ dependencies = [
 
 [[package]]
 name = "glycin"
-version = "3.0.0-beta.3"
+version = "3.0.0-rc"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e968d425a86f570b836bc340644eb77bdcaa6df84fa45b3e0788f44f3e36acf"
+checksum = "0f2706e5dc89542e2a52cde591a7486cc9d09f8cbb7ff44915b771ba6e4adebf"
 dependencies = [
  "async-fs",
  "async-io",
@@ -889,7 +889,7 @@ dependencies = [
  "libseccomp",
  "memfd",
  "memmap2",
- "nix 0.30.1",
+ "nix",
  "static_assertions",
  "thiserror",
  "tracing",
@@ -899,15 +899,15 @@ dependencies = [
 
 [[package]]
 name = "glycin-common"
-version = "1.0.0-beta.3"
+version = "1.0.0-rc"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9976e4553aaaaa514ac4a71f2b14aa35a18cf0f8ad627fa464e4a9ef0190c004"
+checksum = "944a5eef3b886c5a82bacaac9dceb0a5716e4ef6062825f34806d5c60d66c8e2"
 dependencies = [
  "bitflags",
  "gufo-common",
  "half",
  "memmap2",
- "nix 0.30.1",
+ "nix",
  "paste",
  "rmp-serde",
  "serde",
@@ -918,9 +918,9 @@ dependencies = [
 
 [[package]]
 name = "glycin-utils"
-version = "4.0.0-beta.3"
+version = "4.0.0-rc"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4068dd5cbb6c66e7879d624f097144b90c05337b17002b23316b9ed2597db9c7"
+checksum = "9380034f0c0e30ab8cda562b4d9014cc0a5d2f3d1f6eb17feae35c1fe5819868"
 dependencies = [
  "async-lock",
  "bitflags",
@@ -934,7 +934,7 @@ dependencies = [
  "libseccomp",
  "log",
  "memmap2",
- "nix 0.30.1",
+ "nix",
  "paste",
  "rayon",
  "serde",
@@ -1216,9 +1216,9 @@ dependencies = [
 
 [[package]]
 name = "gufo-common"
-version = "1.0.0-beta.2"
+version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08092cfc847b6a9df0d088fb4226a4807d0a14dcc93c54f25de1302bc8a3cafa"
+checksum = "c51075301871a558c79a76f238cac4ef0673ff1802656a174262e4c6106a8fbc"
 dependencies = [
  "paste",
  "serde",
@@ -1228,9 +1228,9 @@ dependencies = [
 
 [[package]]
 name = "gufo-exif"
-version = "0.3.0-beta"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42ed15d1144c2ea214eaf8cb8a83168c9a4dccdbc3b18b889e5610f8cf33128d"
+checksum = "9d2b06ed83ed41cff519aeac7bc7ae4580c7b8ffd8f5688f4dcc362df1f1d349"
 dependencies = [
  "gufo-common",
  "thiserror",
@@ -1635,19 +1635,6 @@ checksum = "956787520e75e9bd233246045d19f42fb73242759cc57fba9611d940ae96d4b0"
 
 [[package]]
 name = "nix"
-version = "0.29.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "71e2746dc3a24dd78b3cfcb7be93368c6de9963d30f43a6a73998a9cf4b17b46"
-dependencies = [
- "bitflags",
- "cfg-if",
- "cfg_aliases",
- "libc",
- "memoffset",
-]
-
-[[package]]
-name = "nix"
 version = "0.30.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "74523f3a35e05aba87a1d978330aef40f67b0304ac79c1c00b294c9830543db6"
@@ -1656,6 +1643,7 @@ dependencies = [
  "cfg-if",
  "cfg_aliases",
  "libc",
+ "memoffset",
 ]
 
 [[package]]
@@ -2655,9 +2643,9 @@ dependencies = [
 
 [[package]]
 name = "zbus"
-version = "5.6.0"
+version = "5.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2522b82023923eecb0b366da727ec883ace092e7887b61d3da5139f26b44da58"
+checksum = "67a073be99ace1adc48af593701c8015cd9817df372e14a1a6b0ee8f8bf043be"
 dependencies = [
  "async-broadcast",
  "async-executor",
@@ -2673,14 +2661,14 @@ dependencies = [
  "futures-core",
  "futures-lite",
  "hex",
- "nix 0.29.0",
+ "nix",
  "ordered-stream",
  "rand",
  "serde",
  "serde_repr",
  "tracing",
  "uds_windows",
- "windows-sys 0.59.0",
+ "windows-sys 0.60.2",
  "winnow",
  "zbus_macros",
  "zbus_names",
@@ -2689,9 +2677,9 @@ dependencies = [
 
 [[package]]
 name = "zbus_macros"
-version = "5.9.0"
+version = "5.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef9859f68ee0c4ee2e8cde84737c78e3f4c54f946f2a38645d0d4c7a95327659"
+checksum = "0e80cd713a45a49859dcb648053f63265f4f2851b6420d47a958e5697c68b131"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
