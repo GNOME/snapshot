@@ -2,113 +2,115 @@
 # Copyright (C) 2025 snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the snapshot package.
 # Makoto Sakaguchi <ycco34vx@gmail.com>,  2025.
+# 小山田 純 <oyamadajun@outlook.jp>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-07-07 17:46+0000\n"
-"PO-Revision-Date: 2025-07-08 07:58+0900\n"
-"Last-Translator: Makoto Sakaguchi <ycco34vx@gmail.com>\n"
+"POT-Creation-Date: 2025-09-05 17:02+0000\n"
+"PO-Revision-Date: 2025-09-06 15:31+0900\n"
+"Last-Translator: 小山田 純 <oyamadajun@outlook.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.6\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
 #: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "カメラ"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "写真と動画を撮影"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
+#: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "picture;photos;camera;webcam;snapshot;写真;カメラ;ウェブカメラ;スナップショット;"
+msgstr ""
+"picture;photos;camera;webcam;snapshot;写真;カメラ;ウェブカメラ;スナップ"
+"ショット;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:17
-#: data/org.gnome.Snapshot.gschema.xml.in:18
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "デフォルトのウィンドウ幅"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:22
-#: data/org.gnome.Snapshot.gschema.xml.in:23
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "デフォルトのウィンドウ高さ"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:27
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "デフォルトのウィンドウ最大化動作"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
 msgstr "シャッター音を鳴らす"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:33
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "写真を撮る時にシャッター音を再生するかどうか"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "構図ガイドを表示"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:38
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "カメラ使用時に構図ガイドを表示するかどうか"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
 msgstr "録音を有効にする"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:43
+#: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
 msgstr "録画時に音声を録音するかどうか"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "ハードウェアビデオエンコードを有効にする"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "録画時にハードウェアエンコードを使うかどうか"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
 msgstr "カウントダウンタイマー"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:48
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "写真撮影のカウントダウンの時間 (秒)"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "撮影モード"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:53
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "写真または動画を撮影するかどうか"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "写真フォーマット"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:58
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "写真を png または jpeg で保存するかどうか"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
-msgid "Video format"
-msgstr "動画フォーマット"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:63
-msgid "Whether to save videos as mp4 or webm"
-msgstr "動画を mp4 または webm のどちらで保存するか"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
 msgstr "最後に使用したカメラの ID"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:68
+#: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
 msgstr "最後に使用したカメラを表す ID"
 
@@ -125,7 +127,7 @@ msgid "Camera's gallery viewer"
 msgstr "カメラのギャラリー画面"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:259
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
@@ -217,19 +219,19 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "カメラを切り替え"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "ギャラリーメニュー"
 
-#: data/resources/ui/gallery.ui:75
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "次の画像"
 
-#: data/resources/ui/gallery.ui:89
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "前の画像"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
 msgid "Open in Image Viewer"
 msgstr "画像ビューアーで開く"
 
@@ -253,6 +255,23 @@ msgstr "録画"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "音声も録音(_R)"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "実験的機能"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"グラフィックドライバーによっては、システムが不安定になったり、クラッシュする"
+"ことがあります。そのような場合は、システムを再起動して、設定を無効にしてくだ"
+"さい。"
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "ハードウェアビデオエンコード(_H)"
 
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
@@ -396,23 +415,23 @@ msgstr "動画をコピー(_C)"
 msgid "_Delete"
 msgstr "削除(_D)"
 
-#: src/widgets/camera.rs:587
+#: src/widgets/camera.rs:608
 msgid "Could not play camera stream"
 msgstr "カメラのストリームを再生できませんでした"
 
-#: src/widgets/gallery.rs:114
+#: src/widgets/gallery.rs:141
 msgid "Open in Video Player"
 msgstr "動画プレーヤーで開く"
 
-#: src/widgets/gallery.rs:392
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
 msgstr "クリップボードにコピーしました"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:461
 msgid "Picture deleted"
 msgstr "写真が削除されました"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:463
 msgid "Video deleted"
 msgstr "動画が削除されました"
 
@@ -428,16 +447,23 @@ msgstr "録画を開始"
 msgid "Stop Recording"
 msgstr "録画を停止"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:350
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
 msgid "Could not take picture"
 msgstr "写真を撮影できませんでした"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:354
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
 msgid "Could not record video"
 msgstr "録画できませんでした"
 
-#: src/widgets/window.rs:301
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr ""
 "Japanese Translation Team <https://l10n.gnome.org/teams/ja/>\n"
-"Makoto Sakaguchi <ycco34vx@gmail.com>"
+"Makoto Sakaguchi <ycco34vx@gmail.com>\n"
+"小山田 純 <oyamadajun@outlook.jp>"
+
+#~ msgid "Video format"
+#~ msgstr "動画フォーマット"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "動画を mp4 または webm のどちらで保存するか"
