@@ -9,112 +9,112 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-06-30 16:11+0000\n"
-"PO-Revision-Date: 2025-07-13 08:00+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2025-08-29 18:19+0000\n"
+"PO-Revision-Date: 2025-08-28 14:04+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-DamnedLies-Scope: partial\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
 #: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Kamera"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
+#: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Resim ve video çek"
 
 # https://gitlab.gnome.org/GNOME/glib/-/issues/443 hatası sebebiyle uygulama adı dahil ingilizce hallerini de koruyalım.
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
+#: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
 msgstr ""
-"camera;picture;photos;webcam;snapshot;resim;fotoğraf;görüntü;web kamerası;"
-"kamera;şipşak;cheese;"
+"camera;picture;photos;webcam;snapshot;resim;fotoğraf;görüntü;web "
+"kamerası;kamera;şipşak;cheese;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:17
-#: data/org.gnome.Snapshot.gschema.xml.in:18
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "Öntanımlı pencere genişliği"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:22
-#: data/org.gnome.Snapshot.gschema.xml.in:23
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "Öntanımlı pencere yüksekliği"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:27
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "Öntanımlı pencere büyütülme davranışı"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
 msgstr "Deklanşör sesini aç"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:33
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Fotoğraf çekerken deklanşör sesinin durumu"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "Yapıt ızgaralarını göster"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:38
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
-msgstr "Kamera kullanılırken yapıt ızgaralarının gösterilme durumu"
+msgstr "Kamera kullanılırken yapıt ızgaralarının gösterilmesi"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
 msgstr "Ses kaydını etkinleştir"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:43
+#: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
-msgstr "Video kaydederken sesin kaydedilme durumu"
+msgstr "Video kaydederken sesin kaydedilmesi"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Donanımsal kodlamayı etkinleştir"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Donanımsal kodlamayla video kaydedilmesi"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
 msgstr "Geri sayım zamanlayıcısı"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:48
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Fotoğraf çekmeden önceki geri sayım süresi, saniye türünden"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "Yakalama kipi"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:53
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "Hangi işlemin yapılacağı, resim ya da video çekim"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "Resim biçimi"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:58
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Resimlerin hangi biçimde kaydedileceği, png ya da jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:62
-msgid "Video format"
-msgstr "Video biçimi"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:63
-msgid "Whether to save videos as mp4 or webm"
-msgstr "Videoların hangi biçimde kaydedileceği, mp4 ya da webm"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
 msgstr "Kullanılan Son Kamera Kimliği"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:68
+#: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
 msgstr "Son kullanılan kamerayı belirten kimlik"
 
@@ -132,7 +132,7 @@ msgid "Camera's gallery viewer"
 msgstr "Kamera galeri gösterici"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:235
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:259
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -224,19 +224,19 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Kamera Değiştir"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "Galeri Menüsü"
 
-#: data/resources/ui/gallery.ui:75
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "Sonraki Görüntü"
 
-#: data/resources/ui/gallery.ui:89
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Önceki Görüntü"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
 msgid "Open in Image Viewer"
 msgstr "Resim Görüntüleyiciyle Aç"
 
@@ -260,6 +260,23 @@ msgstr "Video Kaydı"
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
 msgstr "Ses _Kaydet"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Deneysel"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"Bazı grafik sürücüleri sisteminizin kararsızlaşmasına ya da çökmesine neden "
+"olabilir. Bu durumlarda, sistemi yeniden başlatın ve seçeneği devre dışı "
+"bırakın."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "_Donanımsal Video Kodlama"
 
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
@@ -403,23 +420,23 @@ msgstr "Videoyu _Kopyala"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: src/widgets/camera.rs:587
+#: src/widgets/camera.rs:608
 msgid "Could not play camera stream"
 msgstr "Kamera akımı oynatılamadı"
 
-#: src/widgets/gallery.rs:114
+#: src/widgets/gallery.rs:141
 msgid "Open in Video Player"
 msgstr "Video Oynatıcıda Aç"
 
-#: src/widgets/gallery.rs:392
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
 msgstr "Panoya kopyalandı"
 
-#: src/widgets/gallery.rs:433
+#: src/widgets/gallery.rs:461
 msgid "Picture deleted"
 msgstr "Resim silindi"
 
-#: src/widgets/gallery.rs:435
+#: src/widgets/gallery.rs:463
 msgid "Video deleted"
 msgstr "Video silindi"
 
@@ -435,16 +452,22 @@ msgstr "Kaydı Başlat"
 msgid "Stop Recording"
 msgstr "Kaydı Durdur"
 
-#: src/widgets/window.rs:105 src/widgets/window.rs:350
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
 msgid "Could not take picture"
 msgstr "Fotoğraf çekilemedi"
 
-#: src/widgets/window.rs:109 src/widgets/window.rs:354
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
 msgid "Could not record video"
 msgstr "Video kaydedilemedi"
 
-#: src/widgets/window.rs:301
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr ""
 "Sabri Ünal <yakushabb@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
+
+#~ msgid "Video format"
+#~ msgstr "Video biçimi"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "Videoların hangi biçimde kaydedileceği, mp4 ya da webm"
