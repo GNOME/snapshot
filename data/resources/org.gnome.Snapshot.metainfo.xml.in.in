@@ -30,34 +30,17 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="49.rc" date="2025-08-29" type="development">
+    <release version="49.9" date="2025-09-11">
       <description>
-        <p>Snapshot 49.rc release</p>
+        <p>Snapshot 49.0 release</p>
         <ul>
           <li>Make app DBus-activatable</li>
           <li>Improve how GstCaps were created</li>
-          <li>Update glycin to 3.0.3.rc and gtk-rs to 0.21</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-    <release version="49.beta" date="2025-08-03" type="development">
-      <description>
-        <p>Snapshot 49.beta release</p>
-        <ul>
-          <li>Prefer H264/MP4 format if possible</li>
+          <li>Support for hardware video encoding</li>
+          <li>Prefer H264/MP4 format if possible fore recording</li>
           <li>Use native GTK's YUV support if available</li>
           <li>Mirrored QR codes can now be scanned</li>
-          <li>Support for hardware video encoding</li>
           <li>Remove video-format gsetting</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-    <release version="49.alpha" date="2025-06-30" type="development">
-      <description>
-        <p>Snapshot 49.alpha release</p>
-        <ul>
           <li>Port shortcuts dialog to AdwShortcutsDialog</li>
           <li>Remove meson option to run without portals</li>
           <li>Show release notes on about dialog</li>

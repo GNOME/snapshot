@@ -1,3 +1,7 @@
+## 49.0 - 2025-09-11
+- Updated cargo dependencies
+- Updated translations
+
 ## 49.rc - 2025-08-29
 - Make app DBus-activatable
 - Improve how GstCaps were created
