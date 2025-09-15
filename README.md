@@ -9,7 +9,7 @@
 
 ## Screenshots
 
-![screenshot](data/screenshots/screenshot1.png)
+![screenshot](https://static.gnome.org/appdata/gnome-45/snapshot/screenshot1.png)
 
 ## Requirements
 
