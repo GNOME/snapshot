@@ -1,14 +1,14 @@
 # Esperanto translation for snapshot.
 # Copyright (C) 2023 snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the snapshot package.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2023-09-13 08:15+0000\n"
-"PO-Revision-Date: 2023-09-14 14:12+0200\n"
+"POT-Creation-Date: 2025-09-16 09:43+0000\n"
+"PO-Revision-Date: 2025-09-17 08:24+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -16,276 +16,345 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"X-Generator: Gtranslator 48.0\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:261
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
 msgid "Camera"
 msgstr "Kamerao"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Fari fotojn kaj videojn"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
-msgid "picture;photos;camera;webcam;"
-msgstr "bildo;fotoj;kamerao;retkamerao;"
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "bildo;fotoj;kamerao;retkamerao;momentfoto;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
-#: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "Defaŭlta larĝeco de fenestro"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
-#: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "Defaŭlta alteco de fenestro"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "Defaŭlta konduto de maksimumigita fenestro"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
-msgstr "Ludi fermila sonon"
+msgstr "Ludi fermilan sonon"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr "Ĉu ludi fermila sonon dum preni bildojn"
+msgstr "Ĉu ludi fermilan sonon dum preni bildojn"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "Montri komponajn gvidliniojn"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "Ĉu montri komponajn gvidliniojn dum uzi la kameraon"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:39
+msgid "Enable audio recording"
+msgstr "Ebligi sonregistradon"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Whether to record audio when recording video"
+msgstr "Ĉu registri sonon dum registri videon"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Ebligi aparataran registradon"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Ĉu registri videon per aparatara kodado"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
-msgstr "Retronombrada tempigilo"
+msgstr "Retrokalkula tempigilo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
-msgstr "La daŭro de la tempilo por preni fotojn, en sekundoj"
+msgstr "La daŭro de la retrokalkulo por preni fotojn, en sekundoj"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "Kapta reĝimo"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "Ĉu preni bildojn aŭ videojn"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "Bilda formato"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Ĉu konservi bildojn kiel png aŭ jpeg"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
-msgid "Video format"
-msgstr "Videa formato"
+#: data/org.gnome.Snapshot.gschema.xml.in:64
+msgid "Last Camera Used ID"
+msgstr "Identigilo de laste uzita kamerao"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
-msgid "Whether to save videos as mp4 or webm"
-msgstr "Ĉu konservi videojn kiel mp4 aŭ webm"
+#: data/org.gnome.Snapshot.gschema.xml.in:65
+msgid "An ID representing the last used camera"
+msgstr "Identigilo reprezentanta la laste uzitan kameraon"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
-msgstr "Fari fotojn kaj videojn sur via komputilo, tablo, aŭ telefono."
+msgstr "Fari fotojn kaj videojn sur via komputilo, tabulkomputilo aŭ telefono."
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "Ĉefa interfaco de la kamerao"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Galeria vidilo de la kamerao"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:90 src/widgets/window.rs:267
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:242
 msgid "The GNOME Project"
 msgstr "La GNOME-Projekto"
 
-#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
-#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Ĉefa menuo"
 
-#: data/resources/ui/camera.ui:107
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
 msgstr "Neniu kamerao trovita"
 
-#: data/resources/ui/camera.ui:108
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
-msgstr "Konekti kamera aparaton"
+msgstr "Konektu kameraan aparaton"
 
-#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
-#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
-msgid "Picture Mode"
-msgstr "Bilda reĝimo"
-
-#: data/resources/ui/camera.ui:215 data.resources/ui/camera.ui:313
-#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
-msgid "Recording Mode"
-msgstr "Registrada reĝimo"
-
-#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
-#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
-#: data/resources/ui/camera.ui:577
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Retrokalkulo"
 
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Bilda reĝimo"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Registrada reĝimo"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR-koda skanreĝimo"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "Mankas permeso por kamerao"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "Permesu uzi la kameraon en Agordoj"
+
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Neniu"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:590
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5s"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:595
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10s"
 
-#: data/resources/ui/camera.ui:603
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "_Agordoj"
 
-#: data/resources/ui/camera.ui:607
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavkombinoj"
 
-#: data/resources/ui/camera.ui:611
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "_Pri Kamerao"
 
-#: data/resources/ui/camera_controls.ui:12
+#: data/resources/ui/camera_controls.ui:17
 msgid "Open Gallery"
-msgstr "Malfermi Ggalerion"
+msgstr "Malfermi galerion"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:18 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
-msgstr "Fari Bildon"
+msgstr "Fari bildon"
 
-#: data/resources/ui/camera_controls.ui:28
+#: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
 msgstr "Elekti kameraon"
 
-#: data/resources/ui/camera_controls.ui:41
+#: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
-msgstr "Ŝalti kameraon"
+msgstr "Ŝanĝi kameraon"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "Galeria menuo"
 
-#: data/resources/ui/gallery.ui:94
-msgid "Previous Image"
-msgstr "Antaŭa bildo"
-
-#: data/resources/ui/gallery.ui:107
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "Sekva bildo"
 
-#: data/resources/ui/gallery.ui:150 src/widgets/gallery.rs:115
+#: data/resources/ui/gallery.ui:67
+msgid "Previous Image"
+msgstr "Antaŭa bildo"
+
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
 msgid "Open in Image Viewer"
 msgstr "Malfermi en bildovidilo"
 
-#: data/resources/ui/preferences_window.ui:10
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
 msgid "General"
 msgstr "Ĝenerala"
 
-#: data/resources/ui/preferences_window.ui:16
+#: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
 msgstr "_Fermila sono"
 
-#: data/resources/ui/preferences_window.ui:23
+#: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
 msgstr "_Gvidlinioj pri komponado"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Videa registrado"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "_Registri sonon"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Eksperimenta"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr "Iuj grafikaj peliloj povas igi la sistemon malstabila aŭ kraŝi. En tiaj okazoj, restartigu la sistemon kaj malŝaltu la opcion."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "_Aparatara videokodado"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Kodo detektita"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Enhavo"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Kopii al tondujo"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Malfermi ligilon"
+
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Ĝenerala"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Montri klavkominojn"
+msgstr "Montri klavkombinojn"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Ĉefa menuo"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Malfermi agordojn"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Fermi fenestron"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Eliri"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Kamerao"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Bilda reĝimo"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Registrada reĝimo"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Fari bildon aŭ ekregistri"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr "Montri/Kaŝi komponadojn gvidliniojn"
+msgstr "Montri/Kaŝi gvidliniojn pri komponado"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Galerio"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Malfermi/Fermi galerion"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Sekva"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Antaŭa"
@@ -299,6 +368,10 @@ msgstr "Galerio"
 #: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Ebligi sencimigajn mesaĝojn"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
@@ -325,54 +398,64 @@ msgstr "Registrado de {date}"
 msgid "Recording {number}"
 msgstr "Registrado {number}"
 
-#: src/utils.rs:128
+#: src/utils.rs:136
 msgid "_Copy Picture"
 msgstr "_Kopii bildon"
 
-#: src/utils.rs:130
+#: src/utils.rs:138
 msgid "_Copy Video"
 msgstr "_Kopii videon"
 
-#: src/utils.rs:132
+#: src/utils.rs:140
 msgid "_Delete"
 msgstr "_Forigi"
 
-#: src/widgets/camera.rs:410
+#: src/widgets/camera.rs:608
 msgid "Could not play camera stream"
 msgstr "Ne povis ludi la kameran fluon"
 
-#: src/widgets/gallery.rs:117
+#: src/widgets/gallery.rs:141
 msgid "Open in Video Player"
 msgstr "Malfermi en videoludilo"
 
-#: src/widgets/gallery.rs:386
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
 msgstr "Kopiita en tondujo"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:461
 msgid "Picture deleted"
 msgstr "Bildo forigita"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:463
 msgid "Video deleted"
 msgstr "Video forigita"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Skani kodon"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Komenci registron"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Ĉesi registron"
 
-#: src/widgets/window.rs:74 src/widgets/window.rs:310
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
 msgid "Could not take picture"
 msgstr "Ne povis preni bildon"
 
-#: src/widgets/window.rs:78 src/widgets/window.rs:314
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
 msgid "Could not record video"
 msgstr "Ne povis registri videon"
 
-#: src/widgets/window.rs:266
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr "Kristjan SCHMIDT"
+
+#~ msgid "Video format"
+#~ msgstr "Videa formato"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "Ĉu konservi videojn kiel mp4 aŭ webm"
