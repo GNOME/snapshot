@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-08-29 18:19+0000\n"
+"POT-Creation-Date: 2025-09-17 08:01+0000\n"
 "PO-Revision-Date: 2025-08-28 14:04+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -132,7 +132,7 @@ msgid "Camera's gallery viewer"
 msgstr "Kamera galeri gösterici"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:259
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:242
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -465,9 +465,3 @@ msgid "translator-credits"
 msgstr ""
 "Sabri Ünal <yakushabb@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
-
-#~ msgid "Video format"
-#~ msgstr "Video biçimi"
-
-#~ msgid "Whether to save videos as mp4 or webm"
-#~ msgstr "Videoların hangi biçimde kaydedileceği, mp4 ya da webm"
