@@ -86,7 +86,7 @@ pub(crate) mod caps {
             .or(best_size_fallback)
     }
 
-    pub(crate) fn best_resolution_for_fps(caps: &gst::Caps, framerate: gst::Fraction) -> gst::Caps {
+    fn best_resolution_for_fps(caps: &gst::Caps, framerate: gst::Fraction) -> gst::Caps {
         let fixed_caps = crate::SUPPORTED_ENCODINGS
             .iter()
             .map(|encoding| {
@@ -113,6 +113,43 @@ pub(crate) mod caps {
         } else {
             caps_with_format
         }
+    }
+
+    fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fraction> {
+        // TODO Handle gst::List and gst::Array
+        if let Ok(framerate) = structure.get::<gst::Fraction>("framerate") {
+            Some(framerate)
+        } else if let Ok(range) = structure.get::<gst::FractionRange>("framerate") {
+            Some(range.max())
+        } else if let Ok(array) = structure.get::<gst::Array>("framerate") {
+            array
+                .iter()
+                .filter_map(|s| s.get::<gst::Fraction>().ok())
+                .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
+                .max()
+        } else if let Ok(array) = structure.get::<gst::List>("framerate") {
+            array
+                .iter()
+                .filter_map(|s| s.get::<gst::Fraction>().ok())
+                .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
+                .max()
+        } else {
+            None
+        }
+    }
+
+    // For each resolution and format we only keep the highest resolution.
+    pub(crate) fn filter_caps(caps: gst::Caps) -> gst::Caps {
+        let mut best_caps = gst::Caps::new_empty();
+        caps.iter().for_each(|s| {
+            if let Some(framerate) = framerate_from_structure(s) {
+                let best = best_resolution_for_fps(&caps, framerate);
+                best_caps.merge(best);
+            }
+        });
+
+        best_caps.merge(caps);
+        best_caps
     }
 }
 

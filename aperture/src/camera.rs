@@ -154,46 +154,9 @@ impl Camera {
         let caps = self
             .caps()
             .unwrap_or_else(|| gst::Caps::builder("video/x-raw").build());
-        let highest_res_caps = filter_caps(caps);
+        let highest_res_caps = utils::caps::filter_caps(caps);
         log::debug!("Using caps: {highest_res_caps:#?}");
 
         highest_res_caps
-    }
-}
-
-// For each resolution and format we only keep the highest resolution.
-fn filter_caps(caps: gst::Caps) -> gst::Caps {
-    let mut best_caps = gst::Caps::new_empty();
-    caps.iter().for_each(|s| {
-        if let Some(framerate) = framerate_from_structure(s) {
-            let best = utils::caps::best_resolution_for_fps(&caps, framerate);
-            best_caps.merge(best);
-        }
-    });
-
-    best_caps.merge(caps);
-    best_caps
-}
-
-fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fraction> {
-    // TODO Handle gst::List and gst::Array
-    if let Ok(framerate) = structure.get::<gst::Fraction>("framerate") {
-        Some(framerate)
-    } else if let Ok(range) = structure.get::<gst::FractionRange>("framerate") {
-        Some(range.max())
-    } else if let Ok(array) = structure.get::<gst::Array>("framerate") {
-        array
-            .iter()
-            .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
-            .max()
-    } else if let Ok(array) = structure.get::<gst::List>("framerate") {
-        array
-            .iter()
-            .filter_map(|s| s.get::<gst::Fraction>().ok())
-            .filter(|frac| frac <= &gst::Fraction::new(crate::MAXIMUM_RATE, 1))
-            .max()
-    } else {
-        None
     }
 }
