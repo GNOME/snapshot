@@ -12,6 +12,11 @@ use crate::VideoFormat;
 use crate::ViewfinderState;
 use crate::code_detector::QrCodeDetector;
 
+/// Default bitrate
+///
+/// This is the Gstreamer 1.26 default value for x264enc, chosen as reasonable compromise between
+/// quality and file size. Candidate for a preference.
+const DEFAULT_BITRATE: u32 = 2048;
 const PROVIDER_TIMEOUT: u64 = 2;
 
 #[derive(Debug)]
@@ -890,6 +895,58 @@ impl Viewfinder {
 
     fn setup_recording(&self) {
         use gst_pbutils::encoding_profile::EncodingProfileBuilder;
+        use gst_pbutils::{ElementProperties, ElementPropertiesMapItem};
+
+        // Video encoder properties
+        let element_properties_map = ElementProperties::builder_map()
+            .item(
+                ElementPropertiesMapItem::builder("x264enc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    // tune "zerolatency": Suitable for live-sources like cameras. Crucial to avoid
+                    //                     draining the buffer pool.
+                    .field("tune", 4)
+                    // speed-preset "faster": Lower CPU usage compared to the default "medium" with
+                    //                        minimal reduction of quality, see
+                    //                        https://streaminglearningcenter.com/wp-content/uploads/2019/10/Choosing-an-x264-Preset_1.pdf
+                    .field("speed-preset", 4)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("openh264enc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vah264lpenc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vah264enc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vulkanh264enc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vp8enc")
+                    .field("target-bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vavp8lpenc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .item(
+                ElementPropertiesMapItem::builder("vavp8enc")
+                    .field("bitrate", DEFAULT_BITRATE)
+                    .build(),
+            )
+            .build();
 
         let profile = match self.video_format() {
             VideoFormat::H264Mp4 => {
@@ -937,6 +994,7 @@ impl Viewfinder {
                     &gst::Caps::builder("video/x-h264").build(),
                 )
                 .variable_framerate(true)
+                .element_properties(element_properties_map)
                 .build();
                 container_profile = container_profile.add_profile(video_profile);
 
@@ -996,6 +1054,7 @@ impl Viewfinder {
                 )
                 .preset("Profile Realtime")
                 .variable_framerate(true)
+                .element_properties(element_properties_map)
                 .build();
                 container_profile = container_profile.add_profile(video_profile);
 
