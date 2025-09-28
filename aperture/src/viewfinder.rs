@@ -948,6 +948,16 @@ impl Viewfinder {
             )
             .build();
 
+        let image_properties_map = ElementProperties::builder_map()
+            .item(
+                ElementPropertiesMapItem::builder("jpegenc")
+                    .field("quality", 95)
+                    // idct-method "float": Slowest, most accurate method.
+                    .field("idct-method", 2)
+                    .build(),
+            )
+            .build();
+
         let video_profile = match self.video_format() {
             VideoFormat::H264Mp4 => {
                 let mut hw_encoder_found = false;
@@ -1070,8 +1080,15 @@ impl Viewfinder {
             }
         };
 
+        let image_profile =
+            gst_pbutils::EncodingVideoProfile::builder(&gst::Caps::builder("image/jpeg").build())
+                .variable_framerate(true)
+                .element_properties(image_properties_map)
+                .build();
+
         let camerabin = self.imp().camerabin();
         camerabin.set_property("video-profile", video_profile);
+        camerabin.set_property("image-profile", image_profile);
     }
 
     fn init(&self) {
