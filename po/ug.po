@@ -1,0 +1,455 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2025-09-10 23:18+0000\n"
+"PO-Revision-Date: 2025-09-11 00:43-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
+"Language-Team: \n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+msgid "Camera"
+msgstr "كامېرا"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "سۈرەتكە تارتىپ ۋە سىنغا ئالىدۇ"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;رەسىم؛سۈرەت؛كامېرا؛تور كامېراسى؛تېز پەيت؛"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
+msgid "Default window width"
+msgstr "كۆڭۈلدىكى كۆزنەك كەڭلىكى"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
+msgid "Default window height"
+msgstr "كۆڭۈلدىكى كۆزنەك ئېگىزلىكى"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:24
+msgid "Default window maximized behaviour"
+msgstr "كۆڭۈلدىكى كۆزنەك چوڭايتىش مەشغۇلاتى"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:29
+msgid "Play shutter sound"
+msgstr "قاپقاق ئاۋازىنى ياڭرات"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "سۈرەت تارتقاندا قاپقاق ئاۋازىنى ياڭرىتامدۇ يوق"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:34
+msgid "Show composition guidelines"
+msgstr "ئىجادىيەت كۆرسەتمىسىنى كۆرسىتىدۇ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "كامېرانى ئىشلەتكەندە  تەھرىرلەش كۆرسەتمە سىزىقىنى كۆرسىتەمدۇ يوق"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:39
+msgid "Enable audio recording"
+msgstr "ئاۋاز خاتىرىلەشنى قوزغات"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Whether to record audio when recording video"
+msgstr "سىن خاتىرىلىگەندە ئاۋازنى خاتىرىلەمدۇ يوق"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "قاتتىق دېتال خاتىرىلەشنى قوزغات"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "قاتتىق دېتال كودلىغۇچنى ئىشلىتىپ سىن خاتىرىلەمدۇ يوق"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
+msgid "Countdown timer"
+msgstr "تەتۈر سانىغۇچ ۋاقىت خاتىرىلىگۈچ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "سۈرەت تارتىشتىن ئىلگىرى تەتۈر سانىغۇچ ۋاقتى، بىرلىكى سېكۇنت"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:54
+msgid "Capture mode"
+msgstr "سۈرەت تۇتۇش ھالىتى"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Whether to take pictures or videos"
+msgstr "سۈرەتكە تارتامدۇ ياكى سىنغا ئالامدۇ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:59
+msgid "Picture format"
+msgstr "رەسىم پىچىمى"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:60
+msgid "Whether to save pictures as png or jpeg"
+msgstr "رەسىمنى png ياكى jpeg سۈپىتىدە ساقلامدۇ"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:64
+msgid "Last Camera Used ID"
+msgstr "ئاخىرقى قېتىم كامېرا ئىشلەتكەن كىملىك"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:65
+msgid "An ID representing the last used camera"
+msgstr "ئاخىرقى قېتىم ئىشلەتكەن كامېراغا ۋەكىللىك قىلىدىغان كىملىك"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "كومپيۇتېر، تاختا كومپيۇتېر ۋە تېلېفوندا سۈرەتكە تارتىپ سىنغا ئالىدۇ."
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "كامېرانىڭ ئاساسىي ئارايۈزى"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "كامېرا سۈرەتدان كۆرگۈچ"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:259
+msgid "The GNOME Project"
+msgstr "GNOME قۇرۇلۇشى"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "ئاساسىي تىزىملىك"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "كامېرا تېپىلمىدى"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "كامېرا ئۈسكۈنىسىگە باغلايدۇ"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "تەتۈر سانىغۇچ"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "رەسىم ھالىتى"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "خاتىرىلەش ھالىتى"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR كود تاراش ھالىتى"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "كامېرا ئىجازىتى كەم"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "تەڭشەكتە كامېرا ئىشلىتىشكە يول قويىدۇ"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "يوق"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "مايىللىق(_P)"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "ھەرپتاختا تېزلەتمىسى(_K)"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "كامېرا ھەققىدە(_A)"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "سۈرەتداننى ئاچ"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "سۈرەت تارت"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "كامېرا تاللىنىدۇ"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "كامېرا ئالماشتۇر"
+
+#: data/resources/ui/gallery.ui:24
+msgid "Gallery Menu"
+msgstr "سۈرەتدان تىزىملىكى"
+
+#: data/resources/ui/gallery.ui:53
+msgid "Next Image"
+msgstr "كېيىنكى سۈرەت"
+
+#: data/resources/ui/gallery.ui:67
+msgid "Previous Image"
+msgstr "ئالدىنقى سۈرەت"
+
+#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
+msgid "Open in Image Viewer"
+msgstr "سۈرەت كۈرگۈچتە ئاچ"
+
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "ئادەتتىكى"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "قاپقاق ئاۋازى(_S)"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "تەھرىرلەش كۆرسەتمە سىزىقى(_C)"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "سىن خاتىرىلەش"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "ئۈن خاتىرىلە(_R)"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "تەجرىبە"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr "بەزى گىرافىك قوزغاتقۇ سىستېمىنىڭ مۇقىم بولماسلىقى ياكى يىمىرىلىشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن. بۇ خىل ئەھۋالدا، سىستېمىنى قايتا قوزغىتىپ ئاندىن تاللانما چەكلىنىشى كېرەك."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "قاتتىق دېتال سىن كودلاش(_H)"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "كود بايقالدى"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "مەزمۇن"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "چاپلاش تاختىسىغا كۆچۈر"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "ئۇلانما ئاچ"
+
+#: data/resources/ui/shortcuts.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr "ئادەتتىكى"
+
+#: data/resources/ui/shortcuts.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "تېزلەتمىنى كۆرسەت"
+
+#: data/resources/ui/shortcuts.ui:15
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "ئاساسىي تىزىملىك"
+
+#: data/resources/ui/shortcuts.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "مايىللىقنى ئاچ"
+
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "كۆزنەك ياپ"
+
+#: data/resources/ui/shortcuts.ui:33
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "چېكىن"
+
+#: data/resources/ui/shortcuts.ui:41
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "كامېرا"
+
+#: data/resources/ui/shortcuts.ui:44
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "رەسىم ھالىتى"
+
+#: data/resources/ui/shortcuts.ui:50
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "خاتىرىلەش ھالىتى"
+
+#: data/resources/ui/shortcuts.ui:56
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "سۈرەت تارتىدۇ ياكى خاتىرىلەشنى باشلايدۇ"
+
+#: data/resources/ui/shortcuts.ui:62
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "تەھرىرلەش يېتەكچى سىزىقىنى كۆرسەت/يوشۇر"
+
+#: data/resources/ui/shortcuts.ui:70
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "سۈرەتدان"
+
+#: data/resources/ui/shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "سۈرەتدان ئاچ/ياپ"
+
+#: data/resources/ui/shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "كېيىنكى"
+
+#: data/resources/ui/shortcuts.ui:85
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "ئالدىنقى"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "سۈرەتدان"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "سازلاش ئۇچۇرىنى قوزغات"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "{date} دا تارتىلغان سۈرەت"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "سۈرەت {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "{date} خاتىرىلىگەن سىن"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "{number} خاتىرىلىگەن سىن"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "رەسىم كۆچۈر((_C)"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "سىن كۆچۈر(_C)"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "ئۆچۈر(_D)"
+
+#: src/widgets/camera.rs:608
+msgid "Could not play camera stream"
+msgstr "كامېرا ئېقىمىنى قويالمايدۇ"
+
+#: src/widgets/gallery.rs:141
+msgid "Open in Video Player"
+msgstr "سىن قويغۇچتا ئاچىدۇ"
+
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
+msgid "Copied to clipboard"
+msgstr "چاپلاش تاختىسىغا كۆچۈرۈلدى"
+
+#: src/widgets/gallery.rs:461
+msgid "Picture deleted"
+msgstr "سۈرەت ئۆچۈرۈلدى"
+
+#: src/widgets/gallery.rs:463
+msgid "Video deleted"
+msgstr "سىن ئۆچۈرۈلدى"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "كودنى تارا"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "خاتىرىلەشنى باشلا"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "خاتىرىلەشنى توختات"
+
+#: src/widgets/window.rs:107 src/widgets/window.rs:363
+msgid "Could not take picture"
+msgstr "سۈرەتكە تارتالمايدۇ"
+
+#: src/widgets/window.rs:111 src/widgets/window.rs:367
+msgid "Could not record video"
+msgstr "سىننى خاتىرىلىيەلمەيدۇ"
+
+#: src/widgets/window.rs:314
+msgid "translator-credits"
+msgstr "تەرجىمان تۆھپىسى\n"
+" Gheyret Kenji <gheyret@gmail.com>\n"
+"ئابدۇقادىر ئابلىز <sahranbay@gmail.com>"
