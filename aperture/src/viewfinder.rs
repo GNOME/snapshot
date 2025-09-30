@@ -898,7 +898,7 @@ impl Viewfinder {
         use gst_pbutils::{ElementProperties, ElementPropertiesMapItem};
 
         // Video encoder properties
-        let element_properties_map = ElementProperties::builder_map()
+        let video_properties_map = ElementProperties::builder_map()
             .item(
                 ElementPropertiesMapItem::builder("x264enc")
                     .field("bitrate", DEFAULT_BITRATE)
@@ -948,7 +948,7 @@ impl Viewfinder {
             )
             .build();
 
-        let profile = match self.video_format() {
+        let video_profile = match self.video_format() {
             VideoFormat::H264Mp4 => {
                 let mut hw_encoder_found = false;
                 let registry = gst::Registry::get();
@@ -994,7 +994,7 @@ impl Viewfinder {
                     &gst::Caps::builder("video/x-h264").build(),
                 )
                 .variable_framerate(true)
-                .element_properties(element_properties_map)
+                .element_properties(video_properties_map)
                 .build();
                 container_profile = container_profile.add_profile(video_profile);
 
@@ -1054,7 +1054,7 @@ impl Viewfinder {
                 )
                 .preset("Profile Realtime")
                 .variable_framerate(true)
-                .element_properties(element_properties_map)
+                .element_properties(video_properties_map)
                 .build();
                 container_profile = container_profile.add_profile(video_profile);
 
@@ -1071,7 +1071,7 @@ impl Viewfinder {
         };
 
         let camerabin = self.imp().camerabin();
-        camerabin.set_property("video-profile", profile);
+        camerabin.set_property("video-profile", video_profile);
     }
 
     fn init(&self) {
