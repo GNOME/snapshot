@@ -37,7 +37,8 @@ anyhow = "1.0"
 ashpd = { version = "0.12", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { version = "3.0.0", features = ["gdk4"] }
+glycin = { package = "libglycin-rebind", version = "0.0.1" }
+glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.0.1" }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
