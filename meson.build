@@ -14,6 +14,8 @@ base_id = 'org.gnome.Snapshot'
 dependency('glib-2.0', version: '>= 2.75')
 dependency('gtk4', version: '>= 4.18')
 dependency('libadwaita-1', version: '>= 1.8.alpha')
+dependency('glycin-2', version: '>= 2')
+dependency('glycin-gtk4-2', version: '>= 2')
 dependency('gstreamer-1.0', version: '>= 1.20')
 dependency('gstreamer-video-1.0', version: '>= 1.20')
 # Needed for camerabin

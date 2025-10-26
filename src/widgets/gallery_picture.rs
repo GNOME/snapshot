@@ -52,9 +52,10 @@ impl GalleryPicture {
         self.set_started_loading(true);
 
         let file = self.file();
-        let loader = glycin::Loader::new(file);
-        let image = loader.load().await?;
-        let texture = image.next_frame().await?.texture();
+        let loader = glycin::Loader::new(&file);
+        let image = loader.load_future().await?;
+        let frame = image.next_frame_future().await?;
+        let texture = glycin_gtk4::frame_get_texture(&frame);
 
         let picture = imp.picture.get_or_init(gtk::Picture::default);
 
