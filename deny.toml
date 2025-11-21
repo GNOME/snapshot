@@ -16,7 +16,6 @@ allow = [
     "ISC",
     "LGPL-2.1",
     "MIT",
-    "MPL-2.0",
     "Unicode-3.0",
     "Zlib",
 ]
