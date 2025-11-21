@@ -44,6 +44,7 @@ codespell:
   stage: check
   script:
     - dnf install --quiet -y codespell
+    - codespell --version
     - codespell -S "*.png,*.po,.git,*.jpg" -L crate -f
 
 cargo-doc:
@@ -76,6 +77,7 @@ cargo-audit:
   allow_failure: true
   script:
     - dnf install --quiet -y cargo-deny cargo
+    - cargo-deny --version
     - cargo-deny check
 
 nightly@x86_64:
