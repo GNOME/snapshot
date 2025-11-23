@@ -35,6 +35,7 @@ lto = true
 adw = { package = "libadwaita", version = "0.8.1", features = ["v1_8"] }
 anyhow = "1.0"
 ashpd = { version = "0.12", default-features = false, features = ["gtk4_wayland", "tracing", "async-std"] }
+formatx = "0.2.4"
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 glycin = { package = "libglycin-rebind", version = "0.0.1" }

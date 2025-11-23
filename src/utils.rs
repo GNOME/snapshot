@@ -3,12 +3,11 @@ use std::path::PathBuf;
 use std::sync::LazyLock;
 
 use anyhow::Context;
+use formatx::formatx;
 use gettextrs::gettext;
 use gst::prelude::*;
 use gtk::prelude::*;
 use gtk::{gio, glib};
-
-use crate::i18n::i18n_f;
 
 const DATE_FORMAT: &str = "%Y-%m-%d %H-%M-%S.%f";
 
@@ -20,12 +19,14 @@ pub fn picture_file_name(picture_format: crate::PictureFormat) -> String {
         let f_date = date_time.format(DATE_FORMAT).unwrap();
         // TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
         // from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-        i18n_f("Photo from {date}", &[("date", &f_date)])
+        formatx!(gettext("Photo from {date}"), date = f_date)
+            .expect("Wrong format in translatable string")
     } else {
         let rand = glib::random_int_range(0, 999999).to_string();
         // TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
         // "Photo 12345" and it will be used as a file name.
-        i18n_f("Photo {number}", &[("number", &rand)])
+        formatx!(gettext("Photo {number}"), number = rand)
+            .expect("Wrong format in translatable string")
     };
 
     format!("{file_name}.{format}")
@@ -38,12 +39,14 @@ pub fn video_file_name(video_format: aperture::VideoFormat) -> String {
         // TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
         // "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
         // file name.
-        i18n_f("Recording from {date}", &[("date", &f_date)])
+        formatx!(gettext("Recording from {date}"), date = f_date)
+            .expect("Wrong format in translatable string")
     } else {
         let rand = glib::random_int_range(0, 999999).to_string();
         // TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
         // "Recording 12345" and it will be used as a file name.
-        i18n_f("Recording {number}", &[("number", &rand)])
+        formatx!(gettext("Recording {number}"), number = rand)
+            .expect("Wrong format in translatable string")
     };
 
     format!("{file_name}.{format}")
