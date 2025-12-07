@@ -346,6 +346,12 @@ impl Camera {
             #[strong]
             provider,
             async move {
+                if let Err(err) = ashpd::register_host_app(config::APP_ID.try_into().unwrap()).await
+                {
+                    log::error!(
+                        "Failed to run org.freedesktop.host.portal.Registry.Register: {err}"
+                    );
+                }
                 match stream().await {
                     Ok(fd) => {
                         if let Err(err) = provider.set_fd(fd) {
