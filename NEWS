@@ -1,3 +1,8 @@
+## 49.1 - 2025-12-08
+- Fix camera portal usage for non-sandboxed app
+- Use static.gnome.org for screenshots in app metainfo
+- Updated translations
+
 ## 49.0 - 2025-09-11
 - Updated cargo dependencies
 - Updated translations
