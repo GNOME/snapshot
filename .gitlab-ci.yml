@@ -71,7 +71,7 @@ cargo-doc:
     - cargo +nightly rustdoc -p aperture -- -Z unstable-options ${DOC_OPTIONS}
     - tar --auto-compress --create --file "$CI_PROJECT_DIR/${CI_PROJECT_NAME}-docs.tar.gz" --directory "target/doc" .
 
-cargo-audit:
+cargo-deny:
   stage: test
   interruptible: true
   allow_failure: true
