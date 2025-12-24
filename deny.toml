@@ -10,9 +10,8 @@ ignore = [
 allow = [
     "Apache-2.0 WITH LLVM-exception",
     "Apache-2.0",
-    "GPL-3.0",
+    "GPL-3.0-or-later",
     "ISC",
-    "LGPL-2.1",
     "MIT",
     "Unicode-3.0",
     "Zlib",
