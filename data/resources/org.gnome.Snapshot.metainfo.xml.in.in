@@ -246,11 +246,11 @@
   <update_contact>msandova@gnome.org</update_contact>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
-  <recommends>
+  <supports>
     <control>keyboard</control>
     <control>pointing</control>
     <control>touch</control>
-  </recommends>
+  </supports>
   <requires>
     <display_length compare="ge">360</display_length>
   </requires>
