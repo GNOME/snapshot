@@ -1,3 +1,10 @@
+## 50.alpha - 2026-01-03
+- Screenshots are now hosted at static.gnome.org
+- Require meson 1.7
+- Dynamically link to glycin using glycin-rebind
+- Set properties to encoders
+- Updated translations
+
 ## 49.0 - 2025-09-11
 - Updated cargo dependencies
 - Updated translations
