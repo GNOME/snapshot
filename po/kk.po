@@ -7,194 +7,195 @@ msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2024-08-04 18:01+0000\n"
-"PO-Revision-Date: 2024-08-30 19:39+0500\n"
+"POT-Creation-Date: 2026-01-03 21:43+0000\n"
+"PO-Revision-Date: 2026-01-10 14:41+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.Snapshot.desktop.in.in:3
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
-#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:302
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:23
 msgid "Camera"
 msgstr "Камера"
 
-#: data/org.gnome.Snapshot.desktop.in.in:4
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
 msgstr "Фотолар мен видеоларды түсіру"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Snapshot.desktop.in.in:10
+#: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "picture;photos;camera;webcam;snapshot;сурет;фото;камера;веб-камера;түсірілім;"
+msgstr ""
+"picture;photos;camera;webcam;snapshot;сурет;фото;камера;веб-"
+"камера;түсірілім;"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:16
-#: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
 msgstr "Терезенің бастапқы ені"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:21
-#: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
 msgstr "Терезенің бастапқы биіктігі"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:26
+#: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
 msgstr "Қолданбаның жазық терезесінің мінез-құлығы"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:31
+#: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
 msgstr "Түсіру дыбысын ойнату"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:32
+#: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
 msgstr "Фотоларды түсіру дыбысын ойнату керек пе"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:36
+#: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
 msgstr "Құрастыру көмекшілерін көрсету"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:37
+#: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
 msgstr "Камераны қолдану кезінде құрастыру көмекшілерін көрсету керек пе"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:41
+#: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
 msgstr "Аудионы жазуды іске қосу"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:42
+#: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
 msgstr "Видеоны жазу кезінде аудионы жазу керек пе"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:46
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Құрылғылық жазуды іске қосу"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Видеоны жазу кезінде құрылғылық кодтауды қолдану керек пе"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
 msgstr "Кері санау таймері"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:47
+#: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
 msgstr "Фото түсіру кезінде кері санаудың ұзақтығы, секунд"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:51
+#: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
 msgstr "Түсіру режимі"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:52
+#: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
 msgstr "Фото немесе видео түсіру керек пе"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:56
+#: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
 msgstr "Сурет пішімі"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:57
+#: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
 msgstr "Суреттерді png немесе jpeg ретінде сақтау керек пе"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:61
-msgid "Video format"
-msgstr "Видео пішімі"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:62
-msgid "Whether to save videos as mp4 or webm"
-msgstr "Видеоларды mp4 немесе webm ретінде сақтау керек пе"
-
-#: data/org.gnome.Snapshot.gschema.xml.in:66
+#: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
 msgstr "Соңғы қолданылған камера идентификаторы"
 
-#: data/org.gnome.Snapshot.gschema.xml.in:67
+#: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
 msgstr "Соңғы пайдаланылған камераны білдіретін идентификатор"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr "Фото мен видеоларды компьютер, планшет немесе телефоныңызда түсіру."
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
 msgstr "Камераның негізгі интерфейсі"
 
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
 msgstr "Камераның галерея көрсетушісі"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Snapshot.metainfo.xml.in.in:196 src/widgets/window.rs:308
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:251
 msgid "The GNOME Project"
 msgstr "GNOME жобасы"
 
-#: data/resources/ui/camera.ui:95 data/resources/ui/camera.ui:169
-#: data/resources/ui/camera.ui:340 data/resources/ui/camera.ui:475
-#: data/resources/ui/camera.ui:583
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
 msgid "Main Menu"
 msgstr "Басты мәзір"
 
-#: data/resources/ui/camera.ui:105
+#: data/resources/ui/camera.ui:84
 msgid "No Camera Found"
 msgstr "Камера табылмады"
 
-#: data/resources/ui/camera.ui:106
+#: data/resources/ui/camera.ui:85
 msgid "Connect a camera device"
 msgstr "Камера құрылғысын таңдаңыз"
 
-#: data/resources/ui/camera.ui:195 data/resources/ui/camera.ui:293
-#: data/resources/ui/camera.ui:406 data/resources/ui/camera.ui:497
-msgid "Picture Mode"
-msgstr "Сурет режимі"
-
-#: data/resources/ui/camera.ui:214 data/resources/ui/camera.ui:312
-#: data/resources/ui/camera.ui:425 data/resources/ui/camera.ui:516
-msgid "Recording Mode"
-msgstr "Жазу режимі"
-
-#: data/resources/ui/camera.ui:236 data/resources/ui/camera.ui:270
-#: data/resources/ui/camera.ui:373 data/resources/ui/camera.ui:545
-#: data/resources/ui/camera.ui:606
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
 msgid "Countdown"
 msgstr "Кері санау"
 
-#: data/resources/ui/camera.ui:593
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Сурет режимі"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Жазу режимі"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR кодтарын сканерлеу режимі"
+
+#: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
 msgstr "Камераға рұқсат жоқ болып тұр"
 
-#: data/resources/ui/camera.ui:594
+#: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
 msgstr "Баптауларда камераны қолдануға рұқсат беріңіз"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:609
+#: data/resources/ui/camera.ui:570
 msgid "None"
 msgstr "Ешнәрсе"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:614
+#: data/resources/ui/camera.ui:575
 msgid "3s"
 msgstr "3с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:619
+#: data/resources/ui/camera.ui:580
 msgid "5s"
 msgstr "5с"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:624
+#: data/resources/ui/camera.ui:585
 msgid "10s"
 msgstr "10с"
 
-#: data/resources/ui/camera.ui:632
+#: data/resources/ui/camera.ui:593
 msgid "_Preferences"
 msgstr "Ба_птаулар"
 
-#: data/resources/ui/camera.ui:636
+#: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
 msgstr "_Пернетақта жарлықтары"
 
-#: data/resources/ui/camera.ui:640
+#: data/resources/ui/camera.ui:601
 msgid "_About Camera"
 msgstr "Камера тур_алы"
 
@@ -203,8 +204,8 @@ msgid "Open Gallery"
 msgstr "Галереяны ашу"
 
 #. Set a fallback tooltip
-#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
-#: src/widgets/shutter_button.rs:119
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
 msgid "Take Picture"
 msgstr "Фотоны түсіру"
 
@@ -217,19 +218,19 @@ msgctxt "Switch between front and back camera button"
 msgid "Switch Camera"
 msgstr "Камераны ауыстыру"
 
-#: data/resources/ui/gallery.ui:46
+#: data/resources/ui/gallery.ui:24
 msgid "Gallery Menu"
 msgstr "Галерея мәзірі"
 
-#: data/resources/ui/gallery.ui:75
+#: data/resources/ui/gallery.ui:53
 msgid "Next Image"
 msgstr "Келесі сурет"
 
-#: data/resources/ui/gallery.ui:89
+#: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
 msgstr "Алдыңғы сурет"
 
-#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:113
+#: data/resources/ui/gallery.ui:81
 msgid "Open in Image Viewer"
 msgstr "Суреттерді көрсетушісінде ашу"
 
@@ -254,79 +255,121 @@ msgstr "Видеоны жазу"
 msgid "_Record Audio"
 msgstr "Аудионы жа_зу"
 
-#: data/resources/ui/shortcuts.ui:11
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Эксперименталды"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"Кейбір графикалық драйверлер жүйенің тұрақсыздығына немесе істен шығуына "
+"себеп болуы мүмкін. Мұндай жағдайларда жүйені қайта жүктеп, опцияны "
+"өшіріңіз."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "Құр_ылғылық видеоны кодтау"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Код анықталды"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Мазмұны"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Алмасу буферіне көшіру"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Сілтемені ашу"
+
+#: data/resources/ui/shortcuts.ui:6
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Жалпы"
 
-#: data/resources/ui/shortcuts.ui:14
+#: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Пернетақта жарлықтарын көрсету"
 
-#: data/resources/ui/shortcuts.ui:20
+#: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
 msgid "Main Menu"
 msgstr "Басты мәзір"
 
-#: data/resources/ui/shortcuts.ui:26
+#: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Баптауларды ашу"
 
-#: data/resources/ui/shortcuts.ui:32
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Терезені жабу"
+
+#: data/resources/ui/shortcuts.ui:33
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Шығу"
 
-#: data/resources/ui/shortcuts.ui:40
+#: data/resources/ui/shortcuts.ui:41
 msgctxt "shortcut window"
 msgid "Camera"
 msgstr "Камера"
 
-#: data/resources/ui/shortcuts.ui:43
+#: data/resources/ui/shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Picture Mode"
 msgstr "Сурет режимі"
 
-#: data/resources/ui/shortcuts.ui:49
+#: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
 msgstr "Жазу режимі"
 
-#: data/resources/ui/shortcuts.ui:55
+#: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
 msgstr "Фотоны түсіру немесе жазуды бастау"
 
-#: data/resources/ui/shortcuts.ui:61
+#: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
 msgstr "Құрастыру көмекшілерін көрсету/жасыру"
 
-#: data/resources/ui/shortcuts.ui:69
+#: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
 msgstr "Галерея"
 
-#: data/resources/ui/shortcuts.ui:72
+#: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
 msgstr "Галереяны ашу/жабу"
 
-#: data/resources/ui/shortcuts.ui:78
+#: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
 msgstr "Келесі"
 
-#: data/resources/ui/shortcuts.ui:84
+#: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
 msgstr "Алдыңғы"
 
-#: data/resources/ui/window.ui:23
+#: data/resources/ui/window.ui:21
 msgid "Gallery"
 msgstr "Галерея"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Жөндеу хабарламаларын іске қосу"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
@@ -336,77 +379,90 @@ msgstr "JPEG"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:23
+#: src/utils.rs:22
+#, rust-format
 msgid "Photo from {date}"
 msgstr "Фото, түсірілген күні {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
 #: src/utils.rs:28
+#, rust-format
 msgid "Photo {number}"
 msgstr "Фото {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:41
+#: src/utils.rs:42
+#, rust-format
 msgid "Recording from {date}"
 msgstr "Жазба, түсірілген күні {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:46
+#: src/utils.rs:48
+#, rust-format
 msgid "Recording {number}"
 msgstr "Жазба {number}"
 
-#: src/utils.rs:136
+#: src/utils.rs:139
 msgid "_Copy Picture"
 msgstr "Суретті _көшіру"
 
-#: src/utils.rs:138
+#: src/utils.rs:141
 msgid "_Copy Video"
 msgstr "Видеоны _көшіру"
 
-#: src/utils.rs:140
+#: src/utils.rs:143
 msgid "_Delete"
 msgstr "Ө_шіру"
 
-#: src/widgets/camera.rs:541
+#: src/widgets/camera.rs:613
 msgid "Could not play camera stream"
 msgstr "Камера ағынын ойнату мүмкін емес"
 
-#: src/widgets/gallery.rs:115
-msgid "Open in Video Player"
-msgstr "Видео плеерінде ашу"
-
-#: src/widgets/gallery.rs:393
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
 msgstr "Алмасу буферіне көшірілді"
 
-#: src/widgets/gallery.rs:434
+#: src/widgets/gallery.rs:461
 msgid "Picture deleted"
 msgstr "Сурет өшірілді"
 
-#: src/widgets/gallery.rs:436
+#: src/widgets/gallery.rs:463
 msgid "Video deleted"
 msgstr "Видео өшірілді"
 
-#: src/widgets/shutter_button.rs:81
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Кодты сканерлеу"
+
+#: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
 msgstr "Жазуды бастау"
 
-#: src/widgets/shutter_button.rs:92
+#: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
 msgstr "Жазуды аяқтау"
 
-#: src/widgets/window.rs:104 src/widgets/window.rs:354
+#: src/widgets/window.rs:107
 msgid "Could not take picture"
 msgstr "Фото түсіру мүмкін емес"
 
-#: src/widgets/window.rs:108 src/widgets/window.rs:358
+#: src/widgets/window.rs:111
 msgid "Could not record video"
 msgstr "Видео түсіру мүмкін емес"
 
-#: src/widgets/window.rs:307
+#: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
+
+#~ msgid "Video format"
+#~ msgstr "Видео пішімі"
+
+#~ msgid "Whether to save videos as mp4 or webm"
+#~ msgstr "Видеоларды mp4 немесе webm ретінде сақтау керек пе"
+
+#~ msgid "Open in Video Player"
+#~ msgstr "Видео плеерінде ашу"
