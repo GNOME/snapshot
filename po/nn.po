@@ -1,0 +1,436 @@
+# Norwegian Nynorsk translation for snapshot.
+# Copyright (C) 2025 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# Sunniva Løvstad <damnedlies@turtle.garden>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot gnome-48\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2025-08-19 23:17+0000\n"
+"PO-Revision-Date: 2025-08-23 02:53+0200\n"
+"Last-Translator: Sunniva Løvstad <sunniva@turtle.garden>\n"
+"Language-Team: Norwegian Nynorsk <nn@li.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Tak bilete og videoar"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "bilete;kamera;video;kamera;webcam;snapshot;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+#: data/org.gnome.Snapshot.gschema.xml.in:18
+msgid "Default window width"
+msgstr "Standard vindaugabreidd"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+#: data/org.gnome.Snapshot.gschema.xml.in:23
+msgid "Default window height"
+msgstr "Standard vindaugahøgde"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:27
+msgid "Default window maximized behaviour"
+msgstr "Om vindauga skal vera maksimert som standard"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Play shutter sound"
+msgstr "Spill av lukkarljod"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:33
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Om lukkarljoden skal spelast når bilete vert tekne"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Show composition guidelines"
+msgstr "Syn komponeringsrutenett"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:38
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Om komponeringsrutenett skal synast når kameraet vert brukt"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "Enable audio recording"
+msgstr "Slå på audioopptak"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:43
+msgid "Whether to record audio when recording video"
+msgstr "Om audio skal takast opp når ein video vert spelt inn"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Countdown timer"
+msgstr "Nedteljingslengd"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:48
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Lengda på nedteljinga for å taka bilete, i sekund"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Capture mode"
+msgstr "Fangemodus"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:53
+msgid "Whether to take pictures or videos"
+msgstr "Om bilete eller videoar skal verta tekne"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Picture format"
+msgstr "Bileteformat"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:58
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Om bilete skal verta lagra som png eller jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:62
+msgid "Video format"
+msgstr "Videoformat"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:63
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Om videoar skal verta lagra som mp4 eller webm"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:67
+msgid "Last Camera Used ID"
+msgstr "IDet på sist brukt kamera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:68
+msgid "An ID representing the last used camera"
+msgstr "Eit ID som står for det sist brukte kameraet"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Tak bilete og videoar på datamaskina di, nettbrettet ditt eller mobilen din."
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Hovudgrensesnittet til Kamera"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Gallerisynaren til Kamera"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:223
+msgid "The GNOME Project"
+msgstr "GNOME-prosjektet"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "Hovudmeny"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "Inkje kamera funne"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "Kople til ei kameraeining"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "Nedteljing"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Biletemodus"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Videomodus"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "QR-kodeskanningmodus"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "Manglar kameraløyve"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "Tillat kamerabruk i Innstillingar"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "Ingen"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10s"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "_Innstillingar"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastatursnarvegar"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "_Om Kamera"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Opna galleri"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "Tak bilete"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Vel kamera"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Byt kamera"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Gallerimeny"
+
+#: data/resources/ui/gallery.ui:75
+msgid "Next Image"
+msgstr "Neste bilete"
+
+#: data/resources/ui/gallery.ui:89
+msgid "Previous Image"
+msgstr "Førre bilete"
+
+#: data/resources/ui/gallery.ui:103 src/widgets/gallery.rs:112
+msgid "Open in Image Viewer"
+msgstr "Opna i biletesynaren"
+
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "Ålment"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "_Lukkarljod"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "_Komponeringsrutenett"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Videoopptak"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "_Tak opp audio"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Kode gjenkjent"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Innhald"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Kopier til utklippstavla"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Opna lenkje"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ålment"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Syn tastatursnarvegar"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Hovudmeny"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Opna innstillingar"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Avslutt"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Biletemodus"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Videomodus"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Tak bilete eller start opptak av video"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Syn/gøym komponeringsrutenettet"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galleri"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Opna/lukk galleriet"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Neste"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Førre"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galleri"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Slå på debugmeldingar"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+msgid "Photo from {date}"
+msgstr "Foto frå {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+msgid "Photo {number}"
+msgstr "Foto {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+msgid "Recording from {date}"
+msgstr "Opptak frå {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+msgid "Recording {number}"
+msgstr "Opptak {number}"
+
+#: src/utils.rs:136
+msgid "_Copy Picture"
+msgstr "_Kopier bilete"
+
+#: src/utils.rs:138
+msgid "_Copy Video"
+msgstr "_Kopier video"
+
+#: src/utils.rs:140
+msgid "_Delete"
+msgstr "_Slett"
+
+#: src/widgets/camera.rs:599
+msgid "Could not play camera stream"
+msgstr "Klarte ikkje å spela inn kamerastraum"
+
+#: src/widgets/gallery.rs:114
+msgid "Open in Video Player"
+msgstr "Opna i videospelaren"
+
+#: src/widgets/gallery.rs:392
+msgid "Copied to clipboard"
+msgstr "Kopiert til utklippstavla"
+
+#: src/widgets/gallery.rs:433
+msgid "Picture deleted"
+msgstr "Bilete fjerna"
+
+#: src/widgets/gallery.rs:435
+msgid "Video deleted"
+msgstr "Video fjerna"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Skann kode"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "Start opptak"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "Avslutt opptak"
+
+#: src/widgets/window.rs:105 src/widgets/window.rs:346
+msgid "Could not take picture"
+msgstr "Klarte ikkje å taka bilete"
+
+#: src/widgets/window.rs:109 src/widgets/window.rs:350
+msgid "Could not record video"
+msgstr "Klarte ikkje å taka opp video"
+
+#: src/widgets/window.rs:301
+msgid "translator-credits"
+msgstr "Sunniva Løvstad <snapshot@turtle.garden>"
