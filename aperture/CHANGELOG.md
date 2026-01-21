@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.12.0-alpha - 2025-01-21
+
+### Changed
+- Add a property map for encoders to set a common target bitrate
+- Set msrv to 1.92
+- Update gstreamer-rs to 0.25.0-alpha
+
 ## 0.11.0 - 2025-08-09
 
 ### Changed
