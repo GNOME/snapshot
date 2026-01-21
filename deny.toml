@@ -4,6 +4,8 @@ yanked = "deny"
 # A list of advisory IDs to ignore. Note that ignored advisories will still
 # output a note when they are encountered.
 ignore = [
+    # Until rqrr has a release with newer lru
+    "RUSTSEC-2026-0002",
 ]
 
 [licenses]
