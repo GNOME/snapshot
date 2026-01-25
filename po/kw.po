@@ -1,0 +1,465 @@
+# Cornish translation for snapshot.
+# Copyright (C) 2026 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Flynn Peck <cirilla@tuta.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2026-01-03 21:43+0000\n"
+"PO-Revision-Date: 2026-01-25 17:15+0000\n"
+"Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
+"Language-Team: kw\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/snapshot\n"
+"X-DL-Lang: kw\n"
+"X-DL-Module: snapshot\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:23
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Kemeres skeusennow ha gwydhyowyow"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "aven;skeusennow;kamera;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:14
+#: data/org.gnome.Snapshot.gschema.xml.in:15
+msgid "Default window width"
+msgstr "Lester fenester defowt"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:19
+#: data/org.gnome.Snapshot.gschema.xml.in:20
+msgid "Default window height"
+msgstr "Ughelder fenester defowt"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:24
+msgid "Default window maximized behaviour"
+msgstr "Fara fenester kowlvoghhys defowt"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:29
+msgid "Play shutter sound"
+msgstr "Gwari sownd shutter"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:30
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr "Mar gwari unn sownd shutter pan ow kemeres skeusennow"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:34
+msgid "Show composition guidelines"
+msgstr "Diskwedhes gidys komposyans"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:35
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Mar diskwedhes gidys komposyans pan ow devnydhya an kamera"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:39
+msgid "Enable audio recording"
+msgstr "Gallosegi ow rekordya son"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:40
+msgid "Whether to record audio when recording video"
+msgstr "Mar rekordya son pan ow rekordya gwydhyow"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:44
+msgid "Enable hardware recording"
+msgstr "Gallosegi rekordyans kalesweyth"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:45
+msgid "Whether to record video using hardware encoding"
+msgstr "Mar rekordya gwydhyowyow ow devnydhya kodennyans kalesweyth"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:49
+msgid "Countdown timer"
+msgstr "Termynador"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:50
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "An termyn an termynador rag ow kemeres skeusennow, yn eylennow"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:54
+msgid "Capture mode"
+msgstr "Fordh rekordyans"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:55
+msgid "Whether to take pictures or videos"
+msgstr "Kemeres po skeusennow po gwydhyowyow"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:59
+msgid "Picture format"
+msgstr "Furvas skeusennow"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:60
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Mar sawya skeusennow avel pong po jpeg"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:64
+msgid "Last Camera Used ID"
+msgstr "ID Kamera Devnydhys Diwettha"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:65
+msgid "An ID representing the last used camera"
+msgstr "Unn ID ow representya an kamera devnydhys diwettha"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr ""
+"Kemeres skeusennow ha gwydhyowyow war dha amontyell, leghen, po kellgowser."
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "An ynterfas chif Kamera"
+
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "An gweler mirva Kamera"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:251
+msgid "The GNOME Project"
+msgstr "An Ragdres GNOME"
+
+#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
+#: data/resources/ui/camera.ui:545
+msgid "Main Menu"
+msgstr "Rol Chif"
+
+#: data/resources/ui/camera.ui:84
+msgid "No Camera Found"
+msgstr "Kamera Kavosys Vyth"
+
+#: data/resources/ui/camera.ui:85
+msgid "Connect a camera device"
+msgstr "Junya unn devis kamera"
+
+#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+msgid "Countdown"
+msgstr "Termynador"
+
+#: data/resources/ui/camera.ui:164
+msgid "Picture Mode"
+msgstr "Fordh Skeusennow"
+
+#: data/resources/ui/camera.ui:170
+msgid "Recording Mode"
+msgstr "Fordh Gwydhyowyow"
+
+#: data/resources/ui/camera.ui:177
+msgid "QR Code Scanning Mode"
+msgstr "Fordh Arhwilyans QR-Kod"
+
+#: data/resources/ui/camera.ui:554
+msgid "Missing Camera Permission"
+msgstr "Gront Kamera Fyllel"
+
+#: data/resources/ui/camera.ui:555
+msgid "Allow camera usage in Settings"
+msgstr "Gasa usadow kamera yn Settyansow"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:570
+msgid "None"
+msgstr "Vyth"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:575
+msgid "3s"
+msgstr "3e"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:580
+msgid "5s"
+msgstr "5e"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "10s"
+msgstr "10e"
+
+#: data/resources/ui/camera.ui:593
+msgid "_Preferences"
+msgstr "_Settyansow"
+
+#: data/resources/ui/camera.ui:597
+msgid "_Keyboard Shortcuts"
+msgstr "_Kesunyansow Bysowek"
+
+#: data/resources/ui/camera.ui:601
+msgid "_About Camera"
+msgstr "_A-dro Kamera"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Ygeri Mirva"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:71
+#: src/widgets/shutter_button.rs:120
+msgid "Take Picture"
+msgstr "Kemeres Skeusen"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Dewis Kamera"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Skwychella Kamera"
+
+#: data/resources/ui/gallery.ui:24
+msgid "Gallery Menu"
+msgstr "Rol Mirva"
+
+#: data/resources/ui/gallery.ui:53
+msgid "Next Image"
+msgstr "Skeusen Nessa"
+
+#: data/resources/ui/gallery.ui:67
+msgid "Previous Image"
+msgstr "Skeusen Kyns"
+
+#: data/resources/ui/gallery.ui:81
+msgid "Open in Image Viewer"
+msgstr "Ygeri yn Gweler Aven"
+
+#: data/resources/ui/preferences_window.ui:7
+#: data/resources/ui/preferences_window.ui:11
+msgid "General"
+msgstr "Ollgemmyn"
+
+#: data/resources/ui/preferences_window.ui:14
+msgid "_Shutter Sound"
+msgstr "_Sownd Shutter"
+
+#: data/resources/ui/preferences_window.ui:21
+msgid "_Composition Guidelines"
+msgstr "Gid _Komposyans"
+
+#: data/resources/ui/preferences_window.ui:30
+msgid "Video Recording"
+msgstr "Rekordyans Gwydhyow"
+
+#: data/resources/ui/preferences_window.ui:33
+msgid "_Record Audio"
+msgstr "_Rekordya Son"
+
+#: data/resources/ui/preferences_window.ui:42
+msgid "Experimental"
+msgstr "Arbrovel"
+
+#: data/resources/ui/preferences_window.ui:43
+msgid ""
+"Some graphic drivers may cause the system to be unstable or crash. In these "
+"cases, reboot the system and disable the option."
+msgstr ""
+"Nebes lewyoryon grafek cawsya martesen an system bos diantel po kesvonkya.Yn "
+"an kasys ma, dastalleth an system hag ungallosegi an dewis."
+
+#: data/resources/ui/preferences_window.ui:46
+msgid "_Hardware Video Encoding"
+msgstr "_Kodennyans Kalesweyth Gwydhyow"
+
+#: data/resources/ui/qr_bottom_sheet.ui:10
+msgid "Code Detected"
+msgstr "Kod Helerghys"
+
+#: data/resources/ui/qr_bottom_sheet.ui:13
+msgid "Contents"
+msgstr "Dalgh"
+
+#: data/resources/ui/qr_bottom_sheet.ui:22
+msgid "Copy to Clipboard"
+msgstr "Kopia war Astel Glypp"
+
+#: data/resources/ui/qr_bottom_sheet.ui:34
+msgid "Open Link"
+msgstr "Ygeri Gorgevren"
+
+#: data/resources/ui/shortcuts.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ollgemmyn"
+
+#: data/resources/ui/shortcuts.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Diskwedhes Kesunyansow Bysowek"
+
+#: data/resources/ui/shortcuts.ui:15
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Rol Chif"
+
+#: data/resources/ui/shortcuts.ui:21
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Ygeri Settyansow"
+
+#: data/resources/ui/shortcuts.ui:27
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Degea Fenester"
+
+#: data/resources/ui/shortcuts.ui:33
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Kwytya"
+
+#: data/resources/ui/shortcuts.ui:41
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:44
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Fordh Skeusennow"
+
+#: data/resources/ui/shortcuts.ui:50
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Fordh Gwydhyowyow"
+
+#: data/resources/ui/shortcuts.ui:56
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Kemeres Skeusen po Dalleth Rekordyans"
+
+#: data/resources/ui/shortcuts.ui:62
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Diskwedhes/Kudha Gidys Komposyans"
+
+#: data/resources/ui/shortcuts.ui:70
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Mirva"
+
+#: data/resources/ui/shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Ygeri/Degea Mirva"
+
+#: data/resources/ui/shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Nessa"
+
+#: data/resources/ui/shortcuts.ui:85
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Kyns"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Mirva"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Gallosegi messajys prevessyans"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:22
+#, rust-format
+msgid "Photo from {date}"
+msgstr "Skeusen a-dhia {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+#, rust-format
+msgid "Photo {number}"
+msgstr "Skeusen {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:42
+#, rust-format
+msgid "Recording from {date}"
+msgstr "Rekordyans a-dhia {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:48
+#, rust-format
+msgid "Recording {number}"
+msgstr "Rekordyans {number}"
+
+#: src/utils.rs:139
+msgid "_Copy Picture"
+msgstr "_Kopia Skeusen"
+
+#: src/utils.rs:141
+msgid "_Copy Video"
+msgstr "_Kopia Gwydhyow"
+
+#: src/utils.rs:143
+msgid "_Delete"
+msgstr "_Dilea"
+
+#: src/widgets/camera.rs:613
+msgid "Could not play camera stream"
+msgstr "Y fyllis gwari strem kamera"
+
+#: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
+msgid "Copied to clipboard"
+msgstr "Kopys war astel glypp"
+
+#: src/widgets/gallery.rs:461
+msgid "Picture deleted"
+msgstr "Skeusen dileys"
+
+#: src/widgets/gallery.rs:463
+msgid "Video deleted"
+msgstr "Gwydhyow dileys"
+
+#: src/widgets/qr_screen_bin.rs:50
+msgid "Scan Code"
+msgstr "Arhwilas Kod"
+
+#: src/widgets/shutter_button.rs:82
+msgid "Start Recording"
+msgstr "Dalleth Rekordyans"
+
+#: src/widgets/shutter_button.rs:93
+msgid "Stop Recording"
+msgstr "Astel Rekordyans"
+
+#: src/widgets/window.rs:107
+msgid "Could not take picture"
+msgstr "Y fyllis kemeres an skeusen"
+
+#: src/widgets/window.rs:111
+msgid "Could not record video"
+msgstr "Y fyllis rekordya gwydhyow"
+
+#: src/widgets/window.rs:314
+msgid "translator-credits"
+msgstr "Flynn"
