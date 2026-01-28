@@ -315,6 +315,13 @@ mod imp {
                 .expect("Missing GStreamer Base Plug-ins");
             camerabin.set_property("video-filter", &videoconvert_video);
 
+            let caps_video = gst_video::video_make_raw_caps(&[
+                gst_video::VideoFormat::I420,
+                gst_video::VideoFormat::Nv12,
+            ])
+            .build();
+            camerabin.set_property("video-capture-caps", caps_video);
+
             let videoconvert_image = gst::ElementFactory::make("videoconvert")
                 .build()
                 .expect("Missing GStreamer Base Plug-ins");
