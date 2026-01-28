@@ -920,7 +920,7 @@ impl Viewfinder {
             )
             .item(
                 ElementPropertiesMapItem::builder("openh264enc")
-                    .field("bitrate", DEFAULT_BITRATE)
+                    .field("bitrate", DEFAULT_BITRATE * 1024)
                     .build(),
             )
             .item(
