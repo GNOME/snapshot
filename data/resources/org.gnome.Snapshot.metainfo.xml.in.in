@@ -30,6 +30,15 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="50.beta" date="2026-01-31" type="development">
+      <description>
+        <p>Snapshot 50.beta release</p>
+        <ul>
+          <li>Update to gtk4-rs 0.11.0-alpha</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="50.alpha" date="2026-01-03" type="development">
       <description>
         <p>Snapshot 50.alpha release</p>
