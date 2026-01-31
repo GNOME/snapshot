@@ -38,7 +38,7 @@ ashpd = { version = "0.13.0-alpha", default-features = false, features = ["gtk4_
 formatx = "0.2.4"
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { package = "libglycin-rebind", version = "0.1.0-alpha" }
+glycin = { package = "libglycin-rebind", version = "0.1.0-beta" }
 glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.1.0-alpha" }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }

@@ -1132,9 +1132,9 @@ dependencies = [
 
 [[package]]
 name = "libglycin-rebind"
-version = "0.1.0-alpha.3"
+version = "0.1.0-beta"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d812877ba3cdbbf1964cab1f16e6754646f258f2b27052bdb8e43a8300d5925"
+checksum = "ec155ab00baf45d1e63f97331d2e6c755d64d9ce36750cbe9b7ea9ee6db50da3"
 dependencies = [
  "gio",
  "glib",
