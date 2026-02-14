@@ -1,5 +1,5 @@
 aperture_cargo_options = [ '--manifest-path', meson.project_source_root() / 'aperture' / 'Cargo.toml' ]
-aperture_cargo_options += [ '--target-dir', meson.project_build_root() / 'aperture' / 'src' ]
+aperture_cargo_options += cargo_release_options
 
 test (
   'Cargo clippy - aperture',

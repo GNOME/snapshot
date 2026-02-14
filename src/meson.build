@@ -24,23 +24,13 @@ run_command(
   check: true
 )
 
-cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
-cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
-
-if is_devel
-  rust_target = 'debug'
-  message('Building in debug mode')
-else
-  cargo_options += [ '--release' ]
-  rust_target = 'release'
-  message('Building in release mode')
-endif
+cargo_build_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
 
 if gtk4_x11.found()
-  cargo_options += [ '--features', 'x11' ]
+  cargo_build_options += [ '--features', 'x11' ]
 endif
 
-cargo_env = [ 'CARGO_HOME=' + meson.project_build_root() / 'cargo-home' ]
+cargo_build_options += cargo_release_options
 
 cargo_build = custom_target(
   'cargo-build',
@@ -55,8 +45,8 @@ cargo_build = custom_target(
     'env',
     cargo_env,
     cargo, 'build',
-    cargo_options,
+    cargo_build_options,
     '&&',
-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
+    'cp', 'cargo-target' / rust_target / meson.project_name(), '@OUTPUT@',
   ]
 )
