@@ -111,6 +111,22 @@ subdir('src')
 subdir('aperture')
 
 test (
+  'cargo-test',
+  cargo,
+  args: [
+    'test',
+    cargo_release_options,
+    '--all-targets',
+    '--all-features',
+    '--workspace',
+  ],
+  env: [
+    cargo_env,
+  ],
+  timeout: 400,
+)
+
+test (
   'cargo-clippy',
   cargo,
   args: [
