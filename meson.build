@@ -48,6 +48,8 @@ gettext_package = meson.project_name()
 is_devel = get_option('profile') == 'development'
 
 if is_devel
+  message('Building in debug mode')
+
   profile = 'Devel'
   vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD', check: false).stdout().strip()
   if vcs_tag == ''
@@ -56,11 +58,25 @@ if is_devel
     version_suffix = '-@0@'.format(vcs_tag)
   endif
   application_id = '@0@.@1@'.format(base_id, profile)
+
+  rust_target = 'debug'
+  cargo_release_options = []
 else
+  message('Building in release mode')
+
   profile = ''
   version_suffix = ''
   application_id = base_id
+
+  rust_target = 'release'
+  cargo_release_options = [ '--release' ]
 endif
+
+cargo_env = [
+  'CARGO_HOME=' + meson.project_build_root() / 'cargo-home',
+  'CARGO_TARGET_DIR=' + meson.project_build_root() / 'cargo-target',
+]
+meson.add_devenv(cargo_env)
 
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
