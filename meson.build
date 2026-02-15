@@ -61,6 +61,11 @@ if is_devel
 
   rust_target = 'debug'
   cargo_release_options = []
+  clippy_deny_warnings = [
+    '--',
+    '--deny',
+    'warnings',
+  ]
 else
   message('Building in release mode')
 
@@ -70,6 +75,7 @@ else
 
   rust_target = 'release'
   cargo_release_options = [ '--release' ]
+  clippy_deny_warnings = []
 endif
 
 cargo_env = [
@@ -90,10 +96,32 @@ if is_devel
   run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: false)
 endif
 
+clippy_options = []
+clippy_options += cargo_release_options
+clippy_options += [
+  '--all-targets',
+  '--all-features',
+  '--workspace',
+]
+clippy_options += clippy_deny_warnings
+
 subdir('data')
 subdir('po')
 subdir('src')
 subdir('aperture')
+
+test (
+  'cargo-clippy',
+  cargo,
+  args: [
+    'clippy',
+    clippy_options,
+  ],
+  env: [
+    cargo_env,
+  ],
+  timeout: 400, # cargo might take a bit of time sometimes
+)
 
 gnome.post_install(
   gtk_update_icon_cache: true,
