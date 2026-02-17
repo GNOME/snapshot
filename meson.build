@@ -78,16 +78,19 @@ else
   clippy_deny_warnings = []
 endif
 
-cargo_env = [
-  'CARGO_HOME=' + meson.project_build_root() / 'cargo-home',
-  'CARGO_TARGET_DIR=' + meson.project_build_root() / 'cargo-target',
-]
+cargo_home = meson.project_build_root() / 'cargo-home'
+cargo_target = meson.project_build_root() / 'cargo-target'
+cargo_env = environment()
+cargo_env.set('CARGO_HOME', cargo_home)
+cargo_env.set('CARGO_TARGET_DIR', cargo_target)
+
 meson.add_devenv(cargo_env)
 
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
   meson.project_build_root() / 'meson-dist' / meson.project_name() + '-' + version,
-  meson.project_source_root()
+  meson.project_source_root(),
+  cargo_home,
 )
 
 if is_devel
@@ -120,9 +123,7 @@ test (
     '--all-features',
     '--workspace',
   ],
-  env: [
-    cargo_env,
-  ],
+  env: cargo_env,
   timeout: 400,
 )
 
@@ -133,9 +134,7 @@ test (
     'clippy',
     clippy_options,
   ],
-  env: [
-    cargo_env,
-  ],
+  env: cargo_env,
   timeout: 400, # cargo might take a bit of time sometimes
 )
 
