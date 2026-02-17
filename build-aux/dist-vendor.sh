@@ -4,6 +4,7 @@
 set -eu
 export DIST="$1"
 export SOURCE_ROOT="$2"
+export CARGO_HOME="$3"
 
 cd "$SOURCE_ROOT"
 mkdir "$DIST"/.cargo
