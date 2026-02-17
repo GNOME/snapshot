@@ -41,10 +41,10 @@ cargo_build = custom_target(
   install: true,
   install_dir: bindir,
   depends: resources,
+  env: cargo_env,
   command: [
-    'env',
-    cargo_env,
-    cargo, 'build',
+    cargo, 
+    'build',
     cargo_build_options,
     '&&',
     'cp', 'cargo-target' / rust_target / meson.project_name(), '@OUTPUT@',
