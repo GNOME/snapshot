@@ -89,6 +89,7 @@ meson.add_devenv(cargo_env)
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
   cargo_home,
+  cargo_target,
 )
 
 if is_devel

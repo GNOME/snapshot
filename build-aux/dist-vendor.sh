@@ -3,6 +3,7 @@
 # "/bin/sh .../dist-vendor.sh ARG" we can't rely on bash features
 set -eu
 export CARGO_HOME="$1"
+export CARGO_TARGET_DIR="$2"
 
 cd "$MESON_SOURCE_ROOT"
 mkdir "$MESON_PROJECT_DIST_ROOT"/.cargo
