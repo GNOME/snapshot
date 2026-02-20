@@ -88,8 +88,6 @@ meson.add_devenv(cargo_env)
 
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
-  meson.project_build_root() / 'meson-dist' / meson.project_name() + '-' + version,
-  meson.project_source_root(),
   cargo_home,
 )
 
