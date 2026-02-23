@@ -1,15 +1,15 @@
 # Bulgarian translation of snapshot po-file.
 # Copyright (C) 2024 twlvnn kraftwerk <kraft_werk@tutanota.com>.
-# Copyright (C) 2024 Alexander Shopov <ash@kambanaria.org>.
+# Copyright (C) 2024, 2026 Alexander Shopov <ash@kambanaria.org>.
 # This file is distributed under the same license as the snapshot package.
 # twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
-# Alexander Shopov <ash@kambanaria.org>, 2024.
+# Alexander Shopov <ash@kambanaria.org>, 2024, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-09-18 21:39+0000\n"
-"PO-Revision-Date: 2025-09-20 16:37+0200\n"
+"POT-Creation-Date: 2026-01-31 15:53+0000\n"
+"PO-Revision-Date: 2026-02-23 16:09+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
-#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:23
 msgid "Camera"
 msgstr "Камера"
 
@@ -76,11 +76,11 @@ msgstr "Дали да се записва и аудио при видео зап
 
 #: data/org.gnome.Snapshot.gschema.xml.in:44
 msgid "Enable hardware recording"
-msgstr "Включване на хардуерно записване"
+msgstr "Хардуерно ускорен запис"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:45
 msgid "Whether to record video using hardware encoding"
-msgstr "Дали да записвате видео с хардуерно кодиране"
+msgstr "Дали за записа да се ползва ускорение чрез хардуерно кодиране"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
@@ -127,7 +127,7 @@ msgid "Camera's gallery viewer"
 msgstr "Галерия на камерата"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:242
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:260
 msgid "The GNOME Project"
 msgstr "Проектът GNOME"
 
@@ -231,7 +231,7 @@ msgstr "Следващо изображение"
 msgid "Previous Image"
 msgstr "Предишно изображение"
 
-#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
+#: data/resources/ui/gallery.ui:81
 msgid "Open in Image Viewer"
 msgstr "Отваряне в програма за преглед на изображения"
 
@@ -264,13 +264,11 @@ msgstr "Експериментално"
 msgid ""
 "Some graphic drivers may cause the system to be unstable or crash. In these "
 "cases, reboot the system and disable the option."
-msgstr ""
-"Някои графични драйвери могат да причинят нестабилност или срив на "
-"системата. В такива случаи рестартирайте системата и деактивирайте опцията."
+msgstr "Някои графични драйвери може да доведат до причинят нестабилност или срив на системата. В такива случаи рестартирайте системата и деактивирайте опцията."
 
 #: data/resources/ui/preferences_window.ui:46
 msgid "_Hardware Video Encoding"
-msgstr "_Хардуерно видео кодиране"
+msgstr "_Хардуерно ускорено видео кодиране"
 
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
@@ -367,60 +365,60 @@ msgstr "Предишно"
 msgid "Gallery"
 msgstr "Галерия"
 
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Включване на съобщенията за отстраняване на грешки"
+
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
 #: src/enums.rs:27
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/application.rs:34
-msgid "Enable debug messages"
-msgstr "Включване на съобщенията за отстраняване на грешки"
-
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:23
+#: src/utils.rs:22
+#, rust-format
 msgid "Photo from {date}"
 msgstr "Снимка от {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
 #: src/utils.rs:28
+#, rust-format
 msgid "Photo {number}"
 msgstr "Снимка {number}"
 
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:41
+#: src/utils.rs:42
+#, rust-format
 msgid "Recording from {date}"
 msgstr "Запис от {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:46
+#: src/utils.rs:48
+#, rust-format
 msgid "Recording {number}"
 msgstr "Запис {number}"
 
-#: src/utils.rs:136
+#: src/utils.rs:139
 msgid "_Copy Picture"
 msgstr "_Копиране на снимката"
 
-#: src/utils.rs:138
+#: src/utils.rs:141
 msgid "_Copy Video"
 msgstr "_Копиране на видеото"
 
-#: src/utils.rs:140
+#: src/utils.rs:143
 msgid "_Delete"
 msgstr "_Изтриване"
 
-#: src/widgets/camera.rs:607
+#: src/widgets/camera.rs:613
 msgid "Could not play camera stream"
 msgstr "Камерата не може да се пусне"
-
-#: src/widgets/gallery.rs:141
-msgid "Open in Video Player"
-msgstr "Отваряне във видео плеър"
 
 #: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
@@ -446,22 +444,19 @@ msgstr "Начало на запис"
 msgid "Stop Recording"
 msgstr "Край на запис"
 
-#: src/widgets/window.rs:107 src/widgets/window.rs:363
+#: src/widgets/window.rs:107
 msgid "Could not take picture"
 msgstr "Снимката не може да бъде запазена"
 
-#: src/widgets/window.rs:111 src/widgets/window.rs:367
+#: src/widgets/window.rs:111
 msgid "Could not record video"
 msgstr "Видеото не може да бъде запазено"
 
 #: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr ""
-"twlvnn &lt;<a href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</"
-"a>&gt;"
-
-#~ msgid "Video format"
-#~ msgstr "Формат на видеото"
-
-#~ msgid "Whether to save videos as mp4 or webm"
-#~ msgstr "Дали видео клиповете да се запазват като mp4 или webm"
+"Twlvnn Kraftwerk &lt;<a href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</a>&gt;\n"
+"\n"
+"Проектът за превод на GNOME има нужда от подкрепа.\n"
+"Научете повече за нас на <a href='https://fsa-bg.org/project/gtp'>уеб сайта</a> ни.\n"
+"Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/newticket'>съответния раздел</a>."
