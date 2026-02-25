@@ -37,6 +37,7 @@ pub use viewfinder::Viewfinder;
 
 pub(crate) static APP_ID: OnceLock<&'static str> = OnceLock::new();
 pub(crate) const SUPPORTED_ENCODINGS: [&str; 2] = ["video/x-raw", "image/jpeg"];
+pub(crate) const PREFERRED_FORMATS: [&str; 5] = ["I420", "BGRx", "RGBx", "xBGR", "xRGB"];
 /// The maximum framerate, in frames per second.
 pub(crate) const MAXIMUM_RATE: i32 = 30;
 

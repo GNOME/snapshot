@@ -115,6 +115,22 @@ pub(crate) mod caps {
         }
     }
 
+    fn sort_caps_for_preferred_formats(caps: gst::Caps) -> gst::Caps {
+        let preferred_format_caps = crate::PREFERRED_FORMATS
+            .iter()
+            .map(|format| {
+                gst::Caps::builder("video/x-raw")
+                    .field("format", *format)
+                    .build()
+            })
+            .collect::<gst::Caps>();
+
+        let mut sorted_caps =
+            preferred_format_caps.intersect_with_mode(&caps, gst::CapsIntersectMode::First);
+        sorted_caps.merge(caps);
+        sorted_caps
+    }
+
     fn framerate_from_structure(structure: &gst::StructureRef) -> Option<gst::Fraction> {
         // TODO Handle gst::List and gst::Array
         if let Ok(framerate) = structure.get::<gst::Fraction>("framerate") {
@@ -144,7 +160,8 @@ pub(crate) mod caps {
         caps.iter().for_each(|s| {
             if let Some(framerate) = framerate_from_structure(s) {
                 let best = best_resolution_for_fps(&caps, framerate);
-                best_caps.merge(best);
+                let best_sorted = sort_caps_for_preferred_formats(best);
+                best_caps.merge(best_sorted);
             }
         });
 
