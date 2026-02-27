@@ -30,6 +30,18 @@
   <url type="contact">https://matrix.to/#/#snapshot:gnome.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="50.rc" date="2026-02-27" type="development">
+      <description>
+        <p>Snapshot 50.rc release</p>
+        <ul>
+          <li>Prefer caps with more desirable formats</li>
+          <li>Fix bitrate for openh264enc</li>
+          <li>Set video/image caps to I420 and VN12</li>
+          <li>Update gtk4-rs to 0.11</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="50.beta" date="2026-01-31" type="development">
       <description>
         <p>Snapshot 50.beta release</p>
