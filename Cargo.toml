@@ -10,11 +10,11 @@ authors = ["The GNOME Project"]
 [workspace.dependencies]
 log = "0.4"
 futures-channel = "0.3.30"
-gst = { package = "gstreamer", version = "0.25.0-alpha" , features = ["v1_20"] }
-gst-base = { package = "gstreamer-base", version = "0.25.0-alpha" }
-gst-pbutils = { package = "gstreamer-pbutils", version = "0.25.0-alpha", features = ["v1_20"] }
-gst-video = { package = "gstreamer-video", version = "0.25.0-alpha" }
-gtk = { package = "gtk4", version = "0.11.0-alpha", features = ["gnome_46", "v4_18"] }
+gst = { package = "gstreamer", version = "0.25.0" , features = ["v1_20"] }
+gst-base = { package = "gstreamer-base", version = "0.25.0" }
+gst-pbutils = { package = "gstreamer-pbutils", version = "0.25.0", features = ["v1_20"] }
+gst-video = { package = "gstreamer-video", version = "0.25.0" }
+gtk = { package = "gtk4", version = "0.11.0", features = ["gnome_46", "v4_18"] }
 
 [package]
 name = "snapshot"
@@ -32,14 +32,14 @@ x11 = ["ashpd/gtk4_x11"]
 lto = true
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.9.0-alpha", features = ["v1_8"] }
+adw = { package = "libadwaita", version = "0.9.0", features = ["v1_8"] }
 anyhow = "1.0"
-ashpd = { version = "0.13.0-alpha", default-features = false, features = ["gtk4_wayland", "tracing", "async-io", "camera"] }
+ashpd = { version = "0.13.0", default-features = false, features = ["gtk4_wayland", "tracing", "async-io", "camera"] }
 formatx = "0.2.4"
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { package = "libglycin-rebind", version = "0.1.0-beta" }
-glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.1.0-alpha" }
+glycin = { package = "libglycin-rebind", version = "0.1.0-rc" }
+glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.1.0-rc" }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }

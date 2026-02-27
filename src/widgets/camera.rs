@@ -663,7 +663,7 @@ impl Camera {
 async fn stream() -> anyhow::Result<OwnedFd> {
     let proxy = camera::Camera::new().await?;
     proxy
-        .request_access()
+        .request_access(camera::CameraAccessOptions::default())
         .await
         .context("org.freedesktop.portal.Camera.AccessCamera failed")?;
     let is_present = proxy
@@ -673,7 +673,7 @@ async fn stream() -> anyhow::Result<OwnedFd> {
     log::debug!("org.freedesktop.portal.Camera:IsCameraPresent: {is_present}");
 
     proxy
-        .open_pipe_wire_remote()
+        .open_pipe_wire_remote(camera::OpenPipeWireRemoteOptions::default())
         .await
         .context("org.freedesktop.portal.Camera.OpenPipeWireRemote")
 }
