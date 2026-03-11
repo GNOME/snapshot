@@ -1,3 +1,6 @@
+## 50.0 - 2026-03-11
+- Updated translations
+
 ## 50.rc - 2026-02-27
 - Prefer caps with more desirable formats
 - Run tests as part of meson test
