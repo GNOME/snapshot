@@ -193,6 +193,7 @@ mod imp {
                             log::debug!("Detected QR code: {code}");
                             obj.imp().bottom_sheet.set_open(true);
                             obj.imp().qr_bottom_sheet.set_contents(code);
+                            obj.imp().bottom_sheet.grab_focus();
                         }
                         Err(err) => {
                             log::error!("Could not decode QR code into utf8: {err}");
