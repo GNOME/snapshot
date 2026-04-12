@@ -74,7 +74,7 @@ else
   application_id = base_id
 
   rust_target = 'release'
-  cargo_release_options = [ '--release' ]
+  cargo_release_options = ['--release']
   clippy_deny_warnings = []
 endif
 
@@ -95,7 +95,13 @@ meson.add_dist_script(
 if is_devel
   # Setup pre-commit hook for ensuring coding style is always consistent
   message('Setting up git pre-commit hook..')
-  run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: false)
+  run_command(
+    'cp',
+    '-f',
+    'hooks/pre-commit.hook',
+    '.git/hooks/pre-commit',
+    check: false,
+  )
 endif
 
 clippy_options = []
@@ -112,7 +118,7 @@ subdir('po')
 subdir('src')
 subdir('aperture')
 
-test (
+test(
   'cargo-test',
   cargo,
   args: [
@@ -126,7 +132,7 @@ test (
   timeout: 400,
 )
 
-test (
+test(
   'cargo-clippy',
   cargo,
   args: [
@@ -134,7 +140,7 @@ test (
     clippy_options,
   ],
   env: cargo_env,
-  timeout: 400, # cargo might take a bit of time sometimes
+  timeout: 400,  # cargo might take a bit of time sometimes
 )
 
 gnome.post_install(

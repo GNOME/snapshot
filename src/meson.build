@@ -14,20 +14,23 @@ global_conf.set_quoted('LOCALEDIR', localedir)
 config = configure_file(
   input: 'config.rs.in',
   output: 'config.rs',
-  configuration: global_conf
+  configuration: global_conf,
 )
 # Copy the config.rs output to the source directory.
 run_command(
   'cp',
   meson.project_build_root() / 'src' / 'config.rs',
   meson.project_source_root() / 'src' / 'config.rs',
-  check: true
+  check: true,
 )
 
-cargo_build_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
+cargo_build_options = [
+  '--manifest-path',
+  meson.project_source_root() / 'Cargo.toml',
+]
 
 if gtk4_x11.found()
-  cargo_build_options += [ '--features', 'x11' ]
+  cargo_build_options += ['--features', 'x11']
 endif
 
 cargo_build_options += cargo_release_options
@@ -47,6 +50,8 @@ cargo_build = custom_target(
     'build',
     cargo_build_options,
     '&&',
-    'cp', cargo_target / rust_target / meson.project_name(), '@OUTPUT@',
-  ]
+    'cp',
+    cargo_target / rust_target / meson.project_name(),
+    '@OUTPUT@',
+  ],
 )
