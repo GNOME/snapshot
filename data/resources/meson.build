@@ -7,20 +7,19 @@ appdata_file = i18n.merge_file(
   input: configure_file(
     input: '@0@.metainfo.xml.in.in'.format(base_id),
     output: '@BASENAME@',
-    configuration: appdata_conf
+    configuration: appdata_conf,
   ),
   output: '@0@.metainfo.xml'.format(application_id),
   po_dir: podir,
   install: true,
-  install_dir: datadir / 'metainfo'
+  install_dir: datadir / 'metainfo',
 )
 # Validate Appdata
 if appstreamcli.found()
   test(
-    'validate-appdata', appstreamcli,
-    args: [
-      'validate', '--no-net', '--explain', appdata_file
-    ],
+    'validate-appdata',
+    appstreamcli,
+    args: ['validate', '--no-net', '--explain', appdata_file],
     depends: appdata_file,
   )
 endif

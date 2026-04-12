@@ -8,21 +8,19 @@ desktop_file = i18n.merge_file(
   input: configure_file(
     input: '@0@.desktop.in.in'.format(base_id),
     output: '@BASENAME@',
-    configuration: desktop_conf
+    configuration: desktop_conf,
   ),
   output: '@0@.desktop'.format(application_id),
   po_dir: podir,
   install: true,
-  install_dir: datadir / 'applications'
+  install_dir: datadir / 'applications',
 )
 # Validate Desktop file
 if desktop_file_validate.found()
   test(
     'validate-desktop',
     desktop_file_validate,
-    args: [
-      desktop_file.full_path()
-    ],
+    args: [desktop_file.full_path()],
     depends: desktop_file,
   )
 endif
@@ -36,16 +34,15 @@ configure_file(
   output: '@0@.gschema.xml'.format(application_id),
   configuration: gschema_conf,
   install: true,
-  install_dir: datadir / 'glib-2.0' / 'schemas'
+  install_dir: datadir / 'glib-2.0' / 'schemas',
 )
 
 # Validate GSchema
 if glib_compile_schemas.found()
   test(
-    'validate-gschema', glib_compile_schemas,
-    args: [
-      '--strict', '--dry-run', meson.current_build_dir()
-    ],
+    'validate-gschema',
+    glib_compile_schemas,
+    args: ['--strict', '--dry-run', meson.current_build_dir()],
   )
 endif
 
@@ -57,5 +54,5 @@ configure_file(
   input: '@0@.service.in'.format(base_id),
   output: '@0@.service'.format(application_id),
   configuration: service_conf,
-  install_dir: datadir / 'dbus-1' / 'services'
+  install_dir: datadir / 'dbus-1' / 'services',
 )

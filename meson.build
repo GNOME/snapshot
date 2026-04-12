@@ -74,7 +74,7 @@ else
   application_id = base_id
 
   rust_target = 'release'
-  cargo_release_options = [ '--release' ]
+  cargo_release_options = ['--release']
   clippy_deny_warnings = []
 endif
 
@@ -84,10 +84,13 @@ cargo_env = environment()
 cargo_env.set('CARGO_HOME', cargo_home)
 cargo_env.set('CARGO_TARGET_DIR', cargo_target)
 
-cargo_build_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
+cargo_build_options = [
+  '--manifest-path',
+  meson.project_source_root() / 'Cargo.toml',
+]
 
 if gtk4_x11.found()
-  cargo_build_options += [ '--features', 'x11' ]
+  cargo_build_options += ['--features', 'x11']
 endif
 
 cargo_build_options += cargo_release_options
@@ -109,7 +112,13 @@ meson.add_dist_script(
 if is_devel
   # Setup pre-commit hook for ensuring coding style is always consistent
   message('Setting up git pre-commit hook..')
-  run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: false)
+  run_command(
+    'cp',
+    '-f',
+    'hooks/pre-commit.hook',
+    '.git/hooks/pre-commit',
+    check: false,
+  )
 endif
 
 clippy_options = [
@@ -122,7 +131,7 @@ subdir('data')
 subdir('po')
 subdir('src')
 
-test (
+test(
   'cargo-test',
   cargo,
   args: [
@@ -133,7 +142,7 @@ test (
   timeout: 400,
 )
 
-test (
+test(
   'cargo-clippy',
   cargo,
   args: [
@@ -141,7 +150,7 @@ test (
     clippy_options,
   ],
   env: cargo_env,
-  timeout: 400, # cargo might take a bit of time sometimes
+  timeout: 400,  # cargo might take a bit of time sometimes
 )
 
 gnome.post_install(
