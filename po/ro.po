@@ -2,14 +2,14 @@
 # Copyright (C) 2023 Snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Snapshot package.
 # Florentina Musat <florentina.musat.28@gmail.com>, 2023.
-# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2025-09-15 17:31+0000\n"
-"PO-Revision-Date: 2025-09-16 11:25+0200\n"
+"POT-Creation-Date: 2026-03-29 19:07+0000\n"
+"PO-Revision-Date: 2026-04-14 15:23+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Snapshot.desktop.in.in:2
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:7
-#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:24
+#: data/resources/ui/window.ui:4 data/resources/ui/window.ui:11 src/main.rs:23
 msgid "Camera"
 msgstr "Camera"
 
@@ -78,12 +78,11 @@ msgstr "Dacă să se înregistreze sunetul când se filmează"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:44
 msgid "Enable hardware recording"
-msgstr "Activează înregistrarea hardware"
+msgstr "Activează filmarea prin GPU"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:45
 msgid "Whether to record video using hardware encoding"
-msgstr ""
-"Dacă să se înregistreze video folosind componentele fizice ale calculatorului"
+msgstr "Dacă să se filmeze folosind codarea realizată de procesorul grafic"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
@@ -130,7 +129,7 @@ msgid "Camera's gallery viewer"
 msgstr "Galerie de poze integrată"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:242
+#: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:254
 msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
@@ -234,7 +233,7 @@ msgstr "Imaginea următoare"
 msgid "Previous Image"
 msgstr "Imaginea precedentă"
 
-#: data/resources/ui/gallery.ui:81 src/widgets/gallery.rs:139
+#: data/resources/ui/gallery.ui:81
 msgid "Open in Image Viewer"
 msgstr "Deschide în aplicația pentru imagini"
 
@@ -253,7 +252,7 @@ msgstr "_Grilă"
 
 #: data/resources/ui/preferences_window.ui:30
 msgid "Video Recording"
-msgstr "Înregistrare video"
+msgstr "Filmare"
 
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
@@ -349,7 +348,7 @@ msgstr "Arată/Ascunde grila"
 #: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
 msgid "Gallery"
-msgstr "Galerie"
+msgstr "Galeria"
 
 #: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
@@ -368,7 +367,11 @@ msgstr "Precedenta"
 
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
-msgstr "Galerie"
+msgstr "Galeria"
+
+#: src/application.rs:34
+msgid "Enable debug messages"
+msgstr "Activează mesajele de depanare"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
@@ -376,13 +379,9 @@ msgstr "Galerie"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: src/application.rs:34
-msgid "Enable debug messages"
-msgstr "Activează mesajele de depanare"
-
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
 #. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
-#: src/utils.rs:23
+#: src/utils.rs:22
 msgid "Photo from {date}"
 msgstr "Poză din {date}"
 
@@ -395,35 +394,31 @@ msgstr "Poza {number}"
 #. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
 #. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
 #. file name.
-#: src/utils.rs:41
+#: src/utils.rs:42
 msgid "Recording from {date}"
 msgstr "Video din {date}"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
-#: src/utils.rs:46
+#: src/utils.rs:48
 msgid "Recording {number}"
 msgstr "Video {number}"
 
-#: src/utils.rs:136
+#: src/utils.rs:139
 msgid "_Copy Picture"
 msgstr "_Copiază poza"
 
-#: src/utils.rs:138
+#: src/utils.rs:141
 msgid "_Copy Video"
-msgstr "_Copiază videoul"
+msgstr "_Copiază video"
 
-#: src/utils.rs:140
+#: src/utils.rs:143
 msgid "_Delete"
 msgstr "Șt_erge"
 
-#: src/widgets/camera.rs:608
+#: src/widgets/camera.rs:614
 msgid "Could not play camera stream"
 msgstr "Nu s-a putut reda fluxul camerei"
-
-#: src/widgets/gallery.rs:141
-msgid "Open in Video Player"
-msgstr "Deschide cu aplicația pentru video"
 
 #: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
@@ -449,17 +444,16 @@ msgstr "Filmează"
 msgid "Stop Recording"
 msgstr "Oprește filmarea"
 
-#: src/widgets/window.rs:107 src/widgets/window.rs:363
+#: src/widgets/window.rs:107
 msgid "Could not take picture"
 msgstr "Nu s-a putut fotografia"
 
-#: src/widgets/window.rs:111 src/widgets/window.rs:367
+#: src/widgets/window.rs:111
 msgid "Could not record video"
 msgstr "Nu s-a putut filma"
 
 #: src/widgets/window.rs:314
 msgid "translator-credits"
 msgstr ""
-"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, "
-"2023-2024\n"
-"Antonio Marin <gnmer.6qxyg@slmail.me>, 2025"
+"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>\n"
+"Antonio Marin <gnmer.6qxyg@slmail.me>"
