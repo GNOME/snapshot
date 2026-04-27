@@ -5,7 +5,7 @@ use std::os::fd::{AsRawFd, OwnedFd};
 use std::os::unix::io::RawFd;
 use std::sync::Once;
 
-use gst::prelude::*;
+use gst::prelude::{DeviceExt, *};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};

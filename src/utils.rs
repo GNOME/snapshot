@@ -5,7 +5,7 @@ use std::sync::LazyLock;
 use anyhow::Context;
 use formatx::formatx;
 use gettextrs::gettext;
-use gst::prelude::*;
+use gst::prelude::{DeviceExt, *};
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
