@@ -364,7 +364,7 @@ impl Gallery {
         log::debug!("Done loading {} videos", videos.len());
 
         pictures.append(&mut videos);
-        pictures.sort_by(|(_, stamp1, _), (_, stamp2, _)| stamp1.cmp(stamp2));
+        pictures.sort_by_key(|(_, stamp, _)| *stamp);
 
         if let Some(((last, _stamp, is_picture), items)) = pictures.split_last() {
             items.iter().for_each(|(file, _stamp, is_picture)| {
