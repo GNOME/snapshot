@@ -212,6 +212,7 @@ mod imp {
     #[glib::object_subclass]
     impl ObjectSubclass for Viewfinder {
         const NAME: &'static str = "ApertureViewfinder";
+        const FINAL: bool = true;
         type Type = super::Viewfinder;
         type ParentType = gtk::Widget;
 

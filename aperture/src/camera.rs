@@ -25,6 +25,7 @@ mod imp {
     #[glib::object_subclass]
     impl ObjectSubclass for Camera {
         const NAME: &'static str = "ApertureCamera";
+        const FINAL: bool = true;
         type Type = super::Camera;
     }
 

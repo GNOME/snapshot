@@ -79,6 +79,7 @@ mod imp {
     #[glib::object_subclass]
     impl ObjectSubclass for DeviceProvider {
         const NAME: &'static str = "ApertureDeviceProvider";
+        const FINAL: bool = true;
         type Type = super::DeviceProvider;
         type Interfaces = (gio::ListModel,);
     }

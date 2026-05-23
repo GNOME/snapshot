@@ -43,6 +43,7 @@ mod imp {
     #[glib::object_subclass]
     impl ObjectSubclass for QrCodeDetector {
         const NAME: &'static str = "QrCodeDetector";
+        const FINAL: bool = true;
         type Type = super::QrCodeDetector;
         type ParentType = gst_video::VideoFilter;
     }
