@@ -107,7 +107,7 @@ if is_devel
 endif
 
 clippy_options = []
-clippy_options += cargo_release_options
+clippy_options += cargo_build_options
 clippy_options += [
   '--all-targets',
   '--all-features',
@@ -125,7 +125,7 @@ test (
   cargo,
   args: [
     'test',
-    cargo_release_options,
+    cargo_build_options,
     '--all-targets',
     '--all-features',
     '--workspace',
