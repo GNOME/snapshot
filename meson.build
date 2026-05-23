@@ -118,7 +118,6 @@ clippy_options += clippy_deny_warnings
 subdir('data')
 subdir('po')
 subdir('src')
-subdir('aperture')
 
 test (
   'cargo-test',
