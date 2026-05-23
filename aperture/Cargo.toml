@@ -13,6 +13,7 @@ rust-version.workspace = true
 
 [dependencies]
 futures-channel = { workspace = true }
+glib = "0.22.4"
 gst = { workspace = true }
 gst-base = { workspace = true }
 gst-pbutils = { workspace = true }
