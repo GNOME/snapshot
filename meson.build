@@ -91,6 +91,12 @@ if gtk4_x11.found()
 endif
 
 cargo_build_options += cargo_release_options
+cargo_extra_options = [
+  cargo_release_options,
+  '--all-targets',
+  '--all-features',
+  '--workspace',
+]
 
 meson.add_devenv(cargo_env)
 
@@ -106,14 +112,11 @@ if is_devel
   run_command('cp', '-f', 'hooks/pre-commit.hook', '.git/hooks/pre-commit', check: false)
 endif
 
-clippy_options = []
-clippy_options += cargo_build_options
-clippy_options += [
-  '--all-targets',
-  '--all-features',
-  '--workspace',
+clippy_options = [
+  cargo_extra_options,
+  clippy_deny_warnings,
 ]
-clippy_options += clippy_deny_warnings
+cargo_test_options = cargo_extra_options
 
 subdir('data')
 subdir('po')
@@ -124,10 +127,7 @@ test (
   cargo,
   args: [
     'test',
-    cargo_build_options,
-    '--all-targets',
-    '--all-features',
-    '--workspace',
+    cargo_test_options,
   ],
   env: cargo_env,
   timeout: 400,
