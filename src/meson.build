@@ -24,14 +24,6 @@ run_command(
   check: true
 )
 
-cargo_build_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
-
-if gtk4_x11.found()
-  cargo_build_options += [ '--features', 'x11' ]
-endif
-
-cargo_build_options += cargo_release_options
-
 cargo_build = custom_target(
   'cargo-build',
   build_by_default: true,

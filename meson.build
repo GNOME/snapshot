@@ -84,6 +84,14 @@ cargo_env = environment()
 cargo_env.set('CARGO_HOME', cargo_home)
 cargo_env.set('CARGO_TARGET_DIR', cargo_target)
 
+cargo_build_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
+
+if gtk4_x11.found()
+  cargo_build_options += [ '--features', 'x11' ]
+endif
+
+cargo_build_options += cargo_release_options
+
 meson.add_devenv(cargo_env)
 
 meson.add_dist_script(
