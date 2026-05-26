@@ -38,8 +38,8 @@ ashpd = { version = "0.13.0", default-features = false, features = ["gtk4_waylan
 formatx = "0.2.4"
 futures-channel = { workspace = true }
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-glycin = { package = "libglycin-rebind", version = "0.1.0-rc" }
-glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.1.0-rc" }
+glycin = { package = "libglycin-rebind", version = "0.1.0" }
+glycin-gtk4 = { package = "libglycin-gtk4-rebind", version = "0.1.0" }
 gst = { workspace = true }
 gtk = { workspace = true, features = ["gnome_47"] }
 log = { workspace = true }
