@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: snapshot main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
 "POT-Creation-Date: 2026-04-27 09:36+0000\n"
-"PO-Revision-Date: 2026-05-22 22:16+0100\n"
+"PO-Revision-Date: 2026-05-29 18:08+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -39,7 +39,7 @@ msgstr "Kemeres skeusennow ha gwydhyowyow"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "aven;skeusennow;kamera;"
+msgstr "aven;skeusen;skeusennow;kamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:14
 #: data/org.gnome.Snapshot.gschema.xml.in:15
@@ -65,11 +65,11 @@ msgstr "Mar gwari sownd shutter pan ow kemeres skeusennow"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
-msgstr "Diskwedhes gidys gomposyans"
+msgstr "Diskwedhes gidys komposyans"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
-msgstr "Mar diskwedhes gidys gomposyans pan ow tevnydhya an kamera"
+msgstr "Mar tiskwedhes gidys komposyans pan ow tevnydhya an kamera"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
@@ -101,7 +101,7 @@ msgstr "Fordh rekordyans"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
-msgstr "Mar dhe gemeres skeusennow po gwydhyowyow"
+msgstr "Mar kemeres skeusennow po gwydhyowyow"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
@@ -130,7 +130,7 @@ msgstr "An pennynterfas a Gamera"
 
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
-msgstr "An mirva a Gamera"
+msgstr "An virva a Gamera"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:254
@@ -168,11 +168,11 @@ msgstr "Fordh Arhwilyans QR-Kod"
 
 #: data/resources/ui/camera.ui:554
 msgid "Missing Camera Permission"
-msgstr "Kymmas Kamera yw ow Fyllel"
+msgstr "Kummyas Kamera yw ow Fyllel"
 
 #: data/resources/ui/camera.ui:555
 msgid "Allow camera usage in Settings"
-msgstr "Gesewgh usadow kamera yn Settyansow"
+msgstr "Gasewgh usadow kamera yn Settyansow"
 
 #. TRANSLATORS this indicates the countdown is disabled
 #: data/resources/ui/camera.ui:570
@@ -200,7 +200,7 @@ msgstr "_Dewisyow"
 
 #: data/resources/ui/camera.ui:597
 msgid "_Keyboard Shortcuts"
-msgstr "_Kesunyansow Vysowek"
+msgstr "_Kesunyansow Bysowek"
 
 #: data/resources/ui/camera.ui:601
 msgid "_About Camera"
@@ -231,11 +231,11 @@ msgstr "Rol Virva"
 
 #: data/resources/ui/gallery.ui:53
 msgid "Next Image"
-msgstr "Skeusen Nessa"
+msgstr "Nessa Skeusen"
 
 #: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
-msgstr "Skeusen Gyns"
+msgstr "Kyns Skeusen"
 
 #: data/resources/ui/gallery.ui:81
 msgid "Open in Image Viewer"
@@ -252,7 +252,7 @@ msgstr "_Sownd Shutter"
 
 #: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
-msgstr "Gid _Gomposyans"
+msgstr "Gid _Komposyans"
 
 #: data/resources/ui/preferences_window.ui:30
 msgid "Video Recording"
@@ -271,8 +271,8 @@ msgid ""
 "Some graphic drivers may cause the system to be unstable or crash. In these "
 "cases, reboot the system and disable the option."
 msgstr ""
-"Nebes lewyoryon grafek a yll kawsya an system dhe vos diantel po kesvonkya. "
-"Y'n gasys ma, dastallethewgh an system ha marowhe an dewis."
+"Nebes lewyoryon wrafek a yll kawsya an kevreyth dhe vos diantel po "
+"kesvonkya. Y'n kasys ma, dastallethewgh an system ha marowhewgh an dewis."
 
 #: data/resources/ui/preferences_window.ui:46
 msgid "_Hardware Video Encoding"
@@ -302,7 +302,7 @@ msgstr "Ollgemmyn"
 #: data/resources/ui/shortcuts.ui:9
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Diskwedhes Kesunyansow Vysowek"
+msgstr "Diskwedhes Kesunyansow Bysowek"
 
 #: data/resources/ui/shortcuts.ui:15
 msgctxt "shortcut window"
@@ -347,7 +347,7 @@ msgstr "Kemeres Skeusen po Dalleth Ow Rekordya"
 #: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr "Diskwedhes/Kudha Gidys Gomposyans"
+msgstr "Diskwedhes/Kudha Gidys Komposyans"
 
 #: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
@@ -375,7 +375,7 @@ msgstr "Mirva"
 
 #: src/application.rs:34
 msgid "Enable debug messages"
-msgstr "Bywhe messajys brevessyans"
+msgstr "Bywhe messajys prevessyans"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
