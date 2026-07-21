@@ -210,21 +210,32 @@ mod imp {
                 #[weak]
                 obj,
                 move |viewfinder| {
-                    let window = viewfinder.root().and_downcast::<crate::Window>().unwrap();
-
                     if viewfinder.is_recording() {
                         obj.set_shutter_mode(crate::ShutterMode::Recording);
-                        window.inhibit("Recording Video");
                         obj.show_recording_label();
                     } else {
                         obj.hide_recording_label();
-                        window.uninhibit();
                         if matches!(obj.shutter_mode(), crate::ShutterMode::Recording) {
                             obj.set_shutter_mode(crate::ShutterMode::Video);
                         }
                     }
                 }
             ));
+
+            // Inhibit idle (screen blanking and locking) the whole time the
+            // viewfinder is active, not only while recording, so the display
+            // does not turn off mid-capture. See GNOME/snapshot#366.
+            self.viewfinder.connect_state_notify(|viewfinder| {
+                let Some(window) = viewfinder.root().and_downcast::<crate::Window>() else {
+                    return;
+                };
+
+                if matches!(viewfinder.state(), aperture::ViewfinderState::Ready) {
+                    window.inhibit("Camera viewfinder is active");
+                } else {
+                    window.uninhibit();
+                }
+            });
 
             self.selection.set_model(Some(provider));
             self.selection.connect_selected_item_notify(glib::clone!(
