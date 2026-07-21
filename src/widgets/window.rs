@@ -184,9 +184,11 @@ mod imp {
                 let imp = window.imp();
                 if window.is_suspended() && !imp.camera.is_recording_active() {
                     log::debug!("Window suspended: stopping stream");
+                    imp.camera.set_page_visible(false);
                     imp.camera.stop_stream();
                 } else {
                     log::debug!("Window un-suspended: starting stream");
+                    imp.camera.set_page_visible(true);
                     imp.camera.start_stream();
                 }
             });

@@ -35,14 +35,17 @@ mod imp {
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
 
-        /// Whether the camera page is the currently visible page in the
-        /// window's navigation view. Kept separate from
-        /// `aperture::ViewfinderState` because `stop_stream()`/
-        /// `start_stream()` (called from `Window::on_camera_page_hidden()`/
-        /// `on_camera_page_showing()`) only pause and resume the GStreamer
-        /// pipeline -- they never change `ViewfinderState`, so navigating
-        /// away from the camera page (e.g. to the gallery) would otherwise
-        /// never be observed here.
+        /// Whether the camera is actually being looked at: the camera page
+        /// is the visible page in the window's navigation view, *and* the
+        /// window itself isn't suspended (e.g. backgrounded by switching to
+        /// another app). Kept separate from `aperture::ViewfinderState`
+        /// because `stop_stream()`/`start_stream()` (called from
+        /// `Window::on_camera_page_hidden()`/`on_camera_page_showing()` and
+        /// from the window's `suspended`-notify handler) only pause and
+        /// resume the GStreamer pipeline -- they never change
+        /// `ViewfinderState`, so neither leaving the camera page (e.g. for
+        /// the gallery) nor switching to a different app would otherwise
+        /// ever be observed here.
         pub page_visible: Cell<bool>,
 
         #[property(get, set = Self::set_capture_mode, explicit_notify, default)]
@@ -578,10 +581,12 @@ impl Camera {
         self.imp().viewfinder.start_stream();
     }
 
-    /// Called by `Window` when the camera page is shown or hidden in the
-    /// navigation view, so the idle inhibitor can be dropped/reacquired
-    /// even though that doesn't change the viewfinder's `state` (see the
-    /// doc comment on `imp::Camera::page_visible`).
+    /// Called by `Window` when the camera page is shown/hidden in the
+    /// navigation view, and when the window itself is suspended/resumed
+    /// (e.g. by switching to another app), so the idle inhibitor can be
+    /// dropped/reacquired even though neither of those change the
+    /// viewfinder's `state` (see the doc comment on
+    /// `imp::Camera::page_visible`).
     pub fn set_page_visible(&self, visible: bool) {
         self.imp().page_visible.set(visible);
         self.update_idle_inhibit();
