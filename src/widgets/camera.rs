@@ -35,6 +35,16 @@ mod imp {
         pub recording_duration: Cell<u32>,
         pub recording_source: RefCell<Option<glib::source::SourceId>>,
 
+        /// Whether the camera page is the currently visible page in the
+        /// window's navigation view. Kept separate from
+        /// `aperture::ViewfinderState` because `stop_stream()`/
+        /// `start_stream()` (called from `Window::on_camera_page_hidden()`/
+        /// `on_camera_page_showing()`) only pause and resume the GStreamer
+        /// pipeline -- they never change `ViewfinderState`, so navigating
+        /// away from the camera page (e.g. to the gallery) would otherwise
+        /// never be observed here.
+        pub page_visible: Cell<bool>,
+
         #[property(get, set = Self::set_capture_mode, explicit_notify, default)]
         capture_mode: Cell<crate::CaptureMode>,
 
@@ -134,6 +144,11 @@ mod imp {
 
             let obj = self.obj();
 
+            // The camera page is the window's initial page, so it starts
+            // out visible; `Window::on_camera_page_hidden()`/
+            // `on_camera_page_showing()` keep this in sync afterwards.
+            self.page_visible.set(true);
+
             let provider = aperture::DeviceProvider::instance();
             self.provider.set(provider.clone()).unwrap();
 
@@ -222,20 +237,18 @@ mod imp {
                 }
             ));
 
-            // Inhibit idle (screen blanking and locking) the whole time the
-            // viewfinder is active, not only while recording, so the display
-            // does not turn off mid-capture. See GNOME/snapshot#366.
-            self.viewfinder.connect_state_notify(|viewfinder| {
-                let Some(window) = viewfinder.root().and_downcast::<crate::Window>() else {
-                    return;
-                };
-
-                if matches!(viewfinder.state(), aperture::ViewfinderState::Ready) {
-                    window.inhibit("Camera viewfinder is active");
-                } else {
-                    window.uninhibit();
+            // Inhibit idle (screen blanking and locking) while the camera
+            // page is visible and the viewfinder is actively streaming, so
+            // the display does not turn off mid-capture. See
+            // GNOME/snapshot#366. `page_visible` is tracked separately, see
+            // its doc comment above for why `state` alone isn't enough.
+            self.viewfinder.connect_state_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    obj.update_idle_inhibit();
                 }
-            });
+            ));
 
             self.selection.set_model(Some(provider));
             self.selection.connect_selected_item_notify(glib::clone!(
@@ -563,6 +576,32 @@ impl Camera {
 
     pub fn start_stream(&self) {
         self.imp().viewfinder.start_stream();
+    }
+
+    /// Called by `Window` when the camera page is shown or hidden in the
+    /// navigation view, so the idle inhibitor can be dropped/reacquired
+    /// even though that doesn't change the viewfinder's `state` (see the
+    /// doc comment on `imp::Camera::page_visible`).
+    pub fn set_page_visible(&self, visible: bool) {
+        self.imp().page_visible.set(visible);
+        self.update_idle_inhibit();
+    }
+
+    fn update_idle_inhibit(&self) {
+        let Some(window) = self.root().and_downcast::<crate::Window>() else {
+            return;
+        };
+
+        if self.imp().page_visible.get()
+            && matches!(
+                self.imp().viewfinder.state(),
+                aperture::ViewfinderState::Ready
+            )
+        {
+            window.inhibit("Camera viewfinder is active");
+        } else {
+            window.uninhibit();
+        }
     }
 
     pub fn toggle_guidelines(&self) {

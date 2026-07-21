@@ -70,6 +70,7 @@ mod imp {
             }
 
             log::debug!("Camera page hidden: stopping stream");
+            self.camera.set_page_visible(false);
             self.camera.stop_stream();
 
             match obj.capture_mode() {
@@ -84,6 +85,7 @@ mod imp {
         #[template_callback]
         fn on_camera_page_showing(&self) {
             log::debug!("Camera page showing: starting stream");
+            self.camera.set_page_visible(true);
             self.camera.start_stream();
             self.obj().set_shutter_enabled(true);
         }
