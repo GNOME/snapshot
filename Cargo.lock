@@ -1108,9 +1108,9 @@ checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "libglycin-gtk4-rebind"
-version = "0.1.0"
+version = "0.2.0-beta"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f06eb8570574e13c83b856f422a559704e6c1ed471c20f163e2ca05e505bfa7a"
+checksum = "4c8292c567b69c04657110f034350be65401870ba983f4ccf5ea5d692d50a196"
 dependencies = [
  "gdk4",
  "gio",
@@ -1122,9 +1122,9 @@ dependencies = [
 
 [[package]]
 name = "libglycin-gtk4-rebind-sys"
-version = "0.1.0"
+version = "0.2.0-beta"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d5942c92d31c0a2a79cc2f64890c46952c91bccf0263d7ac4558bbdd116bab51"
+checksum = "b336784a77ad36ae307fbbec239d4ea05892c47052b4bdbe559b601d6a3491c1"
 dependencies = [
  "gdk4-sys",
  "glib-sys",
@@ -1135,9 +1135,9 @@ dependencies = [
 
 [[package]]
 name = "libglycin-rebind"
-version = "0.1.0"
+version = "0.2.0-beta"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79a080d11cbd053f65de1a9c7efd096fe2a0fde6244185bd452bb11fdeb98db3"
+checksum = "dc64feeade86a0c7d4ea7e25ead4723853a2816373e8c4c0151313939c5f1ed4"
 dependencies = [
  "gio",
  "glib",
@@ -1147,9 +1147,9 @@ dependencies = [
 
 [[package]]
 name = "libglycin-rebind-sys"
-version = "0.1.0"
+version = "0.2.0-beta"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65fecb1928f26a984b937deadbb0998f1a0f3c3db7fa2b9a493322e80b1f9f4b"
+checksum = "064c0a9d4e06aa13063bcc35deec51c48844082b0c80659a26307cfc28b4c6c8"
 dependencies = [
  "gio-sys",
  "glib-sys",
