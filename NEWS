@@ -1,3 +1,9 @@
+## 51.beta 2026-08-08
+- Inhibit idle while the viewfinder is active
+- Remove glycin build dependencies from meson.build
+- Update rust crates
+- Updated translations
+
 ## 51.alpha 2026-06-28
 - Minor improvements
 - Updated translations
