@@ -16,7 +16,10 @@ use widgets::*;
 
 fn main() -> glib::ExitCode {
     // Prepare i18n
-    gettextrs::setlocale(LocaleCategory::LcAll, "");
+    unsafe {
+        // SAFETY: Unsafe because it may not be called with concurrent changes to env variables
+        gettextrs::setlocale(LocaleCategory::LcAll, "");
+    }
     gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
     gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
