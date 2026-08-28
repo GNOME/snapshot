@@ -52,6 +52,8 @@ mod imp {
             action_group.add_action(&play_shutter_sound);
             let show_composition_guidelines = settings.create_action("show-composition-guidelines");
             action_group.add_action(&show_composition_guidelines);
+            let keep_display_on = settings.create_action("keep-display-on");
+            action_group.add_action(&keep_display_on);
             if !self.obj().is_app_recording() {
                 let enable_audio_recording = settings.create_action("enable-audio-recording");
                 action_group.add_action(&enable_audio_recording);

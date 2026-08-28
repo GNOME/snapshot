@@ -23,6 +23,14 @@
                 <property name="use-underline">True</property>
               </object>
             </child>
+            <child>
+              <object class="AdwSwitchRow">
+                <property name="title" translatable="yes">_Keep Display On</property>
+                <property name="subtitle" translatable="yes">Prevent the screensaver from turning on while in use</property>
+                <property name="action-name">preferences-window.keep-display-on</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

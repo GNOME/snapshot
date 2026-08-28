@@ -34,6 +34,11 @@
       <summary>Show composition guidelines</summary>
       <description>Whether to show composition guidelines when using the camera</description>
     </key>
+    <key name="keep-display-on" type="b">
+      <default>false</default>
+      <summary>Prevent the screensaver while in use</summary>
+      <description>Whether to keep the display on and prevent the screensaver from engaging while the application is in use</description>
+    </key>
     <key name="enable-audio-recording" type="b">
       <default>true</default>
       <summary>Enable audio recording</summary>

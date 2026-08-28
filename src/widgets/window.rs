@@ -38,6 +38,7 @@ mod imp {
         pub is_active_handle: RefCell<Option<glib::SignalHandlerId>>,
 
         pub inhibit_cookie: Cell<Option<u32>>,
+        pub keep_display_on_cookie: Cell<Option<u32>>,
     }
 
     impl Default for Window {
@@ -55,6 +56,7 @@ mod imp {
                 is_active_handle: Default::default(),
 
                 inhibit_cookie: Default::default(),
+                keep_display_on_cookie: Default::default(),
             }
         }
     }
@@ -222,6 +224,21 @@ mod imp {
                 ));
             });
             self.is_active_handle.replace(Some(is_active_handle));
+
+            let keep_display_on_window = self.obj();
+            self.settings.connect_changed(
+                Some("keep-display-on"),
+                glib::clone!(
+                    #[weak]
+                    keep_display_on_window,
+                    move |_, _| {
+                        keep_display_on_window.update_keep_display_on_inhibit();
+                    }
+                ),
+            );
+            keep_display_on_window.connect_is_active_notify(|window| {
+                window.update_keep_display_on_inhibit();
+            });
         }
     }
 
@@ -484,6 +501,30 @@ impl Window {
         };
         if let Some(cookie) = imp.inhibit_cookie.take() {
             log::debug!("Uninhibiting app with cookie: {cookie}");
+            app.uninhibit(cookie);
+        }
+    }
+
+    fn update_keep_display_on_inhibit(&self) {
+        let imp = self.imp();
+        let Some(app) = self.application() else {
+            return;
+        };
+
+        if imp.settings.boolean("keep-display-on") && self.is_active() {
+            if imp.keep_display_on_cookie.get().is_none() {
+                let cookie = app.inhibit(
+                    Some(self),
+                    gtk::ApplicationInhibitFlags::IDLE,
+                    Some("Keep display on"),
+                );
+                if cookie > 0 {
+                    log::debug!("Inhibiting app: keep display on is enabled");
+                    imp.keep_display_on_cookie.set(Some(cookie));
+                }
+            }
+        } else if let Some(cookie) = imp.keep_display_on_cookie.take() {
+            log::debug!("Uninhibiting app: keep display on is disabled");
             app.uninhibit(cookie);
         }
     }
