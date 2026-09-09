@@ -1,0 +1,383 @@
+# Croatian translation for snapshot.
+# Copyright (C) 2024 snapshot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the snapshot package.
+# Milo Ivir <mail@milotype.de>, 2023., 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot gnome-45\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
+"POT-Creation-Date: 2023-12-27 21:02+0000\n"
+"PO-Revision-Date: 2024-04-16 13:30+0200\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <hr@li.org>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0\n"
+
+#: data/org.gnome.Snapshot.desktop.in.in:2
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:7 data/resources/ui/window.ui:6
+#: data/resources/ui/window.ui:13 src/main.rs:27 src/widgets/window.rs:266
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/org.gnome.Snapshot.desktop.in.in:3
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:8
+msgid "Take pictures and videos"
+msgstr "Snimajte slike i videa"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Snapshot.desktop.in.in:9
+msgid "picture;photos;camera;webcam;snapshot;"
+msgstr "slika;fotografije;kamera;web kamera;snimka;"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:16
+#: data/org.gnome.Snapshot.gschema.xml.in:17
+msgid "Default window width"
+msgstr "Zadana širina prozora"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:21
+#: data/org.gnome.Snapshot.gschema.xml.in:22
+msgid "Default window height"
+msgstr "Zadana visina prozora"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:26
+msgid "Default window maximized behaviour"
+msgstr "Zadano ponašanje rastvorenog prozora"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:31
+msgid "Play shutter sound"
+msgstr "Sviraj zvuk zaslona"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:32
+msgid "Whether to play a shutter sound when taking pictures"
+msgstr ""
+"Da li svirati zvuk otvaranja/zatvaranja zaslona prilikom snimanja slika"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:36
+msgid "Show composition guidelines"
+msgstr "Prikaži vodilice za kompoziciju"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:37
+msgid "Whether to show composition guidelines when using the camera"
+msgstr "Da li prikazati vodilice za kompoziciju prilikom upotrebe kamere"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:41
+msgid "Countdown timer"
+msgstr "Timer odbrojavanja"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:42
+msgid "The duration of the countdown for taking photos, in seconds"
+msgstr "Trajanje odbrojavanja za snimanje slika, u sekundama"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:46
+msgid "Capture mode"
+msgstr "Način snimanja"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:47
+msgid "Whether to take pictures or videos"
+msgstr "Da li snimati slike ili videa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:51
+msgid "Picture format"
+msgstr "Format slike"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:52
+msgid "Whether to save pictures as png or jpeg"
+msgstr "Da li spremiti slike u png ili jpeg formatu"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:56
+msgid "Video format"
+msgstr "Format videa"
+
+#: data/org.gnome.Snapshot.gschema.xml.in:57
+msgid "Whether to save videos as mp4 or webm"
+msgstr "Da li spremiti videa u mp4 ili webm formatu"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:10
+msgid "Take pictures and videos on your computer, tablet, or phone."
+msgstr "Snimajte slike i videa na računalu, tabletu ili mobitelu."
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:17
+msgid "Camera's main interface"
+msgstr "Glavno sučelje kamere"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:21
+msgid "Camera's gallery viewer"
+msgstr "Preglednik galerije kamere"
+
+#: data/org.gnome.Snapshot.metainfo.xml.in.in:119 src/widgets/window.rs:272
+msgid "The GNOME Project"
+msgstr "GNOME projekt"
+
+#: data/resources/ui/camera.ui:97 data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:341 data/resources/ui/camera.ui:476
+msgid "Main Menu"
+msgstr "Glavni izbornik"
+
+#: data/resources/ui/camera.ui:107
+msgid "No Camera Found"
+msgstr "Nije pronađena nijedna kamera"
+
+#: data/resources/ui/camera.ui:108
+msgid "Connect a camera device"
+msgstr "Spojite jednu kameru"
+
+#: data/resources/ui/camera.ui:196 data/resources/ui/camera.ui:294
+#: data/resources/ui/camera.ui:407 data/resources/ui/camera.ui:498
+msgid "Picture Mode"
+msgstr "Snimanje slika"
+
+#: data/resources/ui/camera.ui:215 data/resources/ui/camera.ui:313
+#: data/resources/ui/camera.ui:426 data/resources/ui/camera.ui:517
+msgid "Recording Mode"
+msgstr "Snimanje videa"
+
+#: data/resources/ui/camera.ui:237 data/resources/ui/camera.ui:271
+#: data/resources/ui/camera.ui:374 data/resources/ui/camera.ui:546
+#: data/resources/ui/camera.ui:577
+msgid "Countdown"
+msgstr "Odbrojavanje"
+
+#. TRANSLATORS this indicates the countdown is disabled
+#: data/resources/ui/camera.ui:580
+msgid "None"
+msgstr "Isključeno"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:585
+msgid "3s"
+msgstr "3 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:590
+msgid "5s"
+msgstr "5 s"
+
+#. TRANSLATORS this is time for a countdown in seconds
+#: data/resources/ui/camera.ui:595
+msgid "10s"
+msgstr "10 s"
+
+#: data/resources/ui/camera.ui:603
+msgid "_Preferences"
+msgstr "_Osobitosti"
+
+#: data/resources/ui/camera.ui:607
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovni prečaci"
+
+#: data/resources/ui/camera.ui:611
+msgid "_About Camera"
+msgstr "O _aplikaciji Kamera"
+
+#: data/resources/ui/camera_controls.ui:17
+msgid "Open Gallery"
+msgstr "Otvori galeriju"
+
+#. Set a fallback tooltip
+#: data/resources/ui/camera_controls.ui:25 src/widgets/shutter_button.rs:70
+#: src/widgets/shutter_button.rs:119
+msgid "Take Picture"
+msgstr "Snimi sliku"
+
+#: data/resources/ui/camera_controls.ui:35
+msgid "Select Camera"
+msgstr "Odaberi kameru"
+
+#: data/resources/ui/camera_controls.ui:48
+msgctxt "Switch between front and back camera button"
+msgid "Switch Camera"
+msgstr "Promijeni način snimanja"
+
+#: data/resources/ui/gallery.ui:46
+msgid "Gallery Menu"
+msgstr "Izbornik galerije"
+
+#: data/resources/ui/gallery.ui:94
+msgid "Previous Image"
+msgstr "Prethodna slika"
+
+#: data/resources/ui/gallery.ui:107
+msgid "Next Image"
+msgstr "Sljedeća slika"
+
+#: data/resources/ui/gallery.ui:150
+msgid "Open in Image Viewer"
+msgstr "Otvori u pregledniku slika"
+
+#: data/resources/ui/preferences_window.ui:10
+msgid "General"
+msgstr "Općenito"
+
+#: data/resources/ui/preferences_window.ui:16
+msgid "_Shutter Sound"
+msgstr "_Zvuk zaslona"
+
+#: data/resources/ui/preferences_window.ui:23
+msgid "_Composition Guidelines"
+msgstr "_Vodilice za kompoziciju"
+
+#: data/resources/ui/shortcuts.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Općenito"
+
+#: data/resources/ui/shortcuts.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Prikaži tipkovne prečace"
+
+#: data/resources/ui/shortcuts.ui:20
+msgctxt "shortcut window"
+msgid "Main Menu"
+msgstr "Glavni izbornik"
+
+#: data/resources/ui/shortcuts.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Otvori osobitosti"
+
+#: data/resources/ui/shortcuts.ui:32
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Prekini"
+
+#: data/resources/ui/shortcuts.ui:40
+msgctxt "shortcut window"
+msgid "Camera"
+msgstr "Kamera"
+
+#: data/resources/ui/shortcuts.ui:43
+msgctxt "shortcut window"
+msgid "Picture Mode"
+msgstr "Snimanje slika"
+
+#: data/resources/ui/shortcuts.ui:49
+msgctxt "shortcut window"
+msgid "Recording Mode"
+msgstr "Snimanje videa"
+
+#: data/resources/ui/shortcuts.ui:55
+msgctxt "shortcut window"
+msgid "Take Picture or Start Recording"
+msgstr "Snimi sliku ili pokreni snimanje videa"
+
+#: data/resources/ui/shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Show/Hide Composition Guidelines"
+msgstr "Prikaži/Sakrij vodilice za kompoziciju"
+
+#: data/resources/ui/shortcuts.ui:69
+msgctxt "shortcut window"
+msgid "Gallery"
+msgstr "Galerija"
+
+#: data/resources/ui/shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Open/Close Gallery"
+msgstr "Otvori/Zatvori galeriju"
+
+#: data/resources/ui/shortcuts.ui:78
+msgctxt "shortcut window"
+msgid "Next"
+msgstr "Sljedeća"
+
+#: data/resources/ui/shortcuts.ui:84
+msgctxt "shortcut window"
+msgid "Previous"
+msgstr "Prethodna"
+
+#: data/resources/ui/window.ui:21
+msgid "Gallery"
+msgstr "Galerija"
+
+#. TRANSLATORS This is the image format presented in the preferences
+#. window.
+#: src/enums.rs:27
+msgid "JPEG"
+msgstr "JPEG"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g. "Photo
+#. from 2023-05-21 11-05-59.12345" and it will be used as a file name.
+#: src/utils.rs:23
+#, rust-format
+msgid "Photo from {date}"
+msgstr "Slika od {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Photo 12345" and it will be used as a file name.
+#: src/utils.rs:28
+#, rust-format
+msgid "Photo {number}"
+msgstr "Slika br. {number}"
+
+#. TRANSLATORS Do NOT translate {date}. This will appear as, e.g.
+#. "Recording from 2023-05-21 11-05-59.12345" and it will be used as a
+#. file name.
+#: src/utils.rs:41
+#, rust-format
+msgid "Recording from {date}"
+msgstr "Video od {date}"
+
+#. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
+#. "Recording 12345" and it will be used as a file name.
+#: src/utils.rs:46
+#, rust-format
+msgid "Recording {number}"
+msgstr "Video br. {number}"
+
+#: src/utils.rs:128
+msgid "_Copy Picture"
+msgstr "_Kopiraj sliku"
+
+#: src/utils.rs:130
+msgid "_Copy Video"
+msgstr "_Kopiraj video"
+
+#: src/utils.rs:132
+msgid "_Delete"
+msgstr "_Izbriši"
+
+#: src/widgets/camera.rs:429
+msgid "Could not play camera stream"
+msgstr "Neuspjelo reproduciranje prijenosa kamere"
+
+#: src/widgets/gallery.rs:386
+msgid "Copied to clipboard"
+msgstr "Kopirano u međuspremnik"
+
+#: src/widgets/gallery.rs:434
+msgid "Picture deleted"
+msgstr "Slika je izbrisana"
+
+#: src/widgets/gallery.rs:436
+msgid "Video deleted"
+msgstr "Video je izbrisan"
+
+#: src/widgets/shutter_button.rs:81
+msgid "Start Recording"
+msgstr "Pokreni snimanje videa"
+
+#: src/widgets/shutter_button.rs:92
+msgid "Stop Recording"
+msgstr "Prekini snimanje videa"
+
+#: src/widgets/window.rs:74
+msgid "Could not take picture"
+msgstr "Neuspjelo snimanje slike"
+
+#: src/widgets/window.rs:78
+msgid "Could not record video"
+msgstr "Neuspjelo snimanje videa"
+
+#: src/widgets/window.rs:271
+msgid "translator-credits"
+msgstr "Milo Ivir <mail@milotype.de>"
+
+#~ msgid "Open in Video Player"
+#~ msgstr "Otvori u reproduktoru videa"
