@@ -1,3 +1,6 @@
+## 51.0 2026-09-14
+- Update gettext-rs to 0.8.0
+
 ## 51.beta 2026-08-08
 - Inhibit idle while the viewfinder is active
 - Remove glycin build dependencies from meson.build
