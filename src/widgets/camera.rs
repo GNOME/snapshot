@@ -119,19 +119,6 @@ mod imp {
             self.settings
                 .get_or_init(|| gio::Settings::new(config::APP_ID))
         }
-
-        #[template_callback]
-        fn change_breakpoint(&self, breakpoint: adw::Breakpoint) {
-            let obj = self.obj();
-
-            if breakpoint.eq(&self.dual_landscape_bp.get())
-                || breakpoint.eq(&self.dual_portrait_bp.get())
-            {
-                obj.add_css_class("mobile");
-            } else {
-                obj.remove_css_class("mobile");
-            }
-        }
     }
 
     #[glib::derived_properties]
@@ -311,21 +298,27 @@ mod imp {
                 .get_only()
                 .build();
 
-            obj.connect_current_breakpoint_notify(glib::clone!(
-                #[weak(rename_to = obj)]
-                self,
-                move |imp| {
-                    if imp.current_breakpoint().is_none()
-                        || imp
-                            .current_breakpoint()
-                            .is_some_and(|breakpoint| breakpoint.eq(&obj.dual_portrait_bp.get()))
-                    {
-                        imp.add_css_class("portrait");
-                    } else {
-                        imp.remove_css_class("portrait");
-                    }
+            obj.connect_current_breakpoint_notify(|obj| {
+                let imp = obj.imp();
+                if obj.current_breakpoint().is_none()
+                    || obj
+                        .current_breakpoint()
+                        .is_some_and(|breakpoint| breakpoint == imp.dual_portrait_bp.get())
+                {
+                    obj.add_css_class("portrait");
+                } else {
+                    obj.remove_css_class("portrait");
                 }
-            ));
+
+                if obj.current_breakpoint().is_some_and(|breakpoint| {
+                    breakpoint == imp.dual_landscape_bp.get()
+                        || breakpoint == imp.dual_portrait_bp.get()
+                }) {
+                    obj.add_css_class("mobile");
+                } else {
+                    obj.remove_css_class("mobile");
+                }
+            });
         }
     }
 
