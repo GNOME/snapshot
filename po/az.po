@@ -1,20 +1,21 @@
 # Azerbaijani translation for snapshot.
 # Copyright (C) 2026 snapshot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the snapshot package.
-# Nicat Xalid <nicat.m@pm.me>, 2026.
+# Ramal Rahimov <jhoaluman@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: snapshot gnome-51\n"
+"Project-Id-Version: snapshot\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/snapshot/-/issues\n"
-"POT-Creation-Date: 2026-09-14 15:21+0000\n"
-"PO-Revision-Date: 2026-11-07 20:47+0400\n"
-"Last-Translator: \n"
-"Language-Team: Azerbaijani <Azerbaijani>\n"
+"POT-Creation-Date: 2026-10-31 11:43+0000\n"
+"PO-Revision-Date: 2026-11-07 20:49+0400\n"
+"Last-Translator: Ramal Rəhimov <jhoaluman@gmail.com>\n"
+"Language-Team: Azerbaijani <contact@azelinux.com>\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.10\n"
 
 #: data/org.gnome.Snapshot.desktop.in.in:2
@@ -26,74 +27,75 @@ msgstr "Kamera"
 #: data/org.gnome.Snapshot.desktop.in.in:3
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:8
 msgid "Take pictures and videos"
-msgstr "Şəkil və video çək"
+msgstr "Şəkil və video çəkin"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Snapshot.desktop.in.in:9
 msgid "picture;photos;camera;webcam;snapshot;"
-msgstr "şəkil;fotolar;kamera;veb;snapshot;"
+msgstr "picture;photos;camera;webcam;snapshot;şəkil;foto;kamera;vebkamera;"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:14
 #: data/org.gnome.Snapshot.gschema.xml.in:15
 msgid "Default window width"
-msgstr "Varsayılan pəncərə eni"
+msgstr "Standart pəncərə eni"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:19
 #: data/org.gnome.Snapshot.gschema.xml.in:20
 msgid "Default window height"
-msgstr "Varsayılan pəncərə hündürlüyü"
+msgstr "Standart pəncərə hündürlüyü"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:24
 msgid "Default window maximized behaviour"
-msgstr "Varsayılan pəncərənin böyüdülmüş davranışı"
+msgstr "Standart pəncərənin maksimum ölçüdə olma davranışı"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:29
 msgid "Play shutter sound"
-msgstr "Çık-çık səsi çıxart"
+msgstr "Çəkiliş səsini oxut"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:30
 msgid "Whether to play a shutter sound when taking pictures"
-msgstr ""
+msgstr "Şəkil çəkərkən çəkiliş səsinin oxudulub-oxudulmaması"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:34
 msgid "Show composition guidelines"
-msgstr ""
+msgstr "Kompozisiya xətlərini göstər"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:35
 msgid "Whether to show composition guidelines when using the camera"
 msgstr ""
+"Kameradan istifadə edərkən kompozisiya xətlərinin göstərilib-göstərilməməsi"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:39
 msgid "Enable audio recording"
-msgstr "Səs yazmanı fəallaşdır"
+msgstr "Səs yazısını aktivləşdir"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:40
 msgid "Whether to record audio when recording video"
-msgstr ""
+msgstr "Video yazarkən səsin yazılıb-yazılmaması"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:44
 msgid "Enable hardware recording"
-msgstr ""
+msgstr "Aparat yazısını aktivləşdir"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:45
 msgid "Whether to record video using hardware encoding"
-msgstr ""
+msgstr "Videonun aparat kodlaşdırması ilə yazılıb-yazılmaması"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:49
 msgid "Countdown timer"
-msgstr ""
+msgstr "Geri sayım taymeri"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:50
 msgid "The duration of the countdown for taking photos, in seconds"
-msgstr ""
+msgstr "Foto çəkmək üçün geri sayımın müddəti (saniyə ilə)"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:54
 msgid "Capture mode"
-msgstr ""
+msgstr "Çəkiliş rejimi"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:55
 msgid "Whether to take pictures or videos"
-msgstr ""
+msgstr "Şəkil və ya video çəkilməsi"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:59
 msgid "Picture format"
@@ -101,100 +103,101 @@ msgstr "Şəkil formatı"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:60
 msgid "Whether to save pictures as png or jpeg"
-msgstr ""
+msgstr "Şəkillərin png və ya jpeg kimi saxlanılması"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:64
 msgid "Last Camera Used ID"
-msgstr "Son istifadə edilmiş kamera ID nömrəsi"
+msgstr "Sonuncu istifadə edilmiş kameranın ID-si"
 
 #: data/org.gnome.Snapshot.gschema.xml.in:65
 msgid "An ID representing the last used camera"
-msgstr ""
+msgstr "Sonuncu istifadə edilmiş kameranı göstərən ID"
 
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:10
 msgid "Take pictures and videos on your computer, tablet, or phone."
 msgstr ""
+"Kompüterinizdə, planşetinizdə və ya telefonunuzda şəkil və video çəkin."
 
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:17
 msgid "Camera's main interface"
-msgstr "Kameranın əsas araüzü"
+msgstr "Kameranın əsas interfeysi"
 
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:21
 msgid "Camera's gallery viewer"
-msgstr "Kameranın qalereya göstəricisi"
+msgstr "Kameranın qalereya baxıcısı"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:264
 #: data/resources/org.gnome.Snapshot.metainfo.xml.in.in:266
 msgid "The GNOME Project"
-msgstr "GNOME layihəsi"
+msgstr "GNOME Layihəsi"
 
-#: data/resources/ui/camera.ui:75 data/resources/ui/camera.ui:139
-#: data/resources/ui/camera.ui:545
+#: data/resources/ui/camera.ui:72 data/resources/ui/camera.ui:136
+#: data/resources/ui/camera.ui:542
 msgid "Main Menu"
 msgstr "Əsas menyu"
 
-#: data/resources/ui/camera.ui:84
+#: data/resources/ui/camera.ui:81
 msgid "No Camera Found"
 msgstr "Kamera tapılmadı"
 
-#: data/resources/ui/camera.ui:85
+#: data/resources/ui/camera.ui:82
 msgid "Connect a camera device"
-msgstr ""
+msgstr "Kamera qurğusu qoşun"
 
-#: data/resources/ui/camera.ui:127 data/resources/ui/camera.ui:567
+#: data/resources/ui/camera.ui:124 data/resources/ui/camera.ui:564
 msgid "Countdown"
-msgstr ""
+msgstr "Geri sayım"
 
-#: data/resources/ui/camera.ui:164
+#: data/resources/ui/camera.ui:161
 msgid "Picture Mode"
 msgstr "Şəkil rejimi"
 
-#: data/resources/ui/camera.ui:170
+#: data/resources/ui/camera.ui:167
 msgid "Recording Mode"
-msgstr "Yazma rejimi"
+msgstr "Yazı rejimi"
 
-#: data/resources/ui/camera.ui:177
+#: data/resources/ui/camera.ui:174
 msgid "QR Code Scanning Mode"
-msgstr "QR kod oxuma rejimi"
+msgstr "QR kod skan etmə rejimi"
 
-#: data/resources/ui/camera.ui:554
+#: data/resources/ui/camera.ui:551
 msgid "Missing Camera Permission"
-msgstr "Kamera icazələri çatmır"
+msgstr "Kamera icazəsi yoxdur"
 
-#: data/resources/ui/camera.ui:555
+#: data/resources/ui/camera.ui:552
 msgid "Allow camera usage in Settings"
-msgstr "Ayarlarda kamera istifadəsinə icazə ver"
+msgstr "Tənzimləmələrdə kameradan istifadəyə icazə verin"
 
 #. TRANSLATORS this indicates the countdown is disabled
-#: data/resources/ui/camera.ui:570
+#: data/resources/ui/camera.ui:567
 msgid "None"
-msgstr "Heç biri"
+msgstr "Yoxdur"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:575
+#: data/resources/ui/camera.ui:572
 msgid "3s"
-msgstr "3 san."
+msgstr "3 san"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:580
+#: data/resources/ui/camera.ui:577
 msgid "5s"
-msgstr "5 san."
+msgstr "5 san"
 
 #. TRANSLATORS this is time for a countdown in seconds
-#: data/resources/ui/camera.ui:585
+#: data/resources/ui/camera.ui:582
 msgid "10s"
-msgstr "10 san."
+msgstr "10 san"
 
-#: data/resources/ui/camera.ui:593
+#: data/resources/ui/camera.ui:590
 msgid "_Preferences"
-msgstr "_Tərcihlər"
+msgstr "_Tənzimləmələr"
 
-#: data/resources/ui/camera.ui:597
+#: data/resources/ui/camera.ui:594
 msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatura qısayolları"
 
-#: data/resources/ui/camera.ui:601
+#: data/resources/ui/camera.ui:598
 msgid "_About Camera"
 msgstr "Kamera _haqqında"
 
@@ -210,7 +213,7 @@ msgstr "Şəkil çək"
 
 #: data/resources/ui/camera_controls.ui:35
 msgid "Select Camera"
-msgstr "Kamera seç"
+msgstr "Kamera seçin"
 
 #: data/resources/ui/camera_controls.ui:48
 msgctxt "Switch between front and back camera button"
@@ -223,11 +226,11 @@ msgstr "Qalereya menyusu"
 
 #: data/resources/ui/gallery.ui:53
 msgid "Next Image"
-msgstr "Növbəti təsvir"
+msgstr "Növbəti şəkil"
 
 #: data/resources/ui/gallery.ui:67
 msgid "Previous Image"
-msgstr "Öncəki təsvir"
+msgstr "Əvvəlki şəkil"
 
 #: data/resources/ui/gallery.ui:81
 msgid "Open in Image Viewer"
@@ -240,19 +243,19 @@ msgstr "Ümumi"
 
 #: data/resources/ui/preferences_window.ui:14
 msgid "_Shutter Sound"
-msgstr "_Çık-çık səsi"
+msgstr "_Çəkiliş səsi"
 
 #: data/resources/ui/preferences_window.ui:21
 msgid "_Composition Guidelines"
-msgstr ""
+msgstr "_Kompozisiya xətləri"
 
 #: data/resources/ui/preferences_window.ui:30
 msgid "Video Recording"
-msgstr "Video yazma"
+msgstr "Video yazısı"
 
 #: data/resources/ui/preferences_window.ui:33
 msgid "_Record Audio"
-msgstr "Səs _yaz"
+msgstr "_Səsi yaz"
 
 #: data/resources/ui/preferences_window.ui:42
 msgid "Experimental"
@@ -263,22 +266,24 @@ msgid ""
 "Some graphic drivers may cause the system to be unstable or crash. In these "
 "cases, reboot the system and disable the option."
 msgstr ""
+"Bəzi qrafik drayverlər sistemin qeyri-sabit işləməsinə və ya çökməsinə səbəb "
+"ola bilər. Belə hallarda sistemi yenidən başladın və bu seçimi deaktiv edin."
 
 #: data/resources/ui/preferences_window.ui:46
 msgid "_Hardware Video Encoding"
-msgstr ""
+msgstr "_Aparat video kodlaşdırması"
 
 #: data/resources/ui/qr_bottom_sheet.ui:10
 msgid "Code Detected"
-msgstr ""
+msgstr "Kod aşkarlandı"
 
 #: data/resources/ui/qr_bottom_sheet.ui:13
 msgid "Contents"
-msgstr "Məzmunlar"
+msgstr "Məzmun"
 
 #: data/resources/ui/qr_bottom_sheet.ui:22
 msgid "Copy to Clipboard"
-msgstr "Mübadilə buferinə köçürüldü"
+msgstr "Mübadilə buferinə köçür"
 
 #: data/resources/ui/qr_bottom_sheet.ui:34
 msgid "Open Link"
@@ -302,7 +307,7 @@ msgstr "Əsas menyu"
 #: data/resources/ui/shortcuts.ui:21
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
-msgstr "Tərcihləri aç"
+msgstr "Tənzimləmələri aç"
 
 #: data/resources/ui/shortcuts.ui:27
 msgctxt "shortcut window"
@@ -327,17 +332,17 @@ msgstr "Şəkil rejimi"
 #: data/resources/ui/shortcuts.ui:50
 msgctxt "shortcut window"
 msgid "Recording Mode"
-msgstr "Yazma rejimi"
+msgstr "Yazı rejimi"
 
 #: data/resources/ui/shortcuts.ui:56
 msgctxt "shortcut window"
 msgid "Take Picture or Start Recording"
-msgstr "Şəkil çək və ya video yazmağa başla"
+msgstr "Şəkil çək və ya yazını başlat"
 
 #: data/resources/ui/shortcuts.ui:62
 msgctxt "shortcut window"
 msgid "Show/Hide Composition Guidelines"
-msgstr ""
+msgstr "Kompozisiya xətlərini göstər/gizlət"
 
 #: data/resources/ui/shortcuts.ui:70
 msgctxt "shortcut window"
@@ -347,17 +352,17 @@ msgstr "Qalereya"
 #: data/resources/ui/shortcuts.ui:73
 msgctxt "shortcut window"
 msgid "Open/Close Gallery"
-msgstr ""
+msgstr "Qalereyanı aç/bağla"
 
 #: data/resources/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Next"
-msgstr "Sonrakı"
+msgstr "Növbəti"
 
 #: data/resources/ui/shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Previous"
-msgstr "Öncəki"
+msgstr "Əvvəlki"
 
 #: data/resources/ui/window.ui:21
 msgid "Gallery"
@@ -365,7 +370,7 @@ msgstr "Qalereya"
 
 #: src/application.rs:34
 msgid "Enable debug messages"
-msgstr "Sazlama mesajlarını fəallaşdır"
+msgstr "Sazlama mesajlarını aktivləşdir"
 
 #. TRANSLATORS This is the image format presented in the preferences
 #. window.
@@ -378,7 +383,7 @@ msgstr "JPEG"
 #: src/utils.rs:22
 #, rust-format
 msgid "Photo from {date}"
-msgstr "{date} tarixindən foto"
+msgstr "{date} tarixli foto"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Photo 12345" and it will be used as a file name.
@@ -393,14 +398,14 @@ msgstr "Foto {number}"
 #: src/utils.rs:42
 #, rust-format
 msgid "Recording from {date}"
-msgstr "{date} tarixindən yazma"
+msgstr "{date} tarixli yazı"
 
 #. TRANSLATORS Do NOT translate {number}. This will appear as, e.g.
 #. "Recording 12345" and it will be used as a file name.
 #: src/utils.rs:48
 #, rust-format
 msgid "Recording {number}"
-msgstr "Yazma {number}"
+msgstr "Yazı {number}"
 
 #: src/utils.rs:139
 msgid "_Copy Picture"
@@ -414,9 +419,9 @@ msgstr "Videonu _köçür"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: src/widgets/camera.rs:655
+#: src/widgets/camera.rs:648
 msgid "Could not play camera stream"
-msgstr ""
+msgstr "Kamera axınını oxutmaq mümkün olmadı"
 
 #: src/widgets/gallery.rs:420 src/widgets/qr_bottom_sheet.rs:104
 msgid "Copied to clipboard"
@@ -432,26 +437,24 @@ msgstr "Video silindi"
 
 #: src/widgets/qr_screen_bin.rs:50
 msgid "Scan Code"
-msgstr "Kod oxut"
+msgstr "Kodu skan et"
 
 #: src/widgets/shutter_button.rs:82
 msgid "Start Recording"
-msgstr "Yazmağa başla"
+msgstr "Yazını başlat"
 
 #: src/widgets/shutter_button.rs:93
 msgid "Stop Recording"
-msgstr "Yazmanı dayandır"
+msgstr "Yazını dayandır"
 
 #: src/widgets/window.rs:109
 msgid "Could not take picture"
-msgstr "Şəkil çəkilə bilmədi"
+msgstr "Şəkil çəkmək mümkün olmadı"
 
 #: src/widgets/window.rs:113
 msgid "Could not record video"
-msgstr "Video yazıla bilmədi"
+msgstr "Video yazmaq mümkün olmadı"
 
 #: src/widgets/window.rs:318
 msgid "translator-credits"
-msgstr ""
-"translator-credits\n"
-"Nicat Xalid <nicat.m@pm.me>"
+msgstr "Ramal Rəhimov <jhoaluman@gmail.com>"
