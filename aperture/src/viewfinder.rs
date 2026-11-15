@@ -319,6 +319,7 @@ mod imp {
             let caps_video = gst_video::video_make_raw_caps(&[
                 gst_video::VideoFormat::I420,
                 gst_video::VideoFormat::Nv12,
+                gst_video::VideoFormat::Nv21,
             ])
             .build();
             camerabin.set_property("video-capture-caps", caps_video);
